@@ -1,4 +1,4 @@
-# 볼링게임 점수판
+# 체스게임
 ## 진행 방법
 * 체스 게임에 대한 [요구사항](https://nextstep.camp/courses/-KtTrisFbiAQW0Sgo7SV/-KpmU6DGga_oQCA7u0Px/lessons)을 파악한다.
 * 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.

@@ -16,8 +16,17 @@ public class PawnTest {
         verifyPawn(black);
     }
 
+    @Test
+    @DisplayName("기본 생성자는 흰색 폰을 생성")
+    public void create_기본생성자() throws Exception {
+        Pawn pawn = new Pawn();
+        assertThat(pawn.getColor()).isEqualTo("white");
+    }
+
     public void verifyPawn(final String color) {
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
     }
+
+
 }

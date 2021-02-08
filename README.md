@@ -32,12 +32,14 @@
     - 실패 확인
 
 ### Pawn Class
-- [ ] "black" Pawn
+- [X] "black" Pawn
     -  인스턴스 생성
         - new Pawn("black");
     - 테스트 작성
         - assertThat(blackPawn.getColor()).isEqualTo("black");
     - @DisplayName 내용 변경
+- [X] 테스트 실행
+  - 성공 확인
 
 - [ field ]
     - [X] String 타입 color

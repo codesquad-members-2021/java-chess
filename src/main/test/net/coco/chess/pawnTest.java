@@ -1,4 +1,4 @@
-package test;
+package net.coco.chess;
 
 import net.coco.chess.Pawn;
 import org.junit.jupiter.api.Assertions;
@@ -19,5 +19,6 @@ class pawnTest {
     public void verifyPawn(final String color){
         Pawn pawn=new Pawn(color);
         Assertions.assertEquals(color,pawn.getColor());
+
     }
 }

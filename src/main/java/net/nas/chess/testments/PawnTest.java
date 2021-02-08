@@ -8,9 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class PawnTest {
 
     @Test
-    @DisplayName("흰색 폰이 생성되어야 합니다.")
+    @DisplayName("생성자에 넣은 색깔대로 폰이 생성되어야 합니다.")
     public void create(){
-        Pawn pawn = new Pawn("white");
-        assertEquals("white", pawn.getColor());
+        final String[] testcases = {"white", "black"};
+        for(String tc : testcases){
+            Pawn pawn = new Pawn(tc);
+            assertEquals(tc, pawn.getColor());
+        }
     }
 }

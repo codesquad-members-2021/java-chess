@@ -13,15 +13,22 @@ class PawnTest {
 
     @Test
     @DisplayName("검정 폰 생성 테스트")
-    public void create_test_color_black() {
-        Pawn pawn = new Pawn("black");
-        assertThat(pawn.getColor(), is(equalTo("black")));
+    public void create_test_color() {
+        String colorOfTest = "black";
+        verifyColorOfPawn(colorOfTest);
     }
 
     @Test
     @DisplayName("하얀 폰 생성 테스트")
     public void create_test_color_white() {
-        Pawn pawn = new Pawn("white");
-        assertThat(pawn.getColor(), is(equalTo("white")));
+        String colorOfTest = "white";
+        verifyColorOfPawn(colorOfTest);
     }
+
+    public void verifyColorOfPawn(String color){
+        Pawn pawn = new Pawn(color);
+        assertThat(pawn.getColor(), is(equalTo(color)));
+    }
+
+
 }

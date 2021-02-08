@@ -1,10 +1,10 @@
-package net.sky.chess;
+package net.sky.pieces;
 
 public class Pawn {
 
   private final String color;
-  final static String WHITE = "white";
-  final static String BLACK = "black";
+  public final static String WHITE = "white";
+  public final static String BLACK = "black";
 
   public Pawn() {
     this.color = WHITE;

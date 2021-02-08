@@ -1,4 +1,4 @@
-package board;
+package chess;
 
 import pieces.Pawn;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Board {
 
-    private ArrayList<Pawn> pawns;
+    private final ArrayList<Pawn> pawns;
 
     public Board() {
         this.pawns = new ArrayList<>();
@@ -14,6 +14,14 @@ public class Board {
 
     public void addPawn(Pawn pawn) {
         this.pawns.add(pawn);
+    }
+
+    public int pawnSize() {
+        return this.pawns.size();
+    }
+
+    public Pawn findPawn(int index) {
+        return this.pawns.get(index);
     }
 
 }

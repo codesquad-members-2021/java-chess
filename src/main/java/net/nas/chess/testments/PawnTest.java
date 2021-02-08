@@ -12,8 +12,12 @@ public class PawnTest {
     public void create(){
         final String[] testcases = {"white", "black"};
         for(String tc : testcases){
-            Pawn pawn = new Pawn(tc);
-            assertEquals(tc, pawn.getColor());
+            verifyPawn(tc);
         }
+    }
+
+    private void verifyPawn(final String color){
+        Pawn pawn = new Pawn(color);
+        assertEquals(color, pawn.getColor());
     }
 }

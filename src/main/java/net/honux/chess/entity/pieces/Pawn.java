@@ -10,12 +10,16 @@ public class Pawn extends Piece{
     }
 
     @Override
-    void move() {
+    public void move(Pointer pointer) {
+    }
+
+    @Override
+    public void kill(Pointer pointer) {
 
     }
 
     @Override
-    void kill() {
+    public void printPointer() {
 
     }
 }

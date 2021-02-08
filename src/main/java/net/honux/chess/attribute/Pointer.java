@@ -12,7 +12,7 @@ public class Pointer {
     }
 
     public void setPointer(Pointer pointer){
-        String pointer1 = pointer.getPointer();
+        String pointer1 = pointer.toString();
         this.x = pointer1.split(separator)[0].charAt(0);
         this.y = Integer.parseInt(pointer1.split(separator)[1]);
     }
@@ -25,7 +25,15 @@ public class Pointer {
         this.y = y;
     }
 
-    public String getPointer(){
+    public String toString(){
         return String.valueOf(this.x) + separator + this.y;
+    }
+
+    public char getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

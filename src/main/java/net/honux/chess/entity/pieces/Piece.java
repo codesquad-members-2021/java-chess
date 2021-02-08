@@ -7,8 +7,9 @@ public abstract class Piece {
     private final Color color;
     private Pointer currentPointer;
     private boolean alive = true;
-    abstract void move();
-    abstract void kill();
+    abstract void move(Pointer pointer);
+    abstract void kill(Pointer pointer);
+    abstract void printPointer();
 
     public Piece(Color color, Pointer currentPointer) {
         this.color = color;

@@ -6,7 +6,7 @@ import net.sky.pieces.Pawn;
 
 public class Board {
 
-  List<Pawn> pawns;
+  private List<Pawn> pawns;
 
   public Board() {
     pawns = new ArrayList<>();

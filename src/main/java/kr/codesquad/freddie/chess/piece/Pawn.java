@@ -32,7 +32,7 @@ public class Pawn {
 
     @Override
     public String toString() {
-        return "kr.codesquad.freddie.chess.piece.Pawn{" +
+        return "Pawn{" +
                 "color=" + color +
                 '}';
     }

@@ -8,3 +8,36 @@
 ## 온라인 코드 리뷰 과정
 * [텍스트와 이미지로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://github.com/code-squad/codesquad-docs/blob/master/codereview/README.md)
 * [동영상으로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://youtu.be/a5c9ku-_fok)
+
+## 요구 사항 정리
+
+### PawnTest Class
+- [ ] PawnTest Class 생성
+    - [ ] JUnit으로 실행
+        - 테스트 메소드를 구현하지 않았기 때문에 실패하는 것을 확인한다.
+- [ ] create() Method 생성
+    - [ ] JUnit 테스트 메소드를 생성 • 실행
+        - 테스트 메소드 구현 후 실행하여 성공하는 것을 확인
+
+### create() Method
+- [ ] @DisplayName 활용
+- [ ] "white" Pawn & "black" Pawn
+    -  인스턴스 생성
+        - new Pawn("white");
+        - new Pawn("black");
+    - 테스트 작성
+        - assertThat(whitePawn.getColor()).isEqualTo("white");
+        - assertThat(blackPawn.getColor()).isEqualTo("black");
+- [ ] 테스트 실행
+    - 실패 확인
+
+### Pawn Class
+- [ field ]
+    - [ ] String 타입 color
+- [ constructor ]
+    - [ ] "white" / "black" 값만 인자로 받기
+- [ method ]
+    - [ ] getColor() 
+    
+
+    

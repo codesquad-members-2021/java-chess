@@ -1,10 +1,10 @@
-package net.sky.chess;
+package net.sky.pieces;
 
-import static net.sky.chess.Pawn.BLACK;
-import static net.sky.chess.Pawn.WHITE;
+import static net.sky.pieces.Pawn.BLACK;
+import static net.sky.pieces.Pawn.WHITE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import net.sky.pieces.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -22,18 +22,23 @@
         - ⁕ Test passed
 
 ### create() Method
-- [ ] @DisplayName 활용
-- [ ] "white" Pawn & "black" Pawn
+- [X] @DisplayName 활용
+- [X] "white" Pawn
     -  인스턴스 생성
         - new Pawn("white");
-        - new Pawn("black");
     - 테스트 작성
         - assertThat(whitePawn.getColor()).isEqualTo("white");
-        - assertThat(blackPawn.getColor()).isEqualTo("black");
-- [ ] 테스트 실행
+- [X] 테스트 실행
     - 실패 확인
 
 ### Pawn Class
+- [ ] "black" Pawn
+    -  인스턴스 생성
+        - new Pawn("black");
+    - 테스트 작성
+        - assertThat(blackPawn.getColor()).isEqualTo("black");
+    - @DisplayName 내용 변경
+
 - [ field ]
     - [ ] String 타입 color
 - [ constructor ]

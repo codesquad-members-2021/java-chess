@@ -2,6 +2,7 @@ package net.sky.chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import net.sky.pieces.Pawn;
 
 public class Board {
 

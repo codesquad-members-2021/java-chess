@@ -40,11 +40,12 @@
     - @DisplayName 내용 변경
 
 - [ field ]
-    - [ ] String 타입 color
+    - [X] String 타입 color
 - [ constructor ]
+    - [X] String 타입 color 파라미터
     - [ ] "white" / "black" 값만 인자로 받기
 - [ method ]
-    - [ ] getColor() 
+    - [X] getColor() 제대로 구현
     
 ### 겪었던 문제
 1. 테스트 클래스 생성 불가

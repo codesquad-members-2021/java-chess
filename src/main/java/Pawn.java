@@ -1,6 +1,6 @@
 public class Pawn {
-    private static final String WHITE = "white";
-    private static final String BLACK = "black";
+    public static final String WHITE = "white";
+    public static final String BLACK = "black";
     private String color;
 
     public Pawn(String color){
@@ -15,4 +15,5 @@ public class Pawn {
         return this.color;
     }
 }
+
 

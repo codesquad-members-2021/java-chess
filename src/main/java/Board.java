@@ -1,15 +1,17 @@
 import java.util.ArrayList;
 
 public class Board {
-    private static final int PAWNSNUM = 8;
-    private ArrayList<Pawn> whitePawns;
-    private ArrayList<Pawn> blackPawns;
+    private ArrayList<Pawn> pawns = new ArrayList<>();
 
-    public Board(){
-        for(int i = 0; i < PAWNSNUM; i++){
-            whitePawns.add(new Pawn("white"));
-            blackPawns.add(new Pawn("black"));
-        }
+    public void add(Pawn pawn){
+        this.pawns.add(pawn);
     }
 
+    public int size(){
+        return pawns.size();
+    }
+
+    public Pawn findPawn(int idx) {
+        return pawns.get(idx);
+    }
 }

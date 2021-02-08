@@ -1,5 +1,7 @@
 package net.sky.chess;
 
+import static net.sky.chess.Pawn.BLACK;
+import static net.sky.chess.Pawn.WHITE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,9 +12,9 @@ class PawnTest {
 
   @Test
   @DisplayName("흰색 폰이 생성되어야 한다.")
-  public void create(){
-    verifyPawn("white");
-    verifyPawn("black");
+  public void create() {
+    verifyPawn(WHITE);
+    verifyPawn(BLACK);
   }
 
   private void verifyPawn(final String color) {
@@ -20,4 +22,10 @@ class PawnTest {
     assertThat(pawn.getColor()).isEqualTo(color);
   }
 
+
+  @Test
+  public void create_기본생성자() throws Exception {
+    Pawn pawn = new Pawn();
+    verifyPawn(pawn.getColor());
+  }
 }

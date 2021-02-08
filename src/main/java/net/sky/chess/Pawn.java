@@ -1,9 +1,16 @@
 package net.sky.chess;
 
 public class Pawn {
-  private String color;
 
-  public Pawn(String color){
+  private final String color;
+  final static String WHITE = "white";
+  final static String BLACK = "black";
+
+  public Pawn() {
+    this.color = WHITE;
+  }
+
+  public Pawn(String color) {
     this.color = color;
   }
 

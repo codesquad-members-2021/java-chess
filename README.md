@@ -12,12 +12,14 @@
 ## 요구 사항 정리
 
 ### PawnTest Class
-- [ ] PawnTest Class 생성
-    - [ ] JUnit으로 실행
+- [X] PawnTest Class 생성
+    - [X] JUnit으로 실행 
         - 테스트 메소드를 구현하지 않았기 때문에 실패하는 것을 확인한다.
-- [ ] create() Method 생성
-    - [ ] JUnit 테스트 메소드를 생성 • 실행
+        - ⁕ 테스트 메소드를 구현하지 않은 상태로 실행 시 ClassNotFoundException 발생.
+- [X] create() Method 생성
+    - [X] JUnit 테스트 메소드를 생성 • 실행
         - 테스트 메소드 구현 후 실행하여 성공하는 것을 확인
+        - ⁕ Test passed
 
 ### create() Method
 - [ ] @DisplayName 활용
@@ -39,5 +41,22 @@
 - [ method ]
     - [ ] getColor() 
     
+### 겪었던 문제
+1. 테스트 클래스 생성 불가
+   - **내용**
+     - 빈 Pawn class에 대해 PawnTest.java가 인식되지 않음 
+   - **해결** 
+     - MainTest.java라는 이름의 테스트 클래스는 인식 → MainTest.java를 생성하고 그 아래 public이 아닌 PawnTest class 생성
+     - (-) 요구사항에 있는 테스트 코드는 public class PawnTest
+    
+2. No tasks available
+    - **내용** 
+      - 테스트 클래스 혹은 특정 메소드를 run 할 시 아무 것도 실행이 되지 않음
+      - 'no tasks availabe' 메세지 발생
+    - **해결**
+        -  Settings > Build, Execution, Deployment > Build Tools > Gradle 에서 Run tests using: `IntelliJ IDEA`로 수정
+        - [참조](https://stackoverflow.com/questions/57908805/no-tasks-available-when-executing-junit-runner-class)
+    
+
 
     

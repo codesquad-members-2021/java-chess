@@ -3,7 +3,7 @@ package mj.chess;
 public class Pawn {
     private String color;
 
-    Pawn(String color){
+    public Pawn(String color){
         this.color = color;
     }
 

@@ -11,7 +11,6 @@ public class PawnTest {
     public void create() {
         final String white = "white";
         final String black = "black";
-
         verifyPawn(white);
         verifyPawn(black);
     }
@@ -23,9 +22,9 @@ public class PawnTest {
         assertThat(pawn.getColor()).isEqualTo("white");
     }
 
-    public void verifyPawn(final String color) {
-        Pawn pawn = new Pawn(color);
-        assertThat(pawn.getColor()).isEqualTo(color);
+    public void verifyPawn(String color) {
+        Pawn pawn = new Pawn(Pawn.Color.valueOf(color.toUpperCase()));
+        assertThat(pawn.getColor()).isEqualTo(color.toLowerCase());
     }
 
 

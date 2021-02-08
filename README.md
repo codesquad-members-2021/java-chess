@@ -50,7 +50,7 @@
     
 ### 리팩토링
 - Pawn class 
-  - [ ] "white" / "black" 값만 인자로 받기
+  - [X] "white" / "black" 값만 인자로 받기
     
 - PawnTest class
   - [X] local variable 추가
@@ -59,6 +59,10 @@
         - Pawn을 생성해서 사용해야하는 다른 테스트 메소드들이 추가되면 기본적으로 color 변수는 필요하지 않을까
   - [X] verifyPawn() 추가
     - Pawn 생성과 결과 값 확인 부분 중복 제거
+    
+- [X] create_with_unsupported_color()
+    - 유효하지 않은 color 값으로 pawn 인스턴스 생성 시도
+    - IllegalArgumentException 결과가 나와야 정상
     
 ### 겪었던 문제
 1. 테스트 클래스 생성 불가

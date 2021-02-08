@@ -45,9 +45,20 @@
     - [X] String 타입 color
 - [ constructor ]
     - [X] String 타입 color 파라미터
-    - [ ] "white" / "black" 값만 인자로 받기
 - [ method ]
     - [X] getColor() 제대로 구현
+    
+### 리팩토링
+- Pawn class 
+  - [ ] "white" / "black" 값만 인자로 받기
+    
+- PawnTest class
+  - [X] local variable 추가
+    - "white" / "black" 값 변수로 관리
+    - ⁕ 클래스 변수였어도 좋았을 것 같다 
+        - Pawn을 생성해서 사용해야하는 다른 테스트 메소드들이 추가되면 기본적으로 color 변수는 필요하지 않을까
+  - [X] verifyPawn() 추가
+    - Pawn 생성과 결과 값 확인 부분 중복 제거
     
 ### 겪었던 문제
 1. 테스트 클래스 생성 불가

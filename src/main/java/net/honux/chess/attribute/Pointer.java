@@ -17,14 +17,6 @@ public class Pointer {
         this.y = Integer.parseInt(pointer1.split(separator)[1]);
     }
 
-    private void setX(char x) {
-        this.x = x;
-    }
-
-    private void setY(int y) {
-        this.y = y;
-    }
-
     public String toString(){
         return String.valueOf(this.x) + separator + this.y;
     }

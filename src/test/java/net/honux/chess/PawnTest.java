@@ -6,7 +6,8 @@ import static org.assertj.core.api.Assertions.*;
 public class PawnTest {
 
     @Test
-    public void create() {
+    @DisplayName("Verify pawns...")
+    void create() {
         verifyPawn("white");
         verifyPawn("black");
     }

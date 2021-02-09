@@ -9,6 +9,10 @@ public class Pawn {
         this.color = ins;
     }
 
+    public Pawn() {
+        this.color = "white";
+    }
+
     //public static Pawn create(String color) {
     //    return new Pawn(color);
     //}

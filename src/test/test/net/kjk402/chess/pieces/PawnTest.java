@@ -1,7 +1,9 @@
-package net.kjk402.chess;
+package net.kjk402.chess.pieces;
+
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+import net.kjk402.chess.pieces.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

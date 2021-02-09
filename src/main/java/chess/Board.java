@@ -1,7 +1,7 @@
 package chess;
 
 import pieces.Pawn;
-
+import pieces.Pawn.Color;
 import java.util.*;
 
 public class Board {
@@ -15,8 +15,8 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            addWhitePawn(new Pawn(Pawn.Color.WHITE));
-            addBlackPawn(new Pawn(Pawn.Color.BLACK));
+            addWhitePawn(new Pawn(Color.WHITE));
+            addBlackPawn(new Pawn(Color.BLACK));
         }
     }
 

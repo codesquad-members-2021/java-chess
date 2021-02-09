@@ -1,7 +1,9 @@
+package chess;
+
 public class Pawn {
     private final Color color;
 
-    enum Color{
+    public enum Color{
         WHITE,
         BLACK
     }

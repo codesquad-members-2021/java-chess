@@ -23,8 +23,15 @@ public class PawnTest {
     }
 
     public void verifyPawn(String color) {
-        Pawn pawn = new Pawn(Pawn.Color.valueOf(color.toUpperCase()));
-        assertThat(pawn.getColor()).isEqualTo(color.toLowerCase());
+        Pawn pawn = null;
+        if ("black".equalsIgnoreCase(color)) {
+            pawn = new Pawn(Pawn.BLACK_COLOR);
+        } else if ("white".equalsIgnoreCase(color)){
+            pawn = new Pawn(Pawn.WHITE_COLOR);
+        }
+        if (pawn != null) {
+            assertThat(pawn.getColor()).isEqualTo(color);
+        }
     }
 
 

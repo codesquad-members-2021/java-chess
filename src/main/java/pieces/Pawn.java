@@ -19,7 +19,7 @@ public class Pawn {
         return color.toString();
     }
 
-    enum Color {
+    private enum Color {
         BLACK("black"),
         WHITE("white");
 

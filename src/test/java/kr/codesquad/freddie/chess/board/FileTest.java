@@ -4,34 +4,33 @@ import kr.codesquad.freddie.chess.piece.Pawn;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
-class RankTest {
+class FileTest {
     @Test
     void add() {
         int size = 8;
 
         for (int i = 0; i < size; i++) {
-            Rank rank = new Rank();
+            File file = new File();
 
             for (int j = 0; j < i; j++) {
-                rank.add(new Pawn());
+                file.add(new Pawn());
             }
-            assertThat(rank.size())
+            assertThat(file.size())
                     .isEqualTo(i);
         }
     }
 
     @Test
     void add_8개초과() {
-        Rank rank = new Rank();
+        File file = new File();
 
         for (int i = 0; i < 8; i++) {
-            rank.add(new Pawn());
+            file.add(new Pawn());
         }
 
-        assertThatThrownBy(() -> rank.add(new Pawn()))
+        assertThatThrownBy(() -> file.add(new Pawn()))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("랭크 당 8개만 추가 가능합니다.");
+                .hasMessage("파일 당 8개만 추가 가능합니다.");
     }
 }

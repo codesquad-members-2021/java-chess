@@ -1,4 +1,4 @@
-package net.honux.chess;
+package august.chess;
 
 import org.junit.jupiter.api.*;
 

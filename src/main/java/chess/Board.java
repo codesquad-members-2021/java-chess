@@ -17,7 +17,6 @@ public class Board {
         return pawnList.size();
     }
 
-
     public Pawn findPawn(int i) {
         return pawnList.get(i);
     }

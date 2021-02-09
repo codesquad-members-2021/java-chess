@@ -8,8 +8,11 @@ class PawnTest {
     @Test
     @DisplayName("흰색 폰이 생성되어야 한다")
     public void create() {
-        String color = "white";
+        verifyPawn("white");
+        verifyPawn("black");
+    }
 
+    private void verifyPawn(final String color) {
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
     }

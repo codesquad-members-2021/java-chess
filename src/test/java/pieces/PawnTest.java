@@ -9,7 +9,7 @@ public class PawnTest {
 
     @Test
     @DisplayName("Verify default constructor")
-    void createDefault() throws Exception {
+    void create_default() throws Exception {
         Pawn pawn = new Pawn();
         assertEquals(Piece.WHITE_COLOR, pawn.getColor());
     }

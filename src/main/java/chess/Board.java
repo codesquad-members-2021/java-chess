@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    List<Piece> board;
+    private final List<Piece> board;
 
     public Board() {
         this.board = new ArrayList<>();

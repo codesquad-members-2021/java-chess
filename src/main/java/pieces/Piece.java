@@ -5,6 +5,4 @@ public abstract class Piece {
     public static final String BLACK_COLOR = "black";
 
     protected String color;
-    protected int xPos;
-    protected int yPos;
 }

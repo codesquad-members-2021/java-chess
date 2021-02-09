@@ -1,6 +1,6 @@
 package Chess;
 
-public class Pawn {
+public class Pawn { 
     String color;
     public static final String W = "white";
     public static final String B = "black";

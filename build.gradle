@@ -14,3 +14,7 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.11.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
+
+test {
+    useJUnitPlatform()
+}

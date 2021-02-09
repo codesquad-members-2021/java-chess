@@ -1,10 +1,12 @@
+package chess.pieces;
+
 public class Pawn {
     public static final String BLACK = "black";
     public static final String WHITE = "white";
 
     private String color;
 
-    Pawn(String color) {
+    public Pawn(String color) {
         this.color = color;
     }
 

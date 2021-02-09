@@ -1,4 +1,6 @@
+package chess;
 
+import chess.pieces.Pawn;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.converter.ArgumentConversionException;
@@ -10,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)  // 기본 원칙은 테스트 메서드마다 테스트 인스턴스를 새로 만드는데, 명시적으로 클래스당 하나만 만들어서 공유할 수 있다.
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)  // 기본 원칙은 테스트 메서드마다 테스트 인스턴스를 새로 만드는데, 명시적으로 클래스당 인스턴스 하나만 만들어서 공유할 수 있다.
 public class BoardTest {
 
     Board board = new Board();

@@ -8,7 +8,7 @@ public class Pawn {
         BALCK
     };
 
-    Color color;
+    final Color color;
 
     public Pawn(Color color) {
         this.color = color;

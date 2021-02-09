@@ -7,4 +7,8 @@ import java.util.ArrayList;
 public class Board {
     private ArrayList<Pawn> pawns = new ArrayList<>();
 
+    public void addPawn(Pawn pawn){
+        pawns.add(pawn);
+    }
+
 }

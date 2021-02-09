@@ -2,8 +2,8 @@ package pieces;
 
 public class Pawn {
 
-    public static Color WHITE_COLOR = Color.WHITE;
-    public static Color BLACK_COLOR = Color.BLACK;
+    public static final Color WHITE_COLOR = Color.WHITE;
+    public static final Color BLACK_COLOR = Color.BLACK;
 
     private final Color color;
 

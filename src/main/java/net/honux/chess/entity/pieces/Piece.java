@@ -6,8 +6,8 @@ import net.honux.chess.attribute.Pointer;
 public abstract class Piece {
     private final char name;
     private final Color color;
-    private final Pointer currentPointer;
-    private final boolean alive = true;
+    private Pointer currentPointer;
+    private boolean alive = true;
 
     public Piece(char name, Color color, Pointer currentPointer) {
         this.name = name;
@@ -34,7 +34,6 @@ public abstract class Piece {
     }
 
     public void setCurrentPointer(Pointer currentPointer) {
-        this.currentPointer.setX(currentPointer.getX());
-        this.currentPointer.setY(currentPointer.getY());
+        this.currentPointer.setPointer(currentPointer);
     }
 }

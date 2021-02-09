@@ -1,4 +1,4 @@
-package entity.pieces;
+package net.honux.chess.entity.pieces;
 
 import net.honux.chess.attribute.Color;
 import net.honux.chess.attribute.Pointer;
@@ -6,7 +6,7 @@ import net.honux.chess.entity.pieces.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class PawnTest {
 

@@ -1,4 +1,4 @@
-package net.honux.chess;
+package chess;
 
 public class Pawn {
     String color;

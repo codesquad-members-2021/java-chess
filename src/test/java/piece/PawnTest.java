@@ -1,8 +1,10 @@
-package net.honux.chess;
+package chess;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import chess.Pawn;
 import org.junit.jupiter.api.*;
-import static org.assertj.core.api.Assertions.*;
+
 class PawnTest {
 
     @Test

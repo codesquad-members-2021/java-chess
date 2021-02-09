@@ -4,12 +4,12 @@ import net.honux.chess.attribute.Color;
 import net.honux.chess.attribute.Pointer;
 
 public abstract class Piece {
-    private final String name;
+    private final char name;
     private final Color color;
     private final Pointer currentPointer;
     private final boolean alive = true;
 
-    public Piece(String name, Color color, Pointer currentPointer) {
+    public Piece(char name, Color color, Pointer currentPointer) {
         this.name = name;
         this.color = color;
         this.currentPointer = currentPointer;
@@ -21,7 +21,7 @@ public abstract class Piece {
 
     abstract void printPointer();
 
-    public String getName() {
+    public char getName() {
         return name;
     }
 

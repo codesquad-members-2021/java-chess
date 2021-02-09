@@ -5,7 +5,7 @@ import net.honux.chess.attribute.Pointer;
 
 public class Pawn extends Piece {
 
-    public Pawn(String name, Color color, Pointer startPointer) {
+    public Pawn(char name, Color color, Pointer startPointer) {
         super(name, color, startPointer);
     }
 

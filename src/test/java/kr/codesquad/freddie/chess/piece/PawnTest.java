@@ -7,12 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 class PawnTest {
     @Test
     void create() {
-        checkColor(Pawn.create("white"), Color.WHITE);
-        checkColor(Pawn.create("black"), Color.BLACK);
-    }
-
-    private void checkColor(Pawn pawn, Color expected) {
-        assertThat(pawn.getColor())
-                .isEqualTo(expected);
+        assertThat(Pawn.create("white").getColor()).isEqualTo(Color.WHITE);
+        assertThat(Pawn.create("black").getColor()).isEqualTo(Color.BLACK);
     }
 }

@@ -7,16 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class) // 테스트 메서드 이름의 언더바(_)를 지워준다
 public class PawnTest {
 
-    @Disabled
     @Test
     @DisplayName("흰색과 검은색 폰이 생성되어야 한다") // @DisplayNameGeneration보다 우선이다.
     void create_white_and_black_pawns() {      // JUnit5부터 public 생략 가능하다(리플렉션? 때문)
-        final String white = "white";
-        final String black = "black";
-
         assertAll(                             // 여러 개의 assert문을 모두 실행해서 실패한 모든 assert문을 알려준다.
-                () -> verifyPawn(white),
-                () -> verifyPawn(black)
+                () -> verifyPawn(Pawn.WHITE),
+                () -> verifyPawn(Pawn.BLACK)
         );
     }
 

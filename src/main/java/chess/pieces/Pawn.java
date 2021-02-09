@@ -11,7 +11,7 @@ public class Pawn {
     }
 
     Pawn() {
-        this(WHITE); // 생성자에서 같은 클래스의 다른 생성자를 호출한다.
+        this(Pawn.WHITE); // 생성자에서 같은 클래스의 다른 생성자를 호출한다.
     }
 
     public String getColor() {

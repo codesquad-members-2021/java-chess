@@ -2,11 +2,13 @@ package chess;
 
 import pieces.Pawn;
 import pieces.Pawn.Color;
+
 import java.util.*;
 
 public class Board {
     private final List<Pawn> blackPawns;
     private final List<Pawn> whitePawns;
+    private final String EMPTY_LINE = "........";
 
     public Board() {
         blackPawns = new ArrayList<>();
@@ -17,6 +19,34 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             addWhitePawn(new Pawn(Color.WHITE));
             addBlackPawn(new Pawn(Color.BLACK));
+        }
+    }
+
+    private String getWhitePawnsToPrint() {
+        return getPawnsToPrint(whitePawns);
+    }
+
+    private String getBlackPawnsToPrint() {
+        return getPawnsToPrint(blackPawns);
+    }
+
+    private String getPawnsToPrint(List<Pawn> pawns) {
+        StringBuilder pawnsToPrint = new StringBuilder();
+        for (Pawn pawn : pawns) {
+            pawnsToPrint.append(pawn.getColor().getRepresentation());
+        }
+        return pawnsToPrint.toString();
+    }
+
+    public void print() {
+        for (int i = 0; i < 8; i++) {
+            if (i == 1) {
+                System.out.println(getBlackPawnsToPrint());
+            } else if (i == 6) {
+                System.out.println(getWhitePawnsToPrint());
+            } else {
+                System.out.println(EMPTY_LINE);
+            }
         }
     }
 

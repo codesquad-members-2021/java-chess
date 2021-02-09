@@ -4,28 +4,37 @@ import net.honux.chess.attribute.Color;
 import net.honux.chess.attribute.Pointer;
 
 public abstract class Piece {
+    private final String name;
     private final Color color;
-    private Pointer currentPointer;
-    private boolean alive = true;
-    abstract void move(Pointer pointer);
-    abstract void kill(Pointer pointer);
-    abstract void printPointer();
+    private final Pointer currentPointer;
+    private final boolean alive = true;
 
-    public Piece(Color color, Pointer currentPointer) {
+    public Piece(String name, Color color, Pointer currentPointer) {
+        this.name = name;
         this.color = color;
         this.currentPointer = currentPointer;
     }
 
+    abstract void move(Pointer pointer);
+
+    abstract void killPiece(Pointer pointer);
+
+    abstract void printPointer();
+
+    public String getName() {
+        return name;
+    }
 
     public Color getColor() {
         return color;
     }
 
-    public void setCurrentPointer(Pointer currentPointer) {
-        this.currentPointer = currentPointer;
-    }
-
     public Pointer getCurrentPointer() {
         return currentPointer;
+    }
+
+    public void setCurrentPointer(Pointer currentPointer) {
+        this.currentPointer.setX(currentPointer.getX());
+        this.currentPointer.setY(currentPointer.getY());
     }
 }

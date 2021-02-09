@@ -1,4 +1,4 @@
-package net.coco.chess;
+package net.coco.pieces;
 
 public class Pawn {
     public static final String WHITE_COLOR="white";

@@ -19,7 +19,13 @@ public class Board {
     }
 
     public Pawn findPawn(int index) {
-        return pawnList.get(index);
+        Pawn pawn = null;
+        try {
+            pawn = pawnList.get(index);
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("해당 위치에 Pawn 이 존재하지 않습니다.");
+        }
+        return pawn;
     }
 
 }

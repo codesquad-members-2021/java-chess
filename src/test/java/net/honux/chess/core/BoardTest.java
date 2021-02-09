@@ -38,7 +38,7 @@ class BoardTest {
     @DisplayName("Pawn 이 없는데도 가져오려고 할때 IndexOutOfBoundsException 예외를 리턴한다.")
     void exceptionTest() {
         assertThatThrownBy(() -> {
-            board.findPawn(1);
+            board.findPawn(4);
         }).isInstanceOf(IndexOutOfBoundsException.class);
     }
 

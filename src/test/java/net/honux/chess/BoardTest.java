@@ -6,20 +6,21 @@ import org.junit.jupiter.api.*;
 import net.honux.chess.pieces.Pawn;
 
 class BoardTest {
+    private Board board = new Board();
 
     @Test
     public void create() throws Exception {
-        Board board = new Board();
 
-        Pawn white = new Pawn(Pawn.WHITE_COLOR);
-        board.add(white);
-        assertEquals(1, board.size());
-        assertEquals(white, board.findPawn(0));
+        verifyBoard(Pawn.WHITE_COLOR, 1);
+        verifyBoard(Pawn.BLACK_COLOR, 2);
+    }
 
-        Pawn black = new Pawn(Pawn.BLACK_COLOR);
-        board.add(black);
-        assertEquals(2, board.size());
-        assertEquals(black, board.findPawn(1));
+    private void verifyBoard(String color, int index) {
+
+        Pawn pawnColor = new Pawn(color);
+        board.add(pawnColor);
+        assertEquals(index + 1, board.size());
+        assertEquals(pawnColor, board.findPawn(index));
     }
 
 }

@@ -1,5 +1,5 @@
+package chess.pieces;
 
-import chess.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -5,21 +5,38 @@ import pieces.Pawn;
 import java.util.*;
 
 public class Board {
-    private final List<Pawn> pawns;
+    private final List<Pawn> blackPawns;
+    private final List<Pawn> whitePawns;
 
     public Board() {
-        pawns = new ArrayList<>();
+        blackPawns = new ArrayList<>();
+        whitePawns = new ArrayList<>();
     }
 
-    public void add(Pawn pawn) {
-        pawns.add(pawn);
+    public void initialize() {
+        for (int i = 0; i < 8; i++) {
+            addWhitePawn(new Pawn(Pawn.Color.WHITE));
+            addBlackPawn(new Pawn(Pawn.Color.BLACK));
+        }
     }
 
-    public Pawn findPawn(int index) {
-        return pawns.get(index);
+    public void addWhitePawn(Pawn pawn) {
+        whitePawns.add(pawn);
+    }
+
+    public void addBlackPawn(Pawn pawn) {
+        blackPawns.add(pawn);
+    }
+
+    public Pawn findWhitePawn(int index) {
+        return whitePawns.get(index);
+    }
+
+    public Pawn findBlackPawn(int index) {
+        return whitePawns.get(index);
     }
 
     public int size() {
-        return pawns.size();
+        return whitePawns.size() + blackPawns.size();
     }
 }

@@ -1,13 +1,13 @@
 package pieces;
 
 public class Pawn {
-    static final String WHITE = "white";
-    static final String BLACK = "black";
+    public static final String WHITE_COLOR = "white";
+    public static final String BLACK_COLOR = "black";
 
     String color;
 
     public Pawn() {
-        this.color = WHITE;
+        this.color = WHITE_COLOR;
     }
 
     public Pawn(String color) {

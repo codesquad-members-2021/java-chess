@@ -7,8 +7,18 @@ import java.util.List;
 
 public class Board {
 
-    List<Pawn> pawnList = new ArrayList<>();
+    private List<Pawn> pawnList = new ArrayList<>();
+
+    public void add(Pawn pawn){
+        pawnList.add(pawn);
+    }
+
+    public int size(){
+        return pawnList.size();
+    }
 
 
-
+    public Pawn findPawn(int i) {
+        return pawnList.get(i);
+    }
 }

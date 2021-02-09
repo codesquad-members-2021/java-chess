@@ -3,12 +3,13 @@ package net.Dong;
 import java.util.ArrayList;
 
 public class Board {
-    ArrayList<Pawn> arrPawn;
-    int numberOfMal;
+    ArrayList<Pawn> arrPawn = new ArrayList<>();
 
-    public void add(Pawn ins) {
+
+    public int add(Pawn ins) {
         //arrPawn.add()
-        
+        arrPawn.add(ins);
+        return arrPawn.size();
     }
 
     public void removePawn(Pawn rem) {
@@ -17,7 +18,7 @@ public class Board {
 
     public int size() {
         // return number of Mal
-        return numberOfMal;
+        return arrPawn.size();
     }
 
     public Pawn.Color findPawn(int index) {

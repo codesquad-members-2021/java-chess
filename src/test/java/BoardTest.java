@@ -1,21 +1,26 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BoardTest {
+    private Board board;
+
+    @BeforeEach
+    void initBoard() {
+        board = new Board();
+    }
 
     @Test
     public void create() throws Exception {
-        Board board = new Board();
+        verifyBoard(Pawn.Color.WHITE, 1);
+        verifyBoard(Pawn.Color.BLACK, 2);
+    }
 
-        Pawn white = new Pawn(Pawn.Color.WHITE);
-        board.add(white);
-        assertEquals(1, board.size());
-        assertEquals(white, board.findPawn(0));
-
-        Pawn black = new Pawn(Pawn.Color.BLACK);
-        board.add(black);
-        assertEquals(2, board.size());
-        assertEquals(black, board.findPawn(1));
+    private void verifyBoard(Pawn.Color color, int index) {
+        Pawn pawn = new Pawn(color);
+        board.add(pawn);
+        assertEquals(index, board.size());
+        assertEquals(pawn, board.findPawn(index - 1));
     }
 }

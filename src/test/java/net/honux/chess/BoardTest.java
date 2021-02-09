@@ -3,6 +3,8 @@ package net.honux.chess;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
+import net.honux.chess.pieces.Pawn;
+
 class BoardTest {
 
     @Test

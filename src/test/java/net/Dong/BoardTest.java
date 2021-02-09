@@ -9,6 +9,8 @@ import net.Dong.chess.Pawn.*;
 
 
 class BoardTest {
+
+
     @Test
     public void create() throws Exception {
         Board board = new Board();

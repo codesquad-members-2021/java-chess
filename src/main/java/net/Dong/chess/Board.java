@@ -8,13 +8,13 @@ public class Board {
     ArrayList<Pawn> arrPawn = new ArrayList<>();
 
 
-    public int add(Pawn ins) {
+    public int add(Pawn pawn) {
         //arrPawn.add()
-        arrPawn.add(ins);
+        arrPawn.add(pawn);
         return arrPawn.size();
     }
 
-    public void removePawn(Pawn rem) {
+    public void removePawn(Pawn remove) {
         //arrlist에서 삭제하는 코드 작성
     }
 
@@ -24,6 +24,7 @@ public class Board {
     }
 
     public Pawn.Color findPawn(int index) {
+        // Receives an index and returns it as an object color
         return arrPawn.get(index).getColor();
     }
 

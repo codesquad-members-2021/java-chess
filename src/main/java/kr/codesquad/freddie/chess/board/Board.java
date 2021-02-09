@@ -34,4 +34,33 @@ public class Board {
                 .mapToInt(File::size)
                 .sum();
     }
+
+    /**
+     * 체스판은 아래와 같이 8*8칸으로 구성되는데, coulmn은 file row는 rank라고 한다.
+     * 각 칸은 h1, d6와 같이 file + rank로 명명한다.
+     * 만약 h1에 있는 체스말을 찾고 싶으면 filePawn(h, 1) 과 같이 사용할 수 있다.
+     *
+     * <p>
+     * <code>
+     * ╭a--b--c--d--e--f--g--h ╮<br/>
+     * ╔══╤══╤══╤══╤══╤══╤══╤══╗╮<br/>
+     * ║▓▓│░░│▓▓│░░│▓▓│░░│▓▓│░░║8<br/>
+     * ║░░│▓▓│░░│▓▓│░░│▓▓│░░│▓▓║7<br/>
+     * ║▓▓│░░│▓▓│d6│▓▓│░░│▓▓│░░║6<br/>
+     * ║░░│▓▓│░░│▓▓│░░│▓▓│░░│▓▓║5<br/>
+     * ║▓▓│░░│▓▓│░░│▓▓│░░│▓▓│░░║4<br/>
+     * ║░░│▓▓│░░│▓▓│░░│▓▓│░░│▓▓║3<br/>
+     * ║▓▓│░░│▓▓│░░│▓▓│░░│▓▓│░░║2<br/>
+     * ║░░│▓▓│░░│▓▓│░░│▓▓│░░│h1║1<br/>
+     * ╚══╧══╧══╧══╧══╧══╧══╧══╝╯
+     * </code>
+     *
+     * @see  <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
+     * @param fileIndex a~h 사이의 char
+     * @param rankIndex 1~8 사이의 int
+     * @return 해당 칸에 존재하는 기물
+     */
+    public Pawn findPawn(char fileIndex, int rankIndex) {
+        return files.get(RANK_SIZE - rankIndex).get(fileIndex);
+    }
 }

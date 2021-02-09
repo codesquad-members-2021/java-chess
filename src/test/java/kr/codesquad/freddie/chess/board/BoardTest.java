@@ -10,21 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
     @Test
-    public void create() throws Exception {
-//        Board board = new Board();
-//
-//        Pawn white = new Pawn(Color.WHITE);
-//        board.add(white);
-//        assertEquals(1, board.size());
-//        assertEquals(white, board.findPawn(0));
-//
-//        Pawn black = new Pawn(Color.BLACK);
-//        board.add(black);
-//        assertEquals(2, board.size());
-//        assertEquals(black, board.findPawn(1));
-    }
-
-    @Test
     void add() {
         int size = 8 * 8;
 
@@ -63,5 +48,21 @@ class BoardTest {
         assertThatThrownBy(() -> board.add(new Pawn()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("더 이상 추가할 수 없습니다. 현재 크기 : 64");
+    }
+
+    @Test
+    public void findPawn() {
+        Board board = new Board();
+
+        Pawn white = new Pawn(Color.WHITE);
+        board.add(white);
+        assertThat(board.size()).isEqualTo(1);
+        assertThat(board.findPawn('a', 8)).isEqualTo(white);
+
+        Pawn black = new Pawn(Color.BLACK);
+        board.add(black);
+        assertThat(board.size()).isEqualTo(2);
+        assertThat(board.findPawn('b', 8)).isEqualTo(black);
+        assertEquals(2, board.size());
     }
 }

@@ -28,4 +28,17 @@ public class Board {
         return arrPawn.get(index).getColor();
     }
 
+    public void initialize() {
+        // white pawn 8, black pawn 8
+
+    }
+
+    public void print() {
+        //print current state of chess board
+    }
+
+
+
+
+
 }

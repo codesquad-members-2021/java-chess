@@ -16,6 +16,13 @@ class PawnTest {
     }
 
     @Test
+    public void create_기본생성자() throws Exception {
+        String white = "white";
+        Pawn pawn = new Pawn();
+        Assertions.assertEquals(white, pawn.getColor());
+    }
+
+    @Test
     @DisplayName("다른 색 폰이 생성되면 안된다")
     public void create_with_unsupported_color() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {

@@ -7,15 +7,18 @@ import pieces.Pawn.Color;
 import static org.assertj.core.api.Assertions.*;
 
 class BoardTest {
+    private Board board;
+
+    @BeforeEach
+    public void setup() {
+        board = new Board();
+    }
+
     @Test
     @DisplayName("폰이 제대로 추가되었는지 검증한다.")
     public void create() {
-        Board board = new Board();
-        Pawn whitePawn = new Pawn(Color.WHITE);
-        Pawn blackPawn = new Pawn(Color.BLACK);
-
-        verifyAdd(board, whitePawn, 1);
-        verifyAdd(board, blackPawn, 2);
+        verifyAdd(board, new Pawn(Color.WHITE), 1);
+        verifyAdd(board, new Pawn(Color.BLACK), 2);
     }
 
     public void verifyAdd(Board board, Pawn pawn, int size) {

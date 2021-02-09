@@ -1,6 +1,5 @@
 package chess;
 
-import pieces.Pawn;
 import pieces.Piece;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class Board {
         return board.size();
     }
 
-    public Piece findPawn(int i) {
-        return board.get(i);
+    public Piece findPawn(int index) {
+        return board.get(index);
     }
 }

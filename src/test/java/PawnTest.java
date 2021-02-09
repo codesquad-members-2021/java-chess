@@ -1,5 +1,3 @@
-package net.nas.chess.testments;
-
 import net.nas.chess.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

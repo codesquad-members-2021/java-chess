@@ -24,4 +24,8 @@ public class BoardTest {
         assertThat(pawn).isEqualTo(board.findPawn(findPawnIndex));
     }
 
+    private void verifyPawnsSize(int actualSize){
+        assertThat(actualSize).isEqualTo(board.size());
+    }
+
 }

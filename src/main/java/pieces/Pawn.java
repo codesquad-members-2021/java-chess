@@ -1,4 +1,4 @@
-package august.chess;
+package chess;
 
 public class Pawn {
     private String color;

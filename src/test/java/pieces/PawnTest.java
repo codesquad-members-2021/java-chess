@@ -1,5 +1,6 @@
-package august.chess;
+package chess;
 
+import chess.Pawn;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;

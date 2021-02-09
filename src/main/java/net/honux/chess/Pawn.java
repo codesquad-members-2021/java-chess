@@ -2,20 +2,17 @@ package net.honux.chess;
 
 public class Pawn {
 
-    private String color;
+    private Color color;
 
     public Pawn() {
-        this("white");
+        this(Color.white);
     }
 
-    public Pawn(String color) {
-        if (!color.matches("(white)|(black)")) {
-            throw new IllegalArgumentException("Color should be 'white' or 'black'!");
-        }
+    public Pawn(Color color) {
         this.color = color;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 }

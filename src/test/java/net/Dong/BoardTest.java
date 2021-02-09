@@ -1,12 +1,11 @@
 package net.Dong;
+import net.Dong.chess.Board;
+import net.Dong.chess.Pawn;
 import org.junit.jupiter.api.Test;
 //import org.junit.;
 import static org.junit.jupiter.api.Assertions.*;
-import net.Dong.*;
-import net.Dong.Pawn.*;
-import net.Dong.Pawn.Color.*;
 
-
+import net.Dong.chess.Pawn.*;
 
 
 class BoardTest {

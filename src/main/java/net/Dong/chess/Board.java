@@ -1,4 +1,6 @@
-package net.Dong;
+package net.Dong.chess;
+
+import net.Dong.chess.Pawn;
 
 import java.util.ArrayList;
 

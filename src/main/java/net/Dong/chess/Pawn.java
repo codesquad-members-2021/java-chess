@@ -1,4 +1,4 @@
-package net.Dong;
+package net.Dong.chess;
 
 public class Pawn {
 

@@ -8,16 +8,28 @@ import static org.assertj.core.api.Assertions.*;
 
 class BoardTest {
     @Test
+    @DisplayName("폰이 제대로 추가되었는지 검증한다.")
     public void create() {
         Board board = new Board();
         Pawn whitePawn = new Pawn(Color.WHITE);
-        board.add(whitePawn);
-        assertThat(board.size()).isEqualTo(1);
-        assertThat(board.findPawn(0)).isEqualTo(whitePawn);
-
         Pawn blackPawn = new Pawn(Color.BLACK);
-        board.add(blackPawn);
-        assertThat(board.size()).isEqualTo(2);
-        assertThat(board.findPawn(1)).isEqualTo(blackPawn);
+
+        verifyAdd(board, whitePawn, 1);
+        verifyAdd(board, blackPawn, 2);
     }
+
+    public void verifyAdd(Board board, Pawn pawn, int size) {
+        board.add(pawn);
+        verifySize(board, size);
+        verifyFindPawn(board, pawn, size - 1);
+    }
+
+    public void verifySize(Board board, int size) {
+        assertThat(board.size()).isEqualTo(size);
+    }
+
+    public void verifyFindPawn(Board board, Pawn pawn, int index) {
+        assertThat(board.findPawn(index)).isEqualTo(pawn);
+    }
+
 }

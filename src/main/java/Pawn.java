@@ -1,11 +1,21 @@
 public class Pawn {
-    private final String color;
+    private final Color color;
 
-    public Pawn(String color) {
+    enum Color{
+        WHITE,
+        BLACK
+    }
+
+    Pawn(){
+        this.color = Color.WHITE;
+    }
+
+    public Pawn(Color color) {
         this.color = color;
     }
 
-    public String getColor() {
+
+    public Color getColor() {
         return color;
     }
 }

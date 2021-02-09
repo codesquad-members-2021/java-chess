@@ -4,7 +4,16 @@ public class Pawn {
     private final Color color;
 
     public enum Color {
-        WHITE, BLACK
+        WHITE("p"), BLACK("P");
+        private final String representation;
+
+        Color(String representation) {
+            this.representation = representation;
+        }
+
+        public String getRepresentation() {
+            return representation;
+        }
     }
 
     public Pawn() {

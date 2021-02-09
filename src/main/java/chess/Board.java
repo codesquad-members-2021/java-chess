@@ -20,4 +20,5 @@ public class Board {
     public Pawn findPawn(int i) {
         return pawnList.get(i);
     }
+    
 }

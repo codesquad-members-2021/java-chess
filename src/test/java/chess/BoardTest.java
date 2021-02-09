@@ -1,5 +1,6 @@
-import chess.Board;
-import chess.Pawn;
+package chess;
+
+import chess.pieces.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

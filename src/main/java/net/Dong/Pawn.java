@@ -3,21 +3,27 @@ package net.Dong;
 public class Pawn {
 
 
-    String color = "";
+    public enum Color {
+        WHITE,
+        BALCK
+    };
 
-    public Pawn(String ins) {
-        this.color = ins;
+    Color color;
+
+    public Pawn(Color color) {
+        this.color = color;
     }
 
     public Pawn() {
-        this.color = "white";
+        this.color = Color.WHITE;
     }
 
     //public static Pawn create(String color) {
     //    return new Pawn(color);
     //}
 
-    public String getColor() {
+    public Color getColor() {
+
         return this.color;
     }
 

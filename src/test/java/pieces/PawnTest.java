@@ -1,12 +1,17 @@
-package chess;
+package pieces;
 
-import chess.Pawn;
+import chess.Board;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PawnTest {
+
+    @BeforeAll
+    void initialize() {
+        Board board = new Board();
+    }
 
     @Test
     @DisplayName("Verify pawns...")

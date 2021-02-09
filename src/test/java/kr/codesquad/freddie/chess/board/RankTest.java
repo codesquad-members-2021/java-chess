@@ -30,10 +30,8 @@ class RankTest {
             rank.add(new Pawn());
         }
 
-        assertThatIllegalArgumentException()
-                .as("랭크 당 8개만 추가 가능합니다.")
-                .isThrownBy(() -> {
-                    rank.add(new Pawn());
-                });
+        assertThatThrownBy(() -> rank.add(new Pawn()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("랭크 당 8개만 추가 가능합니다.");
     }
 }

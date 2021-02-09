@@ -1,8 +1,8 @@
-package chess;
+package piece;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import chess.Pawn;
+import pieces.Pawn;
 import org.junit.jupiter.api.*;
 
 class PawnTest {

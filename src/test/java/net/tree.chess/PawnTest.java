@@ -1,4 +1,5 @@
-import net.tree.chess.Pawn;
+package net.tree.chess;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +13,6 @@ public class PawnTest {
     public void create() {
         verifyPawn("white");
         verifyPawn("black");
-//        Pawn pawn = new Pawn("white");
-//        assertThat(pawn.getColor()).isEqualTo("white");
     }
 
     void verifyPawn(final String color) {

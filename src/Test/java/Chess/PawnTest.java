@@ -12,16 +12,13 @@ public class PawnTest {
     public void create() {
         String w = "white";
         String b = "black";
-//            Pawn wPawn = new Pawn(w);
-//            assertThat(wPawn.getColor()).isEqualTo(w);
-//
-//            Pawn bPawn = new Pawn(b);
-//            assertThat(bPawn.getColor()).isEqualTo(b);
-        verifyPawn(w);
-        verifyPawn(b);
+            Pawn wPawn = new Pawn(w);
+            assertThat(wPawn.getColor()).isEqualTo(w);
+
+            Pawn bPawn = new Pawn(b);
+            assertThat(bPawn.getColor()).isEqualTo(b);
+
     }
-
-
     public void verifyPawn(String color){
         Pawn p = new Pawn(color);
         assertThat(p.getColor()).isEqualTo(color);

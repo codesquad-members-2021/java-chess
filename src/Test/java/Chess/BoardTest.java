@@ -1,8 +1,8 @@
-import static org.junit.Assert.*;
+package Chess;
 
+import static org.junit.Assert.*;
 import org.junit.Test;
 
-import pieces.Pawn;
 
 public class BoardTest {
     @Test

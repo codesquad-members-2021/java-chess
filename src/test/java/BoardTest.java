@@ -1,6 +1,6 @@
 import net.sanhee.chess.*;
-import net.sanhee.chess.UnitColor;
-import org.junit.jupiter.api.BeforeEach;
+import net.sanhee.pieces.Pawn;
+import net.sanhee.pieces.UnitColor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

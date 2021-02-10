@@ -14,20 +14,20 @@ public class Board {
 
     public Board() {
         this.pawns = new HashMap<>();
-        this.pawns.put(Piece.WHITE.color, new LinkedList<>());
-        this.pawns.put(Piece.BLACK.color, new LinkedList<>());
+        this.pawns.put(Piece.WHITE.getColor(), new LinkedList<>());
+        this.pawns.put(Piece.BLACK.getColor(), new LinkedList<>());
     }
 
     public void addPawn(Piece piece, Pawn pawn) {
-        this.pawns.get(piece.color).add(pawn);
+        this.pawns.get(piece.getColor()).add(pawn);
     }
 
     public int pawnSize(Piece piece) {
-        return this.pawns.get(piece.color).size();
+        return this.pawns.get(piece.getColor()).size();
     }
 
     public Pawn findPawn(Piece piece, int index) {
-        return this.pawns.get(piece.color).get(index);
+        return this.pawns.get(piece.getColor()).get(index);
     }
 
     public void initialize() {

@@ -6,13 +6,13 @@ public class Pawn {
     private final char representation;
 
     public Pawn() {
-        this.color = Piece.WHITE.color;
-        this.representation = Piece.WHITE.pawn;
+        this.color = Piece.WHITE.getColor();
+        this.representation = Piece.WHITE.getPawn();
     }
 
     public Pawn(Piece piece) {
-        this.color = piece.color;
-        this.representation = piece.pawn;
+        this.color = piece.getColor();
+        this.representation = piece.getPawn();
     }
 
     public String getColor() {

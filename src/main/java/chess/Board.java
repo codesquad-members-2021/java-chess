@@ -2,7 +2,7 @@ package chess;
 
 import pieces.Pawn;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Board {
     private final List<Pawn> pawns;

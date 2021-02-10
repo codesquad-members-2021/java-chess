@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pieces.Color;
 import pieces.Pawn;
 
 public class BoardTest {
@@ -12,8 +13,8 @@ public class BoardTest {
     @DisplayName("게임 보드 생성 테스트")
     public void create() throws Exception {
         Board board = new Board();
-        Pawn white = new Pawn(Pawn.WHITE_COLOR);
-        Pawn black = new Pawn(Pawn.BLACK_COLOR);
+        Pawn white = new Pawn(Color.WHITE);
+        Pawn black = new Pawn(Color.BLACK);
 
         addPawnToBoard(board, white, 1);
         addPawnToBoard(board, black, 2);

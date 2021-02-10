@@ -7,14 +7,14 @@ public class PawnTest {
 
     @Test
     public void create() {
-        verifyPawn("white");
-        verifyPawn("black");
+        verifyPawn(Pawn.WHITE);
+        verifyPawn(Pawn.BLACK);
     }
 
     @Test
     public void create_기본생성자() throws Exception {
         Pawn pawn = new Pawn();
-        assertEquals("white", pawn.getColor());
+        assertEquals(Pawn.WHITE, pawn.getColor());
     }
 
     void verifyPawn(final String color) {

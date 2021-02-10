@@ -25,7 +25,7 @@ public class Board {
             throw new IndexOutOfBoundsException("board size == 0입니다.");
         }
 
-        if ((0 > index) || (index <= pawnList.size())) {
+        if ((0 > index) || (index >= pawnList.size())) {
             throw new IndexOutOfBoundsException("인덱스의 범위를 벗어났습니다");
         }
 

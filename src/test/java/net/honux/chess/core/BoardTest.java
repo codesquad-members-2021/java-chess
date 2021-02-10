@@ -1,7 +1,6 @@
 package net.honux.chess.core;
 
 import net.honux.chess.attribute.Color;
-import net.honux.chess.attribute.Pointer;
 import net.honux.chess.entity.pieces.Pawn;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,27 +19,20 @@ class BoardTest {
     }
 
 
+
+
     @Test
     @DisplayName("Pawn 이 보드에 정상적으로 등록되어야 한다.")
     void create() {
-        Pawn white = new Pawn('p', Color.WHITE, new Pointer('a', 2));
+        Pawn white = new Pawn('p', Color.WHITE);
         board.add(white);
         Assertions.assertEquals(1, board.size());
         Assertions.assertEquals(white, board.findPawn(0));
 
-        Pawn black = new Pawn('p', Color.BLACK, new Pointer('a', 2));
+        Pawn black = new Pawn('p', Color.BLACK);
         board.add(black);
         Assertions.assertEquals(2, board.size());
         Assertions.assertEquals(black, board.findPawn(1));
     }
-
-    @Test
-    @DisplayName("Pawn 이 없는데도 가져오려고 할때 IndexOutOfBoundsException 예외를 리턴한다.")
-    void exceptionTest() {
-        assertThatThrownBy(() -> {
-            board.findPawn(4);
-        }).isInstanceOf(IndexOutOfBoundsException.class);
-    }
-
 
 }

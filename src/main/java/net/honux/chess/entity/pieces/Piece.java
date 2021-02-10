@@ -3,7 +3,7 @@ package net.honux.chess.entity.pieces;
 import net.honux.chess.attribute.Color;
 
 public abstract class Piece {
-    private char name;
+    private final char name;
     private final Color color;
 
     public Piece(char name, Color color) {

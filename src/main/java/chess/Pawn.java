@@ -1,7 +1,7 @@
 package chess;
 
 public class Pawn {
-    final String color;
+    private final String color;
 
     Pawn(String color) {
         this.color = color;

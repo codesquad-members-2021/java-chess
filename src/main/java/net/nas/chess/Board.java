@@ -3,7 +3,7 @@ package net.nas.chess;
 import java.util.ArrayList;
 
 public class Board {
-    ArrayList<Pawn> pieceList;
+    private ArrayList<Pawn> pieceList;
 
     public Board() {
         pieceList = new ArrayList<Pawn>();
@@ -18,5 +18,9 @@ public class Board {
 
     public void add(Pawn piece) {
         pieceList.add(piece);
+    }
+
+    public int size() {
+        return pieceList.size();
     }
 }

@@ -16,9 +16,11 @@ public class BoardTest {
         Pawn blackPawn = new Pawn(ColorOfChessPiece.BLACK);
 
         board.add(whitePawn);
-        board.add(blackPawn);
-
         assertThat(board.findPawn(0)).isEqualTo(whitePawn);
+        assertThat(board.size()).isEqualTo(1);
+
+        board.add(blackPawn);
         assertThat(board.findPawn(1)).isEqualTo(blackPawn);
+        assertThat(board.size()).isEqualTo(2);
     }
 }

@@ -1,7 +1,7 @@
 package net.nas.chess;
 
 public abstract class ChessPiece {
-    String color;
+    private String color;
 
     public ChessPiece(String color) {
         this.color = color;

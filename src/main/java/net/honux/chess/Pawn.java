@@ -1,13 +1,13 @@
 package net.honux.chess;
 
 public class Pawn {
-    public static final String white = "White";
-    public static final String black = "Black";
+    public static final String WHITE_COLOR = "White";
+    public static final String BLACK_COLOR = "Black";
 
     private String color;
 
     public Pawn() {
-        this.color = Pawn.white;
+        this.color = Pawn.WHITE_COLOR;
     }
 
     public Pawn(String color){

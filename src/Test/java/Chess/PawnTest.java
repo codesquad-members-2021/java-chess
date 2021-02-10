@@ -10,11 +10,15 @@ public class PawnTest {
     @Test
     @DisplayName("흰색, 검은색 폰이 생성되어야 한다.")
     public void createPawnsByColor(){
-        Pawn whitePawn = new Pawn ("white");
-        assertThat(whitePawn.getColor()).isEqualTo("white");
+        String white = "white";
+        String black = "black";
 
-        Pawn blackPawn = new Pawn("black");
-        assertThat(blackPawn.getColor()).isEqualTo("black");
+        verifyPawn(white);
+        verifyPawn(black);
     }
 
+    public void verifyPawn(String color){
+        Pawn pawn = new Pawn(color);
+        assertThat(pawn.getColor()).isEqualTo(color);
+    }
 }

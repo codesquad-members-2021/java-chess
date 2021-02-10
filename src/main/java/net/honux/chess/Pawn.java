@@ -1,13 +1,13 @@
 package net.honux.chess;
 
-class Pawn {
+public class Pawn {
     private final Color color;
 
-    Pawn(String color) {
+    public Pawn(String color) {
         this.color = Color.valueOf(color);
     }
 
-    String getColor() {
+    public String getColor() {
         return color.name();
     }
 }

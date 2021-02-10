@@ -102,4 +102,16 @@ class FileTest {
             assertThat(file.get((char) (i + 'a')).getColor()).isEqualTo(expected);
         }
     }
+
+    @Test
+    void getRepresentation_fillWithBlack() {
+        file.fillWith(Color.BLACK);
+        assertThat(file.getRepresentation()).isEqualTo("PPPPPPPP");
+    }
+
+    @Test
+    void getRepresentation_fillWithWhite() {
+        file.fillWith(Color.WHITE);
+        assertThat(file.getRepresentation()).isEqualTo("pppppppp");
+    }
 }

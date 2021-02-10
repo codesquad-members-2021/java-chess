@@ -46,6 +46,20 @@ public class File {
         for (; size() < SIZE; pawns.add(new Pawn(color))) ;
     }
 
+    public String getRepresentation() {
+        if (pawns.size() == 0) {
+            return "........";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for(Pawn pawn : pawns) {
+            sb.append(pawn.getRepresentation());
+        }
+
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
         return "File{" + System.lineSeparator() +

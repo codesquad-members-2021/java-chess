@@ -1,4 +1,4 @@
-package net.nas.chess;
+package net.nas.pieces;
 
 public class Pawn {
     private final ColorOfChessPiece color;

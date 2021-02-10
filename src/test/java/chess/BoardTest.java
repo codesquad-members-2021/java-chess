@@ -8,7 +8,7 @@ import pieces.Pawn;
 
 public class BoardTest {
 
-    Board board;
+    private Board board;
 
     @BeforeEach
     public void initialize() {

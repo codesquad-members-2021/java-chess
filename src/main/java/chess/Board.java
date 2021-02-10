@@ -3,10 +3,11 @@ package chess;
 import pieces.Pawn;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 
-    private final ArrayList<Pawn> pawns;
+    private final List<Pawn> pawns;
 
     public Board() {
         this.pawns = new ArrayList<>();

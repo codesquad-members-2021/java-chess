@@ -1,5 +1,6 @@
-package net.honux.chess;
+package chess;
 
+import pieces.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

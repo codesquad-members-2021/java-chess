@@ -43,7 +43,7 @@ public class BoardTest {
     @DisplayName("초기화 된 보드가 출력되어야 한다.")
     public void print() {
         board.initialize();
-        System.out.println(board.print());
+        board.print();
     }
 
 }

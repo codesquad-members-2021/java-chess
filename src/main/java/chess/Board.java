@@ -43,7 +43,7 @@ public class Board {
         return result.toString();
     }
 
-    public String print() {
+    public void print() {
         StringBuilder result = new StringBuilder();
         result.append("........");
         result.append("\n");
@@ -60,7 +60,7 @@ public class Board {
         result.append(getPawnsResult(Piece.PAWN_WHITE.color));
         result.append("\n");
         result.append("........");
-        return result.toString();
+        System.out.println(result);
     }
 
 }

@@ -9,14 +9,14 @@ class PawnTest {
     @DisplayName("폰 기본생성자 테스트")
     public void createBasic() throws Exception{
         Pawn pawn = new Pawn();
-        assertThat(pawn.getColor()).isEqualTo("White");
+        assertThat(pawn.getColor()).isEqualTo(Pawn.white);
     }
 
     @Test
     @DisplayName("폰 생성자 테스트")
     public void create() {
-        verifyPawn("White");
-        verifyPawn("Black");
+        verifyPawn(Pawn.white);
+        verifyPawn(Pawn.black);
     }
 
     public void verifyPawn(String color){

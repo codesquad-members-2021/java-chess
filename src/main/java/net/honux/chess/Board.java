@@ -9,4 +9,8 @@ public class Board {
     public void add(Pawn pawn){
         pawns.add(pawn);
     }
+
+    public int size(){
+        return pawns.size();
+    }
 }

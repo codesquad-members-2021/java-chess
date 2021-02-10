@@ -5,6 +5,7 @@ import kr.codesquad.freddie.chess.piece.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Board {
     // 체스에서 row를 rank라고 한다.
@@ -96,5 +97,13 @@ public class Board {
 
     private File getBlackFile() {
         return files.get(1);
+    }
+
+    public void print() {
+        String result = files.stream()
+                .map(File::getRepresentation)
+                .collect(Collectors.joining(System.lineSeparator()));
+
+        System.out.println(result);
     }
 }

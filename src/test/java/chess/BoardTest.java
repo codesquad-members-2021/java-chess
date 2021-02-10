@@ -3,6 +3,7 @@ package chess;
 import net.nas.chess.Board;
 import net.nas.pieces.ColorOfChessPiece;
 import net.nas.pieces.Pawn;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,27 +13,33 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BoardTest {
+    Board board;
+
+    @BeforeEach
+    void createTestBoard() {
+        board = new Board();
+    }
 
     @Test
     @DisplayName("체스 보드에 폰을 추가하고, 찾을 수 있어야 합니다.")
     void testAdditionAndFind() {
-        Board board = new Board();
-        Pawn whitePawn = new Pawn();
-        Pawn blackPawn = new Pawn(ColorOfChessPiece.BLACK);
+        Pawn[] testcases = {
+                new Pawn(),
+                new Pawn(ColorOfChessPiece.BLACK)
+        };
+        for (int i = 0; i < testcases.length; i++)
+            verifyAdditionAndFind(testcases[i], i);
+    }
 
-        board.add(whitePawn);
-        assertThat(board.findPawn(0)).isEqualTo(whitePawn);
-        assertThat(board.size()).isEqualTo(1);
-
-        board.add(blackPawn);
-        assertThat(board.findPawn(1)).isEqualTo(blackPawn);
-        assertThat(board.size()).isEqualTo(2);
+    void verifyAdditionAndFind(Pawn pawn, int idx) {
+        board.add(pawn);
+        assertThat(board.findPawn(idx)).isEqualTo(pawn);
+        assertThat(board.size()).isEqualTo(idx + 1);
     }
 
     @Test
     @DisplayName("Pawn 이외의 객체가 추가되어선 안됩니다.")
     void testErrorAddition() {
-        Board board = new Board();
         Object[] testcases = {
                 new Object(),
                 7,
@@ -45,5 +52,6 @@ public class BoardTest {
         assertThatThrownBy(() -> {
             board.add(null);
         }).isInstanceOf(InvalidParameterException.class);
+        assertThat(board.size()).isEqualTo(0);
     }
 }

@@ -5,7 +5,7 @@ import pieces.Pawn;
 import java.util.ArrayList;
 
 public class Board {
-    private final ArrayList<Pawn> pawns;
+    private final List<Pawn> pawns;
 
     public Board() {
         pawns = new ArrayList<>();

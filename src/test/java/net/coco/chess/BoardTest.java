@@ -22,20 +22,23 @@ public class BoardTest {
     @DisplayName("Board size check")
     public void create() {
 
-        verifyPawnToPawns(Pawn.WHITE_COLOR,  0);
-        verifyPaswsSize(1);
+        Assertions.assertAll(
+                () -> verifyPawnToPawns(Pawn.WHITE_COLOR, 0),
+                () -> verifyPaswsSize(1),
 
-        verifyPawnToPawns(Pawn.BLACK_COLOR,  1);
-        verifyPaswsSize(2);
+                () -> verifyPawnToPawns(Pawn.BLACK_COLOR, 1),
+                () -> verifyPaswsSize(2)
+        );
+
     }
 
-    private void verifyPawnToPawns(final String color,int findPawnIndex) {
+    private void verifyPawnToPawns(final String color, int findPawnIndex) {
         Pawn pawn = new Pawn(color);
         board.addPawn(pawn);
         assertThat(pawn).isEqualTo(board.findPawn(findPawnIndex));
     }
 
-    private void verifyPaswsSize(int actualSize){
+    private void verifyPaswsSize(int actualSize) {
         assertThat(actualSize).isEqualTo(board.size());
     }
 

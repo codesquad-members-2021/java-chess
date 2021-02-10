@@ -65,4 +65,40 @@ public class Board {
                 "files=" + System.lineSeparator() + files +
                 '}';
     }
+
+    public void initialize() {
+        File blackFile = files.get(1);
+        while (blackFile.size() != File.SIZE) {
+            blackFile.add(Pawn.create("black"));
+        }
+
+        File whiteFile = files.get(6);
+        while (whiteFile.size() != File.SIZE) {
+            whiteFile.add(Pawn.create("white"));
+        }
+    }
+
+    public String getWhitePawnsResult() {
+        StringBuilder sb = new StringBuilder();
+
+        File whiteFile = files.get(6);
+
+        for (int i = 0; i < File.SIZE; i++) {
+            sb.append(whiteFile.get((char) (i + 'a')).getRepresentation());
+        }
+
+        return sb.toString();
+    }
+
+    public String getBlackPawnsResult() {
+        StringBuilder sb = new StringBuilder();
+
+        File blackFile = files.get(1);
+
+        for (int i = 0; i < File.SIZE; i++) {
+            sb.append(blackFile.get((char) (i + 'a')).getRepresentation());
+        }
+
+        return sb.toString();
+    }
 }

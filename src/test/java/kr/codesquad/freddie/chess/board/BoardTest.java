@@ -81,4 +81,12 @@ class BoardTest {
                 () -> assertThat(board.findPawn('b', 8)).isEqualTo(black)
         );
     }
+
+    @Test
+    void initialize() {
+        board.initialize();
+
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+    }
 }

@@ -2,24 +2,17 @@ package net.sanhee.pieces;
 
 
 public class Pawn {
-    private final String color;
+    private final UnitColor color;
 
-    public Pawn(){
-        this.color = UnitColor.WHITE.getColor();
+    public Pawn() {
+        this.color = UnitColor.WHITE;
     }
 
-    public Pawn(String color) {
-
-        if (color.equalsIgnoreCase(UnitColor.WHITE.getColor())
-                || color.equalsIgnoreCase(UnitColor.BLACK.getColor())) {
-            this.color = color;
-        } else {
-            this.color = UnitColor.WHITE.getColor();
-        }
-
+    public Pawn(UnitColor color) {
+        this.color = color;
     }
 
-    public String getColor() {
+    public UnitColor getColor() {
         return color;
     }
 }

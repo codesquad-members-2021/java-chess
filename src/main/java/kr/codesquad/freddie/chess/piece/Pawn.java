@@ -21,6 +21,10 @@ public class Pawn {
         return color;
     }
 
+    public String getRepresentation() {
+        return color == Color.BLACK ? "P" : "p";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

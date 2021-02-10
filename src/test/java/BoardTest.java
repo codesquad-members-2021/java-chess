@@ -38,5 +38,12 @@ public class BoardTest {
         );
     }
 
+    @Test
+    @DisplayName("체스 판에 Pawn 이외의 객체가 추가되지 않도록 한다.")
+    public void otherUnitCheck(){
+        Integer testInteger = new Integer("7");
+        board.add(testInteger);
+        assertThat(board.size()).isEqualTo(3);
+    }
 
 }

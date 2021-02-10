@@ -2,9 +2,6 @@ package pieces;
 
 public class Pawn {
 
-    public static final Color WHITE_COLOR = Color.WHITE;
-    public static final Color BLACK_COLOR = Color.BLACK;
-
     private final Color color;
 
     public Pawn() {
@@ -19,18 +16,4 @@ public class Pawn {
         return color.toString();
     }
 
-    private enum Color {
-        BLACK("black"),
-        WHITE("white");
-
-        private final String color;
-        Color(String color) {
-            this.color = color;
-        }
-
-        @Override
-        public String toString() {
-            return color;
-        }
-    };
 }

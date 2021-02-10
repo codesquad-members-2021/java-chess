@@ -12,16 +12,20 @@ public class PawnTest {
     public void create() {
         String w = "white";
         String b = "black";
-            Pawn wPawn = new Pawn(w);
-            assertThat(wPawn.getColor()).isEqualTo(w);
-
-            Pawn bPawn = new Pawn(b);
-            assertThat(bPawn.getColor()).isEqualTo(b);
+        verifyPawn(w);
+        verifyPawn(b);
 
     }
     public void verifyPawn(String color){
         Pawn p = new Pawn(color);
         assertThat(p.getColor()).isEqualTo(color);
+    }
+
+    @Test
+    @DisplayName("기본생성자 사용시 흰색 폰이 생성된다.")
+    public void create_기본생성자() throws Exception{
+        Pawn pawn = new Pawn();
+        assertEquals("white", pawn.getColor());
     }
 }
 

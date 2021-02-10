@@ -22,6 +22,8 @@ class BoardTest {
             }
             assertThat(board.size())
                     .isEqualTo(i);
+
+            System.out.println(board);
         }
     }
 

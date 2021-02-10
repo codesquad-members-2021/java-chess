@@ -3,6 +3,10 @@ package net.sanhee.chess;
 public class Pawn {
     private final String color;
 
+    public Pawn(){
+        this.color = "white";
+    }
+
     public Pawn(String color) {
 
         if (color.equalsIgnoreCase("white")

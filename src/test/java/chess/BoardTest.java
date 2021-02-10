@@ -1,3 +1,5 @@
+package chess;
+
 import net.nas.chess.Board;
 import net.nas.chess.ColorOfChessPiece;
 import net.nas.chess.Pawn;

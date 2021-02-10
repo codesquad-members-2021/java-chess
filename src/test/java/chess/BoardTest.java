@@ -9,28 +9,23 @@ class BoardTest {
 
     Pawn white, black;
     Board board;
-    int size, idx;
 
     @BeforeEach
     public void setUP() {
         white = new Pawn(Pawn.WHITE);
         black = new Pawn(Pawn.BLACK);
         board = new Board();
-        size = 1;
-        idx = 0;
     }
 
     @Test
     public void create() throws Exception {
-        check(white);
-        check(black);
+        check(white, 1, 0);
+        check(black, 2 ,1);
     }
 
-    void check(Pawn pawn) {
+    void check(Pawn pawn, int size, int idx) {
         board.add(pawn);
         assertEquals(size, board.size());
         assertEquals(pawn, board.findPawn(idx));
-        size++;
-        idx++;
     }
 }

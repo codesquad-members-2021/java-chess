@@ -4,10 +4,7 @@ import net.honux.chess.attribute.Color;
 
 public abstract class Piece {
     private char name;
-    private Color color;
-
-    public Piece() {
-    }
+    private final Color color;
 
     public Piece(char name, Color color) {
         this.name = name;

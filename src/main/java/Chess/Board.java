@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 public class Board {
     private int size;
-    private ArrayList<Pawn> pieces = new ArrayList<Pawn>(32);
+    private ArrayList<Pawn> pawnList = new ArrayList<Pawn>();
 
     public void add(Pawn p){
-        pieces.add(p);
+        pawnList.add(p);
     }
 
     public int size(){
-        return pieces.size();
+        return pawnList.size();
     }
 
     public Pawn findPawn(int i){
-        return pieces.get(i);
+        return pawnList.get(i);
     }
 }

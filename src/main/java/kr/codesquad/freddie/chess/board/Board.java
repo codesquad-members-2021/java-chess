@@ -1,5 +1,6 @@
 package kr.codesquad.freddie.chess.board;
 
+import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Pawn;
 
 import java.util.ArrayList;
@@ -67,13 +68,8 @@ public class Board {
     }
 
     public void initialize() {
-        while (getBlackFile().size() != File.SIZE) {
-            getBlackFile().add(Pawn.create("black"));
-        }
-
-        while (getWhiteFile().size() != File.SIZE) {
-            getWhiteFile().add(Pawn.create("white"));
-        }
+        getBlackFile().fillWith(Color.BLACK);
+        getWhiteFile().fillWith(Color.WHITE);
     }
 
     public String getWhitePawnsResult() {

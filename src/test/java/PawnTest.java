@@ -17,9 +17,16 @@ public class PawnTest {
         verifyPawn("black");
     }
 
+    @Test
+    @DisplayName("약속되지 않은 문자일 경우, white를 지정한다.")
+    public void checkColor(){
+        Pawn pawn = new Pawn("blue");
+        assertThat(pawn.getColor()).isEqualTo("white");
+    }
+
     private void verifyPawn(final String color) {
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
     }
-    
+
 }

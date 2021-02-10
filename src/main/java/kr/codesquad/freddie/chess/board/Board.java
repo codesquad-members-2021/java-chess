@@ -55,12 +55,19 @@ public class Board {
      * ╚══╧══╧══╧══╧══╧══╧══╧══╝╯
      * </code>
      *
-     * @see  <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      * @param fileIndex a~h 사이의 char
      * @param rankIndex 1~8 사이의 int
      * @return 해당 칸에 존재하는 기물
+     * @see <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      */
     public Pawn findPawn(char fileIndex, int rankIndex) {
         return files.get(RANK_SIZE - rankIndex).get(fileIndex);
+    }
+
+    @Override
+    public String toString() {
+        return "Board{" + System.lineSeparator() +
+                "files=" + System.lineSeparator() + files +
+                '}';
     }
 }

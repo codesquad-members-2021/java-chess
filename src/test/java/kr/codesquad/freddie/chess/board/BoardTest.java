@@ -14,7 +14,7 @@ class BoardTest {
     void add() {
         int size = 8 * 8;
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i <= size; i++) {
             Board board = new Board();
 
             for (int j = 0; j < i; j++) {

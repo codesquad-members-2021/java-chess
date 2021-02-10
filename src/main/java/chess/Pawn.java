@@ -1,7 +1,14 @@
 package chess;
 
 public class Pawn {
-    final String color;
+    public static final String WHITE = "white";
+    public static final String BLACK = "black";
+
+    private String color;
+
+    Pawn() {
+        this.color = "white";
+    }
 
     Pawn(String color) {
         this.color = color;

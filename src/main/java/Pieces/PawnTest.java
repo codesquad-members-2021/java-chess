@@ -1,8 +1,8 @@
-package Chess;
+package Pieces;
 
-import org.junit.jupiter.api.*;
-import org.junit.Test;      //-> 임포트했더니 테스트 에러나던 것 단번에 해결?!
-import static org.assertj.core.api.Assertions.*;
+import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+
 import static org.junit.Assert.assertEquals;
 
 public class PawnTest {
@@ -18,7 +18,7 @@ public class PawnTest {
     }
     public void verifyPawn(String color){
         Pawn p = new Pawn(color);
-        assertThat(p.getColor()).isEqualTo(color);
+        assertEquals(p.getColor(),color);
     }
 
     @Test

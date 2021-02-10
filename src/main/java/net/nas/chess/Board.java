@@ -1,5 +1,6 @@
 package net.nas.chess;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 public class Board {
@@ -17,6 +18,8 @@ public class Board {
     }
 
     public void add(Pawn piece) {
+        if(piece == null)
+            throw new InvalidParameterException("Null value cannot be added in board");
         pieceList.add(piece);
     }
 

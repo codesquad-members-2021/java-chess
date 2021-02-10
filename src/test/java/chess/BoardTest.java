@@ -6,7 +6,10 @@ import net.nas.chess.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.security.InvalidParameterException;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BoardTest {
 
@@ -24,5 +27,23 @@ public class BoardTest {
         board.add(blackPawn);
         assertThat(board.findPawn(1)).isEqualTo(blackPawn);
         assertThat(board.size()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("Pawn 이외의 객체가 추가되어선 안됩니다.")
+    void testErrorAddition() {
+        Board board = new Board();
+        Object[] testcases = {
+                new Object(),
+                7,
+                "Error"
+        };
+        for (Object tc : testcases)
+            assertThatThrownBy(() -> {
+                board.add((Pawn) tc);
+            }).isInstanceOf(ClassCastException.class);
+        assertThatThrownBy(() -> {
+            board.add(null);
+        }).isInstanceOf(InvalidParameterException.class);
     }
 }

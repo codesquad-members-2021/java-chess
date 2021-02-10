@@ -7,7 +7,7 @@ public class Pawn {
     private String color;
 
     Pawn() {
-        this.color = "white";
+        this.color = WHITE;
     }
 
     Pawn(String color) {

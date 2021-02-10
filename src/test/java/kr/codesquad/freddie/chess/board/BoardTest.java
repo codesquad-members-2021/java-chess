@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
     @Test
+    @DisplayName("1개 부터 64개까지 넣으면서 사이즈 일치하는지 확인")
     void add() {
         int size = 8 * 8;
 

@@ -1,8 +1,7 @@
 import net.nas.chess.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.assertj.core.api.Assertions.assertThat;
 public class PawnTest {
 
     @Test
@@ -16,6 +15,6 @@ public class PawnTest {
 
     private void verifyPawn(final String color){
         Pawn pawn = new Pawn(color);
-        assertEquals(color, pawn.getColor());
+        assertThat(pawn.getColor()).isEqualTo(color);
     }
 }

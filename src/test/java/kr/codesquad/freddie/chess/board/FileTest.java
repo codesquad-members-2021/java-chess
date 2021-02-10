@@ -84,4 +84,22 @@ class FileTest {
         file.add(new Pawn());
         assertThat(file.isAddable()).isFalse();
     }
+
+    @Test
+    void fillWith_black() {
+        file.fillWith(Color.BLACK);
+        checkFillWith(Color.BLACK);
+    }
+
+    @Test
+    void fillWith_white() {
+        file.fillWith(Color.WHITE);
+        checkFillWith(Color.WHITE);
+    }
+
+    private void checkFillWith(Color expected) {
+        for (int i = 0; i < File.SIZE; i++) {
+            assertThat(file.get((char) (i + 'a')).getColor()).isEqualTo(expected);
+        }
+    }
 }

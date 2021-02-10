@@ -1,11 +1,13 @@
 package net.sanhee.chess;
 
+import net.sanhee.pieces.Pawn;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
 
-    private List<Pawn> pawns  = new ArrayList<Pawn>();
+    private final List<Pawn> pawns  = new ArrayList<Pawn>();
 
     public void add(Pawn pawn) {
         pawns.add(pawn);

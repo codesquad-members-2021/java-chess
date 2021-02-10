@@ -16,11 +16,12 @@ public class Board {
     pawns.add(pawn);
   }
 
-  public int size(){
+  public int size() {
     return pawns.size();
   }
 
-  public Pawn findPawn(int idx){
+  public Pawn findPawn(int idx) {
     return pawns.get(idx);
   }
+
 }

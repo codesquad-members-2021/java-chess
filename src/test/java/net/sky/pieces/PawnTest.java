@@ -28,4 +28,5 @@ class PawnTest {
     Pawn pawn = new Pawn();
     verifyPawn(pawn.getColor());
   }
+
 }

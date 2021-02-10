@@ -1,11 +1,17 @@
 package net.nas.chess;
 
-public class Pawn extends ChessPiece {
+public class Pawn {
+    private final ColorOfChessPiece color;
+
     public Pawn(ColorOfChessPiece color) {
-        super(color);
+        this.color = color;
     }
 
     public Pawn() {
-        super(ColorOfChessPiece.WHITE);
+        this.color = ColorOfChessPiece.WHITE;
+    }
+
+    public ColorOfChessPiece getColor() {
+        return color;
     }
 }

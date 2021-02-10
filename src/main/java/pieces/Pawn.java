@@ -12,8 +12,8 @@ public class Pawn {
         this.color = color;
     }
 
-    public String getColor() {
-        return color.toString();
+    public Color getColor() {
+        return color;
     }
 
 }

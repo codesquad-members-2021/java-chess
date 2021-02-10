@@ -17,9 +17,7 @@ class FileTest {
 
     @Test
     void add() {
-        int size = 8;
-
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < File.SIZE; i++) {
             File file = new File();
 
             for (int j = 0; j < i; j++) {
@@ -32,7 +30,7 @@ class FileTest {
 
     @Test
     void add_8개초과() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < File.SIZE; i++) {
             file.add(new Pawn());
         }
 
@@ -54,7 +52,7 @@ class FileTest {
 
     @Test
     void get_범위초과() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < File.SIZE; i++) {
             file.add(new Pawn());
         }
 

@@ -3,42 +3,44 @@ package chess;
 import pieces.Pawn;
 import pieces.Piece;
 
+import java.util.Map;
+import java.util.List;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Board {
 
-    private final HashMap<String, LinkedList<Pawn>> pawns;
+    private final Map<String, List<Pawn>> pawns;
 
     public Board() {
         this.pawns = new HashMap<>();
-        this.pawns.put(Piece.PAWN_WHITE.color, new LinkedList<>());
-        this.pawns.put(Piece.PAWN_BLACK.color, new LinkedList<>());
+        this.pawns.put(Piece.WHITE.color, new LinkedList<>());
+        this.pawns.put(Piece.BLACK.color, new LinkedList<>());
     }
 
-    public void addPawn(String color, Pawn pawn) {
-        this.pawns.get(color).add(pawn);
+    public void addPawn(Piece piece, Pawn pawn) {
+        this.pawns.get(piece.color).add(pawn);
     }
 
-    public int pawnSize(String color) {
-        return this.pawns.get(color).size();
+    public int pawnSize(Piece piece) {
+        return this.pawns.get(piece.color).size();
     }
 
-    public Pawn findPawn(String color, int index) {
-        return this.pawns.get(color).get(index);
+    public Pawn findPawn(Piece piece, int index) {
+        return this.pawns.get(piece.color).get(index);
     }
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            addPawn(Piece.PAWN_WHITE.color, new Pawn(Piece.PAWN_WHITE.color, Piece.PAWN_WHITE.representation));
-            addPawn(Piece.PAWN_BLACK.color, new Pawn(Piece.PAWN_BLACK.color, Piece.PAWN_BLACK.representation));
+            addPawn(Piece.WHITE, new Pawn(Piece.WHITE));
+            addPawn(Piece.BLACK, new Pawn(Piece.BLACK));
         }
     }
 
-    public String getPawnsResult(String color) {
+    public String getPawnsResult(Piece piece) {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < pawnSize(color); i++) {
-            result.append(findPawn(color, i).getRepresentation());
+        for (int i = 0; i < pawnSize(piece); i++) {
+            result.append(findPawn(piece, i).getRepresentation());
         }
         return result.toString();
     }
@@ -47,7 +49,7 @@ public class Board {
         StringBuilder result = new StringBuilder();
         result.append("........");
         result.append("\n");
-        result.append(getPawnsResult(Piece.PAWN_BLACK.color));
+        result.append(getPawnsResult(Piece.BLACK));
         result.append("\n");
         result.append("........");
         result.append("\n");
@@ -57,7 +59,7 @@ public class Board {
         result.append("\n");
         result.append("........");
         result.append("\n");
-        result.append(getPawnsResult(Piece.PAWN_WHITE.color));
+        result.append(getPawnsResult(Piece.WHITE));
         result.append("\n");
         result.append("........");
         System.out.println(result);

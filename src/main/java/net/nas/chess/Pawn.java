@@ -1,7 +1,7 @@
 package net.nas.chess;
 
 public class Pawn extends ChessPiece {
-    public Pawn(String color) {
+    public Pawn(ColorOfChessPiece color) {
         super(color);
     }
 }

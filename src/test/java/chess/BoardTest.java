@@ -1,5 +1,6 @@
 package chess;
 
+import org.junit.jupiter.api.BeforeEach;
 import pieces.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,11 +8,16 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 class BoardTest {
+    Board board;
+
+    @BeforeEach
+    void setUp(){
+        board = new Board();
+    }
+
     @Test
     @DisplayName("Board의 Pawn 등록 테스트")
     public void pawnAddTest() throws Exception {
-        Board board = new Board();
-
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
         board.add(white);
         assertThat(board.size()).isEqualTo(1);

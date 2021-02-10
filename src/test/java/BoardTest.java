@@ -14,28 +14,12 @@ public class BoardTest {
     @Test
     @DisplayName("흰색 Pawn을 체스 판, 첫번째 칸에 추가")
     public void create() throws Exception {
-        Pawn white = new Pawn(UnitColor.WHITE.getColor());
-        board.add(white);
-
-        assertAll(
-                //A Case
-                () -> assertThat(board.size()).isEqualTo(1),
-                //B Case
-                () -> assertThat(board.findPawn(0)).isEqualTo(white)
-        );
+        spawnPawn(UnitColor.WHITE.getColor(), 1);
     }
     @Test
     @DisplayName("흑색 Pawn을 체스 판, 두번째 칸에 추가")
     public void create2() throws Exception {
-        Pawn black = new Pawn(UnitColor.BLACK.getColor());
-        board.add(black);
-
-        assertAll(
-                //A Case
-                () -> assertThat(board.size()).isEqualTo(2),
-                //B Case
-                () -> assertThat(board.findPawn(1)).isEqualTo(black)
-        );
+        spawnPawn(UnitColor.BLACK.getColor(), 2);
     }
 
     @Test
@@ -43,7 +27,23 @@ public class BoardTest {
     public void otherUnitCheck(){
         Integer testInteger = new Integer("7");
         board.add(testInteger);
-        assertThat(board.size()).isEqualTo(3);
+
+        spawnCheck(testInteger,3);
+    }
+
+    private void spawnPawn(String color, int order){
+        Pawn pawn = new Pawn(color);
+        board.add(pawn);
+        spawnCheck(pawn, order);
+    }
+
+    private void spawnCheck(Pawn object, int order){
+        assertAll(
+                //A Case
+                () -> assertThat(board.size()).isEqualTo(order),
+                //B Case
+                () -> assertThat(board.findPawn(order-1)).isEqualTo(object)
+        );
     }
 
 }

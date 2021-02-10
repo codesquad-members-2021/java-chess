@@ -1,4 +1,4 @@
-import net.sanhee.chess.Pawn;
+import net.sanhee.chess.*;
 import net.sanhee.chess.UnitColor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -9,13 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
-    static public Board board;
-
-    @BeforeEach
-    @DisplayName("체스판 위에 말이 없는 상태에서 시작한다.")
-    public void init(){
-        board = new Board();
-    }
+    static public Board board = new Board();
 
     @Test
     @DisplayName("흰색 Pawn을 체스 판, 첫번째 칸에 추가")
@@ -32,7 +26,7 @@ public class BoardTest {
     }
     @Test
     @DisplayName("흑색 Pawn을 체스 판, 두번째 칸에 추가")
-    public void create() throws Exception {
+    public void create2() throws Exception {
         Pawn black = new Pawn(UnitColor.BLACK.getColor());
         board.add(black);
 

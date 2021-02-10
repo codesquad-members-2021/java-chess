@@ -1,4 +1,4 @@
-package net.sanhee.chess;
+package net.sanhee.pieces;
 
 public enum UnitColor{
     BLACK("black"), WHITE("white");

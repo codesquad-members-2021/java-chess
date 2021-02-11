@@ -18,7 +18,9 @@ class PawnTest {
     @Test
     @DisplayName("검정은 대문자 P 하양은 소문자 p 반환")
     void getRepresentation() {
-        assertThat(Pawn.create("black").getRepresentation()).isEqualTo("P");
-        assertThat(Pawn.create("white").getRepresentation()).isEqualTo("p");
+        assertAll(
+                () -> assertThat(Pawn.create("black").getRepresentation()).isEqualTo("P"),
+                () -> assertThat(Pawn.create("white").getRepresentation()).isEqualTo("p")
+        );
     }
 }

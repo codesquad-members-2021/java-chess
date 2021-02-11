@@ -86,8 +86,10 @@ class BoardTest {
     void initialize() {
         board.initialize();
 
-        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
-        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+        assertAll(
+                () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
+                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
+        );
     }
 
     @Test

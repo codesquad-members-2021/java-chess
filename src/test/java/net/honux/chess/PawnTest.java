@@ -7,7 +7,7 @@ class PawnTest {
 
     @Test
     @DisplayName("흰색 폰과 검은색 폰이 생성되어야 한다")
-    public void create() {
+    void create() {
         verifyPawn("white");
         verifyPawn("black");
     }

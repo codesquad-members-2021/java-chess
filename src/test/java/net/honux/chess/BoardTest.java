@@ -1,7 +1,6 @@
 package net.honux.chess;
 
-import static org.assertj.core.api.Assertions.*;
-
+import net.honux.pieces.Pawn;
 import org.junit.jupiter.api.*;
 
 public class BoardTest {

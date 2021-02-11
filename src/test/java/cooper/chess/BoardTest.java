@@ -3,8 +3,7 @@ package cooper.chess;
 import cooper.chess.piece.Pawn;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
     @Test
@@ -13,21 +12,24 @@ class BoardTest {
 
         Pawn white = new Pawn("white");
         board.add(white);
-        assertEquals(1, board.size());
-        assertEquals(white, board.findPawn(1));
 
         Pawn black = new Pawn("black");
         board.add(black);
-        assertEquals(2, board.size());
-        assertEquals(black, board.findPawn(2));
+
+        assertAll(
+                () -> assertEquals(2, board.size()),
+                () -> {
+                    assertEquals(white, board.findPawn(1));
+                    assertEquals(black, board.findPawn(2));
+                }
+        );
     }
 
     @Test
     public void testZeroSizeOfBoard() {
         Board board = new Board();
-        Pawn pawn = new Pawn();
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(IndexOutOfBoundsException.class,
                 () -> board.findPawn(0));
     }
 
@@ -41,9 +43,9 @@ class BoardTest {
         Pawn black = new Pawn("black");
         board.add(black);
 
-        assertThrows(IndexOutOfBoundsException.class,
-                () -> board.findPawn(-1));
-        assertThrows(IndexOutOfBoundsException.class,
-                () -> board.findPawn(2));
+        assertAll(
+                () -> assertThrows(ArrayIndexOutOfBoundsException.class, () -> board.findPawn(-1)),
+                () -> assertThrows(ArrayIndexOutOfBoundsException.class, () -> board.findPawn(3))
+        );
     }
 }

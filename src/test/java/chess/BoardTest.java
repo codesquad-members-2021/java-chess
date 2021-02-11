@@ -29,8 +29,8 @@ class BoardTest {
     public void initialize() throws Exception {
         Board board = new Board();
         board.initialize();
-//        assertEquals("pppppppp", board.getWhitePawnResult());
-//        assertEquals("PPPPPPPP", board.getBlackPawnResult());
+        assertEquals("pppppppp", board.getWhitePawnResult());
+        assertEquals("PPPPPPPP", board.getBlackPawnResult());
     }
 
     void check(Pawn pawn, int size, int idx) {

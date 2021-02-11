@@ -3,16 +3,13 @@ package chess;
 import chess.pieces.Pawn;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Board {
 
     private static final int PAWNSNUM = 8;
-    private static final int COLUMN = 8;
     private List<Pawn> whitePawns = new ArrayList<>(8);
     private List<Pawn> blackPawns = new ArrayList<>(8);
-    private List<List<Pawn>> board = new ArrayList(8);
 
     public void add(Pawn pawn) {
         List list = distinguish(pawn);
@@ -39,19 +36,33 @@ public class Board {
     }
 
     public void initialize() {
-
+        for (int i = 0; i < PAWNSNUM; i++) {
+            Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+            Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK__REPRESENTATION);
+            add(white);
+            add(black);
+        }
     }
 
     public void print() {
-        System.out.println(board.toString());
+
     }
 
-//    public String getWhitePawnResult() {
-//
-//    }
-//
-//    public String getBlackPawnResult() {
-//    }
+    public String getWhitePawnResult() {
+        StringBuilder result = new StringBuilder();
+        for(Pawn pawn : whitePawns){
+            result.append(pawn.getRepresentation());
+        }
+        return result.toString();
+    }
+
+    public String getBlackPawnResult() {
+        StringBuilder result = new StringBuilder();
+        for(Pawn pawn : blackPawns){
+            result.append(pawn.getRepresentation());
+        }
+        return result.toString();
+    }
 
     public static void main(String[] args) {
         Board board = new Board();

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class FileTest {
     private File file;
@@ -46,8 +47,10 @@ class FileTest {
         file.add(pawn_a);
         file.add(pawn_b);
 
-        assertThat(file.get('a')).isEqualTo(pawn_a);
-        assertThat(file.get('b')).isEqualTo(pawn_b);
+        assertAll(
+                () -> assertThat(file.get('a')).isEqualTo(pawn_a),
+                () -> assertThat(file.get('b')).isEqualTo(pawn_b)
+        );
     }
 
     @Test
@@ -56,13 +59,15 @@ class FileTest {
             file.add(new Pawn());
         }
 
-        assertThatThrownBy(() -> file.get('i'))
-                .isInstanceOf(IndexOutOfBoundsException.class);
-        assertThatThrownBy(() -> file.get((char) 96))
-                .isInstanceOf(ArrayIndexOutOfBoundsException.class);
-        assertThatThrownBy(() -> file.get('0'))
-                .isInstanceOf(ArrayIndexOutOfBoundsException.class);
-        assertThatThrownBy(() -> file.get((char) 0))
-                .isInstanceOf(ArrayIndexOutOfBoundsException.class);
+        assertAll(
+                () -> assertThatThrownBy(() -> file.get('i'))
+                        .isInstanceOf(IndexOutOfBoundsException.class),
+                () -> assertThatThrownBy(() -> file.get((char) 96))
+                        .isInstanceOf(ArrayIndexOutOfBoundsException.class),
+                () -> assertThatThrownBy(() -> file.get('0'))
+                        .isInstanceOf(ArrayIndexOutOfBoundsException.class),
+                () -> assertThatThrownBy(() -> file.get((char) 0))
+                        .isInstanceOf(ArrayIndexOutOfBoundsException.class)
+        );
     }
 }

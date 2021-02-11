@@ -57,16 +57,28 @@ class BoardTest {
     }
 
     @Test
-    public void findPawn() {
+    @DisplayName("하나만 추가하여 탐색")
+    void findPawn_one() {
         Pawn white = new Pawn(Color.WHITE);
         board.add(white);
-        assertThat(board.size()).isEqualTo(1);
-        assertThat(board.findPawn('a', 8)).isEqualTo(white);
+        assertAll(
+                () -> assertThat(board.size()).isEqualTo(1),
+                () -> assertThat(board.findPawn('a', 8)).isEqualTo(white)
+        );
+    }
 
+    @Test
+    @DisplayName("하나 이상 추가하여 탐색")
+    void findPawn_moreThanOne() {
+        Pawn white = new Pawn(Color.WHITE);
+        board.add(white);
         Pawn black = new Pawn(Color.BLACK);
         board.add(black);
-        assertThat(board.size()).isEqualTo(2);
-        assertThat(board.findPawn('b', 8)).isEqualTo(black);
-        assertEquals(2, board.size());
+
+        assertAll(
+                () -> assertThat(board.size()).isEqualTo(2),
+                () -> assertThat(board.findPawn('a', 8)).isEqualTo(white),
+                () -> assertThat(board.findPawn('b', 8)).isEqualTo(black)
+        );
     }
 }

@@ -1,25 +1,20 @@
 package net.honux.chess.entity.pieces;
 
 import net.honux.chess.attribute.Color;
-import net.honux.chess.attribute.Pointer;
 
-public class Pawn extends Piece{
+public class Pawn{
 
-    public Pawn(Color color, Pointer startPointer) {
-        super(color, startPointer);
+    private final Color color;
+
+    public Pawn(){
+        this.color = Color.WHITE;
     }
 
-    @Override
-    public void move(Pointer pointer) {
+    public Pawn(Color color) {
+        this.color = color;
     }
 
-    @Override
-    public void kill(Pointer pointer) {
-
-    }
-
-    @Override
-    public void printPointer() {
-
+    public Color getColor() {
+        return color;
     }
 }

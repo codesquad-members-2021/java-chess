@@ -8,27 +8,28 @@ class PawnTest {
 
     @Test
     @DisplayName("흰색 폰과 검은색 폰이 생성되어야 한다")
-    public void create_흰색폰과_검은색폰_생성() {
-        verifyPawn(Color.WHITE);
-        verifyPawn(Color.BLACK);
+    void create_흰색폰과_검은색폰_생성() {
+        verifyPawn(Pawn.WHITE_COLOR);
+        verifyPawn(Pawn.BLACK_COLOR);
     }
 
     @Test
     @DisplayName("기본 생성자로 폰을 생성할 때, 흰색 폰이 생성되어야 한다")
-    public void create_기본생성자로_폰생성() throws Exception {
+    void create_기본생성자로_폰생성() throws Exception {
         Pawn pawn = new Pawn();
-        Assertions.assertEquals(Color.WHITE, pawn.getColor());
+        Assertions.assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
     }
 
     @Test
     @DisplayName("다른 색 폰이 생성되면 안된다")
-    public void create_지원하지않는_색의_폰생성() {
+    void create_지원하지않는_색의_폰생성() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Color unsupported_color = Color.getColor("red");
+            String unsupported_color = "red";
+            Pawn redPawn = new Pawn(unsupported_color);
         });
     }
 
-    private void verifyPawn(Color color) {
+    private void verifyPawn(String color) {
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
     }

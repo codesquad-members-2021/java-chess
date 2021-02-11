@@ -46,17 +46,17 @@ public class Board {
         System.out.println(board.toString());
     }
 
-    public String getWhitePawnResult() {
-
-    }
-
-    public String getBlackPawnResult() {
-    }
+//    public String getWhitePawnResult() {
+//
+//    }
+//
+//    public String getBlackPawnResult() {
+//    }
 
     public static void main(String[] args) {
         Board board = new Board();
         board.initialize();
-        board.getWhitePawnResult();
+//        board.getWhitePawnResult();
         board.print();
     }
 }

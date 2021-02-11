@@ -22,13 +22,6 @@ public class BoardTest {
         addPawnAndCheckTheBoard(black);
     }
 
-    @Test
-    @DisplayName("폰이 아닌 객체를 보드에 추가할 시 컴파일 에러가 발생해야 한다.")
-    void add_보드위에_폰이_아닌_객체추가() {
-        Object notPawn = new Object();
-        board.add(notPawn);
-    }
-
     private void addPawnAndCheckTheBoard(Pawn pawn) {
         int sizeBeforeAddThePawn = board.size();
         board.add(pawn);

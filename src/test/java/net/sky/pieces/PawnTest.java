@@ -9,23 +9,24 @@ import org.junit.jupiter.api.Test;
 class PawnTest {
 
 
-  @Test
-  @DisplayName("폰 색깔 확인")
-  public void create() {
-    verifyPawn(Color.WHITE);
-    verifyPawn(Color.BLACK);
-  }
+    @Test
+    @DisplayName("폰 색깔 확인 테스트")
+    void testPawnColor() {
+        verifyPawn(Color.WHITE);
+        verifyPawn(Color.BLACK);
+    }
 
-  private void verifyPawn(final Color color) {
-    Pawn pawn = new Pawn(color);
-    assertThat(pawn.getColor()).isEqualTo(color);
-  }
+    void verifyPawn(final Color color) {
+        Pawn pawn = new Pawn(color);
+        assertThat(pawn.getColor()).isEqualTo(color);
+    }
 
 
-  @Test
-  public void create_기본생성자() throws Exception {
-    Pawn pawn = new Pawn();
-    verifyPawn(pawn.getColor());
-  }
+    @Test
+    @DisplayName("기본 생성자 폰 색깔 확인 테스트")
+    void testPawnColor_기본생성자() throws Exception {
+        Pawn pawn = new Pawn();
+        verifyPawn(pawn.getColor());
+    }
 
 }

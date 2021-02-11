@@ -1,6 +1,7 @@
 package net.sky.chess;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import net.sky.pieces.Pawn;
 import net.sky.pieces.Pawn.Color;
@@ -10,25 +11,27 @@ import org.junit.jupiter.api.Test;
 
 class BoardTest {
 
-  Board board;
+    Board board;
 
-  @BeforeEach
-  public void initBoard(){
-    board = new Board();
-  }
+    @BeforeEach
+    void initBoard() {
+        board = new Board();
+    }
 
-  @Test
-  @DisplayName("체스판 색깔, 사이즈 확인")
-  public void create() throws Exception {
-    verifyBoard(Color.WHITE, 1, 0);
-    verifyBoard(Color.BLACK, 2, 1);
-  }
+    @Test
+    @DisplayName("체스판 색깔, 사이즈 확인 테스트")
+    void testDetailOfBoard() throws Exception {
+        verifyBoard(Color.WHITE, 1, 0);
+        verifyBoard(Color.BLACK, 2, 1);
+    }
 
-  public void verifyBoard(final Color color, int size, int idx){
-    Pawn pawn = new Pawn(color);
-    board.add(pawn);
-    assertThat(board.size()).isEqualTo(size);
-    assertThat(board.findPawn(idx)).isEqualTo(pawn);
-  }
+    void verifyBoard(final Color color, int size, int idx) {
+        Pawn pawn = new Pawn(color);
+        board.add(pawn);
+        assertAll(
+            () -> assertThat(board.size()).isEqualTo(size),
+            () -> assertThat(board.findPawn(idx)).isEqualTo(pawn)
+        );
+    }
 
 }

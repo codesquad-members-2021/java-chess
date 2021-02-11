@@ -1,15 +1,27 @@
 package net.honux.chess;
 
+import java.util.ArrayList;
+
 public class Board {
 
-    public void add(Pawn white) {
+    ArrayList<Pawn> pawns;
+
+    public Board() {
+        this.pawns = new ArrayList<>();
+    }
+
+    public void add(Pawn pawn) {
+        this.pawns.add(pawn);
     }
 
     public int size() {
-        return 0;
+        return pawns.size();
     }
 
-    public Pawn findPawn(int i) {
-        return new Pawn();
+    public Pawn findPawn(int idx) {
+        if (idx < 0 || size() < idx) {
+            throw new IndexOutOfBoundsException("Index number " + idx + " is out of range! There is/are " + size() + " pieces on the board.");
+        }
+        return pawns.get(idx);
     }
 }

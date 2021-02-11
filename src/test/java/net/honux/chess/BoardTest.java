@@ -8,7 +8,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("생성된 보드 위에 폰 추가, 폰 갯수 확인, 특정 폰 찾기가 가능해야 한다.")
-    public void create() throws Exception {
+    void create() throws Exception {
         Board board = new Board();
 
         Pawn white = new Pawn(Pawn.WHITE_COLOR);

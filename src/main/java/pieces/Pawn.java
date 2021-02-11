@@ -3,14 +3,14 @@ package pieces;
 public class Pawn extends Piece {
 
     public Pawn() {
-        this.color = "white";
+        super(Piece.WHITE_COLOR);
     }
 
     public Pawn(String color) {
-        this.color = color;
+        super(color);
     }
 
     public String getColor() {
-        return color;
+        return super.getColor();
     }
 }

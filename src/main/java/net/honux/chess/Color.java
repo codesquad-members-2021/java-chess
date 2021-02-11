@@ -1,14 +1,14 @@
 package net.honux.chess;
 
 public enum Color {
-    white, black;
+    WHITE, BLACK;
 
     public static Color getColor(String color) {
         switch (color) {
             case "white":
-                return white;
+                return WHITE;
             case "black":
-                return black;
+                return BLACK;
             default:
                 throw new IllegalArgumentException("color should be white or black!");
         }

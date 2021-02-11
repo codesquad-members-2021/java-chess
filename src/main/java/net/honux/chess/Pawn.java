@@ -5,7 +5,7 @@ public class Pawn {
     private Color color;
 
     public Pawn() {
-        this(Color.white);
+        this(Color.WHITE);
     }
 
     public Pawn(Color color) {

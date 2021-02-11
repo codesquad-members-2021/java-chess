@@ -1,13 +1,13 @@
 package Chess;
 
 public class Pawn {
-    String color;
+    Color color;
 
-    Pawn(String color) {
+    Pawn(Color color) {
         this.color = color;
     }
 
-    public String getColor(){
+    public Color getColor(){
         return color;
     }
 }

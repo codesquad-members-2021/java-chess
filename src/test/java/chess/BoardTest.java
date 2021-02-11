@@ -7,7 +7,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
 
-    Pawn white, black;
+    private Pawn white;
+    private Pawn black;
     Board board;
 
     @BeforeEach

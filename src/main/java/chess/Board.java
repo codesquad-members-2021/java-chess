@@ -6,9 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private ArrayList<Pawn> pawns = new ArrayList<>();
+
     private static final int PAWNSNUM = 8;
     private static final int COLUMN = 8;
+    private List<Pawn> pawns = new ArrayList<>();
 
     public void add(Pawn pawn) {
         this.pawns.add(pawn);

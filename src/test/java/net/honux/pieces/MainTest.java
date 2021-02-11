@@ -23,8 +23,8 @@ class PawnTest {
     @Test
     @DisplayName("다른 색 폰이 생성되면 안된다")
     void create_지원하지않는_색의_폰생성() {
+        String unsupported_color = "red";
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            String unsupported_color = "red";
             Pawn redPawn = new Pawn(unsupported_color);
         });
     }

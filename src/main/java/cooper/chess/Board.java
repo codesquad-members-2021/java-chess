@@ -22,11 +22,11 @@ public class Board {
         int index = number - 1;
 
         if(pawnList.size() == 0) {
-            throw new IndexOutOfBoundsException("board size == 0입니다.");
+            throw new IndexOutOfBoundsException("사이즈가 0 입니다.");
         }
 
-        if ((0 > index) || (index >= pawnList.size())) {
-            throw new IndexOutOfBoundsException("인덱스의 범위를 벗어났습니다");
+        if ((0 > number) || (number > pawnList.size())) {
+            throw new ArrayIndexOutOfBoundsException("범위를 벗어나는 인덱스 입니다.");
         }
 
         return pawnList.get(index);

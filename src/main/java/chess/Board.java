@@ -46,6 +46,7 @@ public class Board {
 
     public void print() {
 
+
     }
 
     public String getWhitePawnResult() {
@@ -62,12 +63,5 @@ public class Board {
             result.append(pawn.getRepresentation());
         }
         return result.toString();
-    }
-
-    public static void main(String[] args) {
-        Board board = new Board();
-        board.initialize();
-//        board.getWhitePawnResult();
-        board.print();
     }
 }

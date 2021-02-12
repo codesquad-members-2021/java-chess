@@ -1,20 +1,17 @@
 package pieces;
 
-
-import java.util.Locale;
-
 public class Pawn {
     private final Color color;
 
-    public Pawn(){
+    Pawn() {
         this.color = Color.WHITE;
     }
 
-    public Pawn(Color color) {
+    Pawn(Color color) {
         this.color = color;
     }
 
-    public Color getColor() {
-      return color;
+    Color getColor() {
+        return color;
     }
 }

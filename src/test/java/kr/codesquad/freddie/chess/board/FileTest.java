@@ -3,6 +3,7 @@ package kr.codesquad.freddie.chess.board;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Pawn;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
@@ -30,7 +31,8 @@ class FileTest {
     }
 
     @Test
-    void add_8개초과() {
+    @DisplayName("8개 초과하여 추가하는 경우")
+    void add_moreThan_8() {
         for (int i = 0; i < File.SIZE; i++) {
             file.add(new Pawn());
         }
@@ -54,7 +56,8 @@ class FileTest {
     }
 
     @Test
-    void get_범위초과() {
+    @DisplayName("a~h를 벗어나도록 get을 하는 경우")
+    void get_outOfRange() {
         for (int i = 0; i < File.SIZE; i++) {
             file.add(new Pawn());
         }

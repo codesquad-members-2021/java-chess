@@ -42,14 +42,14 @@ class FileTest {
 
     @Test
     void get() {
-        Pawn pawn_a = new Pawn();
-        Pawn pawn_b = new Pawn(Color.BLACK);
-        file.add(pawn_a);
-        file.add(pawn_b);
+        Pawn pawnA = new Pawn();
+        Pawn pawnB = new Pawn(Color.BLACK);
+        file.add(pawnA);
+        file.add(pawnB);
 
         assertAll(
-                () -> assertThat(file.get('a')).isEqualTo(pawn_a),
-                () -> assertThat(file.get('b')).isEqualTo(pawn_b)
+                () -> assertThat(file.get('a')).isEqualTo(pawnA),
+                () -> assertThat(file.get('b')).isEqualTo(pawnB)
         );
     }
 

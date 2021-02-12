@@ -17,16 +17,11 @@ public class Board {
     }
 
     public void add(Pawn pawn) {
-        for (File file : files) {
-            if (file.size() < File.SIZE) {
-                file.add(pawn);
-                return;
-            }
-        }
-
-        if (RANK_SIZE * File.SIZE == size()) {
-            throw new IllegalArgumentException("더 이상 추가할 수 없습니다. 현재 크기 : " + size());
-        }
+        files.stream()
+                .filter(File::isAddable)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("더 이상 추가할 수 없습니다. 현재 크기 : " + size()))
+                .add(pawn);
     }
 
     public int size() {

@@ -73,4 +73,15 @@ class FileTest {
                         .isInstanceOf(ArrayIndexOutOfBoundsException.class)
         );
     }
+
+    @Test
+    void isAddable() {
+        for (int i = 0; i < File.SIZE - 1; i++) {
+            file.add(new Pawn());
+            assertThat(file.isAddable()).isTrue();
+        }
+
+        file.add(new Pawn());
+        assertThat(file.isAddable()).isFalse();
+    }
 }

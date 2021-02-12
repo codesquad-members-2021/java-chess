@@ -37,6 +37,10 @@ public class File {
         return pawns.size();
     }
 
+    public boolean isAddable() {
+        return size() < SIZE;
+    }
+
     @Override
     public String toString() {
         return "File{" + System.lineSeparator() +

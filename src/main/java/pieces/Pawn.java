@@ -3,15 +3,15 @@ package pieces;
 public class Pawn {
     private final Color color;
 
-    Pawn() {
+    public Pawn() {
         this.color = Color.WHITE;
     }
 
-    Pawn(Color color) {
+    public Pawn(Color color) {
         this.color = color;
     }
 
-    Color getColor() {
+    public Color getColor() {
         return color;
     }
 }

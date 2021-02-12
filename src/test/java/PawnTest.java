@@ -19,14 +19,6 @@ public class PawnTest {
         verifyPawn(UnitColor.BLACK);
     }
 
-    /*
-        @Deprecated
-        @DisplayName("약속되지 않은 문자일 경우, white를 지정한다.")
-        public void checkColor(){
-            Pawn pawn = new Pawn("blue");
-            assertThat(pawn.getColor()).isEqualTo(UnitColor.WHITE);
-        }
-    */
     @Test
     @DisplayName("색이 없는 Pawn을 생성할 경우, white를 지정한다.")
     public void create3() {

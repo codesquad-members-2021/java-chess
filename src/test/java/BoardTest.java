@@ -23,17 +23,6 @@ public class BoardTest {
         spawnPawn(UnitColor.BLACK, 2);
     }
 
-    /*
-        @Deprecated
-        @DisplayName("체스 판에 Pawn 이외의 객체가 추가되지 않도록 한다.")
-
-        public void otherUnitCheck(){
-            Integer testInteger = new Integer("7");
-            board.add(testInteger);
-
-            spawnCheck(testInteger,3);
-        }
-    */
     private void spawnPawn(UnitColor color, int order) {
         Pawn pawn = new Pawn(color);
         board.add(pawn);

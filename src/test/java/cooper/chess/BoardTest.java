@@ -19,8 +19,8 @@ class BoardTest {
         assertAll(
                 () -> assertEquals(2, board.size()),
                 () -> {
-                    assertEquals(white, board.findPawn(1));
-                    assertEquals(black, board.findPawn(2));
+                    assertEquals(white, board.findPawn(0));
+                    assertEquals(black, board.findPawn(1));
                 }
         );
     }
@@ -29,7 +29,7 @@ class BoardTest {
     public void testZeroSizeOfBoard() {
         Board board = new Board();
 
-        assertThrows(IndexOutOfBoundsException.class,
+        assertThrows(IllegalArgumentException.class,
                 () -> board.findPawn(0));
     }
 
@@ -44,8 +44,8 @@ class BoardTest {
         board.add(black);
 
         assertAll(
-                () -> assertThrows(ArrayIndexOutOfBoundsException.class, () -> board.findPawn(-1)),
-                () -> assertThrows(ArrayIndexOutOfBoundsException.class, () -> board.findPawn(3))
+                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(-1)),
+                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(3))
         );
     }
 }

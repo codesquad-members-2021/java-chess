@@ -46,6 +46,15 @@ public class Board {
     }
 
     public String print() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("........").append(System.lineSeparator());
+        stringBuilder.append(getPawnsResult(Color.BLACK)).append(System.lineSeparator());
+        stringBuilder.append("........").append(System.lineSeparator());
+        stringBuilder.append("........").append(System.lineSeparator());
+        stringBuilder.append("........").append(System.lineSeparator());
+        stringBuilder.append("........").append(System.lineSeparator());
+        stringBuilder.append(getPawnsResult(Color.WHITE)).append(System.lineSeparator());
+        stringBuilder.append("........");
+        return stringBuilder.toString();
     }
 }

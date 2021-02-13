@@ -37,6 +37,15 @@ public class BoardTest {
         }
     }
 
+    private void verifyAddition(Pawn pawn, int idx) {
+        board.add(pawn);
+        assertThat(board.size()).isEqualTo(idx + 1);
+    }
+
+    private void verifyFind(Pawn pawn, int idx) {
+        assertThat(board.findPawn(idx)).isEqualTo(pawn);
+    }
+
     @Test
     @DisplayName("폰을 찾을때 넣는 인덱스가 배열의 범위를 벗어나면 예외가 발생해야 합니다")
     void testErrorFind() {
@@ -48,19 +57,10 @@ public class BoardTest {
         }
     }
 
-    void testFindThrowException(int idx, Class<?> exceptionClass) {
+    private void testFindThrowException(int idx, Class<?> exceptionClass) {
         assertThatThrownBy(() -> {
             board.findPawn(idx);
         }).isInstanceOf(exceptionClass);
-    }
-
-    void verifyAddition(Pawn pawn, int idx) {
-        board.add(pawn);
-        assertThat(board.size()).isEqualTo(idx + 1);
-    }
-
-    void verifyFind(Pawn pawn, int idx) {
-        assertThat(board.findPawn(idx)).isEqualTo(pawn);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class BoardTest {
         assertThat(board.size()).isEqualTo(0);
     }
 
-    void testAdditionThrowException(Object tc, Class<?> exceptionClass) {
+    private void testAdditionThrowException(Object tc, Class<?> exceptionClass) {
         assertThatThrownBy(() -> {
             board.add((Pawn) tc);
         }).isInstanceOf(exceptionClass);

@@ -13,11 +13,11 @@ public class BoardTest {
     private int count = 0;
 
     @BeforeEach
-    public void createBoard() {
+    void createBoard() {
         board = new Board();
     }
 
-    public void createPawnAndVerify(Color color) {
+    void createPawnAndVerify(Color color) {
         Pawn pawn = new Pawn(color);
         board.add(pawn);
         count += 1;
@@ -27,7 +27,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("흰색, 검은색 Pawn을 생성해 board에 추가한다")
-    public void createPawnOnTheBoard() throws Exception {
+    void createPawnOnTheBoard() throws Exception {
         createPawnAndVerify(Color.WHITE);
         createPawnAndVerify(Color.BLACK);
     }

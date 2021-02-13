@@ -11,7 +11,7 @@ import java.security.InvalidParameterException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 public class BoardTest {
@@ -56,12 +56,20 @@ public class BoardTest {
                 "Error"
         };
         for (Object tc : testcases)
-            assertThatThrownBy(() -> {
-                board.add((Pawn) tc);
-            }).isInstanceOf(ClassCastException.class);
+            testAdditionThrowCastException(tc);
+        testAdditionThrowInvalidParameterException();
+        assertThat(board.size()).isEqualTo(0);
+    }
+
+    void testAdditionThrowCastException(Object tc) {
+        assertThatThrownBy(() -> {
+            board.add((Pawn) tc);
+        }).isInstanceOf(ClassCastException.class);
+    }
+
+    void testAdditionThrowInvalidParameterException() {
         assertThatThrownBy(() -> {
             board.add(null);
         }).isInstanceOf(InvalidParameterException.class);
-        assertThat(board.size()).isEqualTo(0);
     }
 }

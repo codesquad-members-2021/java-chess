@@ -31,13 +31,25 @@ public class Board {
     }
 
     public void initialize() {
+        for (int i = 0; i < 8; i++) {
+            add(new Pawn(Color.WHITE));
+            add(new Pawn(Color.BLACK));
+        }
     }
 
     public String getWhitePawnsResult() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Pawn pawn : pawnList.get(Color.WHITE)) {
+            stringBuilder.append(pawn.getRepresentation());
+        }
+        return stringBuilder.toString();
     }
 
     public String getBlackPawnsResult() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Pawn pawn : pawnList.get(Color.BLACK)) {
+            stringBuilder.append(pawn.getRepresentation());
+        }
+        return stringBuilder.toString();
     }
 }

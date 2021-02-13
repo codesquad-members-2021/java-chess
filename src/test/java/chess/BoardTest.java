@@ -27,4 +27,13 @@ public class BoardTest {
         assertThat(board.findPawn(size - 1)).isEqualTo(pawn);
     }
 
+    @Test
+    @DisplayName("게임 보드 초기화")
+   public void initialize() throws Exception {
+        Board board = new Board();
+        board.initialize();
+        assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult());
+        assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult());
+    }
+
 }

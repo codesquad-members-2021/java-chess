@@ -20,4 +20,15 @@ public class Board {
     public int size() {
         return pawnList.size();
     }
+
+    public void initialize() {
+    }
+
+    public String getWhitePawnsResult() {
+        return null;
+    }
+
+    public String getBlackPawnsResult() {
+        return null;
+    }
 }

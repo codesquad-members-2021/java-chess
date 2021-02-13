@@ -3,14 +3,11 @@ package net.honux.chess;
 import net.honux.pieces.Pawn;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 
-    ArrayList<Pawn> pawns;
-
-    public Board() {
-        this.pawns = new ArrayList<>();
-    }
+    private final List<Pawn> pawns = new ArrayList<>();
 
     public void add(Pawn pawn) {
         this.pawns.add(pawn);

@@ -1,5 +1,6 @@
 package chess;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,25 +11,24 @@ import static org.assertj.core.api.Assertions.*;
 
 public class BoardTest {
     private Board board;
-    private int count = 0;
 
     @BeforeEach
     void createBoard() {
         board = new Board();
     }
 
-    void createPawnAndVerify(Color color) {
-        Pawn pawn = new Pawn(color);
+    void addPawnOnTheBoardAndVerify(Pawn pawn, int i) {
         board.add(pawn);
-        count += 1;
-        assertThat(board.size()).isEqualTo(count);
-        assertThat(board.findPawn(count - 1)).isEqualTo(pawn);
+        assertThat(board.size()).isEqualTo(i);
+        assertThat(board.findPawn(i - 1)).isEqualTo(pawn);
     }
 
     @Test
     @DisplayName("흰색, 검은색 Pawn을 생성해 board에 추가한다")
     void createPawnOnTheBoard() throws Exception {
-        createPawnAndVerify(Color.WHITE);
-        createPawnAndVerify(Color.BLACK);
+        Pawn white = new Pawn(Color.WHITE);
+        Pawn black = new Pawn(Color.BLACK);
+        addPawnOnTheBoardAndVerify(white, 1);
+        addPawnOnTheBoardAndVerify(black, 2);
     }
 }

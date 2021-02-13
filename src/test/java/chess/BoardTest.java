@@ -11,6 +11,8 @@ import java.security.InvalidParameterException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class BoardTest {
     Board board;
@@ -27,14 +29,22 @@ public class BoardTest {
                 new Pawn(),
                 new Pawn(ColorOfChessPiece.BLACK)
         };
-        for (int i = 0; i < testcases.length; i++)
-            verifyAdditionAndFind(testcases[i], i);
+        for (int i = 0; i < testcases.length; i++) {
+            final int idx = i;
+            assertAll(
+                    () -> verifyAddition(testcases[idx], idx),
+                    () -> verifyFind(testcases[idx], idx)
+            );
+        }
     }
 
-    void verifyAdditionAndFind(Pawn pawn, int idx) {
+    void verifyAddition(Pawn pawn, int idx) {
         board.add(pawn);
-        assertThat(board.findPawn(idx)).isEqualTo(pawn);
         assertThat(board.size()).isEqualTo(idx + 1);
+    }
+
+    void verifyFind(Pawn pawn, int idx) {
+        assertThat(board.findPawn(idx)).isEqualTo(pawn);
     }
 
     @Test

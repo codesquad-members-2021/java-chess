@@ -9,6 +9,16 @@ import pieces.Pawn;
 
 public class BoardTest {
 
+    private String initBoard =
+            "........" + System.lineSeparator() +
+            "PPPPPPPP" + System.lineSeparator() +
+            "........" + System.lineSeparator() +
+            "........" + System.lineSeparator() +
+            "........" + System.lineSeparator() +
+            "........" + System.lineSeparator() +
+            "pppppppp" + System.lineSeparator() +
+            "........";
+
     @Test
     @DisplayName("게임 보드 생성 테스트")
     public void create() throws Exception {
@@ -38,6 +48,8 @@ public class BoardTest {
         board.initialize();
         assertThat("pppppppp").isEqualTo(board.getPawnsResult(Color.WHITE));
         assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Color.BLACK));
+        assertThat(initBoard).isEqualTo(board.print());
+        System.out.println(board.print());
     }
 
 }

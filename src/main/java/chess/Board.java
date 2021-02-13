@@ -45,4 +45,7 @@ public class Board {
         return stringBuilder.toString();
     }
 
+    public String print() {
+        return null;
+    }
 }

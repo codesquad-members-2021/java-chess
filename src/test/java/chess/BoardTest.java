@@ -16,15 +16,19 @@ public class BoardTest {
         Pawn white = new Pawn(Color.WHITE);
         Pawn black = new Pawn(Color.BLACK);
 
-        addPawnToBoard(board, white, 1);
-        addPawnToBoard(board, black, 2);
+        addPawnToBoard(board, white, 0, 1);
+        addPawnToBoard(board, white, 1, 2);
+        addPawnToBoard(board, white, 2, 3);
+        addPawnToBoard(board, black, 0, 4);
+        addPawnToBoard(board, black, 1, 5);
+        addPawnToBoard(board, black, 2, 6);
 
     }
 
-    public void addPawnToBoard(Board board, Pawn pawn, int size) {
+    public void addPawnToBoard(Board board, Pawn pawn, int index, int size) {
         board.add(pawn);
         assertThat(board.size()).isEqualTo(size);
-        assertThat(board.findPawn(size - 1)).isEqualTo(pawn);
+        assertThat(board.findPawn(pawn.getColor(), index)).isEqualTo(pawn);
     }
 
     @Test

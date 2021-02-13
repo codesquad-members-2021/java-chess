@@ -25,7 +25,7 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("보드에 없는 폰을 찾으려고 할 때, 에러가 발생해야 한다.")
+    @DisplayName("보드에 폰이 존재하지 않을 때, 폰을 찾으려고 시도하면 에러가 발생해야 한다.")
     void findPawnNotOnTheBoard() {
         assertThatThrownBy(() -> board.findPawn(0))
                 .isInstanceOf(IndexOutOfBoundsException.class)
@@ -40,18 +40,10 @@ class BoardTest {
                 .hasMessageContaining("Negative numeric value");
     }
 
-    private void addPawn(Pawn newPawn) {
+    private void addThePawnProperly(Pawn newPawn, int newPawnIdx) {
         int sizeBeforeAddThePawn = board.size();
         board.add(newPawn);
         assertThat(sizeBeforeAddThePawn + 1).isEqualTo(board.size());
-    }
-
-    private void checkTheBoard(Pawn newPawn, int newPawnIdx) {
         assertThat(newPawn).isEqualTo(board.findPawn(newPawnIdx));
-    }
-
-    private void addThePawnProperly(Pawn newPawn, int newPawnIdx) {
-        addPawn(newPawn);
-        checkTheBoard(newPawn, newPawnIdx);
     }
 }

@@ -2,8 +2,8 @@ package net.honux.pieces;
 
 import org.junit.jupiter.api.*;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PawnTest {
@@ -26,9 +26,8 @@ class PawnTest {
     @Test
     @DisplayName("다른 색 폰이 생성되면 안된다")
     void createRedPawn() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            Pawn redPawn = new Pawn("red");
-        });
+        assertThatThrownBy(() -> new Pawn("red"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     private void verifyPawn(String color) {

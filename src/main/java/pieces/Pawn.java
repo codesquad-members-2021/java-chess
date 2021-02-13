@@ -3,13 +3,24 @@ package pieces;
 public class Pawn {
 
     private final Color color;
+    private final char representation;
 
     public Pawn() {
-        this.color = Color.WHITE;
+        this(Color.WHITE);
     }
 
     public Pawn(Color color) {
         this.color = color;
+        switch (color) {
+            case BLACK:
+                this.representation = 'P';
+                break;
+            case WHITE:
+                this.representation = 'p';
+                break;
+            default:
+                this.representation = ' ';
+        }
     }
 
     public Color getColor() {
@@ -17,7 +28,7 @@ public class Pawn {
     }
 
     public char getRepresentation() {
-        return ' ';
+        return representation;
     }
 
 }

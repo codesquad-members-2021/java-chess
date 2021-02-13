@@ -1,7 +1,5 @@
-package pieces;
+package net.nas.pieces;
 
-import net.nas.pieces.ColorOfChessPiece;
-import net.nas.pieces.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

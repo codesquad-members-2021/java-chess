@@ -40,18 +40,18 @@ public class BoardTest {
     @Test
     @DisplayName("폰을 찾을때 넣는 인덱스가 배열의 범위를 벗어나면 예외가 발생해야 합니다")
     void testErrorFind() {
-        testFindThrowInvalidParameterException(-1);
-        testFindThrowInvalidParameterException(0);
+        testFindThrowException(-1, InvalidParameterException.class);
+        testFindThrowException(0, InvalidParameterException.class);
         for (int i = 0; i < 2; i++) {
             board.add(new Pawn());
-            testFindThrowInvalidParameterException(i + 1);
+            testFindThrowException(i + 1, InvalidParameterException.class);
         }
     }
 
-    void testFindThrowInvalidParameterException(int idx) {
+    void testFindThrowException(int idx, Class<?> exceptionClass) {
         assertThatThrownBy(() -> {
             board.findPawn(idx);
-        }).isInstanceOf(InvalidParameterException.class);
+        }).isInstanceOf(exceptionClass);
     }
 
     void verifyAddition(Pawn pawn, int idx) {

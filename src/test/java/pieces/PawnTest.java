@@ -9,8 +9,8 @@ public class PawnTest {
     @Test
     @DisplayName("흰색과 검은색 폰이 생성되어야 한다")
     public void create() {
-        verifyPawn(Color.WHITE);
-        verifyPawn(Color.BLACK);
+        verifyPawn(Color.WHITE, 'p');
+        verifyPawn(Color.BLACK, 'P');
     }
 
     @Test
@@ -18,11 +18,13 @@ public class PawnTest {
     public void create_기본생성자() throws Exception {
         Pawn pawn = new Pawn();
         assertThat(pawn.getColor()).isEqualTo(Color.WHITE);
+        assertThat(pawn.getRepresentation()).isEqualTo('p');
     }
 
-    public void verifyPawn(Color color) {
+    public void verifyPawn(Color color, char representation) {
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
+        assertThat(pawn.getRepresentation()).isEqualTo(representation);
     }
 
 }

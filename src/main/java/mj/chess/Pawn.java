@@ -3,11 +3,11 @@ package mj.chess;
 public class Pawn {
     private Color color;
 
-    public Pawn(Color color) {
-        this.color = color;
+    public Pawn(String color) {
+        this.color = Color.valueOf(color.toUpperCase());
     }
 
-    public Color getColor() {
-        return color;
+    public String getColor() {
+        return color.name();
     }
 }

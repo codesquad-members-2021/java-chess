@@ -14,4 +14,8 @@ public class Pawn {
     public String getColor() {
         return color.name();
     }
+
+    public enum Color {
+        BLACK, WHITE
+    }
 }

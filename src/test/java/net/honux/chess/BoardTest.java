@@ -3,7 +3,7 @@ package net.honux.chess;
 import net.honux.pieces.Pawn;
 import org.junit.jupiter.api.*;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class BoardTest {
 
@@ -43,11 +43,11 @@ class BoardTest {
     private void addPawn(Pawn newPawn) {
         int sizeBeforeAddThePawn = board.size();
         board.add(newPawn);
-        Assertions.assertEquals(sizeBeforeAddThePawn + 1, board.size());
+        assertThat(sizeBeforeAddThePawn + 1).isEqualTo(board.size());
     }
 
     private void checkTheBoard(Pawn newPawn, int newPawnIdx) {
-        Assertions.assertEquals(newPawn, board.findPawn(newPawnIdx));
+        assertThat(newPawn).isEqualTo(board.findPawn(newPawnIdx));
     }
 
     private void addThePawnProperly(Pawn newPawn, int newPawnIdx) {

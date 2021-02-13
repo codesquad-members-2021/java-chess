@@ -1,7 +1,7 @@
 package mj.chess;
 
 public class Pawn {
-    private Color color;
+    private final Color color;
 
     public Pawn(String color) {
         this.color = Color.valueOf(color.toUpperCase());

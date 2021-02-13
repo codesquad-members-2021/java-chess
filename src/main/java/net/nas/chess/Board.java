@@ -13,7 +13,7 @@ public class Board {
     }
 
     public Pawn findPawn(int idx) {
-        if(pieceList.size() <= idx)
+        if (idx < 0 || pieceList.size() <= idx)
             throw new InvalidParameterException("index exceeded the bounds of the pieceList");
         return pieceList.get(idx);
     }

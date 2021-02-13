@@ -1,6 +1,5 @@
 package chess;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,6 +7,8 @@ import pieces.Color;
 import pieces.Pawn;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 
 public class BoardTest {
     private Board board;
@@ -19,8 +20,10 @@ public class BoardTest {
 
     void addPawnOnTheBoardAndVerify(Pawn pawn, int i) {
         board.add(pawn);
-        assertThat(board.size()).isEqualTo(i);
-        assertThat(board.findPawn(i - 1)).isEqualTo(pawn);
+        assertAll(
+                () -> assertThat(board.size()).isEqualTo(i),
+                () -> assertThat(board.findPawn(i - 1)).isEqualTo(pawn)
+        );
     }
 
     @Test

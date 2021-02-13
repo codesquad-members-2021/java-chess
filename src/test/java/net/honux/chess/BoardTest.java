@@ -27,7 +27,17 @@ class BoardTest {
     @Test
     @DisplayName("보드에 없는 폰을 찾으려고 할 때, 에러가 발생해야 한다.")
     void findPawnNotOnTheBoard() {
-        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> board.findPawn(0));
+        assertThatThrownBy(() -> board.findPawn(0))
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("Index number 0 is out of range!");
+    }
+
+    @Test
+    @DisplayName("음수 인덱스로 폰을 찾으려고 할 때, 에러가 발생해야 한다.")
+    void findPawnWithNegativeIndex() {
+        assertThatThrownBy(() -> board.findPawn(-1))
+                .isInstanceOf(NegativeArraySizeException.class)
+                .hasMessageContaining("Negative numeric value");
     }
 
     private void addPawn(Pawn newPawn) {

@@ -18,8 +18,11 @@ public class Board {
     }
 
     public Pawn findPawn(int idx) {
-        if (idx < 0 || size() < idx) {
-            throw new IndexOutOfBoundsException("Index number " + idx + " is out of range! There is/are " + size() + " pieces on the board.");
+        if (idx < 0) {
+            throw new NegativeArraySizeException("Negative numeric value " + idx + " cannot be a idx!");
+        }
+        if (size() <= idx) {
+            throw new IndexOutOfBoundsException("Index number " + idx + " is out of range!");
         }
         return pawns.get(idx);
     }

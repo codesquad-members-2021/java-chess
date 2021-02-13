@@ -28,7 +28,7 @@ class BoardTest {
     @DisplayName("보드에 폰이 존재하지 않을 때, 폰을 찾으려고 시도하면 에러가 발생해야 한다.")
     void findPawnNotOnTheBoard() {
         assertThatThrownBy(() -> board.findPawn(0))
-                .isInstanceOf(IndexOutOfBoundsException.class)
+                .isInstanceOf(ArrayIndexOutOfBoundsException.class)
                 .hasMessageContaining("Index number 0 is out of range!");
     }
 
@@ -36,8 +36,8 @@ class BoardTest {
     @DisplayName("음수 인덱스로 폰을 찾으려고 할 때, 에러가 발생해야 한다.")
     void findPawnWithNegativeIndex() {
         assertThatThrownBy(() -> board.findPawn(-1))
-                .isInstanceOf(NegativeArraySizeException.class)
-                .hasMessageContaining("Negative numeric value");
+                .isInstanceOf(ArrayIndexOutOfBoundsException.class)
+                .hasMessageContaining("Index number -1 is out of range!");
     }
 
     private void addThePawnProperly(Pawn newPawn, int newPawnIdx) {

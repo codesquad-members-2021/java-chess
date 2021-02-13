@@ -13,10 +13,9 @@ public class Board {
     }
 
     public Pawn findPawn(int idx) {
-        return pieceList.stream()
-                .skip(idx)
-                .findFirst()
-                .orElse(null);
+        if(pieceList.size() <= idx)
+            throw new InvalidParameterException("index exceeded the bounds of the pieceList");
+        return pieceList.get(idx);
     }
 
     public void add(Pawn piece) {

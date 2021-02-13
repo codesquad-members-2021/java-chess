@@ -1,9 +1,9 @@
 package Chess;
 
 public class Pawn {
-    Color color;
+    private Color color;
 
-    Pawn(Color color) {
+    public Pawn(Color color) {
         this.color = color;
     }
 

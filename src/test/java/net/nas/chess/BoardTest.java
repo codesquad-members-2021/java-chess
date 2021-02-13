@@ -72,20 +72,14 @@ public class BoardTest {
                 "Error"
         };
         for (Object tc : testcases)
-            testAdditionThrowCastException(tc);
-        testAdditionThrowInvalidParameterException();
+            testAdditionThrowException(tc, ClassCastException.class);
+        testAdditionThrowException(null, InvalidParameterException.class);
         assertThat(board.size()).isEqualTo(0);
     }
 
-    void testAdditionThrowCastException(Object tc) {
+    void testAdditionThrowException(Object tc, Class<?> exceptionClass) {
         assertThatThrownBy(() -> {
             board.add((Pawn) tc);
-        }).isInstanceOf(ClassCastException.class);
-    }
-
-    void testAdditionThrowInvalidParameterException() {
-        assertThatThrownBy(() -> {
-            board.add(null);
-        }).isInstanceOf(InvalidParameterException.class);
+        }).isInstanceOf(exceptionClass);
     }
 }

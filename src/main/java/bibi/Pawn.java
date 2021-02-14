@@ -1,7 +1,7 @@
 package bibi;
 
-public class Pawn {
-    private final String color;
+public final class Pawn {
+    private String color;
 
     Pawn(String color) {
         this.color = color;

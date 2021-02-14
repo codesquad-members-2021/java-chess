@@ -1,4 +1,4 @@
-package mj.chess;
+package mj.chess.pieces;
 
 public class Pawn {
     private final Color color;

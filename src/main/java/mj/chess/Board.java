@@ -1,7 +1,8 @@
 package mj.chess;
 
+import mj.chess.pieces.Pawn;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class Board {
     private ArrayList<Pawn> pawns = new ArrayList<>();

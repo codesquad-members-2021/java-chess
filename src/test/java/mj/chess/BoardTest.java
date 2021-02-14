@@ -1,8 +1,9 @@
 package mj.chess;
 
+import mj.chess.pieces.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static mj.chess.Pawn.Color.*;
+import static mj.chess.pieces.Pawn.Color.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BoardTest {

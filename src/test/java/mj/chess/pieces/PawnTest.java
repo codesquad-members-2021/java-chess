@@ -1,8 +1,9 @@
-package mj.chess;
+package mj.chess.pieces;
 
+import mj.chess.pieces.Pawn;
 import org.junit.jupiter.api.*;
 
-import static mj.chess.Pawn.Color.*;
+import static mj.chess.pieces.Pawn.Color.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class PawnTest {

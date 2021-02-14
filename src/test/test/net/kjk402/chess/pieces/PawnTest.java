@@ -10,23 +10,19 @@ import org.junit.jupiter.api.Test;
 
 class PawnTest {
     @Test
-    public void create_기본생성자() throws Exception {
+    void create_기본생성자() throws Exception {
         Pawn pawn = new Pawn();
         assertEquals(Pawn.WHITE, pawn.getColor());
     }
 
     @Test
-    @DisplayName("흰색 폰이 생성되어야 한다")
-    public void create(){
+    void createPawn() {
         verifyPawn(Pawn.WHITE);
         verifyPawn(Pawn.BLACK);
-
     }
 
-    void verifyPawn(final String color){
+    void verifyPawn(final String color) {
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
     }
-
-
 }

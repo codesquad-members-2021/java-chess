@@ -5,6 +5,10 @@ import java.util.Objects;
 public class Pawn {
     private Color color;
 
+    public Pawn() {
+        this(Color.WHITE);
+    }
+
     public Pawn(Color color) {
         this.color = color;
     }

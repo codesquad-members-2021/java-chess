@@ -4,7 +4,7 @@ public class Pawn {
     public static final String WHITE = "white";
     public static final String BLACK = "black";
 
-    private String color;
+    private final String color;
 
     Pawn() {
         this.color = WHITE;

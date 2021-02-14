@@ -1,7 +1,9 @@
-package chess;
+package pieces;
 
+import chess.Color;
 import org.junit.jupiter.api.*;
-import static org.assertj.core.api.Assertions.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 

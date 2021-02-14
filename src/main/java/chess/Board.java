@@ -1,5 +1,7 @@
 package chess;
 
+import pieces.Pawn;
+
 import java.util.*;
 
 public class Board {
@@ -15,5 +17,5 @@ public class Board {
 
     public Pawn findPawn(int index){
         return pawnList.get(index);
-    } 
+    }
 }

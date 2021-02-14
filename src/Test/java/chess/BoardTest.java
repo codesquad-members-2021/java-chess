@@ -1,6 +1,8 @@
 package chess;
 
 import org.junit.jupiter.api.*;
+import pieces.Pawn;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {

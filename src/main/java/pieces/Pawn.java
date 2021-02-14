@@ -1,4 +1,6 @@
-package chess;
+package pieces;
+
+import chess.Color;
 
 public class Pawn {
     private Color color;

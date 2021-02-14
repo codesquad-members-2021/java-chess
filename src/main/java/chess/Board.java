@@ -8,4 +8,8 @@ public class Board {
     public void add(Pawn pawn) {
         pawnList.add(pawn);
     }
+
+    public int size(){
+        return pawnList.size();
+    }
 }

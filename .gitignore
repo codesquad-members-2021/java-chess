@@ -178,5 +178,11 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,intellij,gradle
 
 ## added by bibi
-.idea
+.idea/
 *.iml
+.gradle
+*.xml
+*.html
+*.css
+*.js
+build/

@@ -1,8 +1,11 @@
 public class Pawn {
-    public Pawn(String white) {
+    String color;
+
+    public Pawn(String color) {
+        this.color = color;
     }
 
     public String getColor() {
-        return null;
+        return color;
     }
 }

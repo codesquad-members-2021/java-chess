@@ -31,4 +31,14 @@ public class PawnTest {
         Pawn pawn = new Pawn();
         assertEquals(Color.WHITE, pawn.getColor());
     }
+
+    @Test
+    @DisplayName("흰색폰은 'p' 검은색 폰은 'P'의 representation을 가진다.")
+    void verifyRepresentation(){
+        Pawn whitePawn = new Pawn(Color.WHITE);
+        assertThat(whitePawn.getRepresentation()).isEqualTo('p');
+
+        Pawn blackPawn = new Pawn(Color.BLACK);
+        assertThat(blackPawn.getRepresentation()).isEqualTo('P');
+    }
 }

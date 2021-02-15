@@ -15,13 +15,13 @@ public class BoardTest {
     private Board board;
 
     @BeforeEach
-    public void makeBoard() {
+    void makeBoard() {
         board = new Board();
     }
 
     @Test
     @DisplayName("판에 폰이 잘 들어가는지 체크")
-    public void BoardAddPawnCheck() {
+    void BoardAddPawnCheck() {
 
         Assertions.assertAll(
                 () -> verifyPawnToPawns(PawnEnum.WHITE_COLOR, 0),

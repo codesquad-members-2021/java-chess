@@ -2,7 +2,8 @@ package chess;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import pieces.Pawn;
 import pieces.Piece;
@@ -33,21 +34,22 @@ public class BoardTest {
     public void initialize() throws Exception {
         Board board = new Board();
         board.initialize();
-        assertEquals("pppppppp", board.getWhitePawnsResult());
-        assertEquals("PPPPPPPP", board.getBlackPawnsResult());
+        assertAll(
+                ()->assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult()),
+                ()->assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult())
+        );
     }
 
     void verifySize(int expectedSize) {
-        assertEquals(expectedSize, board.size());
+        assertThat(expectedSize).isEqualTo(board.size());
     }
 
     void verifyFindPawn(Piece piece, int index) {
         if (piece.getColor().equals(Piece.WHITE_COLOR)) {
-            assertEquals(piece, board.findWhite(index));
+            assertThat(piece).isEqualTo(board.findWhite(index));
         } else {
-            assertEquals(piece, board.findBlack(index));
+            assertThat(piece).isEqualTo(board.findBlack(index));
         }
-
     }
 
     Piece add(String color) {

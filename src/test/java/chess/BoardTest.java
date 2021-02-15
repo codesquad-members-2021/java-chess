@@ -23,7 +23,6 @@ class BoardTest {
                 () -> assertThat(board.getBlackPawnsToPrint()).isEqualTo("PPPPPPPP"));
     }
 
-
     @Test
     @DisplayName("폰이 제대로 추가되었는지 검증한다")
     void verifyAdd() {
@@ -42,6 +41,12 @@ class BoardTest {
         board.addBlackPawn(pawn);
         assertAll(() -> assertThat(board.size()).isEqualTo(size),
                 () -> assertThat(board.findBlackPawn(size - 1 - board.whitePawnsSize())).isEqualTo(pawn));
+    }
+
+    @Test
+    void print() {
+        board.initialize();
+        board.print();
     }
 
 }

@@ -7,11 +7,11 @@ public class Pawn {
         color = Color.WHITE;
     }
 
-    public Pawn(String color) {
-        this.color = Color.valueOf(color.toUpperCase());
+    public Pawn(Color color) {
+        this.color = color;
     }
 
-    public String getColor() {
-        return color.name().toLowerCase();
+    public Color getColor() {
+        return color;
     }
 }

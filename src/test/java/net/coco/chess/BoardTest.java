@@ -33,6 +33,15 @@ public class BoardTest {
 
     }
 
+    @Test
+    void initialize() {
+        board.initialize();
+        Assertions.assertAll(
+                () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(PawnEnum.WHITE_COLOR)),
+                () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(PawnEnum.BLACK_COLOR))
+        );
+    }
+
     private void verifyPawnToPawns(PawnEnum pawnEnum, int findPawnIndex) {
         Pawn pawn = new Pawn(pawnEnum);
 

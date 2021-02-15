@@ -47,7 +47,7 @@ public class Board {
 
     public void print() {
         StringBuilder result = new StringBuilder();
-        StringBuilder empty = new StringBuilder(".");
+        String empty = getEmptyResult();
         for (int i = 0; i < COLUMN; i++) {
             if (i == 1) {
                 result.append(getBlackPawnResult());
@@ -59,6 +59,14 @@ public class Board {
             result.append("\n");
         }
         System.out.println(result);
+    }
+
+    public String getEmptyResult() {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < PAWNSNUM; i++) {
+            result.append(".");
+        }
+        return result.toString();
     }
 
     public String getWhitePawnResult() {

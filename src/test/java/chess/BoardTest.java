@@ -5,6 +5,7 @@ import pieces.Pawn;
 import pieces.Pawn.Color;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BoardTest {
     private Board board;
@@ -16,23 +17,22 @@ class BoardTest {
 
     @Test
     @DisplayName("폰이 제대로 추가되었는지 검증한다.")
-    public void create() {
-        verifyAdd(new Pawn(Color.WHITE), 1);
-        verifyAdd(new Pawn(Color.BLACK), 2);
+    void verifyAdd() {
+        assertAll(() -> verifyAddWhitePawn(new Pawn(Color.WHITE), 1),
+                () -> verifyAddBlackPawn(new Pawn(Color.BLACK), 2),
+                () -> verifyAddBlackPawn(new Pawn(Color.BLACK), 3));
     }
 
-    public void verifyAdd(Pawn pawn, int size) {
-        board.add(pawn);
-        verifySize(size);
-        verifyFindPawn(pawn, size - 1);
+    void verifyAddWhitePawn(Pawn pawn, int size) {
+        board.addWhitePawn(pawn);
+        assertAll(() -> assertThat(board.size()).isEqualTo(size),
+                () -> assertThat(board.findWhitePawn(size - 1 - board.blackPawnsSize())).isEqualTo(pawn));
     }
 
-    public void verifySize(int size) {
-        assertThat(board.size()).isEqualTo(size);
-    }
-
-    public void verifyFindPawn(Pawn pawn, int index) {
-        assertThat(board.findPawn(index)).isEqualTo(pawn);
+    void verifyAddBlackPawn(Pawn pawn, int size) {
+        board.addBlackPawn(pawn);
+        assertAll(() -> assertThat(board.size()).isEqualTo(size),
+                () -> assertThat(board.findBlackPawn(size - 1 - board.whitePawnsSize())).isEqualTo(pawn));
     }
 
 }

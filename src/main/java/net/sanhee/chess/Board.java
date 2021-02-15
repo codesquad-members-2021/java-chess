@@ -49,15 +49,8 @@ public class Board {
 
     public void initialize() {
 
-        for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
-            whitePawn[i] = new Pawn(UnitColor.WHITE);
-            pawns.add(whitePawn[i]);
-        }
-
-        for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
-            blackPawn[i] = new Pawn(UnitColor.BLACK);
-            pawns.add(blackPawn[i]);
-        }
+        arrayPawnInit(whitePawn, UnitColor.WHITE);
+        arrayPawnInit(blackPawn, UnitColor.BLACK);
 
         boardList.add(defaultUnitRep.split(""));
         boardList.add(getBlackPawnsResult().split(""));
@@ -67,5 +60,12 @@ public class Board {
         boardList.add(defaultUnitRep.split(""));
         boardList.add(getWhitePawnsResult().split(""));
         boardList.add(defaultUnitRep.split(""));
+    }
+
+    public void arrayPawnInit(Pawn[] arrayPawns, UnitColor color) {
+        for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
+            arrayPawns[i] = new Pawn(color);
+            pawns.add(arrayPawns[i]);
+        }
     }
 }

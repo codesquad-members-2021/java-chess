@@ -6,18 +6,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private final List<Pawn> pawnList = new ArrayList<>();
+    private final List<Pawn> whitePawnList = new ArrayList<>();
+    private final List<Pawn> blackPawnList = new ArrayList<>();
 
-    public void add(Pawn pawn) {
-        pawnList.add(pawn);
+    public void addWhitePawn(Pawn pawn) {
+        whitePawnList.add(pawn);
     }
 
-    public int size() {
-        return pawnList.size();
+    public void addBlackPawn(Pawn pawn) {
+        blackPawnList.add(pawn);
     }
 
-    public Pawn findPwan(int idx) {
-        return pawnList.get(idx);
+    public int whiteSize() {
+        return whitePawnList.size();
     }
 
+    public int blackSize() {
+        return blackPawnList.size();
+    }
+
+    public Pawn findWhitePawn(int idx) {
+        return whitePawnList.get(idx);
+    }
+
+    public Pawn findBlackPawn(int idx) {
+        return blackPawnList.get(idx);
+    }
+
+    public void initialize() {
+        for (int i = 0; i < 8; i++ ) {
+            addWhitePawn(new Pawn(Pawn.WHITE, Pawn.WHITE_REPRESENTATION));
+            addBlackPawn(new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION));
+        }
+    }
 }

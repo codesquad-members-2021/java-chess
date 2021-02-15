@@ -70,4 +70,8 @@ public class Board {
         return boardPrint.toString();
     }
 
+    private String blank() {
+        return "********\n";
+    }
+
 }

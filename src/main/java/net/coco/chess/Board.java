@@ -12,7 +12,6 @@ public class Board {
     private List<Pawn> blackPawns = new ArrayList<>();
 
 
-
     public void addWhitePawn(Pawn pawn) {
         whitePawns.add(pawn);
     }
@@ -43,4 +42,12 @@ public class Board {
             blackPawns.add(new Pawn(PawnEnum.BLACK_COLOR));
         }
     }
+
+    public String getPawnsResult(PawnEnum pawnEnum) {
+        if (pawnEnum == PawnEnum.WHITE_COLOR)
+            return getPawnsToString(whitePawns);
+        else
+            return getPawnsToString(blackPawns);
+    }
+
 }

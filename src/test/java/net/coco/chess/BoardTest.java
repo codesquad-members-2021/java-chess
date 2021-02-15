@@ -2,6 +2,7 @@ package net.coco.chess;
 
 
 import net.coco.pieces.Pawn;
+import net.coco.pieces.PawnEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -19,15 +20,15 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("Board size check")
-    public void create() {
+    @DisplayName("판에 폰이 잘 들어가는지 체크")
+    public void BoardAddPawnCheck() {
 
         Assertions.assertAll(
-                () -> verifyPawnToPawns(Pawn.WHITE_COLOR, 0),
-                () -> verifyPaswsSize(1),
+                () -> verifyPawnToPawns(PawnEnum.WHITE_COLOR, 0),
+                () -> verifyPaswsSize(PawnEnum.WHITE_COLOR, 1),
 
-                () -> verifyPawnToPawns(Pawn.BLACK_COLOR, 1),
-                () -> verifyPaswsSize(2)
+                () -> verifyPawnToPawns(PawnEnum.BLACK_COLOR, 0),
+                () -> verifyPaswsSize(PawnEnum.BLACK_COLOR, 1)
         );
 
     }

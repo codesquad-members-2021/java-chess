@@ -11,6 +11,7 @@ public class Board {
     private final String defaultUnitRep = "........";
     private final Pawn[] whitePawn = new Pawn[Pawn.MAX_SPAWN_NUMBER];
     private final Pawn[] blackPawn = new Pawn[Pawn.MAX_SPAWN_NUMBER];
+    private final List<String[]> boardList = new ArrayList<>();
 
     public void add(Pawn pawn) {
         pawns.add(pawn);

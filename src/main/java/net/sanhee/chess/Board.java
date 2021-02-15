@@ -27,24 +27,30 @@ public class Board {
     }
 
     public String getWhitePawnsResult() {
-        StringBuilder whitePawnLine = new StringBuilder();
-
-        for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
-            whitePawnLine.append(pawns.get(i).getRepresentation());
-        }
-
-        return whitePawnLine.toString();
+        return appendPawnRep(UnitColor.WHITE);
     }
 
     public String getBlackPawnsResult() {
-        StringBuilder blackPawnLine = new StringBuilder();
+        return appendPawnRep(UnitColor.BLACK);
+    }
 
+    public String appendPawnRep(UnitColor color) {
+        StringBuilder PawnLine = new StringBuilder();
 
-        for (int i = 8; i < pawns.size(); i++) {
-            blackPawnLine.append(pawns.get(i).getRepresentation());
+        switch (color) {
+            case WHITE:
+                for (int i = 0; i < 8; i++) {
+                    PawnLine.append(pawns.get(i).getRepresentation());
+                }
+                break;
+            case BLACK:
+                for (int i = 8; i < 16; i++) {
+                    PawnLine.append(pawns.get(i).getRepresentation());
+                }
+                break;
         }
 
-        return blackPawnLine.toString();
+        return PawnLine.toString();
     }
 
     public void initialize() {

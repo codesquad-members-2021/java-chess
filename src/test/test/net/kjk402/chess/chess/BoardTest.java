@@ -22,7 +22,7 @@ class BoardTest {
         verifyBoard(Pawn.BLACK, 2, 1);
     }
 
-    void verifyBoard(String color, int expectedSize, int idx) {
+    private void verifyBoard(String color, int expectedSize, int idx) {
         Pawn pawn = new Pawn(color);
         board.add(pawn);
         assertAll(

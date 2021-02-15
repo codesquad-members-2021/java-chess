@@ -5,11 +5,11 @@ public class Pawn {
     public static final String WHITE = "white";
     public static final String BLACK = "black";
 
-    Pawn() {
+    public Pawn() {
         this.color = WHITE;
     }
 
-    public Pawn(String color){
+    public Pawn(String color) {
         this.color = color;
     }
 

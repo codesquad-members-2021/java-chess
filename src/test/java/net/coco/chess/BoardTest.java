@@ -33,10 +33,14 @@ public class BoardTest {
 
     }
 
-    private void verifyPawnToPawns(final String color, int findPawnIndex) {
-        Pawn pawn = new Pawn(color);
-        board.addPawn(pawn);
-        assertThat(pawn).isEqualTo(board.findPawn(findPawnIndex));
+    private void verifyPawnToPawns(PawnEnum pawnEnum, int findPawnIndex) {
+        Pawn pawn = new Pawn(pawnEnum);
+
+        if (pawnEnum == PawnEnum.WHITE_COLOR)
+            verifyWhitePawnsIndex(findPawnIndex, pawn);
+        else
+            verifyBlackPawnsIndex(findPawnIndex, pawn);
+
     }
 
     private void verifyPaswsSize(int actualSize) {

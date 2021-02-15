@@ -2,6 +2,7 @@ package bibi;
 
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PawnTest {
     @Test
@@ -11,6 +12,13 @@ public class PawnTest {
         String black = "black";
         verifyPawn(white);
         verifyPawn(black);
+    }
+
+    @Test
+    @DisplayName("색이 없는 폰 생성")
+    public void createDefaultConstructor() {
+        Pawn pawn = new Pawn();
+        assertEquals("white", pawn.getColor());
     }
 
     private void verifyPawn(final String color){

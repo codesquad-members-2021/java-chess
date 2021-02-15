@@ -11,8 +11,8 @@ class BoardTest {
     @Test
     public void create() throws Exception {
 
-        verifyBoard(Pawn.WHITE_COLOR, 1);
-        verifyBoard(Pawn.BLACK_COLOR, 2);
+        verifyBoard(Pawn.WHITE_COLOR, 0);
+        verifyBoard(Pawn.BLACK_COLOR, 1);
     }
 
     private void verifyBoard(String color, int index) {

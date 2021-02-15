@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<Pawn> board = new ArrayList<>();
+    private List<Pawn> pawns = new ArrayList<>();
 
     void add(Pawn pawn) {
-        board.add(pawn);
+        pawns.add(pawn);
     }
 
     int size() {
-        return board.size();
+        return pawns.size();
     }
 
     Pawn findPawn(int index) {
-        return board.get(index);
+        return pawns.get(index);
     }
 }

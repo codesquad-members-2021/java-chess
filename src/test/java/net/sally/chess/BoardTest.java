@@ -28,4 +28,13 @@ public class BoardTest {
         assertThat(board.getPawnSize()).isEqualTo(index + 1);
         assertThat(board.findPawn(index)).isEqualTo(pawn);
     }
+
+    @Test
+    @DisplayName("Board initializes properly")
+    void initialize() throws Exception {
+        Board board = new Board();
+        board.initialize();
+        assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult());
+        assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult());
+    }
 }

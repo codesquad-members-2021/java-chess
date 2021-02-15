@@ -1,16 +1,16 @@
 package net.coco.chess;
 
 import net.coco.pieces.Pawn;
+import net.coco.pieces.PawnEnum;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Board {
-    private List<Pawn> pawns;
+    private List<Pawn> whitePawns = new ArrayList<>();
+    private List<Pawn> blackPawns = new ArrayList<>();
 
-    public Board() {
-        this.pawns = new ArrayList<>();
-    }
 
     public void addPawn(Pawn pawn){
         pawns.add(pawn);

@@ -8,13 +8,16 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOf
 
 public class PawnTest {
 
+    private void verifyPawn(String color) {
+        Pawn pawn = new Pawn(color);
+        assertThat(pawn.getColor())
+                .isEqualTo(color);
+    }
+
     @Test
     @DisplayName("흰색 폰이 생성되어야 한다")
     public void create_white() {
         verifyPawn("white");
-        verifyPawn("black");
-        assertThatExceptionOfType(IllegalArgumentException.class)
-                .isThrownBy(() -> verifyPawn("This is not a color."));
     }
 
     @Test
@@ -30,8 +33,10 @@ public class PawnTest {
                 .isThrownBy(() -> verifyPawn("This is not a color."));
     }
 
-    private void verifyPawn(String color) {
-        Pawn pawn = new Pawn(color);
-        assertThat(pawn.getColor()).isEqualTo(color);
+    @Test
+    @DisplayName("디폴트로 흰색 폰이 생성되어야 한다.")
+    public void create_default() {
+        assertThat(new Pawn().getColor())
+                .isEqualTo("white");
     }
 } 

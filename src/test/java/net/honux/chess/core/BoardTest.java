@@ -54,4 +54,22 @@ class BoardTest {
                 () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
         );
     }
+
+    @Test
+    @DisplayName("보드에 올려진 출력 메세지가 정상적으로 리턴되는지 확인한다.")
+    void checkBoardPrintMessage() {
+        board.initialize();
+        String expectedMessage =
+                "********\n" +
+                "PPPPPPPP\n" +
+                "********\n" +
+                "********\n" +
+                "********\n" +
+                "********\n" +
+                "pppppppp\n" +
+                "********";
+        assertThat(board.getBoardStatusToString()).isEqualTo(expectedMessage);
+        // TestCode 에서 출력 해달라는 요구사항 을 만족시키기 위해 작성
+        System.out.println(board.getBoardStatusToString());
+    }
 }

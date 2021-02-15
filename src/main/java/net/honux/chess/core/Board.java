@@ -9,6 +9,8 @@ import java.util.Optional;
 
 public class Board {
     private static final int BOARD_SIZE = 8;
+    private static final String BLANK = "********";
+    private static final int initialSpaceInterval = 4;
     private List<Pawn> whitePawnList;
     private List<Pawn> blackPawnList;
 
@@ -16,13 +18,6 @@ public class Board {
         whitePawnList = new ArrayList<>();
         blackPawnList = new ArrayList<>();
         addPawnToBoardSize();
-    }
-
-    private void addPawnToBoardSize() {
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            whitePawnList.add(new Pawn(Color.WHITE));
-            blackPawnList.add(new Pawn(Color.BLACK));
-        }
     }
 
     public void add(Pawn pawn) {
@@ -80,4 +75,26 @@ public class Board {
         return sb.toString();
     }
 
+    public String getBoardStatusToString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(BLANK).append("\n");
+        sb.append(getBlackPawnsResult()).append("\n");
+        for (int i = 0; i < initialSpaceInterval; i++) {
+            sb.append(BLANK).append("\n");
+        }
+        sb.append(getWhitePawnsResult()).append("\n");
+        sb.append(BLANK);
+        return sb.toString();
+    }
+
+    public void print() {
+        System.out.println(this.getBoardStatusToString());
+    }
+
+    private void addPawnToBoardSize() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            whitePawnList.add(new Pawn(Color.WHITE));
+            blackPawnList.add(new Pawn(Color.BLACK));
+        }
+    }
 }

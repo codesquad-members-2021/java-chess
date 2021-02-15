@@ -11,8 +11,8 @@ public class Board {
     private static final int COLUMN = 8;
     private List<Pawn> whitePawns = new ArrayList<>(8);
     private List<Pawn> blackPawns = new ArrayList<>(8);
-
-    private List<Pawn> distinguish(Pawn pawn) {
+    
+    public List<Pawn> distinguish(Pawn pawn) {
         if (pawn.getColor().equals(Pawn.WHITE_COLOR)) {
             return whitePawns;
         }

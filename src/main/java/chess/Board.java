@@ -72,4 +72,13 @@ public class Board {
     public int size() {
         return whitePawns.size() + blackPawns.size();
     }
+
+    public int whitePawnsSize() {
+        return whitePawns.size();
+    }
+
+    public int blackPawnsSize() {
+        return blackPawns.size();
+    }
+
 }

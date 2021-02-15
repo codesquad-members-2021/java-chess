@@ -1,4 +1,4 @@
-package net.honux.chess;
+package net.honux.chess.pieces;
 
 public class Pawn {
     public static final String WHITE_COLOR = "white";

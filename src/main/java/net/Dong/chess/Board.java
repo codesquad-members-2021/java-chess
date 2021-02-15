@@ -27,7 +27,6 @@ public class Board {
     }
 
     public int size() {
-        // return number of Mal
         return whitePawn.size()+blackPawn.size();
     }
 
@@ -39,22 +38,16 @@ public class Board {
         return blackPawn.size();
     }
 
-    public Pawn.Color findPawn(int index) {
-        // Receives an index and returns it as an object color
-        return whitePawn.get(index).getColor();
+    public Pawn findWhitePawn(int index) {
+        return whitePawn.get(index);
     }
 
-    public Pawn.Color findblackPawn(int index) {
-        // Receives an index and returns it as an object color
-        return whitePawn.get(index).getColor();
+    public Pawn findBlackPawn(int index) {
+        return whitePawn.get(index);
     }
 
     public void initialize() {
-
-
-
-
-        // white pawn 8, black pawn 8
+   // white pawn 8, black pawn 8
         addPawn(Color.BALCK , 8);
         addPawn(Color.WHITE , 8);
     }

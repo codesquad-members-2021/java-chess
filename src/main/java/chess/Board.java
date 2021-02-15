@@ -12,11 +12,6 @@ public class Board {
     private List<Pawn> whitePawns = new ArrayList<>(8);
     private List<Pawn> blackPawns = new ArrayList<>(8);
 
-    public void add(Pawn pawn) {
-        List list = distinguish(pawn);
-        list.add(pawn);
-    }
-
     public List distinguish(Pawn pawn) {
         if (pawn.getColor().equals(Pawn.WHITE_COLOR)) {
             return whitePawns;
@@ -26,7 +21,11 @@ public class Board {
         }
         return null;
     }
-
+    
+    public void add(Pawn pawn) {
+        List list = distinguish(pawn);
+        list.add(pawn);
+    }
 
     public int size(Pawn pawn) {
         return distinguish(pawn).size();

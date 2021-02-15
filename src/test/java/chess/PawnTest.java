@@ -16,7 +16,7 @@ class PawnTest {
 
     @Test
     @DisplayName("Pawn 클래스 인스턴스의 String color를 비교한다.")
-    public void compare() {
+    void compare() {
         String[] colors = {"white,black"};
         for (String color : colors) {
             verifyPawn(color);

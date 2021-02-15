@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BoardTest {
 
     private Board board;
+    private int index =0;
 
     @BeforeEach
     void createBoard(){
@@ -19,15 +20,15 @@ class BoardTest {
     @Test
     @DisplayName("Board에 Pawn이 제대로 추가되는지 확인")
     void create(){
-
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
-        board.add(white);
-        assertEquals(white, board.find(0));
-        assertEquals(1, board.size());
-
         Pawn black = new Pawn(Pawn.BLACK_COLOR);
-        board.add(black);
-        assertEquals(black, board.find(1));
-        assertEquals(2,board.size());
+        verifyAddPawn(white);
+        verifyAddPawn(black);
+    }
+
+    void verifyAddPawn(Pawn pawn){
+        board.add(pawn);
+        assertEquals(pawn, board.find(index++));
+        assertEquals(index, board.size());
     }
 }

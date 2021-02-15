@@ -21,7 +21,7 @@ public class Board {
         }
         return null;
     }
-    
+
     public void add(Pawn pawn) {
         List list = distinguish(pawn);
         list.add(pawn);

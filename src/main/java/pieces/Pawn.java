@@ -11,16 +11,15 @@ public class Pawn {
 
     public Pawn(Color color) {
         this.color = color;
-        switch (color) {
-            case BLACK:
-                this.representation = 'P';
-                break;
-            case WHITE:
-                this.representation = 'p';
-                break;
-            default:
-                this.representation = ' ';
+
+        char representation = '.';
+        if (color == Color.WHITE) {
+            representation = 'p';
         }
+        if (color == Color.BLACK) {
+            representation = 'P';
+        }
+        this.representation = representation;
     }
 
     public Color getColor() {

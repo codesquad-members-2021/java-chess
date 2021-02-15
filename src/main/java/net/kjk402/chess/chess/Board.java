@@ -8,15 +8,15 @@ import java.util.List;
 public class Board {
     private final List<Pawn> pawnList = new ArrayList<>();
 
-    public void add(Pawn pawn){
+    public void add(Pawn pawn) {
         pawnList.add(pawn);
     }
 
-    public int size(){
+    public int size() {
         return pawnList.size();
     }
 
-    public Pawn findPwan(int idx){
+    public Pawn findPwan(int idx) {
         return pawnList.get(idx);
     }
 

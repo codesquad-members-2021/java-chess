@@ -2,9 +2,12 @@ package utils;
 
 public class StringUtils {
 
-    public static final String NEWLINE = "";
+    public static final String NEWLINE = System.lineSeparator();
+
+    private StringUtils() {
+    }
 
     public static String appendNewLine(String string){
-        return null;
+        return string + NEWLINE;
     }
 }

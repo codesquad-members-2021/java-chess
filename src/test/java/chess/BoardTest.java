@@ -33,6 +33,12 @@ class BoardTest {
         assertEquals("PPPPPPPP", board.getBlackPawnResult());
     }
 
+    @Test
+    public void print() {
+        Board board = new Board();
+        assertEquals("........", board.getEmptyResult());
+    }
+
     void check(Pawn pawn, int size, int idx) {
         board.add(pawn);
         assertEquals(size, board.size(pawn));

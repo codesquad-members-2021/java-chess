@@ -19,4 +19,8 @@ public class Pawn extends Piece {
     public String getColor() {
         return super.getColor();
     }
+
+    public char getRepresentation() {
+        return super.getRepresentation();
+    }
 }

@@ -12,7 +12,10 @@ public class PawnTest {
     @DisplayName("Verify default constructor")
     void create_default() throws Exception {
         Pawn pawn = new Pawn();
-        assertEquals(Piece.WHITE_COLOR, pawn.getColor());
+        assertAll(
+                () -> assertThat(Piece.WHITE_COLOR).isEqualTo(pawn.getColor()),
+                () -> assertThat(Pawn.WHITE_REPRESENTATION).isEqualTo(pawn.getRepresentation())
+        );
     }
 
     @Test

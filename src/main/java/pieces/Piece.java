@@ -15,4 +15,8 @@ public abstract class Piece {
     public String getColor() {
         return color;
     }
+
+    public char getRepresentation() {
+        return representation;
+    }
 }

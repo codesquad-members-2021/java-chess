@@ -8,22 +8,8 @@ import java.util.List;
 
 public class Board {
     public static final int BOARD_SIZE = 8;
-    private final List<Piece> whitePieces;
-    private final List<Piece> blackPieces;
-
-    public Board() {
-        whitePieces = new ArrayList<>();
-        blackPieces = new ArrayList<>();
-        initialize();
-    }
-
-    public void add(Piece piece) {
-        if (piece.getColor().equals(Piece.WHITE_COLOR)) {
-            whitePieces.add(piece);
-        } else {
-            blackPieces.add(piece);
-        }
-    }
+    private final List<Piece> whitePieces = new ArrayList<>();
+    private final List<Piece> blackPieces = new ArrayList<>();
 
     public void addBlack(Piece piece) {
         blackPieces.add(piece);
@@ -47,16 +33,37 @@ public class Board {
 
     void initialize() {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            add(new Pawn(Piece.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            add(new Pawn(Piece.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            addWhite(new Pawn(Piece.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+            addBlack(new Pawn(Piece.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
         }
     }
 
     String getWhitePawnsResult() {
-        return "";
+        return getPiecesResult(whitePieces);
     }
 
     String getBlackPawnsResult() {
-        return "";
+        return getPiecesResult(blackPieces);
+    }
+
+    private String getPiecesResult(List<Piece> pieces) {
+        StringBuilder sb = new StringBuilder();
+        for (Piece piece : pieces) {
+            sb.append(piece.getRepresentation());
+        }
+        return sb.toString();
+    }
+
+    void print() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("........\n");
+        sb.append(getBlackPawnsResult()).append("\n");
+        for (int i = 0; i < BOARD_SIZE - 4; i++) {
+            sb.append("........\n");
+        }
+        sb.append(getWhitePawnsResult()).append("\n");
+        sb.append("........\n");
+
+        System.out.println(sb.toString());
     }
 }

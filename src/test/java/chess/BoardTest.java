@@ -10,9 +10,9 @@ import pieces.Piece;
 public class BoardTest {
     private static Board board;
 
-    @BeforeAll
+    @BeforeEach
     @DisplayName("Create board")
-    static void create_board() {
+    void create_board() {
         board = new Board();
     }
 
@@ -25,7 +25,7 @@ public class BoardTest {
 
         Piece black = add(Piece.BLACK_COLOR);
         verifySize(2);
-        verifyFindPawn(black, 1);
+        verifyFindPawn(black, 0);
     }
 
     @Test
@@ -42,12 +42,23 @@ public class BoardTest {
     }
 
     void verifyFindPawn(Piece piece, int index) {
-        assertEquals(piece, board.findWhite(index));
+        if (piece.getColor().equals(Piece.WHITE_COLOR)) {
+            assertEquals(piece, board.findWhite(index));
+        } else {
+            assertEquals(piece, board.findBlack(index));
+        }
+
     }
 
     Piece add(String color) {
         Pawn pawn = new Pawn(color);
-        board.add(pawn);
+
+        if (color.equals(Piece.WHITE_COLOR)) {
+            board.addWhite(pawn);
+        } else {
+            board.addBlack(pawn);
+        }
+
         return pawn;
     }
 }

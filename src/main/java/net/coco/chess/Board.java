@@ -56,4 +56,18 @@ public class Board {
                 .collect(Collectors.joining());
     }
 
+    public String print() {
+        StringBuilder boardPrint = new StringBuilder();
+        boardPrint.append(blank())
+                .append(getPawnsToString(whitePawns) + "\n")
+                .append(blank())
+                .append(blank())
+                .append(blank())
+                .append(blank())
+                .append(getPawnsToString(blackPawns) + "\n")
+                .append(blank());
+
+        return boardPrint.toString();
+    }
+
 }

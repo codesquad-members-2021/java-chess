@@ -4,6 +4,7 @@ import org.junit.jupiter.api.*;
 import pieces.Pawn.Color;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PawnTest {
     private Pawn pawn;
@@ -18,14 +19,16 @@ public class PawnTest {
     }
 
     @Test
-    @DisplayName("적절한 색상의 폰이 생성되었는지 검증한다.")
+    @DisplayName("색상과 출력 양식에 알맞게 폰이 생성되었는지 검증한다.")
     public void create() {
-        verifyPawn(pawn, Color.WHITE);
-        verifyPawn(whitePawn, Color.WHITE);
-        verifyPawn(blackPawn, Color.BLACK);
+        assertAll(() -> verifyPawn(pawn, Color.WHITE, "p"),
+                () -> verifyPawn(whitePawn, Color.WHITE, "p"),
+                () -> verifyPawn(blackPawn, Color.BLACK, "P"));
     }
 
-    public void verifyPawn(Pawn pawn, Color color) {
-        assertThat(pawn.getColor()).isEqualTo(color);
+    public void verifyPawn(Pawn pawn, Color color, String representation) {
+        assertAll(() -> assertThat(pawn.getColor()).isEqualTo(color),
+                () -> assertThat(pawn.getColor().getRepresentation()).isEqualTo(representation));
     }
 }
+

@@ -42,6 +42,12 @@ public class BoardTest {
         );
     }
 
+    @Test
+    void print(){
+        board.initialize();
+        System.out.println(board.print());
+    }
+
     private void verifyPawnToPawns(PawnEnum pawnEnum, int findPawnIndex) {
         Pawn pawn = new Pawn(pawnEnum);
 

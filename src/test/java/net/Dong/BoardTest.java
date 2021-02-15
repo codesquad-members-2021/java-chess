@@ -18,12 +18,12 @@ class BoardTest {
         Pawn white = new Pawn(Color.WHITE);
         board.whiteAdd(white);
         assertEquals(1, board.size());
-        assertEquals(Color.WHITE, board.findPawn(0));
+        assertEquals(Color.WHITE, board.findWhitePawn(0));
 
         Pawn black = new Pawn(Color.BALCK);
         board.blackAdd(black);
         assertEquals(2, board.size());
-        assertEquals(Color.BALCK, board.findPawn(1));
+        assertEquals(Color.BALCK, board.findBlackPawn(1));
     }
 
 

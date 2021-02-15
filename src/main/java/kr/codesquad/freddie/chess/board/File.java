@@ -5,6 +5,7 @@ import kr.codesquad.freddie.chess.piece.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class File {
     public static final int SIZE = 8;
@@ -51,13 +52,9 @@ public class File {
             return "........";
         }
 
-        StringBuilder sb = new StringBuilder();
-
-        for(Pawn pawn : pawns) {
-            sb.append(pawn.getRepresentation());
-        }
-
-        return sb.toString();
+        return pawns.stream()
+                .map(Pawn::getRepresentation)
+                .collect(Collectors.joining());
     }
 
     @Override

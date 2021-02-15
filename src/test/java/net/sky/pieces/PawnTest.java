@@ -27,7 +27,6 @@ class PawnTest {
 
     }
 
-
     @Test
     @DisplayName("기본 생성자 폰 색깔 및 출력방식 확인 테스트")
     void testDetailOfPawn_기본생성자() throws Exception {

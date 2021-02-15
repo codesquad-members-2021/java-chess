@@ -35,4 +35,14 @@ class BoardTest {
         );
     }
 
+    @Test
+    @DisplayName("보드 초기화 확인 테스트")
+    void boardInitialize() throws Exception {
+        board.initialize();
+        assertAll(
+            () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
+            () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
+        );
+    }
+
 }

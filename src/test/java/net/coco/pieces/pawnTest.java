@@ -19,4 +19,19 @@ class pawnTest {
 
     }
 
+    @Test
+    @DisplayName("폰이 요구대로 생성되는지 테스트")
+    void pawnColorTest() {
+        verifyPawn(PawnEnum.WHITE_COLOR);
+        verifyPawn(PawnEnum.BLACK_COLOR);
+    }
+
+    void verifyPawn(PawnEnum pawnEnum) {
+        Pawn pawn = new Pawn(pawnEnum);
+        Assertions.assertAll(
+                () -> assertThat(pawnEnum).isEqualTo(pawn.getColor()),
+                () -> assertThat(pawnEnum.representation).isEqualTo(pawn.getRepresentation())
+        );
+    }
+
 }

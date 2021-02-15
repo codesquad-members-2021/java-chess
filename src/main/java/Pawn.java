@@ -1,5 +1,5 @@
 public class Pawn {
-    String color;
+    private String color;
 
     public Pawn(String color) {
         this.color = color;

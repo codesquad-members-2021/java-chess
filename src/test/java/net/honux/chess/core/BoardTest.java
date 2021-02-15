@@ -7,9 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BoardTest {
 
@@ -26,14 +24,31 @@ class BoardTest {
         Pawn white = new Pawn(Color.WHITE);
         Pawn black = new Pawn(Color.BLACK);
         board.add(white);
-        Assertions.assertAll(
-                ()->assertThat(board.size()).isEqualTo(1),
-                ()->assertThat(white).isEqualTo(board.findPawn(0).get()));
         board.add(black);
         Assertions.assertAll(
-                ()->assertThat(board.size()).isEqualTo(2),
-                ()->assertThat(black).isEqualTo(board.findPawn(1).get()));
+                () -> assertThat(board.whitePawnsize()).isEqualTo(1),
+                () -> assertThat(white).isEqualTo(board.findWhitePawn(0).get()),
+                () -> assertThat(board.blackPawnsize()).isEqualTo(1),
+                () -> assertThat(black).isEqualTo(board.findBlackPawn(0).get())
+        );
     }
 
+    @Test
+    @DisplayName("흰색폰 8개 블랙폰 8개가 정상적으로 initialize() 를 통해서 생성되는지 확인한다.")
+    void checkPawnCount() {
+        board.initialize();
+        Assertions.assertAll(
+                () -> assertThat(board.whitePawnsize()).isEqualTo(8),
+                () -> assertThat(board.blackPawnsize()).isEqualTo(8));
+    }
 
+    @Test
+    @DisplayName("보드에 올려진 폰들의 Representation 이 정상적으로 출력되는지 확인한다.")
+    void checkPawnRepresentationOnTheBoard() {
+        board.initialize();
+        Assertions.assertAll(
+                () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
+                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
+        );
+    }
 }

@@ -2,6 +2,7 @@ package net.sanhee.pieces;
 
 
 public class Pawn {
+    public static final int MAX_SPAWN_NUMBER = 8;
     private final UnitColor color;
     private final String shape;
 

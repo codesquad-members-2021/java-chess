@@ -19,4 +19,15 @@ public class Board {
     public Piece findPawn(int index) {
         return board.get(index);
     }
+
+    public void initialize() {
+    }
+
+    public String getWhitePawnsResult() {
+        return "";
+    }
+
+    public String getBlackPawnsResult() {
+        return "";
+    }
 }

@@ -11,13 +11,13 @@ public class BoardTest {
     private static Board board;
 
     @BeforeAll
-    @DisplayName("init board")
-    static void init() {
+    @DisplayName("Create board")
+    static void create_board() {
         board = new Board();
     }
 
     @Test
-    @DisplayName("create pawns")
+    @DisplayName("Create pawns")
     void create() throws Exception {
         Piece white = add(Piece.WHITE_COLOR);
         verifySize(1);
@@ -26,6 +26,15 @@ public class BoardTest {
         Piece black = add(Piece.BLACK_COLOR);
         verifySize(2);
         verifyFindPawn(black, 1);
+    }
+
+    @Test
+    @DisplayName("Init board")
+    public void initialize() throws Exception {
+        Board board = new Board();
+        board.initialize();
+        assertEquals("pppppppp", board.getWhitePawnsResult());
+        assertEquals("PPPPPPPP", board.getBlackPawnsResult());
     }
 
     void verifySize(int expectedSize) {

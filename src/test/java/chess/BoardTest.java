@@ -20,16 +20,12 @@ class BoardTest {
     @Test
     @DisplayName("게임 보드 생성 테스트")
     void create() throws Exception {
-        Pawn white = new Pawn(Color.WHITE);
-        Pawn black = new Pawn(Color.BLACK);
-
-        addPawnToBoard(board, white, 0, 1);
-        addPawnToBoard(board, white, 1, 2);
-        addPawnToBoard(board, white, 2, 3);
-        addPawnToBoard(board, black, 0, 4);
-        addPawnToBoard(board, black, 1, 5);
-        addPawnToBoard(board, black, 2, 6);
-
+        addPawnToBoard(board, new Pawn(Color.WHITE), 0, 1);
+        addPawnToBoard(board, new Pawn(Color.WHITE), 1, 2);
+        addPawnToBoard(board, new Pawn(Color.WHITE), 2, 3);
+        addPawnToBoard(board, new Pawn(Color.BLACK), 0, 4);
+        addPawnToBoard(board, new Pawn(Color.BLACK), 1, 5);
+        addPawnToBoard(board, new Pawn(Color.BLACK), 2, 6);
     }
 
     void addPawnToBoard(Board board, Pawn pawn, int index, int size) {

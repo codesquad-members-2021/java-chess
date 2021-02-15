@@ -74,4 +74,18 @@ public class Board {
             pawns.add(arrayPawns[i]);
         }
     }
+
+    public String print() {
+
+        StringBuilder displayBoard = new StringBuilder();
+
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                displayBoard.append(boardList.get(row)[col]);
+            }
+            displayBoard.append("\n");
+        }
+
+        return displayBoard.toString();
+    }
 }

@@ -12,7 +12,7 @@ public class Board {
     private List<Pawn> whitePawns = new ArrayList<>(8);
     private List<Pawn> blackPawns = new ArrayList<>(8);
 
-    public List<Pawn> distinguish(Pawn pawn) {
+    private List<Pawn> distinguish(Pawn pawn) {
         if (pawn.getColor().equals(Pawn.WHITE_COLOR)) {
             return whitePawns;
         }
@@ -41,20 +41,22 @@ public class Board {
         }
     }
 
-    public void print() {
+    public String print() {
         StringBuilder result = new StringBuilder();
         String empty = getEmptyResult();
         for (int i = 0; i < COLUMN; i++) {
             if (i == 1) {
                 result.append(getBlackPawnResult());
-            } else if (i == 6) {
+            }
+            if (i == 6) {
                 result.append(getWhitePawnResult());
-            } else {
+            }
+            if (i != 1 && i != 6) {
                 result.append(empty);
             }
             result.append("\n");
         }
-        System.out.println(result);
+        return result.toString();
     }
 
     public String getEmptyResult() {
@@ -73,7 +75,7 @@ public class Board {
         return getPawnResult(blackPawns);
     }
 
-    public String getPawnResult(List<Pawn> pawns) {
+    private String getPawnResult(List<Pawn> pawns) {
         StringBuilder result = new StringBuilder();
         for (Pawn pawn : pawns) {
             result.append(pawn.getRepresentation());

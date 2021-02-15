@@ -12,8 +12,8 @@ class PawnTest {
 
 
     @Test
-    @DisplayName("폰 색깔 및 출력방식 확인 테스트")
-    void testDetailOfPawn() {
+    @DisplayName("폰 색깔 및 색깔별 출력방식 확인 테스트")
+    void verifyColorOfPawn() {
         verifyPawn(Color.WHITE, Representation.p);
         verifyPawn(Color.BLACK, Representation.P);
     }
@@ -28,8 +28,8 @@ class PawnTest {
     }
 
     @Test
-    @DisplayName("기본 생성자 폰 색깔 및 출력방식 확인 테스트")
-    void testDetailOfPawn_기본생성자() throws Exception {
+    @DisplayName("기본 생성자 폰 색깔 및 색깔별 출력방식 확인 테스트")
+    void verifyColorOfPawn_기본생성자() throws Exception {
         Pawn pawn = new Pawn();
         verifyPawn(pawn.getColor(), pawn.getRepresentation());
     }

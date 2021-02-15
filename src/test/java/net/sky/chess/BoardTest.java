@@ -20,24 +20,40 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("체스판 사이즈 및 보드에 폰이 제대로 들어갔는지 확인 테스트")
-    void testDetailOfBoard() throws Exception {
-        verifyBoard(Color.WHITE, 1, 0, Representation.p);
-        verifyBoard(Color.BLACK, 2, 1, Representation.P);
+    @DisplayName("체스판에 있는 폰의 색깔별 사이즈 확인 테스트")
+    void verifySizeOfBoard() throws Exception {
+        verifyWhitePawn(1, 0);
+        verifyWhitePawn(2, 1);
+
+        verifyBlackPawn(1, 0);
+        verifyBlackPawn(2, 1);
     }
 
-    void verifyBoard(final Color color, int size, int idx, final Representation representation) {
+    void verifyWhitePawn(int size, int idx) {
+        Color color = Color.WHITE;
+        Representation representation = Representation.p;
         Pawn pawn = new Pawn(color, representation);
-        board.add(pawn);
+        board.addWhitePawn(pawn);
         assertAll(
-            () -> assertThat(board.size()).isEqualTo(size),
-            () -> assertThat(board.findPawn(idx)).isEqualTo(pawn)
+            () -> assertThat(board.whitePawnsSize()).isEqualTo(size),
+            () -> assertThat(board.findWhitePawn(idx)).isEqualTo(pawn)
+        );
+    }
+
+    void verifyBlackPawn(int size, int idx) {
+        Color color = Color.BLACK;
+        Representation representation = Representation.P;
+        Pawn pawn = new Pawn(color, representation);
+        board.addBlackPawn(pawn);
+        assertAll(
+            () -> assertThat(board.blackPawnsSize()).isEqualTo(size),
+            () -> assertThat(board.findBlackPawn(idx)).isEqualTo(pawn)
         );
     }
 
     @Test
     @DisplayName("보드 초기화 확인 테스트")
-    void boardInitialize() throws Exception {
+    void initializeBoard() throws Exception {
         board.initialize();
         assertAll(
             () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),

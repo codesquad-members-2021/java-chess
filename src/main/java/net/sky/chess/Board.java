@@ -9,40 +9,49 @@ import net.sky.pieces.Pawn.Representation;
 
 public class Board {
 
-    private List<Pawn> pawns;
-
     private List<Pawn> whitePawns;
 
     private List<Pawn> blackPawns;
 
     public Board() {
-        pawns = new ArrayList<>();
         whitePawns = new ArrayList<>();
         blackPawns = new ArrayList<>();
     }
 
-    public void add(Pawn pawn) {
-        pawns.add(pawn);
+    public void addWhitePawn(Pawn pawn) {
+        whitePawns.add(pawn);
     }
 
-    public int size() {
-        return pawns.size();
+    public void addBlackPawn(Pawn pawn) {
+        blackPawns.add(pawn);
     }
 
-    public Pawn findPawn(int idx) {
-        return pawns.get(idx);
+    public int whitePawnsSize() {
+        return whitePawns.size();
+    }
+
+    public int blackPawnsSize() {
+        return blackPawns.size();
+    }
+
+    public Pawn findWhitePawn(int idx) {
+        return whitePawns.get(idx);
+    }
+
+    public Pawn findBlackPawn(int idx) {
+        return blackPawns.get(idx);
     }
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            whitePawns.add(new Pawn(Color.WHITE, Representation.p));
-            blackPawns.add(new Pawn(Color.BLACK, Representation.P));
+            addWhitePawn(new Pawn(Color.WHITE, Representation.p));
+            addBlackPawn(new Pawn(Color.BLACK, Representation.P));
         }
     }
 
     public String getWhitePawnsResult() {
         StringBuilder result = new StringBuilder();
-        whitePawns.stream().forEach((x) -> result.append(x.getRepresentation().getValue()));
+        whitePawns.forEach((x) -> result.append(x.getRepresentation().getValue()));
         return result.toString();
     }
 

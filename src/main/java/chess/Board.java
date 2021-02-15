@@ -40,15 +40,18 @@ public class Board {
     }
 
     public void print() {
+        StringBuilder result = new StringBuilder();
         for (int i = 0; i < BOARD_SIZE; i++) {
             if (i == 1) {
-                System.out.println(getBlackPawnsToPrint());
+                result.append(getBlackPawnsToPrint());
             } else if (i == 6) {
-                System.out.println(getWhitePawnsToPrint());
+                result.append(getWhitePawnsToPrint());
             } else {
-                System.out.println(EMPTY_LINE);
+                result.append(EMPTY_LINE);
             }
+            result.append("\n");
         }
+        System.out.println(result.toString());
     }
 
     public void addWhitePawn(Pawn pawn) {

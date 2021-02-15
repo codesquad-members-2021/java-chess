@@ -4,8 +4,8 @@ import net.Dong.chess.Pawn;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static net.Dong.chess.Pawn.Color.*;
-import static net.Dong.chess.Pawn.*;
+import net.Dong.chess.Pawn.Color.*;
+import net.Dong.chess.Pawn.*;
 class PawnTest {
 
 
@@ -13,8 +13,8 @@ class PawnTest {
     @Test
     @DisplayName("TSET >> START ")
     public void create() {
-        verifyPawn(WHITE);
-        verifyPawn(BALCK);
+        verifyPawn(Color.WHITE);
+        verifyPawn(Color.BALCK);
 
     }
 

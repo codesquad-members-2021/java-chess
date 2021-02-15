@@ -12,9 +12,15 @@ public class Board {
     private List<Pawn> blackPawns = new ArrayList<>();
 
 
-    public void addPawn(Pawn pawn){
-        pawns.add(pawn);
+
+    public void addWhitePawn(Pawn pawn) {
+        whitePawns.add(pawn);
     }
+
+    public void addBlackPawn(Pawn pawn) {
+        blackPawns.add(pawn);
+    }
+    
     public int size(){
         return pawns.size();
     }

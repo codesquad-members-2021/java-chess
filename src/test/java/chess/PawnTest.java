@@ -9,18 +9,16 @@ class PawnTest {
 
     @Test
     @DisplayName("색을 지정하지 않은 Pawn 클래스 생성")
-    void create(){
+    void create() {
         Pawn pawn = new Pawn();
-        assertEquals("white" , pawn.getColor());
+        assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
     }
 
     @Test
     @DisplayName("Pawn 클래스 인스턴스의 String color를 비교한다.")
     void compare() {
-        String[] colors = {"white,black"};
-        for (String color : colors) {
-            verifyPawn(color);
-        }
+        verifyPawn(Pawn.WHITE_COLOR);
+        verifyPawn(Pawn.BLACK_COLOR);
     }
 
     void verifyPawn(final String color) {

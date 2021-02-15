@@ -1,21 +1,18 @@
 package mj.chess.pieces;
 
 public class Pawn {
-    private final Color color;
+    private final ColorOfPiece color;
 
     public Pawn() {
-        this.color = Color.WHITE;
+        this.color = ColorOfPiece.WHITE;
     }
 
-    public Pawn(String color) {
-        this.color = Color.valueOf(color.toUpperCase());
+    public Pawn(ColorOfPiece color) {
+        this.color = color;
     }
 
-    public String getColor() {
-        return color.name();
+    public ColorOfPiece getColor() {
+        return color;
     }
 
-    public enum Color {
-        BLACK, WHITE
-    }
 }

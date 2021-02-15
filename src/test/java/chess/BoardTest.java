@@ -18,7 +18,7 @@ public class BoardTest {
         board = new Board();
     }
 
-    private void addPawnOnTheBoardAndVerify(Pawn pawn, int number, int index) {
+    private void addPawnVerify(Pawn pawn, int number, int index) {
         board.add(pawn);
         assertAll(
                 () -> assertThat(board.size()).isEqualTo(number),
@@ -31,7 +31,7 @@ public class BoardTest {
     void createPawnOnTheBoard() {
         Pawn white = new Pawn(Color.WHITE);
         Pawn black = new Pawn(Color.BLACK);
-        addPawnOnTheBoardAndVerify(white, 1, 0);
-        addPawnOnTheBoardAndVerify(black, 2, 1);
+        addPawnVerify(white, 1, 0);
+        addPawnVerify(black, 2, 1);
     }
 }

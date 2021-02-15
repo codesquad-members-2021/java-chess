@@ -20,11 +20,20 @@ public class Board {
     public void addBlackPawn(Pawn pawn) {
         blackPawns.add(pawn);
     }
-    
-    public int size(){
-        return pawns.size();
+
+    public int getWhitePawnSize() {
+        return whitePawns.size();
     }
-    public Pawn findPawn(int index){
-        return pawns.get(index);
+
+    public int getBlackPawnSize() {
+        return blackPawns.size();
+    }
+
+    public Pawn findWhitePawn(int index) {
+        return whitePawns.get(index);
+    }
+
+    public Pawn findBlackPawn(int index) {
+        return blackPawns.get(index);
     }
 }

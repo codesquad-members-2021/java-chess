@@ -11,7 +11,7 @@ class BoardTest {
     private Board board;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         board = new Board();
     }
 

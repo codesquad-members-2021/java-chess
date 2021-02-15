@@ -1,6 +1,6 @@
 package chess;
 
-import chess.pieces.Pawn;
+import chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,14 +8,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
 
-    private Pawn white;
-    private Pawn black;
+    private Piece white;
+    private Piece black;
     private Board board;
 
     @BeforeEach
     public void setUP() {
-        white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
-        black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK__REPRESENTATION);
+        white = new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION);
+        black = new Piece(Piece.BLACK_COLOR, Piece.BLACK__REPRESENTATION);
         board = new Board();
     }
 
@@ -37,7 +37,7 @@ class BoardTest {
         assertEquals("........", board.getEmptyResult());
     }
 
-    void check(Pawn pawn, int size, int idx) {
+    void check(Piece pawn, int size, int idx) {
         board.add(pawn);
         assertEquals(size, board.size(pawn));
         assertEquals(pawn, board.findPawn(pawn, idx));

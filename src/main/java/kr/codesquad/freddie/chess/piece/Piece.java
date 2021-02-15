@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Piece {
     private Color color;
+    private Kind kind;
 
     public Piece() {
         this(Color.WHITE);
@@ -38,18 +39,19 @@ public class Piece {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
-        return color == piece.color;
+        return color == piece.color && kind == piece.kind;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(color);
+        return Objects.hash(color, kind);
     }
 
     @Override
     public String toString() {
         return "Piece{" +
                 "color=" + color +
+                ", kind=" + kind +
                 '}';
     }
 }

@@ -8,7 +8,7 @@ import java.util.*;
 public class Board {
     private final List<Pawn> blackPawns;
     private final List<Pawn> whitePawns;
-    private final String EMPTY_LINE = "........";
+    private final String EMPTY_LINE = "........\n";
     private final int BOARD_SIZE = 8;
 
     public Board() {
@@ -36,21 +36,20 @@ public class Board {
         for (Pawn pawn : pawns) {
             pawnsToPrint.append(pawn.getColor().getRepresentation());
         }
+        pawnsToPrint.append("\n");
         return pawnsToPrint.toString();
     }
 
     public void print() {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            if (i == 1) {
-                result.append(getBlackPawnsToPrint());
-            } else if (i == 6) {
-                result.append(getWhitePawnsToPrint());
-            } else {
-                result.append(EMPTY_LINE);
-            }
-            result.append("\n");
-        }
+        result.append(EMPTY_LINE);
+        result.append(getBlackPawnsToPrint());
+        result.append(EMPTY_LINE);
+        result.append(EMPTY_LINE);
+        result.append(EMPTY_LINE);
+        result.append(EMPTY_LINE);
+        result.append(getWhitePawnsToPrint());
+        result.append(EMPTY_LINE);
         System.out.println(result.toString());
     }
 

@@ -27,6 +27,10 @@ public class Piece {
         return color;
     }
 
+    public Kind getKind() {
+        return kind;
+    }
+
     public String getRepresentation() {
         return color.getRepresentationBy("p");
     }

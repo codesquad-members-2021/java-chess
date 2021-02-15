@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static utils.StringUtils.*;
+
 public class Board {
 
     private final Map<Color, List<Pawn>> pawnList;
@@ -48,18 +50,14 @@ public class Board {
 
     public String print() {
         StringBuilder output = new StringBuilder();
-        appendStrAndNewLine(output, "........");
-        appendStrAndNewLine(output, getPawnsResult(Color.BLACK));
-        appendStrAndNewLine(output, "........");
-        appendStrAndNewLine(output, "........");
-        appendStrAndNewLine(output, "........");
-        appendStrAndNewLine(output, "........");
-        appendStrAndNewLine(output, getPawnsResult(Color.WHITE));
+        output.append(appendNewLine("........"));
+        output.append(appendNewLine(getPawnsResult(Color.BLACK)));
+        output.append(appendNewLine("........"));
+        output.append(appendNewLine("........"));
+        output.append(appendNewLine("........"));
+        output.append(appendNewLine("........"));
+        output.append(appendNewLine(getPawnsResult(Color.WHITE)));
         output.append("........");
         return output.toString();
-    }
-
-    private void appendStrAndNewLine(StringBuilder sb, String string) {
-        sb.append(string).append(System.lineSeparator());
     }
 }

@@ -45,7 +45,7 @@ public class File {
         return size() < SIZE;
     }
 
-    public File fillWith(Color color) {
+    public File fillWithPawn(Color color) {
         while (isAddable()) {
             pieces.add(new Piece(color, Kind.PAWN));
         }
@@ -68,5 +68,4 @@ public class File {
                 "pieces=" + pieces +
                 '}';
     }
-
 }

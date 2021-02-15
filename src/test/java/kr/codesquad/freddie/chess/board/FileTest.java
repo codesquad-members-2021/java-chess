@@ -88,13 +88,13 @@ class FileTest {
 
     @Test
     void fillWith_black() {
-        file.fillWith(Color.BLACK);
+        file.fillWithPawn(Color.BLACK);
         checkFillWith(Color.BLACK);
     }
 
     @Test
     void fillWith_white() {
-        file.fillWith(Color.WHITE);
+        file.fillWithPawn(Color.WHITE);
         checkFillWith(Color.WHITE);
     }
 
@@ -106,13 +106,13 @@ class FileTest {
 
     @Test
     void getRepresentation_fillWithBlack() {
-        file.fillWith(Color.BLACK);
+        file.fillWithPawn(Color.BLACK);
         assertThat(file.getRepresentation()).isEqualTo("PPPPPPPP");
     }
 
     @Test
     void getRepresentation_fillWithWhite() {
-        file.fillWith(Color.WHITE);
+        file.fillWithPawn(Color.WHITE);
         assertThat(file.getRepresentation()).isEqualTo("pppppppp");
     }
 }

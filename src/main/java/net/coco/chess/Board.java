@@ -36,4 +36,11 @@ public class Board {
     public Pawn findBlackPawn(int index) {
         return blackPawns.get(index);
     }
+
+    public void initialize() {
+        for (int i = 0; i < 8; i++) {
+            whitePawns.add(new Pawn(PawnEnum.WHITE_COLOR));
+            blackPawns.add(new Pawn(PawnEnum.BLACK_COLOR));
+        }
+    }
 }

@@ -3,7 +3,6 @@ package net.sky.chess;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.stream.IntStream;
 import net.sky.pieces.Pawn;
 import net.sky.pieces.Pawn.Color;
 import net.sky.pieces.Pawn.Representation;
@@ -65,16 +64,16 @@ public class Board {
     public void print() {
         String blankLine = "........";
         StringBuilder result = new StringBuilder();
-        IntStream.range(0, 8).forEach((x) -> {
-            if (x == 1) {
-                result.append(getBlackPawnsResult());
-            } else if (x == 6) {
-                result.append(getWhitePawnsResult());
-            } else {
-                result.append(blankLine);
-            }
-            result.append("\n");
-        });
+
+        result.append(blankLine).append("\n");
+        result.append(getBlackPawnsResult()).append("\n");
+        result.append(blankLine).append("\n");
+        result.append(blankLine).append("\n");
+        result.append(blankLine).append("\n");
+        result.append(blankLine).append("\n");
+        result.append(getWhitePawnsResult()).append("\n");
+        result.append(blankLine).append("\n");
+
         System.out.println(result);
     }
 }

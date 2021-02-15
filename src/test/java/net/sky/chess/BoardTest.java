@@ -52,7 +52,7 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("보드 초기화 확인 테스트")
+    @DisplayName("보드 초기화 테스트")
     void initializeBoard() throws Exception {
         board.initialize();
         assertAll(

@@ -1,4 +1,4 @@
-package pieces;
+package net.sally.pieces;
 
 public class Pawn {
     public static final String WHITE = "white";
@@ -6,7 +6,7 @@ public class Pawn {
 
     private final String color;
 
-    Pawn() {
+    public Pawn() {
         this.color = WHITE;
     }
 

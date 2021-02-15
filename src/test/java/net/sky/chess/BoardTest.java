@@ -35,7 +35,7 @@ class BoardTest {
         Pawn pawn = new Pawn(color, representation);
         board.addWhitePawn(pawn);
         assertAll(
-            () -> assertThat(board.whitePawnsSize()).isEqualTo(size),
+            () -> assertThat(board.getWhitePawnsSize()).isEqualTo(size),
             () -> assertThat(board.findWhitePawn(idx)).isEqualTo(pawn)
         );
     }
@@ -46,7 +46,7 @@ class BoardTest {
         Pawn pawn = new Pawn(color, representation);
         board.addBlackPawn(pawn);
         assertAll(
-            () -> assertThat(board.blackPawnsSize()).isEqualTo(size),
+            () -> assertThat(board.getBlackPawnsSize()).isEqualTo(size),
             () -> assertThat(board.findBlackPawn(idx)).isEqualTo(pawn)
         );
     }
@@ -59,6 +59,12 @@ class BoardTest {
             () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
             () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
         );
+    }
+
+    @Test
+    void printBoard() {
+        board.initialize();
+        board.print();
     }
 
 }

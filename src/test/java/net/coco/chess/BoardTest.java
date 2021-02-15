@@ -60,6 +60,12 @@ public class BoardTest {
         assertThat(pawn).isEqualTo(board.findBlackPawn(findPawnIndex));
     }
 
+    private void verifyWhitePaswsSize(int actualSize) {
+        assertThat(actualSize).isEqualTo(board.getWhitePawnSize());
+    }
 
+    private void verifyBlackPaswsSize(int actualSize) {
+        assertThat(actualSize).isEqualTo(board.getBlackPawnSize());
+    }
 
 }

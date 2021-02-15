@@ -1,7 +1,9 @@
-import net.sanhee.chess.*;
+import net.sanhee.chess.Board;
 import net.sanhee.pieces.Pawn;
 import net.sanhee.pieces.UnitColor;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -51,7 +53,8 @@ class BoardTest {
     void initialize() {
         Board board = new Board();
         board.initialize();
-        assertThat(board.getWhitePawnsResult()).isEqualTo(pppppppp);
-        assertThat(board.getBlackPawnsResult()).isEqualTo(PPPPPPPP);
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
     }
+
 }

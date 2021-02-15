@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8b502d7e-e76a-4573-93da-3ce876e4174b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/java-chess.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/java-chess.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="java-chess" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1oBbgZwplphV4o682ewrmh6oeOT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../github-playground" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="net.kjk402.chess.pieces" />
+      <recent name="net.kjk402.chess.chess" />
+      <recent name="net.kjk402.chess" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.BoardTest">
+    <configuration name="BoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-chess.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.kjk402.chess.chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.kjk402.chess.chess" />
+      <option name="MAIN_CLASS_NAME" value="net.kjk402.chess.chess.BoardTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardTest.createBoard" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-chess.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.kjk402.chess.chess.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.kjk402.chess.chess" />
+      <option name="MAIN_CLASS_NAME" value="net.kjk402.chess.chess.BoardTest" />
+      <option name="METHOD_NAME" value="createBoard" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PawnTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-chess.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.kjk402.chess.pieces.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.kjk402.chess.pieces" />
+      <option name="MAIN_CLASS_NAME" value="net.kjk402.chess.pieces.PawnTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ee" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-chess.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.kjk402.chess.pieces.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.kjk402.chess.pieces" />
+      <option name="MAIN_CLASS_NAME" value="net.kjk402.chess.pieces.ee" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ee.create_기본생성자" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-chess.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="net.kjk402.chess.pieces.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="net.kjk402.chess.pieces" />
+      <option name="MAIN_CLASS_NAME" value="net.kjk402.chess.pieces.ee" />
+      <option name="METHOD_NAME" value="create_기본생성자" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.BoardTest" />
+        <item itemvalue="JUnit.PawnTest" />
+        <item itemvalue="JUnit.BoardTest.createBoard" />
+        <item itemvalue="JUnit.ee" />
+        <item itemvalue="JUnit.ee.create_기본생성자" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8b502d7e-e76a-4573-93da-3ce876e4174b" name="Default Changelist" comment="" />
+      <created>1612763042098</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612763042098</updated>
+      <workItem from="1612763043788" duration="5357000" />
+      <workItem from="1612771419877" duration="329000" />
+      <workItem from="1612771920691" duration="2734000" />
+      <workItem from="1612775097344" duration="4197000" />
+      <workItem from="1612792357293" duration="273000" />
+      <workItem from="1612792657274" duration="2815000" />
+      <workItem from="1612832078040" duration="4456000" />
+      <workItem from="1612837812480" duration="11958000" />
+      <workItem from="1612934252435" duration="7341000" />
+      <workItem from="1613293702291" duration="6001000" />
+      <workItem from="1613350238287" duration="8425000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="390" y="292" key="#All_in_java-chess.test" timestamp="1612792876475">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="390" y="292" key="#All_in_java-chess.test/0.0.2560.1400@0.0.2560.1400" timestamp="1612792876475" />
+    <state x="141" y="367" key="#Project_Structure" timestamp="1613370212422">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="141" y="367" key="#Project_Structure/0.0.2560.1400@0.0.2560.1400" timestamp="1613370212422" />
+    <state x="120" y="195" width="1112" height="1060" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1613295973699">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="120" y="195" width="1112" height="1060" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1613295973699" />
+    <state x="178" y="355" key="CommitChangelistDialog2" timestamp="1612936825499">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="178" y="355" key="CommitChangelistDialog2/0.0.2560.1400@0.0.2560.1400" timestamp="1612936825499" />
+    <state x="816" y="579" key="FileChooserDialogImpl" timestamp="1612840482711">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="816" y="579" key="FileChooserDialogImpl/0.0.2560.1400@0.0.2560.1400" timestamp="1612840482711" />
+    <state width="1254" height="276" key="GridCell.Tab.0.bottom" timestamp="1613314516136">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1254" height="276" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1613314516136" />
+    <state width="1254" height="276" key="GridCell.Tab.0.center" timestamp="1613314516136">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1254" height="276" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1613314516136" />
+    <state width="1254" height="276" key="GridCell.Tab.0.left" timestamp="1613314516136">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1254" height="276" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1613314516136" />
+    <state width="1254" height="276" key="GridCell.Tab.0.right" timestamp="1613314516136">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1254" height="276" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1613314516136" />
+    <state width="1220" height="400" key="GridCell.Tab.1.bottom" timestamp="1612796060741">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1220" height="400" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1612796060741" />
+    <state width="1220" height="400" key="GridCell.Tab.1.center" timestamp="1612796060741">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1220" height="400" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1612796060741" />
+    <state width="1220" height="400" key="GridCell.Tab.1.left" timestamp="1612796060740">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1220" height="400" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1612796060740" />
+    <state width="1220" height="400" key="GridCell.Tab.1.right" timestamp="1612796060741">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1220" height="400" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1612796060741" />
+    <state x="258" y="446" key="SettingsEditor" timestamp="1613293795880">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="258" y="446" key="SettingsEditor/0.0.2560.1400@0.0.2560.1400" timestamp="1613293795880" />
+    <state x="250" y="521" key="Vcs.Push.Dialog.v2" timestamp="1612936838215">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="250" y="521" key="Vcs.Push.Dialog.v2/0.0.2560.1400@0.0.2560.1400" timestamp="1612936838215" />
+    <state x="432" y="597" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1613370017556">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="432" y="597" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1613370017556" />
+    <state x="477" y="624" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1613308174210">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="477" y="624" key="git4idea.remote.GitConfigureRemotesDialog/0.0.2560.1400@0.0.2560.1400" timestamp="1613308174210" />
+    <state x="283" y="419" key="new project wizard" timestamp="1612763168660">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="283" y="419" key="new project wizard/0.0.2560.1400@0.0.2560.1400" timestamp="1612763168660" />
+    <state x="653" y="337" key="run.anything.popup" timestamp="1612776881157">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="653" y="337" key="run.anything.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1612776881157" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/test/net/kjk402/chess/chess/BoardTest.java</url>
+          <line>9</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

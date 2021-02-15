@@ -8,6 +8,7 @@ import java.util.List;
 public class Board {
 
     private static final int PAWNSNUM = 8;
+    private static final int COLUMN = 8;
     private List<Pawn> whitePawns = new ArrayList<>(8);
     private List<Pawn> blackPawns = new ArrayList<>(8);
 
@@ -45,8 +46,19 @@ public class Board {
     }
 
     public void print() {
-
-
+        StringBuilder result = new StringBuilder();
+        StringBuilder empty = new StringBuilder(".");
+        for (int i = 0; i < COLUMN; i++) {
+            if (i == 1) {
+                result.append(getBlackPawnResult());
+            } else if (i == 6) {
+                result.append(getWhitePawnResult());
+            } else {
+                result.append(empty);
+            }
+            result.append("\n");
+        }
+        System.out.println(result);
     }
 
     public String getWhitePawnResult() {

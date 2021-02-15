@@ -50,4 +50,10 @@ public class Board {
             return getPawnsToString(blackPawns);
     }
 
+    private String getPawnsToString(List<Pawn> Pawns) {
+        return Pawns.stream()
+                .map(Pawn::getRepresentation)
+                .collect(Collectors.joining());
+    }
+
 }

@@ -1,5 +1,6 @@
 package chess;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pieces.Pawn;
@@ -7,11 +8,17 @@ import pieces.Pawn;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
+
+    private Board board;
+
+    @BeforeEach
+    void createBoard(){
+        board = new Board();
+    }
+
     @Test
     @DisplayName("Board에 Pawn이 제대로 추가되는지 확인")
     void create(){
-
-        Board board = new Board();
 
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
         board.add(white);

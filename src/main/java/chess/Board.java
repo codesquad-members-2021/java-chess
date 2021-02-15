@@ -23,11 +23,11 @@ public class Board {
         }
     }
 
-    private String getWhitePawnsToPrint() {
+    public String getWhitePawnsToPrint() {
         return getPawnsToPrint(whitePawns);
     }
 
-    private String getBlackPawnsToPrint() {
+    public String getBlackPawnsToPrint() {
         return getPawnsToPrint(blackPawns);
     }
 
@@ -36,7 +36,6 @@ public class Board {
         for (Pawn pawn : pawns) {
             pawnsToPrint.append(pawn.getColor().getRepresentation());
         }
-        pawnsToPrint.append("\n");
         return pawnsToPrint.toString();
     }
 
@@ -44,11 +43,13 @@ public class Board {
         StringBuilder result = new StringBuilder();
         result.append(EMPTY_LINE);
         result.append(getBlackPawnsToPrint());
+        result.append("\n");
         result.append(EMPTY_LINE);
         result.append(EMPTY_LINE);
         result.append(EMPTY_LINE);
         result.append(EMPTY_LINE);
         result.append(getWhitePawnsToPrint());
+        result.append("\n");
         result.append(EMPTY_LINE);
         System.out.println(result.toString());
     }

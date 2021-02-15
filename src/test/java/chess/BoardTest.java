@@ -16,7 +16,16 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("폰이 제대로 추가되었는지 검증한다.")
+    @DisplayName("체스판이 제대로 초기화되었는지 검증한다")
+    void initialize() {
+        board.initialize();
+        assertAll(() -> assertThat(board.getWhitePawnsToPrint()).isEqualTo("pppppppp"),
+                () -> assertThat(board.getBlackPawnsToPrint()).isEqualTo("PPPPPPPP"));
+    }
+
+
+    @Test
+    @DisplayName("폰이 제대로 추가되었는지 검증한다")
     void verifyAdd() {
         assertAll(() -> verifyAddWhitePawn(new Pawn(Color.WHITE), 1),
                 () -> verifyAddBlackPawn(new Pawn(Color.BLACK), 2),

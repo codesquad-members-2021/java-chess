@@ -12,8 +12,8 @@ class PieceTest {
         assertAll(
                 () -> assertThat(Piece.createBlackPawn().getColor()).isEqualTo(Color.BLACK),
                 () -> assertThat(Piece.createWhitePawn().getColor()).isEqualTo(Color.WHITE),
-                () -> assertThat(Piece.create("white").getColor()).isEqualTo(Color.WHITE),
-                () -> assertThat(Piece.create("black").getColor()).isEqualTo(Color.BLACK)
+                () -> assertThat(Piece.create("white", "pawn").getColor()).isEqualTo(Color.WHITE),
+                () -> assertThat(Piece.create("black", "pawn").getColor()).isEqualTo(Color.BLACK)
         );
     }
 
@@ -23,8 +23,8 @@ class PieceTest {
         assertAll(
                 () -> assertThat(Piece.createBlackPawn().getRepresentation()).isEqualTo("P"),
                 () -> assertThat(Piece.createWhitePawn().getRepresentation()).isEqualTo("p"),
-                () -> assertThat(Piece.create("black").getRepresentation()).isEqualTo("P"),
-                () -> assertThat(Piece.create("white").getRepresentation()).isEqualTo("p")
+                () -> assertThat(Piece.create("black", "pawn").getRepresentation()).isEqualTo("P"),
+                () -> assertThat(Piece.create("white", "pawn").getRepresentation()).isEqualTo("p")
         );
     }
 }

@@ -1,6 +1,7 @@
 package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.piece.Color;
+import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,7 +26,7 @@ class BoardTest {
             Board board = new Board();
 
             for (int j = 0; j < i; j++) {
-                board.add(new Piece());
+                board.add(new Piece(Color.WHITE, Kind.PAWN));
             }
             assertThat(board.size())
                     .isEqualTo(i);
@@ -39,7 +40,7 @@ class BoardTest {
     void add_fillRank() {
         int size = File.SIZE + 1;
         for (int i = 1; i <= size; i++) {
-            board.add(new Piece());
+            board.add(new Piece(Color.WHITE, Kind.PAWN));
             assertThat(board.size())
                     .isEqualTo(i);
         }
@@ -48,10 +49,10 @@ class BoardTest {
     @Test
     void add_outOfRange() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(new Piece());
+            board.add(new Piece(Color.WHITE, Kind.PAWN));
         }
 
-        assertThatThrownBy(() -> board.add(new Piece()))
+        assertThatThrownBy(() -> board.add(new Piece(Color.WHITE, Kind.PAWN)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("더 이상 추가할 수 없습니다. 현재 크기 : 64");
     }
@@ -59,7 +60,7 @@ class BoardTest {
     @Test
     @DisplayName("하나만 추가하여 탐색")
     void findPiece_one() {
-        Piece white = new Piece(Color.WHITE);
+        Piece white = new Piece(Color.WHITE, Kind.PAWN);
         board.add(white);
         assertAll(
                 () -> assertThat(board.size()).isEqualTo(1),
@@ -70,9 +71,9 @@ class BoardTest {
     @Test
     @DisplayName("하나 이상 추가하여 탐색")
     void findPiece_moreThanOne() {
-        Piece white = new Piece(Color.WHITE);
+        Piece white = new Piece(Color.WHITE, Kind.PAWN);
         board.add(white);
-        Piece black = new Piece(Color.BLACK);
+        Piece black = new Piece(Color.BLACK, Kind.PAWN);
         board.add(black);
 
         assertAll(

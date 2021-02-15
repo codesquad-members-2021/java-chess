@@ -1,6 +1,7 @@
 package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.piece.Color;
+import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,7 +24,7 @@ class FileTest {
             File file = new File();
 
             for (int j = 0; j < i; j++) {
-                file.add(new Piece());
+                file.add(new Piece(Color.WHITE, Kind.PAWN));
             }
             assertThat(file.size())
                     .isEqualTo(i);
@@ -34,18 +35,18 @@ class FileTest {
     @DisplayName("8개 초과하여 추가하는 경우")
     void add_moreThan_8() {
         for (int i = 0; i < File.SIZE; i++) {
-            file.add(new Piece());
+            file.add(new Piece(Color.WHITE, Kind.PAWN));
         }
 
-        assertThatThrownBy(() -> file.add(new Piece()))
+        assertThatThrownBy(() -> file.add(new Piece(Color.WHITE, Kind.PAWN)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("파일 당 8개만 추가 가능합니다.");
     }
 
     @Test
     void get() {
-        Piece pieceA = new Piece();
-        Piece pieceB = new Piece(Color.BLACK);
+        Piece pieceA = new Piece(Color.WHITE, Kind.PAWN);
+        Piece pieceB = new Piece(Color.BLACK, Kind.PAWN);
         file.add(pieceA);
         file.add(pieceB);
 
@@ -59,7 +60,7 @@ class FileTest {
     @DisplayName("a~h를 벗어나도록 get을 하는 경우")
     void get_outOfRange() {
         for (int i = 0; i < File.SIZE; i++) {
-            file.add(new Piece());
+            file.add(new Piece(Color.WHITE, Kind.PAWN));
         }
 
         assertAll(
@@ -77,11 +78,11 @@ class FileTest {
     @Test
     void isAddable() {
         for (int i = 0; i < File.SIZE - 1; i++) {
-            file.add(new Piece());
+            file.add(new Piece(Color.WHITE, Kind.PAWN));
             assertThat(file.isAddable()).isTrue();
         }
 
-        file.add(new Piece());
+        file.add(new Piece(Color.WHITE, Kind.PAWN));
         assertThat(file.isAddable()).isFalse();
     }
 

@@ -6,24 +6,21 @@ public class Piece {
     private Color color;
     private Kind kind;
 
-    public Piece() {
-        this(Color.WHITE);
-    }
-
-    public Piece(Color color) {
+    public Piece(Color color, Kind kind) {
         this.color = color;
+        this.kind = kind;
     }
 
     public static Piece createBlackPawn() {
-        return new Piece(Color.BLACK);
+        return new Piece(Color.BLACK, Kind.PAWN);
     }
 
     public static Piece createWhitePawn() {
-        return new Piece(Color.WHITE);
+        return new Piece(Color.WHITE, Kind.PAWN);
     }
 
-    public static Piece create(String color) {
-        return new Piece(Color.valueOf(color.toUpperCase()));
+    public static Piece create(String color, String kind) {
+        return new Piece(Color.valueOf(color.toUpperCase()), Kind.valueOf(kind.toUpperCase()));
     }
 
     public Color getColor() {

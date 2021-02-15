@@ -1,6 +1,7 @@
 package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.piece.Color;
+import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class File {
 
     public File fillWith(Color color) {
         while (isAddable()) {
-            pieces.add(new Piece(color));
+            pieces.add(new Piece(color, Kind.PAWN));
         }
         return this;
     }

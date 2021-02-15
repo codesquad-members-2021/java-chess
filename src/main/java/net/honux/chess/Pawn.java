@@ -1,33 +1,22 @@
 package net.honux.chess;
 
 public class Pawn {
-    enum Color {
-        WHITE("white"),
-        BLACK("black");
+    public static final String WHITE_COLOR = "white";
+    public static final String BLACK_COLOR = "black";
 
-        private String value;
+    private  String color;
 
-        Color(String value) {
-            this.value = value;
-        }
 
-        public String getValue() {
-            return this.value;
-        }
-
+    public Pawn(){
+        this.color = WHITE_COLOR;
     }
 
-    private Color color;
-
-    public Pawn(String color) {
-        if (color.equals("WHITE") || color.equals("white"))
-            this.color = Color.WHITE;
-        else if (color.equals("BLACK") || color.equals("black"))
-            this.color = Color.BLACK;
+    public Pawn(String color){
+        this.color = color;
     }
 
-    public String getColor() {
-        return color.getValue();
+    public String getColor(){
+        return color;
     }
 
 }

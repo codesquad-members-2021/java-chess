@@ -47,7 +47,7 @@ public class File {
     }
 
     public String getRepresentation() {
-        if (pawns.size() == 0) {
+        if (pawns.isEmpty()) {
             return "........";
         }
 

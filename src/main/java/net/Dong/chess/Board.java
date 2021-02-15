@@ -60,11 +60,28 @@ public class Board {
     }
 
     private void addPawn(Pawn.Color color, int numOfPawn) {
-        for(int i=0 ; i<numOfPawn ; i++) {
-            arrPawn.add(new Pawn(color));
+        if(color == Color.BALCK) {
+            addPawnBlack(numOfPawn);
+            return;
         }
-        return;
+
+        if (color == Color.WHITE) {
+            addPawnBlack(numOfPawn);
+        }
     }
+
+    private void addPawnWhite(int numOfPawn) {
+        for(int i=0 ; i<numOfPawn ; i++) {
+            whitePawn.add(new Pawn(Color.WHITE));
+        }
+    }
+
+    private void addPawnBlack(int numOfPawn) {
+        for(int i=0 ; i<numOfPawn ; i++) {
+            whitePawn.add(new Pawn(Color.WHITE));
+        }
+    }
+
 
 
     private String print() {
@@ -72,32 +89,28 @@ public class Board {
         // 화면에 출력할 결과를 StringBuilder에 저장한 후 String으로 반환하는 메소드를 구현한다
         StringBuilder sb = new StringBuilder();
 
-
+        return "";
     }
 
 
     public String getWhitePawnsResult() {
-        StringBuilder sb = new StringBuilder();
-        int len = arrPawn.size();
-        for(int i=0 ; i<len ; i++) {
-            if(arrPawn.get(i).getColor() == Color.WHITE) {
-                sb.append("p");
-            }
-        }
-        return sb.toString();
+        return getPawnsResult(whitePawn);
     }
 
 
     public String getBlackPawnsResult() {
+        return getPawnsResult(blackPawn);
+    }
+
+    private String getPawnsResult(ArrayList<Pawn> whatPawn) {
         StringBuilder sb = new StringBuilder();
-        int len = arrPawn.size();
-        for(int i=0 ; i<len ; i++) {
-            if(arrPawn.get(i).getColor() == Color.BALCK) {
-                sb.append("P");
-            }
+        int len = whatPawn.size();
+        for(Pawn p : whatPawn) {
+            sb.append(p.getSymbol());
         }
         return sb.toString();
-
     }
+
+
 
 }

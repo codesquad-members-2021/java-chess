@@ -2,23 +2,27 @@ package kr.codesquad.freddie.chess.piece;
 
 import java.util.Objects;
 
-public class Pawn {
+public class Piece {
     private Color color;
 
-    public Pawn() {
+    public Piece() {
         this(Color.WHITE);
     }
 
-    public Pawn(Color color) {
+    public Piece(Color color) {
         this.color = color;
     }
 
-    public static Pawn createBlackPawn() {
-        return new Pawn(Color.BLACK);
+    public static Piece createBlackPawn() {
+        return new Piece(Color.BLACK);
     }
 
-    public static Pawn createWhitePawn() {
-        return new Pawn(Color.WHITE);
+    public static Piece createWhitePawn() {
+        return new Piece(Color.WHITE);
+    }
+
+    public static Piece create(String color) {
+        return new Piece(Color.valueOf(color.toUpperCase()));
     }
 
     public Color getColor() {
@@ -33,8 +37,8 @@ public class Pawn {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Pawn pawn = (Pawn) o;
-        return color == pawn.color;
+        Piece piece = (Piece) o;
+        return color == piece.color;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class Pawn {
 
     @Override
     public String toString() {
-        return "Pawn{" +
+        return "Piece{" +
                 "color=" + color +
                 '}';
     }

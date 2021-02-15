@@ -1,7 +1,7 @@
 package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.piece.Color;
-import kr.codesquad.freddie.chess.piece.Pawn;
+import kr.codesquad.freddie.chess.piece.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 
 public class File {
     public static final int SIZE = 8;
-    private List<Pawn> pawns = new ArrayList<>();
+    private List<Piece> pieces = new ArrayList<>();
 
-    public void add(Pawn pawn) {
+    public void add(Piece piece) {
         if (size() == SIZE) {
             throw new IllegalArgumentException("파일 당 8개만 추가 가능합니다.");
         }
 
-        pawns.add(pawn);
+        pieces.add(piece);
     }
 
     /**
@@ -26,18 +26,18 @@ public class File {
      *
      * @param fileIndex a~h 사이의 char
      * @return 해당 칸에 존재하는 기물
-     * @see Board#findPawn(char, int)
+     * @see Board#findPiece(char, int)
      */
-    public Pawn get(char fileIndex) {
-        return pawns.get(fileIndex - 'a');
+    public Piece get(char fileIndex) {
+        return pieces.get(fileIndex - 'a');
     }
 
-    public Pawn get(int index) {
-        return pawns.get(index);
+    public Piece get(int index) {
+        return pieces.get(index);
     }
 
     public int size() {
-        return pawns.size();
+        return pieces.size();
     }
 
     public boolean isAddable() {
@@ -46,25 +46,26 @@ public class File {
 
     public File fillWith(Color color) {
         while (isAddable()) {
-            pawns.add(new Pawn(color));
+            pieces.add(new Piece(color));
         }
         return this;
     }
 
     public String getRepresentation() {
-        if (pawns.isEmpty()) {
+        if (pieces.isEmpty()) {
             return "........";
         }
 
-        return pawns.stream()
-                .map(Pawn::getRepresentation)
+        return pieces.stream()
+                .map(Piece::getRepresentation)
                 .collect(Collectors.joining());
     }
 
     @Override
     public String toString() {
-        return "File{" + System.lineSeparator() +
-                "pawns=" + pawns + System.lineSeparator() +
+        return "File{" +
+                "pieces=" + pieces +
                 '}';
     }
+
 }

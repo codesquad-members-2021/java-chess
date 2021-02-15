@@ -1,7 +1,7 @@
 package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.piece.Color;
-import kr.codesquad.freddie.chess.piece.Pawn;
+import kr.codesquad.freddie.chess.piece.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ class FileTest {
             File file = new File();
 
             for (int j = 0; j < i; j++) {
-                file.add(new Pawn());
+                file.add(new Piece());
             }
             assertThat(file.size())
                     .isEqualTo(i);
@@ -34,24 +34,24 @@ class FileTest {
     @DisplayName("8개 초과하여 추가하는 경우")
     void add_moreThan_8() {
         for (int i = 0; i < File.SIZE; i++) {
-            file.add(new Pawn());
+            file.add(new Piece());
         }
 
-        assertThatThrownBy(() -> file.add(new Pawn()))
+        assertThatThrownBy(() -> file.add(new Piece()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("파일 당 8개만 추가 가능합니다.");
     }
 
     @Test
     void get() {
-        Pawn pawnA = new Pawn();
-        Pawn pawnB = new Pawn(Color.BLACK);
-        file.add(pawnA);
-        file.add(pawnB);
+        Piece pieceA = new Piece();
+        Piece pieceB = new Piece(Color.BLACK);
+        file.add(pieceA);
+        file.add(pieceB);
 
         assertAll(
-                () -> assertThat(file.get('a')).isEqualTo(pawnA).isEqualTo(file.get(0)),
-                () -> assertThat(file.get('b')).isEqualTo(pawnB).isEqualTo(file.get(1))
+                () -> assertThat(file.get('a')).isEqualTo(pieceA).isEqualTo(file.get(0)),
+                () -> assertThat(file.get('b')).isEqualTo(pieceB).isEqualTo(file.get(1))
         );
     }
 
@@ -59,7 +59,7 @@ class FileTest {
     @DisplayName("a~h를 벗어나도록 get을 하는 경우")
     void get_outOfRange() {
         for (int i = 0; i < File.SIZE; i++) {
-            file.add(new Pawn());
+            file.add(new Piece());
         }
 
         assertAll(
@@ -77,11 +77,11 @@ class FileTest {
     @Test
     void isAddable() {
         for (int i = 0; i < File.SIZE - 1; i++) {
-            file.add(new Pawn());
+            file.add(new Piece());
             assertThat(file.isAddable()).isTrue();
         }
 
-        file.add(new Pawn());
+        file.add(new Piece());
         assertThat(file.isAddable()).isFalse();
     }
 

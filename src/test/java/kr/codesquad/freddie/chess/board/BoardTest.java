@@ -1,7 +1,7 @@
 package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.piece.Color;
-import kr.codesquad.freddie.chess.piece.Pawn;
+import kr.codesquad.freddie.chess.piece.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ class BoardTest {
             Board board = new Board();
 
             for (int j = 0; j < i; j++) {
-                board.add(new Pawn());
+                board.add(new Piece());
             }
             assertThat(board.size())
                     .isEqualTo(i);
@@ -39,7 +39,7 @@ class BoardTest {
     void add_fillRank() {
         int size = File.SIZE + 1;
         for (int i = 1; i <= size; i++) {
-            board.add(new Pawn());
+            board.add(new Piece());
             assertThat(board.size())
                     .isEqualTo(i);
         }
@@ -48,37 +48,37 @@ class BoardTest {
     @Test
     void add_outOfRange() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(new Pawn());
+            board.add(new Piece());
         }
 
-        assertThatThrownBy(() -> board.add(new Pawn()))
+        assertThatThrownBy(() -> board.add(new Piece()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("더 이상 추가할 수 없습니다. 현재 크기 : 64");
     }
 
     @Test
     @DisplayName("하나만 추가하여 탐색")
-    void findPawn_one() {
-        Pawn white = new Pawn(Color.WHITE);
+    void findPiece_one() {
+        Piece white = new Piece(Color.WHITE);
         board.add(white);
         assertAll(
                 () -> assertThat(board.size()).isEqualTo(1),
-                () -> assertThat(board.findPawn('a', 8)).isEqualTo(white)
+                () -> assertThat(board.findPiece('a', 8)).isEqualTo(white)
         );
     }
 
     @Test
     @DisplayName("하나 이상 추가하여 탐색")
-    void findPawn_moreThanOne() {
-        Pawn white = new Pawn(Color.WHITE);
+    void findPiece_moreThanOne() {
+        Piece white = new Piece(Color.WHITE);
         board.add(white);
-        Pawn black = new Pawn(Color.BLACK);
+        Piece black = new Piece(Color.BLACK);
         board.add(black);
 
         assertAll(
                 () -> assertThat(board.size()).isEqualTo(2),
-                () -> assertThat(board.findPawn('a', 8)).isEqualTo(white),
-                () -> assertThat(board.findPawn('b', 8)).isEqualTo(black)
+                () -> assertThat(board.findPiece('a', 8)).isEqualTo(white),
+                () -> assertThat(board.findPiece('b', 8)).isEqualTo(black)
         );
     }
 
@@ -87,8 +87,8 @@ class BoardTest {
         board.initialize();
 
         assertAll(
-                () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
-                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
+                () -> assertThat(board.getWhitePiecesResult()).isEqualTo("pppppppp"),
+                () -> assertThat(board.getBlackPiecesResult()).isEqualTo("PPPPPPPP")
         );
     }
 

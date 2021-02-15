@@ -1,8 +1,11 @@
 package net.honux.chess;
 
 public class Pawn {
-    private final String color;
+    private String color;
 
+    public Pawn() {
+        this.color = "white";
+    }
     public Pawn(String color) {
         this.color = color;
     }

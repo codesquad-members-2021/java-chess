@@ -11,6 +11,7 @@ import java.util.Map;
 public class Board {
 
     private final Map<Color, List<Pawn>> pawnList;
+    private final int FILES = 8;
 
     public Board() {
         this.pawnList = new HashMap<>();
@@ -31,7 +32,7 @@ public class Board {
     }
 
     public void initialize() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < FILES; i++) {
             add(new Pawn(Color.WHITE));
             add(new Pawn(Color.BLACK));
         }
@@ -46,15 +47,19 @@ public class Board {
     }
 
     public String print() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append(getPawnsResult(Color.BLACK)).append(System.lineSeparator());
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append(getPawnsResult(Color.WHITE)).append(System.lineSeparator());
-        stringBuilder.append("........");
-        return stringBuilder.toString();
+        StringBuilder output = new StringBuilder();
+        appendStrAndNewLine(output, "........");
+        appendStrAndNewLine(output, getPawnsResult(Color.BLACK));
+        appendStrAndNewLine(output, "........");
+        appendStrAndNewLine(output, "........");
+        appendStrAndNewLine(output, "........");
+        appendStrAndNewLine(output, "........");
+        appendStrAndNewLine(output, getPawnsResult(Color.WHITE));
+        output.append("........");
+        return output.toString();
+    }
+
+    private void appendStrAndNewLine(StringBuilder sb, String string) {
+        sb.append(string).append(System.lineSeparator());
     }
 }

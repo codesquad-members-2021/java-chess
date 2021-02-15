@@ -66,7 +66,7 @@ public class Board {
     }
 
     public Pawn findBlackPawn(int index) {
-        return whitePawns.get(index);
+        return blackPawns.get(index);
     }
 
     public int size() {

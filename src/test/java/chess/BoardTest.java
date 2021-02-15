@@ -2,27 +2,24 @@ package chess;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pieces.Color;
 import pieces.Pawn;
 
-public class BoardTest {
+class BoardTest {
 
-    private String initBoard =
-            "........" + System.lineSeparator() +
-            "PPPPPPPP" + System.lineSeparator() +
-            "........" + System.lineSeparator() +
-            "........" + System.lineSeparator() +
-            "........" + System.lineSeparator() +
-            "........" + System.lineSeparator() +
-            "pppppppp" + System.lineSeparator() +
-            "........";
+    Board board;
+
+    @BeforeEach
+    void testInit() {
+        board = new Board();
+    }
 
     @Test
     @DisplayName("게임 보드 생성 테스트")
-    public void create() throws Exception {
-        Board board = new Board();
+    void create() throws Exception {
         Pawn white = new Pawn(Color.WHITE);
         Pawn black = new Pawn(Color.BLACK);
 
@@ -35,7 +32,7 @@ public class BoardTest {
 
     }
 
-    public void addPawnToBoard(Board board, Pawn pawn, int index, int size) {
+    void addPawnToBoard(Board board, Pawn pawn, int index, int size) {
         board.add(pawn);
         assertThat(board.size()).isEqualTo(size);
         assertThat(board.findPawn(pawn.getColor(), index)).isEqualTo(pawn);
@@ -43,8 +40,17 @@ public class BoardTest {
 
     @Test
     @DisplayName("게임 보드 초기화")
-   public void initialize() throws Exception {
-        Board board = new Board();
+   void initialize() throws Exception {
+        String initBoard =
+                "........" + System.lineSeparator() +
+                "PPPPPPPP" + System.lineSeparator() +
+                "........" + System.lineSeparator() +
+                "........" + System.lineSeparator() +
+                "........" + System.lineSeparator() +
+                "........" + System.lineSeparator() +
+                "pppppppp" + System.lineSeparator() +
+                "........";
+
         board.initialize();
         assertThat("pppppppp").isEqualTo(board.getPawnsResult(Color.WHITE));
         assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Color.BLACK));

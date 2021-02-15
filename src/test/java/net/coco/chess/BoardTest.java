@@ -43,6 +43,13 @@ public class BoardTest {
 
     }
 
+    private void verifyPaswsSize(PawnEnum pawnEnum, int actualSize) {
+        if (pawnEnum == PawnEnum.WHITE_COLOR)
+            verifyWhitePaswsSize(actualSize);
+        else
+            verifyBlackPaswsSize(actualSize);
+    }
+
     private void verifyWhitePawnsIndex(int findPawnIndex, Pawn pawn) {
         board.addWhitePawn(pawn);
         assertThat(pawn).isEqualTo(board.findWhitePawn(findPawnIndex));
@@ -52,10 +59,7 @@ public class BoardTest {
         board.addBlackPawn(pawn);
         assertThat(pawn).isEqualTo(board.findBlackPawn(findPawnIndex));
     }
-    
 
-    private void verifyPaswsSize(int actualSize) {
-        assertThat(actualSize).isEqualTo(board.size());
-    }
+
 
 }

@@ -37,7 +37,7 @@ class BoardTest {
     public void print() {
         assertEquals("........", board.getEmptyResult());
     }
-    
+
     void check(Pawn pawn, int size, int idx) {
         board.add(pawn);
         assertEquals(size, board.size(pawn));

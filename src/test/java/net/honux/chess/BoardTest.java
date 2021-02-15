@@ -1,24 +1,30 @@
 package net.honux.chess;
 
-
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import net.honux.chess.pieces.Pawn;
 
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 public class BoardTest {
+    private Board board;
+
+    @BeforeEach
+    @DisplayName("모든 Test 전에 Board 객체 생성")
+    void create_Board() {
+        board = new Board();
+    }
+
     @Test
+    @DisplayName("생성되는 Pawn 객체마다 Board에서 List Size 값 및 index로 색상 값을 잘 가져오는지 확인")
     public void create() throws Exception {
-        Board board = new Board();
+        verifyBoard(new Pawn("white"), 1, 0);
+        verifyBoard(new Pawn("black"), 2, 1);
+    }
 
-        Pawn white = new Pawn(Pawn.WHITE_COLOR);
-        board.add(white);
-        assertEquals(1, board.size());
-        assertEquals(white, board.findPawn(0));
-
-        Pawn black = new Pawn(Pawn.BLACK_COLOR);
-        board.add(black);
-        assertEquals(2, board.size());
-        assertEquals(black, board.findPawn(1));
+    void verifyBoard(Pawn pawn, int size, int index) {
+        board.add(pawn);
+        assertEquals(size, board.size());
+        assertEquals(pawn, board.findPawn(index));
     }
 }

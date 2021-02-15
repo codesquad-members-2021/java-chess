@@ -1,4 +1,4 @@
-package net.honux.chess;
+package chess.pieces;
 
 public enum Color {
     WHITE,

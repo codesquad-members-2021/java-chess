@@ -6,6 +6,7 @@ import net.honux.chess.entity.pieces.Pawn;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class Board {
     private static final int BOARD_SIZE = 8;
@@ -19,6 +20,15 @@ public class Board {
         blackPawnList = new ArrayList<>();
         addPawnToBoardSize();
     }
+
+    public void main() {
+        Scanner scanner = new Scanner(System.in);
+        String userInputCommand = scanner.nextLine();
+        userInputCommand = validateStartCommand(scanner, userInputCommand);
+        play(scanner, userInputCommand);
+        System.out.println("체스 게임이 종료됩니다..");
+    }
+
 
     public void add(Pawn pawn) {
         getValidateInputList(pawn).add(pawn);
@@ -97,4 +107,22 @@ public class Board {
             blackPawnList.add(new Pawn(Color.BLACK));
         }
     }
+
+    private String validateStartCommand(Scanner scanner, String userInputCommand) {
+        while (!userInputCommand.equals("start")) {
+            System.out.println("start 를 입력해 주십시오");
+            userInputCommand = scanner.nextLine();
+        }
+        System.out.println("체스 게임이 시작됩니다.");
+        return userInputCommand;
+    }
+
+    private void play(Scanner scanner, String userInputCommand) {
+        while (!userInputCommand.equals("end")) {
+            userInputCommand = scanner.nextLine();
+            System.out.println(userInputCommand + "를 입력하셨습니다.");
+            print();
+        }
+    }
+
 }

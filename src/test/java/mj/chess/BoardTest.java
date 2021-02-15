@@ -18,13 +18,20 @@ class BoardTest {
     @Test
     @DisplayName("보드 객체 내 흰색 폰 1개, 검은색 폰 1개 생성")
     void createBoard() {
-        verifyAddAndSearch(new Pawn(ColorOfPiece.WHITE), 1, 0);
-        verifyAddAndSearch(new Pawn(ColorOfPiece.BLACK), 2, 1);
+        Pawn blackPawn = new Pawn(ColorOfPiece.BLACK);
+        Pawn whitePawn = new Pawn();
+
+        verifyAddition(blackPawn, 1);
+        verifyAddition(whitePawn, 2);
+        verifySearchByIndex(blackPawn, 0);
+        verifySearchByIndex(whitePawn, 1);
     }
 
-    void verifyAddAndSearch(Pawn pawn, int size, int index){
+    void verifyAddition(Pawn pawn, int size){
         board.add(pawn);
         assertThat(board.size()).isEqualTo(size);
+    }
+    void verifySearchByIndex(Pawn pawn, int index){
         assertThat(pawn).isEqualTo(board.findPawn(index));
     }
 }

@@ -32,7 +32,7 @@ public class Piece {
     }
 
     public String getRepresentation() {
-        return color.getRepresentationBy("p");
+        return color.getRepresentationBy(kind.REPRESENTATION);
     }
 
     @Override

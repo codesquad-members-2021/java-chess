@@ -30,13 +30,23 @@ class PieceTest {
     }
 
     @Test
-    @DisplayName("검정은 대문자 P 하양은 소문자 p 반환")
+    @DisplayName("검정은 대문자 하양은 소문자 반환")
     void getRepresentation() {
         assertAll(
                 () -> assertThat(Piece.createBlackPawn().getRepresentation()).isEqualTo("P"),
                 () -> assertThat(Piece.createWhitePawn().getRepresentation()).isEqualTo("p"),
                 () -> assertThat(Piece.create("black", "pawn").getRepresentation()).isEqualTo("P"),
-                () -> assertThat(Piece.create("white", "pawn").getRepresentation()).isEqualTo("p")
+                () -> assertThat(Piece.create("white", "pawn").getRepresentation()).isEqualTo("p"),
+                () -> assertThat(Piece.create("black", "knight").getRepresentation()).isEqualTo("K"),
+                () -> assertThat(Piece.create("white", "knight").getRepresentation()).isEqualTo("k"),
+                () -> assertThat(Piece.create("black", "rook").getRepresentation()).isEqualTo("R"),
+                () -> assertThat(Piece.create("white", "rook").getRepresentation()).isEqualTo("r"),
+                () -> assertThat(Piece.create("black", "bishop").getRepresentation()).isEqualTo("B"),
+                () -> assertThat(Piece.create("white", "bishop").getRepresentation()).isEqualTo("b"),
+                () -> assertThat(Piece.create("black", "queen").getRepresentation()).isEqualTo("Q"),
+                () -> assertThat(Piece.create("white", "queen").getRepresentation()).isEqualTo("q"),
+                () -> assertThat(Piece.create("black", "king").getRepresentation()).isEqualTo("K"),
+                () -> assertThat(Piece.create("white", "king").getRepresentation()).isEqualTo("k")
         );
     }
 }

@@ -28,7 +28,9 @@ class BoardTest {
 
     void verifyAddPawn(Pawn pawn){
         board.add(pawn);
-        assertEquals(pawn, board.find(index++));
-        assertEquals(index, board.size());
+        assertAll(
+                ()->assertEquals(pawn, board.find(index++)),
+                ()->assertEquals(index, board.size())
+        );
     }
 }

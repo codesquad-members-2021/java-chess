@@ -16,10 +16,7 @@ public class Board {
         if (pawn.getColor().equals(Pawn.WHITE_COLOR)) {
             return whitePawns;
         }
-        if (pawn.getColor().equals(Pawn.BLACK_COLOR)) {
-            return blackPawns;
-        }
-        return null;
+        return blackPawns;
     }
 
     public void add(Pawn pawn) {

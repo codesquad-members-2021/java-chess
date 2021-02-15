@@ -9,6 +9,7 @@ public class Board {
     private final List<Pawn> blackPawns;
     private final List<Pawn> whitePawns;
     private final String EMPTY_LINE = "........";
+    private final int BOARD_SIZE = 8;
 
     public Board() {
         blackPawns = new ArrayList<>();
@@ -16,7 +17,7 @@ public class Board {
     }
 
     public void initialize() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             addWhitePawn(new Pawn(Color.WHITE));
             addBlackPawn(new Pawn(Color.BLACK));
         }
@@ -39,7 +40,7 @@ public class Board {
     }
 
     public void print() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             if (i == 1) {
                 System.out.println(getBlackPawnsToPrint());
             } else if (i == 6) {

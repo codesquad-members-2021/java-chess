@@ -15,7 +15,10 @@ public class Board {
     public void initialize() {
         whitePawnList = new ArrayList<>();
         blackPawnList = new ArrayList<>();
+        addPawnToBoardSize();
+    }
 
+    private void addPawnToBoardSize() {
         for (int i = 0; i < BOARD_SIZE; i++) {
             whitePawnList.add(new Pawn(Color.WHITE));
             blackPawnList.add(new Pawn(Color.BLACK));
@@ -23,11 +26,14 @@ public class Board {
     }
 
     public void add(Pawn pawn) {
+        getValidateInputList(pawn).add(pawn);
+    }
+
+    private List<Pawn> getValidateInputList(Pawn pawn) {
         if (pawn.getColor() == Color.BLACK) {
-            blackPawnList.add(pawn);
-        } else {
-            whitePawnList.add(pawn);
+            return blackPawnList;
         }
+        return whitePawnList;
     }
 
     public int whitePawnsize() {

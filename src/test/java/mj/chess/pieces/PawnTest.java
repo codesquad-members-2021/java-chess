@@ -9,19 +9,19 @@ public class PawnTest {
 
     @Test
     @DisplayName("기본 생성자로 흰색 폰 생성")
-    public void create_pawn() {
+    public void createPawn() {
         verifyColorOfPawn(new Pawn(), ColorOfPiece.WHITE);
     }
 
     @Test
     @DisplayName("흰색 폰 생성")
-    public void create_pawn_check_color_white() {
+    public void createWhitePawn() {
         verifyColorOfPawn(new Pawn(ColorOfPiece.WHITE), ColorOfPiece.WHITE);
     }
 
     @Test
     @DisplayName("검은색 폰 생성")
-    public void create_pawn_check_color_balck() {
+    public void createBlackPawn() {
         verifyColorOfPawn(new Pawn(ColorOfPiece.BLACK), ColorOfPiece.BLACK);
     }
 

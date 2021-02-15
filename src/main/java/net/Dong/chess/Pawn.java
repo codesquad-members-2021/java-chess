@@ -45,4 +45,11 @@ public class Pawn {
         return this.color;
     }
 
+    public String getSymbol() {
+        if(this.color == Color.WHITE) {
+            return "p";
+        }
+        return "P";
+    }
+
 }

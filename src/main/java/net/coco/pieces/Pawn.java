@@ -14,4 +14,11 @@ public class Pawn {
         this.representation = pawnEnum.representation;
     }
 
+    public PawnEnum getColor() {
+        return color;
+    }
+
+    public String getRepresentation() {
+        return representation;
+    }
 }

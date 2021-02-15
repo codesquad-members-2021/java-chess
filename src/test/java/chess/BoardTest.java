@@ -42,7 +42,7 @@ public class BoardTest {
     }
 
     void verifyFindPawn(Piece piece, int index) {
-        assertEquals(piece, board.findPawn(index));
+        assertEquals(piece, board.findWhite(index));
     }
 
     Piece add(String color) {

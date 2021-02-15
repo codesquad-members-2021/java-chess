@@ -1,6 +1,6 @@
 package net.honux.chess.pieces;
 
-import net.honux.chess.pieces.Pawn;
+
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
@@ -22,6 +22,6 @@ class PawnTest {
     @Test
     public void create_기본생성자() throws Exception {
         Pawn pawn = new Pawn();
-        assertEquals("white", pawn.getColor());
+        assertThat(pawn.getColor()).isEqualTo("white");
     }
 }

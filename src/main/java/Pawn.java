@@ -1,11 +1,12 @@
 public class Pawn {
-    private String color;
+    private Colors color;
 
-    public Pawn(String color) {
+    public Pawn(Colors color) {
         this.color = color;
     }
 
-    public String getColor() {
+    public Colors getColor() {
         return color;
     }
+
 }

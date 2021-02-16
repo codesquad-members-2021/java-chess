@@ -7,10 +7,16 @@ import pieces.Color;
 
 public class BoardTest {
 
+    Board board;
+
+    @BeforeEach
+    void createBoard(){
+        board = new Board();
+    }
+
     @Test
     @DisplayName("보드를 생성한 후 폰 테스트 한다.")
-    void createBoardAndTest() throws Exception {
-        Board board = new Board();
+    void createPawnAndTest() throws Exception {
 
         Pawn white = new Pawn(Color.WHITE);
         board.add(white);

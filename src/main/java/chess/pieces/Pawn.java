@@ -1,20 +1,30 @@
 package chess.pieces;
 
 public class Pawn {
-    public static final String BLACK = "black";
-    public static final String WHITE = "white";
+    public static final String BLACK_REPRESENTATION = "P";
+    public static final String WHITE_REPRESENTATION = "p";
 
-    private String color;
+    private Color color;
+    private String representation;
 
-    public Pawn(String color) {
+    public static Pawn newWhitePawn() {
+        return new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION);
+    }
+
+    public static Pawn newBlackPawn() {
+        return new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION);
+    }
+
+    private Pawn(Color color, String representation) {
         this.color = color;
+        this.representation = representation;
     }
 
-    Pawn() {
-        this(Pawn.WHITE); // 생성자에서 같은 클래스의 다른 생성자를 호출한다.
-    }
-
-    public String getColor() {
+    public Color getColor() {
         return color;
+    }
+
+    public String getRepresentation() {
+        return representation;
     }
 }

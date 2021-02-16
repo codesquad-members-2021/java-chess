@@ -18,11 +18,11 @@ public class ChessGame {
                 if (!started) {
                     board = new Board();
                     board.initialize();
-                    System.out.println(board.print());
+                    System.out.println(board.showBoard());
                     started = true;
                 } else {
                     System.out.println("이미 게임이 시작되었습니다.");
-                    System.out.println(board.print());
+                    System.out.println(board.showBoard());
                 }
             } else if ("end".equals(command)) {
                 endGame = true;

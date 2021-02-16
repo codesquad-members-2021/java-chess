@@ -10,7 +10,9 @@ public class Board {
     List<Pawn> whitePawn = new ArrayList<>();
     List<Pawn> blackPawn = new ArrayList<>();
 
-    char[][] board = new char[8][8];
+    private final String BLANK = "........";
+
+    List<String []> board = new ArrayList<>();
 
     public void addWhitePawn(Pawn pawn) {
         whitePawn.add(pawn);
@@ -36,6 +38,14 @@ public class Board {
         return blackPawn.get(index);
     }
 
+    String getWhitePawnsResult(){
+        return getPawnsResult(Color.WHITE);
+    }
+
+    String getBlackPawnsResult(){
+        return  getPawnsResult(Color.BLACK);
+    }
+
     String getPawnsResult(Color color){
         StringBuilder sb = new StringBuilder();
         switch (color.getColorName()){
@@ -55,40 +65,43 @@ public class Board {
     }
 
     void initialize() {
+        initPawn();
+
+        for(int i =0; i < 8; i++){
+
+            switch (i){
+                case 1:
+                    board.add(getWhitePawnsResult().split(""));
+                    continue;
+                case 6:
+                    board.add(getBlackPawnsResult().split(""));
+                    continue;
+
+                default:
+                    board.add(BLANK.split(""));
+            }
+        }
+    }
+
+    void initPawn(){
         for (int i = 0; i < 8; i++) {
             addWhitePawn(new Pawn(Color.WHITE));
-        }
-
-        for (int i = 0; i < 8; i++) {
             addBlackPawn(new Pawn(Color.BLACK));
         }
     }
 
-    void initBoard(){
-        for(int i = 0; i< board.length; i++){
-            for(int j = 0; j< board[i].length; j++){
-                if(i == 1){
-                    board[i][j]= getWhitePawn(i).getRepresentation();
-                    continue;
-                }
-                if(i == 6){
-                    board[i][j]= getBlackPawn(i).getRepresentation();
-                    continue;
-                }
-                board[i][j] = '.';
-            }
-        }
-    }
-
-    void print(){
+    String print(){
         initialize();
-        initBoard();
 
-        for(int i = 0; i<board.length; i++){
-            for(int j =0; j<board[i].length; j++){
-                System.out.printf("%3c",board[i][j]);
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i< board.size(); i++){
+            for(int j =0; j< board.size(); j++){
+                sb.append(board.get(i)[j]);
             }
-            System.out.println();
+            sb.append("\n");
         }
+
+        return sb.toString();
     }
 }

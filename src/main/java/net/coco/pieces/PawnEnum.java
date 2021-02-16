@@ -1,8 +1,8 @@
 package net.coco.pieces;
 
 public enum PawnEnum {
-    WHITE_COLOR('p')
-    ,BLACK_COLOR('P');
+    WHITE('p')
+    , BLACK('P');
 
     PawnEnum(char representation) {
         this.representation = representation;

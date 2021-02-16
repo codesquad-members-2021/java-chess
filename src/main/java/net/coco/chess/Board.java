@@ -15,14 +15,14 @@ public class Board {
 
 
     public void addWhitePawn(Pawn pawn) {
-        if (pawn.getColor() == PawnEnum.WHITE_COLOR)
+        if (pawn.getColor() == PawnEnum.WHITE)
             whitePawns.add(pawn);
         else
             System.out.println("화이트 색상을 넣어주세요.");
     }
 
     public void addBlackPawn(Pawn pawn) {
-        if (pawn.getColor() == PawnEnum.BLACK_COLOR)
+        if (pawn.getColor() == PawnEnum.BLACK)
             blackPawns.add(pawn);
         else
             System.out.println("블랙 색상을 넣어주세요.");
@@ -48,13 +48,13 @@ public class Board {
         whitePawns.clear();
         blackPawns.clear();
         for (int i = 0; i < BOARD_CELLS; i++) {
-            whitePawns.add(new Pawn(PawnEnum.WHITE_COLOR));
-            blackPawns.add(new Pawn(PawnEnum.BLACK_COLOR));
+            whitePawns.add(new Pawn(PawnEnum.WHITE));
+            blackPawns.add(new Pawn(PawnEnum.BLACK));
         }
     }
 
     public String getPawnsResult(PawnEnum pawnEnum) {
-        if (pawnEnum == PawnEnum.WHITE_COLOR)
+        if (pawnEnum == PawnEnum.WHITE)
             return getPawnsToString(whitePawns);
         else
             return getPawnsToString(blackPawns);

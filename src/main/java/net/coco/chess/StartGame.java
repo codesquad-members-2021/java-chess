@@ -29,8 +29,8 @@ public class StartGame {
         switch (input) {
             case START:
                 board.initialize();
-                String blackPawns = board.getPawnsResult(PawnEnum.BLACK_COLOR);
-                String whitePawns = board.getPawnsResult(PawnEnum.WHITE_COLOR);
+                String blackPawns = board.getPawnsResult(PawnEnum.BLACK);
+                String whitePawns = board.getPawnsResult(PawnEnum.WHITE);
                 System.out.println(PrintChess.printBoard(blackPawns, whitePawns));
                 break;
             case END:

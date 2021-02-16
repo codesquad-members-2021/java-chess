@@ -25,11 +25,11 @@ public class BoardTest {
     void BoardAddPawnCheck() {
 
         Assertions.assertAll(
-                () -> verifyPawnToPawns(PawnEnum.WHITE_COLOR, 0),
-                () -> verifyPaswsSize(PawnEnum.WHITE_COLOR, 1),
+                () -> verifyPawnToPawns(PawnEnum.WHITE, 0),
+                () -> verifyPaswsSize(PawnEnum.WHITE, 1),
 
-                () -> verifyPawnToPawns(PawnEnum.BLACK_COLOR, 0),
-                () -> verifyPaswsSize(PawnEnum.BLACK_COLOR, 1)
+                () -> verifyPawnToPawns(PawnEnum.BLACK, 0),
+                () -> verifyPaswsSize(PawnEnum.BLACK, 1)
         );
 
     }
@@ -38,23 +38,23 @@ public class BoardTest {
     void initialize() {
         board.initialize();
         Assertions.assertAll(
-                () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(PawnEnum.WHITE_COLOR)),
-                () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(PawnEnum.BLACK_COLOR))
+                () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(PawnEnum.WHITE)),
+                () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(PawnEnum.BLACK))
         );
     }
 
     @Test
     void print(){
         board.initialize();
-        String blackPawns=board.getPawnsResult(PawnEnum.BLACK_COLOR);
-        String whitePawns=board.getPawnsResult(PawnEnum.WHITE_COLOR);
+        String blackPawns=board.getPawnsResult(PawnEnum.BLACK);
+        String whitePawns=board.getPawnsResult(PawnEnum.WHITE);
         System.out.println(PrintChess.printBoard(blackPawns,whitePawns));
     }
 
     private void verifyPawnToPawns(PawnEnum pawnEnum, int findPawnIndex) {
         Pawn pawn = new Pawn(pawnEnum);
 
-        if (pawnEnum == PawnEnum.WHITE_COLOR)
+        if (pawnEnum == PawnEnum.WHITE)
             verifyWhitePawnsIndex(findPawnIndex, pawn);
         else
             verifyBlackPawnsIndex(findPawnIndex, pawn);
@@ -62,7 +62,7 @@ public class BoardTest {
     }
 
     private void verifyPaswsSize(PawnEnum pawnEnum, int actualSize) {
-        if (pawnEnum == PawnEnum.WHITE_COLOR)
+        if (pawnEnum == PawnEnum.WHITE)
             verifyWhitePaswsSize(actualSize);
         else
             verifyBlackPaswsSize(actualSize);

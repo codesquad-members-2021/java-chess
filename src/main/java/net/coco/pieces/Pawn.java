@@ -5,8 +5,8 @@ public class Pawn {
     private char representation;
 
     public Pawn() {
-        this.color = PawnEnum.WHITE_COLOR;
-        this.representation = PawnEnum.WHITE_COLOR.representation;
+        this.color = PawnEnum.WHITE;
+        this.representation = PawnEnum.WHITE.representation;
     }
 
     public Pawn(PawnEnum pawnEnum) {

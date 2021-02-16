@@ -59,13 +59,14 @@ public class Board {
     void print() {
         StringBuilder boardOutput = new StringBuilder();
         boardOutput.append("........\n");
-        boardOutput.append(getBlackPawnsResult());
+        boardOutput.append(getBlackPawnsResult() + "\n");
         boardOutput.append("........\n");
         boardOutput.append("........\n");
         boardOutput.append("........\n");
         boardOutput.append("........\n");
-        boardOutput.append(getWhitePawnsResult());
+        boardOutput.append(getWhitePawnsResult() + "\n");
         boardOutput.append("........\n");
         System.out.println(boardOutput.toString());
     }
+
 }

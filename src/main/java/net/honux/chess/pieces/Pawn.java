@@ -8,7 +8,7 @@ public class Pawn {
 
 
     public Pawn(){
-        this.color = WHITE_COLOR;
+        this(WHITE_COLOR);
     }
 
     public Pawn(String color){
@@ -20,3 +20,4 @@ public class Pawn {
     }
 
 }
+

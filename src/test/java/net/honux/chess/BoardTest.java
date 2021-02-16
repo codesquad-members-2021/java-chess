@@ -4,9 +4,10 @@ import net.honux.chess.pieces.Pawn;
 
 import org.junit.jupiter.api.*;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BoardTest {
+class BoardTest {
     private Board board;
 
     @BeforeEach
@@ -17,14 +18,14 @@ public class BoardTest {
 
     @Test
     @DisplayName("생성되는 Pawn 객체마다 Board에서 List Size 값 및 index로 색상 값을 잘 가져오는지 확인")
-    public void create() throws Exception {
+    void create() throws Exception {
         verifyBoard(new Pawn("white"), 1, 0);
         verifyBoard(new Pawn("black"), 2, 1);
     }
 
-    void verifyBoard(Pawn pawn, int size, int index) {
+    private void verifyBoard(Pawn pawn, int size, int index) {
         board.add(pawn);
-        assertEquals(size, board.size());
-        assertEquals(pawn, board.findPawn(index));
+        assertThat(board.size()).isEqualTo(size);
+        assertThat(board.findPawn(index)).isEqualTo(pawn);
     }
 }

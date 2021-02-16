@@ -32,6 +32,24 @@ class PieceTest {
         assertAll(() -> assertThat(piece.getColor()).isEqualTo(color),
                 () -> assertThat(piece.getRepresentation()).isEqualTo(representation));
     }
+
+    @Test
+    @DisplayName("말이 흰색이면 true, 아니면 false를 반환하는지 확인한다")
+    void verifyIsWhite() {
+        Piece whitePawn = Piece.createWhitePawn();
+        Piece blackKnight = Piece.createBlackKnight();
+        assertThat(whitePawn.isWhite()).isEqualTo(true);
+        assertThat(blackKnight.isWhite()).isEqualTo(false);
+    }
+
+    @Test
+    @DisplayName("말이 검은색이면 true, 아니면 false를 반환하는지 확인한다")
+    void verifyIsBlack() {
+        Piece whiteQueen = Piece.createWhiteQueen();
+        Piece blackKing = Piece.createBlackKing();
+        assertThat(whiteQueen.isBlack()).isEqualTo(false);
+        assertThat(blackKing.isBlack()).isEqualTo(true);
+    }
 }
 
 

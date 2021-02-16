@@ -32,7 +32,6 @@ public class BoardTest {
     @Test
     @DisplayName("Init board")
     public void initialize() throws Exception {
-        Board board = new Board();
         board.initialize();
         assertAll(
                 ()->assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult()),

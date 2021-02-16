@@ -20,7 +20,7 @@ public class PawnTest {
 
     @Test
     @DisplayName("흰색 폰이 생성되어야 한다")
-     void createBasicPawn() throws Exception {
+     void createBasicPawn(){
         Pawn pawn = new Pawn();
         assertEquals(Color.WHITE, pawn.getColor());
     }

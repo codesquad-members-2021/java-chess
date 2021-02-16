@@ -22,8 +22,8 @@ public class Board {
 
     public void add(Pawn pawn){
         if(pawn.getColor() == Pawn.Color.WHITE){
-
             whitePawnList.add(pawn);
+
         }else{
             blackPawnList.add(pawn);
         }
@@ -50,6 +50,7 @@ public class Board {
 
     private String getPawnRepresentation(ArrayList<Pawn> pawnList) {
         StringBuilder sb = new StringBuilder();
+
         for (Pawn pawn : pawnList) {
             sb.append(pawn.getRepresentation());
             sb.append(" ");

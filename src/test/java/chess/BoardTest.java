@@ -24,8 +24,10 @@ class BoardTest {
     public void initialize() throws Exception{
         Board board = new Board();
         board.initialize();
-        assertEquals("p p p p p p p p", board.getWhitePawnResult());
-        assertEquals("P P P P P P P P", board.getBlackPawnResult());
+        String testp = "p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" ";
+        String testP = "P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" ";
+        assertEquals(testp, board.getWhitePawnResult());
+        assertEquals(testP, board.getBlackPawnResult());
     }
 
 }

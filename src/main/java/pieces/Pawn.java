@@ -2,9 +2,9 @@ package pieces;
 
 public class Pawn {
 
-    private final Color color;
+    private Color color;
 
-    private final PawnRepresentation representation;
+    private PawnRepresentation representation;
 
     public enum Color {
         WHITE, BLACK
@@ -24,8 +24,7 @@ public class Pawn {
             this.color = Color.BLACK;
             this.representation = PawnRepresentation.P;
         }else {
-            this.color = Color.WHITE;
-            this.representation = PawnRepresentation.p;
+            new Pawn();
         }
     }
 

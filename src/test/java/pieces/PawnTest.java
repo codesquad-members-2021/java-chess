@@ -22,6 +22,6 @@ public class PawnTest {
     @DisplayName("흰색 폰이 생성되어야 한다")
      void createBasicPawn(){
         Pawn pawn = new Pawn();
-        assertEquals(Color.WHITE, pawn.getColor());
+        assertThat(Color.WHITE).isEqualTo(pawn.getColor());
     }
 }

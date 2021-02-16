@@ -71,10 +71,10 @@ public class Board {
 
             switch (i){
                 case 1:
-                    board.add(getWhitePawnsResult().split(""));
+                    board.add(getBlackPawnsResult().split(""));
                     continue;
                 case 6:
-                    board.add(getBlackPawnsResult().split(""));
+                    board.add(getWhitePawnsResult().split(""));
                     continue;
 
                 default:

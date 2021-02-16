@@ -1,5 +1,6 @@
 package chess;
 
+import chess.pieces.Color;
 import chess.pieces.Pawn;
 
 import java.util.ArrayList;
@@ -11,9 +12,9 @@ public class Board {
     private static final int COLUMN = 8;
     private List<Pawn> whitePawns = new ArrayList<>(8);
     private List<Pawn> blackPawns = new ArrayList<>(8);
-    
+
     public List<Pawn> distinguish(Pawn pawn) {
-        if (pawn.getColor().equals(Pawn.WHITE_COLOR)) {
+        if (pawn.getColor() == Color.WHITE) {
             return whitePawns;
         }
         return blackPawns;
@@ -34,8 +35,8 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < PAWNSNUM; i++) {
-            Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
-            Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK__REPRESENTATION);
+            Pawn white = new Pawn(Color.WHITE);
+            Pawn black = new Pawn(Color.BLACK);
             add(white);
             add(black);
         }

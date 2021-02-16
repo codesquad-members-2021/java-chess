@@ -9,19 +9,19 @@ public class PawnTest {
     @Test
     public void create_기본생성자() throws Exception {
         Pawn pawn = new Pawn();
-        assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
-        assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getRepresentation());
+        assertEquals(Color.WHITE, pawn.getColor());
+        assertEquals(Color.WHITE.getRepresentation(), pawn.getRepresentation());
     }
 
     @Test
     public void create() {
-        verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
-        verifyPawn(Pawn.BLACK_COLOR, Pawn.BLACK__REPRESENTATION);
+        verifyPawn(Color.WHITE, Color.WHITE.getRepresentation());
+        verifyPawn(Color.BLACK, Color.BLACK.getRepresentation());
     }
 
-    void verifyPawn(final String color, final char representation) {
-        Pawn pawn = new Pawn(color, representation);
-        assertEquals(color,pawn.getColor());
+    void verifyPawn(final Color color, final char representation) {
+        Pawn pawn = new Pawn(color);
+        assertEquals(color, pawn.getColor());
         assertEquals(representation, pawn.getRepresentation());
     }
 }

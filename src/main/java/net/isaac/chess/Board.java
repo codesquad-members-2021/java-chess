@@ -10,6 +10,13 @@ public class Board {
 
     private Piece[][] pieces = new Piece[MAX_SIZE][MAX_SIZE];
 
+    public void initialize(){
+        for(int i = 0; i < MAX_SIZE; i++){
+            pieces[1][i] = new Pawn(PieceColor.BLACK);
+            pieces[MAX_IDX-1][i] = new Pawn(PieceColor.WHITE);
+        }
+    }
+
     public boolean add(Piece piece, int rowIdx, int colIdx){
         if(!isValid(rowIdx) || !isValid(colIdx))
             return false;

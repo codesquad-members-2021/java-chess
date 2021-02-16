@@ -16,6 +16,13 @@ class BoardTest {
     void createBoard(){
         board = new Board();
     }
+    @Test
+    @DisplayName("초기화 했을 때 Board에 흑 폰 8개 백 폰 8개가 있는지 확인")
+    void initialize(){
+        board.initialize();
+        assertEquals("pppppppp", board.getWhitePawnsResult());
+        assertEquals("PPPPPPPP", board.getBlackPawnsResult());
+    }
 
     @Test
     @DisplayName("Board에 Pawn이 제대로 추가되는지 확인")

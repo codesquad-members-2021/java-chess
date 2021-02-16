@@ -30,17 +30,9 @@ class BoardTest {
     @Test
     @DisplayName("Board에 Pawn이 제대로 추가되는지 확인")
     void create() {
-        Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
-        Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
-        verifyAddWhitePawn(white,0);
+        addWhitePawn(0);
+        addBlackPawn(0);
+        verifyAddWhitePawn(0);
+        verifyAddBlackPawn(0);
     }
-
-    void verifyAddWhitePawn(Pawn pawn, int index){
-        board.addWhitePawn(pawn);
-        assertAll(
-                ()->assertEquals(pawn,board.findWhitePawn(0)),
-                ()->assertEquals(index+1,board.size())
-        );
-    }
-
 }

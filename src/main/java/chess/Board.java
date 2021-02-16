@@ -60,4 +60,12 @@ public class Board {
         output.append("........");
         return output.toString();
     }
+
+    public int pieceCount() {
+        return 0;
+    }
+
+    public String showBoard() {
+        return "";
+    }
 }

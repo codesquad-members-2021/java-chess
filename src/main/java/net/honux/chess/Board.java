@@ -36,9 +36,8 @@ public class Board {
     private String listPawnsToSingleLine(ArrayList<Pawn> whichGroupOfPawns) {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            sb.append(whichGroupOfPawns.get(i).getRepresentation());
-        }
+        for (Pawn p : whichGroupOfPawns)
+            sb.append(p.getRepresentation());
 
         return sb.toString();
     }

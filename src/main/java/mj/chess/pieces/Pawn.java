@@ -26,4 +26,8 @@ public class Pawn {
         return color;
     }
 
+    public char getRepresentation() {
+        return representation;
+    }
+
 }

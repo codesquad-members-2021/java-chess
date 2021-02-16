@@ -17,6 +17,18 @@ public class Board {
         }
     }
 
+    public void print(){
+        for(int i = 0; i < MAX_SIZE; i++) {
+            for(int j = 0; j < MAX_SIZE; j++) {
+                if(pieces[i][j] == null)
+                    System.out.print('.');
+                else
+                    System.out.print(pieces[i][j].getBoardCharacter());
+            }
+            System.out.println();
+        }
+    }
+
     public boolean add(Piece piece, int rowIdx, int colIdx){
         if(!isValid(rowIdx) || !isValid(colIdx))
             return false;

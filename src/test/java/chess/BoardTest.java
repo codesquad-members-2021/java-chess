@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import pieces.Pawn;
 import pieces.Color;
 
-public class BoardTest {
+class BoardTest {
 
     Board board;
 

@@ -8,8 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 class PawnTest {
 
     @Test
-    @DisplayName("흰색 폰이 생성되어야 한다")
-    public void create() {
+    public void 폰의_컬러와_화면에_출력할_Representation이_각_컬러에_맞는지_확인한다() {
         verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
         verifyPawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
     }

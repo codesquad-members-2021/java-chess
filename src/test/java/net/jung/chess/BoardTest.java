@@ -42,6 +42,11 @@ public class BoardTest {
 
     }
 
-
-
+    @Test
+    @DisplayName("initialize()는 Board에 흑백 폰을 8개씩 더한 후 getPawnsResult는 대표알파벳을 합쳐 리턴한다.")
+    void initializeToAddPawnsToBoard(){
+        board.initialize();
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+    }
 }

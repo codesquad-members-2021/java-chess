@@ -15,7 +15,7 @@ class PawnTest {
     }
 
     @Test
-    @DisplayName("검은색 폰은 p를 출력해야한다.")
+    @DisplayName("검은색 폰은 P를 출력해야한다.")
     public void createBlack() {
         verifyPawn(Color.BLACK);
     }

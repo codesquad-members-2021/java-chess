@@ -12,21 +12,33 @@ class BoardTest {
 
     @BeforeEach
     @DisplayName("모든 Test 전에 Board 객체 생성")
-    void create_Board() {
+    void create_board() {
         board = new Board();
     }
 
     @Test
-    @DisplayName("생성되는 Pawn 객체마다 Board에서 List Size 값 및 index로 색상 값을 잘 가져오는지 확인")
-    void create() throws Exception {
-        verifyBoard(new Pawn(Pawn.WHITE_COLOR,Pawn.WHITE_REPRESENTATION), 1, 0);
-        verifyBoard(new Pawn(Pawn.BLACK_COLOR,Pawn.BLACK_REPRESENTATION), 2, 1);
+    @DisplayName("WhitePawns의 값 사이즈 index로 색상 값을 잘 가져오는지 확인")
+    void create_white(){
+        Pawn white = new Pawn(Pawn.WHITE_COLOR,Pawn.WHITE_REPRESENTATION);
+        board.whitePawnsAdd(white);
+        assertThat(board.size()).isEqualTo(1);
+        assertThat(board.findWhitePawn(0).getColor()).isEqualTo("white");
     }
 
-    private void verifyBoard(Pawn pawn, int size, int index) {
-        board.add(pawn);
-        assertThat(board.size()).isEqualTo(size);
-        assertThat(board.findPawn(index)).isEqualTo(pawn);
+    @Test
+    @DisplayName("BlackPawns의 값 사이즈 index로 색상 값을 잘 가져오는지 확인")
+    void create_black(){
+        Pawn black = new Pawn(Pawn.BLACK_COLOR,Pawn.BLACK_REPRESENTATION);
+        board.blackPawnsAdd(black);
+        assertThat(board.size()).isEqualTo(1);
+        assertThat(board.findBlackPawn(0).getColor()).isEqualTo("black");
+    }
+    @Test
+    @DisplayName("Board에 추가되는 기물 size 값 검토")
+    void check_board_size (){
+        board.whitePawnsAdd(new Pawn(Pawn.WHITE_COLOR,Pawn.WHITE_REPRESENTATION));
+        board.blackPawnsAdd(new Pawn(Pawn.BLACK_COLOR,Pawn.BLACK_REPRESENTATION));
+        assertThat(board.size()).isEqualTo(2);
     }
 
     @Test

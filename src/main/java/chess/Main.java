@@ -20,7 +20,7 @@ public class Main {
         while (!command.equals("end")) {
             if (command.equals("start")) {
                 board.initialize();
-                System.out.println(board.print());
+                System.out.println(board.showBoard());
             }
             System.out.print("> ");
             command = br.readLine();

@@ -55,19 +55,19 @@ public class BoardTest {
         Pawn pawn = new Pawn(pawnEnum);
 
         if (pawnEnum == PawnEnum.WHITE)
-            verifyWhitePawnsIndex(findPawnIndex, pawn);
+            verifyWhitePawnsIndex(pawn, findPawnIndex);
         else
-            verifyBlackPawnsIndex(findPawnIndex, pawn);
+            verifyBlackPawnsIndex(pawn, findPawnIndex);
 
     }
 
-    private void verifyWhitePawnsIndex(int findPawnIndex, Pawn pawn) {
-        board.addWhitePawn(pawn);
+    private void verifyWhitePawnsIndex(Pawn pawn, int findPawnIndex) {
+        board.addPawn(pawn);
         assertThat(pawn).isEqualTo(board.findWhitePawn(findPawnIndex));
     }
 
-    private void verifyBlackPawnsIndex(int findPawnIndex, Pawn pawn) {
-        board.addBlackPawn(pawn);
+    private void verifyBlackPawnsIndex(Pawn pawn, int findPawnIndex) {
+        board.addPawn(pawn);
         assertThat(pawn).isEqualTo(board.findBlackPawn(findPawnIndex));
     }
 

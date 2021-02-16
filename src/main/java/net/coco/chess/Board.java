@@ -10,26 +10,19 @@ import java.util.stream.Collectors;
 public class Board {
     private List<Pawn> whitePawns = new ArrayList<>();
     private List<Pawn> blackPawns = new ArrayList<>();
-    private static final int BOARD_CELLS=8;
+    private static final int BOARD_CELLS = 8;
 
 
-
-    public void addWhitePawn(Pawn pawn) {
+    public void addPawn(Pawn pawn) {
         if (pawn.getColor() == PawnEnum.WHITE)
             whitePawns.add(pawn);
         else
-            System.out.println("화이트 색상을 넣어주세요.");
-    }
-
-    public void addBlackPawn(Pawn pawn) {
-        if (pawn.getColor() == PawnEnum.BLACK)
             blackPawns.add(pawn);
-        else
-            System.out.println("블랙 색상을 넣어주세요.");
+
     }
 
-    public int getPawnsSize(){
-        return whitePawns.size()+blackPawns.size();
+    public int getPawnsSize() {
+        return whitePawns.size() + blackPawns.size();
     }
 
 
@@ -45,8 +38,8 @@ public class Board {
         whitePawns.clear();
         blackPawns.clear();
         for (int i = 0; i < BOARD_CELLS; i++) {
-            addWhitePawn(new Pawn());
-            addBlackPawn(new Pawn(PawnEnum.BLACK));
+            addPawn(new Pawn());
+            addPawn(new Pawn(PawnEnum.BLACK));
         }
     }
 
@@ -62,8 +55,5 @@ public class Board {
                 .map(pawn -> String.valueOf(pawn.getRepresentation()))
                 .collect(Collectors.joining());
     }
-
-
-
 
 }

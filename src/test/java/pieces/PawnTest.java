@@ -8,22 +8,22 @@ public class PawnTest {
 
     @Test
     @DisplayName("색 없이 Pawn을 생성하면 흰색으로 생성되어야 한다")
-    void createPawn() throws Exception {
+    void createPawn() {
         Pawn pawn = new Pawn();
         assertThat(pawn.getColor()).isEqualTo(Color.WHITE);
-        assertThat(pawn.getRepresentation()).isEqualTo(Pawn.WHITE_REPRESENTATION);
+        assertThat(pawn.getColorRepresentation()).isEqualTo(Color.WHITE.getRepresentation());
     }
 
     @Test
     @DisplayName("흰색, 검은색 폰이 생성되어야 한다")
     void createPawnWithColor() {
-        verifyPawn(Color.WHITE, Pawn.WHITE_REPRESENTATION);
-        verifyPawn(Color.BLACK, Pawn.BLACK_REPRESENTATION);
+        verifyPawn(Color.WHITE, Color.WHITE.getRepresentation());
+        verifyPawn(Color.BLACK, Color.BLACK.getRepresentation());
     }
 
-    void verifyPawn(Color color, final char representation) {
+    void verifyPawn(Color color, final char colorRepresentation) {
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
-        assertThat(pawn.getRepresentation()).isEqualTo(representation);
+        assertThat(pawn.getColorRepresentation()).isEqualTo(colorRepresentation);
     }
 }

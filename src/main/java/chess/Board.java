@@ -1,5 +1,6 @@
 package chess;
 
+import chess.pieces.Color;
 import chess.pieces.Pawn;
 
 import java.util.ArrayList;
@@ -35,5 +36,22 @@ public class Board {
         return blackPawn.get(index);
     }
 
+    String getPawnsResult(Color color){
+        StringBuilder sb = new StringBuilder();
+        switch (color.getColorName()){
+            case "white":
+                for(Pawn pawn : whitePawn){
+                    sb.append(pawn.getRepresentation());
+                }
+                return sb.toString();
+
+            case "black":
+                for(Pawn pawn : blackPawn){
+                    sb.append(pawn.getRepresentation());
+                }
+                return sb.toString();
+        }
+        return sb.toString();
+    }
 
 }

@@ -1,5 +1,8 @@
 package net.coco.chess;
 
+import net.coco.Printer.PrintChess;
+import net.coco.pieces.PawnEnum;
+
 import java.util.Scanner;
 
 public class StartGame {
@@ -19,7 +22,9 @@ public class StartGame {
         switch (input) {
             case "start":
                 board.initialize();
-                System.out.println(board.print());
+                String blackPawns=board.getPawnsResult(PawnEnum.BLACK_COLOR);
+                String whitePawns=board.getPawnsResult(PawnEnum.WHITE_COLOR);
+                System.out.println(PrintChess.printBoard(blackPawns,whitePawns));
                 break;
             case "end":
                 System.out.println("게임을 종료");

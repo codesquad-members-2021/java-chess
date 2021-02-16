@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class Board {
     private List<Pawn> whitePawns = new ArrayList<>();
     private List<Pawn> blackPawns = new ArrayList<>();
-    private static final String BLANK = "********\n";
+
 
 
     public void addWhitePawn(Pawn pawn) {
@@ -59,19 +59,7 @@ public class Board {
                 .collect(Collectors.joining());
     }
 
-    public String print() {
-        StringBuilder boardPrint = new StringBuilder();
-        boardPrint.append(BLANK)
-                .append(getPawnsToString(blackPawns) + "\n")
-                .append(BLANK)
-                .append(BLANK)
-                .append(BLANK)
-                .append(BLANK)
-                .append(getPawnsToString(whitePawns) + "\n")
-                .append(BLANK);
 
-        return boardPrint.toString();
-    }
 
 
 }

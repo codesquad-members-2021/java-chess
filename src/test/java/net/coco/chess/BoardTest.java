@@ -1,6 +1,7 @@
 package net.coco.chess;
 
 
+import net.coco.Printer.PrintChess;
 import net.coco.pieces.Pawn;
 import net.coco.pieces.PawnEnum;
 import org.junit.jupiter.api.Assertions;
@@ -45,7 +46,9 @@ public class BoardTest {
     @Test
     void print(){
         board.initialize();
-        System.out.println(board.print());
+        String blackPawns=board.getPawnsResult(PawnEnum.BLACK_COLOR);
+        String whitePawns=board.getPawnsResult(PawnEnum.WHITE_COLOR);
+        System.out.println(PrintChess.printBoard(blackPawns,whitePawns));
     }
 
     private void verifyPawnToPawns(PawnEnum pawnEnum, int findPawnIndex) {

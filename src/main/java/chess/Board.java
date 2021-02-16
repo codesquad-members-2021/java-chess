@@ -42,6 +42,9 @@ public class Board {
 
     /* 흰색 pawn 8개, 검은색 pawn 8개를 생성해서 각각의 list에 추가한다. */
     public void initialize() {
+        blackPawns.removeAll(blackPawns);  // initialize를 여러번 실행했을 때 pawn이 연속으로 추가되는 경우를 막는다.
+        whitePawns.removeAll(whitePawns);
+
         for (int i = 0; i < Board.MAX_PAWN; i++) {
             addBlackPawn(Pawn.newBlackPawn());
             addWhitePawn(Pawn.newWhitePawn());

@@ -15,12 +15,12 @@ public class PawnTest {
         Pawn black = Pawn.newBlackPawn();
 
         assertAll(
-                () -> assertThat(white.getColor()).isEqualTo(Pawn.WHITE_COLOR),
+                () -> assertThat(white.getColor()).isEqualTo(Color.WHITE),
                 () -> assertThat(white.getRepresentation()).isEqualTo(Pawn.WHITE_REPRESENTATION)
         );
 
         assertAll(
-                () -> assertThat(black.getColor()).isEqualTo(Pawn.BLACK_COLOR),
+                () -> assertThat(black.getColor()).isEqualTo(Color.BLACK),
                 () -> assertThat(black.getRepresentation()).isEqualTo(Pawn.BLACK_REPRESENTATION)
         );
     }

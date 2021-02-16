@@ -27,7 +27,7 @@ class PawnTest {
     @Test
     @DisplayName("다른 색 폰이 생성되면 안된다")
     void createRedPawn() {
-        assertThatThrownBy(() -> new Pawn("red"))
+        assertThatThrownBy(() -> new Pawn("red", 'p'))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

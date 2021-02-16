@@ -4,6 +4,7 @@ import net.honux.pieces.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class Board {
 
@@ -35,7 +36,10 @@ public class Board {
     }
 
     public void initialize() {
-
+        IntStream.range(0, 8).forEach(i -> {
+            whitePawns.add(i, new Pawn());
+            blackPawns.add(i, new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+        });
     }
 
     public String getWhitePawnsResult() {

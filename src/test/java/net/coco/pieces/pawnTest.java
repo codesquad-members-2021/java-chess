@@ -14,7 +14,7 @@ class pawnTest {
         Pawn pawn = new Pawn();
         Assertions.assertAll(
                 () -> assertThat(PawnEnum.WHITE).isEqualTo(pawn.getColor()),
-                () -> assertThat(PawnEnum.WHITE.representation).isEqualTo(pawn.getRepresentation())
+                () -> assertThat(PawnEnum.WHITE.getRepresentation()).isEqualTo(pawn.getRepresentation())
         );
 
     }
@@ -30,7 +30,7 @@ class pawnTest {
         Pawn pawn = new Pawn(pawnEnum);
         Assertions.assertAll(
                 () -> assertThat(pawnEnum).isEqualTo(pawn.getColor()),
-                () -> assertThat(pawnEnum.representation).isEqualTo(pawn.getRepresentation())
+                () -> assertThat(pawnEnum.getRepresentation()).isEqualTo(pawn.getRepresentation())
         );
     }
 

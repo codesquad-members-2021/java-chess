@@ -6,12 +6,12 @@ public class Pawn {
 
     public Pawn() {
         this.color = PawnEnum.WHITE;
-        this.representation = PawnEnum.WHITE.representation;
+        this.representation = PawnEnum.WHITE.getRepresentation();
     }
 
     public Pawn(PawnEnum pawnEnum) {
         this.color = pawnEnum;
-        this.representation = pawnEnum.representation;
+        this.representation = pawnEnum.getRepresentation();
     }
 
     public PawnEnum getColor() {

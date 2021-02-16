@@ -63,8 +63,10 @@ public class Board {
                     sb.append(pawn.getRepresentation());
                 }
                 return sb.toString();
+
+            default:
+                return "존재하지 않는 색상입니다.";
         }
-        return sb.toString();
     }
 
     public void initialize() {

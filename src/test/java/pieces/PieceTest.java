@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class PieceTest {
 
     @Test
-    @DisplayName("색상과 타입에 알맞게 말이 생성되었는지 검증한다")
+    @DisplayName("색상과 출력 양식에 알맞게 말이 생성되었는지 검증한다")
     void createPiece() {
         assertAll(
                 () -> verifyPiece(Piece.createWhitePawn(), Color.WHITE, 'p'),
@@ -28,7 +28,7 @@ class PieceTest {
         );
     }
 
-    private void verifyPiece(final Piece piece, Color color, final char representation) {
+    private void verifyPiece(final Piece piece, final Color color, final char representation) {
         assertAll(() -> assertThat(piece.getColor()).isEqualTo(color),
                 () -> assertThat(piece.getRepresentation()).isEqualTo(representation));
     }

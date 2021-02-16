@@ -21,13 +21,20 @@ public class PawnTest {
     @DisplayName("Verify pawns")
     void create() {
         assertAll("color",
-                () -> verifyPawn(Piece.WHITE_COLOR, Pawn.WHITE_REPRESENTATION),
-                () -> verifyPawn(Piece.BLACK_COLOR, Pawn.BLACK_REPRESENTATION)
+                () -> verifyPawnColor(Piece.WHITE_COLOR),
+                () -> verifyPawnColor(Piece.BLACK_COLOR),
+                () -> verifyPawnRepresentation(Piece.WHITE_COLOR, Pawn.WHITE_REPRESENTATION),
+                () -> verifyPawnRepresentation(Piece.BLACK_COLOR, Pawn.BLACK_REPRESENTATION)
         );
     }
 
-    void verifyPawn(final String color, final char representation) {
+    void verifyPawnRepresentation(final String color, final char representation) {
         Pawn pawn = new Pawn(color, representation);
+        assertThat(pawn.getRepresentation()).isEqualTo(representation);
+    }
+
+    void verifyPawnColor(final String color) {
+        Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
     }
 }

@@ -34,7 +34,7 @@ public class Board {
     }
 
     public void initialize() {
-        for (int i = 0; i < 8; i++ ) {
+        for (int i = 0; i < 8; i++) {
             addWhitePawn(new Pawn(Pawn.WHITE, Pawn.WHITE_REPRESENTATION));
             addBlackPawn(new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION));
         }
@@ -56,4 +56,16 @@ public class Board {
         return sb.toString();
     }
 
+    void print() {
+        StringBuilder boardOutput = new StringBuilder();
+        boardOutput.append("........\n");
+        boardOutput.append(getBlackPawnsResult());
+        boardOutput.append("........\n");
+        boardOutput.append("........\n");
+        boardOutput.append("........\n");
+        boardOutput.append("........\n");
+        boardOutput.append(getWhitePawnsResult());
+        boardOutput.append("........\n");
+        System.out.println(boardOutput.toString());
+    }
 }

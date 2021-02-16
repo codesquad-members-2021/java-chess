@@ -17,7 +17,7 @@ class BoardTest {
 
     @Test
     @DisplayName("Board의 Pawn 등록 테스트")
-    public void pawnAddTest() throws Exception {
+    void pawnAddTest() throws Exception {
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
         board.add(white);
         assertThat(board.size()).isEqualTo(1);

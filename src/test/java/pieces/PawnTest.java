@@ -7,19 +7,19 @@ class PawnTest {
 
     @Test
     @DisplayName("폰 기본생성자 테스트")
-    public void createBasic() throws Exception{
+    void createBasic() throws Exception{
         Pawn pawn = new Pawn();
         assertThat(pawn.getColor()).isEqualTo(Pawn.WHITE_COLOR);
     }
 
     @Test
     @DisplayName("폰 생성자 테스트")
-    public void create() {
+    void create() {
         verifyPawn(Pawn.WHITE_COLOR);
         verifyPawn(Pawn.BLACK_COLOR);
     }
 
-    public void verifyPawn(String color){
+    void verifyPawn(String color){
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
     }

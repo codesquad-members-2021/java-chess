@@ -58,9 +58,8 @@ public class BoardTest {
     }
 
     private void testFindThrowException(int idx, Class<?> exceptionClass) {
-        assertThatThrownBy(() -> {
-            board.findPawn(idx);
-        }).isInstanceOf(exceptionClass);
+        assertThatThrownBy(() -> board.findPawn(idx))
+                .isInstanceOf(exceptionClass);
     }
 
     @Test
@@ -78,8 +77,7 @@ public class BoardTest {
     }
 
     private void testAdditionThrowException(Object tc, Class<?> exceptionClass) {
-        assertThatThrownBy(() -> {
-            board.add((Pawn) tc);
-        }).isInstanceOf(exceptionClass);
+        assertThatThrownBy(() -> board.add((Pawn) tc))
+                .isInstanceOf(exceptionClass);
     }
 }

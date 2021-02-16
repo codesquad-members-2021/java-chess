@@ -1,13 +1,13 @@
 package chess;
 
-import chess.pieces.Color;
-import chess.pieces.Pawn;
+import pieces.Color;
+import pieces.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BoardTest {
     private Board board;
@@ -18,28 +18,44 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("폰이 제대로 생성되는지 확인한다.")
-    public void create() {
-        board.addWhitePawn(new Pawn(Color.WHITE));
-        board.addBlackPawn(new Pawn(Color.BLACK));
+    @DisplayName("폰이 제대로 체스판 내에 추가 되었는지 확인한다.")
+    void checkPawnInTheBoard() {
+        board.addPawns(new Pawn(Color.WHITE));
+        board.addPawns(new Pawn(Color.BLACK));
 
         assertAll(
-                () -> assertEquals(1, board.whitePawnSize()),
-                () -> assertEquals(1, board.blackPawnSize()),
-                () -> assertEquals("white",board.getWhitePawn(0).getColor()),
-                () -> assertEquals("black",board.getBlackPawn(0).getColor())
+                () -> assertThat(board.whitePawnSize()).isEqualTo(1),
+                () -> assertThat(board.blackPawnSize()).isEqualTo(1),
+                () -> assertThat(board.getWhitePawn(0).getColorName()).isEqualTo("white"),
+                () -> assertThat(board.getBlackPawn(0).getColorName()).isEqualTo("black")
 
         );
     }
 
     @Test
-    @DisplayName("폰이 제대로 생성되었는지 확인한다.")
-    public void initialize() {
+    @DisplayName("폰의 색상에 맞는 문자열을 출력하는지 확인한다.")
+    void initialize() {
         board.initialize();
 
         assertAll(
-                () -> assertEquals("pppppppp", board.getWhitePawnsResult()),
-                () -> assertEquals("PPPPPPPP", board.getBlackPawnsResult())
+                () -> assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult()),
+                () -> assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult())
         );
+    }
+
+    @Test
+    @DisplayName("폰을 포함한 체스판의 출력이 정상적으로 이루어 지는지 확인한다.")
+    void printBoard() {
+        board.initialize();
+
+        assertThat(board.showBoard()).isEqualTo(
+                "........\n" +
+                        "PPPPPPPP\n" +
+                        "........\n" +
+                        "........\n" +
+                        "........\n" +
+                        "........\n" +
+                        "pppppppp\n" +
+                        "........\n");
     }
 }

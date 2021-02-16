@@ -14,11 +14,17 @@ public class Board {
 
 
     public void addWhitePawn(Pawn pawn) {
-        whitePawns.add(pawn);
+        if (pawn.getColor() == PawnEnum.WHITE_COLOR)
+            whitePawns.add(pawn);
+        else
+            System.out.println("화이트 색상을 넣어주세요.");
     }
 
     public void addBlackPawn(Pawn pawn) {
-        blackPawns.add(pawn);
+        if (pawn.getColor() == PawnEnum.BLACK_COLOR)
+            blackPawns.add(pawn);
+        else
+            System.out.println("블랙 색상을 넣어주세요.");
     }
 
     public int getWhitePawnSize() {

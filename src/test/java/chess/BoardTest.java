@@ -27,3 +27,4 @@ class BoardTest {
                         appendNewLine("rnbqkbnr")).isEqualTo(board.getResultToPrint()));
     }
 }
+

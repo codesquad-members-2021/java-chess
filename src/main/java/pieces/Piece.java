@@ -104,3 +104,4 @@ public class Piece {
         return new Piece(Color.BLACK, Type.KING);
     }
 }
+

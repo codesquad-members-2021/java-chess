@@ -9,17 +9,17 @@ public class Pawn {
     private String color;
     private String representation;
 
-    public Pawn(String color, String representation) {
+    public static Pawn newWhitePawn() {
+        return new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+    }
+
+    public static Pawn newBlackPawn() {
+        return new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+    }
+
+    private Pawn(String color, String representation) {
         this.color = color;
         this.representation = representation;
-    }
-
-    public Pawn(String color) {
-        this.color = color;
-    }
-
-    Pawn() {
-        this(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION); // 생성자에서 같은 클래스의 다른 생성자를 호출한다.
     }
 
     public String getColor() {

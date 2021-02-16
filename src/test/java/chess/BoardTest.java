@@ -18,7 +18,7 @@ public class BoardTest {
     @Test
     @DisplayName("체스판 생성")
     void create() throws Exception {
-        Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        Pawn white = Pawn.newWhitePawn();
         board.addWhitePawn(white);
 
         assertAll(
@@ -26,7 +26,7 @@ public class BoardTest {
                 () -> assertEquals(white, board.findWhitePawn(0))
         );
 
-        Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+        Pawn black = Pawn.newBlackPawn();
         board.addBlackPawn(black);
 
         assertAll(

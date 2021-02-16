@@ -43,8 +43,8 @@ public class Board {
     /* 흰색 pawn 8개, 검은색 pawn 8개를 생성해서 각각의 list에 추가한다. */
     public void initialize() {
         for (int i = 0; i < Board.MAX_PAWN; i++) {
-            addBlackPawn(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
-            addWhitePawn(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+            addBlackPawn(Pawn.newBlackPawn());
+            addWhitePawn(Pawn.newWhitePawn());
         }
     }
 

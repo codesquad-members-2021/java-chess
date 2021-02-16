@@ -30,13 +30,13 @@ public class BoardTest {
                     board.add(whitePawn);
                     assertAll("흰색 폰을 보드에 올린 후 size, findPawn메서드 검증한다.",
                             () -> assertThat(board.size()).isEqualTo(1),
-                            () -> assertThat(board.findPawn(0)).isEqualTo(whitePawn));
+                            () -> assertThat(board.findWhitePawn(0)).isEqualTo(whitePawn));
                 },
                 () -> {
                     board.add(blackPawn);
                     assertAll("검은색 폰을 보드에 올린 후 size, findPawn메서드 검증한다.",
                             () -> assertThat(board.size()).isEqualTo(2),
-                            () -> assertThat(board.findPawn(1)).isEqualTo(blackPawn));
+                            () -> assertThat(board.findBlackPawn(0)).isEqualTo(blackPawn));
                 }
         );
 

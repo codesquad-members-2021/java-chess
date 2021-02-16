@@ -45,8 +45,8 @@ public class Board {
         whitePawns.clear();
         blackPawns.clear();
         for (int i = 0; i < BOARD_CELLS; i++) {
-            whitePawns.add(new Pawn(PawnEnum.WHITE));
-            blackPawns.add(new Pawn(PawnEnum.BLACK));
+            addWhitePawn(new Pawn());
+            addBlackPawn(new Pawn(PawnEnum.BLACK));
         }
     }
 

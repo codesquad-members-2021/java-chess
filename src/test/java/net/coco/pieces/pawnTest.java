@@ -13,8 +13,8 @@ class pawnTest {
     void create_defaultConstructor() {
         Pawn pawn = new Pawn();
         Assertions.assertAll(
-                () -> assertThat(PawnEnum.WHITE_COLOR).isEqualTo(pawn.getColor()),
-                () -> assertThat(PawnEnum.WHITE_COLOR.representation).isEqualTo(pawn.getRepresentation())
+                () -> assertThat(PawnEnum.WHITE).isEqualTo(pawn.getColor()),
+                () -> assertThat(PawnEnum.WHITE.representation).isEqualTo(pawn.getRepresentation())
         );
 
     }
@@ -22,8 +22,8 @@ class pawnTest {
     @Test
     @DisplayName("폰이 요구대로 생성되는지 테스트")
     void pawnColorTest() {
-        verifyPawn(PawnEnum.WHITE_COLOR);
-        verifyPawn(PawnEnum.BLACK_COLOR);
+        verifyPawn(PawnEnum.WHITE);
+        verifyPawn(PawnEnum.BLACK);
     }
 
     void verifyPawn(PawnEnum pawnEnum) {

@@ -26,10 +26,10 @@ public class BoardTest {
 
         Assertions.assertAll(
                 () -> verifyPawnToPawns(PawnEnum.WHITE, 0),
-                () -> verifyPaswsSize(PawnEnum.WHITE, 1),
+                () -> verifyPawnsSize(1),
 
                 () -> verifyPawnToPawns(PawnEnum.BLACK, 0),
-                () -> verifyPaswsSize(PawnEnum.BLACK, 2)
+                () -> verifyPawnsSize(2)
         );
 
     }
@@ -44,11 +44,11 @@ public class BoardTest {
     }
 
     @Test
-    void print(){
+    void print() {
         board.initialize();
-        String blackPawns=board.getPawnsResult(PawnEnum.BLACK);
-        String whitePawns=board.getPawnsResult(PawnEnum.WHITE);
-        System.out.println(PrintChess.printBoard(blackPawns,whitePawns));
+        String blackPawns = board.getPawnsResult(PawnEnum.BLACK);
+        String whitePawns = board.getPawnsResult(PawnEnum.WHITE);
+        System.out.println(PrintChess.printBoard(blackPawns, whitePawns));
     }
 
     private void verifyPawnToPawns(PawnEnum pawnEnum, int findPawnIndex) {
@@ -61,13 +61,6 @@ public class BoardTest {
 
     }
 
-    private void verifyPaswsSize(PawnEnum pawnEnum, int actualSize) {
-        if (pawnEnum == PawnEnum.WHITE)
-            verifyWhitePaswsSize(actualSize);
-        else
-            verifyBlackPaswsSize(actualSize);
-    }
-
     private void verifyWhitePawnsIndex(int findPawnIndex, Pawn pawn) {
         board.addWhitePawn(pawn);
         assertThat(pawn).isEqualTo(board.findWhitePawn(findPawnIndex));
@@ -78,12 +71,9 @@ public class BoardTest {
         assertThat(pawn).isEqualTo(board.findBlackPawn(findPawnIndex));
     }
 
-    private void verifyWhitePaswsSize(int actualSize) {
+    private void verifyPawnsSize(int actualSize) {
         assertThat(actualSize).isEqualTo(board.getPawnsSize());
     }
 
-    private void verifyBlackPaswsSize(int actualSize) {
-        assertThat(actualSize).isEqualTo(board.getPawnsSize());
-    }
 
 }

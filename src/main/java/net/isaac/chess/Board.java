@@ -23,15 +23,21 @@ public class Board {
     }
 
     public void print(){
+        System.out.println(getRepresentation());
+    }
+
+    private String getRepresentation(){
+        StringBuilder builder = new StringBuilder();
         for(int i = 0; i < MAX_SIZE; i++) {
             for(int j = 0; j < MAX_SIZE; j++) {
                 if(pieces[i][j] == null)
-                    System.out.print('.');
+                    builder.append('.');
                 else
-                    System.out.print(pieces[i][j].getRepresentation());
+                    builder.append(pieces[i][j].getRepresentation());
             }
-            System.out.println();
+            builder.append(System.lineSeparator());
         }
+        return builder.toString();
     }
     
     public String getWhitePiecesResult(){

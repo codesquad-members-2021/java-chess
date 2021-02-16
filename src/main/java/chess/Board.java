@@ -3,12 +3,16 @@ package chess;
 import pieces.Pawn;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Board {
 
-    private List<Pawn> whitePawnList = new ArrayList<>();
-    private List<Pawn> blackPawnList = new ArrayList<>();
+    private ArrayList<Pawn> whitePawnList = new ArrayList<>();
+    private ArrayList<Pawn> blackPawnList = new ArrayList<>();
+
+    private String nullLine = "* * * * * * * *";
+
 
     public void add(Pawn pawn){
         if(pawn.getColor() == Pawn.Color.WHITE){
@@ -25,13 +29,39 @@ public class Board {
 
     public void initialize(){
         for(int i = 0; i < 8; i++){
-            blackPawnList.add(new Pawn());
-
+            whitePawnList.add(new Pawn());
+            blackPawnList.add(new Pawn(Pawn.Color.BLACK, 'P'));
         }
     }
 
-    public void print(){
+    public String getWhitePawnResult(){
+        return getPawnRepresentation(whitePawnList);
+    }
 
+    public String getBlackPawnResult(){
+        return getPawnRepresentation(blackPawnList);
+    }
+
+    private String getPawnRepresentation(ArrayList<Pawn> pawns) {
+        StringBuilder sb = new StringBuilder();
+        for (Pawn pawn : pawns) {
+            sb.append(pawn.getRepresentation());
+            sb.append(" ");
+        }
+        return sb.toString();
+    }
+
+    public void print(){
+        StringBuilder sb = new StringBuilder();
+
+        System.out.println(nullLine);
+        System.out.println(getBlackPawnResult());
+        System.out.println(nullLine);
+        System.out.println(nullLine);
+        System.out.println(nullLine);
+        System.out.println(nullLine);
+        System.out.println(getWhitePawnResult());
+        System.out.println(nullLine);
     }
     
 }

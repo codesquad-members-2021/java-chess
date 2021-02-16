@@ -15,5 +15,8 @@ public class Main {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         System.out.println("Working Directory = " + new File(".").getAbsolutePath());
 
+        Board board = new Board();
+        board.initialize();
+        board.print();
     }
 }

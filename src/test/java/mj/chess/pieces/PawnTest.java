@@ -26,11 +26,11 @@ class PawnTest {
         verifyRepresentationOfPawn(new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION), Pawn.BLACK_REPRESENTATION);
     }
 
-    void verifyColorOfPawn(Pawn pawn, Color color) {
+    private void verifyColorOfPawn(Pawn pawn, Color color) {
         assertThat(pawn.getColor()).isEqualTo(color);
     }
 
-    void verifyRepresentationOfPawn(Pawn pawn, final char representation) {
+    private void verifyRepresentationOfPawn(Pawn pawn, final char representation) {
         assertThat(pawn.getRepresentation()).isEqualTo(representation);
     }
 }

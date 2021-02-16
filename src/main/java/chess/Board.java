@@ -67,12 +67,10 @@ public class Board {
 
     public String showBoard() {
         StringBuilder output = new StringBuilder();
+        String blankRank = appendNewLine("........");
         output.append(appendNewLine(getPieceResult(blackOtherPieceList)));
         output.append(appendNewLine(getPieceResult(blackPawnList)));
-        output.append(appendNewLine("........"));
-        output.append(appendNewLine("........"));
-        output.append(appendNewLine("........"));
-        output.append(appendNewLine("........"));
+        output.append(blankRank).append(blankRank).append(blankRank).append(blankRank);
         output.append(appendNewLine(getPieceResult(whitePawnList)));
         output.append(appendNewLine(getPieceResult(whiteOtherPieceList)));
         return output.toString();

@@ -15,14 +15,19 @@ public class ChessGame {
             String command = getCommand();
             if ("start".equals(command)) {
                 start();
-            } else if ("end".equals(command)) {
-                endGame = true;
-            } else if ("help".equals(command)) {
-                help();
-            } else {
-                System.out.println("잘못된 명령어입니다.");
-                help();
+                System.out.println(board.showBoard());
+                continue;
             }
+            if ("end".equals(command)) {
+                endGame = true;
+                continue;
+            }
+            if ("help".equals(command)) {
+                help();
+                continue;
+            }
+            System.out.println("잘못된 명령어입니다.");
+            help();
         }
     }
 
@@ -32,13 +37,12 @@ public class ChessGame {
     }
 
     public static void start() {
-        if (!isStarted) {
-            board.initialize();
-            isStarted = true;
-        } else {
+        if (isStarted) {
             System.out.println("이미 게임이 시작되었습니다.");
+            return;
         }
-        System.out.println(board.showBoard());
+        board.initialize();
+        isStarted = true;
     }
 
     public static void showStartMessage() {

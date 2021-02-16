@@ -64,12 +64,12 @@ public class Board {
         }
 
         for(int i = 0; i < 8; i++) {
-            addBlackPawn(new Pawn(Color.BALCK, Pawn.BLACK_REPRESENTATION));
+            addBlackPawn(new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION));
         }
     }
 
     private void addPawn(Pawn.Color color, int numOfPawn) {
-        if(color == Color.BALCK) {
+        if(color == Color.BLACK) {
             addPawnBlack(numOfPawn);
             return;
         }

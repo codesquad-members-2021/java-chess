@@ -1,6 +1,7 @@
 package net.isaac.pieces;
 
 import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 class PawnTest {
@@ -14,9 +15,11 @@ class PawnTest {
 
     @Test
     @DisplayName("폰 생성자 테스트")
-    void colorConstructorTest() {
-        verifyPawn(Pawn.WHITE_COLOR);
-        verifyPawn(Pawn.BLACK_COLOR);
+    void colorConstructorTest() throws Exception{
+        assertAll(
+                ()->verifyPawn(Pawn.WHITE_COLOR),
+                ()->verifyPawn(Pawn.BLACK_COLOR)
+        );
     }
 
     void verifyPawn(String color){

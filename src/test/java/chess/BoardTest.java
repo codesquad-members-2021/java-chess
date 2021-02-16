@@ -10,24 +10,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class BoardTest {
 
     private Board board;
-    private int index =0;
+    private int index = 0;
 
     @BeforeEach
-    void createBoard(){
+    void createBoard() {
         board = new Board();
     }
+
     @Test
     @DisplayName("초기화 했을 때 Board에 흑 폰 8개 백 폰 8개가 있는지 확인")
-    void initialize(){
+    void initialize() {
         board.initialize();
-        assertEquals("pppppppp", board.getWhitePawnsResult());
-        assertEquals("PPPPPPPP", board.getBlackPawnsResult());
+        assertAll(
+                () -> assertEquals("pppppppp", board.getWhitePawnsResult()),
+                () -> assertEquals("PPPPPPPP", board.getBlackPawnsResult())
+        );
     }
 
     @Test
     @DisplayName("Board에 Pawn이 제대로 추가되는지 확인")
-    void create(){
-        Pawn white = new Pawn(Pawn.WHITE_COLOR,Pawn.WHITE_REPRESENTATION);
-        Pawn black = new Pawn(Pawn.BLACK_COLOR,Pawn.BLACK_REPRESENTATION);
+    void create() {
+        Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
     }
 }

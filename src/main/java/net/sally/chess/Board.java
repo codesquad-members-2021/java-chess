@@ -62,4 +62,18 @@ public class Board {
     public Pawn findBlackPawn(int i) {
         return blackPawns.get(i);
     }
+
+    public void print() {
+        StringBuilder printer = new StringBuilder();
+        printer.append("........\n");
+        printer.append(getBlackPawnsResult() + "\n");
+        printer.append("........\n");
+        printer.append("........\n");
+        printer.append("........\n");
+        printer.append("........\n");
+        printer.append(getWhitePawnsResult() + "\n");
+        printer.append("........");
+
+        System.out.println(printer.toString());
+    }
 }

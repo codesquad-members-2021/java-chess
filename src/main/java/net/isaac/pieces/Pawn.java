@@ -1,8 +1,6 @@
 package net.isaac.pieces;
 
-public class Pawn {
-    private PieceColor color;
-
+public class Pawn extends Piece {
     public Pawn() {
         this.color = PieceColor.WHITE;
     }
@@ -13,5 +11,14 @@ public class Pawn {
 
     public PieceColor getColor() {
         return color;
+    }
+
+    public char getBoardCharacter(){
+        if(this.color == PieceColor.BLACK)
+            return 'P';
+        else if(this.color == PieceColor.WHITE)
+            return 'p';
+        else
+            return '?';
     }
 }

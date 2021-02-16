@@ -34,6 +34,7 @@ class BoardTest {
     @Test
     void print_잘되는지_확인하자 () {
         Board board = new Board();
+        board.initialize();
         board.print();
     }
 

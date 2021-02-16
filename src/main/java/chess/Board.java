@@ -3,8 +3,6 @@ package chess;
 import pieces.Pawn;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Board {
 
@@ -13,6 +11,15 @@ public class Board {
 
     private String nullLine = "* * * * * * * *";
 
+    public Pawn findPawn(Pawn.Color color, int index){
+
+        if(color == Pawn.Color.WHITE){
+            return whitePawnList.get(index);
+        }else {
+            return blackPawnList.get(index);
+        }
+
+    }
 
     public void add(Pawn pawn){
         if(pawn.getColor() == Pawn.Color.WHITE){
@@ -53,15 +60,22 @@ public class Board {
 
     public void print(){
         StringBuilder sb = new StringBuilder();
-
-        System.out.println(nullLine);
-        System.out.println(getBlackPawnResult());
-        System.out.println(nullLine);
-        System.out.println(nullLine);
-        System.out.println(nullLine);
-        System.out.println(nullLine);
-        System.out.println(getWhitePawnResult());
-        System.out.println(nullLine);
+        sb.append(nullLine);
+        sb.append('\n');
+        sb.append(getBlackPawnResult());
+        sb.append('\n');
+        sb.append(nullLine);
+        sb.append('\n');
+        sb.append(nullLine);
+        sb.append('\n');
+        sb.append(nullLine);
+        sb.append('\n');
+        sb.append(nullLine);
+        sb.append('\n');
+        sb.append(getWhitePawnResult());
+        sb.append('\n');
+        sb.append(nullLine);
+        System.out.println(sb.toString());
     }
     
 }

@@ -9,10 +9,15 @@ import pieces.Pawn;
 
 public class PawnTest {
     @Test
-    @DisplayName("흰색, 검은색 폰 생성")
-    void create() {
+    @DisplayName("흰색 폰 생성")
+    void createWhitePawn() {
         verifyPawn(Pawn.WHITE);
-        verifyPawn(Pawn.BLACK);
+    }
+
+    @Test
+    @DisplayName("검은색 폰 생성")
+    void createBlackPawn() {
+        verifyPawn(Pawn.WHITE);
     }
 
     @Test

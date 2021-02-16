@@ -1,19 +1,28 @@
 package net.honux.chess;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
+import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger(Main.class);
-        logger.info("Hello Logback 1");
-        logger.debug("Hello Logback 2");
-        logger.warn("Hello Logback 3");
+        Board board = new Board();
+        board.initialize();
 
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        System.out.println("Working Directory = " + new File(".").getAbsolutePath());
+        Scanner sc = new Scanner(System.in);
+        String game = sc.nextLine();
 
+        if (game.equals("start")) {
+            while (true) {
+                board.print();
+                String move = sc.nextLine();
+                if (move.equals("end")) {
+                    System.exit(0);
+                }
+            }
+        }
+        if (game.equals("end")) {
+            System.exit(0);
+        }
     }
 }
+

@@ -1,6 +1,6 @@
 package net.honux.chess;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
 import net.honux.chess.pieces.Pawn;
@@ -11,16 +11,16 @@ class BoardTest {
     @Test
     public void create() throws Exception {
 
-        verifyBoard(Pawn.WHITE_COLOR, 0);
-        verifyBoard(Pawn.BLACK_COLOR, 1);
+        verifyBoard(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION, 0);
+        verifyBoard(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION, 1);
     }
 
-    private void verifyBoard(String color, int index) {
+    private void verifyBoard(String color, char representation, int index) {
 
-        Pawn pawnColor = new Pawn(color);
+        Pawn pawnColor = new Pawn(color, representation);
         board.add(pawnColor);
-        assertEquals(index + 1, board.size());
-        assertEquals(pawnColor, board.findPawn(index));
+        assertThat(board.size()).isEqualTo(index + 1);
+        assertThat(board.findPawn(index)).isEqualTo(pawnColor);
     }
 
     @Test

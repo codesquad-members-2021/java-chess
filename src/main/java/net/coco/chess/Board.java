@@ -28,13 +28,10 @@ public class Board {
             System.out.println("블랙 색상을 넣어주세요.");
     }
 
-    public int getWhitePawnSize() {
-        return whitePawns.size();
+    public int getPawnsSize(){
+        return whitePawns.size()+blackPawns.size();
     }
 
-    public int getBlackPawnSize() {
-        return blackPawns.size();
-    }
 
     public Pawn findWhitePawn(int index) {
         return whitePawns.get(index);

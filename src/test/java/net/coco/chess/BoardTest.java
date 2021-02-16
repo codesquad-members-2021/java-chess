@@ -29,7 +29,7 @@ public class BoardTest {
                 () -> verifyPaswsSize(PawnEnum.WHITE, 1),
 
                 () -> verifyPawnToPawns(PawnEnum.BLACK, 0),
-                () -> verifyPaswsSize(PawnEnum.BLACK, 1)
+                () -> verifyPaswsSize(PawnEnum.BLACK, 2)
         );
 
     }
@@ -79,11 +79,11 @@ public class BoardTest {
     }
 
     private void verifyWhitePaswsSize(int actualSize) {
-        assertThat(actualSize).isEqualTo(board.getWhitePawnSize());
+        assertThat(actualSize).isEqualTo(board.getPawnsSize());
     }
 
     private void verifyBlackPaswsSize(int actualSize) {
-        assertThat(actualSize).isEqualTo(board.getBlackPawnSize());
+        assertThat(actualSize).isEqualTo(board.getPawnsSize());
     }
 
 }

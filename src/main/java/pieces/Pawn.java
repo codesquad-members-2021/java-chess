@@ -4,24 +4,28 @@ public class Pawn {
 
     private final Color color;
 
-    private Character representation;
+    private final PawnRepresentation representation;
 
     public enum Color {
         WHITE, BLACK
     }
 
-    public Pawn() {
-        this.color = Color.WHITE;
-        this.representation = 'p';
+    public enum PawnRepresentation{
+        P, p
     }
 
-    public Pawn(final Color color, final char representation) {
+    public Pawn() {
+        this.color = Color.WHITE;
+        this.representation = PawnRepresentation.p;
+    }
+
+    public Pawn(final Color color) {
         if(color == Color.BLACK){
             this.color = Color.BLACK;
-            this.representation = representation;
+            this.representation = PawnRepresentation.P;
         }else {
             this.color = Color.WHITE;
-            this.representation = 'p';
+            this.representation = PawnRepresentation.p;
         }
     }
 
@@ -29,7 +33,7 @@ public class Pawn {
         return color;
     }
 
-    public Character getRepresentation(){
+    public PawnRepresentation getRepresentation(){
         return representation;
     }
 

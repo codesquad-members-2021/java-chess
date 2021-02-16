@@ -12,7 +12,6 @@ public class Board {
     private String nullLine = "* * * * * * * *";
 
     public Pawn findPawn(Pawn.Color color, int index){
-
         if(color == Pawn.Color.WHITE){
             return whitePawnList.get(index);
         }else {
@@ -37,7 +36,7 @@ public class Board {
     public void initialize(){
         for(int i = 0; i < 8; i++){
             whitePawnList.add(new Pawn());
-            blackPawnList.add(new Pawn(Pawn.Color.BLACK, 'P'));
+            blackPawnList.add(new Pawn(Pawn.Color.BLACK));
         }
     }
 
@@ -49,9 +48,9 @@ public class Board {
         return getPawnRepresentation(blackPawnList);
     }
 
-    private String getPawnRepresentation(ArrayList<Pawn> pawns) {
+    private String getPawnRepresentation(ArrayList<Pawn> pawnList) {
         StringBuilder sb = new StringBuilder();
-        for (Pawn pawn : pawns) {
+        for (Pawn pawn : pawnList) {
             sb.append(pawn.getRepresentation());
             sb.append(" ");
         }

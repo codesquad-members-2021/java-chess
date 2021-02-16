@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class Board {
     private ArrayList<Pawn> pieceList;
-    ChessCell[][] board;
+    private ChessCell[][] board;
 
     public Board() {
         pieceList = new ArrayList<>();

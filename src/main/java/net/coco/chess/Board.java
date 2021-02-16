@@ -54,7 +54,7 @@ public class Board {
 
     private String getPawnsToString(List<Pawn> Pawns) {
         return Pawns.stream()
-                .map(Pawn::getRepresentation)
+                .map(pawn->String.valueOf(pawn.getRepresentation()))
                 .collect(Collectors.joining());
     }
 

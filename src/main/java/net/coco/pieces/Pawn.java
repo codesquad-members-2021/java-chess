@@ -2,7 +2,7 @@ package net.coco.pieces;
 
 public class Pawn {
     private PawnEnum color;
-    private String representation;
+    private char representation;
 
     public Pawn() {
         this.color = PawnEnum.WHITE_COLOR;
@@ -18,7 +18,7 @@ public class Pawn {
         return color;
     }
 
-    public String getRepresentation() {
+    public char getRepresentation() {
         return representation;
     }
 }

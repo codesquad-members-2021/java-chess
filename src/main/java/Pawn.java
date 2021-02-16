@@ -1,11 +1,11 @@
 public class Pawn {
-    private Colors color;
+    private Color color;
 
-    public Pawn(Colors color) {
+    public Pawn(Color color) {
         this.color = color;
     }
 
-    public Colors getColor() {
+    public Color getColor() {
         return color;
     }
 

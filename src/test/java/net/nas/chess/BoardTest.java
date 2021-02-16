@@ -80,4 +80,14 @@ public class BoardTest {
         assertThatThrownBy(() -> board.add((Pawn) tc))
                 .isInstanceOf(exceptionClass);
     }
+
+    @Test
+    @DisplayName("2행은 흰색 폰, 7행은 검은색 폰만 있어야 합니다. 각각 pppppppp, PPPPPPPP로 출력되어야 합니다")
+    void testRepresentationsOfPawnLines() {
+        board.initialize();
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+    }
+
+
 }

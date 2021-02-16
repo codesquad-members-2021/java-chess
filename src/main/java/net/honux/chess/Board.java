@@ -11,16 +11,16 @@ public class Board {
     private ArrayList<Pawn> whitePawns = new ArrayList<>();
     private ArrayList<Pawn> blackPawns = new ArrayList<>();
 
-    public void add(Pawn white) {
-        board.add(white);
+    public void add(Pawn pawn) {
+        distinguishPawnsColor(pawn).add(pawn);
     }
 
-    public int size() {
-        return board.size();
+    public int size(Pawn pawn) {
+        return distinguishPawnsColor(pawn).size();
     }
 
-    public Pawn findPawn(int i) {
-        return board.get(i);
+    public Pawn findPawn(Pawn pawn, int index) {
+        return distinguishPawnsColor(pawn).get(index);
     }
 
     private ArrayList<Pawn> distinguishPawnsColor(Pawn pawn) {

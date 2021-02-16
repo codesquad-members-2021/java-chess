@@ -34,13 +34,13 @@ class BoardTest {
         }
     }
 
-    void verifyAddition(Pawn pawn, int index) {
+    private void verifyAddition(Pawn pawn, int index) {
         int size = index + 1;
         board.add(pawn);
         assertThat(board.size()).isEqualTo(size);
     }
 
-    void verifySearchByIndex(Pawn pawn, int index) {
+    private void verifySearchByIndex(Pawn pawn, int index) {
         assertThat(pawn).isEqualTo(board.findPawn(index));
     }
 }

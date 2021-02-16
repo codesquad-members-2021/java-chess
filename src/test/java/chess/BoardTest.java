@@ -16,17 +16,21 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("체스판에 흰색, 검은색 폰을 추가하고 갯수와 목록을 확인한다.")
-    void putPawn() {
+    @DisplayName("체스판에 흰색 폰을 추가 후 갯수와 목록을 확인한다.")
+    void putWhitePawn() {
         Pawn white = new Pawn(Pawn.WHITE);
         board.add(white);
         assertEquals(1, board.size());
         assertEquals(white, board.findPawn(0));
+    }
 
+    @Test
+    @DisplayName("체스판에 검은색 폰을 추가 후 갯수와 목록을 확인한다.")
+    void putBlackPawn() {
         Pawn black = new Pawn(Pawn.BLACK);
         board.add(black);
-        assertEquals(2, board.size());
-        assertEquals(black, board.findPawn(1));
+        assertEquals(1, board.size());
+        assertEquals(black, board.findPawn(0));
     }
 
     @Test

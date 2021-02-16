@@ -6,48 +6,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<Pawn> pawns = new ArrayList<>();
+    private List<Pawn> whitePawns;
+    private List<Pawn> blackPawns;
 
-    private List<Pawn> whitePawns = new ArrayList<>();
-    private List<Pawn> blackPawns = new ArrayList<>();
+    public static int BOARD_SIZE = 8;
+
+    public Board() {
+        whitePawns = new ArrayList<>();
+        blackPawns = new ArrayList<>();
+    }
 
     public void initialize() {
-
-        for (int i = 0; i < 8; i++) {
-            whitePawns.add(new Pawn());
-        }
-
-        for (int i = 0; i < 8; i++) {
-            blackPawns.add(new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION));
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            addWhitePawn(new Pawn());
+            addBlackPawn(new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION));
         }
     }
 
     public String getWhitePawnsResult() {
-        StringBuilder whitePawnsResult = new StringBuilder();
-        for (Pawn whitePawn : whitePawns) {
-            whitePawnsResult.append(whitePawn.getRepresentation());
-        }
-        return whitePawnsResult.toString();
+        return getPawnsResult(whitePawns);
     }
 
     public String getBlackPawnsResult() {
-        StringBuilder blackPawnsResult = new StringBuilder();
-        for (Pawn blackPawn : blackPawns) {
-            blackPawnsResult.append(blackPawn.getRepresentation());
+        return getPawnsResult(blackPawns);
+    }
+
+    private String getPawnsResult(List<Pawn> pawns) {
+        StringBuilder pawnsResult = new StringBuilder();
+        for (Pawn p : pawns) {
+            pawnsResult.append(p.getRepresentation());
         }
-        return blackPawnsResult.toString();
-
+        return pawnsResult.toString();
     }
 
-    public void addPawn(Pawn pawn) {
-        pawns.add(pawn);
+    public void addWhitePawn(Pawn pawn) {
+        whitePawns.add(pawn);
     }
 
-    public int getPawnSize() {
-        return pawns.size();
+    public void addBlackPawn(Pawn pawn) {
+        blackPawns.add(pawn);
     }
 
-    public Pawn findPawn(int i) {
-        return pawns.get(i);
+    public int getWhitePawnSize() {
+        return whitePawns.size();
+    }
+
+    public int getBlackPawnsSize() {
+        return blackPawns.size();
+    }
+
+    public Pawn findWhitePawn(int i) {
+        return whitePawns.get(i);
+    }
+
+    public Pawn findBlackPawn(int i) {
+        return blackPawns.get(i);
     }
 }

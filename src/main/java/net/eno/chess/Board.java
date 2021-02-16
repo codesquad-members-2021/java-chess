@@ -6,7 +6,7 @@ import net.eno.pieces.Piece;
 import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Board {
 
@@ -14,8 +14,8 @@ public class Board {
 
     public Board() {
         this.pawns = new HashMap<>();
-        this.pawns.put(Piece.WHITE.getColor(), new LinkedList<>());
-        this.pawns.put(Piece.BLACK.getColor(), new LinkedList<>());
+        this.pawns.put(Piece.WHITE.getColor(), new ArrayList<>());
+        this.pawns.put(Piece.BLACK.getColor(), new ArrayList<>());
     }
 
     public void addPawn(Piece piece, Pawn pawn) {

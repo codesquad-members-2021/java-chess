@@ -49,4 +49,13 @@ public class BoardTest {
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
     }
+
+    @Test
+    @DisplayName("print()는 initialize된 보드를 출력한다.")
+    void checkPrint(){
+        board.initialize();
+        System.out.print(board.print());
+        String expectedLayout = "********\nPPPPPPPP\n********\n********\n********\n********\npppppppp\n********";
+        assertThat(board.print()).isEqualTo(expectedLayout);
+    }
 }

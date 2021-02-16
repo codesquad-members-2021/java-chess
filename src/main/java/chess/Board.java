@@ -5,10 +5,11 @@ import pieces.Pawn.Color;
 
 import java.util.*;
 
+import static utils.StringUtils.*;
+
 public class Board {
     private final List<Pawn> blackPawns;
     private final List<Pawn> whitePawns;
-    private final String EMPTY_LINE = "........\n";
     private final int BOARD_SIZE = 8;
 
     public Board() {
@@ -39,19 +40,15 @@ public class Board {
         return pawnsToPrint.toString();
     }
 
-    public void print() {
+    public String getResultToPrint() {
+        String emptyLine = appendNewLine("........");
         StringBuilder result = new StringBuilder();
-        result.append(EMPTY_LINE);
-        result.append(getBlackPawnsToPrint());
-        result.append("\n");
-        result.append(EMPTY_LINE);
-        result.append(EMPTY_LINE);
-        result.append(EMPTY_LINE);
-        result.append(EMPTY_LINE);
-        result.append(getWhitePawnsToPrint());
-        result.append("\n");
-        result.append(EMPTY_LINE);
-        System.out.println(result.toString());
+        result.append(emptyLine)
+                .append(appendNewLine(getBlackPawnsToPrint()))
+                .append(emptyLine).append(emptyLine).append(emptyLine).append(emptyLine)
+                .append(appendNewLine(getWhitePawnsToPrint()))
+                .append(emptyLine);
+        return result.toString();
     }
 
     public void addWhitePawn(Pawn pawn) {

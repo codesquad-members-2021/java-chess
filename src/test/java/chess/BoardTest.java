@@ -46,7 +46,7 @@ class BoardTest {
     @Test
     void print() {
         board.initialize();
-        board.print();
+        System.out.println(board.getResultToPrint());
     }
 
 }

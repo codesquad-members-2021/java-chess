@@ -14,7 +14,11 @@ public class StartGame {
             System.out.println("input > ");
             String input = sc.next();
 
-            if (commandSwitch(board, input)) return;
+            if (commandSwitch(board, input)) {
+                sc.close();
+                return;
+            }
+
         }
     }
 

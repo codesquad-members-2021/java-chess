@@ -37,7 +37,7 @@ public class StartGame {
                 System.out.println("게임을 종료");
                 return true;
             default:
-                throw new IllegalArgumentException("알 수 없는 명령어");
+                System.out.println("알 수 없는 명령어");
         }
         return false;
     }

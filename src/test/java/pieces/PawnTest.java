@@ -1,4 +1,4 @@
-package chess.pieces;
+package pieces;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,14 +10,14 @@ class PawnTest {
 
     @Test
     @DisplayName("하얀색 폰은 p를 출력해야한다.")
-    void printCheckWhitePawn() {
+    void verifyWhitePawnRepresentation() {
         Pawn pawn = new Pawn(Color.WHITE);
         verifyPawn(pawn, "white", 'p');
     }
 
     @Test
     @DisplayName("검은색 폰은 P를 출력해야한다.")
-    void printCheckBlackPawn() {
+    void verifyBlackPawnRepresentation() {
         Pawn pawn = new Pawn(Color.BLACK);
         verifyPawn(pawn, "black", 'P');
     }

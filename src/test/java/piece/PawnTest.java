@@ -10,11 +10,11 @@ class PawnTest {
     @Test
     @DisplayName("흰색 폰이 생성되어야 한다")
     public void create() {
-        verifyPawn("white");
-        verifyPawn("black");
+        verifyPawn(Pawn.Color.WHITE);
+        verifyPawn(Pawn.Color.BLACK);
     }
 
-    public void verifyPawn(String color){
+    public void verifyPawn(Pawn.Color color){
         Pawn pawn = new Pawn(color);
         assertEquals(color, pawn.getColor());
     }

@@ -1,20 +1,22 @@
 package pieces;
 
 public class Pawn {
-    public static final String WHITE_COLOR = "white";
-    public static final String BLACK_COLOR = "black";
 
-    String color;
+    private final Color color;
+
+    public enum Color {
+        WHITE, BLACK
+    }
 
     public Pawn() {
-        this.color = WHITE_COLOR;
+        this.color = Color.WHITE;
     }
 
-    public Pawn(String color) {
-        this.color = color;
+    public Pawn(Color color) {
+        this.color = Color.BLACK;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 

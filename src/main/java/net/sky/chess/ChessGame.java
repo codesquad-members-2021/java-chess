@@ -25,11 +25,12 @@ public class ChessGame {
             if (command.equals(END)) {
                 System.out.println("체스 게임을 종료합니다.");
                 break;
-            } else if (command.equals(START)) {
-                board.print();
-            } else {
-                System.out.println("잘못된 명령어 입니다. 다시 입력해주세요.");
             }
+            if (command.equals(START)) {
+                board.print();
+                continue;
+            }
+            System.out.println("잘못된 명령어 입니다. 다시 입력해주세요.");
         }
     }
 

@@ -2,11 +2,11 @@ package net.isaac.pieces;
 
 public class Pawn extends Piece {
     public Pawn() {
-        this.color = Color.WHITE;
+        super(Color.WHITE);
     }
 
     public Pawn(Color color){
-        this.color = color;
+        super(color);
     }
 
 

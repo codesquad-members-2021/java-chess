@@ -38,8 +38,8 @@ public class BoardTest {
         board.initialize();
 
         assertAll(
-                () -> assertEquals("pppppppp", board.getPawnsResult(Color.WHITE)),
-                () -> assertEquals("PPPPPPPP", board.getPawnsResult(Color.BLACK))
+                () -> assertEquals("pppppppp", board.getWhitePawnsResult()),
+                () -> assertEquals("PPPPPPPP", board.getBlackPawnsResult())
         );
     }
 }

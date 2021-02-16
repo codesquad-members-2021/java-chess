@@ -43,4 +43,22 @@ class BoardTest {
     private void verifySearchByIndex(Pawn pawn, int index) {
         assertThat(pawn).isEqualTo(board.findPawn(index));
     }
+
+    @Test
+    @DisplayName("initialize 메소드 호출에 따라 각 폰의 표현문자 정상출력")
+    void checkRepresentationOfInitialize() {
+        board.initialize();
+        assertAll(
+                () -> verifyRepresentaionOfWhitePawns("pppppppp"),
+                () -> verifyRepresentaionOfBlackPawns("PPPPPPPP")
+        );
+    }
+
+    private void verifyRepresentaionOfBlackPawns(String rowOfRepresentation) {
+        assertThat(board.getBlackPawnsLocation).isEqualTo(rowOfRepresentation);
+    }
+
+    private void verifyRepresentaionOfWhitePawns(String rowOfRepresentation){
+        assertThat(board.getWhitePawnsLocation).isEqualTo(rowOfRepresentation);
+    }
 }

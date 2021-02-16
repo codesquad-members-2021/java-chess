@@ -19,10 +19,12 @@ public class Game {
                 board = new Board();
                 board.initialize();
                 board.print();
-            }else {
+            }else if(cmd.equals("end")) {
                 System.out.println("bye");
                 over = false;
                 sc.close();
+            }else {
+                System.out.println("invalid cmd");
             }
 
         }

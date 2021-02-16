@@ -1,7 +1,8 @@
 package chess.pieces;
 
 public enum Color {
-    WHITE('p'), BLACK('P');
+    WHITE('p'),
+    BLACK('P');
 
     private final char representation;
 

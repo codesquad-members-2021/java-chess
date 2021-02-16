@@ -24,7 +24,9 @@ class PawnTest {
 
     void verifyPawn(final String color, final char representation) {
         Pawn pawn = new Pawn(color,representation);
-        assertEquals(pawn.getColor(), color);
-        assertEquals(representation, pawn.getRepresentation());
+        assertAll(
+                ()->assertEquals(pawn.getColor(), color),
+                ()->assertEquals(representation, pawn.getRepresentation())
+        );
     }
 }

@@ -13,7 +13,7 @@ public class Pawn extends Piece {
         return color;
     }
 
-    public char getBoardCharacter(){
+    public char getRepresentation(){
         if(this.color == PieceColor.BLACK)
             return 'P';
         else if(this.color == PieceColor.WHITE)

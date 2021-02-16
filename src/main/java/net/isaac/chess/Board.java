@@ -23,7 +23,7 @@ public class Board {
                 if(pieces[i][j] == null)
                     System.out.print('.');
                 else
-                    System.out.print(pieces[i][j].getBoardCharacter());
+                    System.out.print(pieces[i][j].getRepresentation());
             }
             System.out.println();
         }

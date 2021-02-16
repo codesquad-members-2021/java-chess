@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 public class StartGame {
 
+    private static final String START = "start";
+    private static final String END = "end";
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Board board = new Board();
@@ -24,13 +27,13 @@ public class StartGame {
 
     private static boolean commandSwitch(Board board, String input) {
         switch (input) {
-            case "start":
+            case START:
                 board.initialize();
-                String blackPawns=board.getPawnsResult(PawnEnum.BLACK_COLOR);
-                String whitePawns=board.getPawnsResult(PawnEnum.WHITE_COLOR);
-                System.out.println(PrintChess.printBoard(blackPawns,whitePawns));
+                String blackPawns = board.getPawnsResult(PawnEnum.BLACK_COLOR);
+                String whitePawns = board.getPawnsResult(PawnEnum.WHITE_COLOR);
+                System.out.println(PrintChess.printBoard(blackPawns, whitePawns));
                 break;
-            case "end":
+            case END:
                 System.out.println("게임을 종료");
                 return true;
             default:

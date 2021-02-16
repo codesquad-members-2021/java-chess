@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
-    Board board;
-    Pawn whitePawn;
-    Pawn blackPawn;
+    private Board board;
+    private Pawn whitePawn;
+    private Pawn blackPawn;
 
     @BeforeEach
     void setUp(){

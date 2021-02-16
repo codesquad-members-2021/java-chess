@@ -1,15 +1,15 @@
-package bibi;
+package pieces;
 
 public class Pawn {
     private final String color;
     public final static String WHITE = "white";
     public final static String BLACK = "black";
 
-    Pawn(String color) {
+    public Pawn(String color) {
         this.color = color;
     }
 
-    Pawn() {
+    public Pawn() {
         this.color = WHITE;
     }
 

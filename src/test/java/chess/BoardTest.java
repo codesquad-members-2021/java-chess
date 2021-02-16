@@ -1,9 +1,11 @@
-package bibi;
+package chess;
 
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import pieces.Pawn;
 
 class BoardTest {
     @Test

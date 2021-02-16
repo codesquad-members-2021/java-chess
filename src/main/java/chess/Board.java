@@ -1,6 +1,8 @@
-package bibi;
+package chess;
 
 import java.util.ArrayList;
+
+import pieces.Pawn;
 
 public class Board {
     private ArrayList<Pawn> pawns = new ArrayList<>();

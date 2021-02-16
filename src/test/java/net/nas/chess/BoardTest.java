@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 public class BoardTest {
-    Board board;
+    private Board board;
 
     @BeforeEach
     void createTestBoard() {

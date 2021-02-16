@@ -11,16 +11,16 @@ public class Board {
     private List<Pawn> blackPawnList = new ArrayList<>();
 
     public void add(Pawn pawn){
-        whitePawnList.add(pawn);
-        blackPawnList.add(pawn);
+        if(pawn.getColor() == Pawn.Color.WHITE){
+
+            whitePawnList.add(pawn);
+        }else{
+            blackPawnList.add(pawn);
+        }
     }
 
     public int size(){
         return whitePawnList.size() + blackPawnList.size();
-    }
-
-    public Pawn findPawn(int i){
-        return blackPawnList.get(i);
     }
 
     public void initialize(){

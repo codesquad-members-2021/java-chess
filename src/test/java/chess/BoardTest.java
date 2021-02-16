@@ -13,15 +13,13 @@ class BoardTest {
     public void create() {
         Board board = new Board();
 
-        Pawn white = new Pawn(Pawn.Color.WHITE);
+        Pawn white = new Pawn();
         board.add(white);
         assertEquals(1, board.size());
-        assertEquals(white, board.findPawn(0));
 
-        Pawn black = new Pawn(Pawn.Color.BLACK);
+        Pawn black = new Pawn(Pawn.Color.BLACK, 'P');
         board.add(black);
         assertEquals(2, board.size());
-        assertEquals(black, board.findPawn(1));
     }
 
 

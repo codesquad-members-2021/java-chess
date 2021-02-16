@@ -31,4 +31,10 @@ class BoardTest {
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
     }
 
+    @Test
+    void print_잘되는지_확인하자 () {
+        Board board = new Board();
+        board.print();
+    }
+
 }

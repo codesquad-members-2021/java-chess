@@ -54,4 +54,13 @@ public class Board {
         return sb.toString();
     }
 
+    void initialize() {
+        for (int i = 0; i < 8; i++) {
+            addWhitePawn(new Pawn(Color.WHITE));
+        }
+
+        for (int i = 0; i < 8; i++) {
+            addBlackPawn(new Pawn(Color.BLACK));
+        }
+    }
 }

@@ -20,7 +20,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("폰이 보드에 정상적으로 등록")
-    void create() throws Exception {
+    void create() {
         verifyWhitePawns(board, whitePawn, 0);
         verifyBlackPawns(board, blackPawn, 0);
     }

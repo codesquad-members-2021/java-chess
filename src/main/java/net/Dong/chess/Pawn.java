@@ -2,12 +2,18 @@ package net.Dong.chess;
 
 public class Pawn {
 
-    private final Color color;
 
+    public static final char WHITE_REPRESENTATION = 'p';
+    public static final char BLACK_REPRESENTATION = 'P';
+
+
+    char representation;
+    private final Color color;
     public enum Color {
         WHITE,
-        BALCK
+        BLACK
     };
+
 
 
 
@@ -25,17 +31,16 @@ public class Pawn {
     public Pawn(String colorString) {
         // insert String-type color constructor
         if(colorString.equals("BLACK")) {
-            this.color = Color.BALCK;
+            this.color = Color.BLACK;
         }else {
             this.color = Color.WHITE;
         }
     }
-
-
-    public Pawn(Color color, char represent) {
+    public Pawn(Color color , char representation) {
+        // insert String-type color constructor
         this.color = color;
+        this.representation = representation;
     }
-
 
 
 
@@ -45,11 +50,11 @@ public class Pawn {
         return this.color;
     }
 
-    public String getSymbol() {
+    public char getSymbol() {
         if(this.color == Color.WHITE) {
-            return "p";
+            return 'p';
         }
-        return "P";
+        return 'P';
     }
 
 }

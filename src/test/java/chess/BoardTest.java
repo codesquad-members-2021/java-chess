@@ -38,8 +38,8 @@ public class BoardTest {
     @Test
     @DisplayName("초기 체스판 출력")
     void test_print() {
-        String[][] initializedBoard = board.initialize();
-        String chessBoard = board.print(initializedBoard);
+        board.initialize();
+        String chessBoard = board.print();
         System.out.println(chessBoard);
     }
 

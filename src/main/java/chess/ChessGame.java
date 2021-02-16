@@ -34,8 +34,8 @@ public class ChessGame {
     }
 
     private void start() {
-        String[][] initializedBoard = board.initialize();
-        String chessBoard = board.print(initializedBoard);
+        board.initialize();
+        String chessBoard = board.print();
         System.out.println(chessBoard);
     }
 

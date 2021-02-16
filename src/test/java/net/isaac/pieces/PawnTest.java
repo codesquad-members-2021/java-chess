@@ -10,19 +10,19 @@ class PawnTest {
     @DisplayName("폰 기본생성자 테스트")
     void basicConstructorTest() throws Exception{
         Pawn pawn = new Pawn();
-        assertThat(pawn.getColor()).isEqualTo(Pawn.WHITE_COLOR);
+        assertThat(pawn.getColor()).isEqualTo(PieceColor.WHITE);
     }
 
     @Test
     @DisplayName("폰 생성자 테스트")
     void colorConstructorTest() throws Exception{
         assertAll(
-                ()->verifyPawn(Pawn.WHITE_COLOR),
-                ()->verifyPawn(Pawn.BLACK_COLOR)
+                ()->verifyPawn(PieceColor.WHITE),
+                ()->verifyPawn(PieceColor.BLACK)
         );
     }
 
-    void verifyPawn(String color){
+    void verifyPawn(PieceColor color){
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
     }

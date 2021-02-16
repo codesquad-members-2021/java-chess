@@ -1,5 +1,6 @@
 package net.isaac.chess;
 
+import net.isaac.pieces.PieceColor;
 import org.junit.jupiter.api.BeforeEach;
 import net.isaac.pieces.Pawn;
 import org.junit.jupiter.api.Disabled;
@@ -20,9 +21,9 @@ class BoardTest {
     @Test
     @DisplayName("Board의 Pawn 등록 테스트")
     void pawnAddTest() throws Exception {
-        Pawn white = new Pawn(Pawn.WHITE_COLOR);
+        Pawn white = new Pawn(PieceColor.WHITE);
         board.add(white, 0, 0);
-        Pawn black = new Pawn(Pawn.BLACK_COLOR);
+        Pawn black = new Pawn(PieceColor.BLACK);
         board.add(black, 0, 1);
 
         assertAll(

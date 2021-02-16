@@ -1,20 +1,17 @@
 package net.isaac.pieces;
 
 public class Pawn {
-    public static final String WHITE_COLOR = "White";
-    public static final String BLACK_COLOR = "Black";
-
-    private String color;
+    private PieceColor color;
 
     public Pawn() {
-        this.color = Pawn.WHITE_COLOR;
+        this.color = PieceColor.WHITE;
     }
 
-    public Pawn(String color){
+    public Pawn(PieceColor color){
         this.color = color;
     }
 
-    public String getColor() {
+    public PieceColor getColor() {
         return color;
     }
 }

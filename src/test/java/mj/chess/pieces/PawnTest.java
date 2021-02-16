@@ -14,15 +14,9 @@ class PawnTest {
     }
 
     @Test
-    @DisplayName("흰색 폰 생성")
-    void createWhitePawn() {
-        verifyColorOfPawn(new Pawn(Color.WHITE), Color.WHITE);
-    }
-
-    @Test
-    @DisplayName("검은색 폰 생성")
-    void createBlackPawn() {
-        verifyColorOfPawn(new Pawn(Color.BLACK), Color.BLACK);
+    @DisplayName("흰색과 검은색 폰 생성")
+    void createPawns() {
+        for (Color color : Color.values()) verifyColorOfPawn(new Pawn(color), color);
     }
 
     void verifyColorOfPawn(Pawn pawn, Color color) {

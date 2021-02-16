@@ -1,28 +1,28 @@
 package net.isaac.chess;
 
 import net.isaac.pieces.Pawn;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.isaac.pieces.Piece;
+import net.isaac.pieces.PieceColor;
 
 public class Board {
     private static final int MAX_SIZE = 8;
+    private static final int MAX_IDX = MAX_SIZE - 1;
 
-    private Pawn[][] pawns = new Pawn[MAX_SIZE][MAX_SIZE];
+    private Piece[][] pieces = new Piece[MAX_SIZE][MAX_SIZE];
 
-    public boolean add(Pawn pawn, int rowIdx, int colIdx){
+    public boolean add(Piece piece, int rowIdx, int colIdx){
         if(!isValid(rowIdx) || !isValid(colIdx))
             return false;
 
-        pawns[rowIdx][colIdx] = pawn;
+        pieces[rowIdx][colIdx] = piece;
         return true;
     }
 
-    public Pawn findPawn(int rowIdx, int colIdx){
+    public Piece findPiece(int rowIdx, int colIdx){
         if(!isValid(rowIdx) || !isValid(colIdx))
             return null;
 
-        return pawns[rowIdx][colIdx];
+        return pieces[rowIdx][colIdx];
     }
 
     private boolean isValid(int location){

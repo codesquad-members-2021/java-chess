@@ -3,7 +3,6 @@ package net.isaac.chess;
 import net.isaac.pieces.PieceColor;
 import org.junit.jupiter.api.BeforeEach;
 import net.isaac.pieces.Pawn;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -27,10 +26,10 @@ class BoardTest {
         board.add(black, 0, 1);
 
         assertAll(
-                ()->assertThat(board.findPawn(0,0)).isEqualTo(white),
-                ()->assertThat(board.findPawn(0,1)).isEqualTo(black),
-                ()->assertThat(board.findPawn(0,2)).isEqualTo(null),
-                ()->assertThat(board.findPawn(10,10)).isEqualTo(null)
+                ()->assertThat(board.findPiece(0,0)).isEqualTo(white),
+                ()->assertThat(board.findPiece(0,1)).isEqualTo(black),
+                ()->assertThat(board.findPiece(0,2)).isEqualTo(null),
+                ()->assertThat(board.findPiece(10,10)).isEqualTo(null)
         );
     }
 }

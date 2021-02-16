@@ -31,7 +31,7 @@ public class StartGame {
                 board.initialize();
                 String blackPawns = board.getPawnsResult(PawnEnum.BLACK);
                 String whitePawns = board.getPawnsResult(PawnEnum.WHITE);
-                System.out.println(PrintChess.printBoard(blackPawns, whitePawns));
+                PrintChess.printBoard(blackPawns, whitePawns);
                 break;
             case END:
                 System.out.println("게임을 종료");

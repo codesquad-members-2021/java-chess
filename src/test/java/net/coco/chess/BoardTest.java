@@ -48,7 +48,7 @@ public class BoardTest {
         board.initialize();
         String blackPawns = board.getPawnsResult(PawnEnum.BLACK);
         String whitePawns = board.getPawnsResult(PawnEnum.WHITE);
-        System.out.println(PrintChess.printBoard(blackPawns, whitePawns));
+        PrintChess.printBoard(blackPawns, whitePawns);
     }
 
     private void verifyPawnToPawns(PawnEnum pawnEnum, int findPawnIndex) {

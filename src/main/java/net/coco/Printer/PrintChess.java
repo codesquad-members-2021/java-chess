@@ -3,7 +3,7 @@ package net.coco.Printer;
 public class PrintChess {
     private static final String BLANK = "********\n";
 
-    public static String printBoard(String blackPawns, String whitePawns) {
+    public static void printBoard(String blackPawns, String whitePawns) {
         StringBuilder boardPrint = new StringBuilder();
         boardPrint.append(BLANK)
                 .append(blackPawns + "\n")
@@ -14,6 +14,6 @@ public class PrintChess {
                 .append(whitePawns + "\n")
                 .append(BLANK);
 
-        return boardPrint.toString();
+        System.out.println(boardPrint);
     }
 }

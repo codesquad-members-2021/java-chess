@@ -1,3 +1,5 @@
+package pieces;
+
 public class Pawn {
     private Color color;
 

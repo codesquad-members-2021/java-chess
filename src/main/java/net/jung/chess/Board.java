@@ -10,12 +10,11 @@ public class Board {
     private final int MAX_PAWNS_SIZE = 8;
 
     public void add(Pawn pawn) {
-        if (pawn.getColor()== (Color.WHITE)) {
+        if (pawn.getColor() == (Color.WHITE)) {
             whitePawnList.add(pawn);
             return;
         }
         blackPawnList.add(pawn);
-
     }
 
     public int size() {
@@ -32,29 +31,24 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < MAX_PAWNS_SIZE; i++) {
-            Pawn whitePawn = new Pawn(Color.WHITE);
-            Pawn blackPawn = new Pawn(Color.BLACK);
-            add(whitePawn);
-            add(blackPawn);
+            add(new Pawn(Color.WHITE));
+            add(new Pawn(Color.BLACK));
         }
     }
 
     public String getWhitePawnsResult() {
-        StringBuilder pawnReps = new StringBuilder();
-        int whiteSize = whitePawnList.size();
-
-        for (int i = 0; i < whiteSize; i++) {
-            pawnReps.append(whitePawnList.get(i).getRepresentation());
-        }
-        return pawnReps.toString();
+        return getPawnsResult(whitePawnList);
     }
 
     public String getBlackPawnsResult() {
-        StringBuilder pawnReps = new StringBuilder();
-        int blackSize = blackPawnList.size();
+        return getPawnsResult(blackPawnList);
+    }
 
-        for (int i = 0; i < blackSize; i++) {
-            pawnReps.append(blackPawnList.get(i).getRepresentation());
+    public String getPawnsResult(List<Pawn> pawnList) {
+        StringBuilder pawnReps = new StringBuilder();
+        int colorPawnSize = pawnList.size();
+        for (int i = 0; i < colorPawnSize; i++) {
+            pawnReps.append(pawnList.get(i).getRepresentation());
         }
         return pawnReps.toString();
     }

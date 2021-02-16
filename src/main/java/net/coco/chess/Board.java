@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Board {
     private List<Pawn> whitePawns = new ArrayList<>();
     private List<Pawn> blackPawns = new ArrayList<>();
+    private static final String BLANK = "********\n";
 
 
     public void addWhitePawn(Pawn pawn) {
@@ -54,26 +55,23 @@ public class Board {
 
     private String getPawnsToString(List<Pawn> Pawns) {
         return Pawns.stream()
-                .map(pawn->String.valueOf(pawn.getRepresentation()))
+                .map(pawn -> String.valueOf(pawn.getRepresentation()))
                 .collect(Collectors.joining());
     }
 
     public String print() {
         StringBuilder boardPrint = new StringBuilder();
-        boardPrint.append(blank())
-                .append(getPawnsToString(whitePawns) + "\n")
-                .append(blank())
-                .append(blank())
-                .append(blank())
-                .append(blank())
+        boardPrint.append(BLANK)
                 .append(getPawnsToString(blackPawns) + "\n")
-                .append(blank());
+                .append(BLANK)
+                .append(BLANK)
+                .append(BLANK)
+                .append(BLANK)
+                .append(getPawnsToString(whitePawns) + "\n")
+                .append(BLANK);
 
         return boardPrint.toString();
     }
 
-    private String blank() {
-        return "********\n";
-    }
 
 }

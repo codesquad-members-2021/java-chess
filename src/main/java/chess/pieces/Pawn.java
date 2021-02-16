@@ -2,7 +2,6 @@ package chess.pieces;
 
 public class Pawn {
     private Color color;
-    private char representation;
 
     public Pawn() {
         this(Color.WHITE);
@@ -10,7 +9,6 @@ public class Pawn {
 
     public Pawn(Color color) {
         this.color = color;
-        this.representation = color.getRepresentation();
     }
 
     public Color getColor() {
@@ -18,7 +16,7 @@ public class Pawn {
     }
 
     public char getRepresentation() {
-        return this.representation;
+        return color.getRepresentation();
     }
 }
 

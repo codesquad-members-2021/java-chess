@@ -3,40 +3,23 @@ package net.sky.pieces;
 public class Pawn {
 
     private final Color color;
-
-    private final Representation representation;
-
-    public enum Color {WHITE, BLACK}
-
-    public enum Representation {
-        p('p'), P('P');
-
-        private final char value;
-
-        Representation(char value) {
-            this.value = value;
-        }
-
-        public char getValue() {
-            return this.value;
-        }
-    }
+    private final char representation;
 
     public Pawn() {
         this.color = Color.WHITE;
-        this.representation = Representation.p;
+        this.representation = color.getRepresentation();
     }
 
-    public Pawn(Color color, Representation representation) {
+    public Pawn(Color color) {
         this.color = color;
-        this.representation = representation;
+        this.representation = color.getRepresentation();
     }
 
     public Color getColor() {
         return color;
     }
 
-    public Representation getRepresentation() {
+    public char getRepresentation() {
         return representation;
     }
 

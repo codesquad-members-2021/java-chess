@@ -3,20 +3,13 @@ package net.sky.chess;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sky.pieces.Color;
 import net.sky.pieces.Pawn;
-import net.sky.pieces.Pawn.Color;
-import net.sky.pieces.Pawn.Representation;
 
 public class Board {
 
-    private List<Pawn> whitePawns;
-
-    private List<Pawn> blackPawns;
-
-    public Board() {
-        whitePawns = new ArrayList<>();
-        blackPawns = new ArrayList<>();
-    }
+    private List<Pawn> whitePawns = new ArrayList<>();
+    private List<Pawn> blackPawns = new ArrayList<>();
 
     public void addWhitePawn(Pawn pawn) {
         whitePawns.add(pawn);
@@ -44,20 +37,24 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            addWhitePawn(new Pawn(Color.WHITE, Representation.p));
-            addBlackPawn(new Pawn(Color.BLACK, Representation.P));
+            addWhitePawn(new Pawn(Color.WHITE));
+            addBlackPawn(new Pawn(Color.BLACK));
         }
     }
 
     public String getWhitePawnsResult() {
         StringBuilder result = new StringBuilder();
-        whitePawns.forEach((x) -> result.append(x.getRepresentation().getValue()));
+        for (Pawn pawn : whitePawns) {
+            result.append(pawn.getRepresentation());
+        }
         return result.toString();
     }
 
     public String getBlackPawnsResult() {
         StringBuilder result = new StringBuilder();
-        blackPawns.forEach((x) -> result.append(x.getRepresentation().getValue()));
+        for (Pawn pawn : blackPawns) {
+            result.append(pawn.getRepresentation());
+        }
         return result.toString();
     }
 

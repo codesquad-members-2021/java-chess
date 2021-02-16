@@ -3,9 +3,8 @@ package net.sky.chess;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
+import net.sky.pieces.Color;
 import net.sky.pieces.Pawn;
-import net.sky.pieces.Pawn.Color;
-import net.sky.pieces.Pawn.Representation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,8 +30,7 @@ class BoardTest {
 
     void verifyWhitePawn(int size, int idx) {
         Color color = Color.WHITE;
-        Representation representation = Representation.p;
-        Pawn pawn = new Pawn(color, representation);
+        Pawn pawn = new Pawn(color);
         board.addWhitePawn(pawn);
         assertAll(
             () -> assertThat(board.getWhitePawnsSize()).isEqualTo(size),
@@ -42,8 +40,7 @@ class BoardTest {
 
     void verifyBlackPawn(int size, int idx) {
         Color color = Color.BLACK;
-        Representation representation = Representation.P;
-        Pawn pawn = new Pawn(color, representation);
+        Pawn pawn = new Pawn(color);
         board.addBlackPawn(pawn);
         assertAll(
             () -> assertThat(board.getBlackPawnsSize()).isEqualTo(size),

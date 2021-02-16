@@ -18,6 +18,16 @@ class BoardTest {
     }
 
     @Test
+    @DisplayName("Board의 초기화 테스트")
+    void initializeTest() throws Exception {
+        board.initialize();
+        assertAll(
+                ()->assertThat(board.getWhitePiecesResult()).isEqualTo("pppppppp"),
+                ()->assertThat(board.getBlackPiecesResult()).isEqualTo("PPPPPPPP")
+        );
+    }
+
+    @Test
     @DisplayName("Board의 Pawn 등록 테스트")
     void pawnAddTest() throws Exception {
         Pawn white = new Pawn(PieceColor.WHITE);

@@ -11,9 +11,16 @@ public class Pawn {
         this.representation = WHITE_REPRESENTATION;
     }
 
-    public Pawn(Color color, final char representation) {
+    public Pawn(Color color) {
         this.color = color;
-        this.representation = representation;
+        this.representation = setRepresentation(color);
+    }
+
+    private char setRepresentation(Color color) {
+        if(color == Color.WHITE){
+            return WHITE_REPRESENTATION;
+        }
+        return BLACK_REPRESENTATION;
     }
 
     public Color getColor() {

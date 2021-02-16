@@ -29,8 +29,8 @@ public class BoardTest {
     @Test
     @DisplayName("흰색, 검은색 Pawn을 생성해 board에 추가한다")
     void createPawnOnTheBoard() {
-        Pawn white = new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION););
-        Pawn black = new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION);
+        Pawn white = new Pawn(Color.WHITE);
+        Pawn black = new Pawn(Color.BLACK);
         addPawnVerify(white, 1, 0);
         addPawnVerify(black, 2, 1);
     }

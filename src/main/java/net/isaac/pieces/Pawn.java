@@ -2,18 +2,18 @@ package net.isaac.pieces;
 
 public class Pawn extends Piece {
     public Pawn() {
-        this.color = PieceColor.WHITE;
+        this.color = Color.WHITE;
     }
 
-    public Pawn(PieceColor color){
+    public Pawn(Color color){
         this.color = color;
     }
 
 
     public char getRepresentation(){
-        if(this.color == PieceColor.BLACK)
+        if(this.color == Color.BLACK)
             return 'P';
-        else if(this.color == PieceColor.WHITE)
+        else if(this.color == Color.WHITE)
             return 'p';
         else
             return '?';

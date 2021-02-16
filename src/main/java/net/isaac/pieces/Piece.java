@@ -1,11 +1,16 @@
 package net.isaac.pieces;
 
 public abstract class Piece {
-    PieceColor color;
+    Color color;
     //Board 출력을 위한 문자 반환
     public abstract char getRepresentation();
 
-    public PieceColor getColor() {
+    public Color getColor() {
         return color;
+    }
+
+    public enum Color {
+        BLACK,
+        WHITE
     }
 }

@@ -2,7 +2,6 @@ package net.isaac.chess;
 
 import net.isaac.pieces.Pawn;
 import net.isaac.pieces.Piece;
-import net.isaac.pieces.PieceColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +16,8 @@ public class Board {
 
     public void initialize(){
         for(int i = 0; i < MAX_SIZE; i++){
-            add(new Pawn(PieceColor.BLACK),1,i);
-            add(new Pawn(PieceColor.WHITE), MAX_IDX-1, i);
+            add(new Pawn(Piece.Color.BLACK),1,i);
+            add(new Pawn(Piece.Color.WHITE), MAX_IDX-1, i);
         }
     }
 
@@ -58,9 +57,9 @@ public class Board {
 
         pieces[rowIdx][colIdx] = piece;
 
-        if(piece.getColor() == PieceColor.BLACK)
+        if(piece.getColor() == Piece.Color.BLACK)
             blackPieces.add(piece);
-        else if(piece.getColor() == PieceColor.WHITE)
+        else if(piece.getColor() == Piece.Color.WHITE)
             whitePieces.add(piece);
 
         return true;

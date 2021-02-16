@@ -33,10 +33,16 @@ class BoardTest {
         Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
         Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
         verifyAddWhitePawn(white);
+        verifyAddBlackPawn(black);
     }
 
     void verifyAddWhitePawn(Pawn whitePawn) {
         board.addWhitePawn(whitePawn);
         assertEquals(whitePawn, board.findWhitePawn(0));
+    }
+
+    void verifyAddBlackPawn(Pawn blackPawn){
+        board.addBlackPawn(blackPawn);
+        assertEquals(blackPawn, board.findBlackPawn(0));
     }
 }

@@ -9,7 +9,7 @@ class BoardTest {
     private Board board = new Board();
 
     @Test
-    public void 보드에_폰이_색깔별로_잘_들어가는지_확인한다() throws Exception {
+    void 보드에_폰이_색깔별로_잘_들어가는지_확인한다() throws Exception {
 
         verifyBoard(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION, 0);
         verifyBoard(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION, 1);
@@ -24,7 +24,7 @@ class BoardTest {
     }
 
     @Test
-    public void initialize() throws Exception {
+    void initialize() throws Exception {
         Board board = new Board();
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");

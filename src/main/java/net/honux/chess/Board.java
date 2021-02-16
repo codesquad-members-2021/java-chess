@@ -23,20 +23,18 @@ public class Board {
         return board.get(i);
     }
 
+    private ArrayList<Pawn> distinguishPawnsColor(Pawn pawn) {
+        if (pawn.getColor() == Pawn.WHITE_COLOR)
+            return whitePawns;
+        else
+            return blackPawns;
+    }
+
     void initialize() {
         for (int i = 0; i < BOARD_LENGTH; i++) {
             whitePawns.add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
             blackPawns.add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
         }
-    }
-
-    private String listPawnsToSingleLine(ArrayList<Pawn> whichGroupOfPawns) {
-        StringBuilder sb = new StringBuilder();
-
-        for (Pawn p : whichGroupOfPawns)
-            sb.append(p.getRepresentation());
-
-        return sb.toString();
     }
 
     public String getWhitePawnsResult() {

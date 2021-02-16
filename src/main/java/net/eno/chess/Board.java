@@ -1,7 +1,7 @@
-package chess;
+package net.eno.chess;
 
-import pieces.Pawn;
-import pieces.Piece;
+import net.eno.pieces.Pawn;
+import net.eno.pieces.Piece;
 
 import java.util.Map;
 import java.util.List;

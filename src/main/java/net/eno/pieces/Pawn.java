@@ -1,4 +1,4 @@
-package pieces;
+package net.eno.pieces;
 
 public class Pawn {
 

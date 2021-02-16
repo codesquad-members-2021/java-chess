@@ -1,10 +1,10 @@
-package chess;
+package net.eno.chess;
 
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
 
-import pieces.Pawn;
-import pieces.Piece;
+import net.eno.pieces.Pawn;
+import net.eno.pieces.Piece;
 
 public class BoardTest {
 

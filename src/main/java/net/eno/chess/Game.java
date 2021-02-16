@@ -1,4 +1,4 @@
-package chess;
+package net.eno.chess;
 
 import java.util.Scanner;
 

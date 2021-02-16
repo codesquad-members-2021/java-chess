@@ -40,11 +40,11 @@ public class Board {
         }
     }
 
-    private String getWhitePawnsResult() {
+    public String getWhitePawnsResult() {
         return getPawnsResult(whitePawnList);
     }
 
-    private String getBlackPawnsResult() {
+    public String getBlackPawnsResult() {
         return getPawnsResult(blackPawnList);
     }
 

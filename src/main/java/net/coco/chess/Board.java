@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Board {
     private List<Pawn> whitePawns = new ArrayList<>();
     private List<Pawn> blackPawns = new ArrayList<>();
+    private static final int BOARD_CELLS=8;
 
 
 
@@ -46,7 +47,7 @@ public class Board {
     public void initialize() {
         whitePawns.clear();
         blackPawns.clear();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_CELLS; i++) {
             whitePawns.add(new Pawn(PawnEnum.WHITE_COLOR));
             blackPawns.add(new Pawn(PawnEnum.BLACK_COLOR));
         }

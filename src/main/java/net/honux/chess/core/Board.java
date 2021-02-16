@@ -6,9 +6,9 @@ import net.honux.chess.entity.pieces.Pawn;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 public class Board {
+
     private static final int BOARD_SIZE = 8;
     private static final String BLANK = "********";
     private static final int initialSpaceInterval = 4;
@@ -21,31 +21,15 @@ public class Board {
         addPawnToBoardSize();
     }
 
-    public void main() {
-        Scanner scanner = new Scanner(System.in);
-        String userInputCommand = scanner.nextLine();
-        userInputCommand = validateStartCommand(scanner, userInputCommand);
-        play(scanner, userInputCommand);
-        System.out.println("체스 게임이 종료됩니다..");
-    }
-
-
     public void add(Pawn pawn) {
-        getValidateInputList(pawn).add(pawn);
+        getListByColor(pawn).add(pawn);
     }
 
-    private List<Pawn> getValidateInputList(Pawn pawn) {
-        if (pawn.getColor() == Color.BLACK) {
-            return blackPawnList;
-        }
-        return whitePawnList;
-    }
-
-    public int whitePawnsize() {
+    public int whitePawnSize() {
         return whitePawnList.size();
     }
 
-    public int blackPawnsize() {
+    public int blackPawnSize() {
         return blackPawnList.size();
     }
 
@@ -54,7 +38,7 @@ public class Board {
         try {
             pawn = Optional.ofNullable(whitePawnList.get(index));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("해당 위치에 Pawn 이 존재하지 않습니다.");
+            return Optional.empty();
         }
         return pawn;
     }
@@ -64,7 +48,7 @@ public class Board {
         try {
             pawn = Optional.ofNullable(blackPawnList.get(index));
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("해당 위치에 Pawn 이 존재하지 않습니다.");
+            return Optional.empty();
         }
         return pawn;
     }
@@ -108,21 +92,11 @@ public class Board {
         }
     }
 
-    private String validateStartCommand(Scanner scanner, String userInputCommand) {
-        while (!userInputCommand.equals("start")) {
-            System.out.println("start 를 입력해 주십시오");
-            userInputCommand = scanner.nextLine();
+    private List<Pawn> getListByColor(Pawn pawn) {
+        if (pawn.getColor() == Color.BLACK) {
+            return blackPawnList;
         }
-        System.out.println("체스 게임이 시작됩니다.");
-        return userInputCommand;
-    }
-
-    private void play(Scanner scanner, String userInputCommand) {
-        while (!userInputCommand.equals("end")) {
-            userInputCommand = scanner.nextLine();
-            System.out.println(userInputCommand + "를 입력하셨습니다.");
-            print();
-        }
+        return whitePawnList;
     }
 
 }

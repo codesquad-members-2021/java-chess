@@ -7,8 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class BoardTest {
@@ -29,10 +27,10 @@ class BoardTest {
         board.add(white);
         board.add(black);
         Assertions.assertAll(
-                () -> assertThat(board.whitePawnsize()).isEqualTo(9),
-                () -> assertThat(white).isEqualTo(board.findWhitePawn(8).get()),
-                () -> assertThat(board.blackPawnsize()).isEqualTo(9),
-                () -> assertThat(black).isEqualTo(board.findBlackPawn(8).get())
+                () -> assertThat(board.whitePawnSize()).isEqualTo(9),
+                () -> assertThat(board.findWhitePawn(8).get()).isEqualTo(white),
+                () -> assertThat(board.blackPawnSize()).isEqualTo(9),
+                () -> assertThat(board.findBlackPawn(8).get()).isEqualTo(black)
         );
     }
 
@@ -41,8 +39,8 @@ class BoardTest {
     void checkPawnCount() {
         board.initialize();
         Assertions.assertAll(
-                () -> assertThat(board.whitePawnsize()).isEqualTo(8),
-                () -> assertThat(board.blackPawnsize()).isEqualTo(8));
+                () -> assertThat(board.whitePawnSize()).isEqualTo(8),
+                () -> assertThat(board.blackPawnSize()).isEqualTo(8));
     }
 
     @Test

@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 
 public class Board {
 
+    private static final int BOARD_LENGTH = 8;
+
     private final List<Pawn> whitePawns = new ArrayList<>();
     private final List<Pawn> blackPawns = new ArrayList<>();
 
@@ -26,7 +28,7 @@ public class Board {
         return getPawnListByColor(color).get(idx);
     }
 
-    public List<Pawn> getPawnListByColor(String color) {
+    private List<Pawn> getPawnListByColor(String color) {
         if (color.equals(Pawn.WHITE_COLOR)) {
             return whitePawns;
         } else if (color.equals(Pawn.BLACK_COLOR)) {
@@ -36,17 +38,28 @@ public class Board {
     }
 
     public void initialize() {
-        IntStream.range(0, 8).forEach(i -> {
+        IntStream.range(0, BOARD_LENGTH).forEach(i -> {
             whitePawns.add(i, new Pawn());
             blackPawns.add(i, new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
         });
     }
 
     public String getWhitePawnsResult() {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        for (Pawn pawn : whitePawns) {
+            char represent = (pawn == null) ? '.' : Pawn.WHITE_REPRESENTATION;
+            sb.append(represent);
+        }
+        return sb.toString();
     }
 
     public String getBlackPawnsResult() {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        for (Pawn pawn : blackPawns) {
+            char represent = (pawn == null) ? '.' : Pawn.BLACK_REPRESENTATION;
+            sb.append(represent);
+        }
+        return sb.toString();
     }
+
 }

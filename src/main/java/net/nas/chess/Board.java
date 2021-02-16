@@ -27,6 +27,10 @@ public class Board {
         }
     }
 
+    public void print() {
+        System.out.println(getResultOfAllRows());
+    }
+
     public String getResultOfAllRows() {
         StringBuilder sb = new StringBuilder();
         for (int i = 7; i >= 0; i--) {

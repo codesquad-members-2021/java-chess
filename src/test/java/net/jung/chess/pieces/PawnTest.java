@@ -1,7 +1,8 @@
-package pieces;
+package net.jung.chess.pieces;
 
-import chess.Color;
-import org.junit.jupiter.api.*;
+import net.jung.chess.Color;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,10 +1,12 @@
-package chess;
+package net.jung.chess;
 
-import pieces.Pawn;
+import net.jung.chess.pieces.Pawn;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class BoardTest {
 

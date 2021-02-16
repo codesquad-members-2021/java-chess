@@ -1,6 +1,6 @@
-package pieces;
+package net.jung.chess.pieces;
 
-import chess.Color;
+import net.jung.chess.Color;
 
 public class Pawn {
     private Color color;

@@ -1,6 +1,6 @@
-package chess;
+package net.jung.chess;
 
-import pieces.Pawn;
+import net.jung.chess.pieces.Pawn;
 
 import java.util.*;
 
@@ -18,4 +18,6 @@ public class Board {
     public Pawn findPawn(int index){
         return pawnList.get(index);
     }
+
+
 }

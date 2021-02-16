@@ -12,7 +12,7 @@ public class BoardTest {
     private Pawn whitePawn, blackPawn;
 
     @BeforeEach
-    private void setUp() {
+    void setUp() {
         board = new Board();
         whitePawn = new Pawn(Pawn.WHITE, Pawn.WHITE_REPRESENTATION);
         blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
@@ -25,32 +25,31 @@ public class BoardTest {
         verifyBlackPawns(board, blackPawn, 0);
     }
 
-    private void verifyWhitePawns(Board board, Pawn pawn, int index) {
+    private void verifyWhitePawns(Board board, Pawn pawn, int size) {
         board.addWhitePawn(pawn);
         assertAll(
-                () -> assertThat(board.getWhitePawnSize()).isEqualTo(index + 1),
-                () -> assertThat(board.findWhitePawn(index)).isEqualTo(pawn)
+                () -> assertThat(board.getWhitePawnSize()).isEqualTo(size + 1),
+                () -> assertThat(board.findWhitePawn(size)).isEqualTo(pawn)
         );
     }
 
-    private void verifyBlackPawns(Board board, Pawn pawn, int index) {
+    private void verifyBlackPawns(Board board, Pawn pawn, int size) {
         board.addBlackPawn(pawn);
         assertAll(
-                () -> assertThat(board.getBlackPawnsSize()).isEqualTo(index + 1),
-                () -> assertThat(board.findBlackPawn(index)).isEqualTo(pawn)
+                () -> assertThat(board.getBlackPawnsSize()).isEqualTo(size + 1),
+                () -> assertThat(board.findBlackPawn(size)).isEqualTo(pawn)
         );
     }
 
     @Test
-    @DisplayName("Prints properly")
+    @DisplayName("보드가 정상적으로 출력")
     void printer() {
         board.initialize();
         board.print();
     }
 
     @Test
-    @DisplayName("Board initializes properly")
-    void initialize() throws Exception {
+    void initialize() {
         board.initialize();
         assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult());
         assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult());

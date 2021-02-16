@@ -6,45 +6,59 @@ import java.util.ArrayList;
 
 public class Board {
 
-    ArrayList<Pawn> pawns = new ArrayList<Pawn>();
+    ArrayList<Pawn> whitePawns = new ArrayList<Pawn>();
+    ArrayList<Pawn> blackPawns = new ArrayList<Pawn>();
 
-    StringBuilder whiteResult = new StringBuilder();
-    StringBuilder blackResult = new StringBuilder();
 
-    public void add(Pawn pawn) {
-        pawns.add(pawn);
+    public void whitePawnsAdd(Pawn pawn){
+        whitePawns.add(pawn);
+    }
+
+    public void blackPawnsAdd(Pawn pawn){
+        blackPawns.add(pawn);
     }
 
     public int size() {
-        return pawns.size();
+        return whitePawns.size()+blackPawns.size();
     }
 
-    public Pawn findPawn(int index) {
-        return pawns.get(index);
+    public Pawn findWhitePawn(int index) {
+        return whitePawns.get(index);
+    }
+
+    public Pawn findBlackPawn(int index) {
+        return blackPawns.get(index);
     }
 
     public void initialize() {
-        ArrayList<Pawn> whitePawns = new ArrayList<Pawn>();
-        ArrayList<Pawn> blackPawns = new ArrayList<Pawn>();
+        int boardSize = 8;
 
-        for (int i = 0; i < 8; i++) {
-            whitePawns.add(new Pawn(Pawn.WHITE_COLOR,Pawn.WHITE_REPRESENTATION));
-            blackPawns.add(new Pawn(Pawn.BLACK_COLOR,Pawn.BLACK_REPRESENTATION));
-        }
-
-        for (int i = 0; i < whitePawns.size(); i++) {
-            whiteResult.append(whitePawns.get(i).getRepresentation());
-            blackResult.append(blackPawns.get(i).getRepresentation());
+        for (int i = 1; i <= boardSize; i++) {
+            whitePawnsAdd(new Pawn(Pawn.WHITE_COLOR,Pawn.WHITE_REPRESENTATION));
+            blackPawnsAdd(new Pawn(Pawn.BLACK_COLOR,Pawn.BLACK_REPRESENTATION));
         }
 
     }
 
     public String getWhitePawnsResult() {
+        StringBuilder whiteResult = new StringBuilder();
+
+        for (Pawn whitePawn : whitePawns){
+            whiteResult.append(whitePawn.getRepresentation());
+        }
         return whiteResult.toString();
 
     }
 
     public String getBlackPawnsResult() {
+        StringBuilder blackResult = new StringBuilder();
+
+        for (Pawn blackPawn : blackPawns){
+            blackResult.append(blackPawn.getRepresentation());
+        }
         return blackResult.toString();
     }
+
+
+
 }

@@ -1,62 +1,65 @@
 package chess;
 
-import chess.pieces.Color;
-import chess.pieces.Pawn;
+import pieces.Color;
+import pieces.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    List<Pawn> whitePawn = new ArrayList<>();
-    List<Pawn> blackPawn = new ArrayList<>();
+    private final List<Pawn> whitePawns = new ArrayList<>();
+    private final List<Pawn> blackPawns = new ArrayList<>();
 
-    private final String BLANK = "........";
+    private final int BOARDSIZE = 8;
 
-    List<String []> board = new ArrayList<>();
+    private List<Row> board = new ArrayList<>(BOARDSIZE);
 
-    public void addWhitePawn(Pawn pawn) {
-        whitePawn.add(pawn);
-    }
-
-    public void addBlackPawn(Pawn pawn) {
-        blackPawn.add(pawn);
+    public void addPawns(Pawn pawn) {
+        if (pawn.getColorName() == Color.WHITE.getColorName()) {
+            whitePawns.add(pawn);
+        } else if (pawn.getColorName() == Color.BLACK.getColorName()) {
+            blackPawns.add(pawn);
+        } else {
+            System.out.println("알 수 없는 color의 pawn입니다.");
+            System.out.println("add에 실패하였습니다.");
+        }
     }
 
     public int whitePawnSize() {
-        return whitePawn.size();
+        return whitePawns.size();
     }
 
     public int blackPawnSize() {
-        return blackPawn.size();
+        return blackPawns.size();
     }
 
     public Pawn getWhitePawn(int index) {
-        return whitePawn.get(index);
+        return whitePawns.get(index);
     }
 
     public Pawn getBlackPawn(int index) {
-        return blackPawn.get(index);
+        return blackPawns.get(index);
     }
 
-    String getWhitePawnsResult(){
+    public String getWhitePawnsResult() {
         return getPawnsResult(Color.WHITE);
     }
 
-    String getBlackPawnsResult(){
-        return  getPawnsResult(Color.BLACK);
+    public String getBlackPawnsResult() {
+        return getPawnsResult(Color.BLACK);
     }
 
-    String getPawnsResult(Color color){
+    private String getPawnsResult(Color color) {
         StringBuilder sb = new StringBuilder();
-        switch (color.getColorName()){
-            case "white":
-                for(Pawn pawn : whitePawn){
+        switch (color) {
+            case WHITE:
+                for (Pawn pawn : whitePawns) {
                     sb.append(pawn.getRepresentation());
                 }
                 return sb.toString();
 
-            case "black":
-                for(Pawn pawn : blackPawn){
+            case BLACK:
+                for (Pawn pawn : blackPawns) {
                     sb.append(pawn.getRepresentation());
                 }
                 return sb.toString();
@@ -64,40 +67,40 @@ public class Board {
         return sb.toString();
     }
 
-    void initialize() {
+    public void initialize() {
         initPawn();
 
-        for(int i =0; i < 8; i++){
-
-            switch (i){
-                case 1:
-                    board.add(getBlackPawnsResult().split(""));
+        final int blackPawnIndex = 1;
+        final int whitePawnIndex = 6;
+        for (int i = 0; i < BOARDSIZE; i++) {
+            switch (i) {
+                case blackPawnIndex:
+                    board.add(new Row().initBlackPawns(this));
                     continue;
-                case 6:
-                    board.add(getWhitePawnsResult().split(""));
+                case whitePawnIndex:
+                    board.add(new Row().initWhitePawns(this));
                     continue;
 
                 default:
-                    board.add(BLANK.split(""));
+                    board.add(new Row().initBlank());
             }
         }
     }
 
-    void initPawn(){
-        for (int i = 0; i < 8; i++) {
-            addWhitePawn(new Pawn(Color.WHITE));
-            addBlackPawn(new Pawn(Color.BLACK));
+    private void initPawn() {
+        for (int i = 0; i < BOARDSIZE; i++) {
+            addPawns(new Pawn(Color.WHITE));
+            addPawns(new Pawn(Color.BLACK));
         }
     }
 
-    String print(){
-        initialize();
+    public String showBoard() {
 
         StringBuilder sb = new StringBuilder();
 
-        for(int i = 0; i< board.size(); i++){
-            for(int j =0; j< board.size(); j++){
-                sb.append(board.get(i)[j]);
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board.get(i).getPicesSize(); j++) {
+                sb.append(board.get(i).getPices(j));
             }
             sb.append("\n");
         }

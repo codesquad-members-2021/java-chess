@@ -19,7 +19,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("폰이 제대로 생성되는지 확인한다.")
-    public void create() throws Exception {
+    public void create() {
         board.addWhitePawn(new Pawn(Color.WHITE));
         board.addBlackPawn(new Pawn(Color.BLACK));
 
@@ -32,4 +32,14 @@ public class BoardTest {
         );
     }
 
+    @Test
+    @DisplayName("폰이 제대로 생성되었는지 확인한다.")
+    public void initialize() {
+        board.initialize();
+
+        assertAll(
+                () -> assertEquals("pppppppp", board.getPawnsResult(Color.WHITE)),
+                () -> assertEquals("PPPPPPPP", board.getPawnsResult(Color.BLACK))
+        );
+    }
 }

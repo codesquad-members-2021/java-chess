@@ -6,17 +6,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<Pawn> pawns = new ArrayList<>();
+    private static final int MAX_SIZE = 8;
 
-    public void add(Pawn pawn){
-        pawns.add(pawn);
+    private Pawn[][] pawns = new Pawn[MAX_SIZE][MAX_SIZE];
+
+    public boolean add(Pawn pawn, int rowIdx, int colIdx){
+        if(!isValid(rowIdx) || !isValid(colIdx))
+            return false;
+
+        pawns[rowIdx][colIdx] = pawn;
+        return true;
+    }
+
+    public Pawn findPawn(int rowIdx, int colIdx){
+        if(!isValid(rowIdx) || !isValid(colIdx))
+            return null;
+
+        return pawns[rowIdx][colIdx];
+    }
+
+    private boolean isValid(int location){
+        if(location < 0 || MAX_SIZE <= location)
+            return false;
+        else
+            return true;
     }
 
     public int size(){
-        return pawns.size();
-    }
-
-    public Pawn findPawn(int idx){
-        return pawns.get(idx);
+        return MAX_SIZE*MAX_SIZE;
     }
 }

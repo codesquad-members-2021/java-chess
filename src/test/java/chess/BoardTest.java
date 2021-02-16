@@ -16,7 +16,7 @@ class BoardTest {
 
     @Test
     @DisplayName("보드를 생성한 후 폰 테스트 한다.")
-    void createPawnAndTest() throws Exception {
+    void createPawn(){
 
         Pawn white = new Pawn(Color.WHITE);
         board.add(white);

@@ -33,6 +33,18 @@ public class Board {
             System.out.println();
         }
     }
+    
+    public String getWhitePiecesResult(){
+        return this.whitePieces.stream().
+                map(x->String.valueOf(x.getRepresentation())).
+                reduce("",(a,b) -> a+b);
+    }
+
+    public String getBlackPiecesResult(){
+        return this.blackPieces.stream().
+                map(x->String.valueOf(x.getRepresentation())).
+                reduce("",(a,b) -> a+b);
+    }
 
     public boolean add(Piece piece, int rowIdx, int colIdx){
         if(!isValid(rowIdx) || !isValid(colIdx))

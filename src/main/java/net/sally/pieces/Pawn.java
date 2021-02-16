@@ -27,4 +27,12 @@ public class Pawn {
     public char getRepresentation() {
         return representation;
     }
+
+    public boolean isWhite(Pawn pawn) {
+        return pawn.getColor().equals(Pawn.WHITE);
+    }
+
+    public boolean isBlack(Pawn pawn) {
+        return pawn.getColor().equals(Pawn.BLACK);
+    }
 }

@@ -1,4 +1,4 @@
-package pieces;
+package net.isaac.pieces;
 
 public class Pawn {
     public static final String WHITE_COLOR = "White";

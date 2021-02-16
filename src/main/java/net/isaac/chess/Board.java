@@ -1,6 +1,6 @@
-package chess;
+package net.isaac.chess;
 
-import pieces.Pawn;
+import net.isaac.pieces.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package chess;
+package net.isaac.chess;
 
 import org.junit.jupiter.api.BeforeEach;
-import pieces.Pawn;
+import net.isaac.pieces.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

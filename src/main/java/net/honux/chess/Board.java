@@ -26,14 +26,14 @@ public class Board {
         return board.get(i);
     }
 
-    public void initialize() {
+    void initialize() {
         for (int i = 0; i < BOARD_LENGTH; i++) {
             whitePawns.add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
             blackPawns.add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
         }
     }
 
-    public String listPawnsToSingleLine(ArrayList<Pawn> whichGroupOfPawns) {
+    private String listPawnsToSingleLine(ArrayList<Pawn> whichGroupOfPawns) {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < BOARD_LENGTH; i++) {

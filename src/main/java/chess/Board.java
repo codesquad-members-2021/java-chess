@@ -63,4 +63,22 @@ public class Board {
             addBlackPawn(new Pawn(Color.BLACK));
         }
     }
+
+    void initBoard(){
+        for(int i = 0; i< board.length; i++){
+            for(int j = 0; j< board[i].length; j++){
+                if(i == 1){
+                    board[i][j]= getWhitePawn(i).getRepresentation();
+                    continue;
+                }
+                if(i == 6){
+                    board[i][j]= getBlackPawn(i).getRepresentation();
+                    continue;
+                }
+                board[i][j] = '.';
+            }
+        }
+    }
+
+
 }

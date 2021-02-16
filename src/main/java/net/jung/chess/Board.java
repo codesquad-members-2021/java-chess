@@ -8,6 +8,7 @@ public class Board {
     private List<Pawn> blackPawnList = new ArrayList();
     private List<Pawn> whitePawnList = new ArrayList();
     private final int MAX_PAWNS_SIZE = 8;
+    private String blankRow = "********";
 
     public void add(Pawn pawn) {
         if (pawn.getColor() == (Color.WHITE)) {
@@ -51,6 +52,19 @@ public class Board {
             pawnReps.append(pawnList.get(i).getRepresentation());
         }
         return pawnReps.toString();
+    }
+
+    public String print() {
+        StringBuilder boardLayout = new StringBuilder();
+        boardLayout.append(blankRow + "\n")
+                .append(getBlackPawnsResult()+"\n")
+                .append(blankRow + "\n")
+                .append(blankRow + "\n")
+                .append(blankRow + "\n")
+                .append(blankRow + "\n")
+                .append(getWhitePawnsResult()+"\n")
+                .append(blankRow);
+        return boardLayout.toString();
     }
 
 

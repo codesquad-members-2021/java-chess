@@ -1,6 +1,9 @@
 package net.nas.pieces;
 
 public class Pawn {
+    public static final char WHITE_REPRESENTATION = 'p';
+    public static final char BLACK_REPRESENTATION = 'P';
+
     private final ColorOfChessPiece color;
 
     public Pawn(ColorOfChessPiece color) {
@@ -16,6 +19,8 @@ public class Pawn {
     }
 
     public char getRepresentation() {
-        return ' ';
+        if (color == ColorOfChessPiece.WHITE)
+            return WHITE_REPRESENTATION;
+        else return BLACK_REPRESENTATION;
     }
 }

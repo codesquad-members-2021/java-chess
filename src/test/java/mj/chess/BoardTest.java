@@ -49,16 +49,16 @@ class BoardTest {
     void checkRepresentationOfInitialize() {
         board.initialize();
         assertAll(
-                () -> verifyRepresentaionOfWhitePawns("pppppppp"),
-                () -> verifyRepresentaionOfBlackPawns("PPPPPPPP")
+                () -> verifyRepresentationOfWhitePawns(),
+                () -> verifyRepresentationOfBlackPawns()
         );
     }
 
-    private void verifyRepresentaionOfBlackPawns(String rowOfRepresentation) {
-        assertThat(board.getBlackPawnsLocation).isEqualTo(rowOfRepresentation);
+    private void verifyRepresentationOfBlackPawns() {
+        assertThat(board.getBlackPawnsLocation()).isEqualTo("PPPPPPPP");
     }
 
-    private void verifyRepresentaionOfWhitePawns(String rowOfRepresentation){
-        assertThat(board.getWhitePawnsLocation).isEqualTo(rowOfRepresentation);
+    private void verifyRepresentationOfWhitePawns(){
+        assertThat(board.getWhitePawnsLocation()).isEqualTo("pppppppp");
     }
 }

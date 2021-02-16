@@ -1,5 +1,6 @@
 package cooper.chess;
 
+import cooper.chess.piece.Color;
 import cooper.chess.piece.Pawn;
 import org.junit.jupiter.api.Test;
 
@@ -17,10 +18,10 @@ class BoardTest {
         board.add(black);
 
         assertAll(
-                () -> assertEquals(2, board.size()),
+                () -> assertEquals(1, board.size(Color.WHITE)),
                 () -> {
-                    assertEquals(white, board.findPawn(0));
-                    assertEquals(black, board.findPawn(1));
+                    assertEquals(white, board.findPawn(0, Color.WHITE));
+                    assertEquals(black, board.findPawn(0, Color.BLACK));
                 }
         );
     }
@@ -30,7 +31,7 @@ class BoardTest {
         Board board = new Board();
 
         assertThrows(IllegalArgumentException.class,
-                () -> board.findPawn(0));
+                () -> board.findPawn(0, Color.WHITE));
     }
 
     @Test
@@ -44,8 +45,25 @@ class BoardTest {
         board.add(black);
 
         assertAll(
-                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(-1)),
-                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(3))
+                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(-1, Color.WHITE)),
+                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(3, Color.BLACK))
         );
+    }
+
+    @Test
+    public void initialize() {
+        Board board = new Board();
+        board.initialize();
+        assertAll(
+                () -> assertEquals("PPPPPPPP", board.getPawnsResult(Color.WHITE)),
+                () -> assertEquals("pppppppp", board.getPawnsResult(Color.BLACK))
+        );
+    }
+
+    @Test
+    public void print() {
+        Board board = new Board();
+        board.initialize();
+        System.out.println(board.print());
     }
 }

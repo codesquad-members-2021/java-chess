@@ -54,16 +54,5 @@ public class Board {
         return sb.toString();
     }
 
-    void print() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("........\n");
-        sb.append(getBlackPawnsResult()).append("\n");
-        for (int i = 0; i < BOARD_SIZE - 4; i++) {
-            sb.append("........\n");
-        }
-        sb.append(getWhitePawnsResult()).append("\n");
-        sb.append("........\n");
 
-        System.out.println(sb.toString());
-    }
 }

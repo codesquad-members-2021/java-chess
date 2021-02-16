@@ -34,8 +34,8 @@ public class BoardTest {
     public void initialize() throws Exception {
         board.initialize();
         assertAll(
-                ()->assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult()),
-                ()->assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult())
+                () -> assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult()),
+                () -> assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult())
         );
     }
 

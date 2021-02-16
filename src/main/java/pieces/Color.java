@@ -1,4 +1,4 @@
-package chess.pieces;
+package pieces;
 
 public enum Color {
     WHITE("white", 'p'),

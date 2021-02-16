@@ -44,11 +44,16 @@ public class Piece {
         return type;
     }
 
+    public boolean isWhite() {
+        return color == Color.WHITE;
+    }
+
+    public boolean isBlack() {
+        return color == Color.BLACK;
+    }
+
     public char getRepresentation() {
-        if (color == Color.WHITE) {
-            return type.getWhiteRepresentation();
-        }
-        return type.getBlackRepresentation();
+        return isWhite() ? type.getWhiteRepresentation() : type.getBlackRepresentation();
     }
 
     public static Piece createWhitePawn() {

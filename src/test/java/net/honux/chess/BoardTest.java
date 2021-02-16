@@ -1,6 +1,6 @@
 package net.honux.chess;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
 import net.honux.chess.pieces.Pawn;
@@ -9,18 +9,33 @@ class BoardTest {
     private Board board = new Board();
 
     @Test
-    public void create() throws Exception {
+    void 보드에_폰이_색깔별로_잘_들어가는지_확인한다() throws Exception {
 
-        verifyBoard(Pawn.WHITE_COLOR, 0);
-        verifyBoard(Pawn.BLACK_COLOR, 1);
+        verifyBoard(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION, 0);
+        verifyBoard(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION, 0);
     }
 
-    private void verifyBoard(String color, int index) {
+    private void verifyBoard(String color, char representation, int index) {
 
-        Pawn pawnColor = new Pawn(color);
+        Pawn pawnColor = new Pawn(color, representation);
         board.add(pawnColor);
-        assertEquals(index + 1, board.size());
-        assertEquals(pawnColor, board.findPawn(index));
+        assertThat(board.size(pawnColor)).isEqualTo(index + 1);
+        assertThat(board.findPawn(pawnColor, index)).isEqualTo(pawnColor);
+    }
+
+    @Test
+    void initialize() throws Exception {
+        Board board = new Board();
+        board.initialize();
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+    }
+
+    @Test
+    void print_잘되는지_확인하자 () {
+        Board board = new Board();
+        board.initialize();
+        board.print();
     }
 
 }

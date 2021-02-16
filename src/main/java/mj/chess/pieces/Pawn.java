@@ -1,17 +1,17 @@
 package mj.chess.pieces;
 
 public class Pawn {
-    private final ColorOfPiece color;
+    private final Color color;
 
     public Pawn() {
-        this.color = ColorOfPiece.WHITE;
+        this.color = Color.WHITE;
     }
 
-    public Pawn(ColorOfPiece color) {
+    public Pawn(Color color) {
         this.color = color;
     }
 
-    public ColorOfPiece getColor() {
+    public Color getColor() {
         return color;
     }
 

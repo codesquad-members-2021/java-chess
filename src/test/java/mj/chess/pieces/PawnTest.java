@@ -10,22 +10,22 @@ class PawnTest {
     @Test
     @DisplayName("기본 생성자로 흰색 폰 생성")
     void createPawn() {
-        verifyColorOfPawn(new Pawn(), ColorOfPiece.WHITE);
+        verifyColorOfPawn(new Pawn(), Color.WHITE);
     }
 
     @Test
     @DisplayName("흰색 폰 생성")
     void createWhitePawn() {
-        verifyColorOfPawn(new Pawn(ColorOfPiece.WHITE), ColorOfPiece.WHITE);
+        verifyColorOfPawn(new Pawn(Color.WHITE), Color.WHITE);
     }
 
     @Test
     @DisplayName("검은색 폰 생성")
     void createBlackPawn() {
-        verifyColorOfPawn(new Pawn(ColorOfPiece.BLACK), ColorOfPiece.BLACK);
+        verifyColorOfPawn(new Pawn(Color.BLACK), Color.BLACK);
     }
 
-    void verifyColorOfPawn(Pawn pawn, ColorOfPiece color) {
+    void verifyColorOfPawn(Pawn pawn, Color color) {
         assertThat(pawn.getColor()).isEqualTo(color);
     }
 }

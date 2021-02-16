@@ -1,6 +1,6 @@
 package mj.chess;
 
-import mj.chess.pieces.ColorOfPiece;
+import mj.chess.pieces.Color;
 import mj.chess.pieces.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,8 +21,8 @@ class BoardTest {
     @DisplayName("Board class에 Pawn class 추가 및 인덱스로 탐색")
     void createBoard() {
         Pawn[] testPawns = {
-                new Pawn(ColorOfPiece.BLACK),
-                new Pawn(ColorOfPiece.WHITE)
+                new Pawn(Color.BLACK),
+                new Pawn(Color.WHITE)
         };
 
         for (int i = 0; i < testPawns.length; i++) {

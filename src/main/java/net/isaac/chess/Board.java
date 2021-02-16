@@ -4,11 +4,16 @@ import net.isaac.pieces.Pawn;
 import net.isaac.pieces.Piece;
 import net.isaac.pieces.PieceColor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
     private static final int MAX_SIZE = 8;
     private static final int MAX_IDX = MAX_SIZE - 1;
 
     private Piece[][] pieces = new Piece[MAX_SIZE][MAX_SIZE];
+    private List<Piece> whitePieces = new ArrayList<>();
+    private List<Piece> blackPieces = new ArrayList<>();
 
     public void initialize(){
         for(int i = 0; i < MAX_SIZE; i++){
@@ -34,6 +39,12 @@ public class Board {
             return false;
 
         pieces[rowIdx][colIdx] = piece;
+
+        if(piece.getColor() == PieceColor.BLACK)
+            blackPieces.add(piece);
+        else if(piece.getColor() == PieceColor.WHITE)
+            whitePieces.add(piece);
+
         return true;
     }
 

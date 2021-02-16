@@ -19,8 +19,8 @@ class BoardTest {
     @Test
     @DisplayName("생성되는 Pawn 객체마다 Board에서 List Size 값 및 index로 색상 값을 잘 가져오는지 확인")
     void create() throws Exception {
-        verifyBoard(new Pawn("white"), 1, 0);
-        verifyBoard(new Pawn("black"), 2, 1);
+        verifyBoard(new Pawn(Pawn.WHITE_COLOR,Pawn.WHITE_REPRESENTATION), 1, 0);
+        verifyBoard(new Pawn(Pawn.BLACK_COLOR,Pawn.BLACK_REPRESENTATION), 2, 1);
     }
 
     private void verifyBoard(Pawn pawn, int size, int index) {
@@ -30,10 +30,11 @@ class BoardTest {
     }
 
     @Test
-    public void initialize() throws Exception {
-        Board board = new Board();
+    @DisplayName("보드 초기화가 잘 이루어지는지 확인 예)흰색 ->pppppppp 검은색->PPPPPPPP")
+    void initialize() throws Exception {
         board.initialize();
-        assertEquals("pppppppp", board.getWhitePawnsResult());
-        assertEquals("PPPPPPPP", board.getBlackPawnsResult());
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
     }
+
 }

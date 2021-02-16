@@ -9,21 +9,21 @@ public class PawnTest {
     @DisplayName("기본 생성자 호출 시 흰색 폰이 생성되어야 한다")
     public void createDefaultConstructor() {
         Pawn pawn = new Pawn();
-        assertThat(pawn.getColor()).isEqualTo(Piece.WHITE.getColor());
-        assertThat(pawn.getRepresentation()).isEqualTo(Piece.WHITE.getPawn());
+        assertThat(pawn.getColor()).isEqualTo(Color.WHITE.toString());
+        assertThat(pawn.getRepresentation()).isEqualTo(Representation.WHITE.getPawn());
     }
 
     @Test
     @DisplayName("흰색과 검은색 폰이 생성되어야 한다")
     public void create() {
-        verifyPawn(Piece.WHITE);
-        verifyPawn(Piece.BLACK);
+        verifyPawn(Color.WHITE, Representation.WHITE);
+        verifyPawn(Color.BLACK, Representation.BLACK);
     }
 
-    public void verifyPawn(Piece piece) {
-        Pawn pawn = new Pawn(piece);
-        assertThat(pawn.getColor()).isEqualTo(piece.getColor());
-        assertThat(pawn.getRepresentation()).isEqualTo(piece.getPawn());
+    public void verifyPawn(Color color, Representation representation) {
+        Pawn pawn = new Pawn(color, representation);
+        assertThat(pawn.getColor()).isEqualTo(color.toString());
+        assertThat(pawn.getRepresentation()).isEqualTo(representation.getPawn());
     }
 
 }

@@ -79,7 +79,7 @@ public class Board {
     private String getPawnResult(List<Pawn> pawns) {
         StringBuilder result = new StringBuilder();
         for (Pawn pawn : pawns) {
-            result.append(pawn.getRepresentation());
+            result.append(pawn.getColor().getRepresentation());
         }
         return result.toString();
     }

@@ -6,12 +6,10 @@ public class ChessCell {
     public static final char NONE_REPRESENTATION = '.';
     private Pawn occupiedBy = null;
 
-    public Pawn getOccupiedBy() {
-        return occupiedBy;
-    }
-
-    public void setOccupiedBy(Pawn occupiedBy) {
-        this.occupiedBy = occupiedBy;
+    public void setOccupiedBy(Pawn piece) {
+        if (occupiedBy != null)
+            throw new IllegalStateException("Chess Cell is already occupied by another piece");
+        occupiedBy = piece;
     }
 
     public char getRepresentation() {

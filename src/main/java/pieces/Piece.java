@@ -10,6 +10,21 @@ public class Piece {
         this.type = type;
     }
 
+    public char getRepresentation() {
+        return type.getRepresentation(color);
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public boolean isWhite() {
+        return false;
+    }
+    public boolean isBlack() {
+        return false;
+    }
+
     public static Piece createWhitePawn() {
         return new Piece(Color.WHITE, Type.PAWN);
     }
@@ -58,11 +73,4 @@ public class Piece {
         return new Piece(Color.BLACK, Type.KING);
     }
 
-    public char getRepresentation() {
-        return type.getRepresentation(color);
-    }
-
-    public Color getColor() {
-        return color;
-    }
 }

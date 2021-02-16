@@ -38,4 +38,17 @@ class PieceTest {
         softly.assertThat(piece.getColor()).isEqualTo(color);
         softly.assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
+
+    @Test
+    @DisplayName("체스 말이 흰색인지 검은색인지 확인")
+    void checkPieceColor() {
+        Piece blackPiece = Piece.createBlackPawn();
+        Piece whitePiece = Piece.createWhitePawn();
+
+        softly.assertThat(blackPiece.isBlack()).isEqualTo(true);
+        softly.assertThat(blackPiece.isWhite()).isEqualTo(false);
+        softly.assertThat(whitePiece.isBlack()).isEqualTo(false);
+        softly.assertThat(whitePiece.isWhite()).isEqualTo(true);
+    }
+
 }

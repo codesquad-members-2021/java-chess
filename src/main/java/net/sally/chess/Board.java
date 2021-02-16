@@ -6,15 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<Pawn> whitePawns;
-    private List<Pawn> blackPawns;
+    private List<Pawn> whitePawns = new ArrayList<>();
+    private List<Pawn> blackPawns = new ArrayList<>();
 
     public static int BOARD_SIZE = 8;
-
-    public Board() {
-        whitePawns = new ArrayList<>();
-        blackPawns = new ArrayList<>();
-    }
 
     public void initialize() {
         for (int i = 0; i < BOARD_SIZE; i++) {
@@ -40,11 +35,15 @@ public class Board {
     }
 
     public void addWhitePawn(Pawn pawn) {
-        whitePawns.add(pawn);
+        if (pawn.getColor().equals(Pawn.WHITE)) {
+            whitePawns.add(pawn);
+        }
     }
 
     public void addBlackPawn(Pawn pawn) {
-        blackPawns.add(pawn);
+        if (pawn.getColor().equals(Pawn.BLACK)) {
+            blackPawns.add(pawn);
+        }
     }
 
     public int getWhitePawnSize() {
@@ -66,12 +65,16 @@ public class Board {
     public void print() {
         StringBuilder printer = new StringBuilder();
         printer.append("........\n");
-        printer.append(getBlackPawnsResult() + "\n");
+        printer.append("........\n");
+        printer.append(getBlackPawnsResult());
+        printer.append(System.lineSeparator());
         printer.append("........\n");
         printer.append("........\n");
         printer.append("........\n");
         printer.append("........\n");
-        printer.append(getWhitePawnsResult() + "\n");
+        printer.append("........\n");
+        printer.append(getWhitePawnsResult());
+        printer.append(System.lineSeparator());
         printer.append("........");
 
         System.out.println(printer.toString());

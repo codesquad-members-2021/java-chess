@@ -19,10 +19,10 @@ public class Piece {
     }
 
     public boolean isWhite() {
-        return false;
+        return this.color == Color.WHITE;
     }
     public boolean isBlack() {
-        return false;
+        return this.color == Color.BLACK;
     }
 
     public static Piece createWhitePawn() {

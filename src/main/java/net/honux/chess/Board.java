@@ -3,13 +3,10 @@ package net.honux.chess;
 import net.honux.chess.pieces.Pawn;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
-
-    private List<Pawn> board = new ArrayList<>();
 
     private ArrayList<Pawn> whitePawns = new ArrayList<>();
     private ArrayList<Pawn> blackPawns = new ArrayList<>();

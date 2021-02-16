@@ -11,12 +11,16 @@ public class Board {
     private final List<Piece> whitePieces = new ArrayList<>();
     private final List<Piece> blackPieces = new ArrayList<>();
 
-    public void addBlack(Piece piece) {
-        blackPieces.add(piece);
+    public void addWhite(Piece piece) {
+        if (piece.getColor().equals(Piece.WHITE_COLOR)) {
+            whitePieces.add(piece);
+        }
     }
 
-    public void addWhite(Piece piece) {
-        whitePieces.add(piece);
+    public void addBlack(Piece piece) {
+        if (piece.getColor().equals(Piece.BLACK_COLOR)) {
+            blackPieces.add(piece);
+        }
     }
 
     public int size() {
@@ -53,6 +57,5 @@ public class Board {
         }
         return sb.toString();
     }
-
 
 }

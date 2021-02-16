@@ -20,13 +20,17 @@ public class BoardTest {
     @Test
     @DisplayName("Create pawns")
     void create() throws Exception {
-        Piece white = add(Piece.WHITE_COLOR);
-        verifySize(1);
-        verifyFindPawn(white, 0);
+        Piece white = addWhitePawn(Piece.WHITE_COLOR);
+        assertAll(
+                () -> verifySize(1),
+                () -> verifyFindWhitePawn(white, 0)
+        );
 
-        Piece black = add(Piece.BLACK_COLOR);
-        verifySize(2);
-        verifyFindPawn(black, 0);
+        Piece black = addBlackPawn(Piece.BLACK_COLOR);
+        assertAll(
+                () -> verifySize(2),
+                () -> verifyFindBlackPawn(black, 0)
+        );
     }
 
     @Test
@@ -43,23 +47,23 @@ public class BoardTest {
         assertThat(expectedSize).isEqualTo(board.size());
     }
 
-    void verifyFindPawn(Piece piece, int index) {
-        if (piece.getColor().equals(Piece.WHITE_COLOR)) {
-            assertThat(piece).isEqualTo(board.findWhite(index));
-        } else {
-            assertThat(piece).isEqualTo(board.findBlack(index));
-        }
+    void verifyFindWhitePawn(Piece piece, int index) {
+        assertThat(piece).isEqualTo(board.findWhite(index));
     }
 
-    Piece add(String color) {
+    void verifyFindBlackPawn(Piece piece, int index) {
+        assertThat(piece).isEqualTo(board.findBlack(index));
+    }
+
+    Piece addWhitePawn(String color) {
         Pawn pawn = new Pawn(color);
+        board.addWhite(pawn);
+        return pawn;
+    }
 
-        if (color.equals(Piece.WHITE_COLOR)) {
-            board.addWhite(pawn);
-        } else {
-            board.addBlack(pawn);
-        }
-
+    Piece addBlackPawn(String color) {
+        Pawn pawn = new Pawn(color);
+        board.addBlack(pawn);
         return pawn;
     }
 }

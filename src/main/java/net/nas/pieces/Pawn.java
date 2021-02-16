@@ -14,4 +14,8 @@ public class Pawn {
     public ColorOfChessPiece getColor() {
         return color;
     }
+
+    public char getRepresentation() {
+        return ' ';
+    }
 }

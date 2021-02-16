@@ -40,6 +40,14 @@ class BoardTest {
                 .hasMessageContaining("Index number -1 is out of range!");
     }
 
+    @Test
+    @DisplayName("보드를 초기화할 때, 폰들이 올바르게 생성되어야 한다.")
+    void initialize() {
+        board.initialize();
+        assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult());
+        assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult());
+    }
+
     private void addThePawnProperly(Pawn newPawn, int newPawnIdx) {
         int sizeBeforeAddThePawn = board.size();
         board.add(newPawn);

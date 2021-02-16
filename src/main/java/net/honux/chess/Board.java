@@ -23,4 +23,15 @@ public class Board {
         }
         return pawns.get(idx);
     }
+
+    public void initialize() {
+    }
+
+    public String getWhitePawnsResult() {
+        return "";
+    }
+
+    public String getBlackPawnsResult() {
+        return "";
+    }
 }

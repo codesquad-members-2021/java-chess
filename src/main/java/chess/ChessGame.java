@@ -7,23 +7,16 @@ public class ChessGame {
         Scanner sc = new Scanner(System.in);
         System.out.println("시작: start, 종료: end");
 
-        boolean gameOver = false;
-        while (!gameOver) {
+        String command = "";
+        while (!command.equals("end")) {
             System.out.print("> ");
-            String command = sc.nextLine();
-            switch (command) {
-                case "start":
-                    start();
-                    break;
-                case "end":
-                    gameOver = true;
-                    System.out.println("체스게임이 끝났습니다.");
-                    break;
-                default:
-                    System.out.println("명령어를 다시 입력해주세요.");
+            command = sc.nextLine();
+            if (command.equals("start")) {
+                start();
             }
         }
 
+        System.out.println("체스게임이 끝났습니다.");
         sc.close();
     }
 
@@ -31,7 +24,7 @@ public class ChessGame {
         System.out.println("체스 게임을 시작합니다.");
         Board board = new Board();
         board.initialize();
-        board.getResultToPrint();
+        System.out.println(board.getResultToPrint());
     }
 }
 

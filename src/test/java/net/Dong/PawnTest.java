@@ -4,17 +4,22 @@ import net.Dong.chess.Pawn;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static net.Dong.chess.Pawn.Color.*;
-import static net.Dong.chess.Pawn.*;
+import net.Dong.chess.Pawn.Color.*;
+import net.Dong.chess.Pawn.*;
 class PawnTest {
 
-
+    @Test
+    public void  create() throws Exception{
+        Pawn pawn = new Pawn();
+        assertEquals(Color.WHITE, pawn.getColor());
+        assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getSymbol());
+    }
 
     @Test
-    @DisplayName("TSET >> START ")
-    public void create() {
-        verifyPawn(WHITE);
-        verifyPawn(BALCK);
+    public void create_Pawn() {
+
+        verifyPawn(Color.WHITE);
+        verifyPawn(Color.BLACK);
 
     }
 

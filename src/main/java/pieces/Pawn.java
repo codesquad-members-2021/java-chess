@@ -1,4 +1,4 @@
-package chess.pieces;
+package pieces;
 
 public class Pawn {
     private final Color color;
@@ -12,8 +12,8 @@ public class Pawn {
     }
 
 
-    public String getColor()
-    { return color.getColorName();
+    public String getColorName() {
+        return color.getColorName();
     }
 
     public char getRepresentation() {

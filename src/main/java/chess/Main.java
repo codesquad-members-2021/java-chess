@@ -15,14 +15,15 @@ public class Main {
         System.out.println(" start   |   end");
         System.out.print("> ");
 
-        String commend = br.readLine();
+        String command = br.readLine();
 
-        while (!commend.equals("end")) {
-            if (commend.equals("start")) {
+        while (!command.equals("end")) {
+            if (command.equals("start")) {
+                board.initialize();
                 System.out.println(board.print());
             }
             System.out.print("> ");
-            commend = br.readLine();
+            command = br.readLine();
         }
 
         System.out.println("게임이 종료되었습니다.");

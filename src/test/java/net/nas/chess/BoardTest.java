@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class BoardTest {
     private Board board;
+    private static final String INITIAL_STATE_OF_BOARD = "........\nPPPPPPPP\n........\n........\n........\n........\npppppppp\n........";
 
     @BeforeEach
     void createTestBoard() {
@@ -89,5 +90,11 @@ public class BoardTest {
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
     }
 
+    @Test
+    @DisplayName("체스보드에서 폰만 초기화하고 나서, 적절한 결과를 획득할 수 있어야 합니다")
+    void testPrintBoard() {
+        board.initialize();
+        assertThat(board.getResultOfAllRows()).isEqualTo(INITIAL_STATE_OF_BOARD);
+    }
 
 }

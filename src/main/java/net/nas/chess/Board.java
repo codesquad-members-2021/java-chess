@@ -27,6 +27,16 @@ public class Board {
         }
     }
 
+    public String getResultOfAllRows() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 7; i >= 0; i--) {
+            sb.append(getResultOfRow(i));
+            if (i != 0)
+                sb.append("\n");
+        }
+        return sb.toString();
+    }
+
     private String getResultOfRow(int rowIdx) {
         return Arrays.stream(board[rowIdx])
                 .map(cell -> String.valueOf(cell.getRepresentation()))

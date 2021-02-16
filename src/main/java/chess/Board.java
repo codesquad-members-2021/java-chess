@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Board {
 
-    List<Pawn> pawnList;
+    private List<Pawn> pawnList;
 
     public Board(){
         pawnList = new ArrayList<>();

@@ -49,6 +49,15 @@ public class Board {
         return "........";
     }
 
+    private String listPawnsToSingleLine(ArrayList<Pawn> whichGroupOfPawns) {
+        StringBuilder sb = new StringBuilder();
+
+        for (Pawn p : whichGroupOfPawns)
+            sb.append(p.getRepresentation());
+
+        return sb.toString();
+    }
+
     public void print() {
         StringBuilder sb = new StringBuilder();
         sb.append(getBlankLine());

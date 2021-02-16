@@ -14,5 +14,6 @@ public class BoardTest {
         Pawn white = new Pawn(Color.WHITE);
         board.add(white);
         assertEquals(1, board.size());
+        assertEquals(white, board.findPawn(0));
     }
 }

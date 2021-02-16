@@ -39,4 +39,21 @@ public class Board {
             addBlackPawn(new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION));
         }
     }
+
+    String getWhitePawnsResult() {
+        return getPawnsResult(whitePawnList);
+    }
+
+    String getBlackPawnsResult() {
+        return getPawnsResult(blackPawnList);
+    }
+
+    private String getPawnsResult(List<Pawn> pawns) {
+        StringBuilder sb = new StringBuilder();
+        for (Pawn pawn : pawns) {
+            sb.append(pawn.getRepresentation());
+        }
+        return sb.toString();
+    }
+
 }

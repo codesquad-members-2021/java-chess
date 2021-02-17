@@ -41,14 +41,15 @@ public class Board {
     }
 
     public void initialize() {
-        initPawns(Color.WHITE, Pawn.WHITE_REPRESENTATION, SECOND_ROW, rowOfWhitePawns);
-        initPawns(Color.BLACK, Pawn.BLACK_REPRESENTATION, SEVENTH_ROW, rowOfBlackPawns);
+        initPawns(Color.WHITE, SECOND_ROW, rowOfWhitePawns);
+        initPawns(Color.BLACK, SEVENTH_ROW, rowOfBlackPawns);
     }
 
-    private void initPawns(Color color, char representation, final int NTH_ROW, StringBuilder rowOfPawns) {
+    private void initPawns(Color color, final int NTH_ROW, StringBuilder rowOfPawns) {
         for (int i = 0; i < MAX_SIZE; i++) {
-            pawns.add(new Pawn(color));
-            rowOfPawns.append(representation);
+            Pawn pawn = new Pawn(color);
+            pawns.add(pawn);
+            rowOfPawns.append(pawn.getRepresentation());
         }
         cellsOfBoard[NTH_ROW] = (color == Color.BLACK) ? getRowOfBlackPawns() : getRowOfWhitePawns();
     }

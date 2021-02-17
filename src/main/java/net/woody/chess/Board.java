@@ -10,8 +10,6 @@ import java.util.stream.IntStream;
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
-    private static final int BLACK_PAWN_ROW = 1;
-    private static final int WHITE_PAWN_ROW = 6;
 
     private final Pawn[][] board = new Pawn[BOARD_LENGTH][BOARD_LENGTH];
 
@@ -44,9 +42,9 @@ public class Board {
     public void initialize() {
         IntStream.range(0, BOARD_LENGTH).forEach(i -> {
             whitePawns.add(i, new Pawn());
-            board[WHITE_PAWN_ROW][i] = whitePawns.get(i);
+            board[Pawn.WHITE_PAWN_ROW][i] = whitePawns.get(i);
             blackPawns.add(i, new Pawn(Color.BLACK.colorName()));
-            board[BLACK_PAWN_ROW][i] = blackPawns.get(i);
+            board[Pawn.BLACK_PAWN_ROW][i] = blackPawns.get(i);
         });
     }
 

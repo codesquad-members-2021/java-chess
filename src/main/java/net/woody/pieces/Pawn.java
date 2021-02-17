@@ -2,6 +2,8 @@ package net.woody.pieces;
 
 public class Pawn {
     public static final char PAWN_REPRESENTATION = 'p';
+    public static final int WHITE_PAWN_ROW = 1;
+    public static final int BLACK_PAWN_ROW = 6;
 
     private Color color;
     private char representation;

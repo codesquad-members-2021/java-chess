@@ -7,8 +7,6 @@ import java.util.*;
 public class Board {
     private List<Pawn> blackPawnList = new ArrayList();
     private List<Pawn> whitePawnList = new ArrayList();
-    private final int MAX_PAWNS_SIZE = 8;
-    private String blankRow = "********";
 
     public void add(Pawn pawn) {
         if (pawn.getColor() == (Color.WHITE)) {
@@ -31,6 +29,7 @@ public class Board {
     }
 
     public void initialize() {
+        int MAX_PAWNS_SIZE =8;
         for (int i = 0; i < MAX_PAWNS_SIZE; i++) {
             add(new Pawn(Color.WHITE));
             add(new Pawn(Color.BLACK));
@@ -55,6 +54,7 @@ public class Board {
     }
 
     public String print() {
+        String blankRow = "********";
         StringBuilder boardLayout = new StringBuilder();
         boardLayout.append(blankRow + "\n")
                 .append(getBlackPawnsResult()+"\n")

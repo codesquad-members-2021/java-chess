@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class BoardTest {
 
     @Test
-    public void create() {
+    void create() {
         Board board = new Board();
 
         Pawn white = new Pawn();
@@ -21,12 +21,12 @@ class BoardTest {
     }
 
     @Test
-    public void initialize() throws Exception{
+    void initialize() throws Exception {
         Board board = new Board();
         board.initialize();
 
-        String testp = "p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" ";
-        String testP = "P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" ";
+        String testp = "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " ";
+        String testP = "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " ";
 
         assertEquals(testp, board.getWhitePawnResult());
         assertEquals(testP, board.getBlackPawnResult());

@@ -10,24 +10,25 @@ public class Game {
         boolean over = true;
 
         Board board;
-        while (over){
+        while (over) {
             System.out.println("\n" + "cmd > start / end ");
 
             String cmd = sc.nextLine();
 
-            if(cmd.equals("start")){
+            if (cmd.equals("start")) {
                 board = new Board();
                 board.initialize();
                 board.print();
-            }else if(cmd.equals("end")) {
+            } else if (cmd.equals("end")) {
                 System.out.println("bye");
                 over = false;
                 sc.close();
-            }else {
+            } else {
                 System.out.println("invalid cmd");
             }
 
         }
+
 
     }
 }

@@ -19,10 +19,10 @@ public class BoardTest {
     @Test
     @DisplayName("폰을 추가 시 전체 사이즈와 해당 인덱스의 폰이 일치해야 한다.")
     public void create() {
-        verifyPawnSize(Color.WHITE, Representation.WHITE, 1, 0);
-        verifyPawnSize(Color.WHITE, Representation.WHITE, 2, 1);
-        verifyPawnSize(Color.BLACK, Representation.BLACK, 1, 0);
-        verifyPawnSize(Color.BLACK, Representation.BLACK, 2, 1);
+        verifyPawnSize(Color.WHITE, Representation.PAWN, 1, 0);
+        verifyPawnSize(Color.WHITE, Representation.PAWN, 2, 1);
+        verifyPawnSize(Color.BLACK, Representation.PAWN, 1, 0);
+        verifyPawnSize(Color.BLACK, Representation.PAWN, 2, 1);
     }
 
     public void verifyPawnSize(Color color, Representation representation, int size, int index) {

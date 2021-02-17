@@ -1,6 +1,7 @@
 package pieces;
 
 public class Pawn {
+
     public static final String WHITE = "white";
     public static final String BLACK = "black";
 

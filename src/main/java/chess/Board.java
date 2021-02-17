@@ -14,7 +14,6 @@ public class Board {
     private List<Piece> whitePieces = new ArrayList<>(8);
     private List<Piece> blackPieces = new ArrayList<>(8);
 
-
     private List<Piece> distinguishPawn(Piece pawn) {
         if (pawn.getColor() == Color.WHITE) {
             return whitePawns;
@@ -54,7 +53,44 @@ public class Board {
     }
 
     public void initialize() {
+        initeBlackPiece();
+        initBlackPawn();
+        initWhitePawn();
+        initWhitePiece();
+    }
 
+    private void initeBlackPiece() {
+        addPiece(Piece.createBlackRook());
+        addPiece(Piece.createBlackKnight());
+        addPiece(Piece.createBlackBishop());
+        addPiece(Piece.createBlackQueen());
+        addPiece(Piece.createBlackKing());
+        addPiece(Piece.createBlackBishop());
+        addPiece(Piece.createBlackKnight());
+        addPiece(Piece.createBlackRook());
+    }
+
+    private void initWhitePiece() {
+        addPiece(Piece.createWhiteRook());
+        addPiece(Piece.createWhiteKnight());
+        addPiece(Piece.createWhiteBishop());
+        addPiece(Piece.createWhiteQueen());
+        addPiece(Piece.createWhiteKing());
+        addPiece(Piece.createWhiteBishop());
+        addPiece(Piece.createWhiteKnight());
+        addPiece(Piece.createWhiteRook());
+    }
+
+    private void initWhitePawn() {
+        for (int i = 0; i < PAWNSNUM; i++) {
+            addPawn(Piece.createWhitePawn());
+        }
+    }
+
+    private void initBlackPawn() {
+        for (int i = 0; i < PAWNSNUM; i++) {
+            addPawn(Piece.createBlackPawn());
+        }
     }
 
     public int pieceCount() {

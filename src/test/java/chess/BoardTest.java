@@ -20,8 +20,8 @@ class BoardTest {
     void putWhitePawn() {
         Pawn white = new Pawn(Pawn.WHITE);
         board.add(white);
-        assertEquals(1, board.size());
-        assertEquals(white, board.findPawn(0));
+        assertThat(board.size()).isEqualTo(1);
+        assertThat(board.findPawn(0)).isEqualTo(white);
     }
 
     @Test
@@ -29,8 +29,8 @@ class BoardTest {
     void putBlackPawn() {
         Pawn black = new Pawn(Pawn.BLACK);
         board.add(black);
-        assertEquals(1, board.size());
-        assertEquals(black, board.findPawn(0));
+        assertThat(board.size()).isEqualTo(1);
+        assertThat(board.findPawn(0)).isEqualTo(black);
     }
 
     @Test

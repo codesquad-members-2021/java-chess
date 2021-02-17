@@ -27,7 +27,7 @@ public class PieceTest {
         rep = PieceName.QUEEN.getTempRepresentation();
         verifyPiece(Piece.createWhiteQueen(), Color.WHITE, rep);
         verifyPiece(Piece.createBlackQueen(), Color.BLACK, Character.toUpperCase(rep));
-        
+
         rep = PieceName.KING.getTempRepresentation();
         verifyPiece(Piece.createWhiteKing(), Color.WHITE, rep);
         verifyPiece(Piece.createBlackKing(), Color.BLACK, Character.toUpperCase(rep));

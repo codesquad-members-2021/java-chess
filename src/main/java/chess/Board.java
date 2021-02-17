@@ -3,11 +3,13 @@ package chess;
 import pieces.Pawn;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class Board {
 
-    private ArrayList<Pawn> whitePawnList = new ArrayList<>();
-    private ArrayList<Pawn> blackPawnList = new ArrayList<>();
+    private List<Pawn> whitePawnList = new ArrayList<>();
+    private List<Pawn> blackPawnList = new ArrayList<>();
 
     private String nullLine = "* * * * * * * *";
 

@@ -64,6 +64,6 @@ class BoardTest {
     public void print() {
         Board board = new Board();
         board.initialize();
-        System.out.println(board.print());
+        System.out.println(board.getBoardStatus());
     }
 }

@@ -55,18 +55,18 @@ public class Board {
         return pawnList.get(index);
     }
 
-    public String print () {
+    public String getBoardStatus() {
         StringBuilder sb = new StringBuilder();
         int index = 0;
 
         while(index < PAWN_MAX_SIZE) {
-            sb.append(printEachRow(index++)).append("\n");
+            sb.append(getEachRowStatus(index++)).append("\n");
         }
 
         return sb.toString();
     }
 
-    private String printEachRow(int index) {
+    private String getEachRowStatus (int index) {
         StringBuilder sb = new StringBuilder();
 
         if(index == WHITE_INIT_INDEX) {

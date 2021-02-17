@@ -14,7 +14,7 @@ public class Main {
             String command = scanner.nextLine();
 
             if(isStartCommand(command)) {
-                System.out.println(board.print());
+                System.out.println(board.getBoardStatus());
             }
 
             if(isEndCommand(command)) {

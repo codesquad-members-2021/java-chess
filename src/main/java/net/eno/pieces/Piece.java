@@ -22,4 +22,12 @@ public class Piece {
         return this.representation;
     }
 
+    public boolean isWhite() {
+        return this.color.equals(Color.WHITE.toString());
+    }
+
+    public boolean isBlack() {
+        return this.color.equals(Color.BLACK.toString());
+    }
+
 }

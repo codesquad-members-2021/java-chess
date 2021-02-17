@@ -13,53 +13,90 @@ import java.util.ArrayList;
 
 public class Board {
 
-    private final Map<String, List<Piece>> pieces;
+    private final Map<String, Map<String, List<Piece>>> pieces;
 
     public Board() {
         this.pieces = new HashMap<>();
-        this.pieces.put(Color.WHITE.toString(), new ArrayList<>());
-        this.pieces.put(Color.BLACK.toString(), new ArrayList<>());
+        this.pieces.put(Color.WHITE.toString(), new HashMap<String, List<Piece>>() {
+            {
+                put("pawn", new ArrayList<>());
+                put("piece", new ArrayList<>());
+            }
+        });
+        this.pieces.put(Color.BLACK.toString(), new HashMap<String, List<Piece>>() {
+            {
+                put("pawn", new ArrayList<>());
+                put("piece", new ArrayList<>());
+            }
+        });
     }
 
     public void addPiece(Color color, Piece piece) {
-        this.pieces.get(color.toString()).add(piece);
+        char representation = piece.getRepresentation();
+
+        if (Character.toLowerCase(representation) == 'p') {
+            this.pieces.get(color.toString()).get("pawn").add(piece);
+        } else {
+            this.pieces.get(color.toString()).get("piece").add(piece);
+        }
     }
 
-    public int pieceSize(Color color) {
-        return this.pieces.get(color.toString()).size();
+    public int pieceCount() {
+        Map<String, List<Piece>> whitePieces = this.pieces.get(Color.WHITE.toString());
+        Map<String, List<Piece>> blackPieces = this.pieces.get(Color.BLACK.toString());
+        return whitePieces.get("pawn").size() +
+                whitePieces.get("piece").size() +
+                blackPieces.get("pawn").size() +
+                blackPieces.get("piece").size();
     }
 
-    public Piece findPiece(Color color, int index) {
-        return this.pieces.get(color.toString()).get(index);
+    private Piece findPiece(Color color, String piece, int index) {
+        return this.pieces.get(color.toString()).get(piece).get(index);
     }
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
+            if (i == 0 || i == 7) {
+                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.ROOK));
+                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.ROOK));
+            } else if (i == 1 || i == 6) {
+                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.KNIGHT));
+                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.KNIGHT));
+            } else if (i == 2 || i == 5) {
+                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.BISHOP));
+                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.BISHOP));
+            } else if (i == 3) {
+                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.QUEEN));
+                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.QUEEN));
+            } else {
+                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.KING));
+                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.KING));
+            }
             addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.PAWN));
             addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.PAWN));
         }
     }
 
-    public String getPiecesResult(Color color) {
+    private String getPiecesResult(Color color, String piece) {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < pieceSize(color); i++) {
-            result.append(findPiece(color, i).getRepresentation());
+        for (int i = 0; i < this.pieces.get(color.toString()).get(piece).size(); i++) {
+            result.append(findPiece(color, piece, i).getRepresentation());
         }
         return result.toString();
     }
 
-    public void print() {
+    public String showBoard() {
         System.getProperty("line.separator");
         StringBuilder result = new StringBuilder();
-        result.append(appendNewLine("........"));
-        result.append(appendNewLine(getPiecesResult(Color.BLACK)));
-        result.append(appendNewLine("........"));
-        result.append(appendNewLine("........"));
+        result.append(appendNewLine(getPiecesResult(Color.BLACK, "piece")));
+        result.append(appendNewLine(getPiecesResult(Color.BLACK, "pawn")));
         result.append(appendNewLine("........"));
         result.append(appendNewLine("........"));
-        result.append(appendNewLine(getPiecesResult(Color.WHITE)));
         result.append(appendNewLine("........"));
-        System.out.println(result);
+        result.append(appendNewLine("........"));
+        result.append(appendNewLine(getPiecesResult(Color.WHITE, "pawn")));
+        result.append(appendNewLine(getPiecesResult(Color.WHITE, "piece")));
+        return result.toString();
     }
 
 }

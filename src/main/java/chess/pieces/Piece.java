@@ -11,15 +11,19 @@ public class Piece {
         this.representation = createRepresentation(color, name);
     }
 
+    public char createRepresentation(Color color, PieceName name) {
+        if (color == Color.WHITE) {
+            return name.getTempRepresentation();
+        }
+        return Character.toUpperCase(name.getTempRepresentation());
+    }
+
     public Color getColor() {
         return this.color;
     }
 
-    public char createRepresentation(Color color, PieceName name) {
-        if (color == Color.WHITE) {
-            return name.getRepresentation();
-        }
-        return Character.toUpperCase(name.getRepresentation());
+    public char getRepresentation() {
+        return this.representation;
     }
 
     public static Piece createWhitePawn() {
@@ -85,7 +89,7 @@ enum PieceName {
         this.tempRepresentation = representation;
     }
 
-    public char getRepresentation() {
+    public char getTempRepresentation() {
         return tempRepresentation;
     }
 }

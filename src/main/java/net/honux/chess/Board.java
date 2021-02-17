@@ -10,6 +10,8 @@ public class Board {
 
     private static final int BOARD_LENGTH = 8;
 
+    private final Pawn[][] board = new Pawn[BOARD_LENGTH][BOARD_LENGTH];
+
     private final List<Pawn> whitePawns = new ArrayList<>();
     private final List<Pawn> blackPawns = new ArrayList<>();
 
@@ -42,6 +44,7 @@ public class Board {
             whitePawns.add(i, new Pawn());
             blackPawns.add(i, new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
         });
+
     }
 
     public String getWhitePawnsResult() {
@@ -62,4 +65,19 @@ public class Board {
         return sb.toString();
     }
 
+    public String print() {
+        StringBuilder sb = new StringBuilder();
+        for (int row = 0; row < Board.BOARD_LENGTH; row++) {
+            for (int col = 0; col < Board.BOARD_LENGTH; col++) {
+                Pawn pawn = board[row][col];
+                if (pawn == null) {
+                    sb.append('.');
+                } else {
+                    sb.append(pawn.getRepresentation());
+                }
+            }
+            sb.append('\n');
+        }
+        return sb.toString();
+    }
 }

@@ -1,7 +1,12 @@
-package chess;
+package net.jung.chess.pieces;
 
-import org.junit.jupiter.api.*;
+import net.jung.chess.Color;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class PawnTest {
 
@@ -18,5 +23,12 @@ public class PawnTest {
     private void verifyPawn(Color color){
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
+    }
+
+    @Test
+    @DisplayName("기본생성자로 흰색 폰을 만들어야한다.")
+    void createDefaultConstructor(){
+        Pawn pawn = new Pawn();
+        assertEquals(Color.WHITE, pawn.getColor());
     }
 }

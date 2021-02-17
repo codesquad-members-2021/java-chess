@@ -1,4 +1,4 @@
-package net.honux.chess;
+package net.jung.chess;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

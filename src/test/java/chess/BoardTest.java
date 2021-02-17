@@ -1,7 +1,7 @@
 package chess;
 
-import pieces.Color;
-import pieces.Pawn;
+import chess.pieces.Color;
+import chess.pieces.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class BoardTest {
+class BoardTest {
     private Board board;
 
     @BeforeEach

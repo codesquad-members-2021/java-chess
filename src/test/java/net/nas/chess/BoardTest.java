@@ -83,7 +83,7 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("2행은 흰색 폰, 7행은 검은색 폰만 있어야 합니다. 각각 pppppppp, PPPPPPPP로 출력되어야 합니다")
+    @DisplayName("랭크2는 흰색 폰, 랭크7은 검은색 폰만 있어야 합니다. 각각 pppppppp, PPPPPPPP로 출력되어야 합니다")
     void testRepresentationsOfPawnLines() {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");

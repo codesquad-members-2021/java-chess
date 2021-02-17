@@ -9,8 +9,8 @@ public class Pawn extends Piece {
         super(color);
     }
 
-
-    public char getRepresentation(){
+    @Override
+    public char getRepresentation(Color color){
         if(this.color == Color.BLACK)
             return 'P';
         else if(this.color == Color.WHITE)

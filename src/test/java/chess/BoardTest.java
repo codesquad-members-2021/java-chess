@@ -28,6 +28,8 @@ class BoardTest {
         assertThat(pawnInstance).isEqualTo(board.findPawn(index-1));
     }
 
+    @Test
+    @DisplayName("보드판을 초기화 합니다")
     void initialize(){
         board.initialize();
     }

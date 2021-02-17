@@ -3,11 +3,13 @@ package net.eno.chess;
 import net.eno.pieces.Pawn;
 import net.eno.pieces.Color;
 import net.eno.pieces.Representation;
+import static net.eno.utils.StringUtils.appendNewLine;
 
 import java.util.Map;
 import java.util.List;
 import java.util.HashMap;
 import java.util.ArrayList;
+
 
 public class Board {
 
@@ -47,22 +49,16 @@ public class Board {
     }
 
     public void print() {
+        System.getProperty("line.separator");
         StringBuilder result = new StringBuilder();
-        result.append("........");
-        result.append("\n");
-        result.append(getPawnsResult(Color.BLACK));
-        result.append("\n");
-        result.append("........");
-        result.append("\n");
-        result.append("........");
-        result.append("\n");
-        result.append("........");
-        result.append("\n");
-        result.append("........");
-        result.append("\n");
-        result.append(getPawnsResult(Color.WHITE));
-        result.append("\n");
-        result.append("........");
+        result.append(appendNewLine("........"));
+        result.append(appendNewLine(getPawnsResult(Color.BLACK)));
+        result.append(appendNewLine("........"));
+        result.append(appendNewLine("........"));
+        result.append(appendNewLine("........"));
+        result.append(appendNewLine("........"));
+        result.append(appendNewLine(getPawnsResult(Color.WHITE)));
+        result.append(appendNewLine("........"));
         System.out.println(result);
     }
 

@@ -7,7 +7,6 @@ public class Pawn {
     public static final char WHITE_REPRESENTATION = 'p';
 
     private final UnitColor color;
-    private final char shape;
 
     public Pawn() {
         this(UnitColor.WHITE);
@@ -15,15 +14,6 @@ public class Pawn {
 
     public Pawn(UnitColor color) {
         this.color = color;
-
-        switch (color) {
-            case BLACK:
-                this.shape = BLACK_REPRESENTATION;
-                break;
-            case WHITE:
-            default:
-                this.shape = WHITE_REPRESENTATION;
-        }
     }
 
     public UnitColor getColor() {
@@ -31,10 +21,20 @@ public class Pawn {
     }
 
     public char getRepresentation() {
-        return this.shape;
+        return this.getShape();
     }
 
     public boolean isColor(UnitColor color) {
         return this.getColor().equals(color);
+    }
+
+    public char getShape() {
+        switch (this.color) {
+            case BLACK:
+                return BLACK_REPRESENTATION;
+            case WHITE:
+            default:
+                return WHITE_REPRESENTATION;
+        }
     }
 }

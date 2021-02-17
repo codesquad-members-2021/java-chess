@@ -6,12 +6,15 @@ import mj.chess.pieces.Pawn;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
 
+public class Board {
+    private static final int MAX_SIZE = 8;
+    private static final int SECOND_ROW = 1;
+    private static final int SEVENTH_ROW = 6;
     private final List<Pawn> pawns = new ArrayList<>();
     private final StringBuffer rowOfBlackPawns = new StringBuffer();
     private final StringBuffer rowOfWhitePawns = new StringBuffer();
-    private final String[] boardCells = {
+    private final String[] cellsOfBoard = {
             "********",
             "********",
             "********",
@@ -38,21 +41,17 @@ public class Board {
     }
 
     public void initialize() {
-        while (pawns.size() < 8) {
-            pawns.add(new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION));
+        while (pawns.size() < MAX_SIZE) {
+            for (Color color : Color.values()) pawns.add(new Pawn(color));
+            rowOfWhitePawns.append(Pawn.WHITE_REPRESENTATION);
             rowOfBlackPawns.append(Pawn.BLACK_REPRESENTATION);
         }
-        boardCells[1] = getBlackPawnsLocation();
-
-        while (pawns.size() < 16) {
-            pawns.add(new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION));
-            rowOfWhitePawns.append(Pawn.WHITE_REPRESENTATION);
-        }
-        boardCells[6] = getWhitePawnsLocation();
+        cellsOfBoard[SECOND_ROW] = getBlackPawnsLocation();
+        cellsOfBoard[SEVENTH_ROW] = getWhitePawnsLocation();
     }
 
     public void print() {
-        for (String rowOfBoard : boardCells) {
+        for (String rowOfBoard : cellsOfBoard) {
             System.out.println(rowOfBoard);
         }
     }

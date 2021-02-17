@@ -42,7 +42,7 @@ public class Board {
     private char[] representations(List<Pawn> pawns) {
         char[] representations = new char[pawns.size()];
         for (int i = 0; i < pawns.size(); i++) {
-            representations[i] = pawns.get(i).getColorRepresentation();
+            representations[i] = pawns.get(i).getRepresentation();
         }
         return representations;
     }

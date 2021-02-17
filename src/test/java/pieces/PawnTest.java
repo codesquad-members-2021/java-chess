@@ -11,7 +11,7 @@ public class PawnTest {
     void createPawn() {
         Pawn pawn = new Pawn();
         assertThat(pawn.getColor()).isEqualTo(Color.WHITE);
-        assertThat(pawn.getColorRepresentation()).isEqualTo(Color.WHITE.getRepresentation());
+        assertThat(pawn.getRepresentation()).isEqualTo(Color.WHITE.getRepresentation());
     }
 
     @Test
@@ -24,6 +24,6 @@ public class PawnTest {
     void verifyPawn(Color color, final char colorRepresentation) {
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
-        assertThat(pawn.getColorRepresentation()).isEqualTo(colorRepresentation);
+        assertThat(pawn.getRepresentation()).isEqualTo(colorRepresentation);
     }
 }

@@ -10,11 +10,15 @@ public class Board {
     private final List<Pawn> blackPawnList = new ArrayList<>();
 
     public void addWhitePawn(Pawn pawn) {
-        whitePawnList.add(pawn);
+        if (pawn.getColor() == "white") {
+            whitePawnList.add(pawn);
+        }
     }
 
     public void addBlackPawn(Pawn pawn) {
-        blackPawnList.add(pawn);
+        if (pawn.getColor() == "black") {
+            blackPawnList.add(pawn);
+        }
     }
 
     public int whiteSize() {
@@ -56,7 +60,7 @@ public class Board {
         return sb.toString();
     }
 
-    void print() {
+    public void print() {
         StringBuilder boardOutput = new StringBuilder();
         boardOutput.append("........\n");
         boardOutput.append(getBlackPawnsResult() + "\n");

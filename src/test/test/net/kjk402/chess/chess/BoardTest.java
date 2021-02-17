@@ -27,4 +27,16 @@ class BoardTest {
         );
     }
 
+    @Test
+    @DisplayName("addWhitePawn 메서드를 사용하여 검정색 Pawn을 넣어본다.")
+    void addBlackPawnInWhitePawnList() {
+        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
+        board.addWhitePawn(blackPawn);
+        assertAll(
+                () -> assertEquals(1, board.whiteSize()),
+                () -> assertEquals("black", board.findWhitePawn(0).getColor()),
+                () -> assertEquals('P', board.findWhitePawn(0).getRepresentation())
+        );
+    }
+
 }

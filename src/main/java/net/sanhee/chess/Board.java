@@ -42,16 +42,13 @@ public class Board {
     }
 
     public void initialize() {
-        Pawn[] whitePawn = new Pawn[Pawn.MAX_SPAWN_NUMBER];
-        Pawn[] blackPawn = new Pawn[Pawn.MAX_SPAWN_NUMBER];
-        arrayPawnInit(whitePawn, UnitColor.WHITE);
-        arrayPawnInit(blackPawn, UnitColor.BLACK);
+        arrayPawnInit(UnitColor.WHITE);
+        arrayPawnInit(UnitColor.BLACK);
     }
 
-    private void arrayPawnInit(Pawn[] arrayPawns, UnitColor color) {
+    private void arrayPawnInit(UnitColor color) {
         for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
-            arrayPawns[i] = new Pawn(color);
-            pawns.add(arrayPawns[i]);
+            pawns.add(new Pawn(color));
         }
     }
 

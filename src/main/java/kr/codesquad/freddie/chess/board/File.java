@@ -40,10 +40,11 @@ public class File {
         return size() < SIZE;
     }
 
-    public void fillWith(Color color) {
+    public File fillWith(Color color) {
         while (isAddable()) {
             pawns.add(new Pawn(color));
         }
+        return this;
     }
 
     public String getRepresentation() {

@@ -7,6 +7,8 @@ import chess.pieces.PieceName;
 import java.util.ArrayList;
 import java.util.List;
 
+import static chess.utils.StringUtils.appendNewLine;
+
 public class Board {
     private static final int PAWNSNUM = 8;
     private static final int COLUMN = 8;
@@ -85,14 +87,17 @@ public class Board {
     }
 
     public int pieceCount() {
-
+        return whitePawns.size() + whitePieces.size() +
+                blackPawns.size() + blackPieces.size();
     }
 
     public String showBoard() {
-        StringBuilder result = new StringBuilder();
-        String empty = getEmptyResult();
-
-        return result.toString();
+        String empty = appendNewLine(getEmptyResult());
+        return appendNewLine(getBlackPieceResult()) +
+                appendNewLine(getBlackPawnResult()) +
+                empty + empty + empty + empty +
+                appendNewLine(getWhitePawnResult()) +
+                appendNewLine(getWhitePieceResult());
     }
 
     public String getEmptyResult() {
@@ -104,17 +109,25 @@ public class Board {
     }
 
     public String getWhitePawnResult() {
-        return getPawnResult(whitePawns);
+        return getPieceResult(whitePawns);
     }
 
     public String getBlackPawnResult() {
-        return getPawnResult(blackPawns);
+        return getPieceResult(blackPawns);
     }
 
-    private String getPawnResult(List<Piece> pawns) {
+    public String getWhitePieceResult() {
+        return getPieceResult(whitePieces);
+    }
+
+    public String getBlackPieceResult() {
+        return getPieceResult(blackPieces);
+    }
+
+    private String getPieceResult(List<Piece> pieces) {
         StringBuilder result = new StringBuilder();
-        for (Piece pawn : pawns) {
-            result.append(pawn.getRepresentation());
+        for (Piece piece : pieces) {
+            result.append(piece.getRepresentation());
         }
         return result.toString();
     }

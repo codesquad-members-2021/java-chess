@@ -77,11 +77,12 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("랭크2는 흰색 폰, 랭크7은 검은색 폰만 있어야 합니다. 각각 pppppppp, PPPPPPPP로 출력되어야 합니다")
-    void testRepresentationsOfPawnLines() {
+    @DisplayName("초기화 후에는 흰색폰과 검정색폰이 각각 랭크 2, 7에 한줄씩 배치되어야 합니다.")
+    void testInitialization() {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+        assertThat(board.size()).isEqualTo(16);
     }
 
     @Test

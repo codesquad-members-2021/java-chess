@@ -31,9 +31,9 @@ public class Board {
     }
 
     public void initialize() {
-        for (int i = 0; i < LENGTH_OF_BOARD; i++) {
-            chessCells[RANK_OF_WHITE_PAWNS - 1][i].occupy(new Pawn());
-            chessCells[RANK_OF_BLACK_PAWNS - 1][i].occupy(new Pawn(ColorOfChessPiece.BLACK));
+        for (int i = 1; i <= LENGTH_OF_BOARD; i++) {
+            add(new Pawn(), RANK_OF_WHITE_PAWNS, i);
+            add(new Pawn(ColorOfChessPiece.BLACK), RANK_OF_BLACK_PAWNS, i);
         }
     }
 

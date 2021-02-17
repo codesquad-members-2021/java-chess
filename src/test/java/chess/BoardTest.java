@@ -5,7 +5,6 @@ import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-import pieces.Pawn;
 import pieces.Piece;
 
 public class BoardTest {
@@ -19,7 +18,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("Create pawns")
-    void create() throws Exception {
+    void create() {
         Piece white = addWhitePawn(Piece.WHITE_COLOR);
         assertAll(
                 () -> verifySize(1),
@@ -35,7 +34,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("Init board")
-    public void initialize() throws Exception {
+    public void initialize() {
         board.initialize();
         assertAll(
                 () -> assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult()),
@@ -56,14 +55,14 @@ public class BoardTest {
     }
 
     Piece addWhitePawn(String color) {
-        Pawn pawn = new Pawn(color);
-        board.addWhite(pawn);
-        return pawn;
+        Piece piece = new Piece(color);
+        board.addWhite(piece);
+        return piece;
     }
 
     Piece addBlackPawn(String color) {
-        Pawn pawn = new Pawn(color);
-        board.addBlack(pawn);
-        return pawn;
+        Piece piece = new Piece(color);
+        board.addBlack(piece);
+        return piece;
     }
 }

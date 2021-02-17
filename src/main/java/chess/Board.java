@@ -1,6 +1,5 @@
 package chess;
 
-import pieces.Pawn;
 import pieces.Piece;
 
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import static utils.StringUtils.appendNewLine;
 public class Board {
     public static final int BOARD_SIZE = 8;
     private static final String BLANK_LINE = "........";
+
     private final List<Piece> whitePieces = new ArrayList<>();
     private final List<Piece> blackPieces = new ArrayList<>();
 
@@ -40,8 +40,8 @@ public class Board {
 
     void initialize() {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            addWhite(new Pawn(Piece.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            addBlack(new Pawn(Piece.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            addWhite(new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION));
+            addBlack(new Piece(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION));
         }
     }
 

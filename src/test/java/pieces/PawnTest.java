@@ -9,11 +9,11 @@ public class PawnTest {
 
     @Test
     @DisplayName("Verify default constructor")
-    void create_default() throws Exception {
-        Pawn pawn = new Pawn();
+    void create_default() {
+        Piece piece = new Piece();
         assertAll(
-                () -> assertThat(Piece.WHITE_COLOR).isEqualTo(pawn.getColor()),
-                () -> assertThat(Pawn.WHITE_REPRESENTATION).isEqualTo(pawn.getRepresentation())
+                () -> assertThat(Piece.WHITE_COLOR).isEqualTo(piece.getColor()),
+                () -> assertThat(Piece.WHITE_REPRESENTATION).isEqualTo(piece.getRepresentation())
         );
     }
 
@@ -23,18 +23,18 @@ public class PawnTest {
         assertAll("color",
                 () -> verifyPawnColor(Piece.WHITE_COLOR),
                 () -> verifyPawnColor(Piece.BLACK_COLOR),
-                () -> verifyPawnRepresentation(Piece.WHITE_COLOR, Pawn.WHITE_REPRESENTATION),
-                () -> verifyPawnRepresentation(Piece.BLACK_COLOR, Pawn.BLACK_REPRESENTATION)
+                () -> verifyPawnRepresentation(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION),
+                () -> verifyPawnRepresentation(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION)
         );
     }
 
     void verifyPawnRepresentation(final String color, final char representation) {
-        Pawn pawn = new Pawn(color, representation);
-        assertThat(pawn.getRepresentation()).isEqualTo(representation);
+        Piece piece = new Piece(color, representation);
+        assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
 
     void verifyPawnColor(final String color) {
-        Pawn pawn = new Pawn(color);
-        assertThat(pawn.getColor()).isEqualTo(color);
+        Piece piece = new Piece(color);
+        assertThat(piece.getColor()).isEqualTo(color);
     }
 }

@@ -76,6 +76,20 @@ public class Piece {
         return new Piece(Color.BLACK, PieceRepresentation.K);
     }
 
+    public boolean isWhite(Piece piece){
+        if(piece.getColor() == Piece.Color.WHITE){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
+    public boolean isBlack(Piece piece){
+        if(piece.getColor() == Piece.Color.BLACK){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
 }

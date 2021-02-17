@@ -35,4 +35,35 @@ class PieceTest {
         assertEquals(representation, piece.getRepresentation());
     }
 
+
+    @Test
+    @DisplayName("Distinguish color")
+    public void distinguishColor(){
+        Piece whitePiece = Piece.createWhiteKnight();
+        Piece blackPiece = Piece.createBlackKnight();
+
+        assertEquals(true, isWhite(whitePiece));
+        assertEquals(true, isBlack(blackPiece));
+
+        assertEquals(false, isWhite(blackPiece));
+        assertEquals(false, isBlack(whitePiece));
+
+    }
+
+    public boolean isWhite(Piece piece){
+        if(piece.getColor() == Piece.Color.WHITE){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public boolean isBlack(Piece piece){
+        if(piece.getColor() == Piece.Color.BLACK){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
 }

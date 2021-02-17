@@ -27,13 +27,13 @@ public class BoardTest {
 
         assertAll(
                 () -> {
-                    board.add(whitePawn);
+                    board.addWhitePawn(whitePawn);
                     assertAll("흰색 폰을 보드에 올린 후 size, findPawn메서드 검증한다.",
                             () -> assertThat(board.size()).isEqualTo(1),
                             () -> assertThat(board.findWhitePawn(0)).isEqualTo(whitePawn));
                 },
                 () -> {
-                    board.add(blackPawn);
+                    board.addBlackPawn(blackPawn);
                     assertAll("검은색 폰을 보드에 올린 후 size, findPawn메서드 검증한다.",
                             () -> assertThat(board.size()).isEqualTo(2),
                             () -> assertThat(board.findBlackPawn(0)).isEqualTo(blackPawn));
@@ -57,5 +57,17 @@ public class BoardTest {
         System.out.print(board.print());
         String expectedLayout = "********\nPPPPPPPP\n********\n********\n********\n********\npppppppp\n********";
         assertThat(board.print()).isEqualTo(expectedLayout);
+    }
+
+    @Test
+    @DisplayName("addWhitePawn(Pawn pawn)의 매개변수로 blackPawn을 넘기면 whitePawnList에 더해지지 않고 반대도 마찬가지이다.")
+    void addBlackPawnToWhitePawnList() {
+        board.addWhitePawn(blackPawn);
+        board.addBlackPawn(whitePawn);
+        assertAll(
+                () -> assertThat(board.whitePawnListSize()).isEqualTo(0),
+                () -> assertThat(board.blackPawnListSize()).isEqualTo(0)
+                );
+
     }
 }

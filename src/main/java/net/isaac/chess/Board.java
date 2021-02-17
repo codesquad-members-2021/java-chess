@@ -57,10 +57,14 @@ public class Board {
 
         pieces[rowIdx][colIdx] = piece;
 
-        if(piece.getColor() == Piece.Color.BLACK)
-            blackPieces.add(piece);
-        else if(piece.getColor() == Piece.Color.WHITE)
-            whitePieces.add(piece);
+        switch(piece.getColor()){
+            case BLACK:
+                blackPieces.add(piece);
+                break;
+            case WHITE:
+                whitePieces.add(piece);
+                break;
+        }
 
         return true;
     }

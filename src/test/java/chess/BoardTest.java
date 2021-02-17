@@ -18,7 +18,7 @@ class BoardTest {
     @Test
     @DisplayName("체스판에 흰색 폰을 추가 후 갯수와 목록을 확인한다.")
     void putWhitePawn() {
-        Pawn white = new Pawn(Pawn.WHITE);
+        Pawn white = new Pawn();
         board.add(white);
         assertThat(board.size()).isEqualTo(1);
         assertThat(board.findPawn(0)).isEqualTo(white);

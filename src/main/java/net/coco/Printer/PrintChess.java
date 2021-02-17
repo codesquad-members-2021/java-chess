@@ -2,9 +2,10 @@ package net.coco.Printer;
 
 import net.coco.chess.Board;
 import net.coco.pieces.PawnEnum;
+import net.coco.utils.StringUtils;
 
 public class PrintChess {
-    private static final String BLANK = "********\n";
+    private static final String BLANK = StringUtils.appendNewLine("********");
 
     public static void printBoard(Board board) {
 
@@ -12,12 +13,12 @@ public class PrintChess {
         String blackPawns = board.getPawnsResult(PawnEnum.BLACK);
         String whitePawns = board.getPawnsResult(PawnEnum.WHITE);
         boardPrint.append(BLANK)
-                .append(blackPawns + "\n")
+                .append(StringUtils.appendNewLine(blackPawns))
                 .append(BLANK)
                 .append(BLANK)
                 .append(BLANK)
                 .append(BLANK)
-                .append(whitePawns + "\n")
+                .append(StringUtils.appendNewLine(whitePawns))
                 .append(BLANK);
 
         System.out.println(boardPrint);

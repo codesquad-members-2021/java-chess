@@ -3,12 +3,7 @@ package chess.pieces;
 public class Pawn {
     private final Color color;
 
-    public enum Color{
-        WHITE,
-        BLACK
-    }
-
-    Pawn(){
+    Pawn() {
         this.color = Color.WHITE;
     }
 
@@ -17,7 +12,12 @@ public class Pawn {
     }
 
 
-    public Color getColor() {
-        return color;
+    public String getColorName() {
+        return color.getColorName();
     }
+
+    public char getRepresentation() {
+        return color.getRepresentation();
+    }
+
 }

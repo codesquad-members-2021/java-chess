@@ -3,20 +3,30 @@ package chess.pieces;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PawnTest {
 
     @Test
-    @DisplayName("하얀색과 검은색 폰이 생성되어야한다.")
-    public void create() {
-        verifyPawn(Pawn.Color.WHITE);
-        verifyPawn(Pawn.Color.BLACK);
+    @DisplayName("하얀색 폰은 p를 출력해야한다.")
+    void verifyWhitePawnRepresentation() {
+        Pawn pawn = new Pawn(Color.WHITE);
+        verifyPawn(pawn, Color.WHITE);
     }
 
-    private void verifyPawn(Pawn.Color color) {
-        Pawn pawn = new Pawn(color);
-        assertEquals(color, pawn.getColor());
+    @Test
+    @DisplayName("검은색 폰은 P를 출력해야한다.")
+    void verifyBlackPawnRepresentation() {
+        Pawn pawn = new Pawn(Color.BLACK);
+        verifyPawn(pawn, Color.BLACK);
+    }
+
+    private void verifyPawn(Pawn pawn, Color color) {
+        assertAll(
+                () -> assertThat(pawn.getColorName()).isEqualTo(color.getColorName()),
+                () -> assertThat(pawn.getRepresentation()).isEqualTo(color.getRepresentation())
+        );
     }
 
 }

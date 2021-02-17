@@ -10,7 +10,7 @@ public class Pawn {
     }
 
     public Pawn() {
-        this.color = WHITE;
+        this(WHITE);
     }
 
     public String getColor() {

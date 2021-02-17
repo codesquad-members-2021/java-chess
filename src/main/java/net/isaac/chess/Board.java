@@ -72,11 +72,8 @@ public class Board {
         return pieces[rowIdx][colIdx];
     }
 
-    private boolean isValid(int location){
-        if(location < 0 || MAX_SIZE <= location)
-            return false;
-        else
-            return true;
+private boolean isValid(int location){
+        return location >= 0 && MAX_SIZE > location;
     }
 
     public int size(){

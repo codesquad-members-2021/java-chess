@@ -1,20 +1,20 @@
 package net.coco.pieces;
 
 public class Piece {
-    private PawnEnum color;
+    private Color color;
     private char representation;
 
     public Piece() {
-        this.color = PawnEnum.WHITE;
-        this.representation = PawnEnum.WHITE.getRepresentation();
+        this.color = Color.WHITE;
+        this.representation = Color.WHITE.getRepresentation();
     }
 
-    public Piece(PawnEnum pawnEnum) {
-        this.color = pawnEnum;
-        this.representation = pawnEnum.getRepresentation();
+    public Piece(Color color) {
+        this.color = color;
+        this.representation = color.getRepresentation();
     }
 
-    public PawnEnum getColor() {
+    public Color getColor() {
         return color;
     }
 

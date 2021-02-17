@@ -1,12 +1,12 @@
 package net.coco.pieces;
 
-public enum PawnEnum {
+public enum Color {
     WHITE('p'),
     BLACK('P');
 
     private char representation;
 
-    PawnEnum(char representation) {
+    Color(char representation) {
         this.representation = representation;
     }
 

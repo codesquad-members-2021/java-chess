@@ -5,9 +5,13 @@ public class Piece {
     private final String color;
     private final char representation;
 
-    public Piece(Color color, Representation representation) {
+    private Piece(Color color, Representation representation) {
         this.color = color.toString();
         this.representation = representation.get(color);
+    }
+
+    public static Piece createPiece(Color color, Representation representation) {
+        return new Piece(color, representation);
     }
 
     public String getColor() {

@@ -9,6 +9,7 @@ import java.util.List;
 public class Board {
     private List<Pawn> whitePawns = new ArrayList<>();
     private List<Pawn> blackPawns = new ArrayList<>();
+    private static final int BOARD_FILE = 8;
 
     public int size() {
         return whitePawns.size() + blackPawns.size();
@@ -47,11 +48,11 @@ public class Board {
     }
 
     public void initialize() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_FILE; i++) {
             Pawn pawn = new Pawn(Color.WHITE);
             addWhitePawn(pawn);
         }
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_FILE; i++) {
             Pawn pawn = new Pawn(Color.BLACK);
             addBlackPawn(pawn);
         }
@@ -71,23 +72,23 @@ public class Board {
 
     public void print() {
         StringBuilder result = new StringBuilder();
-        result = emptyBoard(result);
-        result.replace(9 * 1, 9 * 1 + getBlackPawnsResult().length(), getWhitePawnsResult());
-        result.replace(9 * 6, 9 * 6 + getBlackPawnsResult().length(), getBlackPawnsResult());
+        String emptyLine = "........";
+        result.append(emptyLine)
+                .append("\n")
+                .append(getWhitePawnsResult())
+                .append("\n")
+                .append(emptyLine)
+                .append("\n")
+                .append(emptyLine)
+                .append("\n")
+                .append(emptyLine)
+                .append("\n")
+                .append(emptyLine)
+                .append("\n")
+                .append(getBlackPawnsResult())
+                .append("\n")
+                .append(emptyLine);
         System.out.println(result);
 
     }
-
-    private StringBuilder emptyBoard(StringBuilder result) {
-        for (int row = 0; row < 8; row++) {
-            for (int column = 0; column < 8; column++) {
-                result.append(".");
-                if (column == 7) {
-                    result.append("\n");
-                }
-            }
-        }
-        return result;
-    }
-
 }

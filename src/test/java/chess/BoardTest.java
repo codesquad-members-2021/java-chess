@@ -1,37 +1,48 @@
 package chess;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pieces.Piece;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static utills.StringUtils.*;
 
 class BoardTest {
-/*
-    @Test
-    public void create() {
-        Board board = new Board();
 
-        Piece white = new Piece();
-        board.add(white);
-        assertEquals(1, board.size());
+    private Board board;
 
-        Piece black = new Piece(Piece.Color.BLACK);
-        board.add(black);
-        assertEquals(2, board.size());
-    }
-
-    @Test
-    public void initialize() throws Exception{
-        Board board = new Board();
+    @BeforeEach
+    public void setup() {
+        board = new Board();
         board.initialize();
-
-        String testp = "p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" ";
-        String testP = "P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" "+"P"+" ";
-
-        assertEquals(testp, board.getWhitePawnResult());
-        assertEquals(testP, board.getBlackPawnResult());
     }
 
- */
+    @Test
+    @DisplayName("boardInit")
+    public void create() throws Exception {
+
+        assertEquals(32, board.pieceCount());
+
+        String blankRank = appendNewLine("* * * * * * * *");
+
+        assertEquals(
+                appendNewLine("P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" ") +
+                        appendNewLine(NEWLINE)+
+                appendNewLine("R"+" "+"N"+" "+"B"+" "+"Q"+" "+"K"+" "+"B"+" "+"N"+" "+"R"+" ") +
+                        appendNewLine(NEWLINE)+
+                blankRank +
+                        appendNewLine(NEWLINE)+blankRank +
+                        appendNewLine(NEWLINE)+blankRank +
+                        appendNewLine(NEWLINE)+ blankRank +appendNewLine(NEWLINE)+
+                appendNewLine("r"+" "+"n"+" "+"b"+" "+"q"+" "+"k"+" "+"b"+" "+"n"+" "+"r"+" ") +appendNewLine(NEWLINE)+
+                appendNewLine("p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "),
+                board.showBoard());
+    }
+
+    @Test
+    public void print(){
+        board.print();
+    }
 
 }

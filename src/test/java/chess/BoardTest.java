@@ -16,9 +16,9 @@ class BoardTest {
     @Test
     @DisplayName("보드를 생성한 후 폰 테스트 한다.")
     void createPawn(){
-        Pawn white = new Pawn(Pawn.WHITE);
+        Pawn white = new Pawn(Pawn.WHITE, Pawn.WHITE_REPRESENTATION);
         addPawnOnBoard(1, white);
-        Pawn black = new Pawn(Pawn.BLACK);
+        Pawn black = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
         addPawnOnBoard(2, black);
     }
     

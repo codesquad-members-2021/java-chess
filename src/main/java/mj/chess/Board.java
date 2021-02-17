@@ -45,13 +45,13 @@ public class Board {
         initPawns(Color.BLACK, SEVENTH_ROW, rowOfBlackPawns);
     }
 
-    private void initPawns(Color color, final int NTH_ROW, StringBuilder rowOfPawns) {
+    private void initPawns(Color color, final int nthRow, StringBuilder rowOfPawns) {
         for (int i = 0; i < MAX_SIZE; i++) {
             Pawn pawn = new Pawn(color);
             pawns.add(pawn);
             rowOfPawns.append(pawn.getRepresentation());
         }
-        cellsOfBoard[NTH_ROW] = (color == Color.BLACK) ? getRowOfBlackPawns() : getRowOfWhitePawns();
+        cellsOfBoard[nthRow] = (color == Color.BLACK) ? getRowOfBlackPawns() : getRowOfWhitePawns();
     }
 
     public void print() {

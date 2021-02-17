@@ -13,6 +13,8 @@ public class Board {
 
     private String nullLine = "* * * * * * * *";
 
+    private final int PAWNCOUNT = 8;
+
     public Pawn findPawn(Pawn.Color color, int index){
         if(color == Pawn.Color.WHITE){
             return whitePawnList.get(index);
@@ -32,7 +34,7 @@ public class Board {
     }
 
     public void initialize(){
-        for(int i = 0; i < 8; i++){
+        for(int i = 0; i < PAWNCOUNT; i++){
             whitePawnList.add(new Pawn());
             blackPawnList.add(new Pawn(Pawn.Color.BLACK));
         }

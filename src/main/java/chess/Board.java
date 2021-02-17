@@ -11,8 +11,7 @@ public class Board {
     private final List<Pawn> blackPawns = new ArrayList<>();
 
     public static final int BOARDSIZE = 8;
-
-    private List<Row> board = new ArrayList<>(BOARDSIZE);
+    private final String blank = "........";
 
     public void addWhitePawn(Pawn pawn) {
         if (pawn.getColorName().equals(Color.WHITE.getColorName())) {
@@ -77,26 +76,6 @@ public class Board {
     }
 
     public void initialize() {
-        initPawn();
-
-        final int blackPawnIndex = 1;
-        final int whitePawnIndex = 6;
-        for (int i = 0; i < BOARDSIZE; i++) {
-            switch (i) {
-                case blackPawnIndex:
-                    board.add(new Row().initBlackPawns(this));
-                    continue;
-                case whitePawnIndex:
-                    board.add(new Row().initWhitePawns(this));
-                    continue;
-
-                default:
-                    board.add(new Row().initBlank());
-            }
-        }
-    }
-
-    private void initPawn() {
         for (int i = 0; i < BOARDSIZE; i++) {
             addWhitePawn(new Pawn(Color.WHITE));
             addBlackPawn(new Pawn(Color.BLACK));
@@ -106,13 +85,23 @@ public class Board {
     public String showBoard() {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < board.size(); i++) {
-            for (int j = 0; j < board.get(i).getPicesSize(); j++) {
-                sb.append(board.get(i).getPices(j));
+        final int blackPawnIndex = 1;
+        final int whitePawnIndex = 6;
+
+        for (int i = 0; i < BOARDSIZE; i++) {
+            switch (i) {
+                case blackPawnIndex:
+                    sb.append(getBlackPawnsResult());
+                    break;
+                case whitePawnIndex:
+                    sb.append(getWhitePawnsResult());
+                    break;
+
+                default:
+                    sb.append(blank);
             }
             sb.append("\n");
         }
-
         return sb.toString();
     }
 }

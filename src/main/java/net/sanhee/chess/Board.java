@@ -10,7 +10,6 @@ public class Board {
 
     private final List<Pawn> pawns = new ArrayList<Pawn>();
     private final String defaultUnitRep = "........";
-    private final List<String[]> boardList = new ArrayList<>();
 
     public void add(Pawn pawn) {
         pawns.add(pawn);
@@ -47,15 +46,6 @@ public class Board {
         Pawn[] blackPawn = new Pawn[Pawn.MAX_SPAWN_NUMBER];
         arrayPawnInit(whitePawn, UnitColor.WHITE);
         arrayPawnInit(blackPawn, UnitColor.BLACK);
-
-        for (int i = 0; i < 8; i++) {
-            if (i == 1 || i == 6) {
-                boardList.add(getBlackPawnsResult().split(""));
-            } else {
-                boardList.add(defaultUnitRep.split(""));
-            }
-        }
-
     }
 
     private void arrayPawnInit(Pawn[] arrayPawns, UnitColor color) {
@@ -68,6 +58,15 @@ public class Board {
     public String print() {
 
         StringBuilder displayBoard = new StringBuilder();
+        List<String[]> boardList = new ArrayList<>();
+
+        for (int i = 0; i < 8; i++) {
+            if (i == 1 || i == 6) {
+                boardList.add(getBlackPawnsResult().split(""));
+            } else {
+                boardList.add(defaultUnitRep.split(""));
+            }
+        }
 
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {

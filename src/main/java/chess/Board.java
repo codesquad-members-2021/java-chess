@@ -49,12 +49,8 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < BOARD_FILE; i++) {
-            Pawn pawn = new Pawn(Color.WHITE);
-            addWhitePawn(pawn);
-        }
-        for (int i = 0; i < BOARD_FILE; i++) {
-            Pawn pawn = new Pawn(Color.BLACK);
-            addBlackPawn(pawn);
+            addWhitePawn(new Pawn(Color.WHITE));
+            addBlackPawn(new Pawn(Color.BLACK));
         }
     }
 

@@ -1,7 +1,7 @@
 package chess;
 
-import pieces.Color;
-import pieces.Pawn;
+import chess.pieces.Color;
+import chess.pieces.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;

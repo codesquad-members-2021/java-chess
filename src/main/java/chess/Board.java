@@ -33,25 +33,18 @@ public class Board {
 
     private String getPawnsResult(List<Pawn> pawns) {
         StringBuilder sb = new StringBuilder();
-        for (char representation : representations(pawns)) {
+        for (char representation : getRepresentations(pawns)) {
             sb.append(representation);
         }
         return sb.toString();
     }
 
-    private char[] representations(List<Pawn> pawns) {
+    private char[] getRepresentations(List<Pawn> pawns) {
         char[] representations = new char[pawns.size()];
         for (int i = 0; i < pawns.size(); i++) {
             representations[i] = pawns.get(i).getRepresentation();
         }
         return representations;
-    }
-
-    public void initialize() {
-        for (int i = 0; i < BOARD_FILE; i++) {
-            addWhitePawn(new Pawn(Color.WHITE));
-            addBlackPawn(new Pawn(Color.BLACK));
-        }
     }
 
     public void addWhitePawn(Pawn pawn) {
@@ -63,6 +56,13 @@ public class Board {
     public void addBlackPawn(Pawn pawn) {
         if (pawn.getColor() == Color.BLACK) {
             blackPawns.add(pawn);
+        }
+    }
+
+    public void initialize() {
+        for (int i = 0; i < BOARD_FILE; i++) {
+            addWhitePawn(new Pawn(Color.WHITE));
+            addBlackPawn(new Pawn(Color.BLACK));
         }
     }
 
@@ -85,6 +85,5 @@ public class Board {
                 .append("\n")
                 .append(emptyLine);
         System.out.println(result);
-
     }
 }

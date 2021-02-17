@@ -1,7 +1,6 @@
 package pieces;
 
 public class Pawn {
-
     private final Color color;
     private final char Representation;
 

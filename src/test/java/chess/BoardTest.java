@@ -9,7 +9,7 @@ import pieces.Pawn;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class BoardTest {
+class BoardTest {
     private Board board;
 
     @BeforeEach
@@ -46,6 +46,4 @@ public class BoardTest {
         board.initialize();
         board.print();
     }
-
-
 }

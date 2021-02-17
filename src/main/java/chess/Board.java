@@ -23,26 +23,24 @@ public class Board {
     }
 
     public String getWhitePawnsResult() {
-        StringBuffer whiteBuffer = new StringBuffer(8);
-        char[] representations = toRepresentations(whitePawns);
-        for (char representation : representations) {
-            whiteBuffer.append(representation);
-        }
-        return whiteBuffer.toString();
+        return getPawnsResult(whitePawns);
     }
 
     public String getBlackPawnsResult() {
-        StringBuffer blackBuffer = new StringBuffer(8);
-        char[] representations = toRepresentations(blackPawns);
-        for (char representation : representations) {
-            blackBuffer.append(representation);
-        }
-        return blackBuffer.toString();
+        return getPawnsResult(blackPawns);
     }
 
-    private char[] toRepresentations(List<Pawn> pawns) {
+    private String getPawnsResult(List<Pawn> pawns) {
+        StringBuilder sb = new StringBuilder();
+        for (char representation : representations(pawns)) {
+            sb.append(representation);
+        }
+        return sb.toString();
+    }
+
+    private char[] representations(List<Pawn> pawns) {
         char[] representations = new char[pawns.size()];
-        for (int i = 0; i < representations.length; i++) {
+        for (int i = 0; i < pawns.size(); i++) {
             representations[i] = pawns.get(i).getColorRepresentation();
         }
         return representations;
@@ -68,7 +66,7 @@ public class Board {
     }
 
     public void print() {
-        StringBuffer result = new StringBuffer();
+        StringBuilder result = new StringBuilder();
         result = emptyBoard(result);
         result.replace(9 * 1, 9 * 1 + getBlackPawnsResult().length(), getWhitePawnsResult());
         result.replace(9 * 6, 9 * 6 + getBlackPawnsResult().length(), getBlackPawnsResult());
@@ -76,7 +74,7 @@ public class Board {
 
     }
 
-    private StringBuffer emptyBoard(StringBuffer result) {
+    private StringBuilder emptyBoard(StringBuilder result) {
         for (int row = 0; row < 8; row++) {
             for (int column = 0; column < 8; column++) {
                 result.append(".");

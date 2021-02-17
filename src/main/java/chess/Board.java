@@ -77,4 +77,8 @@ public class Board {
         return sb.toString();
     }
 
+    public int pieceCount() {
+        return 0;
+    }
+
 }

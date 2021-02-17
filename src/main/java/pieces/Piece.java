@@ -80,4 +80,11 @@ public class Piece {
         return representation;
     }
 
+    public boolean isWhite() {
+        return color.equals(WHITE_COLOR);
+    }
+
+    public boolean isBlack() {
+        return color.equals(BLACK_COLOR);
+    }
 }

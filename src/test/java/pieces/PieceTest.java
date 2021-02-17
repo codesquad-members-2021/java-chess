@@ -4,10 +4,12 @@ import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PieceTest {
     @Test
-    public void create_piece() {
+    @DisplayName("Verify create correct pieces")
+    void create_piece() {
         assertAll(
                 () -> verifyPiece(Piece.createWhitePawn(), Piece.WHITE_COLOR, Piece.WHITE_PAWN_REPRESENTATION),
                 () -> verifyPiece(Piece.createBlackPawn(), Piece.BLACK_COLOR, Piece.BLACK_PAWN_REPRESENTATION),
@@ -22,11 +24,17 @@ public class PieceTest {
                 () -> verifyPiece(Piece.createWhiteKing(), Piece.WHITE_COLOR, Piece.WHITE_KING_REPRESENTATION),
                 () -> verifyPiece(Piece.createBlackKing(), Piece.BLACK_COLOR, Piece.BLACK_KING_REPRESENTATION)
         );
-
     }
 
     private void verifyPiece(final Piece piece, final String color, final char representation) {
         assertThat(color).isEqualTo(piece.getColor());
         assertThat(representation).isEqualTo(piece.getRepresentation());
+    }
+
+    @Test
+    @DisplayName("Verify isWhite and isBlack")
+    void verifyColor() {
+        assertTrue(Piece.createWhitePawn().isWhite());
+        assertTrue(Piece.createBlackPawn().isBlack());
     }
 }

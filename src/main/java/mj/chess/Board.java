@@ -12,8 +12,8 @@ public class Board {
     private static final int SECOND_ROW = 1;
     private static final int SEVENTH_ROW = 6;
     private final List<Pawn> pawns = new ArrayList<>();
-    private final StringBuffer rowOfBlackPawns = new StringBuffer();
-    private final StringBuffer rowOfWhitePawns = new StringBuffer();
+    private final StringBuilder rowOfBlackPawns = new StringBuilder();
+    private final StringBuilder rowOfWhitePawns = new StringBuilder();
     private final String[] cellsOfBoard = {
             "********",
             "********",
@@ -45,7 +45,7 @@ public class Board {
         initPawns(Color.BLACK, Pawn.BLACK_REPRESENTATION, SEVENTH_ROW, rowOfBlackPawns);
     }
 
-    private void initPawns(Color color, char representation, final int NTH_ROW, StringBuffer rowOfPawns) {
+    private void initPawns(Color color, char representation, final int NTH_ROW, StringBuilder rowOfPawns) {
         for (int i = 0; i < MAX_SIZE; i++) {
             pawns.add(new Pawn(color));
             rowOfPawns.append(representation);

@@ -10,8 +10,6 @@ public class Board {
 
     private final List<Pawn> pawns = new ArrayList<Pawn>();
     private final String defaultUnitRep = "........";
-    private final Pawn[] whitePawn = new Pawn[Pawn.MAX_SPAWN_NUMBER];
-    private final Pawn[] blackPawn = new Pawn[Pawn.MAX_SPAWN_NUMBER];
     private final List<String[]> boardList = new ArrayList<>();
 
     public void add(Pawn pawn) {
@@ -45,7 +43,8 @@ public class Board {
     }
 
     public void initialize() {
-
+        Pawn[] whitePawn = new Pawn[Pawn.MAX_SPAWN_NUMBER];
+        Pawn[] blackPawn = new Pawn[Pawn.MAX_SPAWN_NUMBER];
         arrayPawnInit(whitePawn, UnitColor.WHITE);
         arrayPawnInit(blackPawn, UnitColor.BLACK);
 

@@ -1,4 +1,4 @@
-package chess;
+package chess.board;
 
 import chess.pieces.Color;
 import chess.pieces.Pawn;
@@ -10,7 +10,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class BoardTest {
+class BoardTest {
     private Board board;
 
     @BeforeEach
@@ -20,7 +20,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("체스 판에 1개 추가하면 size 가 1이다.")
-    public void size_1() {
+    void size_1() {
         board.add(new Pawn(Color.WHITE));
         assertThat(board.size())
                 .isEqualTo(1);
@@ -28,7 +28,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("체스 판에 2개 추가하면 size 가 2이다.")
-    public void size_2() {
+    void size_2() {
         board.add(new Pawn(Color.WHITE));
         board.add(new Pawn(Color.BLACK));
         assertThat(board.size())
@@ -37,7 +37,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("체스 판에 추가한 pawn 을 findPawn 으로 조회할 수 있다.")
-    public void findPawn() {
+    void findPawn() {
         Pawn whitePawn = new Pawn(Color.WHITE);
         Pawn blackPawn = new Pawn(Color.BLACK);
 

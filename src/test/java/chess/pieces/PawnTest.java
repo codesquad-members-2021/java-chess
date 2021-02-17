@@ -5,23 +5,23 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class PawnTest {
+class PawnTest {
     @Test
     @DisplayName("디폴트로 흰색 폰이 생성되어야 한다.")
-    public void create_default() {
+    void create_default() {
         assertThat(new Pawn().getColor())
                 .isEqualTo(Color.WHITE);
     }
 
     @Test
     @DisplayName("흰색 폰이 생성되어야 한다")
-    public void create_white() {
+    void create_white() {
         verifyPawn(Color.WHITE);
     }
 
     @Test
     @DisplayName("까만 폰이 생성되어야 한다")
-    public void create_black() {
+    void create_black() {
         verifyPawn(Color.BLACK);
     }
 

@@ -5,11 +5,11 @@ public enum Color {
 
     private char representation;
 
-    Color(char representation){
+    Color(char representation) {
         this.representation = representation;
     }
 
-    public char getRepresentation(){
+    public char getRepresentation() {
         return this.representation;
     }
 

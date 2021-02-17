@@ -32,7 +32,6 @@ public class BoardTest {
         assertThat(board.findBlackPawn(0)).isEqualTo(black);
     }
 
-
     @Test
     void initialize() {
 

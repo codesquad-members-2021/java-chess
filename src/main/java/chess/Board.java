@@ -100,7 +100,7 @@ public class Board {
                 appendNewLine(getWhitePieceResult());
     }
 
-    public String getEmptyResult() {
+    private String getEmptyResult() {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < PAWNSNUM; i++) {
             result.append(".");
@@ -108,19 +108,19 @@ public class Board {
         return result.toString();
     }
 
-    public String getWhitePawnResult() {
+    private String getWhitePawnResult() {
         return getPieceResult(whitePawns);
     }
 
-    public String getBlackPawnResult() {
+    private String getBlackPawnResult() {
         return getPieceResult(blackPawns);
     }
 
-    public String getWhitePieceResult() {
+    private String getWhitePieceResult() {
         return getPieceResult(whitePieces);
     }
 
-    public String getBlackPieceResult() {
+    private String getBlackPieceResult() {
         return getPieceResult(blackPieces);
     }
 

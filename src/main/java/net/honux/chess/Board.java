@@ -1,5 +1,6 @@
 package net.honux.chess;
 
+import net.honux.pieces.Color;
 import net.honux.pieces.Pawn;
 
 import java.util.ArrayList;
@@ -25,46 +26,45 @@ public class Board {
         return whitePawns.size() + blackPawns.size();
     }
 
-    public Pawn findPawn(int idx, String color) {
+    public Pawn findPawn(int idx, String colorName) {
         if (idx < 0 || size() <= idx) {
             throw new ArrayIndexOutOfBoundsException("Index number " + idx + " is out of range!");
         }
+        Color color = Color.color(colorName);
         return getPawnListByColor(color).get(idx);
     }
 
-    private List<Pawn> getPawnListByColor(String color) {
-        if (color.equals(Pawn.WHITE_COLOR)) {
+    private List<Pawn> getPawnListByColor(Color color) {
+        if (color.equals(Color.WHITE)) {
             return whitePawns;
-        } else if (color.equals(Pawn.BLACK_COLOR)) {
-            return blackPawns;
         }
-        throw new IllegalArgumentException("Cannot get the pawn list of this color, " + color);
+        return blackPawns;
     }
 
     public void initialize() {
         IntStream.range(0, BOARD_LENGTH).forEach(i -> {
             whitePawns.add(i, new Pawn());
             board[WHITE_PAWN_ROW][i] = whitePawns.get(i);
-            blackPawns.add(i, new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            blackPawns.add(i, new Pawn(Color.BLACK.colorName()));
             board[BLACK_PAWN_ROW][i] = blackPawns.get(i);
         });
     }
 
-    public String getPawnsResult(String color, char representation) {
+    private String getPawnsResult(Color color) {
         StringBuilder sb = new StringBuilder();
         for (Pawn pawn : getPawnListByColor(color)) {
-            char represent = (pawn == null) ? '.' : representation;
+            char represent = (pawn == null) ? '.' : color.representation(Pawn.PAWN_REPRESENTATION);
             sb.append(represent);
         }
         return sb.toString();
     }
 
     public String getWhitePawnsResult() {
-        return getPawnsResult(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        return getPawnsResult(Color.WHITE);
     }
 
     public String getBlackPawnsResult() {
-        return getPawnsResult(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+        return getPawnsResult(Color.BLACK);
     }
 
     public String print() {

@@ -27,7 +27,7 @@ class ChessCellTest {
 
     private void verifyOccupyMethod(Pawn pawn, char expectedColor) {
         ChessCell chessCell = new ChessCell();
-        chessCell.setOccupiedBy(pawn);
+        chessCell.occupy(pawn);
         assertThat(chessCell.getRepresentation()).isEqualTo(expectedColor);
     }
 
@@ -35,25 +35,25 @@ class ChessCellTest {
     @DisplayName("이미 다른 체스말이 들어간 셀에 다른 체스말이 들어가려고 시도하면, 예외가 발생해야 합니다.")
     void testSetPieceInToAlreadyOccupied() {
         assertThatThrownBy(() -> {
-            cell.setOccupiedBy(new Pawn());
-            cell.setOccupiedBy(new Pawn(ColorOfChessPiece.BLACK));
+            cell.occupy(new Pawn());
+            cell.occupy(new Pawn(ColorOfChessPiece.BLACK));
         }).isInstanceOf(IllegalStateException.class);
     }
 
     @Test
     @DisplayName("셀에 체스말 외의 객체를 넣으려고 시도하면 예외가 발생해야 합니다.")
-    void testErrorSetOccupiedBy() {
+    void testErrorOccupy() {
         Object[] testcases = {
                 new Object(),
                 7,
                 "INVALID"
         };
         for (Object tc : testcases)
-            testSetOccupiedByThrowException(tc, ClassCastException.class);
+            testOccupyThrowException(tc, ClassCastException.class);
     }
 
-    private void testSetOccupiedByThrowException(Object testcase, Class<?> exceptionClass) {
-        assertThatThrownBy(() -> cell.setOccupiedBy((Pawn) testcase))
+    private void testOccupyThrowException(Object testcase, Class<?> exceptionClass) {
+        assertThatThrownBy(() -> cell.occupy((Pawn) testcase))
                 .isInstanceOf(exceptionClass);
     }
 }

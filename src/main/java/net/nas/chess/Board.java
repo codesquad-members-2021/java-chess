@@ -22,8 +22,8 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            chessCells[1][i].setOccupiedBy(new Pawn());
-            chessCells[6][i].setOccupiedBy(new Pawn(ColorOfChessPiece.BLACK));
+            chessCells[1][i].occupy(new Pawn());
+            chessCells[6][i].occupy(new Pawn(ColorOfChessPiece.BLACK));
         }
     }
 

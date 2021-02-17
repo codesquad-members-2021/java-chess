@@ -14,7 +14,7 @@ public class Pawn {
 
     public Pawn(Color color) {
         this.color = color;
-        this.representation = WHITE_REPRESENTATION;
+        this.representation = (color == Color.BLACK) ? BLACK_REPRESENTATION : WHITE_REPRESENTATION;
     }
 
     public Pawn(Color color, char representation) {

@@ -12,29 +12,30 @@ class PawnTest {
     @DisplayName("흰색 폰과 검은색 폰이 생성되어야 한다")
     void createWhiteAndBlackPawns() {
         assertAll(
-                () -> verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION),
-                () -> verifyPawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+                () -> verifyPawn(Color.WHITE.colorName()),
+                () -> verifyPawn(Color.BLACK.colorName())
+        );
     }
 
     @Test
     @DisplayName("기본 생성자로 폰을 생성할 때, 흰색 폰이 생성되어야 한다")
     void createWithDefaultPawn() {
         Pawn pawn = new Pawn();
-        assertThat(Pawn.WHITE_COLOR).isEqualTo(pawn.getColor());
-        assertThat(Pawn.WHITE_REPRESENTATION).isEqualTo(pawn.getRepresentation());
+        assertThat(Color.WHITE).isEqualTo(pawn.getColor());
+        assertThat(Pawn.PAWN_REPRESENTATION).isEqualTo(pawn.getRepresentation());
     }
 
     @Test
     @DisplayName("다른 색 폰이 생성되면 안된다")
     void createRedPawn() {
-        assertThatThrownBy(() -> new Pawn("red", 'p'))
+        assertThatThrownBy(() -> new Pawn("red"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private void verifyPawn(final String color, final char representation) {
-        Pawn pawn = new Pawn(color, representation);
-        assertThat(pawn.getColor()).isEqualTo(color);
-        assertThat(representation).isEqualTo(pawn.getRepresentation());
+    private void verifyPawn(final String color) {
+        Pawn pawn = new Pawn(color);
+        assertThat(pawn.getColorName()).isEqualTo(color);
+        assertThat(pawn.getRepresentation()).isEqualTo(pawn.getRepresentation());
     }
 
 }

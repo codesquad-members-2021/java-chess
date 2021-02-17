@@ -9,30 +9,29 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class BoardTest {
 
-    Board board;
-    int totalPawnCnt;
+    private int totalPawnCnt;
 
     @BeforeEach
     void boardTestInit() {
-        board = new Board();
         totalPawnCnt = 0;
     }
 
     @Test
     @DisplayName("[테스트] 체스 판에 Pawn 추가 및 유효성 검사")
     void createPawn() {
-        Pawn whitePawn = spawnPawn(UnitColor.WHITE);
-        Pawn blackPawn = spawnPawn(UnitColor.BLACK);
+        Board board = new Board();
+        Pawn whitePawn = spawnPawn(board, UnitColor.WHITE);
+        Pawn blackPawn = spawnPawn(board, UnitColor.BLACK);
 
         //m 실제 스폰된 폰의 개수와 add 개수가 맞는지 검사하는 메소드
-        pawnSizeCheck();
+        pawnSizeCheck(board);
 
         //m 입력 idx에 pawn이 스폰되있는지 검사하는 메소드
-        pawnLocationCheck(whitePawn, 0);
-        pawnLocationCheck(blackPawn, 1);
+        pawnLocationCheck(board, whitePawn, 0);
+        pawnLocationCheck(board, blackPawn, 1);
     }
 
-    Pawn spawnPawn(UnitColor color) {
+    Pawn spawnPawn(Board board, UnitColor color) {
         Pawn pawn = new Pawn(color);
         board.add(pawn);
         totalPawnCnt++;
@@ -40,11 +39,11 @@ class BoardTest {
         return pawn;
     }
 
-    void pawnSizeCheck() {
+    void pawnSizeCheck(Board board) {
         assertThat(board.size()).isEqualTo(totalPawnCnt);
     }
 
-    void pawnLocationCheck(Pawn pawn, int idx) {
+    void pawnLocationCheck(Board board, Pawn pawn, int idx) {
         assertThat(board.findPawn(idx)).isEqualTo(pawn);
     }
 

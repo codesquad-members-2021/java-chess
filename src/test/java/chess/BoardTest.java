@@ -1,6 +1,12 @@
 package chess;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+
 import pieces.Pawn;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,18 +24,21 @@ class BoardTest {
         Pawn black = new Pawn(Pawn.Color.BLACK);
         board.add(black);
         assertEquals(2, board.size());
+
     }
 
     @Test
+    @DisplayName("board initialize test")
     void initialize() throws Exception {
         Board board = new Board();
         board.initialize();
 
-        String testp = "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " ";
-        String testP = "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " ";
+        String whitePawns = "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " ";
+        String blackPawns = "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " ";
 
-        assertEquals(testp, board.getWhitePawnResult());
-        assertEquals(testP, board.getBlackPawnResult());
+        assertThat(board.getWhitePawnResult()).isEqualTo(whitePawns);
+        assertThat(board.getBlackPawnResult()).isEqualTo(blackPawns);
+
     }
-
+    
 }

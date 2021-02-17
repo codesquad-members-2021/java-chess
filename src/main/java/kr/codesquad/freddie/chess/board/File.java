@@ -44,7 +44,9 @@ public class File {
     }
 
     public void fillWith(Color color) {
-        for (; size() < SIZE; pawns.add(new Pawn(color))) ;
+        while (isAddable()) {
+            pawns.add(new Pawn(color));
+        }
     }
 
     public String getRepresentation() {

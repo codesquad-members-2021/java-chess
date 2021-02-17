@@ -11,9 +11,6 @@ public class File {
     public static final int SIZE = 8;
     private List<Pawn> pawns = new ArrayList<>();
 
-    public File() {
-    }
-
     public void add(Pawn pawn) {
         if (size() == SIZE) {
             throw new IllegalArgumentException("파일 당 8개만 추가 가능합니다.");

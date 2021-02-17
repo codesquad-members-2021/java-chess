@@ -27,7 +27,7 @@ public class Board {
         getPiecesByColor(piece).add(piece);
     }
 
-    public int numberOfPieces() {
+    public int pieceNum() {
         return whitePieces.size() + blackPieces.size();
     }
 

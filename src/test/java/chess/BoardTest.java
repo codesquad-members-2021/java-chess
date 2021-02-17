@@ -19,7 +19,7 @@ class BoardTest {
     void verifyInitialize() {
         board.initialize();
         String blankRank = appendNewLine("........");
-        assertAll(() -> assertThat(board.numberOfPieces()).isEqualTo(32),
+        assertAll(() -> assertThat(board.pieceNum()).isEqualTo(32),
                 () -> assertThat(appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         blankRank + blankRank + blankRank + blankRank +

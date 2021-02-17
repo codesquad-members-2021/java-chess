@@ -10,7 +10,8 @@ public class Board {
     private List<Pawn> blackPawns = new ArrayList<>();
 
     public static int BOARD_SIZE = 8;
-    private static final String BLANK = "........\n";
+    private static final String NEW_LINE = System.lineSeparator();
+    private static final String BLANK = "........" + NEW_LINE;
 
     public void initialize() {
         for (int i = 0; i < BOARD_SIZE; i++) {
@@ -66,16 +67,14 @@ public class Board {
     public void print() {
         StringBuilder printer = new StringBuilder();
         printer.append(BLANK)
-                .append(BLANK)
                 .append(getBlackPawnsResult())
-                .append(System.lineSeparator())
-                .append(BLANK)
+                .append(NEW_LINE)
                 .append(BLANK)
                 .append(BLANK)
                 .append(BLANK)
                 .append(BLANK)
                 .append(getWhitePawnsResult())
-                .append(System.lineSeparator())
+                .append(NEW_LINE)
                 .append(BLANK);
 
         System.out.println(printer.toString());

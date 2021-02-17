@@ -48,25 +48,23 @@ public class Board {
             blackPawns.add(i, new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
             board[BLACK_PAWN_ROW][i] = blackPawns.get(i);
         });
+    }
 
+    public String getPawnsResult(String color, char representation) {
+        StringBuilder sb = new StringBuilder();
+        for (Pawn pawn : getPawnListByColor(color)) {
+            char represent = (pawn == null) ? '.' : representation;
+            sb.append(represent);
+        }
+        return sb.toString();
     }
 
     public String getWhitePawnsResult() {
-        StringBuilder sb = new StringBuilder();
-        for (Pawn pawn : whitePawns) {
-            char represent = (pawn == null) ? '.' : Pawn.WHITE_REPRESENTATION;
-            sb.append(represent);
-        }
-        return sb.toString();
+        return getPawnsResult(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
     }
 
     public String getBlackPawnsResult() {
-        StringBuilder sb = new StringBuilder();
-        for (Pawn pawn : blackPawns) {
-            char represent = (pawn == null) ? '.' : Pawn.BLACK_REPRESENTATION;
-            sb.append(represent);
-        }
-        return sb.toString();
+        return getPawnsResult(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
     }
 
     public String print() {

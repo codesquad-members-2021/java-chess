@@ -23,8 +23,4 @@ public class Console {
         System.out.print("Game Over");
         scanner.close();
     }
-
-    private static void print() {
-        System.out.println("Game Start");
-    }
 }

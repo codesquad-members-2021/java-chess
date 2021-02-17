@@ -67,5 +67,10 @@ public class Board {
         return boardLayout.toString();
     }
 
+    public void reset(){
+        whitePawnList.clear();
+        blackPawnList.clear();
+    }
+
 
 }

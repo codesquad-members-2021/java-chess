@@ -8,11 +8,10 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args){
-        String cmd;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try{
-            while(!(cmd = reader.readLine()).equals("end")){
-                if(cmd.equals("start"))
+        String command;
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))){
+            while(!(command = reader.readLine()).equals("end")){
+                if(command.equals("start"))
                     startChess();
             }
         }

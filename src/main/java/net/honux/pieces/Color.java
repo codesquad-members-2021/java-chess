@@ -4,12 +4,14 @@ import java.util.function.Function;
 
 public enum Color {
 
-    WHITE(piece -> Character.toLowerCase(piece)),
-    BLACK(piece -> Character.toUpperCase(piece));
+    WHITE("white", piece -> Character.toLowerCase(piece)),
+    BLACK("black", piece -> Character.toUpperCase(piece));
 
+    private String colorName;
     private Function<Character, Character> represent;
 
-    Color(Function<Character, Character> represent) {
+    Color(String colorName, Function<Character, Character> represent) {
+        this.colorName = colorName;
         this.represent = represent;
     }
 
@@ -23,6 +25,10 @@ public enum Color {
                 throw new IllegalArgumentException("color should be white or black!");
         }
 
+    }
+
+    public String colorName() {
+        return colorName;
     }
 
     public Character representation(char pieceFirstLetter) {

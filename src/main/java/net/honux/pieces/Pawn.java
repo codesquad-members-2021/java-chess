@@ -1,27 +1,25 @@
 package net.honux.pieces;
 
 public class Pawn {
-    public static final String WHITE_COLOR = "white";
-    public static final String BLACK_COLOR = "black";
-    public static final char WHITE_REPRESENTATION = 'p';
-    public static final char BLACK_REPRESENTATION = 'P';
+    public static final char PAWN_REPRESENTATION = 'p';
 
-    private String color;
+    private Color color;
     private char representation;
 
     public Pawn() {
-        this(WHITE_COLOR, WHITE_REPRESENTATION);
+        this(Color.WHITE.colorName());
     }
 
-    public Pawn(String color, char representation) {
-        if (!color.equals(WHITE_COLOR) && !color.equals(BLACK_COLOR)) {
-            throw new IllegalArgumentException("Pawn color should be 'white' or 'black'!");
-        }
-        this.color = color;
-        this.representation = representation;
+    public Pawn(String color) {
+        this.color = Color.color(color);
+        this.representation = this.color.representation(PAWN_REPRESENTATION);
     }
 
-    public String getColor() {
+    public String getColorName() {
+        return color.colorName();
+    }
+
+    public Color getColor() {
         return color;
     }
 

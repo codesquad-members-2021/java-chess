@@ -16,12 +16,15 @@ public class Board {
         whitePieces = new ArrayList<>();
     }
 
-    private void addWhitePiece(Piece piece) {
-        whitePieces.add(piece);
+    private List<Piece> getPiecesByColor(Piece piece) {
+        if (piece.isWhite()) {
+            return whitePieces;
+        }
+        return blackPieces;
     }
 
-    private void addBlackPiece(Piece piece) {
-        blackPieces.add(piece);
+    private void addPiece(Piece piece) {
+        getPiecesByColor(piece).add(piece);
     }
 
     public int numberOfPieces() {
@@ -35,29 +38,29 @@ public class Board {
 
     private void initializeWhitePieces() {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            addWhitePiece(Piece.createWhitePawn());
+            addPiece(Piece.createWhitePawn());
         }
-        addWhitePiece(Piece.createWhiteRook());
-        addWhitePiece(Piece.createWhiteKnight());
-        addWhitePiece(Piece.createWhiteBishop());
-        addWhitePiece(Piece.createWhiteQueen());
-        addWhitePiece(Piece.createWhiteKing());
-        addWhitePiece(Piece.createWhiteBishop());
-        addWhitePiece(Piece.createWhiteKnight());
-        addWhitePiece(Piece.createWhiteRook());
+        addPiece(Piece.createWhiteRook());
+        addPiece(Piece.createWhiteKnight());
+        addPiece(Piece.createWhiteBishop());
+        addPiece(Piece.createWhiteQueen());
+        addPiece(Piece.createWhiteKing());
+        addPiece(Piece.createWhiteBishop());
+        addPiece(Piece.createWhiteKnight());
+        addPiece(Piece.createWhiteRook());
     }
 
     private void initializeBlackPieces() {
-        addBlackPiece(Piece.createBlackRook());
-        addBlackPiece(Piece.createBlackKnight());
-        addBlackPiece(Piece.createBlackBishop());
-        addBlackPiece(Piece.createBlackQueen());
-        addBlackPiece(Piece.createBlackKing());
-        addBlackPiece(Piece.createBlackBishop());
-        addBlackPiece(Piece.createBlackKnight());
-        addBlackPiece(Piece.createBlackRook());
+        addPiece(Piece.createBlackRook());
+        addPiece(Piece.createBlackKnight());
+        addPiece(Piece.createBlackBishop());
+        addPiece(Piece.createBlackQueen());
+        addPiece(Piece.createBlackKing());
+        addPiece(Piece.createBlackBishop());
+        addPiece(Piece.createBlackKnight());
+        addPiece(Piece.createBlackRook());
         for (int i = 0; i < BOARD_SIZE; i++) {
-            addBlackPiece(Piece.createBlackPawn());
+            addPiece(Piece.createBlackPawn());
         }
     }
 

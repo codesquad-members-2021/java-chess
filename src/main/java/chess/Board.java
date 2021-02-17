@@ -11,7 +11,6 @@ import static chess.utils.StringUtils.appendNewLine;
 
 public class Board {
     private static final int PAWNSNUM = 8;
-    private static final int COLUMN = 8;
     private List<Piece> whitePawns = new ArrayList<>(8);
     private List<Piece> blackPawns = new ArrayList<>(8);
     private List<Piece> whitePieces = new ArrayList<>(8);

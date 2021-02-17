@@ -8,16 +8,26 @@ public class Board {
     private List<Pawn> blackPawnList = new ArrayList();
     private List<Pawn> whitePawnList = new ArrayList();
 
-    public void add(Pawn pawn) {
-        if (pawn.getColor() == (Color.WHITE)) {
-            whitePawnList.add(pawn);
-            return;
-        }
+    public void addWhitePawn(Pawn pawn) {
+        if(pawn.getColor() == Color.WHITE)
+        whitePawnList.add(pawn);
+    }
+
+    public void addBlackPawn(Pawn pawn) {
+        if(pawn.getColor() == Color.BLACK)
         blackPawnList.add(pawn);
     }
 
     public int size() {
         return whitePawnList.size() + blackPawnList.size();
+    }
+
+    public int whitePawnListSize() {
+        return whitePawnList.size();
+    }
+
+    public int blackPawnListSize() {
+        return blackPawnList.size();
     }
 
     public Pawn findWhitePawn(int index) {
@@ -31,8 +41,8 @@ public class Board {
     public void initialize() {
         int MAX_PAWNS_SIZE =8;
         for (int i = 0; i < MAX_PAWNS_SIZE; i++) {
-            add(new Pawn(Color.WHITE));
-            add(new Pawn(Color.BLACK));
+            addWhitePawn(new Pawn(Color.WHITE));
+            addBlackPawn(new Pawn(Color.BLACK));
         }
     }
 

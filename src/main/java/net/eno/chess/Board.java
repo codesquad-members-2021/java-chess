@@ -33,7 +33,6 @@ public class Board {
 
     public void addPiece(Color color, Piece piece) {
         char representation = piece.getRepresentation();
-
         if (Character.toLowerCase(representation) == 'p') {
             this.pieces.get(color.toString()).get("pawn").add(piece);
         } else {
@@ -55,26 +54,26 @@ public class Board {
     }
 
     public void initialize() {
+        List<Representation> representationList = sortRepresentation();
         for (int i = 0; i < 8; i++) {
-            if (i == 0 || i == 7) {
-                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.ROOK));
-                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.ROOK));
-            } else if (i == 1 || i == 6) {
-                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.KNIGHT));
-                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.KNIGHT));
-            } else if (i == 2 || i == 5) {
-                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.BISHOP));
-                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.BISHOP));
-            } else if (i == 3) {
-                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.QUEEN));
-                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.QUEEN));
-            } else {
-                addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.KING));
-                addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.KING));
-            }
+            addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, representationList.get(i)));
+            addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, representationList.get(i)));
             addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.PAWN));
             addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.PAWN));
         }
+    }
+
+    private List<Representation> sortRepresentation() {
+        List<Representation> representationList = new ArrayList<>();
+        representationList.add(Representation.ROOK);
+        representationList.add(Representation.KNIGHT);
+        representationList.add(Representation.BISHOP);
+        representationList.add(Representation.QUEEN);
+        representationList.add(Representation.KING);
+        representationList.add(Representation.BISHOP);
+        representationList.add(Representation.KNIGHT);
+        representationList.add(Representation.ROOK);
+        return representationList;
     }
 
     private String getPiecesResult(Color color, String piece) {
@@ -86,7 +85,6 @@ public class Board {
     }
 
     public String showBoard() {
-        System.getProperty("line.separator");
         StringBuilder result = new StringBuilder();
         result.append(appendNewLine(getPiecesResult(Color.BLACK, "piece")));
         result.append(appendNewLine(getPiecesResult(Color.BLACK, "pawn")));

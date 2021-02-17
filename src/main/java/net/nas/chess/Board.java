@@ -10,20 +10,20 @@ import java.util.stream.Collectors;
 
 public class Board {
     private ArrayList<Pawn> pieceList;
-    private ChessCell[][] board;
+    private ChessCell[][] chessCells;
 
     public Board() {
         pieceList = new ArrayList<>();
-        board = new ChessCell[8][8];
+        chessCells = new ChessCell[8][8];
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
-                board[i][j] = new ChessCell();
+                chessCells[i][j] = new ChessCell();
     }
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            board[1][i].setOccupiedBy(new Pawn());
-            board[6][i].setOccupiedBy(new Pawn(ColorOfChessPiece.BLACK));
+            chessCells[1][i].setOccupiedBy(new Pawn());
+            chessCells[6][i].setOccupiedBy(new Pawn(ColorOfChessPiece.BLACK));
         }
     }
 
@@ -42,7 +42,7 @@ public class Board {
     }
 
     private String getResultOfRow(int rowIdx) {
-        return Arrays.stream(board[rowIdx])
+        return Arrays.stream(chessCells[rowIdx])
                 .map(cell -> String.valueOf(cell.getRepresentation()))
                 .collect(Collectors.joining());
     }

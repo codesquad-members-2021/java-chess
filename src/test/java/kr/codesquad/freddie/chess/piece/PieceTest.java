@@ -33,8 +33,6 @@ class PieceTest {
     @DisplayName("검정은 대문자 하양은 소문자 반환")
     void getRepresentation() {
         assertAll(
-                () -> assertThat(Piece.createBlackPawn().getRepresentation()).isEqualTo("P"),
-                () -> assertThat(Piece.createWhitePawn().getRepresentation()).isEqualTo("p"),
                 () -> assertThat(Piece.create("black", "pawn").getRepresentation()).isEqualTo("P"),
                 () -> assertThat(Piece.create("white", "pawn").getRepresentation()).isEqualTo("p"),
                 () -> assertThat(Piece.create("black", "knight").getRepresentation()).isEqualTo("K"),

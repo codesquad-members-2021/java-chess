@@ -15,3 +15,4 @@ class StringUtilsTest {
         assertThat(result).isEqualTo("RNBQKBNR" + NEWLINE + "PPPPPPPP" + NEWLINE);
     }
 }
+

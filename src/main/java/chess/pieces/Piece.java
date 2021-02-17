@@ -15,6 +15,13 @@ public class Piece {
         return this.color;
     }
 
+    public char createRepresentation(Color color, PieceName name) {
+        if (color == Color.WHITE) {
+            return name.getRepresentation();
+        }
+        return Character.toUpperCase(name.getRepresentation());
+    }
+
     public static Piece createWhitePawn() {
         return new Piece(Color.WHITE, PieceName.PAWN);
     }
@@ -31,35 +38,35 @@ public class Piece {
         return new Piece(Color.BLACK, PieceName.KNIGHT);
     }
 
-    public static Piece createWhiteRook(){
+    public static Piece createWhiteRook() {
         return new Piece(Color.WHITE, PieceName.ROOK);
     }
 
-    public static Piece createBlackRook(){
+    public static Piece createBlackRook() {
         return new Piece(Color.BLACK, PieceName.ROOK);
     }
 
-    public static Piece createWhiteBishop(){
+    public static Piece createWhiteBishop() {
         return new Piece(Color.WHITE, PieceName.BISHOP);
     }
 
-    public static Piece createBlackBishop(){
+    public static Piece createBlackBishop() {
         return new Piece(Color.BLACK, PieceName.BISHOP);
     }
 
-    public static Piece createWhiteQueen(){
+    public static Piece createWhiteQueen() {
         return new Piece(Color.WHITE, PieceName.QUEEN);
     }
 
-    public static Piece createBlackQueen(){
+    public static Piece createBlackQueen() {
         return new Piece(Color.BLACK, PieceName.QUEEN);
     }
 
-    public static Piece createWhiteKing(){
+    public static Piece createWhiteKing() {
         return new Piece(Color.WHITE, PieceName.KING);
     }
 
-    public static Piece createBlackKing(){
+    public static Piece createBlackKing() {
         return new Piece(Color.BLACK, PieceName.KING);
     }
 }
@@ -74,7 +81,7 @@ enum PieceName {
 
     private final char representation;
 
-    PieceName(char representation){
+    PieceName(char representation) {
         this.representation = representation;
     }
 

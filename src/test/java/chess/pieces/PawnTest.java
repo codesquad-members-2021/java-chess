@@ -12,20 +12,20 @@ class PawnTest {
     @DisplayName("하얀색 폰은 p를 출력해야한다.")
     void verifyWhitePawnRepresentation() {
         Pawn pawn = new Pawn(Color.WHITE);
-        verifyPawn(pawn, "white", 'p');
+        verifyPawn(pawn, Color.WHITE);
     }
 
     @Test
     @DisplayName("검은색 폰은 P를 출력해야한다.")
     void verifyBlackPawnRepresentation() {
         Pawn pawn = new Pawn(Color.BLACK);
-        verifyPawn(pawn, "black", 'P');
+        verifyPawn(pawn, Color.BLACK);
     }
 
-    private void verifyPawn(Pawn pawn, String colorName, char representation) {
+    private void verifyPawn(Pawn pawn, Color color) {
         assertAll(
-                () -> assertThat(pawn.getColorName()).isEqualTo(colorName),
-                () -> assertThat(pawn.getRepresentation()).isEqualTo(representation)
+                () -> assertThat(pawn.getColorName()).isEqualTo(color.getColorName()),
+                () -> assertThat(pawn.getRepresentation()).isEqualTo(color.getRepresentation())
         );
     }
 

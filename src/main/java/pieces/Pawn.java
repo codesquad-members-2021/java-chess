@@ -11,7 +11,7 @@ public class Pawn {
         this(Pawn.WHITE);
     }
 
-    public Pawn(String color) {
+    public Pawn(final String color) {
         this.color = color;
     }
 

@@ -54,4 +54,18 @@ public class Board {
                 .map(Entry::getValue)
                 .collect(toList());
     }
+
+    public String getWhitePawnsResult() {
+        StringBuilder sb = new StringBuilder();
+        getPieces().subList(48, 56)
+                .forEach(sb::append);
+        return sb.toString();
+    }
+
+    public String getBlackPawnsResult() {
+        StringBuilder sb = new StringBuilder();
+        getPieces().subList(8, 16)
+                .forEach(sb::append);
+        return sb.toString();
+    }
 }

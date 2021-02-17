@@ -29,10 +29,10 @@ public class Pawn {
     }
 
     public boolean isWhite(Pawn pawn) {
-        return pawn.getColor().equals(Pawn.WHITE);
+        return pawn.getColor().equals(WHITE);
     }
 
     public boolean isBlack(Pawn pawn) {
-        return pawn.getColor().equals(Pawn.BLACK);
+        return pawn.getColor().equals(BLACK);
     }
 }

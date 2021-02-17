@@ -86,7 +86,7 @@ public class Board {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < File.SIZE; i++) {
-            sb.append(file.get((char) (i + 'a')).getRepresentation());
+            sb.append(file.get(i).getRepresentation());
         }
 
         return sb.toString();

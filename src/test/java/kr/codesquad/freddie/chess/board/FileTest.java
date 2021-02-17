@@ -50,8 +50,8 @@ class FileTest {
         file.add(pawnB);
 
         assertAll(
-                () -> assertThat(file.get('a')).isEqualTo(pawnA),
-                () -> assertThat(file.get('b')).isEqualTo(pawnB)
+                () -> assertThat(file.get('a')).isEqualTo(pawnA).isEqualTo(file.get(0)),
+                () -> assertThat(file.get('b')).isEqualTo(pawnB).isEqualTo(file.get(1))
         );
     }
 
@@ -99,7 +99,7 @@ class FileTest {
 
     private void checkFillWith(Color expected) {
         for (int i = 0; i < File.SIZE; i++) {
-            assertThat(file.get((char) (i + 'a')).getColor()).isEqualTo(expected);
+            assertThat(file.get(i).getColor()).isEqualTo(expected);
         }
     }
 

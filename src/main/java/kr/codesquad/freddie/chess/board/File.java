@@ -32,6 +32,10 @@ public class File {
         return pawns.get(fileIndex - 'a');
     }
 
+    public Pawn get(int index) {
+        return pawns.get(index);
+    }
+
     public int size() {
         return pawns.size();
     }

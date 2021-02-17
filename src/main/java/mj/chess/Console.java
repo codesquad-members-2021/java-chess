@@ -8,7 +8,7 @@ public class Console {
         console.runConsole();
     }
 
-    public void runConsole() {
+    private void runConsole() {
         Scanner scanner = new Scanner(System.in);
         String command;
 
@@ -27,13 +27,13 @@ public class Console {
         scanner.close();
     }
 
-    public void startGame() {
+    private void startGame() {
         Board board = new Board();
         board.initialize();
         board.print();
     }
 
-    public void endGame() {
+    private void endGame() {
         System.out.print("Game Over");
     }
 }

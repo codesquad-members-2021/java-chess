@@ -20,6 +20,48 @@ public class Piece {
     public static Piece createBlackPawn() {
         return new Piece(Color.BLACK, PieceName.PAWN);
     }
+
+    public static Piece createWhiteKnight() {
+        return new Piece(Color.WHITE, PieceName.KNIGHT);
+    }
+
+    public static Piece createBlackKnight() {
+        return new Piece(Color.BLACK, PieceName.KNIGHT);
+    }
+
+    public static Piece createWhiteRook(){
+        return new Piece(Color.WHITE, PieceName.ROOK);
+    }
+
+    public static Piece createBlackRook(){
+        return new Piece(Color.BLACK, PieceName.ROOK);
+    }
+
+    public static Piece createWhiteBishop(){
+        return new Piece(Color.WHITE, PieceName.BISHOP);
+    }
+
+    public static Piece createBlackBishop(){
+        return new Piece(Color.BLACK, PieceName.BISHOP);
+    }
+
+    public static Piece createWhiteQueen(){
+        return new Piece(Color.WHITE, PieceName.QUEEN);
+    }
+
+    public static Piece createBlackQueen(){
+        return new Piece(Color.BLACK, PieceName.QUEEN);
+    }
+
+    public static Piece createWhiteKing(){
+        return new Piece(Color.WHITE, PieceName.KING);
+    }
+
+    public static Piece createBlackKing(){
+        return new Piece(Color.BLACK, PieceName.KING);
+    }
+
+
 }
 
 enum PieceName {

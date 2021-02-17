@@ -48,4 +48,20 @@ class BoardViewTest {
         assertThat(boardView.getPieceRepresentation())
                 .isEqualTo(sb.toString());
     }
+
+    @Test
+    void getBoardRepresentation() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("  a b c d e f g h " + NEWLINE);
+        sb.append("8 . . . . . . . . " + NEWLINE);
+        sb.append("7 P P P P P P P P " + NEWLINE);
+        sb.append("6 . . . . . . . . " + NEWLINE);
+        sb.append("5 . . . . . . . . " + NEWLINE);
+        sb.append("4 . . . . . . . . " + NEWLINE);
+        sb.append("3 . . . . . . . . " + NEWLINE);
+        sb.append("2 p p p p p p p p " + NEWLINE);
+        sb.append("1 . . . . . . . . " + NEWLINE);
+        assertThat(boardView.getBoardRepresentation())
+                .isEqualTo(sb.toString());
+    }
 }

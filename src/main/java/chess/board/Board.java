@@ -17,27 +17,31 @@ public class Board {
     private final Map<Position, Piece> squares = new LinkedHashMap<>();
 
     public void initialize() {
-        addEmptyRow(8);
+        addRoyalRow(8, Color.BLACK);
         addPawnRow(7, Color.BLACK);
         for (int i = 6; i >= 3; i--) {
             addEmptyRow(i);
         }
         addPawnRow(2, Color.WHITE);
-        addEmptyRow(1);
+        addRoyalRow(1, Color.WHITE);
     }
 
     private void addEmptyRow(int rowId) {
-        for (int i = 97; i <= 104; i++) {
+        for (int i = 'a'; i <= 'h'; i++) {
             char columnId = (char) i;
             squares.put(new Position(columnId, rowId), EmptyPiece.getInstance());
         }
     }
 
     private void addPawnRow(int rowId, Color color) {
-        for (int i = 97; i <= 104; i++) {
+        for (int i = 'a'; i <= 'h'; i++) {
             char columnId = (char) i;
             squares.put(new Position(columnId, rowId), new Pawn(color));
         }
+    }
+
+    private void addRoyalRow(int rowId, Color color) {
+        addEmptyRow(rowId);
     }
 
     public List<Position> getPositions() {

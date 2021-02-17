@@ -1,6 +1,7 @@
 package chess.view;
 
 import chess.board.Board;
+import chess.pieces.Piece;
 import chess.utils.StringUtils;
 
 import java.util.Iterator;
@@ -36,5 +37,18 @@ public class BoardView {
 
     public String getPieceRepresentation() {
         return getRepresentation(board.getPieces());
+    }
+
+    public String getBoardRepresentation() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("  a b c d e f g h ");
+        sb.append(StringUtils.NEWLINE);
+        Iterator<Piece> itr = board.getPieces().iterator();
+        for (int i = 8; i >= 1; i--) {
+            sb.append(i);
+            sb.append(" ");
+            appendRow(sb, itr);
+        }
+        return sb.toString();
     }
 }

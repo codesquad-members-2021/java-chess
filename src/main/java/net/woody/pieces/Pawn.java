@@ -1,4 +1,4 @@
-package net.honux.pieces;
+package net.woody.pieces;
 
 public class Pawn {
     public static final char PAWN_REPRESENTATION = 'p';

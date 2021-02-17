@@ -1,4 +1,4 @@
-package net.honux.chess;
+package net.woody.chess;
 
 import java.util.Scanner;
 

@@ -1,7 +1,7 @@
-package net.honux.chess;
+package net.woody.chess;
 
-import net.honux.pieces.Color;
-import net.honux.pieces.Pawn;
+import net.woody.pieces.Color;
+import net.woody.pieces.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;

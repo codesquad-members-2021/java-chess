@@ -36,20 +36,11 @@ public class Board {
 
     public String appendPawnRep(UnitColor color) {
         StringBuilder pawnLine = new StringBuilder();
-
-        switch (color) {
-            case WHITE:
-                for (int i = 0; i < 8; i++) {
-                    pawnLine.append(pawns.get(i).getRepresentation());
-                }
-                break;
-            case BLACK:
-                for (int i = 8; i < 16; i++) {
-                    pawnLine.append(pawns.get(i).getRepresentation());
-                }
-                break;
+        for (Pawn pawn : pawns) {
+            if (pawn.isColor(color)) {
+                pawnLine.append(pawn.getRepresentation());
+            }
         }
-
         return pawnLine.toString();
     }
 

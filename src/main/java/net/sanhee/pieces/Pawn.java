@@ -33,4 +33,8 @@ public class Pawn {
     public char getRepresentation() {
         return this.shape;
     }
+
+    public boolean isColor(UnitColor color) {
+        return this.getColor().equals(color);
+    }
 }

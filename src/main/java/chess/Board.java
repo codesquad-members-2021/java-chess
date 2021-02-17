@@ -11,53 +11,60 @@ public class Board {
     private static final int COLUMN = 8;
     private List<Piece> whitePawns = new ArrayList<>(8);
     private List<Piece> blackPawns = new ArrayList<>(8);
+    private List<Piece> whitePieces = new ArrayList<>(8);
+    private List<Piece> blackPieces = new ArrayList<>(8);
 
 
-    public List<Piece> distinguish(Piece pawn) {
+    private List<Piece> distinguishPawn(Piece pawn) {
         if (pawn.getColor() == Color.WHITE) {
             return whitePawns;
         }
         return blackPawns;
     }
 
-    public void add(Piece pawn) {
-        List list = distinguish(pawn);
-        list.add(pawn);
+    public void addPawn(Piece pawn) {
+        distinguishPawn(pawn).add(pawn);
     }
 
-    public int size(Piece pawn) {
-        return distinguish(pawn).size();
+    public int pawnSize(Piece pawn) {
+        return distinguishPawn(pawn).size();
     }
-
 
     public Piece findPawn(Piece pawn, int idx) {
-        return distinguish(pawn).get(idx);
+        return distinguishPawn(pawn).get(idx);
+    }
+
+    private List<Piece> distinguishPiece(Piece piece) {
+        if (piece.getColor() == Color.WHITE) {
+            return whitePieces;
+        }
+        return blackPieces;
+    }
+
+    public void addPiece(Piece piece) {
+        distinguishPiece(piece).add(piece);
+    }
+
+    public int pieceSize(Piece piece) {
+        return distinguishPiece(piece).size();
+    }
+
+    public Piece findPiece(Piece piece, int idx) {
+        return distinguishPiece(piece).get(idx);
     }
 
     public void initialize() {
-        for (int i = 0; i < PAWNSNUM; i++) {
-            Piece white = new Piece(Color.WHITE);
-            Piece black = new Piece(Color.BLACK);
-            add(white);
-            add(black);
-        }
+
     }
 
-    public String print() {
+    public int pieceCount() {
+
+    }
+
+    public String showBoard() {
         StringBuilder result = new StringBuilder();
         String empty = getEmptyResult();
-        for (int i = 0; i < COLUMN; i++) {
-            if (i == 1) {
-                result.append(getBlackPawnResult());
-            }
-            if (i == 6) {
-                result.append(getWhitePawnResult());
-            }
-            if (i != 1 && i != 6) {
-                result.append(empty);
-            }
-            result.append("\n");
-        }
+
         return result.toString();
     }
 
@@ -80,7 +87,7 @@ public class Board {
     private String getPawnResult(List<Piece> pawns) {
         StringBuilder result = new StringBuilder();
         for (Piece pawn : pawns) {
-            result.append(pawn.getColor().getRepresentation());
+            result.append(pawn.getRepresentation());
         }
         return result.toString();
     }

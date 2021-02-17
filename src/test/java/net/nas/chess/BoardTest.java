@@ -1,6 +1,5 @@
 package net.nas.chess;
 
-import net.nas.pieces.ColorOfChessPiece;
 import net.nas.pieces.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,41 +24,36 @@ public class BoardTest {
     @Test
     @DisplayName("체스 보드에 폰을 추가하고, 찾을 수 있어야 합니다.")
     void testAdditionAndFind() {
-        Pawn[] testcases = {
-                new Pawn(),
-                new Pawn(ColorOfChessPiece.BLACK)
-        };
-        for (int i = 0; i < testcases.length; i++) {
-            final int idx = i;
+        Pawn whitePawn = new Pawn();
+        for (int i = 1; i <= Board.LENGTH_OF_BOARD; i++) {
+            final int fileIdx = i;
             assertAll(
-                    () -> verifyAddition(testcases[idx], idx),
-                    () -> verifyFind(testcases[idx], idx)
+                    () -> verifyAddition(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx),
+                    () -> verifyFind(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx)
             );
         }
     }
 
-    private void verifyAddition(Pawn pawn, int idx) {
-        board.add(pawn);
-        assertThat(board.size()).isEqualTo(idx + 1);
+    private void verifyAddition(Pawn pawn, int rankIdx, int fileIdx) {
+        int prevSize = board.size();
+        board.add(pawn, rankIdx, fileIdx);
+        assertThat(board.size()).isEqualTo(prevSize + 1);
     }
 
-    private void verifyFind(Pawn pawn, int idx) {
-        assertThat(board.findPawn(idx)).isEqualTo(pawn);
+    private void verifyFind(Pawn pawn, int rankIdx, int fileIdx) {
+        assertThat(board.findPawn(rankIdx, fileIdx)).isEqualTo(pawn);
     }
 
     @Test
     @DisplayName("폰을 찾을때 넣는 인덱스가 배열의 범위를 벗어나면 예외가 발생해야 합니다")
     void testErrorFind() {
-        testFindThrowException(-1, InvalidParameterException.class);
-        testFindThrowException(0, InvalidParameterException.class);
-        for (int i = 0; i < 2; i++) {
-            board.add(new Pawn());
-            testFindThrowException(i + 1, InvalidParameterException.class);
-        }
+        int[] testcases = {-1, 0, Board.LENGTH_OF_BOARD + 1};
+        for (int tc : testcases)
+            testFindThrowException(tc, tc, InvalidParameterException.class);
     }
 
-    private void testFindThrowException(int idx, Class<?> exceptionClass) {
-        assertThatThrownBy(() -> board.findPawn(idx))
+    private void testFindThrowException(int rankIdx, int fileIdx, Class<?> exceptionClass) {
+        assertThatThrownBy(() -> board.findPawn(rankIdx, fileIdx))
                 .isInstanceOf(exceptionClass);
     }
 
@@ -78,7 +72,7 @@ public class BoardTest {
     }
 
     private void testAdditionThrowException(Object tc, Class<?> exceptionClass) {
-        assertThatThrownBy(() -> board.add((Pawn) tc))
+        assertThatThrownBy(() -> board.add((Pawn) tc, 1, 1))
                 .isInstanceOf(exceptionClass);
     }
 

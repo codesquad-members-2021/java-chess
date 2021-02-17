@@ -12,6 +12,10 @@ public class ChessCell {
         piece = newPiece;
     }
 
+    public Pawn getOccupiedPiece() {
+        return piece;
+    }
+
     public char getRepresentation() {
         if (piece == null)
             return NONE_REPRESENTATION;

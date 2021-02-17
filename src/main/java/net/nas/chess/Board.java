@@ -9,21 +9,24 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Board {
+    public static final int LENGTH_OF_BOARD = 8;
+    public static final int RANK_OF_WHITE_PAWNS = 1;
+    public static final int RANK_OF_BLACK_PAWNS = 6;
     private ArrayList<Pawn> pieceList;
     private ChessCell[][] chessCells;
 
     public Board() {
         pieceList = new ArrayList<>();
         chessCells = new ChessCell[8][8];
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++)
+        for (int i = 0; i < LENGTH_OF_BOARD; i++)
+            for (int j = 0; j < LENGTH_OF_BOARD; j++)
                 chessCells[i][j] = new ChessCell();
     }
 
     public void initialize() {
-        for (int i = 0; i < 8; i++) {
-            chessCells[1][i].occupy(new Pawn());
-            chessCells[6][i].occupy(new Pawn(ColorOfChessPiece.BLACK));
+        for (int i = 0; i < LENGTH_OF_BOARD; i++) {
+            chessCells[RANK_OF_WHITE_PAWNS][i].occupy(new Pawn());
+            chessCells[RANK_OF_BLACK_PAWNS][i].occupy(new Pawn(ColorOfChessPiece.BLACK));
         }
     }
 
@@ -33,7 +36,7 @@ public class Board {
 
     public String getResultOfAllRows() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 7; i >= 0; i--) {
+        for (int i = LENGTH_OF_BOARD - 1; i >= 0; i--) {
             sb.append(getResultOfRow(i));
             if (i != 0)
                 sb.append("\n");
@@ -48,11 +51,11 @@ public class Board {
     }
 
     public String getWhitePawnsResult() {
-        return getResultOfRow(1);
+        return getResultOfRow(RANK_OF_WHITE_PAWNS);
     }
 
     public String getBlackPawnsResult() {
-        return getResultOfRow(6);
+        return getResultOfRow(RANK_OF_BLACK_PAWNS);
     }
 
     public Pawn findPawn(int idx) {

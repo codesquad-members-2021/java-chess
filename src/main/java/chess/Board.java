@@ -16,19 +16,15 @@ public class Board {
     public Pawn findPawn(Pawn.Color color, int index){
         if(color == Pawn.Color.WHITE){
             return whitePawnList.get(index);
-        }else {
-            return blackPawnList.get(index);
         }
-
+        return blackPawnList.get(index);
     }
 
     public void add(Pawn pawn){
         if(pawn.getColor() == Pawn.Color.WHITE){
             whitePawnList.add(pawn);
-
-        }else{
-            blackPawnList.add(pawn);
         }
+        blackPawnList.add(pawn);
     }
 
     public int size(){

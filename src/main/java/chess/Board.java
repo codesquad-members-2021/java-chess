@@ -11,7 +11,7 @@ public class Board {
     private List<Pawn> whitePawnList = new ArrayList<>();
     private List<Pawn> blackPawnList = new ArrayList<>();
 
-    private String nullLine = "* * * * * * * *";
+    private String startLine = "* * * * * * * *";
 
     private final int PAWNCOUNT = 8;
 

@@ -10,14 +10,21 @@ public class Board {
     private final List<Pawn> whitePawns = new ArrayList<>();
     private final List<Pawn> blackPawns = new ArrayList<>();
 
-    private final int BOARDSIZE = 8;
+    public static final int BOARDSIZE = 8;
 
     private List<Row> board = new ArrayList<>(BOARDSIZE);
 
-    public void addPawns(Pawn pawn) {
-        if (pawn.getColorName() == Color.WHITE.getColorName()) {
+    public void addWhitePawn(Pawn pawn) {
+        if (pawn.getColorName().equals(Color.WHITE.getColorName())) {
             whitePawns.add(pawn);
-        } else if (pawn.getColorName() == Color.BLACK.getColorName()) {
+        } else {
+            System.out.println("알 수 없는 color의 pawn입니다.");
+            System.out.println("add에 실패하였습니다.");
+        }
+    }
+
+    public void addBlackPawn(Pawn pawn) {
+        if (pawn.getColorName().equals(Color.BLACK.getColorName())) {
             blackPawns.add(pawn);
         } else {
             System.out.println("알 수 없는 color의 pawn입니다.");
@@ -65,7 +72,7 @@ public class Board {
                 return sb.toString();
 
             default:
-                return "존재하지 않는 색상입니다.";
+                return "";
         }
     }
 
@@ -91,13 +98,12 @@ public class Board {
 
     private void initPawn() {
         for (int i = 0; i < BOARDSIZE; i++) {
-            addPawns(new Pawn(Color.WHITE));
-            addPawns(new Pawn(Color.BLACK));
+            addWhitePawn(new Pawn(Color.WHITE));
+            addBlackPawn(new Pawn(Color.BLACK));
         }
     }
 
     public String showBoard() {
-
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < board.size(); i++) {

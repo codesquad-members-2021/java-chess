@@ -1,6 +1,5 @@
 package chess;
 
-import org.junit.Before;
 import org.junit.jupiter.api.*;
 
 import static chess.utils.StringUtils.appendNewLine;
@@ -10,7 +9,7 @@ public class BoardTest {
 
     private Board board;
 
-    @Before
+    @BeforeEach
     void setup() {
         board = new Board();
     }

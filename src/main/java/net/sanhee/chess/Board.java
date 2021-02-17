@@ -35,22 +35,22 @@ public class Board {
     }
 
     public String appendPawnRep(UnitColor color) {
-        StringBuilder PawnLine = new StringBuilder();
+        StringBuilder pawnLine = new StringBuilder();
 
         switch (color) {
             case WHITE:
                 for (int i = 0; i < 8; i++) {
-                    PawnLine.append(pawns.get(i).getRepresentation());
+                    pawnLine.append(pawns.get(i).getRepresentation());
                 }
                 break;
             case BLACK:
                 for (int i = 8; i < 16; i++) {
-                    PawnLine.append(pawns.get(i).getRepresentation());
+                    pawnLine.append(pawns.get(i).getRepresentation());
                 }
                 break;
         }
 
-        return PawnLine.toString();
+        return pawnLine.toString();
     }
 
     public void initialize() {

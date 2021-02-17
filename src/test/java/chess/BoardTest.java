@@ -27,4 +27,8 @@ class BoardTest {
         assertThat(index).isEqualTo(board.size());
         assertThat(pawnInstance).isEqualTo(board.findPawn(index-1));
     }
+
+    void initialize(){
+        board.initialize();
+    }
 }

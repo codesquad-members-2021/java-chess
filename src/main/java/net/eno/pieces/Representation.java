@@ -2,17 +2,23 @@ package net.eno.pieces;
 
 public enum Representation {
 
-    WHITE('p'),
-    BLACK('P');
+    PAWN('p', 'P'),
+    KNIGHT('n', 'N'),
+    ROOK('r', 'R'),
+    BISHOP('b', 'B'),
+    QUEEN('q', 'Q'),
+    KING('k', 'K');
 
-    private final char pawn;
+    private final char white;
+    private final char black;
 
-    Representation(char pawn) {
-        this.pawn = pawn;
+    Representation(char white, char black) {
+        this.white = white;
+        this.black = black;
     }
 
-    public char getPawn() {
-        return this.pawn;
+    public char get(Color color) {
+        return color.toString().equals("WHITE") ? this.white : this.black;
     }
 
 }

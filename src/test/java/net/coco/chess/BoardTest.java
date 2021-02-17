@@ -2,7 +2,7 @@ package net.coco.chess;
 
 
 import net.coco.Printer.PrintChess;
-import net.coco.pieces.Pawn;
+import net.coco.pieces.Piece;
 import net.coco.pieces.PawnEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,23 +51,23 @@ public class BoardTest {
     }
 
     private void verifyPawnToPawns(PawnEnum pawnEnum, int findPawnIndex) {
-        Pawn pawn = new Pawn(pawnEnum);
+        Piece piece = new Piece(pawnEnum);
 
         if (pawnEnum == PawnEnum.WHITE)
-            verifyWhitePawnsIndex(pawn, findPawnIndex);
+            verifyWhitePawnsIndex(piece, findPawnIndex);
         else
-            verifyBlackPawnsIndex(pawn, findPawnIndex);
+            verifyBlackPawnsIndex(piece, findPawnIndex);
 
     }
 
-    private void verifyWhitePawnsIndex(Pawn pawn, int findPawnIndex) {
-        board.addPawn(pawn);
-        assertThat(pawn).isEqualTo(board.findWhitePawn(findPawnIndex));
+    private void verifyWhitePawnsIndex(Piece piece, int findPawnIndex) {
+        board.addPawn(piece);
+        assertThat(piece).isEqualTo(board.findWhitePawn(findPawnIndex));
     }
 
-    private void verifyBlackPawnsIndex(Pawn pawn, int findPawnIndex) {
-        board.addPawn(pawn);
-        assertThat(pawn).isEqualTo(board.findBlackPawn(findPawnIndex));
+    private void verifyBlackPawnsIndex(Piece piece, int findPawnIndex) {
+        board.addPawn(piece);
+        assertThat(piece).isEqualTo(board.findBlackPawn(findPawnIndex));
     }
 
     private void verifyPawnsSize(int actualSize) {

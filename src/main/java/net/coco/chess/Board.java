@@ -1,6 +1,6 @@
 package net.coco.chess;
 
-import net.coco.pieces.Pawn;
+import net.coco.pieces.Piece;
 import net.coco.pieces.PawnEnum;
 
 import java.util.ArrayList;
@@ -8,16 +8,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Board {
-    private List<Pawn> whitePawns = new ArrayList<>();
-    private List<Pawn> blackPawns = new ArrayList<>();
+    private List<Piece> whitePawns = new ArrayList<>();
+    private List<Piece> blackPawns = new ArrayList<>();
     private static final int BOARD_CELLS = 8;
 
 
-    public void addPawn(Pawn pawn) {
-        if (pawn.getColor() == PawnEnum.WHITE)
-            whitePawns.add(pawn);
+    public void addPawn(Piece piece) {
+        if (piece.getColor() == PawnEnum.WHITE)
+            whitePawns.add(piece);
         else
-            blackPawns.add(pawn);
+            blackPawns.add(piece);
 
     }
 
@@ -26,11 +26,11 @@ public class Board {
     }
 
 
-    public Pawn findWhitePawn(int index) {
+    public Piece findWhitePawn(int index) {
         return whitePawns.get(index);
     }
 
-    public Pawn findBlackPawn(int index) {
+    public Piece findBlackPawn(int index) {
         return blackPawns.get(index);
     }
 
@@ -38,21 +38,21 @@ public class Board {
         whitePawns.clear();
         blackPawns.clear();
         for (int i = 0; i < BOARD_CELLS; i++) {
-            addPawn(new Pawn());
-            addPawn(new Pawn(PawnEnum.BLACK));
+            addPawn(new Piece());
+            addPawn(new Piece(PawnEnum.BLACK));
         }
     }
 
     public String getPawnsResult(PawnEnum pawnEnum) {
         if (pawnEnum == PawnEnum.WHITE)
-            return getPawnsToString(whitePawns);
+            return getPiecesToString(whitePawns);
         else
-            return getPawnsToString(blackPawns);
+            return getPiecesToString(blackPawns);
     }
 
-    private String getPawnsToString(List<Pawn> Pawns) {
-        return Pawns.stream()
-                .map(pawn -> String.valueOf(pawn.getRepresentation()))
+    private String getPiecesToString(List<Piece> pieces) {
+        return pieces.stream()
+                .map(piece -> String.valueOf(piece.getRepresentation()))
                 .collect(Collectors.joining());
     }
 

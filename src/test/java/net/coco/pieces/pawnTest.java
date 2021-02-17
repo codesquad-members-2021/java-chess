@@ -11,10 +11,10 @@ class pawnTest {
     @Test
     @DisplayName("기본 생성자 테스트")
     void create_defaultConstructor() {
-        Pawn pawn = new Pawn();
+        Piece piece = new Piece();
         Assertions.assertAll(
-                () -> assertThat(PawnEnum.WHITE).isEqualTo(pawn.getColor()),
-                () -> assertThat(PawnEnum.WHITE.getRepresentation()).isEqualTo(pawn.getRepresentation())
+                () -> assertThat(PawnEnum.WHITE).isEqualTo(piece.getColor()),
+                () -> assertThat(PawnEnum.WHITE.getRepresentation()).isEqualTo(piece.getRepresentation())
         );
 
     }
@@ -27,10 +27,10 @@ class pawnTest {
     }
 
     void verifyPawn(PawnEnum pawnEnum) {
-        Pawn pawn = new Pawn(pawnEnum);
+        Piece piece = new Piece(pawnEnum);
         Assertions.assertAll(
-                () -> assertThat(pawnEnum).isEqualTo(pawn.getColor()),
-                () -> assertThat(pawnEnum.getRepresentation()).isEqualTo(pawn.getRepresentation())
+                () -> assertThat(pawnEnum).isEqualTo(piece.getColor()),
+                () -> assertThat(pawnEnum.getRepresentation()).isEqualTo(piece.getRepresentation())
         );
     }
 

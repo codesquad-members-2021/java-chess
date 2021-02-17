@@ -100,14 +100,6 @@ public class Board {
         return files.get(1);
     }
 
-    public void print() {
-        String result = files.stream()
-                .map(File::getRepresentation)
-                .collect(Collectors.joining(System.lineSeparator()));
-
-        System.out.println(result);
-    }
-
     public BoardDTO toDTO() {
         return BoardDTO.create(files);
     }

@@ -91,11 +91,4 @@ class BoardTest {
                 () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
         );
     }
-
-    @Test
-    void printTest() {
-        board.initialize();
-
-        board.print();
-    }
 }

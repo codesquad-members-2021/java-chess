@@ -12,10 +12,10 @@ public class Pawn extends Piece {
     @Override
     public char getRepresentation(Color color){
         if(this.color == Color.BLACK)
-            return 'P';
+            return Piece.BLACK_PAWN_REPRESENTATION;
         if(this.color == Color.WHITE)
-            return 'p';
+            return Piece.WHITE_PAWN_REPRESENTATION;
 
-        return '?';
+        return Piece.UNKNOWN_REPRESENTATION;
     }
 }

@@ -3,11 +3,10 @@ package chess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pieces.Pawn;
 import pieces.Color;
+import pieces.Pawn;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 public class BoardTest {
@@ -18,20 +17,28 @@ public class BoardTest {
         board = new Board();
     }
 
-    private void addPawnVerify(Pawn pawn, int number, int index) {
-        board.add(pawn);
-        assertAll(
-                () -> assertThat(board.size()).isEqualTo(number),
-                () -> assertThat(board.findPawn(index)).isEqualTo(pawn)
-        );
-    }
-
     @Test
-    @DisplayName("흰색, 검은색 Pawn을 생성해 board에 추가한다")
+    @DisplayName("흰색 Pawn을 생성해 board에 추가한다")
     void createPawnOnTheBoard() {
         Pawn white = new Pawn(Color.WHITE);
+        board.addWhitePawn(white);
+        assertThat(board.size()).isEqualTo(1);
+        assertThat(board.findWhitePawn(0)).isEqualTo(white);
+
+
         Pawn black = new Pawn(Color.BLACK);
-        addPawnVerify(white, 1, 0);
-        addPawnVerify(black, 2, 1);
+        board.addBlackPawn(black);
+        assertThat(board.size()).isEqualTo(2);
+        assertThat(board.findBlackPawn(0)).isEqualTo(black);
+    }
+
+
+    @Test
+    void initialize() {
+
+        board.initialize();
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+
     }
 }

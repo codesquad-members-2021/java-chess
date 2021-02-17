@@ -19,7 +19,7 @@ public class Pawn {
         return color;
     }
 
-    char getColorRepresentation() {
+    public char getColorRepresentation() {
         return colorRepresentation;
     }
 }

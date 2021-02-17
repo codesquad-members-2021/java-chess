@@ -40,8 +40,8 @@ public class Board {
 
     void initialize() {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            addWhite(new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION));
-            addBlack(new Piece(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION));
+            addWhite(Piece.createWhitePawn());
+            addBlack(Piece.createBlackPawn());
         }
     }
 

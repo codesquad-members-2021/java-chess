@@ -1,6 +1,7 @@
 package net.honux.chess;
 
 import net.honux.pieces.Pawn;
+import net.honux.pieces.Color;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
@@ -27,7 +28,7 @@ class BoardTest {
     @Test
     @DisplayName("보드에 폰이 존재하지 않을 때, 폰을 찾으려고 시도하면 에러가 발생해야 한다.")
     void findPawnNotOnTheBoard() {
-        assertThatThrownBy(() -> board.findPawn(0, Pawn.BLACK_COLOR))
+        assertThatThrownBy(() -> board.findPawn(0, Color.BLACK.colorName()))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class)
                 .hasMessageContaining("Index number 0 is out of range!");
     }
@@ -35,7 +36,7 @@ class BoardTest {
     @Test
     @DisplayName("음수 인덱스로 폰을 찾으려고 할 때, 에러가 발생해야 한다.")
     void findPawnWithNegativeIndex() {
-        assertThatThrownBy(() -> board.findPawn(-1, Pawn.BLACK_COLOR))
+        assertThatThrownBy(() -> board.findPawn(-1, Color.BLACK.colorName()))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class)
                 .hasMessageContaining("Index number -1 is out of range!");
     }
@@ -71,6 +72,6 @@ class BoardTest {
         int sizeBeforeAddThePawn = board.size();
         board.add(newPawn);
         assertThat(sizeBeforeAddThePawn + 1).isEqualTo(board.size());
-        assertThat(newPawn).isEqualTo(board.findPawn(newPawnIdx, newPawn.getColor()));
+        assertThat(newPawn).isEqualTo(board.findPawn(newPawnIdx, newPawn.getColorName()));
     }
 }

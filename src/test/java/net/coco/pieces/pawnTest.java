@@ -14,7 +14,7 @@ class pawnTest {
         Piece piece = new Piece();
         Assertions.assertAll(
                 () -> assertThat(Color.WHITE).isEqualTo(piece.getColor()),
-                () -> assertThat(Color.WHITE.getRepresentation()).isEqualTo(piece.getRepresentation())
+                () -> assertThat(Representation.WHITE_PAWN.getRepresentation()).isEqualTo(piece.getRepresentation())
         );
 
     }

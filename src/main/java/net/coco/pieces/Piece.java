@@ -1,18 +1,15 @@
 package net.coco.pieces;
 
 public class Piece {
-    private Color color;
-    private char representation;
+    private final Color color;
+    private final char representation;
 
-    public Piece() {
-        this.color = Color.WHITE;
-        this.representation = Color.WHITE.getRepresentation();
-    }
-
-    public Piece(Color color) {
+    private Piece(Color color, char representation) {
         this.color = color;
-        this.representation = color.getRepresentation();
+        this.representation = representation;
     }
+
+
 
     public Color getColor() {
         return color;

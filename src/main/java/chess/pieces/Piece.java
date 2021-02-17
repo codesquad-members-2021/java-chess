@@ -26,6 +26,10 @@ public class Piece {
         return this.representation;
     }
 
+    public PieceName getName() {
+        return this.name;
+    }
+
     public static Piece createWhitePawn() {
         return new Piece(Color.WHITE, PieceName.PAWN);
     }

@@ -30,8 +30,10 @@ class BoardTest {
 
         Pawn black = new Pawn(Color.BLACK);
         board.addBlackPawn(black);
-        assertThat(board.size()).isEqualTo(2);
-        assertThat(board.findBlackPawn(0)).isEqualTo(black);
+        assertAll(
+                () -> assertThat(board.size()).isEqualTo(2),
+                () ->assertThat(board.findBlackPawn(0)).isEqualTo(black)
+        );
     }
 
     @Test

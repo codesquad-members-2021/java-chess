@@ -4,8 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private final int BOARDSIZE = 8;
-    private List<Character> pices = new ArrayList<>(BOARDSIZE);
+    private List<Character> pices = new ArrayList<>(Board.BOARDSIZE);
 
     public Character getPices(int index) {
         return pices.get(index);
@@ -21,7 +20,7 @@ public class Row {
 
     public Row initWhitePawns(Board board) {
         Row row = new Row();
-        for (int i = 0; i < BOARDSIZE; i++) {
+        for (int i = 0; i < Board.BOARDSIZE; i++) {
             row.addPices(board.getWhitePawn(i).getRepresentation());
         }
         return row;
@@ -29,7 +28,7 @@ public class Row {
 
     public Row initBlackPawns(Board board) {
         Row row = new Row();
-        for (int i = 0; i < BOARDSIZE; i++) {
+        for (int i = 0; i < Board.BOARDSIZE; i++) {
             row.addPices(board.getBlackPawn(i).getRepresentation());
         }
         return row;
@@ -38,7 +37,7 @@ public class Row {
 
     public Row initBlank() {
         Row row = new Row();
-        for (int i = 0; i < BOARDSIZE; i++) {
+        for (int i = 0; i < Board.BOARDSIZE; i++) {
             row.addPices('.');
         }
         return row;

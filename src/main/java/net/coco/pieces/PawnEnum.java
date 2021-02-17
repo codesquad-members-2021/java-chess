@@ -1,7 +1,8 @@
 package net.coco.pieces;
 
 public enum PawnEnum {
-    WHITE('p'), BLACK('P');
+    WHITE('p'),
+    BLACK('P');
 
     private char representation;
 

@@ -29,9 +29,7 @@ public class StartGame {
         switch (input) {
             case START:
                 board.initialize();
-                String blackPawns = board.getPawnsResult(PawnEnum.BLACK);
-                String whitePawns = board.getPawnsResult(PawnEnum.WHITE);
-                PrintChess.printBoard(blackPawns, whitePawns);
+                PrintChess.printBoard(board);
                 break;
             case END:
                 System.out.println("게임을 종료");

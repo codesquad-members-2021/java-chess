@@ -66,4 +66,26 @@ public class Board {
     public void addWhitePawn(Pawn pawn) {
         whitePawns.add(pawn);
     }
+
+    public void print() {
+        StringBuffer result = new StringBuffer();
+        result = emptyBoard(result);
+        result.replace(9 * 1, 9 * 1 + getBlackPawnsResult().length(), getWhitePawnsResult());
+        result.replace(9 * 6, 9 * 6 + getBlackPawnsResult().length(), getBlackPawnsResult());
+        System.out.println(result);
+
+    }
+
+    private StringBuffer emptyBoard(StringBuffer result) {
+        for (int row = 0; row < 8; row++) {
+            for (int column = 0; column < 8; column++) {
+                result.append(".");
+                if (column == 7) {
+                    result.append("\n");
+                }
+            }
+        }
+        return result;
+    }
+
 }

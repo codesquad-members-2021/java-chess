@@ -34,10 +34,15 @@ public class BoardTest {
 
     @Test
     void initialize() {
-
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
-
     }
+
+    @Test
+    void print() {
+        board.initialize();
+        board.print();
+    }
+
 }

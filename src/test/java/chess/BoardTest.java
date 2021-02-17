@@ -17,7 +17,7 @@ public class BoardTest {
     @DisplayName("Verify Board initialize and toString")
     public void create() throws Exception {
         board.initialize();
-        assertThat(32).isEqualTo(board.pieceCount());
+        assertThat(32).isEqualTo(board.size());
 
         final String BLANK_LINE = appendNewLine("........");
         assertThat(

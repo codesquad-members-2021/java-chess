@@ -8,15 +8,16 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        Board board = new Board();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            Board board = new Board();
 
-        for (String command = br.readLine();
-             !command.equals("end");
-             command = br.readLine()) {
-            if (command.equals("start")) {
-                board.initialize();
-                System.out.println(board.toDTO().getRepresentation());
+            for (String command = br.readLine();
+                 !command.equals("end");
+                 command = br.readLine()) {
+                if (command.equals("start")) {
+                    board.initialize();
+                    System.out.println(board.toDTO().getRepresentation());
+                }
             }
         }
     }

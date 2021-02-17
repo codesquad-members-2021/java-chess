@@ -15,6 +15,7 @@ public class CommandUtil {
             case "start":
                 return true;
             case "end":
+                System.out.println("bye~!💨💨");
                 return false;
             default:
                 System.out.println("plz enter the command again, check the command menu!");

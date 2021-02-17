@@ -22,7 +22,7 @@ public class Pawn {
     }
 
     public String getRepresentation() {
-        return color == Color.BLACK ? "P" : "p";
+        return color.getRepresentationBy("p");
     }
 
     @Override

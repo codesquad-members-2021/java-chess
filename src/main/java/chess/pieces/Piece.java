@@ -21,4 +21,9 @@ public class Piece {
     public String getRepresentation() {
         return color.generateRepresentation(representation);
     }
+
+    @Override
+    public String toString() {
+        return getRepresentation();
+    }
 }

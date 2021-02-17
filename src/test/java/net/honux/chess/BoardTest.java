@@ -60,10 +60,10 @@ class BoardTest {
                         "........\n" +
                         "........\n" +
                         "pppppppp\n" +
-                        "........";
+                        "........\n";
 
         String actualResult = board.print();
-        assertThat(actualResult).isEqualTo(expectedResult);
+        assertThat(expectedResult).isEqualTo(actualResult);
         System.out.println(actualResult);
     }
 

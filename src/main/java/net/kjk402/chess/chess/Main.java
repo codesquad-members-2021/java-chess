@@ -5,25 +5,26 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        String command = "";
         System.out.print(help());
-        while (true) {
-            System.out.print("> ");
-            String command = sc.nextLine();
-            if (command.equals("start")) {
-                Board board = new Board();
-                board.initialize();
-                board.print();
-                continue;
+        try (Scanner sc = new Scanner(System.in)) {
+            while (!command.equals("end")) {
+                System.out.print("> ");
+                command = sc.nextLine();
+                if (command.equals("start")) {
+                    Board board = new Board();
+                    board.initialize();
+                    board.print();
+                    continue;
+                }
+                if (command.equals("end")) {
+                    System.out.println("종료합니다.");
+                }
+                if (command.equals("help")) {
+                    System.out.println(help());
+                }
             }
-            if (command.equals("end")) {
-                System.out.println("종료.");
-                break;
-            }
-            System.out.println("올바르지 않은 명령어입니다.");
-            System.out.print(help());
         }
-        sc.close();
     }
 
     private static final String help() {

@@ -1,6 +1,7 @@
 package chess;
 
 import chess.pieces.Piece;
+import chess.pieces.Color;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +15,8 @@ class BoardTest {
 
     @BeforeEach
     public void setUP() {
-        white = new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION);
-        black = new Piece(Piece.BLACK_COLOR, Piece.BLACK__REPRESENTATION);
+        white = new Piece(Color.WHITE);
+        black = new Piece(Color.BLACK);
         board = new Board();
     }
 

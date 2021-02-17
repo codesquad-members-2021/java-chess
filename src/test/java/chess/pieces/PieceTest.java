@@ -9,19 +9,19 @@ public class PieceTest {
     @Test
     public void create_기본생성자() throws Exception {
         Piece pawn = new Piece();
-        assertEquals(Piece.WHITE_COLOR, pawn.getColor());
-        assertEquals(Piece.WHITE_REPRESENTATION, pawn.getRepresentation());
+        assertEquals(Color.WHITE, pawn.getColor());
+        assertEquals(Color.WHITE.getRepresentation(), pawn.getColor().getRepresentation());
     }
 
     @Test
     public void create() {
-        verifyPawn(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION);
-        verifyPawn(Piece.BLACK_COLOR, Piece.BLACK__REPRESENTATION);
+        verifyPawn(Color.WHITE, Color.WHITE.getRepresentation());
+        verifyPawn(Color.BLACK, Color.BLACK.getRepresentation());
     }
 
-    void verifyPawn(final String color, final char representation) {
-        Piece pawn = new Piece(color, representation);
-        assertEquals(color,pawn.getColor());
-        assertEquals(representation, pawn.getRepresentation());
+    void verifyPawn(final Color color, final char representation) {
+        Piece pawn = new Piece(color);
+        assertEquals(color, pawn.getColor());
+        assertEquals(representation, pawn.getColor().getRepresentation());
     }
 }

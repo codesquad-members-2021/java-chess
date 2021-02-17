@@ -74,21 +74,11 @@ public class Board {
     }
 
     public String getWhitePawnsResult() {
-        return getPawnsResultOf(getWhiteFile());
+        return getWhiteFile().getRepresentation();
     }
 
     public String getBlackPawnsResult() {
-        return getPawnsResultOf(getBlackFile());
-    }
-
-    private String getPawnsResultOf(File file) {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < File.SIZE; i++) {
-            sb.append(file.get(i).getRepresentation());
-        }
-
-        return sb.toString();
+        return getBlackFile().getRepresentation();
     }
 
     private File getWhiteFile() {

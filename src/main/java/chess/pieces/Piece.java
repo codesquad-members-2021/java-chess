@@ -79,14 +79,14 @@ enum PieceName {
     QUEEN('q'),
     KING('k');
 
-    private final char representation;
+    private final char tempRepresentation;
 
     PieceName(char representation) {
-        this.representation = representation;
+        this.tempRepresentation = representation;
     }
 
     public char getRepresentation() {
-        return representation;
+        return tempRepresentation;
     }
 }
 

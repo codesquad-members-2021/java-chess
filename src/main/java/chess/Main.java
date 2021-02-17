@@ -1,14 +1,11 @@
 package chess;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+
         Board board = new Board();
 
         System.out.println("명령어를 입력해주세요.");
@@ -16,18 +13,23 @@ public class Main {
         System.out.println(" start   |   end");
         System.out.print("> ");
 
-        String command = scanner.nextLine();
+        try (Scanner scanner = new Scanner(System.in)){
+            String command = scanner.nextLine();
 
-        while (!command.equals("end")) {
-            if (command.equals("start")) {
-                board.initialize();
-                System.out.println(board.showBoard());
+            while (!command.equals("end")) {
+                if (command.equals("start")) {
+                    board.initialize();
+                    System.out.println(board.showBoard());
+                }
+                System.out.print("> ");
+                command = scanner.nextLine();
             }
-            System.out.print("> ");
-            command = scanner.nextLine();
+
+            System.out.println("게임이 종료되었습니다.");
+
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
-        System.out.println("게임이 종료되었습니다.");
-        scanner.close();
     }
 }

@@ -19,7 +19,7 @@ public class Game {
                 System.out.println("> 체스 게임을 시작합니다.");
                 board = new Board();
                 board.initialize();
-                board.print();
+                System.out.println(board.showBoard());
                 check = true;
             }
 

@@ -1,9 +1,11 @@
 package kr.codesquad.freddie.chess.board;
 
+import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Board {
     // 체스에서 row를 rank라고 한다.
@@ -64,5 +66,33 @@ public class Board {
         return "Board{" + System.lineSeparator() +
                 "files=" + System.lineSeparator() + files +
                 '}';
+    }
+
+    public Board initialize() {
+        getBlackFile().fillWith(Color.BLACK);
+        getWhiteFile().fillWith(Color.WHITE);
+        return this;
+    }
+
+    public String getWhitePawnsResult() {
+        return getWhiteFile().getRepresentation();
+    }
+
+    public String getBlackPawnsResult() {
+        return getBlackFile().getRepresentation();
+    }
+
+    private File getWhiteFile() {
+        return files.get(6);
+    }
+
+    private File getBlackFile() {
+        return files.get(1);
+    }
+
+    public String getRepresentation() {
+        return files.stream()
+                .map(File::getRepresentation)
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 }

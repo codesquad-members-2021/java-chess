@@ -13,12 +13,20 @@ public class Pawn {
         this.color = color;
     }
 
-    public static Pawn create(String color) {
-        return new Pawn(Color.valueOf(color.toUpperCase()));
+    public static Pawn createBlackPawn() {
+        return new Pawn(Color.BLACK);
+    }
+
+    public static Pawn createWhitePawn() {
+        return new Pawn(Color.WHITE);
     }
 
     public Color getColor() {
         return color;
+    }
+
+    public String getRepresentation() {
+        return color.getRepresentationBy("p");
     }
 
     @Override

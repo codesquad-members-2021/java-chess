@@ -81,4 +81,50 @@ class BoardTest {
                 () -> assertThat(board.findPawn('b', 8)).isEqualTo(black)
         );
     }
+
+    @Test
+    void initialize() {
+        board.initialize();
+
+        assertAll(
+                () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
+                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
+        );
+    }
+
+    @Test
+    void getRepresentation_init_board() {
+        String representation = new Board().initialize().getRepresentation();
+
+        String expected = new StringBuilder()
+                .append("........").append(System.lineSeparator())
+                .append("PPPPPPPP").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("pppppppp").append(System.lineSeparator())
+                .append("........")
+                .toString();
+        assertThat(representation)
+                .isEqualTo(expected);
+    }
+
+    @Test
+    void getRepresentation_not_init_board() {
+        String representation = new Board().getRepresentation();
+
+        String expected = new StringBuilder()
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........")
+                .toString();
+        assertThat(representation)
+                .isEqualTo(expected);
+    }
 }

@@ -1,16 +1,15 @@
 package kr.codesquad.freddie.chess.board;
 
+import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class File {
     public static final int SIZE = 8;
     private List<Pawn> pawns = new ArrayList<>();
-
-    public File() {
-    }
 
     public void add(Pawn pawn) {
         if (size() == SIZE) {
@@ -33,12 +32,33 @@ public class File {
         return pawns.get(fileIndex - 'a');
     }
 
+    public Pawn get(int index) {
+        return pawns.get(index);
+    }
+
     public int size() {
         return pawns.size();
     }
 
     public boolean isAddable() {
         return size() < SIZE;
+    }
+
+    public File fillWith(Color color) {
+        while (isAddable()) {
+            pawns.add(new Pawn(color));
+        }
+        return this;
+    }
+
+    public String getRepresentation() {
+        if (pawns.isEmpty()) {
+            return "........";
+        }
+
+        return pawns.stream()
+                .map(Pawn::getRepresentation)
+                .collect(Collectors.joining());
     }
 
     @Override

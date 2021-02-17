@@ -50,8 +50,8 @@ class FileTest {
         file.add(pawnB);
 
         assertAll(
-                () -> assertThat(file.get('a')).isEqualTo(pawnA),
-                () -> assertThat(file.get('b')).isEqualTo(pawnB)
+                () -> assertThat(file.get('a')).isEqualTo(pawnA).isEqualTo(file.get(0)),
+                () -> assertThat(file.get('b')).isEqualTo(pawnB).isEqualTo(file.get(1))
         );
     }
 
@@ -83,5 +83,35 @@ class FileTest {
 
         file.add(new Pawn());
         assertThat(file.isAddable()).isFalse();
+    }
+
+    @Test
+    void fillWith_black() {
+        file.fillWith(Color.BLACK);
+        checkFillWith(Color.BLACK);
+    }
+
+    @Test
+    void fillWith_white() {
+        file.fillWith(Color.WHITE);
+        checkFillWith(Color.WHITE);
+    }
+
+    private void checkFillWith(Color expected) {
+        for (int i = 0; i < File.SIZE; i++) {
+            assertThat(file.get(i).getColor()).isEqualTo(expected);
+        }
+    }
+
+    @Test
+    void getRepresentation_fillWithBlack() {
+        file.fillWith(Color.BLACK);
+        assertThat(file.getRepresentation()).isEqualTo("PPPPPPPP");
+    }
+
+    @Test
+    void getRepresentation_fillWithWhite() {
+        file.fillWith(Color.WHITE);
+        assertThat(file.getRepresentation()).isEqualTo("pppppppp");
     }
 }

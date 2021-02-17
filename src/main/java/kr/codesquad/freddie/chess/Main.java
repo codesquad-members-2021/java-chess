@@ -16,7 +16,7 @@ public class Main {
                  command = br.readLine()) {
                 if (command.equals("start")) {
                     board.initialize();
-                    System.out.println(board.toDTO().getRepresentation());
+                    System.out.println(board.getRepresentation());
                 }
             }
         }

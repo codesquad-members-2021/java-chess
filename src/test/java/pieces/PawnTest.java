@@ -17,7 +17,7 @@ public class PawnTest {
     @Test
     @DisplayName("검은색 폰 생성")
     void createBlackPawn() {
-        verifyPawn(Pawn.WHITE);
+        verifyPawn(Pawn.BLACK);
     }
 
     @Test

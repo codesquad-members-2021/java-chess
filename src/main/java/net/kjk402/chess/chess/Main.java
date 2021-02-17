@@ -9,7 +9,6 @@ public class Main {
         StringBuilder help = new StringBuilder();
         help.append("시작명령어: start\n");
         help.append("종료명령어: end\n");
-        help.toString();
 
         System.out.print(help);
         try (Scanner sc = new Scanner(System.in)) {

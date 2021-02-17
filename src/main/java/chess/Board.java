@@ -15,13 +15,13 @@ public class Board {
     private final List<Piece> blackPieces = new ArrayList<>();
 
     public void addWhite(Piece piece) {
-        if (piece.getColor().equals(Piece.WHITE_COLOR)) {
+        if (piece.isWhite()) {
             whitePieces.add(piece);
         }
     }
 
     public void addBlack(Piece piece) {
-        if (piece.getColor().equals(Piece.BLACK_COLOR)) {
+        if (piece.isBlack()) {
             blackPieces.add(piece);
         }
     }
@@ -75,10 +75,6 @@ public class Board {
                 .append(appendNewLine(BLANK_LINE));
 
         return sb.toString();
-    }
-
-    public int pieceCount() {
-        return 0;
     }
 
 }

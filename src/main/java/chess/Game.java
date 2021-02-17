@@ -24,7 +24,7 @@ public class Game {
             if (command.equals("start")) {
                 Board board = new Board();
                 board.initialize();
-                print(board);
+                System.out.println(board);
             } else if (command.equals("end")) {
                 break;
             } else {
@@ -33,16 +33,4 @@ public class Game {
         }
     }
 
-    static void print(Board board) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("........\n");
-        sb.append(board.getBlackPawnsResult()).append("\n");
-        for (int i = 0; i < Board.BOARD_SIZE - 4; i++) {
-            sb.append("........\n");
-        }
-        sb.append(board.getWhitePawnsResult()).append("\n");
-        sb.append("........\n");
-
-        System.out.println(sb.toString());
-    }
 }

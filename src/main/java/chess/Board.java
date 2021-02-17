@@ -6,8 +6,11 @@ import pieces.Piece;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.StringUtils.appendNewLine;
+
 public class Board {
     public static final int BOARD_SIZE = 8;
+    private static final String BLANK_LINE = "........";
     private final List<Piece> whitePieces = new ArrayList<>();
     private final List<Piece> blackPieces = new ArrayList<>();
 
@@ -55,6 +58,22 @@ public class Board {
         for (Piece piece : pieces) {
             sb.append(piece.getRepresentation());
         }
+        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(appendNewLine(BLANK_LINE))
+                .append(appendNewLine(getBlackPawnsResult()))
+                .append(appendNewLine(BLANK_LINE))
+                .append(appendNewLine(BLANK_LINE))
+                .append(appendNewLine(BLANK_LINE))
+                .append(appendNewLine(BLANK_LINE))
+                .append(appendNewLine(getBlackPawnsResult()))
+                .append(appendNewLine(BLANK_LINE));
+
         return sb.toString();
     }
 

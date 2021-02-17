@@ -41,13 +41,16 @@ public class Board {
     }
 
     public void initialize() {
-        while (pawns.size() < MAX_SIZE) {
-            for (Color color : Color.values()) pawns.add(new Pawn(color));
-            rowOfWhitePawns.append(Pawn.WHITE_REPRESENTATION);
-            rowOfBlackPawns.append(Pawn.BLACK_REPRESENTATION);
+        initPawns(Color.WHITE, Pawn.WHITE_REPRESENTATION, SECOND_ROW, rowOfWhitePawns);
+        initPawns(Color.BLACK, Pawn.BLACK_REPRESENTATION, SEVENTH_ROW, rowOfBlackPawns);
+    }
+
+    private void initPawns(Color color, char representation, final int NTH_ROW, StringBuffer rowOfPawns) {
+        for (int i = 0; i < MAX_SIZE; i++) {
+            pawns.add(new Pawn(color));
+            rowOfPawns.append(representation);
         }
-        cellsOfBoard[SECOND_ROW] = getBlackPawnsLocation();
-        cellsOfBoard[SEVENTH_ROW] = getWhitePawnsLocation();
+        cellsOfBoard[NTH_ROW] = (color == Color.BLACK) ? getRowOfBlackPawns() : getRowOfWhitePawns();
     }
 
     public void print() {
@@ -56,11 +59,11 @@ public class Board {
         }
     }
 
-    public String getBlackPawnsLocation() {
+    public String getRowOfBlackPawns() {
         return rowOfBlackPawns.toString();
     }
 
-    public String getWhitePawnsLocation() {
+    public String getRowOfWhitePawns() {
         return rowOfWhitePawns.toString();
     }
 }

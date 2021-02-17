@@ -33,6 +33,7 @@ public class BoardTest {
     }
 
     @Test
+    @DisplayName("게임을 시작하고, 대표값이 맞게 나오는지 확인한다")
     void initialize() {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
@@ -40,9 +41,13 @@ public class BoardTest {
     }
 
     @Test
+    @DisplayName("board를 초기화 하고 print한다")
     void print() {
         board.initialize();
         board.print();
     }
+
+    
+
 
 }

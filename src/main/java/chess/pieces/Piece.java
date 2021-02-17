@@ -77,6 +77,14 @@ public class Piece {
     public static Piece createBlackKing() {
         return new Piece(Color.BLACK, PieceName.KING);
     }
+
+    public boolean isBlack() {
+        return this.color == Color.BLACK;
+    }
+
+    public boolean isWhite() {
+        return this.color == Color.WHITE;
+    }
 }
 
 

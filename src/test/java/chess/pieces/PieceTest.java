@@ -33,6 +33,12 @@ public class PieceTest {
         verifyPiece(Piece.createBlackKing(), Color.BLACK, Character.toUpperCase(rep));
     }
 
+    @Test
+    public void check_color() {
+        assertEquals(true, Piece.createBlackPawn().isBlack());
+        assertEquals(false, Piece.createBlackPawn().isWhite());
+    }
+
     void verifyPiece(final Piece piece, final Color color, final char representation) {
         assertEquals(color, piece.getColor());
         assertEquals(representation, piece.getRepresentation());

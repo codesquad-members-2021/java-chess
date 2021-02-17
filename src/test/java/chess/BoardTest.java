@@ -7,6 +7,7 @@ import pieces.Color;
 import pieces.Pawn;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 
 class BoardTest {
@@ -18,13 +19,14 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("흰색 Pawn을 생성해 board에 추가한다")
-    void createPawnOnTheBoard() {
+    @DisplayName("흰색, 검은색 Pawn을 생성해 board에 추가한다")
+    void createPawn() {
         Pawn white = new Pawn(Color.WHITE);
         board.addWhitePawn(white);
-        assertThat(board.size()).isEqualTo(1);
-        assertThat(board.findWhitePawn(0)).isEqualTo(white);
-
+        assertAll(
+                () -> assertThat(board.size()).isEqualTo(1),
+                () -> assertThat(board.findWhitePawn(0)).isEqualTo(white)
+        );
 
         Pawn black = new Pawn(Color.BLACK);
         board.addBlackPawn(black);
@@ -36,8 +38,10 @@ class BoardTest {
     @DisplayName("게임을 시작하고, 대표값이 맞게 나오는지 확인한다")
     void initialize() {
         board.initialize();
-        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
-        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+        assertAll(
+                () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
+                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
+        );
     }
 
     @Test

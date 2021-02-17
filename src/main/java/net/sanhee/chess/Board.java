@@ -60,13 +60,15 @@ public class Board {
         StringBuilder displayBoard = new StringBuilder();
         List<String[]> boardList = new ArrayList<>();
 
-        for (int i = 0; i < 8; i++) {
-            if (i == 1 || i == 6) {
-                boardList.add(getBlackPawnsResult().split(""));
-            } else {
-                boardList.add(defaultUnitRep.split(""));
-            }
-        }
+        boardList.add(defaultUnitRep.split(""));
+        boardList.add(getBlackPawnsResult().split(""));
+        boardList.add(defaultUnitRep.split(""));
+        boardList.add(defaultUnitRep.split(""));
+        boardList.add(defaultUnitRep.split(""));
+        boardList.add(defaultUnitRep.split(""));
+        boardList.add(getWhitePawnsResult().split(""));
+        boardList.add(defaultUnitRep.split(""));
+
 
         for (int row = 0; row < 8; row++) {
             for (int col = 0; col < 8; col++) {

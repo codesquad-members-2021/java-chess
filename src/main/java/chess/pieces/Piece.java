@@ -3,10 +3,12 @@ package chess.pieces;
 public class Piece {
     private final Color color;
     private final PieceName name;
+    private final char representation;
 
     private Piece(Color color, PieceName name) {
         this.color = color;
         this.name = name;
+        this.representation = createRepresentation(color, name);
     }
 
     public Color getColor() {
@@ -60,12 +62,25 @@ public class Piece {
     public static Piece createBlackKing(){
         return new Piece(Color.BLACK, PieceName.KING);
     }
-
-
 }
 
 enum PieceName {
-    PAWN, KNIGHT, ROOK, BISHOP, QUEEN, KING
+    PAWN('p'),
+    KNIGHT('n'),
+    ROOK('r'),
+    BISHOP('b'),
+    QUEEN('q'),
+    KING('k');
+
+    private final char representation;
+
+    PieceName(char representation){
+        this.representation = representation;
+    }
+
+    public char getRepresentation() {
+        return representation;
+    }
 }
 
 

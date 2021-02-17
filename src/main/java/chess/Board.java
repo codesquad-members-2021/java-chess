@@ -1,7 +1,7 @@
 package chess;
 
 import pieces.Pawn;
-
+import static utills.StringUtils.*;
 import java.util.ArrayList;
 
 public class Board {
@@ -61,19 +61,19 @@ public class Board {
     public void print(){
         StringBuilder sb = new StringBuilder();
         sb.append(nullLine);
-        sb.append('\n');
+        sb.append(appendNewLine());
         sb.append(getBlackPawnResult());
-        sb.append('\n');
+        sb.append(appendNewLine());
         sb.append(nullLine);
-        sb.append('\n');
+        sb.append(appendNewLine());
         sb.append(nullLine);
-        sb.append('\n');
+        sb.append(appendNewLine());
         sb.append(nullLine);
-        sb.append('\n');
+        sb.append(appendNewLine());
         sb.append(nullLine);
-        sb.append('\n');
+        sb.append(appendNewLine());
         sb.append(getWhitePawnResult());
-        sb.append('\n');
+        sb.append(appendNewLine());
         sb.append(nullLine);
         System.out.println(sb.toString());
     }

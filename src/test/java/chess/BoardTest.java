@@ -20,8 +20,8 @@ class BoardTest {
     @Test
     @DisplayName("폰이 제대로 체스판 내에 추가 되었는지 확인한다.")
     void checkPawnInTheBoard() {
-        board.addPawns(new Pawn(Color.WHITE));
-        board.addPawns(new Pawn(Color.BLACK));
+        board.addWhitePawn(new Pawn(Color.WHITE));
+        board.addBlackPawn(new Pawn(Color.BLACK));
 
         assertAll(
                 () -> assertThat(board.whitePawnSize()).isEqualTo(1),
@@ -33,7 +33,7 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("폰의 색상에 맞는 문자열을 출력하는지 확인한다.")
+    @DisplayName("폰의 색상에 맞게 초기화 되었는지 확인한다.")
     void initialize() {
         board.initialize();
 

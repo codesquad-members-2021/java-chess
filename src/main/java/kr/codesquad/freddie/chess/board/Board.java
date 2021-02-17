@@ -106,4 +106,8 @@ public class Board {
 
         System.out.println(result);
     }
+
+    public BoardDTO toDTO() {
+        return BoardDTO.create(files);
+    }
 }

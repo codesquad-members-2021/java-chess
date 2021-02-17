@@ -27,17 +27,17 @@ class BoardTest {
         String blankRank = appendNewLine("* * * * * * * *");
 
         assertEquals(
-        appendNewLine("P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" ") +
-                appendNewLine(NEWLINE)+
                 appendNewLine("R"+" "+"N"+" "+"B"+" "+"Q"+" "+"K"+" "+"B"+" "+"N"+" "+"R"+" ") +
                 appendNewLine(NEWLINE)+
-                blankRank +appendNewLine(NEWLINE)+
-                blankRank +appendNewLine(NEWLINE)+
-                blankRank +appendNewLine(NEWLINE)+
-                blankRank +appendNewLine(NEWLINE)+
-                appendNewLine("r"+" "+"n"+" "+"b"+" "+"q"+" "+"k"+" "+"b"+" "+"n"+" "+"r"+" ") +
+                appendNewLine("P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" ") +
                 appendNewLine(NEWLINE)+
-                appendNewLine("p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "),
+                blankRank +appendNewLine(NEWLINE)+
+                blankRank +appendNewLine(NEWLINE)+
+                blankRank +appendNewLine(NEWLINE)+
+                blankRank +appendNewLine(NEWLINE)+
+                appendNewLine("p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" ")+
+                appendNewLine(NEWLINE)+
+                appendNewLine("r"+" "+"n"+" "+"b"+" "+"q"+" "+"k"+" "+"b"+" "+"n"+" "+"r"+" "),
 
                 board.showBoard());
     }

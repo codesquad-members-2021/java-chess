@@ -108,9 +108,9 @@ public class Board {
 
     public void print(){
         StringBuilder sb = new StringBuilder();
-        sb.append(getBlackPawnResult());//black piece
-        sb.append(appendNewLine(NEWLINE));//newLine
         sb.append(getBlackPieceResult());//black pawn
+        sb.append(appendNewLine(NEWLINE));//newLine
+        sb.append(getBlackPawnResult());//black piece
         sb.append(appendNewLine(NEWLINE));
         sb.append(nullLine);
         sb.append(appendNewLine(NEWLINE));
@@ -120,9 +120,9 @@ public class Board {
         sb.append(appendNewLine(NEWLINE));
         sb.append(nullLine);
         sb.append(appendNewLine(NEWLINE));
-        sb.append(getWhitePieceResult());//white pawn
+        sb.append(getWhitePawnResult());
         sb.append(appendNewLine(NEWLINE));
-        sb.append(getWhitePawnResult());//black piece
+        sb.append(getWhitePieceResult());
 
         System.out.println(sb.toString());
     }
@@ -130,9 +130,9 @@ public class Board {
 
     public String showBoard() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getBlackPawnResult());//black piece
-        sb.append(appendNewLine(NEWLINE));//newLine
         sb.append(getBlackPieceResult());//black pawn
+        sb.append(appendNewLine(NEWLINE));//newLine
+        sb.append(getBlackPawnResult());//black piece
         sb.append(appendNewLine(NEWLINE));
         sb.append(nullLine);
         sb.append(appendNewLine(NEWLINE));
@@ -141,10 +141,10 @@ public class Board {
         sb.append(nullLine);
         sb.append(appendNewLine(NEWLINE));
         sb.append(nullLine);
-        sb.append(appendNewLine(NEWLINE));
-        sb.append(getWhitePieceResult());//white pawn
         sb.append(appendNewLine(NEWLINE));
         sb.append(getWhitePawnResult());//black piece
+        sb.append(appendNewLine(NEWLINE));
+        sb.append(getWhitePieceResult());//white pawn
 
         return sb.toString();
     }

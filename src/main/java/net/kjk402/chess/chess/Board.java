@@ -60,7 +60,7 @@ public class Board {
         return sb.toString();
     }
 
-    public void print() {
+    protected void print() {
         StringBuilder boardOutput = new StringBuilder();
         boardOutput.append("........\n");
         boardOutput.append(getBlackPawnsResult() + "\n");

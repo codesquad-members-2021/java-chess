@@ -35,8 +35,8 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            addPiece(Color.WHITE, new Piece(Color.WHITE, Representation.PAWN));
-            addPiece(Color.BLACK, new Piece(Color.BLACK, Representation.PAWN));
+            addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.PAWN));
+            addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.PAWN));
         }
     }
 

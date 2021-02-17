@@ -26,10 +26,10 @@ public class BoardTest {
     }
 
     public void verifyPawnSize(Color color, Representation representation, int size, int index) {
-        Piece pawn = new Piece(color, representation);
-        board.addPiece(color, pawn);
+        Piece piece = Piece.createPiece(color, representation);
+        board.addPiece(color, piece);
         assertThat(board.pieceSize(color)).isEqualTo(size);
-        assertThat(board.findPiece(color, index)).isEqualTo(pawn);
+        assertThat(board.findPiece(color, index)).isEqualTo(piece);
     }
 
     @Test

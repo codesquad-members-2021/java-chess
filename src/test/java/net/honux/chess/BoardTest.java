@@ -48,6 +48,25 @@ class BoardTest {
         assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult());
     }
 
+    @Test
+    @DisplayName("보드를 초기화 한 뒤 출력된 결과가 예상된 결과와 같아야 한다.")
+    void print() {
+        board.initialize();
+        String expectedResult =
+                "........\n" +
+                        "PPPPPPPP\n" +
+                        "........\n" +
+                        "........\n" +
+                        "........\n" +
+                        "........\n" +
+                        "pppppppp\n" +
+                        "........";
+
+        String actualResult = board.print();
+        assertThat(actualResult).isEqualTo(expectedResult);
+        System.out.println(actualResult);
+    }
+
     private void addThePawnProperly(Pawn newPawn, int newPawnIdx) {
         int sizeBeforeAddThePawn = board.size();
         board.add(newPawn);

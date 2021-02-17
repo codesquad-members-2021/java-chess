@@ -57,12 +57,16 @@ public class Board {
         }
     }
 
-    public void addBlackPawn(Pawn pawn) {
-        blackPawns.add(pawn);
+    public void addWhitePawn(Pawn pawn) {
+        if (pawn.getColor() == Color.WHITE) {
+            whitePawns.add(pawn);
+        }
     }
 
-    public void addWhitePawn(Pawn pawn) {
-        whitePawns.add(pawn);
+    public void addBlackPawn(Pawn pawn) {
+        if (pawn.getColor() == Color.BLACK) {
+            blackPawns.add(pawn);
+        }
     }
 
     public void print() {

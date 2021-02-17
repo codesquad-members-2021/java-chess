@@ -47,7 +47,5 @@ public class BoardTest {
         board.print();
     }
 
-    
-
 
 }

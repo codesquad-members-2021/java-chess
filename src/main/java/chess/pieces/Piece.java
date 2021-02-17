@@ -88,5 +88,12 @@ public class Piece {
         return representation.toLowerCase();
     }
 
+    public boolean isWhite() {
+        return color == Color.WHITE;
+    }
+
+    public boolean isBlack() {
+        return color == Color.BLACK;
+    }
 
 }

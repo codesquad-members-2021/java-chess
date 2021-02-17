@@ -68,9 +68,10 @@ public class Board {
                 '}';
     }
 
-    public void initialize() {
+    public Board initialize() {
         getBlackFile().fillWith(Color.BLACK);
         getWhiteFile().fillWith(Color.WHITE);
+        return this;
     }
 
     public String getWhitePawnsResult() {

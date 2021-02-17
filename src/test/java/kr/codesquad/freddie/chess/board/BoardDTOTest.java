@@ -67,4 +67,44 @@ class BoardDTOTest {
         assertThat(representation)
                 .isEqualTo(expected);
     }
+
+    @Test
+    void getRepresentation_init_board() {
+        String representation = new Board().initialize()
+                .toDTO()
+                .getRepresentation();
+
+        String expected = new StringBuilder()
+                .append("........").append(System.lineSeparator())
+                .append("PPPPPPPP").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("pppppppp").append(System.lineSeparator())
+                .append("........")
+                .toString();
+        assertThat(representation)
+                .isEqualTo(expected);
+    }
+
+    @Test
+    void getRepresentation_not_init_board() {
+        String representation = new Board()
+                .toDTO()
+                .getRepresentation();
+
+        String expected = new StringBuilder()
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append("........")
+                .toString();
+        assertThat(representation)
+                .isEqualTo(expected);
+    }
 }

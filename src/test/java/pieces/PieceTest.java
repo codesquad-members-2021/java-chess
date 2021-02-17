@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class PieceTest {
 
     @Test
-    @DisplayName("색상과 출력 양식에 알맞게 말이 생성되었는지 검증한다")
+    @DisplayName("색상과 출력 양식에 알맞게 말이 생성되어야 한다")
     void createPiece() {
         assertAll(
                 () -> verifyPiece(Piece.createWhitePawn(), Color.WHITE, 'p'),
@@ -34,7 +34,7 @@ class PieceTest {
     }
 
     @Test
-    @DisplayName("말이 흰색이면 true, 아니면 false를 반환하는지 확인한다")
+    @DisplayName("말이 흰색이면 true, 아니면 false를 반환해야 한다")
     void verifyIsWhite() {
         Piece whitePawn = Piece.createWhitePawn();
         Piece blackKnight = Piece.createBlackKnight();
@@ -43,7 +43,7 @@ class PieceTest {
     }
 
     @Test
-    @DisplayName("말이 검은색이면 true, 아니면 false를 반환하는지 확인한다")
+    @DisplayName("말이 검은색이면 true, 아니면 false를 반환해야 한다")
     void verifyIsBlack() {
         Piece whiteQueen = Piece.createWhiteQueen();
         Piece blackKing = Piece.createBlackKing();

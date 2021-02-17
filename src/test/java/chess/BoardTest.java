@@ -3,7 +3,6 @@ package chess;
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
 import pieces.Pawn;
-import pieces.Color;
 
 class BoardTest {
 
@@ -17,9 +16,9 @@ class BoardTest {
     @Test
     @DisplayName("보드를 생성한 후 폰 테스트 한다.")
     void createPawn(){
-        Pawn white = new Pawn(Color.WHITE);
+        Pawn white = new Pawn(Pawn.WHITE);
         addPawnOnBoard(1, white);
-        Pawn black = new Pawn(Color.BLACK);
+        Pawn black = new Pawn(Pawn.BLACK);
         addPawnOnBoard(2, black);
     }
     

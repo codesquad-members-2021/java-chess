@@ -1,17 +1,20 @@
 package pieces;
 
 public class Pawn {
-    private Color color;
+    public static final String WHITE = "white";
+    public static final String BLACK = "black";
+
+    private String color;
 
     public Pawn() {
-        this(Color.WHITE);
+        this(Pawn.WHITE);
     }
 
-    public Pawn(Color color) {
+    public Pawn(String color) {
         this.color = color;
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 

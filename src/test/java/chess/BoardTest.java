@@ -1,10 +1,9 @@
 package chess;
 
-import chess.pieces.Piece;
-import chess.pieces.Color;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static chess.utils.StringUtils.appendNewLine;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
@@ -24,8 +23,8 @@ class BoardTest {
                 appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         blankRank + blankRank + blankRank + blankRank +
-                        appendNewLine("ppppppp") +
-                        appendNewline("rnbqkbnr"),
+                        appendNewLine("pppppppp") +
+                        appendNewLine("rnbqkbnr"),
                 board.showBoard());
     }
 }

@@ -11,7 +11,7 @@ public class Chess {
             if (input.equals("y")) {
                 Board board = new Board();
                 board.initialize();
-                System.out.println(board.print());
+                System.out.println(board.showBoard());
             }
             if (input.equals("n")) {
                 System.out.println("프로그램을 종료합니다.");

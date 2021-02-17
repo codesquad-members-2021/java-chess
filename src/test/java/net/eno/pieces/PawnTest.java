@@ -8,7 +8,7 @@ public class PawnTest {
     @Test
     @DisplayName("기본 생성자 호출 시 흰색 폰이 생성되어야 한다")
     public void createDefaultConstructor() {
-        Pawn pawn = new Pawn();
+        Piece pawn = new Piece();
         assertThat(pawn.getColor()).isEqualTo(Color.WHITE.toString());
         assertThat(pawn.getRepresentation()).isEqualTo(Representation.WHITE.getPawn());
     }
@@ -21,7 +21,7 @@ public class PawnTest {
     }
 
     public void verifyPawn(Color color, Representation representation) {
-        Pawn pawn = new Pawn(color, representation);
+        Piece pawn = new Piece(color, representation);
         assertThat(pawn.getColor()).isEqualTo(color.toString());
         assertThat(pawn.getRepresentation()).isEqualTo(representation.getPawn());
     }

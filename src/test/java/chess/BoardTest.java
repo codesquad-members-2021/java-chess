@@ -40,5 +40,5 @@ class BoardTest {
         assertThat(board.getBlackPawnResult()).isEqualTo(blackPawns);
 
     }
-    
+
 }

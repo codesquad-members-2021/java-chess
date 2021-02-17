@@ -55,10 +55,10 @@ class BoardTest {
     }
 
     private void verifyRepresentationOfBlackPawns() {
-        assertThat(board.getBlackPawnsLocation()).isEqualTo("PPPPPPPP");
+        assertThat(board.getRowOfBlackPawns()).isEqualTo("PPPPPPPP");
     }
 
     private void verifyRepresentationOfWhitePawns(){
-        assertThat(board.getWhitePawnsLocation()).isEqualTo("pppppppp");
+        assertThat(board.getRowOfWhitePawns()).isEqualTo("pppppppp");
     }
 }

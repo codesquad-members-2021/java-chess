@@ -2,6 +2,7 @@ package chess.view;
 
 import chess.board.Board;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static chess.utils.StringUtils.NEWLINE;
@@ -20,6 +21,7 @@ class BoardViewTest {
     }
 
     @Test
+    @DisplayName("Board 의 positionId 들을 출력")
     void getPositionRepresentation() {
         StringBuilder sb = new StringBuilder();
         sb.append("a8 b8 c8 d8 e8 f8 g8 h8 " + NEWLINE);
@@ -35,6 +37,7 @@ class BoardViewTest {
     }
 
     @Test
+    @DisplayName("Board 의 Piece 위치들을 출력")
     void getPieceRepresentation() {
         StringBuilder sb = new StringBuilder();
         sb.append(". . . . . . . . " + NEWLINE);
@@ -50,6 +53,7 @@ class BoardViewTest {
     }
 
     @Test
+    @DisplayName("main 함수에서 사용할 예쁜 모양을 출력")
     void getBoardRepresentation() {
         StringBuilder sb = new StringBuilder();
         sb.append("  a b c d e f g h " + NEWLINE);

@@ -1,5 +1,7 @@
 package net.sky.chess;
 
+import static net.sky.utils.StringUtils.appendNewLine;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,14 +64,14 @@ public class Board {
         String blankLine = "........";
         StringBuilder result = new StringBuilder();
 
-        result.append(blankLine).append("\n");
-        result.append(getBlackPawnsResult()).append("\n");
-        result.append(blankLine).append("\n");
-        result.append(blankLine).append("\n");
-        result.append(blankLine).append("\n");
-        result.append(blankLine).append("\n");
-        result.append(getWhitePawnsResult()).append("\n");
-        result.append(blankLine).append("\n");
+        result.append(appendNewLine(blankLine));
+        result.append(appendNewLine(getBlackPawnsResult()));
+        result.append(appendNewLine(blankLine));
+        result.append(appendNewLine(blankLine));
+        result.append(appendNewLine(blankLine));
+        result.append(appendNewLine(blankLine));
+        result.append(appendNewLine(getWhitePawnsResult()));
+        result.append(appendNewLine(blankLine));
 
         System.out.println(result);
     }

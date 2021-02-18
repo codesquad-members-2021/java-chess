@@ -38,22 +38,19 @@ class BoardTest {
     void create() {
         Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
         Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
-        verifyAddWhitePawn(white);
-        verifyAddBlackPawn(black);
-        verifySize();
+        verifyAddWhitePawn(white,1);
+        verifyAddBlackPawn(black,2);
     }
 
-    void verifyAddWhitePawn(Pawn whitePawn) {
+    void verifyAddWhitePawn(Pawn whitePawn, int size) {
         board.addWhitePawn(whitePawn);
         assertEquals(whitePawn, board.findWhitePawn(0));
+        assertEquals(size,board.size());
     }
 
-    void verifyAddBlackPawn(Pawn blackPawn){
+    void verifyAddBlackPawn(Pawn blackPawn, int size){
         board.addBlackPawn(blackPawn);
         assertEquals(blackPawn, board.findBlackPawn(0));
-    }
-
-    void verifySize(){
-        assertEquals(2,board.size());
+        assertEquals(size,board.size());
     }
 }

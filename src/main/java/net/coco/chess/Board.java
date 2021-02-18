@@ -36,7 +36,7 @@ public class Board {
 
     public int getPiecesSize() {
         return whitePawns.size() + blackPawns.size()
-                +whiteOtherPieces.size()+blackOtherPieces.size();
+                + whiteOtherPieces.size() + blackOtherPieces.size();
     }
 
     public Piece findWhitePawn(int index) {
@@ -50,11 +50,14 @@ public class Board {
     public void initialize() {
         whitePawns.clear();
         blackPawns.clear();
+        addWhiteOtherPieceToPieces();
         for (int i = 0; i < BOARD_CELLS; i++) {
             addPawn(Piece.createWhitePawn());
             addPawn(Piece.createBlackPawn());
         }
+        addBlackOtherPieceToPieces();
     }
+
 
     public String getPawnsResult(String color) {
         if (color.equals(Piece.WHITE))
@@ -69,4 +72,25 @@ public class Board {
                 .collect(Collectors.joining());
     }
 
+    private void addBlackOtherPieceToPieces() {
+        addOtherPiece(Piece.createBlackRook());
+        addOtherPiece(Piece.createBlackKnight());
+        addOtherPiece(Piece.createBlackBishop());
+        addOtherPiece(Piece.createBlackQueen());
+        addOtherPiece(Piece.createBlackKing());
+        addOtherPiece(Piece.createBlackBishop());
+        addOtherPiece(Piece.createBlackKnight());
+        addOtherPiece(Piece.createBlackRook());
+    }
+
+    private void addWhiteOtherPieceToPieces() {
+        addOtherPiece(Piece.createWhiteRook());
+        addOtherPiece(Piece.createWhiteKnight());
+        addOtherPiece(Piece.createWhiteBishop());
+        addOtherPiece(Piece.createWhiteQueen());
+        addOtherPiece(Piece.createWhiteKing());
+        addOtherPiece(Piece.createWhiteBishop());
+        addOtherPiece(Piece.createWhiteKnight());
+        addOtherPiece(Piece.createWhiteRook());
+    }
 }

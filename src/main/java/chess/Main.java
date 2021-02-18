@@ -30,7 +30,8 @@ public class Main {
         }
 
     }
-    private static void start() {
+
+    private void start() {
         Board board = new Board();
         board.initialize();
         System.out.println(board.printBoard());

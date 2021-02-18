@@ -98,14 +98,14 @@ class BoardTest {
         String representation = board.initialize().getRepresentation();
 
         String expected = new StringBuilder()
-                .append("........").append(System.lineSeparator())
+                .append("RNBQKBNR").append(System.lineSeparator())
                 .append("PPPPPPPP").append(System.lineSeparator())
                 .append("........").append(System.lineSeparator())
                 .append("........").append(System.lineSeparator())
                 .append("........").append(System.lineSeparator())
                 .append("........").append(System.lineSeparator())
                 .append("pppppppp").append(System.lineSeparator())
-                .append("........")
+                .append("rnbqkbnr")
                 .toString();
         assertThat(representation)
                 .isEqualTo(expected);

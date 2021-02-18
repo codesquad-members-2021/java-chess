@@ -69,8 +69,10 @@ public class Board {
     }
 
     public Board initialize() {
+        files.get(0).fillWithRoyal(Color.BLACK);
         getBlackFile().fillWithPawn(Color.BLACK);
         getWhiteFile().fillWithPawn(Color.WHITE);
+        files.get(7).fillWithRoyal(Color.WHITE);
         return this;
     }
 

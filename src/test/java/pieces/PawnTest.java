@@ -19,15 +19,15 @@ class PawnTest {
     @Test
     @DisplayName("흰색, 검은색 폰이 생성되어야 한다")
     void createPawnWithColor() {
-        verifyPawn(Color.WHITE, Color.WHITE.getRepresentation());
-        verifyPawn(Color.BLACK, Color.BLACK.getRepresentation());
+        verifyPawn(Color.WHITE);
+        verifyPawn(Color.BLACK);
     }
 
-    void verifyPawn(Color color, final char colorRepresentation) {
+    void verifyPawn(Color color) {
         Pawn pawn = new Pawn(color);
         assertAll(
                 () -> assertThat(pawn.getColor()).isEqualTo(color),
-                () -> assertThat(pawn.getRepresentation()).isEqualTo(colorRepresentation)
+                () -> assertThat(pawn.getRepresentation()).isEqualTo(color.getRepresentation())
         );
     }
 }

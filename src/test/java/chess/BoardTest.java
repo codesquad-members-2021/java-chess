@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 import pieces.Color;
 import pieces.Pawn;
 
+import java.security.InvalidParameterException;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 
@@ -32,7 +35,7 @@ class BoardTest {
         board.addBlackPawn(black);
         assertAll(
                 () -> assertThat(board.size()).isEqualTo(2),
-                () ->assertThat(board.findBlackPawn(0)).isEqualTo(black)
+                () -> assertThat(board.findBlackPawn(0)).isEqualTo(black)
         );
     }
 
@@ -50,6 +53,25 @@ class BoardTest {
     @DisplayName("board를 초기화 하고 print한다")
     void print() {
         board.initialize();
-        board.print();
+        StringBuilder expectedResult = new StringBuilder();
+        expectedResult.append("........").append("\n")
+                .append("pppppppp").append("\n")
+                .append("........").append("\n")
+                .append("........").append("\n")
+                .append("........").append("\n")
+                .append("........").append("\n")
+                .append("PPPPPPPP").append("\n")
+                .append("........");
+        String result = board.print();
+        System.out.println(result);
+        assertThat(result).isEqualTo(expectedResult.toString());
+    }
+
+    @Test
+    @DisplayName("잘못된 색의 pawn을 추가할 수 없다")
+    void addWrongPawn() {
+        Pawn black = new Pawn(Color.BLACK);
+        assertThatExceptionOfType(InvalidParameterException.class)
+                .isThrownBy(() -> board.addWhitePawn(black));
     }
 }

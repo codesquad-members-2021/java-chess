@@ -3,6 +3,7 @@ package chess;
 import pieces.Color;
 import pieces.Pawn;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,15 +49,17 @@ public class Board {
     }
 
     public void addWhitePawn(Pawn pawn) {
-        if (pawn.getColor() == Color.WHITE) {
-            whitePawns.add(pawn);
+        if (pawn.getColor() != Color.WHITE) {
+            throw new InvalidParameterException("pawn의 색을 확인해 주세요");
         }
+        whitePawns.add(pawn);
     }
 
     public void addBlackPawn(Pawn pawn) {
-        if (pawn.getColor() == Color.BLACK) {
-            blackPawns.add(pawn);
+        if (pawn.getColor() != Color.BLACK) {
+            throw new InvalidParameterException("pawn의 색을 확인해 주세요");
         }
+        blackPawns.add(pawn);
     }
 
     public void initialize() {
@@ -66,7 +69,7 @@ public class Board {
         }
     }
 
-    public void print() {
+    public String print() {
         StringBuilder result = new StringBuilder();
         String emptyLine = "........";
         result.append(emptyLine)
@@ -84,6 +87,6 @@ public class Board {
                 .append(getBlackPawnsResult())
                 .append("\n")
                 .append(emptyLine);
-        System.out.println(result);
+        return result.toString();
     }
 }

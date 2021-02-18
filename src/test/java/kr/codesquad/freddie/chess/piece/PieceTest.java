@@ -35,8 +35,8 @@ class PieceTest {
         assertAll(
                 () -> assertThat(Piece.create("black", "pawn").getRepresentation()).isEqualTo("P"),
                 () -> assertThat(Piece.create("white", "pawn").getRepresentation()).isEqualTo("p"),
-                () -> assertThat(Piece.create("black", "knight").getRepresentation()).isEqualTo("K"),
-                () -> assertThat(Piece.create("white", "knight").getRepresentation()).isEqualTo("k"),
+                () -> assertThat(Piece.create("black", "knight").getRepresentation()).isEqualTo("N"),
+                () -> assertThat(Piece.create("white", "knight").getRepresentation()).isEqualTo("n"),
                 () -> assertThat(Piece.create("black", "rook").getRepresentation()).isEqualTo("R"),
                 () -> assertThat(Piece.create("white", "rook").getRepresentation()).isEqualTo("r"),
                 () -> assertThat(Piece.create("black", "bishop").getRepresentation()).isEqualTo("B"),

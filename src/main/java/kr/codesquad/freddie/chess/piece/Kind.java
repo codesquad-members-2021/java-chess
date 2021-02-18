@@ -2,7 +2,7 @@ package kr.codesquad.freddie.chess.piece;
 
 public enum Kind {
     PAWN("p"),
-    KNIGHT("k"),
+    KNIGHT("n"),
     ROOK("r"),
     BISHOP("b"),
     QUEEN("q"),

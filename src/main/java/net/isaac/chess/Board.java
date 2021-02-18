@@ -16,8 +16,8 @@ public class Board {
 
     public void initialize(){
         for(int i = 0; i < MAX_SIZE; i++){
-            add(new Pawn(Piece.Color.BLACK),1,i);
-            add(new Pawn(Piece.Color.WHITE), MAX_IDX-1, i);
+            add(new Pawn(Piece.Color.BLACK, Piece.BLACK_PAWN_REPRESENTATION),1,i);
+            add(new Pawn(Piece.Color.WHITE, Piece.WHITE_PAWN_REPRESENTATION), MAX_IDX-1, i);
         }
     }
 

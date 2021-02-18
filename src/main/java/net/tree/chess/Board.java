@@ -44,9 +44,15 @@ public class Board {
         blackPieceList.add(Piece.createBlackKnight());
         blackPieceList.add(Piece.createBlackRook());
 
+<<<<<<< HEAD
         for(int i = 0 ; i < BOARD_SIZE ; i++) {
             blackPieceList.add(Piece.createBlackPawn());
         }
+=======
+<<<<<<< HEAD
+    public void add(Pawn pawn) {
+        pawnList.add(pawn);
+>>>>>>> 3c74074... feat : Do Mission2
     }
 
     //전체 피스 개수 세어주는 메소드
@@ -69,6 +75,7 @@ public class Board {
         return sb.toString();
     }
 
+<<<<<<< HEAD
     public String getExceptPawnPieces(List<Piece> list) {
         StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < list.size() ; i++) {
@@ -79,6 +86,22 @@ public class Board {
         }
         return sb.toString();
     }
+=======
+        Pawn pawn = pawnList.get(listIndex);
+=======
+    public void add(Pawn pawnColor) {
+        pawnList.add(pawnColor);
+    }
+
+    public int size() {
+        return pawnList.size();
+    }
+
+    public Pawn findPawn(int i) {
+
+        Pawn pawn = pawnList.get(i);
+>>>>>>> feat : Do Mission2
+>>>>>>> 3c74074... feat : Do Mission2
 
     public String getPawnPieces(List<Piece> list) {
         StringBuilder sb = new StringBuilder();

@@ -24,7 +24,7 @@ public abstract class Piece {
         return color;
     }
 
-    public static Piece getPawn(Color color) {
+    public static Pawn getPawn(Color color) {
         return new Pawn(color, Piece.PAWN_REPRESENTATION);
     }
 

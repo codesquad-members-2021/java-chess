@@ -79,5 +79,4 @@ public class Piece {
     public static Piece createBlackKing() {
         return new Piece(Color.BLACK, Type.KING);
     }
-
 }

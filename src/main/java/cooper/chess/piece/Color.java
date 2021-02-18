@@ -3,13 +3,23 @@ package cooper.chess.piece;
 import java.util.Arrays;
 
 public enum Color {
-    WHITE("white"),
-    BLACK("black");
+    WHITE("white", 'P'),
+    BLACK("black", 'p');
 
-    private String colorName;
+    private final String colorName;
+    private final char representation;
 
-    Color(String colorName) {
+    Color(String colorName, char representation) {
         this.colorName = colorName;
+        this.representation = representation;
+    }
+
+    public char getRepresentation() {
+        return representation;
+    }
+
+    public String getColorName() {
+        return colorName;
     }
 
     public static Color of(String colorName) {

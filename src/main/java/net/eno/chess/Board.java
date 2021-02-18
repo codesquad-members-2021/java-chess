@@ -49,10 +49,6 @@ public class Board {
                 blackPieces.get("piece").size();
     }
 
-    private Piece findPiece(Color color, String piece, int index) {
-        return this.pieces.get(color.toString()).get(piece).get(index);
-    }
-
     public void initialize() {
         List<Representation> representationList = sortRepresentation();
         for (int i = 0; i < 8; i++) {
@@ -76,14 +72,6 @@ public class Board {
         return representationList;
     }
 
-    private String getPiecesResult(Color color, String piece) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < this.pieces.get(color.toString()).get(piece).size(); i++) {
-            result.append(findPiece(color, piece, i).getRepresentation());
-        }
-        return result.toString();
-    }
-
     public String showBoard() {
         StringBuilder result = new StringBuilder();
         result.append(appendNewLine(getPiecesResult(Color.BLACK, "piece")));
@@ -95,6 +83,18 @@ public class Board {
         result.append(appendNewLine(getPiecesResult(Color.WHITE, "pawn")));
         result.append(appendNewLine(getPiecesResult(Color.WHITE, "piece")));
         return result.toString();
+    }
+
+    private String getPiecesResult(Color color, String piece) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < this.pieces.get(color.toString()).get(piece).size(); i++) {
+            result.append(findPiece(color, piece, i).getRepresentation());
+        }
+        return result.toString();
+    }
+
+    private Piece findPiece(Color color, String piece, int index) {
+        return this.pieces.get(color.toString()).get(piece).get(index);
     }
 
 }

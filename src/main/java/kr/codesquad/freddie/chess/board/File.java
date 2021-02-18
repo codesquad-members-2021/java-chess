@@ -48,14 +48,13 @@ public class File {
         return size() < SIZE;
     }
 
-    public File fillWithPawn(Color color) {
+    public void fillWithPawn(Color color) {
         while (isAddable()) {
             pieces.add(new Piece(color, Kind.PAWN));
         }
-        return this;
     }
 
-    public File fillWithRoyal(Color color) {
+    public void fillWithRoyal(Color color) {
         PieceFactory pieceFactory = new PieceFactory(color);
 
         this.add(pieceFactory.createRook())
@@ -67,7 +66,6 @@ public class File {
                 .add(pieceFactory.createKnight())
                 .add(pieceFactory.createRook());
 
-        return this;
     }
 
     public String getRepresentation() {

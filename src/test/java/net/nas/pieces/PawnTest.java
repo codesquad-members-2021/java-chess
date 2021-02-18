@@ -31,11 +31,11 @@ public class PawnTest {
     void testGetRepresentationChar() {
         Pawn whitePawn = new Pawn();
         Pawn blackPawn = new Pawn(ColorOfChessPiece.BLACK);
-        testRepresentationCharIsCorrect(whitePawn, 'p');
-        testRepresentationCharIsCorrect(blackPawn, 'P');
+        testRepresentationCharIsCorrect(whitePawn, Pawn.WHITE_REPRESENTATION);
+        testRepresentationCharIsCorrect(blackPawn, Pawn.BLACK_REPRESENTATION);
     }
 
-    private void testRepresentationCharIsCorrect(Pawn pawn, char representationChar) {
+    private void testRepresentationCharIsCorrect(Pawn pawn, String representationChar) {
         assertThat(pawn.getRepresentation()).isEqualTo(representationChar);
     }
 }

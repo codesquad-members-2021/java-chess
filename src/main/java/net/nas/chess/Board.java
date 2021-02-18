@@ -53,7 +53,7 @@ public class Board {
 
     private String getResultOfRow(int rowIdx) {
         return Arrays.stream(chessCells[rowIdx])
-                .map(cell -> String.valueOf(cell.getRepresentation()))
+                .map(ChessCell::getRepresentation)
                 .collect(Collectors.joining());
     }
 

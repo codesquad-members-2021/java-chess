@@ -25,7 +25,7 @@ class ChessCellTest {
         verifyOccupyMethod(null, ChessCell.NONE_REPRESENTATION);
     }
 
-    private void verifyOccupyMethod(Pawn pawn, char expectedColor) {
+    private void verifyOccupyMethod(Pawn pawn, String expectedColor) {
         ChessCell chessCell = new ChessCell();
         chessCell.occupy(pawn);
         assertThat(chessCell.getRepresentation()).isEqualTo(expectedColor);

@@ -3,7 +3,7 @@ package net.nas.chess;
 import net.nas.pieces.Pawn;
 
 public class ChessCell {
-    public static final char NONE_REPRESENTATION = '.';
+    public static final String NONE_REPRESENTATION = ".";
     private Pawn piece = null;
 
     public void occupy(Pawn newPiece) {
@@ -16,7 +16,7 @@ public class ChessCell {
         return piece;
     }
 
-    public char getRepresentation() {
+    public String getRepresentation() {
         if (piece == null)
             return NONE_REPRESENTATION;
         else return piece.getRepresentation();

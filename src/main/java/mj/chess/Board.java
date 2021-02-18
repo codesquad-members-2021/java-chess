@@ -55,7 +55,6 @@ public class Board {
             Pawn pawn = new Pawn(color);
             pawns.add(pawn);
         }
-
     }
 
     private void initCellsOfBoard(Color color) {
@@ -66,17 +65,15 @@ public class Board {
         }
     }
 
-    public void print() {
-        for (String rowOfBoard : cellsOfBoard) {
-            System.out.println(rowOfBoard);
-        }
-    }
-
     public String getRowOfPawns(Color color) {
         return pawns.stream()
                 .filter(pawn -> pawn.getColor() == color)
                 .map(Pawn::getRepresentation)
                 .map(Object::toString)
                 .collect(joining());
+    }
+
+    public String[] getCellsOfBoard() {
+        return cellsOfBoard;
     }
 }

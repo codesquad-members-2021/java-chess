@@ -3,6 +3,8 @@ package mj.chess;
 import java.util.Scanner;
 
 public class Console {
+    private Board board;
+
     public static void main(String[] args) {
         Console console = new Console();
         console.runConsole();
@@ -22,18 +24,25 @@ public class Console {
                 endGame();
                 break;
             } else System.out.println("Invalid Input");
-        };
+        }
+        ;
 
         scanner.close();
     }
 
     private void startGame() {
-        Board board = new Board();
+        board = new Board();
         board.initialize();
-        board.print();
+        printCellsOfBoard();
     }
 
     private void endGame() {
         System.out.print("Game Over");
+    }
+
+    private void printCellsOfBoard() {
+        for (String rowOfBoard : board.getCellsOfBoard()) {
+            System.out.println(rowOfBoard);
+        }
     }
 }

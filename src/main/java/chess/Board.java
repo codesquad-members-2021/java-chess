@@ -2,6 +2,7 @@ package chess;
 
 import chess.pieces.Color;
 import chess.pieces.Piece;
+import chess.pieces.Type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,13 +61,13 @@ public class Board {
         switch (color) {
             case WHITE:
                 for (Piece piece : whitePieces) {
-                    sb.append(piece.getRepresentation());
+                    sb.append(piece.getWhiteRepresentation());
                 }
                 return sb.toString();
 
             case BLACK:
                 for (Piece piece : blackPieces) {
-                    sb.append(piece.getRepresentation());
+                    sb.append(piece.getBlackRepresentation());
                 }
                 return sb.toString();
 
@@ -77,8 +78,8 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < BOARDSIZE; i++) {
-            addWhitePawn(new Piece(Color.WHITE));
-            addBlackPawn(new Piece(Color.BLACK));
+            addWhitePawn(Piece.createWhitePawn());
+            addBlackPawn(Piece.createBlackPawn());
         }
     }
 

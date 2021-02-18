@@ -2,7 +2,10 @@ package net.jung.chess;
 
 import net.jung.chess.pieces.Pawn;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static net.jung.chess.utils.StringUtils.appendNewLine;
 
 public class Board {
     private List<Pawn> blackPawnList = new ArrayList();
@@ -66,13 +69,13 @@ public class Board {
     public String print() {
         String blankRow = "********";
         StringBuilder boardLayout = new StringBuilder();
-        boardLayout.append(blankRow + "\n")
-                .append(getBlackPawnsResult()+"\n")
-                .append(blankRow + "\n")
-                .append(blankRow + "\n")
-                .append(blankRow + "\n")
-                .append(blankRow + "\n")
-                .append(getWhitePawnsResult()+"\n")
+        boardLayout.append(appendNewLine(blankRow))
+                .append(appendNewLine(getBlackPawnsResult()))
+                .append(appendNewLine(blankRow))
+                .append(appendNewLine(blankRow))
+                .append(appendNewLine(blankRow))
+                .append(appendNewLine(blankRow))
+                .append(appendNewLine(getWhitePawnsResult()))
                 .append(blankRow);
         return boardLayout.toString();
     }

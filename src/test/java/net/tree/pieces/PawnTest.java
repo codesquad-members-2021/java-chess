@@ -2,12 +2,18 @@ package net.tree.pieces;
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 =======
 import org.junit.Test;
+=======
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+
+>>>>>>> feat : Do Mission2
 
 import static org.hamcrest.CoreMatchers.equalTo;
 <<<<<<< HEAD
@@ -18,8 +24,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 >>>>>>> feat : Do Mission3
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.*;
+
 public class PawnTest {
 
+<<<<<<< HEAD
     @Test
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -39,6 +49,8 @@ public class PawnTest {
         assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
         assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getRepresentation());
     }
+=======
+>>>>>>> feat : Do Mission2
 
     @Test
     public void create() {
@@ -75,5 +87,11 @@ public class PawnTest {
         assertThat(color ,equalTo(pawn.getColor()));
     }
 
+<<<<<<< HEAD
 >>>>>>> feat : Do Mission3
+=======
+
+
+
+>>>>>>> feat : Do Mission2
 }

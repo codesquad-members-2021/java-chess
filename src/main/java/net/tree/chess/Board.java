@@ -56,6 +56,7 @@ public class Board {
         }
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
     public void add(Pawn pawn) {
         pawnList.add(pawn);
 >>>>>>> 3c74074... feat : Do Mission2
@@ -95,6 +96,9 @@ public class Board {
 =======
         Pawn pawn = pawnList.get(listIndex);
 =======
+=======
+
+>>>>>>> feat : Do Mission2
     public void add(Pawn pawnColor) {
         pawnList.add(pawnColor);
     }
@@ -159,5 +163,9 @@ public class Board {
     public void print() {
         System.out.println(saveStringBuilder());
     }
+<<<<<<< HEAD
 >>>>>>> a101753... feat : Do Mission3
+=======
+
+>>>>>>> 1f82d36... feat : Do Mission2
 }

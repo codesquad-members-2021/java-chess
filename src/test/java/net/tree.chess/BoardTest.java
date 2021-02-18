@@ -93,6 +93,7 @@ class BoardTest {
 
     }
 
+<<<<<<< HEAD
     @DisplayName("컴파일 에러 발생시키기")
     @Test
     public void checkPawnList() throws Exception {
@@ -115,6 +116,8 @@ class BoardTest {
         sb.append(StringUtils.NEWLINE);
         return sb.toString();
     }
+=======
+>>>>>>> feat : Do Mission2
 
 
 =======
@@ -133,5 +136,9 @@ class BoardTest {
         assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
         assertEquals("PPPPPPPP", board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
     }
+<<<<<<< HEAD
 >>>>>>> a101753... feat : Do Mission3
+=======
+
+>>>>>>> 1f82d36... feat : Do Mission2
 }

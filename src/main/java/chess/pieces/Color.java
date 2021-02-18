@@ -1,19 +1,13 @@
 package chess.pieces;
 
 public enum Color {
-    WHITE("white", 'p'),
-    BLACK("black", 'P');
+    WHITE("white"),
+    BLACK("black");
 
     private final String colorName;
-    private final char representation;
 
-    Color(String colorName, char representation) {
+    Color(String colorName) {
         this.colorName = colorName;
-        this.representation = representation;
-    }
-
-    public char getRepresentation() {
-        return representation;
     }
 
     public String getColorName() {

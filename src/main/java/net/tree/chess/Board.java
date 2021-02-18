@@ -11,6 +11,7 @@ public class Board {
     final int BOARD_SIZE = 8;
     String blankDot = "........\n";
 
+
     public void add(Pawn pawnColor) {
         pawnList.add(pawnColor);
     }
@@ -62,4 +63,5 @@ public class Board {
     public void print() {
         System.out.println(saveStringBuilder());
     }
+
 }

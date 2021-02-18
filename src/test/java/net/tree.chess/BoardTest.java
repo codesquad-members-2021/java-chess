@@ -27,13 +27,6 @@ public class BoardTest {
 
     }
 
-    @DisplayName("컴파일 에러 발생시키기")
-    @Test
-    public void checkPawnList() throws Exception {
-        Board board = new Board();
-        //assertTrue(board.pawnList.add("7"));
-        assertTrue(board.pawnList.add(new Pawn()));
-    }
 
     @DisplayName("보드 초기화 및 그리기")
     @Test
@@ -50,4 +43,5 @@ public class BoardTest {
         assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
         assertEquals("PPPPPPPP", board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
     }
+
 }

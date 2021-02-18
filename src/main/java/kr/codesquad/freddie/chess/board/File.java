@@ -3,6 +3,7 @@ package kr.codesquad.freddie.chess.board;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
+import kr.codesquad.freddie.chess.piece.PieceFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,14 @@ public class File {
     public static final int SIZE = 8;
     private List<Piece> pieces = new ArrayList<>();
 
-    public void add(Piece piece) {
+    public File add(Piece piece) {
         if (size() == SIZE) {
             throw new IllegalArgumentException("파일 당 8개만 추가 가능합니다.");
         }
 
         pieces.add(piece);
+
+        return this;
     }
 
     /**
@@ -49,6 +52,21 @@ public class File {
         while (isAddable()) {
             pieces.add(new Piece(color, Kind.PAWN));
         }
+        return this;
+    }
+
+    public File fillWithRoyal(Color color) {
+        PieceFactory pieceFactory = new PieceFactory(color);
+
+        this.add(pieceFactory.createRook())
+                .add(pieceFactory.createKnight())
+                .add(pieceFactory.createBishop())
+                .add(pieceFactory.createQueen())
+                .add(pieceFactory.createKing())
+                .add(pieceFactory.createBishop())
+                .add(pieceFactory.createKnight())
+                .add(pieceFactory.createRook());
+
         return this;
     }
 

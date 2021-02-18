@@ -105,14 +105,26 @@ class FileTest {
     }
 
     @Test
-    void getRepresentation_fillWithBlack() {
+    void getRepresentation_fillWithBlackPawn() {
         file.fillWithPawn(Color.BLACK);
         assertThat(file.getRepresentation()).isEqualTo("PPPPPPPP");
     }
 
     @Test
-    void getRepresentation_fillWithWhite() {
+    void getRepresentation_fillWithWhitePawn() {
         file.fillWithPawn(Color.WHITE);
         assertThat(file.getRepresentation()).isEqualTo("pppppppp");
+    }
+
+    @Test
+    void getRepresentation_fillWithBlackRoyal() {
+        file.fillWithRoyal(Color.BLACK);
+        assertThat(file.getRepresentation()).isEqualTo("RNBQKBNR");
+    }
+
+    @Test
+    void getRepresentation_fillWithWhiteRoyal() {
+        file.fillWithRoyal(Color.WHITE);
+        assertThat(file.getRepresentation()).isEqualTo("rnbqkbnr");
     }
 }

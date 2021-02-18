@@ -14,7 +14,7 @@ public class File {
     private List<Piece> pieces = new ArrayList<>();
 
     public File add(Piece piece) {
-        if (size() == SIZE) {
+        if (!isAddable()) {
             throw new IllegalArgumentException("파일 당 8개만 추가 가능합니다.");
         }
 

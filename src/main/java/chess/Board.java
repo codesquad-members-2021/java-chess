@@ -69,7 +69,16 @@ public class Board {
     }
     void printBoard(){
         StringBuilder sb = new StringBuilder();
+
+        sb.append(getDotOnBoard()+"\n");
+        sb.append(getWhitePawnsResult()+"\n");
+        sb.append(getDotOnBoard()+"\n");
+        sb.append(getDotOnBoard()+"\n");
+        sb.append(getDotOnBoard()+"\n");
+        sb.append(getDotOnBoard()+"\n");
+        sb.append(getBlackPawnsResult()+"\n");
         sb.append(getDotOnBoard());
+
         System.out.println(sb.toString());
     }
 }

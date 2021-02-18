@@ -45,6 +45,7 @@ class BoardTest {
     @Test
     @DisplayName("보드판을 출력합니다")
     void printBoard(){
+        board.initialize();
         board.printBoard();
     }
 }

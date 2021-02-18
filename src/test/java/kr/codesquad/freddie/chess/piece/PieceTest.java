@@ -47,4 +47,52 @@ class PieceTest {
                 () -> assertThat(Piece.create("white", "king").getRepresentation()).isEqualTo("k")
         );
     }
+
+    @Test
+    void isBlack() {
+        assertAll(
+                () -> assertThat(new Piece(Color.BLACK, Kind.PAWN).isBlack()).isTrue(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.KNIGHT).isBlack()).isTrue(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.ROOK).isBlack()).isTrue(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.BISHOP).isBlack()).isTrue(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.QUEEN).isBlack()).isTrue(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.KING).isBlack()).isTrue()
+        );
+    }
+
+    @Test
+    void isBlack_not_a_black() {
+        assertAll(
+                () -> assertThat(new Piece(Color.WHITE, Kind.PAWN).isBlack()).isFalse(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.KNIGHT).isBlack()).isFalse(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.ROOK).isBlack()).isFalse(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.BISHOP).isBlack()).isFalse(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.QUEEN).isBlack()).isFalse(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.KING).isBlack()).isFalse()
+        );
+    }
+
+    @Test
+    void isWhite() {
+        assertAll(
+                () -> assertThat(new Piece(Color.WHITE, Kind.PAWN).isWhite()).isTrue(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.KNIGHT).isWhite()).isTrue(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.ROOK).isWhite()).isTrue(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.BISHOP).isWhite()).isTrue(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.QUEEN).isWhite()).isTrue(),
+                () -> assertThat(new Piece(Color.WHITE, Kind.KING).isWhite()).isTrue()
+        );
+    }
+
+    @Test
+    void isWhite_not_a_white() {
+        assertAll(
+                () -> assertThat(new Piece(Color.BLACK, Kind.PAWN).isWhite()).isFalse(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.KNIGHT).isWhite()).isFalse(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.ROOK).isWhite()).isFalse(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.BISHOP).isWhite()).isFalse(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.QUEEN).isWhite()).isFalse(),
+                () -> assertThat(new Piece(Color.BLACK, Kind.KING).isWhite()).isFalse()
+        );
+    }
 }

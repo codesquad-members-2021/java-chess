@@ -1,19 +1,32 @@
 package net.jung.chess;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.File;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Logger logger = LoggerFactory.getLogger(Main.class);
-        logger.info("Hello Logback 1");
-        logger.debug("Hello Logback 2");
-        logger.warn("Hello Logback 3");
+        String start = "start";
+        String end = "end";
+        Board board = new Board();
 
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        System.out.println("Working Directory = " + new File(".").getAbsolutePath());
+        try( Scanner sc = new Scanner(System.in)) {
+            while (true) {
+                System.out.print(">>");
+                String input = sc.nextLine();
+                if (end.equalsIgnoreCase(input)) {
+                    break;
+                }
 
+                if (start.equalsIgnoreCase(input)) {
+                    System.out.println("체스게임을 시작합니다.\n");
+                    board.reset();
+                    board.initialize();
+                    System.out.print(board.print());
+                    System.out.println();
+                    continue;
+                }
+                System.out.println("start/end 중에서 정확히 입력해주세요.");
+            }
+            System.out.println("체스게임이 종료되었습니다. 다음에 만나요~");
+        }
     }
 }

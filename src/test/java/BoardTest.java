@@ -1,41 +1,61 @@
-import net.sanhee.chess.*;
+import net.sanhee.chess.Board;
 import net.sanhee.pieces.Pawn;
 import net.sanhee.pieces.UnitColor;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-public class BoardTest {
+class BoardTest {
 
-    static public Board board = new Board();
+    private int totalPawnCnt;
 
-    @Test
-    @DisplayName("흰색 Pawn을 체스 판, 첫번째 칸에 추가")
-    public void create() throws Exception {
-        spawnPawn(UnitColor.WHITE, 1);
+    @BeforeEach
+    void boardTestInit() {
+        totalPawnCnt = 0;
     }
 
     @Test
-    @DisplayName("흑색 Pawn을 체스 판, 두번째 칸에 추가")
-    public void create2() throws Exception {
-        spawnPawn(UnitColor.BLACK, 2);
+    @DisplayName("[테스트] 체스 판에 Pawn 추가 및 유효성 검사")
+    void createPawn() {
+        Board board = new Board();
+        Pawn whitePawn = spawnPawn(board, UnitColor.WHITE);
+        Pawn blackPawn = spawnPawn(board, UnitColor.BLACK);
+
+        //m 실제 스폰된 폰의 개수와 add 개수가 맞는지 검사하는 메소드
+        pawnSizeCheck(board);
+
+        //m 입력 idx에 pawn이 스폰되있는지 검사하는 메소드
+        pawnLocationCheck(board, whitePawn, 0);
+        pawnLocationCheck(board, blackPawn, 1);
     }
 
-    private void spawnPawn(UnitColor color, int order) {
+    Pawn spawnPawn(Board board, UnitColor color) {
         Pawn pawn = new Pawn(color);
         board.add(pawn);
-        spawnCheck(pawn, order);
+        totalPawnCnt++;
+
+        return pawn;
     }
 
-    private void spawnCheck(Pawn object, int order) {
-        assertAll(
-                //A Case
-                () -> assertThat(board.size()).isEqualTo(order),
-                //B Case
-                () -> assertThat(board.findPawn(order - 1)).isEqualTo(object)
-        );
+    void pawnSizeCheck(Board board) {
+        assertThat(board.size()).isEqualTo(totalPawnCnt);
+    }
+
+    void pawnLocationCheck(Board board, Pawn pawn, int idx) {
+        assertThat(board.findPawn(idx)).isEqualTo(pawn);
+    }
+
+    @Test
+    @DisplayName("[테스트] 생성된 흰색/검은색 Pawn 열의 결과 검증 후 체스판 결과 출력")
+    void initialize() {
+        Board board = new Board();
+        board.initialize();
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+
+        System.out.println(board.print());
     }
 
 }

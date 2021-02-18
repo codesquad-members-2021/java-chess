@@ -17,15 +17,21 @@ class BoardTest {
     @DisplayName("보드를 생성한 후 폰 테스트 한다.")
     void createPawn(){
         Pawn white = new Pawn(Pawn.WHITE, Pawn.WHITE_REPRESENTATION);
-        addPawnOnBoard(1, white);
+        addWhitePawnOnBoard(1, white);
         Pawn black = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
-        addPawnOnBoard(2, black);
+        addBlackPawnOnBoard(2, black);
     }
     
-    void addPawnOnBoard(int index, Pawn pawnInstance) {
-        board.add(pawnInstance);
-        assertThat(index).isEqualTo(board.size());
-        assertThat(pawnInstance).isEqualTo(board.findPawn(index-1));
+    void addWhitePawnOnBoard(int index, Pawn whitePawnInstance) {
+        board.whitePawnAdd(whitePawnInstance);
+        assertThat(index).isEqualTo(board.whitePawnSize());
+        assertThat(whitePawnInstance).isEqualTo(board.findWhitePawn(index-1));
+    }
+
+    void addBlackPawnOnBoard(int index, Pawn blackPawnInstance) {
+        board.blackPawnAdd(blackPawnInstance);
+        assertThat(index).isEqualTo(board.blackPawnSize());
+        assertThat(blackPawnInstance).isEqualTo(board.findBlackPawn(index-1));
     }
 
     @Test

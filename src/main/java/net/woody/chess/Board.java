@@ -51,7 +51,7 @@ public class Board {
     private String getPawnsResult(Color color) {
         StringBuilder sb = new StringBuilder();
         for (Pawn pawn : getPawnListByColor(color)) {
-            char represent = (pawn == null) ? '.' : color.representation(Pawn.PAWN_REPRESENTATION);
+            char represent = (pawn == null) ? '.' : pawn.getRepresentation();
             sb.append(represent);
         }
         return sb.toString();

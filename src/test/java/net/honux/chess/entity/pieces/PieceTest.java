@@ -94,4 +94,15 @@ class PieceTest {
 
     }
 
+    @Test
+    @DisplayName("isBlack() / isWhite() 가 정상적으로 작동하는지 확인한다.")
+    void testSeparateColorMethod() {
+        Piece whitePawn = createWhitePawn();
+        Piece blackPawn = createBlackPawn();
+        Assertions.assertAll(
+                ()->assertThat(whitePawn.isWhite()).isEqualTo(true),
+                ()->assertThat(blackPawn.isBlack()).isEqualTo(true)
+        );
+    }
+
 }

@@ -22,11 +22,11 @@ public class Board {
         files.stream()
                 .filter(File::isAddable)
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("더 이상 추가할 수 없습니다. 현재 크기 : " + size()))
+                .orElseThrow(() -> new IllegalArgumentException("더 이상 추가할 수 없습니다. 현재 크기 : " + pieceCount()))
                 .add(piece);
     }
 
-    public int size() {
+    public int pieceCount() {
         return files.stream()
                 .mapToInt(File::size)
                 .sum();

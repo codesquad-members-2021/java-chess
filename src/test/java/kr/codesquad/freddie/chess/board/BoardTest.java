@@ -28,7 +28,7 @@ class BoardTest {
             for (int j = 0; j < i; j++) {
                 board.add(new Piece(Color.WHITE, Kind.PAWN));
             }
-            assertThat(board.size())
+            assertThat(board.pieceCount())
                     .isEqualTo(i);
 
             System.out.println(board);
@@ -41,7 +41,7 @@ class BoardTest {
         int size = File.SIZE + 1;
         for (int i = 1; i <= size; i++) {
             board.add(new Piece(Color.WHITE, Kind.PAWN));
-            assertThat(board.size())
+            assertThat(board.pieceCount())
                     .isEqualTo(i);
         }
     }
@@ -63,7 +63,7 @@ class BoardTest {
         Piece white = new Piece(Color.WHITE, Kind.PAWN);
         board.add(white);
         assertAll(
-                () -> assertThat(board.size()).isEqualTo(1),
+                () -> assertThat(board.pieceCount()).isEqualTo(1),
                 () -> assertThat(board.findPiece('a', 8)).isEqualTo(white)
         );
     }
@@ -77,7 +77,7 @@ class BoardTest {
         board.add(black);
 
         assertAll(
-                () -> assertThat(board.size()).isEqualTo(2),
+                () -> assertThat(board.pieceCount()).isEqualTo(2),
                 () -> assertThat(board.findPiece('a', 8)).isEqualTo(white),
                 () -> assertThat(board.findPiece('b', 8)).isEqualTo(black)
         );

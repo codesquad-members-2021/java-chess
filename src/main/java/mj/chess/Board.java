@@ -44,10 +44,10 @@ public class Board {
     }
 
     public void initialize() {
-        initPawns(Color.WHITE);
-        initPawns(Color.BLACK);
-        initCellsOfBoard(Color.WHITE, SECOND_ROW);
-        initCellsOfBoard(Color.BLACK, SEVENTH_ROW);
+        for (Color color : Color.values()) {
+            initPawns(color);
+            initCellsOfBoard(color);
+        }
     }
 
     private void initPawns(Color color) {
@@ -58,8 +58,12 @@ public class Board {
 
     }
 
-    private void initCellsOfBoard(Color color, final int nthRow) {
-        cellsOfBoard[nthRow] = getRowOfPawns(color);
+    private void initCellsOfBoard(Color color) {
+        if (color == Color.WHITE) {
+            cellsOfBoard[SECOND_ROW] = getRowOfPawns(color);
+        } else {
+            cellsOfBoard[SEVENTH_ROW] = getRowOfPawns(color);
+        }
     }
 
     public void print() {

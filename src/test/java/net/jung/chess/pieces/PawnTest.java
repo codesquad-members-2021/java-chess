@@ -1,11 +1,11 @@
 package net.jung.chess.pieces;
 
 import net.jung.chess.Color;
+import net.jung.chess.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class PawnTest {
@@ -21,24 +21,26 @@ public class PawnTest {
     }
 
     private void verifyPawn(Color color){
-        Pawn pawn = new Pawn(color);
-        assertThat(pawn.getColor()).isEqualTo(color);
+        Piece piece = Piece.createPiece(color, Name.PAWN);
+        assertThat(piece.getColor()).isEqualTo(color);
     }
 
-    @Test
-    @DisplayName("기본생성자로 흰색 폰을 만들어야한다.")
-    void createDefaultConstructor(){
-        Pawn pawn = new Pawn();
-        assertEquals(Color.WHITE, pawn.getColor());
-    }
+//    @Test
+//    @DisplayName("기본생성자로 흰색 폰을 만들어야한다.")
+//    void createDefaultConstructor(){
+//        Piece piece = new Piece();
+//        assertEquals(Color.WHITE, piece.getColor());
+//    }
 
     @Test
     @DisplayName("흰색폰은 'p' 검은색 폰은 'P'의 representation을 가진다.")
     void verifyRepresentation(){
-        Pawn whitePawn = new Pawn(Color.WHITE);
-        assertThat(whitePawn.getRepresentation()).isEqualTo('p');
+        Piece whitePiece = Piece.createPiece(Color.WHITE, Name.PAWN);
+        assertThat(whitePiece.getRepresentation()).isEqualTo('p');
 
-        Pawn blackPawn = new Pawn(Color.BLACK);
-        assertThat(blackPawn.getRepresentation()).isEqualTo('P');
+        Piece blackPiece = Piece.createPiece(Color.BLACK, Name.PAWN);
+        assertThat(blackPiece.getRepresentation()).isEqualTo('P');
     }
+
+
 }

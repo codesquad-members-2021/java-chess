@@ -1,6 +1,6 @@
 package net.jung.chess;
 
-import net.jung.chess.pieces.Pawn;
+import net.jung.chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 public class BoardTest {
 
     private Board board;
-    private Pawn whitePawn;
-    private Pawn blackPawn;
+    private Piece whitePawn;
+    private Piece blackPawn;
 
     @BeforeEach
     void setUp() {
         board = new Board();
-        whitePawn = new Pawn(Color.WHITE);
-        blackPawn = new Pawn(Color.BLACK);
+        whitePawn = Piece.createPiece(Color.WHITE, Name.PAWN);
+        blackPawn = Piece.createPiece(Color.BLACK, Name.PAWN);
 
     }
 
@@ -28,16 +28,16 @@ public class BoardTest {
 
         assertAll(
                 () -> {
-                    board.addWhitePawn(whitePawn);
+                    board.addWhitePiece(whitePawn);
                     assertAll("흰색 폰을 보드에 올린 후 size, findPawn메서드 검증한다.",
                             () -> assertThat(board.size()).isEqualTo(1),
-                            () -> assertThat(board.findWhitePawn(0)).isEqualTo(whitePawn));
+                            () -> assertThat(board.findWhitePiece(0)).isEqualTo(whitePawn));
                 },
                 () -> {
-                    board.addBlackPawn(blackPawn);
+                    board.addBlackPiece(blackPawn);
                     assertAll("검은색 폰을 보드에 올린 후 size, findPawn메서드 검증한다.",
                             () -> assertThat(board.size()).isEqualTo(2),
-                            () -> assertThat(board.findBlackPawn(0)).isEqualTo(blackPawn));
+                            () -> assertThat(board.findBlackPiece(0)).isEqualTo(blackPawn));
                 }
         );
 
@@ -72,13 +72,13 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("addWhitePawn(Pawn pawn)의 매개변수로 blackPawn을 넘기면 whitePawnList에 더해지지 않고 반대도 마찬가지이다.")
+    @DisplayName("addWhitePawn(Piece pawn)의 매개변수로 blackPawn을 넘기면 whitePawnList에 더해지지 않고 반대도 마찬가지이다.")
     void addBlackPawnToWhitePawnList() {
-        board.addWhitePawn(blackPawn);
-        board.addBlackPawn(whitePawn);
+        board.addWhitePiece(blackPawn);
+        board.addBlackPiece(whitePawn);
         assertAll(
-                () -> assertThat(board.whitePawnListSize()).isEqualTo(0),
-                () -> assertThat(board.blackPawnListSize()).isEqualTo(0)
+                () -> assertThat(board.whitePieceListSize()).isEqualTo(0),
+                () -> assertThat(board.blackPieceListSize()).isEqualTo(0)
         );
 
     }

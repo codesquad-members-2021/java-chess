@@ -10,42 +10,54 @@ public class Board {
     private List<Pawn> whitePawnList  = new ArrayList<>();
     private List<Pawn> blackPawnList  = new ArrayList<>();
 
-    public void whitePawnAdd(Pawn whitePawn) {
+    void whitePawnAdd(Pawn whitePawn) {
         whitePawnList.add(whitePawn);
     }
 
-    public void blackPawnAdd(Pawn blackPawn) {
+    void blackPawnAdd(Pawn blackPawn) {
         blackPawnList.add(blackPawn);
     }
 
-    public int whitePawnSize() {
+    int whitePawnSize() {
         return whitePawnList.size();
     }
 
-    public int blackPawnSize() {
+    int blackPawnSize() {
         return blackPawnList.size();
     }
 
-    public Pawn findWhitePawn(int index) {
+    Pawn findWhitePawn(int index) {
         return whitePawnList.get(index);
     }
 
-    public Pawn findBlackPawn(int index) {
+    Pawn findBlackPawn(int index) {
         return blackPawnList.get(index);
     }
 
-    public void initialize() {
+    void initialize() {
         for(int i = 0; i < 8 ; i++){
+            Pawn whitePawn = new Pawn(Pawn.WHITE,Pawn.WHITE_REPRESENTATION);
+            whitePawnAdd(whitePawn);
 
+            Pawn blackPawn = new Pawn(Pawn.BLACK,Pawn.BLACK_REPRESENTATION);
+            blackPawnAdd(blackPawn);
         }
     }
 
-    public Object getWhitePawnsResult() {
-        return null;
+    Object getWhitePawnsResult() {
+        StringBuilder sb = new StringBuilder();
+        for(int i= 0; i < whitePawnSize(); i++){
+            sb.append(Pawn.WHITE_REPRESENTATION);
+        }
+        return sb.toString();
     }
 
-    public Object getBlackPawnsResult() {
-        return null;
+    Object getBlackPawnsResult() {
+        StringBuilder sb = new StringBuilder();
+        for(int i= 0; i < blackPawnSize(); i++){
+            sb.append(Pawn.BLACK_REPRESENTATION);
+        }
+        return sb.toString();
     }
 }
 

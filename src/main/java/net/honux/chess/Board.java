@@ -58,6 +58,27 @@ public class Board {
         return blackResult.toString();
     }
 
+    public String print(){
+        StringBuilder printResult = new StringBuilder();
+        String line = "........";
+        char lineBreak = '\n';
+        printResult.append(line);
+        printResult.append(lineBreak);
+        printResult.append(getBlackPawnsResult());
+        printResult.append(lineBreak);
+        printResult.append(line);
+        printResult.append(lineBreak);
+        printResult.append(line);
+        printResult.append(lineBreak);
+        printResult.append(line);
+        printResult.append(lineBreak);
+        printResult.append(line);
+        printResult.append(lineBreak);
+        printResult.append(getWhitePawnsResult());
+        printResult.append(lineBreak);
+        printResult.append(line);
+        return printResult.toString();
+    }
 
 
 }

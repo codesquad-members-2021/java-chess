@@ -21,11 +21,13 @@ public class Board {
     }
 
     public void addWhitePawn(Pawn pawn) {
-        whitePawns.add(pawn);
+        if(checkPawnColor(pawn, Pawn.WHITE_COLOR))
+            whitePawns.add(pawn);
     }
 
     public void addBlackPawn(Pawn pawn) {
-        blackPawns.add(pawn);
+        if(checkPawnColor(pawn, Pawn.BLACK_COLOR))
+            blackPawns.add(pawn);
     }
 
     private boolean checkPawnColor(Pawn pawn, String color){

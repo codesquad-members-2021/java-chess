@@ -25,4 +25,17 @@ public class PawnTest {
     void testDefaultConstructor() {
         assertThat(new Pawn().getColor()).isEqualTo(ColorOfChessPiece.WHITE);
     }
+
+    @Test
+    @DisplayName("폰은 자신의 색깔에 따라서, P 또는 p라는 출력문자를 다른 객체에게 알려줄 수 있어야 합니다")
+    void testGetRepresentationChar() {
+        Pawn whitePawn = new Pawn();
+        Pawn blackPawn = new Pawn(ColorOfChessPiece.BLACK);
+        testRepresentationCharIsCorrect(whitePawn, Pawn.WHITE_REPRESENTATION);
+        testRepresentationCharIsCorrect(blackPawn, Pawn.BLACK_REPRESENTATION);
+    }
+
+    private void testRepresentationCharIsCorrect(Pawn pawn, String representationChar) {
+        assertThat(pawn.getRepresentation()).isEqualTo(representationChar);
+    }
 }

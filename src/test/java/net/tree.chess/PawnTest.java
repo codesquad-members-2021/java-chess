@@ -1,10 +1,11 @@
 package net.tree.chess;
 
+
+import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.*;
 
 public class PawnTest {
 
@@ -18,5 +19,6 @@ public class PawnTest {
     void verifyPawn(final String color) {
         Pawn pawn = new Pawn(color);
         assertEquals(color, pawn.getColor());
+        assertThat(color ,equalTo(pawn.getColor()));
     }
 }

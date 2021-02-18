@@ -3,7 +3,6 @@ package net.coco.chess;
 
 import net.coco.Printer.PrintChess;
 import net.coco.pieces.Piece;
-import net.coco.pieces.Color;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,10 +24,10 @@ public class BoardTest {
     void BoardAddPawnCheck() {
 
         Assertions.assertAll(
-                () -> verifyPawnToPawns(Color.WHITE, 0),
+                () -> verifyPawnToPawns(Piece.WHITE, 0),
                 () -> verifyPawnsSize(1),
 
-                () -> verifyPawnToPawns(Color.BLACK, 0),
+                () -> verifyPawnToPawns(Piece.BLACK, 0),
                 () -> verifyPawnsSize(2)
         );
 
@@ -38,8 +37,8 @@ public class BoardTest {
     void initialize() {
         board.initialize();
         Assertions.assertAll(
-                () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(Color.WHITE)),
-                () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Color.BLACK))
+                () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(Piece.WHITE)),
+                () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Piece.BLACK))
         );
     }
 
@@ -50,9 +49,9 @@ public class BoardTest {
         PrintChess.printBoard(board);
     }
 
-    private void verifyPawnToPawns(Color color, int findPawnIndex) {
+    private void verifyPawnToPawns(String color, int findPawnIndex) {
 
-        if (color == Color.WHITE)
+        if (color.equals(Piece.WHITE))
             verifyWhitePawnsIndex(Piece.createWhitePawn(), findPawnIndex);
         else
             verifyBlackPawnsIndex(Piece.createBlackPawn(), findPawnIndex);

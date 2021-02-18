@@ -1,7 +1,6 @@
 package net.coco.chess;
 
 import net.coco.pieces.Piece;
-import net.coco.pieces.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ public class Board {
 
 
     public void addPawn(Piece piece) {
-        if (piece.getColor() == Color.WHITE)
+        if (piece.getColor().equals(Piece.WHITE))
             whitePawns.add(piece);
         else
             blackPawns.add(piece);
@@ -43,8 +42,8 @@ public class Board {
         }
     }
 
-    public String getPawnsResult(Color color) {
-        if (color == Color.WHITE)
+    public String getPawnsResult(String color) {
+        if (color.equals(Piece.WHITE))
             return getPiecesToString(whitePawns);
         else
             return getPiecesToString(blackPawns);

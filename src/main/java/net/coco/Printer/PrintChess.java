@@ -1,7 +1,7 @@
 package net.coco.Printer;
 
 import net.coco.chess.Board;
-import net.coco.pieces.Color;
+import net.coco.pieces.Piece;
 import net.coco.utils.StringUtils;
 
 public class PrintChess {
@@ -10,8 +10,8 @@ public class PrintChess {
     public static void printBoard(Board board) {
 
         StringBuilder boardPrint = new StringBuilder();
-        String blackPawns = board.getPawnsResult(Color.BLACK);
-        String whitePawns = board.getPawnsResult(Color.WHITE);
+        String blackPawns = board.getPawnsResult(Piece.BLACK);
+        String whitePawns = board.getPawnsResult(Piece.WHITE);
         boardPrint.append(BLANK)
                 .append(StringUtils.appendNewLine(blackPawns))
                 .append(BLANK)

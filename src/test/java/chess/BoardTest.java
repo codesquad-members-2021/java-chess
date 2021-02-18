@@ -27,6 +27,13 @@ class BoardTest {
     }
 
     @Test
+    @DisplayName("초기화 했을때 Board출력이 제대로 되는지 확인")
+    void print(){
+        board.initialize();
+        System.out.println(board.printBoard());
+    }
+
+    @Test
     @DisplayName("Board에 흰색 폰 한개와 흑색 폰 한개가 제대로 추가되는지 확인")
     void create() {
         Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);

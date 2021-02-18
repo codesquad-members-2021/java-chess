@@ -56,7 +56,7 @@ public class Board {
         return blackPawns.size() + whitePawns.size();
     }
 
-    public void printBoard() {
+    public String printBoard() {
         StringBuilder result = new StringBuilder();
         result.append(EMPTY)
                 .append(getWhitePawnsResult())
@@ -69,6 +69,6 @@ public class Board {
                 .append(NEW_LINE)
                 .append(EMPTY);
 
-        System.out.println(result);
+        return result.toString();
     }
 }

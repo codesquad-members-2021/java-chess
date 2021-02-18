@@ -5,6 +5,9 @@ import mj.chess.pieces.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.joining;
 
 
 public class Board {
@@ -41,23 +44,22 @@ public class Board {
     }
 
     public void initialize() {
-        initPawns(Color.WHITE, rowOfWhitePawns);
-        initPawns(Color.BLACK, rowOfBlackPawns);
+        initPawns(Color.WHITE);
+        initPawns(Color.BLACK);
         initCellsOfBoard(Color.WHITE, SECOND_ROW);
         initCellsOfBoard(Color.BLACK, SEVENTH_ROW);
     }
 
-    private void initPawns(Color color,  StringBuilder rowOfPawns) {
+    private void initPawns(Color color) {
         for (int i = 0; i < MAX_SIZE; i++) {
             Pawn pawn = new Pawn(color);
             pawns.add(pawn);
-            rowOfPawns.append(pawn.getRepresentation());
         }
 
     }
 
     private void initCellsOfBoard(Color color, final int nthRow) {
-        cellsOfBoard[nthRow] = (color == Color.BLACK) ? getRowOfBlackPawns() : getRowOfWhitePawns();
+        cellsOfBoard[nthRow] = getRowOfPawns(color);
     }
 
     public void print() {
@@ -66,11 +68,11 @@ public class Board {
         }
     }
 
-    public String getRowOfBlackPawns() {
-        return rowOfBlackPawns.toString();
-    }
-
-    public String getRowOfWhitePawns() {
-        return rowOfWhitePawns.toString();
+    public String getRowOfPawns(Color color) {
+        return pawns.stream()
+                .filter(pawn -> pawn.getColor() == color)
+                .map(Pawn::getRepresentation)
+                .map(Object::toString)
+                .collect(joining());
     }
 }

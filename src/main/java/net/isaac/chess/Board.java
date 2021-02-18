@@ -51,9 +51,11 @@ public class Board {
                 reduce("",(a,b) -> a+b);
     }
 
-    public boolean add(Piece piece, int rowIdx, int colIdx){
-        if(!isValid(rowIdx) || !isValid(colIdx))
-            return false;
+    public void add(Piece piece, int rowIdx, int colIdx){
+        if(!isValid(rowIdx) || !isValid(colIdx)){
+            System.err.println("Board.add: 위치가 체스보드 범위를 벗어났습니다.");
+            return;
+        }
 
         pieces[rowIdx][colIdx] = piece;
 
@@ -65,8 +67,6 @@ public class Board {
                 whitePieces.add(piece);
                 break;
         }
-
-        return true;
     }
 
     public Piece findPiece(int rowIdx, int colIdx){
@@ -76,7 +76,7 @@ public class Board {
         return pieces[rowIdx][colIdx];
     }
 
-private boolean isValid(int location){
+    private boolean isValid(int location){
         return location >= 0 && MAX_SIZE > location;
     }
 

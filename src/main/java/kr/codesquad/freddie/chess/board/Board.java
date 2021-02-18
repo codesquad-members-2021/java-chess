@@ -68,8 +68,8 @@ public class Board {
     }
 
     private void initializeBy(Color color) {
-        files.get(color.getRoyalInitializationRank()).fillWithRoyal(color);
-        files.get(color.getPawnInitializationRank()).fillWithPawn(color);
+        files.get(color.getRoyalInitializationIndex()).fillWithRoyal(color);
+        files.get(color.getPawnInitializationIndex()).fillWithPawn(color);
     }
 
     public String getRepresentation() {

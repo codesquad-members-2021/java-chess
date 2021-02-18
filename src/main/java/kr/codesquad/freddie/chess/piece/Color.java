@@ -1,12 +1,14 @@
 package kr.codesquad.freddie.chess.piece;
 
+import kr.codesquad.freddie.chess.board.Board;
+
 public enum Color {
-    WHITE(7, 6) {
+    WHITE(1, 2) {
         @Override
         String getRepresentationBy(String representation) {
             return representation.toLowerCase();
         }
-    }, BLACK(0, 1) {
+    }, BLACK(8, 7) {
         @Override
         String getRepresentationBy(String representation) {
             return representation.toUpperCase();
@@ -23,11 +25,11 @@ public enum Color {
 
     abstract String getRepresentationBy(String representation);
 
-    public int getRoyalInitializationRank() {
-        return royalInitializationRank;
+    public int getRoyalInitializationIndex() {
+        return Board.RANK_SIZE - royalInitializationRank;
     }
 
-    public int getPawnInitializationRank() {
-        return pawnInitializationRank;
+    public int getPawnInitializationIndex() {
+        return Board.RANK_SIZE - pawnInitializationRank;
     }
 }

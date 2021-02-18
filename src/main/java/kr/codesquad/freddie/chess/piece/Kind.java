@@ -8,9 +8,9 @@ public enum Kind {
     QUEEN("q"),
     KING("k");
 
-    public final String REPRESENTATION;
+    public final String representation;
 
     Kind(String representation) {
-        this.REPRESENTATION = representation;
+        this.representation = representation;
     }
 }

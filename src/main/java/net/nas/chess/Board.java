@@ -52,25 +52,25 @@ public class Board {
     public String getRepresentationOfBoard() {
         StringBuilder sb = new StringBuilder();
         for (int i = LENGTH_OF_BOARD - 1; i >= 0; i--) {
-            sb.append(getResultOfRow(i));
+            sb.append(getRepresentationOfRank(i));
             if (i != 0)
                 sb.append("\n");
         }
         return sb.toString();
     }
 
-    private String getResultOfRow(int rowIdx) {
-        return Arrays.stream(chessCells[rowIdx])
+    private String getRepresentationOfRank(int rankIdx) {
+        return Arrays.stream(chessCells[rankIdx])
                 .map(Pawn::getRepresentation)
                 .collect(Collectors.joining());
     }
 
     public String getWhitePawnsResult() {
-        return getResultOfRow(RANK_OF_WHITE_PAWNS - 1);
+        return getRepresentationOfRank(RANK_OF_WHITE_PAWNS - 1);
     }
 
     public String getBlackPawnsResult() {
-        return getResultOfRow(RANK_OF_BLACK_PAWNS - 1);
+        return getRepresentationOfRank(RANK_OF_BLACK_PAWNS - 1);
     }
 
     public Pawn findPawn(int rankIdx, int fileIdx) {

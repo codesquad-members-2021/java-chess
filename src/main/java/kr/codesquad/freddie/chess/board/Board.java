@@ -69,19 +69,19 @@ public class Board {
     }
 
     public Board initialize() {
-        files.get(0).fillWithRoyal(Color.BLACK);
-        getBlackFile().fillWithPawn(Color.BLACK);
-        getWhiteFile().fillWithPawn(Color.WHITE);
-        files.get(7).fillWithRoyal(Color.WHITE);
+        initializeBlackPieces();
+        initializeWhitePieces();
         return this;
     }
 
-    private File getWhiteFile() {
-        return files.get(6);
+    private void initializeBlackPieces() {
+        files.get(0).fillWithRoyal(Color.BLACK);
+        files.get(1).fillWithPawn(Color.BLACK);
     }
 
-    private File getBlackFile() {
-        return files.get(1);
+    private void initializeWhitePieces() {
+        files.get(7).fillWithRoyal(Color.WHITE);
+        files.get(6).fillWithPawn(Color.WHITE);
     }
 
     public String getRepresentation() {

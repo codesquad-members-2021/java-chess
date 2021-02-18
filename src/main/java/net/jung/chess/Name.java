@@ -8,8 +8,8 @@ public enum Name{
     QUEEN('q', 'Q'),
     KING('k', 'K');
 
-    private char whiteRep;
-    private char blackRep;
+    private final char whiteRep;
+    private final char blackRep;
 
     Name(char whiteRep, char blackRep){
         this.whiteRep = whiteRep;

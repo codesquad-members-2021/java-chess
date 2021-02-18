@@ -12,14 +12,17 @@ public class PrintChess {
         StringBuilder boardPrint = new StringBuilder();
         String blackPawns = board.getPawnsResult(Piece.BLACK);
         String whitePawns = board.getPawnsResult(Piece.WHITE);
-        boardPrint.append(BLANK)
+        String blackOtherPieces = board.getOtherPiecesResult(Piece.BLACK);
+        String whiteOtherPieces = board.getOtherPiecesResult(Piece.WHITE);
+
+        boardPrint.append(StringUtils.appendNewLine(blackOtherPieces))
                 .append(StringUtils.appendNewLine(blackPawns))
                 .append(BLANK)
                 .append(BLANK)
                 .append(BLANK)
                 .append(BLANK)
                 .append(StringUtils.appendNewLine(whitePawns))
-                .append(BLANK);
+                .append(StringUtils.appendNewLine(whiteOtherPieces));
 
         System.out.println(boardPrint);
     }

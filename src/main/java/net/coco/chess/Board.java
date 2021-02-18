@@ -65,6 +65,13 @@ public class Board {
         else
             return getPiecesToString(blackPawns);
     }
+    public String getOtherPiecesResult(String color) {
+        if (color.equals(Piece.WHITE))
+            return getPiecesToString(whiteOtherPieces);
+        else
+            return getPiecesToString(blackOtherPieces);
+    }
+
 
     private String getPiecesToString(List<Piece> pieces) {
         return pieces.stream()

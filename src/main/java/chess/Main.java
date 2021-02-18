@@ -13,6 +13,7 @@ public class Main {
 
     public void init(){
         try (Scanner scanner = new Scanner(System.in)) {
+
             while(true) {
                 System.out.println("명령어를 입력하세요 : start(게임 스타트), end(게임 끝내기)");
                 String command = scanner.nextLine();
@@ -24,7 +25,6 @@ public class Main {
                     start();
                     continue;
                 }
-
                 System.out.println("명령어를 다시 입력하세요");
             }
         }

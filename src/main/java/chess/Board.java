@@ -28,6 +28,11 @@ public class Board {
         blackPawns.add(pawn);
     }
 
+    private boolean checkPawnColor(Pawn pawn, String color){
+        return pawn.getColor().equals(color);
+    }
+
+
     public String getWhitePawnsResult() {
         return getPawnsResult(whitePawns);
     }

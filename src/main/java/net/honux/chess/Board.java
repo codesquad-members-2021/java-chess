@@ -3,11 +3,12 @@ package net.honux.chess;
 import net.honux.chess.pieces.Pawn;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
 
-    ArrayList<Pawn> whitePawns = new ArrayList<Pawn>();
-    ArrayList<Pawn> blackPawns = new ArrayList<Pawn>();
+    List<Pawn> whitePawns = new ArrayList<Pawn>();
+    List<Pawn> blackPawns = new ArrayList<Pawn>();
 
 
     public void whitePawnsAdd(Pawn pawn){
@@ -22,9 +23,7 @@ public class Board {
         return whitePawns.size()+blackPawns.size();
     }
 
-    public Pawn findWhitePawn(int index) {
-        return whitePawns.get(index);
-    }
+    public Pawn findWhitePawn(int index) {return whitePawns.get(index);}
 
     public Pawn findBlackPawn(int index) {
         return blackPawns.get(index);

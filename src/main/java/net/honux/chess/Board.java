@@ -1,6 +1,6 @@
 package net.honux.chess;
 
-import net.honux.chess.pieces.Pawn;
+import net.honux.chess.pieces.Piece;
 
 import java.util.ArrayList;
 
@@ -8,23 +8,23 @@ public class Board {
 
     private static final int BOARD_LENGTH = 8;
 
-    private ArrayList<Pawn> whitePawns = new ArrayList<>();
-    private ArrayList<Pawn> blackPawns = new ArrayList<>();
+    private ArrayList<Piece> whitePawns = new ArrayList<>();
+    private ArrayList<Piece> blackPawns = new ArrayList<>();
 
-    public void add(Pawn pawn) {
+    public void add(Piece pawn) {
         distinguishPawnsColor(pawn).add(pawn);
     }
 
-    public int size(Pawn pawn) {
+    public int size(Piece pawn) {
         return distinguishPawnsColor(pawn).size();
     }
 
-    public Pawn findPawn(Pawn pawn, int index) {
+    public Piece findPawn(Piece pawn, int index) {
         return distinguishPawnsColor(pawn).get(index);
     }
 
-    private ArrayList<Pawn> distinguishPawnsColor(Pawn pawn) {
-        if (pawn.getColor() == Pawn.WHITE_COLOR)
+    private ArrayList<Piece> distinguishPawnsColor(Piece pawn) {
+        if (pawn.getColor() == Piece.WHITE_COLOR)
             return whitePawns;
         else
             return blackPawns;
@@ -32,8 +32,8 @@ public class Board {
 
     void initialize() {
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            whitePawns.add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            blackPawns.add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            whitePawns.add(new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION));
+            blackPawns.add(new Piece(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION));
         }
     }
 
@@ -49,10 +49,10 @@ public class Board {
         return "........";
     }
 
-    private String listPawnsToSingleLine(ArrayList<Pawn> whichGroupOfPawns) {
+    private String listPawnsToSingleLine(ArrayList<Piece> whichGroupOfPawns) {
         StringBuilder sb = new StringBuilder();
 
-        for (Pawn p : whichGroupOfPawns)
+        for (Piece p : whichGroupOfPawns)
             sb.append(p.getRepresentation());
 
         return sb.toString();

@@ -3,7 +3,7 @@ package net.honux.chess;
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
-import net.honux.chess.pieces.Pawn;
+import net.honux.chess.pieces.Piece;
 
 class BoardTest {
     private Board board = new Board();
@@ -11,13 +11,13 @@ class BoardTest {
     @Test
     void 보드에_폰이_색깔별로_잘_들어가는지_확인한다() throws Exception {
 
-        verifyBoard(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION, 0);
-        verifyBoard(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION, 0);
+        verifyBoard(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION, 0);
+        verifyBoard(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION, 0);
     }
 
     private void verifyBoard(String color, char representation, int index) {
 
-        Pawn pawnColor = new Pawn(color, representation);
+        Piece pawnColor = new Piece(color, representation);
         board.add(pawnColor);
         assertThat(board.size(pawnColor)).isEqualTo(index + 1);
         assertThat(board.findPawn(pawnColor, index)).isEqualTo(pawnColor);

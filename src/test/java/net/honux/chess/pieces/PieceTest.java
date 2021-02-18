@@ -2,27 +2,27 @@ package net.honux.chess.pieces;
 
 
 import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.*;
+
 import static org.assertj.core.api.Assertions.*;
 
-class PawnTest {
+class PieceTest {
 
     @Test
     void 폰의_컬러와_화면에_출력할_Representation이_각_컬러에_맞는지_확인한다() {
-        verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
-        verifyPawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+        verifyPawn(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION);
+        verifyPawn(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION);
     }
 
     private void verifyPawn(final String color, final char representation) {
-        Pawn pawn = new Pawn(color, representation);
+        Piece pawn = new Piece(color, representation);
         assertThat(pawn.getColor()).isEqualTo(color);
         assertThat(pawn.getRepresentation()).isEqualTo(representation);
     }
 
     @Test
     void create_기본생성자() throws Exception {
-        Pawn pawn = new Pawn();
+        Piece pawn = new Piece();
         assertThat(pawn.getColor()).isEqualTo(pawn.WHITE_COLOR);
-        assertThat(pawn.getRepresentation()).isEqualTo(Pawn.WHITE_REPRESENTATION);
+        assertThat(pawn.getRepresentation()).isEqualTo(Piece.WHITE_REPRESENTATION);
     }
 }

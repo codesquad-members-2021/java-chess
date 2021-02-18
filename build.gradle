@@ -14,16 +14,26 @@ dependencies {
     testCompile("org.assertj:assertj-core:3.11.1")
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 }
 =======
 }
 >>>>>>> a101753... feat : Do Mission3
 =======
+=======
+>>>>>>> 8a78563... feat : Do Mission2
 }
 =======
     //testCompile 'junit:junit:4.12'
     testCompile 'org.junit.jupiter:junit-jupiter:5.4.2'
 }
 >>>>>>> rebase mission3
+<<<<<<< HEAD
 >>>>>>> 5913482... rebase mission3
+=======
+=======
+
+}
+>>>>>>> feat : Do Mission2
+>>>>>>> 8a78563... feat : Do Mission2

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import net.tree.pieces.Pawn;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 >>>>>>> 3c74074... feat : Do Mission2
@@ -35,7 +36,17 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 >>>>>>> rebase mission3
+<<<<<<< HEAD
 >>>>>>> 5913482... rebase mission3
+=======
+=======
+import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+
+import static org.junit.Assert.assertEquals;
+>>>>>>> feat : Do Mission2
+>>>>>>> 8a78563... feat : Do Mission2
 
 class BoardTest {
 
@@ -173,8 +184,19 @@ class BoardTest {
     @Test
     public void checkPawnList() {
         Board board = new Board();
-        assertTrue(board.pawnList.add(new Pawn()));
-    }
+        Pawn white = new Pawn(Pawn.WHITE_COLOR);
+        board.add(white);
+        assertEquals(1, board.checkPawnSize());
+        assertEquals(white, board.findPawn(0));
 
+<<<<<<< HEAD
 >>>>>>> 5913482... rebase mission3
+=======
+        Pawn black = new Pawn(Pawn.BLACK_COLOR);
+        board.add(black);
+        assertEquals(2, board.checkPawnSize());
+        assertEquals(black, board.findPawn(1));
+
+    }
+>>>>>>> 8a78563... feat : Do Mission2
 }

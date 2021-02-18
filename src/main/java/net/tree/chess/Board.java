@@ -122,9 +122,11 @@ public class Board {
 =======
 =======
         Pawn pawn = pawnList.get(listIndex);
+<<<<<<< HEAD
 >>>>>>> fix : Fix mission1
 >>>>>>> 124d6ee... fix : Fix mission1
 
+<<<<<<< HEAD
     public String getPawnPieces(List<Piece> list) {
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < list.size() ; i++) {
@@ -134,6 +136,11 @@ public class Board {
             }
         }
         return sb.toString();
+=======
+=======
+>>>>>>> feat : Do Mission2
+        return pawn;
+>>>>>>> 8a78563... feat : Do Mission2
     }
 
 <<<<<<< HEAD

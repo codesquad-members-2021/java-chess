@@ -1,7 +1,5 @@
 package kr.codesquad.freddie.chess.piece;
 
-import java.util.Locale;
-
 public enum Kind {
     PAWN("p"),
     KNIGHT("k"),

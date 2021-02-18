@@ -1,32 +1,49 @@
 package chess.pieces;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PieceTest {
 
     @Test
-    @DisplayName("하얀색 폰은 p를 출력해야한다.")
-    void verifyWhitePawnRepresentation() {
-        Piece piece = new Piece(Color.WHITE);
-        verifyPawn(piece, Color.WHITE);
+    public void createPiece() {
+        verifyWhitePiece(Piece.createWhitePawn(), Color.WHITE, Type.PAWN);
+        verifyBlackPiece(Piece.createBlackPawn(), Color.BLACK, Type.PAWN);
+
+        verifyWhitePiece(Piece.createWhiteRook(), Color.WHITE, Type.ROOK);
+        verifyBlackPiece(Piece.createBlackRook(), Color.BLACK, Type.ROOK);
+
+        verifyWhitePiece(Piece.createWhiteKnight(), Color.WHITE, Type.KNIGHT);
+        verifyBlackPiece(Piece.createBlackKnight(), Color.BLACK, Type.KNIGHT);
+
+        verifyWhitePiece(Piece.createWhiteBishop(), Color.WHITE, Type.BISHOP);
+        verifyBlackPiece(Piece.createBlackBishop(), Color.BLACK, Type.BISHOP);
+
+        verifyWhitePiece(Piece.createWhiteQueen(), Color.WHITE, Type.QUEEN);
+        verifyBlackPiece(Piece.createBlackQueen(), Color.BLACK, Type.QUEEN);
+
+        verifyWhitePiece(Piece.createWhiteKing(), Color.WHITE, Type.KING);
+        verifyBlackPiece(Piece.createBlackKing(), Color.BLACK, Type.KING);
+    }
+
+    private void verifyWhitePiece(Piece piece, Color color, Type type) {
+        assertThat(piece.getColorName()).isEqualTo(color.getColorName());
+        assertThat(piece.getWhiteRepresentation()).isEqualTo(type.getWhiteRepresentation());
+    }
+
+    private void verifyBlackPiece(Piece piece, Color color, Type type) {
+        assertThat(piece.getColorName()).isEqualTo(color.getColorName());
+        assertThat(piece.getBlackRepresentation()).isEqualTo(type.getBlackRepresentation());
     }
 
     @Test
-    @DisplayName("검은색 폰은 P를 출력해야한다.")
-    void verifyBlackPawnRepresentation() {
-        Piece piece = new Piece(Color.BLACK);
-        verifyPawn(piece, Color.BLACK);
+    public void checkWhiteColorPiece() {
+        assertThat(Piece.createWhitePawn().isWhite()).isEqualTo(true);
     }
 
-    private void verifyPawn(Piece piece, Color color) {
-        assertAll(
-                () -> assertThat(piece.getColorName()).isEqualTo(color.getColorName()),
-                () -> assertThat(piece.getRepresentation()).isEqualTo(color.getRepresentation())
-        );
+    @Test
+    public void checkBlackColorPiece() {
+        assertThat(Piece.createBlackPawn().isBlack()).isEqualTo(true);
     }
-
 }

@@ -49,4 +49,11 @@ class BoardTest {
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
     }
 
+    @Test
+    @DisplayName("보드 초기화가 잘 print 되는지 확인")
+    void print(){
+        board.initialize();
+        System.out.println(board.print());
+    }
+
 }

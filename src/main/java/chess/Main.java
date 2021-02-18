@@ -8,6 +8,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+    }
+
+    public void init(){
         try (Scanner scanner = new Scanner(System.in)) {
             String notice = "명령어를 입력하세요 : start(게임 스타트), end(게임 끝내기)";
             System.out.println(notice);
@@ -22,10 +25,11 @@ public class Main {
                 System.out.println(notice);
                 command = scanner.nextLine();
             }
+
             System.out.println("게임을 종료합니다.");
         }
-    }
 
+    }
     private static void start() {
         Board board = new Board();
         board.initialize();

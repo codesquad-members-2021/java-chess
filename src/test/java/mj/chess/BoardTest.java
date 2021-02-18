@@ -1,7 +1,7 @@
 package mj.chess;
 
 import mj.chess.pieces.Color;
-import mj.chess.pieces.Pawn;
+import mj.chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,28 +20,28 @@ class BoardTest {
     @Test
     @DisplayName("Board class에 Pawn class 추가 및 인덱스로 탐색")
     void createBoard() {
-        Pawn[] testPawns = {
-                new Pawn(Color.BLACK),
-                new Pawn(Color.WHITE)
+        Piece[] testPieces = {
+                new Piece(Color.BLACK),
+                new Piece(Color.WHITE)
         };
 
-        for (int i = 0; i < testPawns.length; i++) {
+        for (int i = 0; i < testPieces.length; i++) {
             final int index = i;
             assertAll(
-                    () -> verifyAddition(testPawns[index], index),
-                    () -> verifySearchByIndex(testPawns[index], index)
+                    () -> verifyAddition(testPieces[index], index),
+                    () -> verifySearchByIndex(testPieces[index], index)
             );
         }
     }
 
-    private void verifyAddition(Pawn pawn, int index) {
+    private void verifyAddition(Piece piece, int index) {
         int size = index + 1;
-        board.add(pawn);
+        board.add(piece);
         assertThat(board.size()).isEqualTo(size);
     }
 
-    private void verifySearchByIndex(Pawn pawn, int index) {
-        assertThat(pawn).isEqualTo(board.findPawn(index));
+    private void verifySearchByIndex(Piece piece, int index) {
+        assertThat(piece).isEqualTo(board.findPawn(index));
     }
 
     @Test

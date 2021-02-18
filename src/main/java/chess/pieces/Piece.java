@@ -2,24 +2,31 @@ package chess.pieces;
 
 public class Piece {
     private final Color color;
-    private final String pieceName;
+    private final Type type;
 
-    public Piece(String pieceName) {
-        this.pieceName = pieceName;
-        this.color = Color.WHITE;
-    }
-
-    public Piece(Color color, String pieceName) {
+    private Piece(Color color, Type type) {
         this.color = color;
-        this.pieceName = pieceName;
+        this.type = type;
     }
 
     public String getColorName() {
         return color.getColorName();
     }
 
-    public char getRepresentation() {
-        return color.getRepresentation();
+    public boolean isWhite() {
+        return getColorName().equals("white");
+    }
+
+    public boolean isBlack() {
+        return getColorName().equals("black");
+    }
+
+    public char getWhiteRepresentation() {
+        return type.getWhiteRepresentation();
+    }
+
+    public char getBlackRepresentation() {
+        return type.getBlackRepresentation();
     }
 
 }

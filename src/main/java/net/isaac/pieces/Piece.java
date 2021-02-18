@@ -5,8 +5,8 @@ public abstract class Piece {
     public static final char BLACK_PAWN_REPRESENTATION = 'P';
     public static final char UNKNOWN_REPRESENTATION = '?';
 
-    Color color;
-    char representation;
+    private Color color;
+    private char representation;
 
     public Piece(Color color, char representation){
         this.color = color;

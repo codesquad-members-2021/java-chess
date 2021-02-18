@@ -1,45 +1,55 @@
 package kr.codesquad.freddie.chess.piece;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PieceFactoryTest {
+    private PieceFactory blackPieceFactory;
+    private PieceFactory whitePieceFactory;
+
+    @BeforeEach
+    void setUp() {
+        blackPieceFactory = new PieceFactory(Color.BLACK);
+        whitePieceFactory = new PieceFactory(Color.WHITE);
+    }
+
     @Test
     void createPawn() {
-        checkPiece(PieceFactory.createBlackPawn(), Color.BLACK, Kind.PAWN);
-        checkPiece(PieceFactory.createWhitePawn(), Color.WHITE, Kind.PAWN);
+        checkPiece(blackPieceFactory.createPawn(), Color.BLACK, Kind.PAWN);
+        checkPiece(whitePieceFactory.createPawn(), Color.WHITE, Kind.PAWN);
     }
 
     @Test
     void createKnight() {
-        checkPiece(PieceFactory.createBlackKnight(), Color.BLACK, Kind.KNIGHT);
-        checkPiece(PieceFactory.createWhiteKnight(), Color.WHITE, Kind.KNIGHT);
+        checkPiece(blackPieceFactory.createKnight(), Color.BLACK, Kind.KNIGHT);
+        checkPiece(whitePieceFactory.createKnight(), Color.WHITE, Kind.KNIGHT);
     }
 
     @Test
     void createRook() {
-        checkPiece(PieceFactory.createBlackRook(), Color.BLACK, Kind.ROOK);
-        checkPiece(PieceFactory.createWhiteRook(), Color.WHITE, Kind.ROOK);
+        checkPiece(blackPieceFactory.createRook(), Color.BLACK, Kind.ROOK);
+        checkPiece(whitePieceFactory.createRook(), Color.WHITE, Kind.ROOK);
     }
 
     @Test
     void createBishop() {
-        checkPiece(PieceFactory.createBlackBishop(), Color.BLACK, Kind.BISHOP);
-        checkPiece(PieceFactory.createWhiteBishop(), Color.WHITE, Kind.BISHOP);
+        checkPiece(blackPieceFactory.createBishop(), Color.BLACK, Kind.BISHOP);
+        checkPiece(whitePieceFactory.createBishop(), Color.WHITE, Kind.BISHOP);
     }
 
     @Test
     void createQueen() {
-        checkPiece(PieceFactory.createBlackQueen(), Color.BLACK, Kind.QUEEN);
-        checkPiece(PieceFactory.createWhiteQueen(), Color.WHITE, Kind.QUEEN);
+        checkPiece(blackPieceFactory.createQueen(), Color.BLACK, Kind.QUEEN);
+        checkPiece(whitePieceFactory.createQueen(), Color.WHITE, Kind.QUEEN);
     }
 
     @Test
     void createKing() {
-        checkPiece(PieceFactory.createBlackKing(), Color.BLACK, Kind.KING);
-        checkPiece(PieceFactory.createWhiteKing(), Color.WHITE, Kind.KING);
+        checkPiece(blackPieceFactory.createKing(), Color.BLACK, Kind.KING);
+        checkPiece(whitePieceFactory.createKing(), Color.WHITE, Kind.KING);
     }
 
     private void checkPiece(Piece piece, Color expectedColor, Kind expectedKind) {

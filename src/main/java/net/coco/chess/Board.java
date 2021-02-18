@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Board {
+    private List<Piece> whiteOtherPieces = new ArrayList<>();
+    private List<Piece> blackOtherPieces = new ArrayList<>();
     private List<Piece> whitePawns = new ArrayList<>();
     private List<Piece> blackPawns = new ArrayList<>();
     private static final int BOARD_CELLS = 8;
@@ -20,10 +22,21 @@ public class Board {
 
     }
 
+    public void addOtherPiece(Piece piece) {
+        char getRepresentation = piece.getRepresentation();
+        if (getRepresentation == 'p' || getRepresentation == 'P') {
+            System.out.println("폰은 넣지 말아주세요.");
+            return;
+        }
+        if (piece.getColor().equals(Piece.WHITE))
+            whiteOtherPieces.add(piece);
+        else
+            blackOtherPieces.add(piece);
+    }
+
     public int getPawnsSize() {
         return whitePawns.size() + blackPawns.size();
     }
-
 
     public Piece findWhitePawn(int index) {
         return whitePawns.get(index);

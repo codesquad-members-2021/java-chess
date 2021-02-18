@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
@@ -16,18 +18,25 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("보드에 흰색폰과 검정폰을 차례로 넣고 보드의 사이즈와 폰의 위치를 확인.")
-    void createBoard() {
-        verifyBoard(Pawn.WHITE, 1, 0);
-        verifyBoard(Pawn.BLACK, 2, 1);
-    }
-
-    private void verifyBoard(String color, int expectedSize, int idx) {
-        Pawn pawn = new Pawn(color);
-        board.add(pawn);
+    @DisplayName("board.initialize를 사용하여 생성된 흰색폰과 검은색폰들의 결과를 확인한다.")
+    void initialize() {
+        board.initialize();
         assertAll(
-                () -> assertEquals(expectedSize, board.size()),
-                () -> assertEquals(pawn, board.findPwan(idx))
+                () -> assertEquals("pppppppp", board.getWhitePawnsResult()),
+                () -> assertEquals("PPPPPPPP", board.getBlackPawnsResult())
         );
     }
+
+    @Test
+    @DisplayName("addWhitePawn 메서드를 사용하여 검정색 Pawn을 넣어본다.")
+    void addBlackPawnInWhitePawnList() {
+        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
+        board.addWhitePawn(blackPawn);
+        assertAll(
+                () -> assertEquals(1, board.whiteSize()),
+                () -> assertEquals("black", board.findWhitePawn(0).getColor()),
+                () -> assertEquals('P', board.findWhitePawn(0).getRepresentation())
+        );
+    }
+
 }

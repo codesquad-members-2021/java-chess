@@ -23,6 +23,7 @@ public class Board {
     List<Pawn> pawnList = new ArrayList<>();
     final int BOARD_SIZE = 8;
     String blankDot = "........\n";
+<<<<<<< HEAD
 >>>>>>> a101753... feat : Do Mission3
 
     public void initializeWhitePieces() {
@@ -39,6 +40,9 @@ public class Board {
             whitePieceList.add(Piece.createWhitePawn());
         }
     }
+=======
+<<<<<<< HEAD
+>>>>>>> e071e51... feat : Do Mission3
 
     public void initializeBlackPieces() {
         blackPieceList.add(Piece.createBlackRook());
@@ -103,6 +107,8 @@ public class Board {
     public void add(Pawn pawnColor) {
         pawnList.add(pawnColor);
 =======
+=======
+>>>>>>> feat : Do Mission3
     public void add(Pawn pawn) {
         pawnList.add(pawn);
 >>>>>>> rebase mission3
@@ -183,8 +189,11 @@ public class Board {
         System.out.println(saveStringBuilder());
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a101753... feat : Do Mission3
 =======
 
 >>>>>>> 1f82d36... feat : Do Mission2
+=======
+>>>>>>> e071e51... feat : Do Mission3
 }

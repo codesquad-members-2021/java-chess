@@ -15,7 +15,7 @@ public class File {
 
     public File add(Piece piece) {
         if (!isAddable()) {
-            throw new IllegalArgumentException("파일 당 8개만 추가 가능합니다.");
+            throw new IllegalArgumentException("파일 당 " + SIZE + "개만 추가 가능합니다.");
         }
 
         pieces.add(piece);

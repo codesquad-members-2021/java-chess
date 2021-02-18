@@ -1,14 +1,9 @@
 package chess;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-
 import static org.assertj.core.api.Assertions.assertThat;
-
-
 import pieces.Pawn;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {

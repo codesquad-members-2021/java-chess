@@ -1,7 +1,9 @@
 package net.coco.chess;
 
 
+import net.coco.Printer.PrintChess;
 import net.coco.pieces.Pawn;
+import net.coco.pieces.PawnEnum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,32 +16,63 @@ public class BoardTest {
     private Board board;
 
     @BeforeEach
-    public void makeBoard() {
+    void makeBoard() {
         board = new Board();
     }
 
     @Test
-    @DisplayName("Board size check")
-    public void create() {
+    @DisplayName("판에 폰이 잘 들어가는지 체크")
+    void BoardAddPawnCheck() {
 
         Assertions.assertAll(
-                () -> verifyPawnToPawns(Pawn.WHITE_COLOR, 0),
-                () -> verifyPaswsSize(1),
+                () -> verifyPawnToPawns(PawnEnum.WHITE, 0),
+                () -> verifyPawnsSize(1),
 
-                () -> verifyPawnToPawns(Pawn.BLACK_COLOR, 1),
-                () -> verifyPaswsSize(2)
+                () -> verifyPawnToPawns(PawnEnum.BLACK, 0),
+                () -> verifyPawnsSize(2)
         );
 
     }
 
-    private void verifyPawnToPawns(final String color, int findPawnIndex) {
-        Pawn pawn = new Pawn(color);
-        board.addPawn(pawn);
-        assertThat(pawn).isEqualTo(board.findPawn(findPawnIndex));
+    @Test
+    void initialize() {
+        board.initialize();
+        Assertions.assertAll(
+                () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(PawnEnum.WHITE)),
+                () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(PawnEnum.BLACK))
+        );
     }
 
-    private void verifyPaswsSize(int actualSize) {
-        assertThat(actualSize).isEqualTo(board.size());
+    @Test
+    void print() {
+        board.initialize();
+
+        PrintChess.printBoard(board);
     }
+
+    private void verifyPawnToPawns(PawnEnum pawnEnum, int findPawnIndex) {
+        Pawn pawn = new Pawn(pawnEnum);
+
+        if (pawnEnum == PawnEnum.WHITE)
+            verifyWhitePawnsIndex(pawn, findPawnIndex);
+        else
+            verifyBlackPawnsIndex(pawn, findPawnIndex);
+
+    }
+
+    private void verifyWhitePawnsIndex(Pawn pawn, int findPawnIndex) {
+        board.addPawn(pawn);
+        assertThat(pawn).isEqualTo(board.findWhitePawn(findPawnIndex));
+    }
+
+    private void verifyBlackPawnsIndex(Pawn pawn, int findPawnIndex) {
+        board.addPawn(pawn);
+        assertThat(pawn).isEqualTo(board.findBlackPawn(findPawnIndex));
+    }
+
+    private void verifyPawnsSize(int actualSize) {
+        assertThat(actualSize).isEqualTo(board.getPawnsSize());
+    }
+
 
 }

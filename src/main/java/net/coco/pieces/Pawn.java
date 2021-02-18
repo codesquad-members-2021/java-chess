@@ -1,16 +1,24 @@
 package net.coco.pieces;
 
 public class Pawn {
-    public static final String WHITE_COLOR="white";
-    public static final String BLACK_COLOR="black";
+    private PawnEnum color;
+    private char representation;
 
-    private String color;
-
-    public Pawn(String color) {
-        this.color = color;
+    public Pawn() {
+        this.color = PawnEnum.WHITE;
+        this.representation = PawnEnum.WHITE.getRepresentation();
     }
 
-    public String getColor() {
+    public Pawn(PawnEnum pawnEnum) {
+        this.color = pawnEnum;
+        this.representation = pawnEnum.getRepresentation();
+    }
+
+    public PawnEnum getColor() {
         return color;
+    }
+
+    public char getRepresentation() {
+        return representation;
     }
 }

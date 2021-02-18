@@ -1,13 +1,13 @@
-package net.tree.chess;
+package net.tree.pieces;
 
 public class Pawn {
     String color;
 
-    final String WHITE = "white";
-    final String BLACK = "black";
+    public static final String WHITE_COLOR = "white";
+    public static final String BLACK_COLOR = "black";
 
     public Pawn() {
-        this.color = "white";
+        this.color = WHITE_COLOR;
     }
 
 

@@ -1,4 +1,4 @@
-package net.tree.chess;
+package net.tree.pieces;
 
 
 import org.junit.Test;

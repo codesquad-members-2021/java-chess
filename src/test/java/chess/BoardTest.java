@@ -32,7 +32,15 @@ class BoardTest {
     @DisplayName("초기화 했을때 Board출력이 제대로 되는지 확인")
     void print() {
         board.initialize();
-        System.out.println(board.printBoard());
+        assertThat(board.printBoard()).isEqualTo(
+                "........\n" +
+                "pppppppp\n" +
+                "........\n" +
+                "........\n" +
+                "........\n" +
+                "........\n" +
+                "PPPPPPPP\n" +
+                "........\n");
     }
 
     @Test

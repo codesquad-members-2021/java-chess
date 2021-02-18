@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Board {
     private static final int BOARD_SIZE = 8;
-    private static final String NEW_LINE = System.lineSeparator();
+    private static final String NEW_LINE = "\n";
     private static final String EMPTY = "........" + NEW_LINE;
     private List<Pawn> whitePawns = new ArrayList<>();
     private List<Pawn> blackPawns = new ArrayList<>();

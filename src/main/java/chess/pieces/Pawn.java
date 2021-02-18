@@ -2,10 +2,15 @@ package chess.pieces;
 
 public class Pawn extends Piece {
     public Pawn() {
-        super("P");
+        super();
     }
 
     public Pawn(Color color) {
-        super("P", color);
+        super(color);
+    }
+
+    @Override
+    String getIcon() {
+        return "P";
     }
 }

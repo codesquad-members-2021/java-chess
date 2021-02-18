@@ -2,7 +2,12 @@ package chess.pieces;
 
 public class EmptyPiece extends Piece {
     private EmptyPiece() {
-        super(".");
+        super();
+    }
+
+    @Override
+    String getIcon() {
+        return ".";
     }
 
     public static EmptyPiece getInstance() {

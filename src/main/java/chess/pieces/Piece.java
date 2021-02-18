@@ -1,16 +1,13 @@
 package chess.pieces;
 
-public class Piece {
-    private final String representation;
+public abstract class Piece {
     private final Color color;
 
-    public Piece(String representation) {
-        this.representation = representation;
+    public Piece() {
         color = Color.WHITE;
     }
 
-    public Piece(String representation, Color color) {
-        this.representation = representation;
+    public Piece(Color color) {
         this.color = color;
     }
 
@@ -18,8 +15,10 @@ public class Piece {
         return color;
     }
 
+    abstract String getIcon();
+
     public String getRepresentation() {
-        return color.generateRepresentation(representation);
+        return color.generateRepresentation(getIcon());
     }
 
     @Override

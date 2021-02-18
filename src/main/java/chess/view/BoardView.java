@@ -1,7 +1,7 @@
 package chess.view;
 
-import chess.board.Board;
-import chess.pieces.Piece;
+import chess.domain.board.Board;
+import chess.domain.pieces.Piece;
 import chess.utils.StringUtils;
 
 import java.util.Iterator;

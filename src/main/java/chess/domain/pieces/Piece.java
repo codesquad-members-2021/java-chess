@@ -1,4 +1,4 @@
-package chess.pieces;
+package chess.domain.pieces;
 
 public abstract class Piece {
     private final String representation;

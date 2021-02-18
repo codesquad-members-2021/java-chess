@@ -1,4 +1,4 @@
-package chess.pieces;
+package chess.domain.pieces;
 
 public class EmptyPiece extends Piece {
     private EmptyPiece() {

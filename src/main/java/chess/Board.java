@@ -96,7 +96,7 @@ public class Board {
     private String getPieceResult(final List<Piece> pieces) {
         StringBuilder piecesRepresentations = new StringBuilder();
         pieces.stream()
-                .map(x -> x.getRepresentation())
+                .map(piece -> piece.getRepresentation())
                 .forEach(piecesRepresentations::append);
         return piecesRepresentations.toString();
     }

@@ -1,6 +1,7 @@
 package net.kjk402.chess.chess;
 
 import net.kjk402.chess.pieces.Piece;
+import static net.kjk402.chess.utils.StringUtils.appendNewLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,14 +63,14 @@ public class Board {
 
     public void print() {
         StringBuilder boardOutput = new StringBuilder();
-        boardOutput.append("........\n");
-        boardOutput.append(getBlackPawnsResult() + "\n");
-        boardOutput.append("........\n");
-        boardOutput.append("........\n");
-        boardOutput.append("........\n");
-        boardOutput.append("........\n");
-        boardOutput.append(getWhitePawnsResult() + "\n");
-        boardOutput.append("........\n");
+        boardOutput.append(appendNewLine("........"));
+        boardOutput.append(appendNewLine(getBlackPawnsResult()));
+        boardOutput.append(appendNewLine("........"));
+        boardOutput.append(appendNewLine("........"));
+        boardOutput.append(appendNewLine("........"));
+        boardOutput.append(appendNewLine("........"));
+        boardOutput.append(appendNewLine(getWhitePawnsResult()));
+        boardOutput.append(appendNewLine("........"));
         System.out.println(boardOutput.toString());
     }
 

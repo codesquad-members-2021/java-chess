@@ -19,9 +19,10 @@ public class Board {
     public void initialize() {
         addRoyalRow(8, Color.BLACK);
         addPawnRow(7, Color.BLACK);
-        for (int i = 6; i >= 3; i--) {
-            addEmptyRow(i);
-        }
+        addEmptyRow(6);
+        addEmptyRow(5);
+        addEmptyRow(4);
+        addEmptyRow(3);
         addPawnRow(2, Color.WHITE);
         addRoyalRow(1, Color.WHITE);
     }

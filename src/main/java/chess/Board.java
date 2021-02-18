@@ -6,12 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<Pawn> whitePawns = new ArrayList<>();
-    private List<Pawn> blackPawns = new ArrayList<>();
     private static final int BOARD_SIZE = 8;
     private static final String NEW_LINE = System.lineSeparator();
     private static final String EMPTY = "........" + NEW_LINE;
-
+    private List<Pawn> whitePawns = new ArrayList<>();
+    private List<Pawn> blackPawns = new ArrayList<>();
 
     public void initialize() {
         for (int i = 0; i < BOARD_SIZE; i++) {
@@ -21,19 +20,18 @@ public class Board {
     }
 
     public void addWhitePawn(Pawn pawn) {
-        if(checkPawnColor(pawn, Pawn.WHITE_COLOR))
+        if (checkPawnColor(pawn, Pawn.WHITE_COLOR))
             whitePawns.add(pawn);
     }
 
     public void addBlackPawn(Pawn pawn) {
-        if(checkPawnColor(pawn, Pawn.BLACK_COLOR))
+        if (checkPawnColor(pawn, Pawn.BLACK_COLOR))
             blackPawns.add(pawn);
     }
 
-    private boolean checkPawnColor(Pawn pawn, String color){
+    private boolean checkPawnColor(Pawn pawn, String color) {
         return pawn.getColor().equals(color);
     }
-
 
     public String getWhitePawnsResult() {
         return getPawnsResult(whitePawns);

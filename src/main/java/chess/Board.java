@@ -30,10 +30,7 @@ public class Board {
 
     /* 체스판을 초기화한다. */
     public void initialize() {
-        blackPawns.removeAll(blackPawns);
-        whitePawns.removeAll(whitePawns);
-        blackPieces.removeAll(blackPieces);
-        whitePieces.removeAll(whitePieces);
+        clearAll();
 
         addBlackPieces();
         addBlackPawns();
@@ -99,5 +96,12 @@ public class Board {
                 .map(piece -> piece.getRepresentation())
                 .forEach(piecesRepresentations::append);
         return piecesRepresentations.toString();
+    }
+
+    private void clearAll() {
+        blackPawns.clear();
+        whitePawns.clear();
+        blackPieces.clear();
+        whitePieces.clear();
     }
 }

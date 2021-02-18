@@ -17,23 +17,35 @@ import java.util.stream.Collectors;
  */
 public class Board {
     public static final int LENGTH_OF_BOARD = 8;
-    public static final int RANK_OF_WHITE_PAWNS = 2;
-    public static final int RANK_OF_BLACK_PAWNS = 7;
 
-    private ChessCell[][] chessCells;
+    public static final int RANK_OF_WHITE_KING = 1;
+    public static final int RANK_OF_WHITE_PAWNS = 2;
+    public static final int RANK_OF_BLANK_1 = 3;
+    public static final int RANK_OF_BLANK_2 = 4;
+    public static final int RANK_OF_BLANK_3 = 5;
+    public static final int RANK_OF_BLANK_4 = 6;
+    public static final int RANK_OF_BLACK_PAWNS = 7;
+    public static final int RANK_OF_BLACK_KING = 8;
+
+    private final Pawn[][] chessCells;
     private int numberOfPieces = 0;
 
     public Board() {
-        chessCells = new ChessCell[8][8];
-        for (int i = 0; i < LENGTH_OF_BOARD; i++)
-            for (int j = 0; j < LENGTH_OF_BOARD; j++)
-                chessCells[i][j] = new ChessCell();
+        chessCells = new Pawn[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
     }
 
     public void initialize() {
         for (int i = 1; i <= LENGTH_OF_BOARD; i++) {
             add(new Pawn(), RANK_OF_WHITE_PAWNS, i);
             add(new Pawn(ColorOfChessPiece.BLACK), RANK_OF_BLACK_PAWNS, i);
+
+            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLANK_1, i);
+            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLANK_2, i);
+            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLANK_3, i);
+            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLANK_4, i);
+
+            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLACK_KING, i);
+            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_WHITE_KING, i);
         }
     }
 
@@ -53,7 +65,7 @@ public class Board {
 
     private String getResultOfRow(int rowIdx) {
         return Arrays.stream(chessCells[rowIdx])
-                .map(ChessCell::getRepresentation)
+                .map(Pawn::getRepresentation)
                 .collect(Collectors.joining());
     }
 
@@ -68,7 +80,7 @@ public class Board {
     public Pawn findPawn(int rankIdx, int fileIdx) {
         if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
             throw new InvalidParameterException("index exceeded the bounds of the Board");
-        return chessCells[rankIdx - 1][fileIdx - 1].getOccupiedPiece();
+        return chessCells[rankIdx - 1][fileIdx - 1];
     }
 
     private boolean isInvalidIdx(int idx) {
@@ -80,8 +92,9 @@ public class Board {
             throw new InvalidParameterException("Null value cannot be added in Board");
         if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
             throw new InvalidParameterException("index exceeded the bounds of the Board");
-        chessCells[rankIdx - 1][fileIdx - 1].occupy(piece);
-        numberOfPieces++;
+        chessCells[rankIdx - 1][fileIdx - 1] = piece;
+        if (piece.getColor() != ColorOfChessPiece.BLANK)
+            numberOfPieces++;
     }
 
     public int size() {

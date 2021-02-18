@@ -1,21 +1,39 @@
 package pieces;
 
 public class Pawn {
-    public static final String WHITE_COLOR = "white";
-    public static final String BLACK_COLOR = "black";
 
-    String color;
+    private Color color;
+
+    private PawnRepresentation representation;
+
+    public enum Color {
+        WHITE, BLACK
+    }
+
+    public enum PawnRepresentation{
+        P, p
+    }
 
     public Pawn() {
-        this.color = WHITE_COLOR;
+        this.color = Color.WHITE;
+        this.representation = PawnRepresentation.p;
     }
 
-    public Pawn(String color) {
-        this.color = color;
+    public Pawn(final Color color) {
+        if(color == Color.BLACK){
+            this.color = Color.BLACK;
+            this.representation = PawnRepresentation.P;
+        }else {
+            new Pawn();
+        }
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
+    }
+
+    public PawnRepresentation getRepresentation(){
+        return representation;
     }
 
 

@@ -1,5 +1,6 @@
 package chess;
 
+import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
 import pieces.Pawn;
 
 import java.util.ArrayList;
@@ -12,21 +13,6 @@ public class Board {
     private static final String NEW_LINE = System.lineSeparator();
     private static final String EMPTY = "........" + NEW_LINE;
 
-    public void addWhitePawn(Pawn pawn) {
-        whitePawns.add(pawn);
-    }
-
-    public void addBlackPawn(Pawn pawn) {
-        blackPawns.add(pawn);
-    }
-
-    public Pawn findWhitePawn(int index) {
-        return whitePawns.get(index);
-    }
-
-    public Pawn findBlackPawn(int index) {
-        return blackPawns.get(index);
-    }
 
     public void initialize() {
         for (int i = 0; i < BOARD_SIZE; i++) {
@@ -35,9 +21,12 @@ public class Board {
         }
     }
 
-    public void printBoard() {
-        StringBuilder result = new StringBuilder();
+    public void addWhitePawn(Pawn pawn) {
+        whitePawns.add(pawn);
+    }
 
+    public void addBlackPawn(Pawn pawn) {
+        blackPawns.add(pawn);
     }
 
     public String getWhitePawnsResult() {
@@ -48,14 +37,38 @@ public class Board {
         return getPawnsResult(blackPawns);
     }
 
-    public int size() {
-        return blackPawns.size() + whitePawns.size();
-    }
-
     private String getPawnsResult(List<Pawn> pawns) {
         StringBuilder pawnsResult = new StringBuilder();
         for (Pawn pawn : pawns)
             pawnsResult.append(pawn.getRepresentation());
         return pawnsResult.toString();
+    }
+
+    public Pawn findWhitePawn(int index) {
+        return whitePawns.get(index);
+    }
+
+    public Pawn findBlackPawn(int index) {
+        return blackPawns.get(index);
+    }
+
+    public int size() {
+        return blackPawns.size() + whitePawns.size();
+    }
+
+    public void printBoard() {
+        StringBuilder result = new StringBuilder();
+        result.append(EMPTY)
+                .append(getWhitePawnsResult())
+                .append(NEW_LINE)
+                .append(EMPTY)
+                .append(EMPTY)
+                .append(EMPTY)
+                .append(EMPTY)
+                .append(getBlackPawnsResult())
+                .append(NEW_LINE)
+                .append(EMPTY);
+
+        System.out.println(result);
     }
 }

@@ -49,11 +49,7 @@ public class Board {
         }
     }
 
-    public void print() {
-        System.out.println(getResultOfAllRows());
-    }
-
-    public String getResultOfAllRows() {
+    public String getRepresentationOfBoard() {
         StringBuilder sb = new StringBuilder();
         for (int i = LENGTH_OF_BOARD - 1; i >= 0; i--) {
             sb.append(getResultOfRow(i));

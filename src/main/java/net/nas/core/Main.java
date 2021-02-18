@@ -8,7 +8,8 @@ public class Main {
     private static final String START = "START";
     private static final String END = "END";
 
-    private Board board;
+    private final Board board;
+    private boolean isStarted = false;
 
     public Main() {
         board = new Board();
@@ -29,21 +30,29 @@ public class Main {
                     mainOfGame.endGame();
                     isTerminated = true;
                     break;
-                default:
-                    isTerminated = true;
             }
+            mainOfGame.print();
             if (!isTerminated)
                 System.out.print("> ");
         }
     }
 
     public void startGame() {
-        System.out.println("게임을 시작합니다\n");
+        if (isStarted)
+            return;
+        System.out.println("게임을 시작합니다");
         board.initialize();
-        board.print();
+        isStarted = true;
+    }
+
+    public void print() {
+        System.out.println(board.getRepresentationOfBoard());
     }
 
     public void endGame() {
+        if (!isStarted)
+            return;
         System.out.println("게임을 종료합니다");
+        isStarted = false;
     }
 }

@@ -89,7 +89,7 @@ public class BoardTest {
     @DisplayName("체스보드에서 폰만 초기화하고 나서, 적절한 결과를 획득할 수 있어야 합니다")
     void testPrintBoard() {
         board.initialize();
-        assertThat(board.getResultOfAllRows()).isEqualTo(INITIAL_STATE_OF_BOARD);
+        assertThat(board.getRepresentationOfBoard()).isEqualTo(INITIAL_STATE_OF_BOARD);
     }
 
 }

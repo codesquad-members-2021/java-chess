@@ -10,10 +10,8 @@ public abstract class Piece {
 
     public Piece(Color color){
         this.color = color;
-        this.representation = getRepresentation(color);
+//        this.representation = getRepresentation(color);
     }
-
-    abstract char getRepresentation(Color color);
 
     //Board 출력을 위한 문자 반환
     public char getRepresentation(){

@@ -13,7 +13,7 @@ public class Main {
         System.out.println(" start   |   end");
         System.out.print("> ");
 
-        try (Scanner scanner = new Scanner(System.in)){
+        try (Scanner scanner = new Scanner(System.in)) {
             String command = scanner.nextLine();
 
             while (!command.equals("end")) {
@@ -27,7 +27,7 @@ public class Main {
 
             System.out.println("게임이 종료되었습니다.");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

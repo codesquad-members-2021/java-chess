@@ -24,5 +24,13 @@ public class Board {
     public void initialize() {
 
     }
+
+    public Object getWhitePawnsResult() {
+        return null;
+    }
+
+    public Object getBlackPawnsResult() {
+        return null;
+    }
 }
 

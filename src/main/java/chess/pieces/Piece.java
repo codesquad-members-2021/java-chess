@@ -1,16 +1,18 @@
 package chess.pieces;
 
-public class Pawn {
+public class Piece {
     private final Color color;
+    private final String pieceName;
 
-    Pawn() {
+    public Piece(String pieceName) {
+        this.pieceName = pieceName;
         this.color = Color.WHITE;
     }
 
-    public Pawn(Color color) {
+    public Piece(Color color, String pieceName) {
         this.color = color;
+        this.pieceName = pieceName;
     }
-
 
     public String getColorName() {
         return color.getColorName();

@@ -1,7 +1,7 @@
 package chess;
 
 import chess.pieces.Color;
-import chess.pieces.Pawn;
+import chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,8 @@ class BoardTest {
     @Test
     @DisplayName("폰이 제대로 체스판 내에 추가 되었는지 확인한다.")
     void checkPawnInTheBoard() {
-        board.addWhitePawn(new Pawn(Color.WHITE));
-        board.addBlackPawn(new Pawn(Color.BLACK));
+        board.addWhitePawn(new Piece(Color.WHITE));
+        board.addBlackPawn(new Piece(Color.BLACK));
 
         assertAll(
                 () -> assertThat(board.whitePawnSize()).isEqualTo(1),

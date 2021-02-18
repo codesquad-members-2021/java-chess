@@ -8,6 +8,7 @@ import java.util.List;
 public class Board {
     private List<Pawn> whitePawns = new ArrayList<>();
     private List<Pawn> blackPawns = new ArrayList<>();
+    private int BOARD_SIZE = 8;
 
     public void addWhitePawn(Pawn pawn){
         whitePawns.add(pawn);
@@ -26,7 +27,7 @@ public class Board {
     }
 
     public void initialize(){
-        for(int i =0; i<8; i++){
+        for(int i =0; i<BOARD_SIZE; i++){
             whitePawns.add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
             blackPawns.add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
         }

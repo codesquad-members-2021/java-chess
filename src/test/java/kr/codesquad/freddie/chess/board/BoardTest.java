@@ -95,7 +95,7 @@ class BoardTest {
 
     @Test
     void getRepresentation_init_board() {
-        String representation = new Board().initialize().getRepresentation();
+        String representation = board.initialize().getRepresentation();
 
         String expected = new StringBuilder()
                 .append("........").append(System.lineSeparator())
@@ -113,7 +113,7 @@ class BoardTest {
 
     @Test
     void getRepresentation_not_init_board() {
-        String representation = new Board().getRepresentation();
+        String representation = board.getRepresentation();
 
         String expected = new StringBuilder()
                 .append("........").append(System.lineSeparator())

@@ -76,14 +76,6 @@ public class Board {
         return this;
     }
 
-    public String getWhitePiecesResult() {
-        return getWhiteFile().getRepresentation();
-    }
-
-    public String getBlackPiecesResult() {
-        return getBlackFile().getRepresentation();
-    }
-
     private File getWhiteFile() {
         return files.get(6);
     }

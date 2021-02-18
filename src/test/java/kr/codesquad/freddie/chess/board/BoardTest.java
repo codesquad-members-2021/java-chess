@@ -3,6 +3,7 @@ package kr.codesquad.freddie.chess.board;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
+import kr.codesquad.freddie.chess.piece.PieceFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -86,11 +87,38 @@ class BoardTest {
     @Test
     void initialize() {
         board.initialize();
+        checkInitializeRoyal(Color.BLACK);
+        checkInitializeRoyal(Color.WHITE);
+        checkInitializePawn(Color.BLACK);
+        checkInitializePawn(Color.WHITE);
+    }
 
-        assertAll(
-                () -> assertThat(board.getWhitePiecesResult()).isEqualTo("pppppppp"),
-                () -> assertThat(board.getBlackPiecesResult()).isEqualTo("PPPPPPPP")
-        );
+    private void checkInitializeRoyal(Color color) {
+        int rank = color == Color.BLACK ? 8 : 1;
+        PieceFactory pieceFactory = new PieceFactory(color);
+
+        assertThat(board.findPiece('a', rank)).isEqualTo(pieceFactory.createRook());
+        assertThat(board.findPiece('b', rank)).isEqualTo(pieceFactory.createKnight());
+        assertThat(board.findPiece('c', rank)).isEqualTo(pieceFactory.createBishop());
+        assertThat(board.findPiece('d', rank)).isEqualTo(pieceFactory.createQueen());
+        assertThat(board.findPiece('e', rank)).isEqualTo(pieceFactory.createKing());
+        assertThat(board.findPiece('f', rank)).isEqualTo(pieceFactory.createBishop());
+        assertThat(board.findPiece('g', rank)).isEqualTo(pieceFactory.createKnight());
+        assertThat(board.findPiece('h', rank)).isEqualTo(pieceFactory.createRook());
+    }
+
+    private void checkInitializePawn(Color color) {
+        int rank = color == Color.BLACK ? 7 : 2;
+        Piece pawn = new Piece(color, Kind.PAWN);
+
+        assertThat(board.findPiece('a', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('b', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('c', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('d', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('e', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('f', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('g', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('h', rank)).isEqualTo(pawn);
     }
 
     @Test

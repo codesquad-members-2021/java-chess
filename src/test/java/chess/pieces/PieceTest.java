@@ -6,26 +6,26 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-class PawnTest {
+class PieceTest {
 
     @Test
     @DisplayName("하얀색 폰은 p를 출력해야한다.")
     void verifyWhitePawnRepresentation() {
-        Pawn pawn = new Pawn(Color.WHITE);
-        verifyPawn(pawn, Color.WHITE);
+        Piece piece = new Piece(Color.WHITE);
+        verifyPawn(piece, Color.WHITE);
     }
 
     @Test
     @DisplayName("검은색 폰은 P를 출력해야한다.")
     void verifyBlackPawnRepresentation() {
-        Pawn pawn = new Pawn(Color.BLACK);
-        verifyPawn(pawn, Color.BLACK);
+        Piece piece = new Piece(Color.BLACK);
+        verifyPawn(piece, Color.BLACK);
     }
 
-    private void verifyPawn(Pawn pawn, Color color) {
+    private void verifyPawn(Piece piece, Color color) {
         assertAll(
-                () -> assertThat(pawn.getColorName()).isEqualTo(color.getColorName()),
-                () -> assertThat(pawn.getRepresentation()).isEqualTo(color.getRepresentation())
+                () -> assertThat(piece.getColorName()).isEqualTo(color.getColorName()),
+                () -> assertThat(piece.getRepresentation()).isEqualTo(color.getRepresentation())
         );
     }
 

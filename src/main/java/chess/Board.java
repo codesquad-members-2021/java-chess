@@ -52,4 +52,11 @@ public class Board {
     public int size(){
         return blackPawns.size()+ whitePawns.size();
     }
+
+    private String getPawnsResult(List<Pawn> pawns){
+        StringBuilder pawnsResult = new StringBuilder();
+        for(Pawn pawn : pawns)
+            pawnsResult.append(pawn.getRepresentation());
+        return pawnsResult.toString();
+    }
 }

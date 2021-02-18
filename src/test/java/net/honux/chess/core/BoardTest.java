@@ -65,7 +65,7 @@ class BoardTest {
                 "********\n" +
                 "********\n" +
                 "pppppppp\n" +
-                "********";
+                "********\n";
         assertThat(board.getBoardStatusToString()).isEqualTo(expectedMessage);
         // TestCode 에서 출력 해달라는 요구사항 을 만족시키기 위해 작성
         System.out.println(board.getBoardStatusToString());

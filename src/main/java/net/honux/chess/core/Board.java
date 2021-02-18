@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static net.honux.chess.util.StringUtils.appendNewLine;
+import static net.honux.chess.util.StringUtils.convertString;
+
 public class Board {
 
     private static final int BOARD_SIZE = 8;
@@ -70,15 +73,14 @@ public class Board {
     }
 
     public String getBoardStatusToString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(BLANK).append("\n");
-        sb.append(getBlackPawnsResult()).append("\n");
+        appendNewLine(BLANK);
+        appendNewLine(getBlackPawnsResult());
         for (int i = 0; i < initialSpaceInterval; i++) {
-            sb.append(BLANK).append("\n");
+            appendNewLine(BLANK);
         }
-        sb.append(getWhitePawnsResult()).append("\n");
-        sb.append(BLANK);
-        return sb.toString();
+        appendNewLine(getWhitePawnsResult());
+        appendNewLine(BLANK);
+        return convertString();
     }
 
     public void print() {

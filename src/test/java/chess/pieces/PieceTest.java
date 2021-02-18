@@ -36,12 +36,12 @@ public class PieceTest {
     void check_color() {
         Piece whitePawn = Piece.createWhitePawn();
 
-        assertThat(whitePawn.isWhite()).isEqualTo(true);
-        assertThat(whitePawn.isBlack()).isEqualTo(false);
+        assertThat(whitePawn.isWhite()).isTrue();
+        assertThat(whitePawn.isBlack()).isFalse();
 
         Piece blackKing = Piece.createBlackKing();
 
-        assertThat(blackKing.isBlack()).isEqualTo(true);
-        assertThat(blackKing.isWhite()).isEqualTo(false);
+        assertThat(blackKing.isBlack()).isTrue();
+        assertThat(blackKing.isWhite()).isFalse();
     }
 }

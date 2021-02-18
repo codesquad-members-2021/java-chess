@@ -15,15 +15,16 @@ public class BoardTest {
     private Pawn blackPawn;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         board = new Board();
         whitePawn = new Pawn(Color.WHITE);
         blackPawn = new Pawn(Color.BLACK);
 
     }
+
     @Test
     @DisplayName("보드를 생성하고 흰색 검은색 폰을 추가한 후 size, findPawn 메서드 검증한다.")
-    void createBoardAddPawns() throws Exception{
+    void createBoardAddPawns() throws Exception {
 
         assertAll(
                 () -> {
@@ -44,7 +45,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("initialize()는 Board에 흑백 폰을 8개씩 더한 후 getPawnsResult는 대표알파벳을 합쳐 리턴한다.")
-    void initializeToAddPawnsToBoard(){
+    void initializeToAddPawnsToBoard() {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
@@ -52,10 +53,21 @@ public class BoardTest {
 
     @Test
     @DisplayName("print()는 initialize된 보드를 출력한다.")
-    void checkPrint(){
+    void checkPrint() {
         board.initialize();
         System.out.print(board.print());
-        String expectedLayout = "********\nPPPPPPPP\n********\n********\n********\n********\npppppppp\n********";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("********").append(System.getProperty("line.separator"))
+                .append("PPPPPPPP").append(System.getProperty("line.separator"))
+                .append("********").append(System.getProperty("line.separator"))
+                .append("********").append(System.getProperty("line.separator"))
+                .append("********").append(System.getProperty("line.separator"))
+                .append("********").append(System.getProperty("line.separator"))
+                .append("pppppppp").append(System.getProperty("line.separator"))
+                .append("********");
+        String expectedLayout = sb.toString();
+
         assertThat(board.print()).isEqualTo(expectedLayout);
     }
 
@@ -67,7 +79,7 @@ public class BoardTest {
         assertAll(
                 () -> assertThat(board.whitePawnListSize()).isEqualTo(0),
                 () -> assertThat(board.blackPawnListSize()).isEqualTo(0)
-                );
+        );
 
     }
 }

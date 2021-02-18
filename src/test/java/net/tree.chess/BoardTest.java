@@ -31,7 +31,23 @@ public class BoardTest {
     @Test
     public void checkPawnList() throws Exception {
         Board board = new Board();
-        assertTrue(board.pawnList.add("7"));
+        //assertTrue(board.pawnList.add("7"));
         assertTrue(board.pawnList.add(new Pawn()));
+    }
+
+    @DisplayName("보드 초기화 및 그리기")
+    @Test
+    public void initializeBoardAndPrint() throws Exception {
+        Board board = new Board();
+        board.initialize();
+        board.print();
+    }
+
+    @Test
+    public void initialize() throws Exception {
+        Board board = new Board();
+        board.initialize();
+        assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
+        assertEquals("PPPPPPPP", board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
     }
 }

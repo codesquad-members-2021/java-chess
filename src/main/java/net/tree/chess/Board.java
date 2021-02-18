@@ -8,6 +8,8 @@ import java.util.List;
 public class Board {
 
     List<Pawn> pawnList = new ArrayList<>();
+    final int BOARD_SIZE = 8;
+    String blankDot = "........\n";
 
     public void add(Pawn pawnColor) {
         pawnList.add(pawnColor);
@@ -22,5 +24,42 @@ public class Board {
         Pawn pawn = pawnList.get(i);
 
         return pawn;
+    }
+
+    public List<Pawn> initialize() {
+        for(int i = 0 ; i < BOARD_SIZE ; i++) {
+            add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+            add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+        }
+        return pawnList;
+    }
+
+    public String getPawnsResult(char representation) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0 ; i < pawnList.size() ; i++) {
+            if(pawnList.get(i).getRepresentation() == representation) {
+                sb.append(representation);
+            }
+        }
+        return sb.toString();
+    }
+
+    public String saveStringBuilder() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(blankDot);
+        sb.append(getPawnsResult(Pawn.BLACK_REPRESENTATION) + "\n");
+        sb.append(blankDot);
+        sb.append(blankDot);
+        sb.append(blankDot);
+        sb.append(blankDot);
+        sb.append(getPawnsResult(Pawn.WHITE_REPRESENTATION) + "\n");
+        sb.append(blankDot);
+
+        return sb.toString();
+    }
+
+    public void print() {
+        System.out.println(saveStringBuilder());
     }
 }

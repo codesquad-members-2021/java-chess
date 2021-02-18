@@ -23,7 +23,6 @@ public class Board {
     public Pawn findPawn(int listIndex) {
 
         Pawn pawn = pawnList.get(listIndex);
-
         return pawn;
     }
 

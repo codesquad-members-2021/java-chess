@@ -4,7 +4,6 @@ package net.tree.pieces;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -25,11 +24,5 @@ public class PawnTest {
         assertEquals(representation, pawn.getRepresentation());
         assertThat(color ,equalTo(pawn.getColor()));
     }
-
-    @Test
-    @DisplayName("기본생성자 만들기")
-    public void create_기본생성자() {
-        Pawn pawn = new Pawn();
-        assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
-    }
+    
 }

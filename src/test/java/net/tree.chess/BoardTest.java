@@ -1,11 +1,11 @@
 package net.tree.chess;
 
 import net.tree.pieces.Pawn;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class BoardTest {
@@ -51,7 +51,15 @@ public class BoardTest {
     @Test
     public void checkPawnList() {
         Board board = new Board();
-        assertTrue(board.pawnList.add(new Pawn()));
-    }
+        Pawn white = new Pawn(Pawn.WHITE_COLOR);
+        board.add(white);
+        assertEquals(1, board.checkPawnSize());
+        assertEquals(white, board.findPawn(0));
 
+        Pawn black = new Pawn(Pawn.BLACK_COLOR);
+        board.add(black);
+        assertEquals(2, board.checkPawnSize());
+        assertEquals(black, board.findPawn(1));
+
+    }
 }

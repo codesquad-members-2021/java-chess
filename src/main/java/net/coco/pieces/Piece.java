@@ -9,6 +9,15 @@ public class Piece {
         this.representation = representation;
     }
 
+    public static Piece createWhitePawn(){
+        return new Piece(Color.WHITE
+                ,Representation.WHITE_PAWN.getRepresentation());
+    }
+    public static Piece createBlackPawn(){
+        return new Piece(Color.BLACK
+                ,Representation.BLACK_PAWN.getRepresentation());
+    }
+
 
 
     public Color getColor() {

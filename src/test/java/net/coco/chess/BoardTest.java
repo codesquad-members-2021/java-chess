@@ -51,12 +51,11 @@ public class BoardTest {
     }
 
     private void verifyPawnToPawns(Color color, int findPawnIndex) {
-        Piece piece = new Piece(color);
 
         if (color == Color.WHITE)
-            verifyWhitePawnsIndex(piece, findPawnIndex);
+            verifyWhitePawnsIndex(Piece.createWhitePawn(), findPawnIndex);
         else
-            verifyBlackPawnsIndex(piece, findPawnIndex);
+            verifyBlackPawnsIndex(Piece.createBlackPawn(), findPawnIndex);
 
     }
 

@@ -38,8 +38,8 @@ public class Board {
         whitePawns.clear();
         blackPawns.clear();
         for (int i = 0; i < BOARD_CELLS; i++) {
-            addPawn(new Piece());
-            addPawn(new Piece(Color.BLACK));
+            addPawn(Piece.createWhitePawn());
+            addPawn(Piece.createBlackPawn());
         }
     }
 

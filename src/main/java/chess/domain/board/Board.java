@@ -28,19 +28,18 @@ public class Board {
     }
 
     private void addEmptyRow(int rowId) {
-        for (int i = 'a'; i <= 'h'; i++) {
-            char columnId = (char) i;
-            squares.put(new Position(columnId, rowId), EmptyPiece.getInstance());
+        for (char columnId = 'a'; columnId <= 'h'; columnId++) {
+            squares.put(Position.of(columnId, rowId), EmptyPiece.getInstance());
         }
     }
 
     private void addPawnRow(int rowId, Color color) {
-        for (int i = 'a'; i <= 'h'; i++) {
-            char columnId = (char) i;
-            squares.put(new Position(columnId, rowId), new Pawn(color));
+        for (char columnId = 'a'; columnId <= 'h'; columnId++) {
+            squares.put(Position.of(columnId, rowId), new Pawn(color));
         }
     }
 
+    // TODO: 다음 미션에서 고급 말들이 추가되도록 구현해야한다.
     private void addRoyalRow(int rowId, Color color) {
         addEmptyRow(rowId);
     }
@@ -56,16 +55,22 @@ public class Board {
                 .collect(toList());
     }
 
+    // FIXME: 매우 끔찍한 함수. 미션3의 요구사항 때문에 임시로 만들었지만, 체스게임에서 사용 안할 함수이므로 삭제해야한다.
     public String getWhitePawnsResult() {
         StringBuilder sb = new StringBuilder();
-        getPieces().subList(48, 56)
+        int start = 48;
+        int end = 56;
+        getPieces().subList(start, end)
                 .forEach(sb::append);
         return sb.toString();
     }
 
+    // FIXME: 매우 끔찍한 함수. 미션3의 요구사항 때문에 임시로 만들었지만, 체스게임에서 사용 안할 함수이므로 삭제해야한다.
     public String getBlackPawnsResult() {
         StringBuilder sb = new StringBuilder();
-        getPieces().subList(8, 16)
+        int start = 8;
+        int end = 16;
+        getPieces().subList(start, end)
                 .forEach(sb::append);
         return sb.toString();
     }

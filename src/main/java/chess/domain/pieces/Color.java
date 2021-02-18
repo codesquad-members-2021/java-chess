@@ -3,8 +3,8 @@ package chess.domain.pieces;
 import java.util.function.Function;
 
 public enum Color {
-    WHITE(representation -> representation.toLowerCase()),
-    BLACK(representation -> representation.toUpperCase());
+    WHITE(icon -> icon.toLowerCase()),
+    BLACK(icon -> icon.toUpperCase());
 
     private final Function<String, String> representationStrategy;
 

@@ -8,15 +8,20 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 =======
 import org.junit.Test;
-import org.junit.jupiter.api.DisplayName;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+<<<<<<< HEAD
 import static org.junit.Assert.*;
 >>>>>>> feat : Do Mission2
+=======
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+>>>>>>> feat : Do Mission3
 
 public class PawnTest {
 
     @Test
+<<<<<<< HEAD
 <<<<<<< HEAD
     @DisplayName("흰색, 검정색 pawn이 생성되어야 한다")
     public void create() {
@@ -28,11 +33,24 @@ public class PawnTest {
         verifyPawn("white");
         verifyPawn("black");
 >>>>>>> feat : Do Mission2
+=======
+    public void create_기본생성자() throws Exception {
+        Pawn pawn = new Pawn();
+        assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
+        assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getRepresentation());
     }
 
-    void verifyPawn(final String color) {
-        Pawn pawn = new Pawn(color);
+    @Test
+    public void create() {
+        verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        verifyPawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+>>>>>>> feat : Do Mission3
+    }
+
+    void verifyPawn(final String color, final  char representation) {
+        Pawn pawn = new Pawn(color, representation);
         assertEquals(color, pawn.getColor());
+<<<<<<< HEAD
 <<<<<<< HEAD
 
     }
@@ -52,4 +70,10 @@ public class PawnTest {
         assertEquals("white", pawn.getColor());
 >>>>>>> feat : Do Mission2
     }
+=======
+        assertEquals(representation, pawn.getRepresentation());
+        assertThat(color ,equalTo(pawn.getColor()));
+    }
+
+>>>>>>> feat : Do Mission3
 }

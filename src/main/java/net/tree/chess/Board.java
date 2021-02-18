@@ -9,6 +9,7 @@ import static net.utils.StringUtils.appendNewLine;
 
 public class Board {
 
+<<<<<<< HEAD
     private List<Piece> whitePieceList = new ArrayList<>();
     private List<Piece> blackPieceList = new ArrayList<>();
     private final int BOARD_SIZE = 8;
@@ -18,6 +19,11 @@ public class Board {
         initializeWhitePieces();
         initializeBlackPieces();
     }
+=======
+    List<Pawn> pawnList = new ArrayList<>();
+    final int BOARD_SIZE = 8;
+    String blankDot = "........\n";
+>>>>>>> a101753... feat : Do Mission3
 
     public void initializeWhitePieces() {
         whitePieceList.add(Piece.createWhiteRook());
@@ -114,5 +120,44 @@ public class Board {
         return sb.toString();
     }
 
+<<<<<<< HEAD
 
+=======
+    public List<Pawn> initialize() {
+        for(int i = 0 ; i < BOARD_SIZE ; i++) {
+            add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+            add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+        }
+        return pawnList;
+    }
+
+    public String getPawnsResult(char representation) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0 ; i < pawnList.size() ; i++) {
+            if(pawnList.get(i).getRepresentation() == representation) {
+                sb.append(representation);
+            }
+        }
+        return sb.toString();
+    }
+
+    public String saveStringBuilder() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(blankDot);
+        sb.append(getPawnsResult(Pawn.BLACK_REPRESENTATION) + "\n");
+        sb.append(blankDot);
+        sb.append(blankDot);
+        sb.append(blankDot);
+        sb.append(blankDot);
+        sb.append(getPawnsResult(Pawn.WHITE_REPRESENTATION) + "\n");
+        sb.append(blankDot);
+
+        return sb.toString();
+    }
+
+    public void print() {
+        System.out.println(saveStringBuilder());
+    }
+>>>>>>> a101753... feat : Do Mission3
 }

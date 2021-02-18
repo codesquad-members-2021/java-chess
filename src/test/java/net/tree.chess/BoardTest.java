@@ -97,12 +97,17 @@ class BoardTest {
     @Test
     public void checkPawnList() throws Exception {
         Board board = new Board();
+<<<<<<< HEAD
         assertTrue(board.pawnList.add("7"));
 >>>>>>> feat : Do Mission2
+=======
+        //assertTrue(board.pawnList.add("7"));
+>>>>>>> feat : Do Mission3
         assertTrue(board.pawnList.add(new Pawn()));
 >>>>>>> 3c74074... feat : Do Mission2
     }
 
+<<<<<<< HEAD
     //개행 추가시키는 메소드
     private String appendNewLine(String s) {
         StringBuilder sb = new StringBuilder();
@@ -112,4 +117,21 @@ class BoardTest {
     }
 
 
+=======
+    @DisplayName("보드 초기화 및 그리기")
+    @Test
+    public void initializeBoardAndPrint() throws Exception {
+        Board board = new Board();
+        board.initialize();
+        board.print();
+    }
+
+    @Test
+    public void initialize() throws Exception {
+        Board board = new Board();
+        board.initialize();
+        assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
+        assertEquals("PPPPPPPP", board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
+    }
+>>>>>>> a101753... feat : Do Mission3
 }

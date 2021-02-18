@@ -34,8 +34,9 @@ public class Board {
             blackOtherPieces.add(piece);
     }
 
-    public int getPawnsSize() {
-        return whitePawns.size() + blackPawns.size();
+    public int getPiecesSize() {
+        return whitePawns.size() + blackPawns.size()
+                +whiteOtherPieces.size()+blackOtherPieces.size();
     }
 
     public Piece findWhitePawn(int index) {

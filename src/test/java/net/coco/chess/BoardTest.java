@@ -69,7 +69,7 @@ public class BoardTest {
     }
 
     private void verifyPawnsSize(int actualSize) {
-        assertThat(actualSize).isEqualTo(board.getPawnsSize());
+        assertThat(actualSize).isEqualTo(board.getPiecesSize());
     }
 
 

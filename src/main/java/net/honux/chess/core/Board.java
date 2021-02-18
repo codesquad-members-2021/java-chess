@@ -5,12 +5,11 @@ import net.honux.chess.entity.pieces.Piece;
 import net.honux.chess.util.PieceList;
 import net.honux.chess.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-import static net.honux.chess.util.StringUtils.*;
 import static net.honux.chess.entity.pieces.Piece.*;
+import static net.honux.chess.util.StringUtils.appendNewLine;
+import static net.honux.chess.util.StringUtils.convertString;
 
 public class Board {
 
@@ -59,19 +58,19 @@ public class Board {
     }
 
     public String getWhitePawnsResult() {
-        return whitePieceList.getStringPiecesList(0,7);
+        return whitePieceList.getStringPiecesList(0, 7);
     }
 
     public String getBlackPawnsResult() {
-        return blackPieceList.getStringPiecesList(8,15);
+        return blackPieceList.getStringPiecesList(8, 15);
     }
 
     public String getBlackPiecesExceptPawns() {
-        return blackPieceList.getStringPiecesList(0,7);
+        return blackPieceList.getStringPiecesList(0, 7);
     }
 
     public String getWhitePiecesExceptPawns() {
-        return whitePieceList.getStringPiecesList(8,15);
+        return whitePieceList.getStringPiecesList(8, 15);
     }
 
     public String getBoardStatusToString() {
@@ -92,7 +91,7 @@ public class Board {
 
     private void addPiecesToBoardSize() {
         setBlackPiecesExceptPawns();
-        for(int i = 0; i < BOARD_SIZE; i++){
+        for (int i = 0; i < BOARD_SIZE; i++) {
             blackPieceList.add(createBlackPawn());
             whitePieceList.add(createWhitePawn());
         }

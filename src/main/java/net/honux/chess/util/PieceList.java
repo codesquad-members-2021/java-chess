@@ -2,19 +2,20 @@ package net.honux.chess.util;
 
 import net.honux.chess.entity.pieces.Piece;
 
-import java.util.*;
-import java.util.function.Consumer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class PieceList{
+public class PieceList {
 
-    private List<Piece> pieceList = new ArrayList<>();
+    private final List<Piece> pieceList = new ArrayList<>();
 
-    public PieceList add(Piece piece){
+    public PieceList add(Piece piece) {
         pieceList.add(piece);
         return this;
     }
 
-    public int size(){
+    public int size() {
         return pieceList.size();
     }
 
@@ -28,7 +29,7 @@ public class PieceList{
 
     public String getStringPiecesList(int startIndex, int endIndex) {
         StringBuilder sb = new StringBuilder();
-        for(int i = startIndex; i <= endIndex; i++){
+        for (int i = startIndex; i <= endIndex; i++) {
             sb.append(pieceList.get(i).getRepresentation());
         }
         return sb.toString();

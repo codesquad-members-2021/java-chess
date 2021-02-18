@@ -8,7 +8,7 @@ public class StringUtils {
     private StringUtils() {
     }
 
-    public static StringBuilder append(String s){
+    public static StringBuilder append(String s) {
         return sb.append(s);
     }
 

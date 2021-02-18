@@ -61,13 +61,6 @@ public class Board {
         return files.get(RANK_SIZE - rankIndex).get(fileIndex);
     }
 
-    @Override
-    public String toString() {
-        return "Board{" + System.lineSeparator() +
-                "files=" + System.lineSeparator() + files +
-                '}';
-    }
-
     public Board initialize() {
         initializeBy(Color.BLACK);
         initializeBy(Color.WHITE);
@@ -83,5 +76,12 @@ public class Board {
         return files.stream()
                 .map(File::getRepresentation)
                 .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    @Override
+    public String toString() {
+        return "Board{" + System.lineSeparator() +
+                "files=" + System.lineSeparator() + files +
+                '}';
     }
 }

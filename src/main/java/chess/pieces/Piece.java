@@ -85,7 +85,7 @@ public class Piece {
         if (color == Color.BLACK) {
             return representation.toUpperCase();
         }
-        return representation.toLowerCase();
+        return representation;
     }
 
     public boolean isWhite() {

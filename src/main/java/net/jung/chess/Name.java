@@ -2,7 +2,7 @@ package net.jung.chess;
 
 public enum Name{
     PAWN('p', 'P'),
-    KNIGHT('k', 'K'),
+    KNIGHT('n', 'N'),
     ROOK('r', 'R'),
     BISHOP('b', 'B'),
     QUEEN('q', 'Q'),

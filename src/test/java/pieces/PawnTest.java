@@ -3,16 +3,17 @@ package pieces;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PawnTest {
 
     @Test
-    @DisplayName("색을 지정하지 않은 Pawn 클래스 생성")
+    @DisplayName("색을 지정하지 않은 Pawn(흰색이 기본값) 클래스 생성")
     void create() {
         Pawn pawn = new Pawn();
-        assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
-        assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getRepresentation());
+        assertThat(pawn.getColor()).isEqualTo(Pawn.WHITE_COLOR);
+        assertThat(pawn.getRepresentation()).isEqualTo(Pawn.WHITE_REPRESENTATION);
     }
 
     @Test
@@ -25,8 +26,8 @@ class PawnTest {
     void verifyPawn(final String color, final char representation) {
         Pawn pawn = new Pawn(color,representation);
         assertAll(
-                ()->assertEquals(pawn.getColor(), color),
-                ()->assertEquals(representation, pawn.getRepresentation())
+                ()->assertThat(pawn.getColor()).isEqualTo(color),
+                ()->assertThat(pawn.getRepresentation()).isEqualTo(representation)
         );
     }
 }

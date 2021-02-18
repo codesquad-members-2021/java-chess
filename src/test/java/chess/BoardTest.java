@@ -5,7 +5,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pieces.Pawn;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+
 
 class BoardTest {
 
@@ -21,14 +23,14 @@ class BoardTest {
     void initialize() {
         board.initialize();
         assertAll(
-                () -> assertEquals("pppppppp", board.getWhitePawnsResult()),
-                () -> assertEquals("PPPPPPPP", board.getBlackPawnsResult())
+                () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
+                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
         );
     }
 
     @Test
     @DisplayName("초기화 했을때 Board출력이 제대로 되는지 확인")
-    void print(){
+    void print() {
         board.initialize();
         System.out.println(board.printBoard());
     }
@@ -38,19 +40,23 @@ class BoardTest {
     void create() {
         Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
         Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
-        verifyAddWhitePawn(white,1);
-        verifyAddBlackPawn(black,2);
+        verifyAddWhitePawn(white, 1);
+        verifyAddBlackPawn(black, 2);
     }
 
     void verifyAddWhitePawn(Pawn whitePawn, int size) {
         board.addWhitePawn(whitePawn);
-        assertEquals(whitePawn, board.findWhitePawn(0));
-        assertEquals(size,board.size());
+        assertAll(
+                () -> assertThat(board.findWhitePawn(0)).isEqualTo(whitePawn),
+                () -> assertThat(board.size()).isEqualTo(size)
+        );
     }
 
-    void verifyAddBlackPawn(Pawn blackPawn, int size){
+    void verifyAddBlackPawn(Pawn blackPawn, int size) {
         board.addBlackPawn(blackPawn);
-        assertEquals(blackPawn, board.findBlackPawn(0));
-        assertEquals(size,board.size());
+        assertAll(
+                () -> assertThat(board.findBlackPawn(0)).isEqualTo(blackPawn),
+                () -> assertThat(board.size()).isEqualTo(size)
+        );
     }
 }

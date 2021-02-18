@@ -9,17 +9,17 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class PieceTest {
     @Test
     void create() {
-        checkPieceKind("pawn", Kind.PAWN);
-        checkPieceKind("knight", Kind.KNIGHT);
-        checkPieceKind("rook", Kind.ROOK);
-        checkPieceKind("bishop", Kind.BISHOP);
-        checkPieceKind("queen", Kind.QUEEN);
-        checkPieceKind("king", Kind.KING);
+        checkPieceKind(Kind.PAWN);
+        checkPieceKind(Kind.KNIGHT);
+        checkPieceKind(Kind.ROOK);
+        checkPieceKind(Kind.BISHOP);
+        checkPieceKind(Kind.QUEEN);
+        checkPieceKind(Kind.KING);
     }
 
-    private void checkPieceKind(String kind, Kind expectedKind) {
-        Piece whitePiece = Piece.create("white", kind);
-        Piece blackPiece = Piece.create("black", kind);
+    private void checkPieceKind(Kind expectedKind) {
+        Piece whitePiece = new Piece(Color.WHITE, expectedKind);
+        Piece blackPiece = new Piece(Color.BLACK, expectedKind);
 
         assertAll(
                 () -> assertThat(whitePiece.getColor()).isEqualTo(Color.WHITE),
@@ -33,18 +33,18 @@ class PieceTest {
     @DisplayName("검정은 대문자 하양은 소문자 반환")
     void getRepresentation() {
         assertAll(
-                () -> assertThat(Piece.create("black", "pawn").getRepresentation()).isEqualTo("P"),
-                () -> assertThat(Piece.create("white", "pawn").getRepresentation()).isEqualTo("p"),
-                () -> assertThat(Piece.create("black", "knight").getRepresentation()).isEqualTo("N"),
-                () -> assertThat(Piece.create("white", "knight").getRepresentation()).isEqualTo("n"),
-                () -> assertThat(Piece.create("black", "rook").getRepresentation()).isEqualTo("R"),
-                () -> assertThat(Piece.create("white", "rook").getRepresentation()).isEqualTo("r"),
-                () -> assertThat(Piece.create("black", "bishop").getRepresentation()).isEqualTo("B"),
-                () -> assertThat(Piece.create("white", "bishop").getRepresentation()).isEqualTo("b"),
-                () -> assertThat(Piece.create("black", "queen").getRepresentation()).isEqualTo("Q"),
-                () -> assertThat(Piece.create("white", "queen").getRepresentation()).isEqualTo("q"),
-                () -> assertThat(Piece.create("black", "king").getRepresentation()).isEqualTo("K"),
-                () -> assertThat(Piece.create("white", "king").getRepresentation()).isEqualTo("k")
+                () -> assertThat(new Piece(Color.BLACK, Kind.PAWN).getRepresentation()).isEqualTo("P"),
+                () -> assertThat(new Piece(Color.WHITE, Kind.PAWN).getRepresentation()).isEqualTo("p"),
+                () -> assertThat(new Piece(Color.BLACK, Kind.KNIGHT).getRepresentation()).isEqualTo("N"),
+                () -> assertThat(new Piece(Color.WHITE, Kind.KNIGHT).getRepresentation()).isEqualTo("n"),
+                () -> assertThat(new Piece(Color.BLACK, Kind.ROOK).getRepresentation()).isEqualTo("R"),
+                () -> assertThat(new Piece(Color.WHITE, Kind.ROOK).getRepresentation()).isEqualTo("r"),
+                () -> assertThat(new Piece(Color.BLACK, Kind.BISHOP).getRepresentation()).isEqualTo("B"),
+                () -> assertThat(new Piece(Color.WHITE, Kind.BISHOP).getRepresentation()).isEqualTo("b"),
+                () -> assertThat(new Piece(Color.BLACK, Kind.QUEEN).getRepresentation()).isEqualTo("Q"),
+                () -> assertThat(new Piece(Color.WHITE, Kind.QUEEN).getRepresentation()).isEqualTo("q"),
+                () -> assertThat(new Piece(Color.BLACK, Kind.KING).getRepresentation()).isEqualTo("K"),
+                () -> assertThat(new Piece(Color.WHITE, Kind.KING).getRepresentation()).isEqualTo("k")
         );
     }
 

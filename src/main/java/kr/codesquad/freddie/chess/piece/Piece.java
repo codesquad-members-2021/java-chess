@@ -11,10 +11,6 @@ public class Piece {
         this.kind = kind;
     }
 
-    public static Piece create(String color, String kind) {
-        return new Piece(Color.valueOf(color.toUpperCase()), Kind.valueOf(kind.toUpperCase()));
-    }
-
     public Color getColor() {
         return color;
     }

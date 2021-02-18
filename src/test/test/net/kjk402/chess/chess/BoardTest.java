@@ -1,6 +1,6 @@
 package net.kjk402.chess.chess;
 
-import net.kjk402.chess.pieces.Pawn;
+import net.kjk402.chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,8 +30,8 @@ class BoardTest {
     @Test
     @DisplayName("addWhitePawn 메서드를 사용하여 검정색 Pawn을 넣어본다.")
     void addBlackPawnInWhitePawnList() {
-        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
-        board.addWhitePawn(blackPawn);
+        Piece blackPiece = new Piece(Piece.BLACK, Piece.BLACK_REPRESENTATION);
+        board.addWhitePawn(blackPiece);
         assertAll(
                 () -> assertEquals(1, board.whiteSize()),
                 () -> assertEquals("black", board.findWhitePawn(0).getColor()),

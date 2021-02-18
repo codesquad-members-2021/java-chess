@@ -4,12 +4,12 @@ public class Piece {
 
     private final Color color;
     private final PieceType pieceType;
-    private final char representation;
+    private final char REPRESENTATION;
 
     private Piece(Color color, PieceType pieceType) {
         this.color = color;
         this.pieceType = pieceType;
-        this.representation = pieceType.getRepresentation(color);
+        this.REPRESENTATION = classifyRepresentation();
     }
 
     public static Piece createPiece(Color color, PieceType pieceType) {
@@ -21,11 +21,19 @@ public class Piece {
     }
 
     public char getRepresentation() {
-        return representation;
+        return REPRESENTATION;
     }
 
     public PieceType getPieceType() {
         return pieceType;
+    }
+
+    private char classifyRepresentation() {
+        char initRepresentation = pieceType.getRepresentation();
+        if (color == Color.BLACK) {
+            return Character.toUpperCase(initRepresentation);
+        }
+        return initRepresentation;
     }
 
 }

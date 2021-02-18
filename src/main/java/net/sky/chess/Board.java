@@ -13,6 +13,7 @@ public class Board {
 
     private List<Piece> whitePieces = new ArrayList<>();
     private List<Piece> blackPieces = new ArrayList<>();
+    private int pieceCount;
 
     public void addWhitePawn(Piece piece) {
         whitePieces.add(piece);
@@ -60,4 +61,8 @@ public class Board {
 
         System.out.println(result);
     }
+
+//    public boolean pieceCount() {
+//        return pieceCount;
+//    }
 }

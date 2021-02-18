@@ -1,21 +1,15 @@
 package net.sky.pieces;
 
 public enum PieceType {
-    PAWN('p', 'P'), KNIGHT('n', 'N'), ROOK('r', 'R'), BISHOP('b', 'B'), QUEEN('q', 'Q'), KING('k',
-        'K');
+    PAWN('p'), KNIGHT('n'), ROOK('r'), BISHOP('b'), QUEEN('q'), KING('k');
 
-    private final char WHITE_REPRESENTATION;
-    private final char BLACK_REPRESENTATION;
+    private final char REPRESENTATION;
 
-    PieceType(char white, char black) {
-        this.WHITE_REPRESENTATION = white;
-        this.BLACK_REPRESENTATION = black;
+    PieceType(char representation) {
+        this.REPRESENTATION = representation;
     }
 
-    public char getRepresentation(Color color) {
-        if (color.equals(Color.WHITE)) {
-            return WHITE_REPRESENTATION;
-        }
-        return BLACK_REPRESENTATION;
+    public char getRepresentation() {
+        return REPRESENTATION;
     }
 }

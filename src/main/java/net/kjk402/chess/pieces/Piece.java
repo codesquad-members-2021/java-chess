@@ -81,4 +81,15 @@ public class Piece {
         return new Piece(BLACK, BLACK_KING_REPRESENTATION);
     }
 
+    public boolean isWhite() {
+        return getColor() == WHITE;
+    }
+
+    public boolean isBlack() {
+        return getColor() == BLACK;
+    }
+
+    public boolean isPawn() {
+        return getRepresentation() == WHITE_PAWN_REPRESENTATION || getRepresentation() == BLACK_PAWN_REPRESENTATION;
+    }
 }

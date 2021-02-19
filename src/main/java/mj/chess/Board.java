@@ -63,10 +63,6 @@ public class Board {
         cellsOfBoard[SEVENTH_ROW] = StringUtils.appendNewLine(getRowOfPawns(Color.WHITE));
     }
 
-    public StringBuilder[] getCellsOfBoard() {
-        return cellsOfBoard;
-    }
-
     public int countPieces() {
         return pieces.size();
     }
@@ -79,9 +75,7 @@ public class Board {
     //TODO: 스트림으로 바꿔보자
     public String showBoard() {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < SIZE_OF_ROW; i++) {
-            result.append(cellsOfBoard[i]);
-        }
+        for (StringBuilder rowOfBoard : cellsOfBoard) result.append(rowOfBoard);
 
         return result.toString();
     }

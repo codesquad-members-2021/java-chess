@@ -20,7 +20,7 @@ public class Piece {
     }
 
     public String getRepresentation() {
-        return color.getRepresentationBy(kind.representation);
+        return color.getRepresentationBy(kind.representation());
     }
 
     public boolean isBlack() {

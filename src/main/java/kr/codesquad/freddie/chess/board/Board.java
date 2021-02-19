@@ -68,8 +68,8 @@ public class Board {
     }
 
     private void initializeBy(Color color) {
-        int royalIndex = convertRankIndexToListIndex(color.royalInitializationRank);
-        int pawnIndex = convertRankIndexToListIndex(color.pawnInitializationRank);
+        int royalIndex = convertRankIndexToListIndex(color.royalInitializationRank());
+        int pawnIndex = convertRankIndexToListIndex(color.pawnInitializationRank());
 
         files.get(royalIndex).fillWithRoyal(color);
         files.get(pawnIndex).fillWithPawn(color);

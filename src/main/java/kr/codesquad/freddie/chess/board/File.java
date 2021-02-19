@@ -60,9 +60,9 @@ public class File {
         return pieces.size();
     }
 
-    public int getPieceNumberBy(Color color) {
+    public int getNumberOf(Color color, Kind kind) {
         return (int) pieces.stream()
-                .filter(piece -> piece.getColor() == color)
+                .filter(piece -> piece.getColor() == color && piece.getKind() == kind)
                 .count();
     }
 

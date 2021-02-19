@@ -104,50 +104,96 @@ class FileTest {
         file.add(blackPieceFactory.createRook());
 
         assertAll(
-                () -> assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(3),
-                () -> assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(1),
-                () -> assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(4)
+                () -> assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(2),
+                () -> assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1),
+                () -> assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(1),
+                () -> assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(4)
         );
     }
 
     @Test
     void getPieceNumberBy_fillWithBlackPawn() {
         file.fillWithPawn(Color.BLACK);
-        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(8);
-        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(0);
-        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(8);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(0);
     }
 
     @Test
     void getPieceNumberBy_fillWithBlackRoyal() {
         file.fillWithRoyal(Color.BLACK);
-        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(8);
-        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(0);
-        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(1);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(0);
+
+        assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(0);
+
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(0);
     }
 
     @Test
     void getPieceNumberBy_fillWithWhitePawn() {
         file.fillWithPawn(Color.WHITE);
-        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(0);
-        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(8);
-        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(8);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(0);
     }
 
     @Test
     void getPieceNumberBy_fillWithWhiteRoyal() {
         file.fillWithRoyal(Color.WHITE);
-        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(0);
-        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(8);
-        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.BISHOP)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(1);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(1);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(0);
+
+        assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(0);
+
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(0);
     }
 
     @Test
     void getPieceNumberBy_fillWithBlank() {
-        file.fillWithRoyal(Color.NOCOLOR);
-        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(0);
-        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(0);
-        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(8);
+        file.fillWithBlank();
+
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(8);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(0);
     }
 
     @Test

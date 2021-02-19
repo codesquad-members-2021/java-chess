@@ -6,6 +6,7 @@ import net.isaac.pieces.Pawn;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static net.isaac.utils.StringUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -21,10 +22,21 @@ class BoardTest {
     @DisplayName("Board의 초기화 테스트")
     void initializeTest() throws Exception {
         board.initialize();
+        String initialBoardRepresentation = getInitialBoardRepresentation();
         assertAll(
-                ()->assertThat(board.getWhitePiecesResult()).isEqualTo("pppppppp"),
-                ()->assertThat(board.getBlackPiecesResult()).isEqualTo("PPPPPPPP")
+                () -> assertThat(board.pieceCount()).isEqualTo(32),
+                () -> assertThat(board.getRepresentation()).isEqualTo(initialBoardRepresentation)
         );
+    }
+
+    String getInitialBoardRepresentation(){
+        String blankRank = appendNewLine("........");
+
+        return appendNewLine("RNBQKBNR") +
+                appendNewLine("PPPPPPPP") +
+                blankRank + blankRank + blankRank + blankRank +
+                appendNewLine("pppppppp") +
+                appendNewLine("rnbqkbnr");
     }
 
     @Test

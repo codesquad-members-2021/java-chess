@@ -16,10 +16,10 @@ public class Board {
     private List<Piece> blackPieces = new ArrayList<>();
 
     public void initialize(){
-        for(int i = 0; i < MAX_SIZE; i++){
-            add(Piece.getPawn(Piece.Color.BLACK),1,i);
-            add(Piece.getPawn(Piece.Color.WHITE), MAX_IDX-1, i);
-        }
+        initializeSpecialPieces(Piece.Color.BLACK,0);
+        initializePawns(Piece.Color.BLACK,1);
+        initializePawns(Piece.Color.WHITE,MAX_IDX-1);
+        initializeSpecialPieces(Piece.Color.WHITE, MAX_IDX);
     }
 
     private void initializeSpecialPieces(Piece.Color color, int row){

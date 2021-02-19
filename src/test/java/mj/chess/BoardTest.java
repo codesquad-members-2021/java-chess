@@ -57,8 +57,9 @@ class BoardTest {
     }
 
     private void verifySizeOfPawns(){
+        final int maxSizeOfPawns = 16;
         board.initialize();
-        assertThat(board.countPawns()).isEqualTo(16);
+        assertThat(board.countPawns()).isEqualTo(maxSizeOfPawns);
     }
 
     @Test

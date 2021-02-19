@@ -18,10 +18,12 @@ class PieceTest {
     };
 
     private void verifyPiece(final Piece piece, Color color, Type type) {
+        char representation = new RepresentationMap().getRepresentation(color, type);
+
         assertAll(
                 () -> verifyColorOfPiece(piece, color),
                 () -> verifyTypeOfPiece(piece, type),
-                () -> verifyRepresentationOfPiece(piece, piece.getRepresentation())
+                () -> verifyRepresentationOfPiece(piece, representation)
         );
     };
 

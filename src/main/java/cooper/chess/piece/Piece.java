@@ -2,16 +2,11 @@ package cooper.chess.piece;
 
 public class Piece {
     private final Color color;
-    private final char representation;
+    private final Type type;
 
-    public Piece(String color) {
-        this.color = Color.of(color);
-        this.representation = this.color.getRepresentation();
-    }
-
-    public Piece() {
-        this.color = Color.WHITE;
-        this.representation = color.getRepresentation();
+    public Piece(Color color, Type type) {
+        this.color = color;
+        this.type = type;
     }
 
     public Color getColor() {
@@ -19,6 +14,6 @@ public class Piece {
     }
 
     public char getRepresentation() {
-        return representation;
+        return type.getRepresentaion();
     }
 }

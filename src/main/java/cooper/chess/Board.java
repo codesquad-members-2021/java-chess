@@ -33,7 +33,7 @@ public class Board {
 
         int pawnCount = 0;
         while(pawnCount++ < PAWN_MAX_SIZE) {
-            pieceList.add(new Piece(color.getColorName()));
+            pieceList.add(new Piece(color, Type.PAWN));
         }
 
         return pieceList;

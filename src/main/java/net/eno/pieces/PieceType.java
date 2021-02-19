@@ -1,6 +1,6 @@
 package net.eno.pieces;
 
-public enum Representation {
+public enum PieceType {
 
     PAWN('p', 'P'),
     KNIGHT('n', 'N'),
@@ -12,12 +12,12 @@ public enum Representation {
     private final char white;
     private final char black;
 
-    Representation(char white, char black) {
+    PieceType(char white, char black) {
         this.white = white;
         this.black = black;
     }
 
-    public char get(Color color) {
+    public char getRepresentation(Color color) {
         return color.toString().equals("WHITE") ? this.white : this.black;
     }
 

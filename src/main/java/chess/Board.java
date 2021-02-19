@@ -16,7 +16,19 @@ public class Board {
     private List<Piece> whitePieces = new ArrayList<>(8);
     private List<Piece> blackPieces = new ArrayList<>(8);
 
-    private List<Piece> distinguish(Piece piece) {
+    public void add(Piece piece) {
+        getPieceList(piece).add(piece);
+    }
+
+    public int size(Piece piece) {
+        return getPieceList(piece).size();
+    }
+
+    public Piece findPiece(Piece piece, int idx) {
+        return getPieceList(piece).get(idx);
+    }
+
+    private List<Piece> getPieceList(Piece piece) {
         if (piece.getColor() == Color.WHITE && piece.getName() == PieceName.PAWN) {
             return whitePawns;
         }
@@ -30,18 +42,6 @@ public class Board {
             return blackPieces;
         }
         return null;
-    }
-
-    public void add(Piece piece) {
-        distinguish(piece).add(piece);
-    }
-
-    public int size(Piece piece) {
-        return distinguish(piece).size();
-    }
-
-    public Piece findPiece(Piece piece, int idx) {
-        return distinguish(piece).get(idx);
     }
 
     public void initialize() {

@@ -40,7 +40,7 @@ public class Board {
         }
     }
 
-    public int size() {
+    public int sizeofPiece() {
         return whitePieces.size()
                 + blackPieces.size()
                 + whitePawns.size()

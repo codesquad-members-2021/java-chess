@@ -54,6 +54,12 @@ public class File {
         }
     }
 
+    public void fillWithBlank() {
+        while (isAddable()) {
+            pieces.add(Piece.createBlank());
+        }
+    }
+
     public void fillWithRoyal(Color color) {
         PieceFactory pieceFactory = new PieceFactory(color);
 

@@ -98,6 +98,12 @@ class FileTest {
         checkFillWith(Color.WHITE);
     }
 
+    @Test
+    void fillWith_blank() {
+        file.fillWithBlank();
+        checkFillWith(Color.NOCOLOR);
+    }
+
     private void checkFillWith(Color expected) {
         for (int i = 0; i < File.SIZE; i++) {
             assertThat(file.get(i).getColor()).isEqualTo(expected);
@@ -126,5 +132,11 @@ class FileTest {
     void getRepresentation_fillWithWhiteRoyal() {
         file.fillWithRoyal(Color.WHITE);
         assertThat(file.getRepresentation()).isEqualTo("rnbqkbnr");
+    }
+
+    @Test
+    void getRepresentation_fillWithBlank() {
+        file.fillWithBlank();
+        assertThat(file.getRepresentation()).isEqualTo("........");
     }
 }

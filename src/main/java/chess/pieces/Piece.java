@@ -21,12 +21,8 @@ public class Piece {
         return getColorName().equals("black");
     }
 
-    public char getWhiteRepresentation() {
-        return type.getWhiteRepresentation();
-    }
-
-    public char getBlackRepresentation() {
-        return type.getBlackRepresentation();
+    public char getRepresentation() {
+        return color == Color.WHITE ? type.getWhiteRepresentation() : type.getBlackRepresentation();
     }
 
     ////////////////////////////////////////////////

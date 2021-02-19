@@ -3,56 +3,43 @@ package chess;
 import chess.pieces.Color;
 import chess.pieces.Piece;
 import chess.pieces.Type;
+import utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
+    public static final int BOARDSIZE = 8;
     private final List<Piece> whitePieces = new ArrayList<>();
     private final List<Piece> blackPieces = new ArrayList<>();
 
-    public static final int BOARDSIZE = 8;
-    private final String BLANK = "........";
-
-    public void addWhitePawn(Piece piece) {
+    public void addWhitePieces(Piece piece) {
         if (piece.getColorName().equals(Color.WHITE.getColorName())) {
             whitePieces.add(piece);
-        } else {
-            System.out.println("알 수 없는 color의 pawn입니다.");
-            System.out.println("add에 실패하였습니다.");
+            return;
         }
+        System.out.println("알 수 없는 color의 piece입니다.");
+        System.out.println("add에 실패하였습니다.");
     }
 
-    public void addBlackPawn(Piece piece) {
+    public void addBlackPieces(Piece piece) {
         if (piece.getColorName().equals(Color.BLACK.getColorName())) {
             blackPieces.add(piece);
-        } else {
-            System.out.println("알 수 없는 color의 pawn입니다.");
-            System.out.println("add에 실패하였습니다.");
+            return;
         }
+        System.out.println("알 수 없는 color의 piece입니다.");
+        System.out.println("add에 실패하였습니다.");
     }
 
-    public int whitePawnSize() {
-        return whitePieces.size();
+    public int totalPiecesCount() {
+        return whitePieces.size() + blackPieces.size();
     }
 
-    public int blackPawnSize() {
-        return blackPieces.size();
-    }
-
-    public Piece getWhitePawn(int index) {
-        return whitePieces.get(index);
-    }
-
-    public Piece getBlackPawn(int index) {
-        return blackPieces.get(index);
-    }
-
-    public String getWhitePawnsResult() {
+    public String getWhitePiecesResult() {
         return getPawnsResult(Color.WHITE);
     }
 
-    public String getBlackPawnsResult() {
+    public String getBlackPiecesResult() {
         return getPawnsResult(Color.BLACK);
     }
 
@@ -61,13 +48,13 @@ public class Board {
         switch (color) {
             case WHITE:
                 for (Piece piece : whitePieces) {
-                    sb.append(piece.getWhiteRepresentation());
+                    sb.append(piece.getRepresentation());
                 }
                 return sb.toString();
 
             case BLACK:
                 for (Piece piece : blackPieces) {
-                    sb.append(piece.getBlackRepresentation());
+                    sb.append(piece.getRepresentation());
                 }
                 return sb.toString();
 
@@ -76,37 +63,19 @@ public class Board {
         }
     }
 
-    public int pieceCount(){
-        return whitePieces.size() + blackPieces.size();
-    }
-
-    public void initialize() {
-        for (int i = 0; i < BOARDSIZE; i++) {
-            addWhitePawn(Piece.createWhitePawn());
-            addBlackPawn(Piece.createBlackPawn());
-        }
-    }
-
     public String showBoard() {
         StringBuilder sb = new StringBuilder();
 
-        final int blackPawnIndex = 1;
-        final int whitePawnIndex = 6;
+        sb.append(StringUtils.addNewLine(getBlackPiecesResult()));
 
-        for (int i = 0; i < BOARDSIZE; i++) {
-            switch (i) {
-                case blackPawnIndex:
-                    sb.append(getBlackPawnsResult());
-                    break;
-                case whitePawnIndex:
-                    sb.append(getWhitePawnsResult());
-                    break;
+        String BLANK = "........";
+        sb.append(StringUtils.addNewLine(BLANK));
+        sb.append(StringUtils.addNewLine(BLANK));
+        sb.append(StringUtils.addNewLine(BLANK));
+        sb.append(StringUtils.addNewLine(BLANK));
 
-                default:
-                    sb.append(BLANK);
-            }
-            sb.append("\n");
-        }
+        sb.append(StringUtils.addNewLine(getWhitePiecesResult()));
+
         return sb.toString();
     }
 }

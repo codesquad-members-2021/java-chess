@@ -85,8 +85,7 @@ public class Board {
 
     public String getPiecesResult(List<Piece> pieceList) {
         StringBuilder pawnReps = new StringBuilder();
-        int colorPawnSize = pieceList.size();
-        for (int i = 0; i < colorPawnSize; i++) {
+        for (int i = 0, colorPawnSize = pieceList.size(); i < colorPawnSize; i++) {
             pawnReps.append(pieceList.get(i).getRepresentation());
             if(i==7)
                 pawnReps.append(System.getProperty("line.separator"));

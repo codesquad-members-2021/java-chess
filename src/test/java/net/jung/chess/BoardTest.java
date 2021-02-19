@@ -44,33 +44,6 @@ public class BoardTest {
 
     }
 
-    @Test
-    @DisplayName("initialize()는 Board에 흑백 폰을 8개씩 더한 후 getPawnsResult는 대표알파벳을 합쳐 리턴한다.")
-    void initializeToAddPawnsToBoard() {
-        board.initialize();
-        assertThat(board.getWhitePiecesResult()).isEqualTo("pppppppp");
-        assertThat(board.getBlackPiecesResult()).isEqualTo("PPPPPPPP");
-    }
-
-    @Test
-    @DisplayName("print()는 initialize된 보드를 출력한다.")
-    void checkPrint() {
-        board.initialize();
-        System.out.print(board.print());
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("********").append(System.getProperty("line.separator"))
-                .append("PPPPPPPP").append(System.getProperty("line.separator"))
-                .append("********").append(System.getProperty("line.separator"))
-                .append("********").append(System.getProperty("line.separator"))
-                .append("********").append(System.getProperty("line.separator"))
-                .append("********").append(System.getProperty("line.separator"))
-                .append("pppppppp").append(System.getProperty("line.separator"))
-                .append("********");
-        String expectedLayout = sb.toString();
-
-        assertThat(board.print()).isEqualTo(expectedLayout);
-    }
 
     @Test
     @DisplayName("addWhitePawn(Piece pawn)의 매개변수로 blackPawn을 넘기면 whitePawnList에 더해지지 않고 반대도 마찬가지이다.")

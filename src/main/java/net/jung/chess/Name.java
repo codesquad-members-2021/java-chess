@@ -11,7 +11,7 @@ public enum Name{
     private final char whiteRep;
     private final char blackRep;
 
-    Name(char whiteRep, char blackRep){
+    Name(char whiteRep, char blackRep) {
         this.whiteRep = whiteRep;
         this.blackRep = blackRep;
     }

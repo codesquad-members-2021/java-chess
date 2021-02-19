@@ -25,12 +25,6 @@ public class PawnTest {
         assertThat(piece.getColor()).isEqualTo(color);
     }
 
-//    @Test
-//    @DisplayName("기본생성자로 흰색 폰을 만들어야한다.")
-//    void createDefaultConstructor(){
-//        Piece piece = new Piece();
-//        assertEquals(Color.WHITE, piece.getColor());
-//    }
 
     @Test
     @DisplayName("흰색폰은 'p' 검은색 폰은 'P'의 representation을 가진다.")

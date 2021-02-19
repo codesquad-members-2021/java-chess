@@ -22,8 +22,16 @@ public class ChessPiece {
         return new ChessPiece(name, color);
     }
 
-    public boolean isBlankPiece() {
+    public boolean isBlank() {
         return color == ColorOfChessPiece.BLANK;
+    }
+
+    public boolean isBlack() {
+        return color == ColorOfChessPiece.BLACK;
+    }
+
+    public boolean isWhite() {
+        return color == ColorOfChessPiece.WHITE;
     }
 
     public static ChessPiece createWhitePawn() {

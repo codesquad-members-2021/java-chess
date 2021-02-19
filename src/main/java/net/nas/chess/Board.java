@@ -131,7 +131,7 @@ public class Board {
         if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
             throw new InvalidParameterException("index exceeded the bounds of the Board");
         chessCells[rankIdx - 1][fileIdx - 1] = piece;
-        if (!piece.isBlankPiece())
+        if (!piece.isBlank())
             numberOfPieces++;
     }
 

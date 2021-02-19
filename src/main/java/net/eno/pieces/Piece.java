@@ -3,15 +3,15 @@ package net.eno.pieces;
 public class Piece {
 
     private final Color color;
-    private final Representation representation;
+    private final PieceType pieceType;
 
-    private Piece(Color color, Representation representation) {
+    private Piece(Color color, PieceType pieceType) {
         this.color = color;
-        this.representation = representation;
+        this.pieceType = pieceType;
     }
 
-    public static Piece createPiece(Color color, Representation representation) {
-        return new Piece(color, representation);
+    public static Piece createPiece(Color color, PieceType pieceType) {
+        return new Piece(color, pieceType);
     }
 
     public String getColor() {
@@ -19,7 +19,7 @@ public class Piece {
     }
 
     public char getRepresentation() {
-        return this.representation.get(this.color);
+        return this.pieceType.getRepresentation(this.color);
     }
 
     public boolean isWhite() {

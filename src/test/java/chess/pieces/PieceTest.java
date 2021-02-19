@@ -28,22 +28,15 @@ class PieceTest {
     }
 
     private void verifyWhitePiece(Piece piece, Color color, Type type) {
+        assertThat(Piece.createWhitePawn().isWhite()).isEqualTo(true);
         assertThat(piece.getColorName()).isEqualTo(color.getColorName());
         assertThat(piece.getWhiteRepresentation()).isEqualTo(type.getWhiteRepresentation());
     }
 
     private void verifyBlackPiece(Piece piece, Color color, Type type) {
+        assertThat(Piece.createBlackPawn().isBlack()).isEqualTo(true);
         assertThat(piece.getColorName()).isEqualTo(color.getColorName());
         assertThat(piece.getBlackRepresentation()).isEqualTo(type.getBlackRepresentation());
     }
 
-    @Test
-    public void checkWhiteColorPiece() {
-        assertThat(Piece.createWhitePawn().isWhite()).isEqualTo(true);
-    }
-
-    @Test
-    public void checkBlackColorPiece() {
-        assertThat(Piece.createBlackPawn().isBlack()).isEqualTo(true);
-    }
 }

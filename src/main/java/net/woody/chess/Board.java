@@ -15,7 +15,7 @@ public class Board {
     private int size = 0;
 
     public Board() {
-        IntStream.range(0, BOARD_LENGTH).forEach(i -> board.add(new Rank(i)));
+        IntStream.range(0, BOARD_LENGTH).forEach(i -> board.add(new Rank()));
     }
 
     public void add(Pawn pawn) {

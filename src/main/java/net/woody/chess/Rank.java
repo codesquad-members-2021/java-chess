@@ -4,17 +4,11 @@ import net.woody.pieces.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Rank {
     private static final int BOARD_LENGTH = 8;
 
-    private final int rank;
     private final List<Pawn> pawns = new ArrayList<>(BOARD_LENGTH);
-
-    public Rank(int rank) {
-        this.rank = rank;
-    }
 
     public void add(Pawn pawn) {
         pawns.add(pawn);

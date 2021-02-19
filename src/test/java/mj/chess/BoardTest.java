@@ -1,12 +1,8 @@
 package mj.chess;
 
-import mj.chess.pieces.Color;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static mj.chess.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -23,7 +19,7 @@ class BoardTest {
 
 
     @Test
-    @DisplayName("폰의 생성 개수 확인")
+    @DisplayName("체스판 생성 시점에서 폰의 생성 개수 확인")
     void initPawns() {
         verifySizeOfPawns();
     }

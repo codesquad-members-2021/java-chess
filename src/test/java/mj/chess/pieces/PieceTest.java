@@ -12,16 +12,16 @@ class PieceTest {
     @DisplayName("체스말 생성에 따라 색, 타입, 표현문자 상태 확인 ")
     void createPiece() {
         assertAll(
-                () -> verifyPiece(Piece.createWhitePawn(), Color.WHITE, Type.PAWN, Piece.WHITE_REPRESENTATION),
-                () -> verifyPiece(Piece.createBlackPawn(), Color.BLACK, Type.PAWN, Piece.BLACK_REPRESENTATION)
+                () -> verifyPiece(Piece.createWhitePawn(), Color.WHITE, Type.PAWN),
+                () -> verifyPiece(Piece.createBlackPawn(), Color.BLACK, Type.PAWN)
         );
     };
 
-    private void verifyPiece(final Piece piece, Color color, Type type, final char representation) {
+    private void verifyPiece(final Piece piece, Color color, Type type) {
         assertAll(
                 () -> verifyColorOfPiece(piece, color),
                 () -> verifyTypeOfPiece(piece, type),
-                () -> verifyRepresentationOfPiece(piece, representation)
+                () -> verifyRepresentationOfPiece(piece, piece.getRepresentation())
         );
     };
 

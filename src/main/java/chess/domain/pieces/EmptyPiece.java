@@ -2,7 +2,7 @@ package chess.domain.pieces;
 
 public class EmptyPiece extends Piece {
     private EmptyPiece() {
-        super();
+        super(Color.WHITE);
     }
 
     @Override

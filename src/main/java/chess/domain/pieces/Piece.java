@@ -4,12 +4,7 @@ public abstract class Piece {
     private final String representation;
     private final Color color;
 
-    public Piece() {
-        color = Color.WHITE;
-        representation = color.generateRepresentation(getIcon());
-    }
-
-    public Piece(Color color) {
+    Piece(Color color) {
         this.color = color;
         representation = color.generateRepresentation(getIcon());
     }

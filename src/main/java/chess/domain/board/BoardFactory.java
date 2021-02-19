@@ -21,12 +21,12 @@ public class BoardFactory {
     public static Board create() {
         squares = new HashMap<>();
         for (int rowId = ROW_START; rowId <= ROW_END; rowId++) {
-            addRow(rowId);
+            addConditionalRow(rowId);
         }
         return new Board(squares);
     }
 
-    private static void addRow(int rowId) {
+    private static void addConditionalRow(int rowId) {
         if (rowId == 1 || rowId == 8) {
             addRoyalRow(rowId);
         } else if (rowId == 2 || rowId == 7) {
@@ -36,17 +36,19 @@ public class BoardFactory {
         }
     }
 
-    private static void addEmptyRow(int rowId) {
+    private static void addRow(int rowId, Piece piece) {
         for (char columnId = COLUMN_START; columnId <= COLUMN_END; columnId++) {
-            squares.put(Position.of(columnId, rowId), EmptyPiece.getInstance());
+            squares.put(Position.of(columnId, rowId), piece);
         }
+    }
+
+    private static void addEmptyRow(int rowId) {
+        addRow(rowId, EmptyPiece.getInstance());
     }
 
     private static void addPawnRow(int rowId) {
         Color color = getColor(rowId);
-        for (char columnId = COLUMN_START; columnId <= COLUMN_END; columnId++) {
-            squares.put(Position.of(columnId, rowId), new Pawn(color));
-        }
+        addRow(rowId, Pawn.of(color));
     }
 
     // TODO: 다음 미션에서 고급 말들이 추가되도록 구현해야한다.

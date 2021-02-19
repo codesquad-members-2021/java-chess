@@ -28,17 +28,17 @@ class BoardTest {
     @Test
     @DisplayName("보드에 폰이 존재하지 않을 때, 폰을 찾으려고 시도하면 에러가 발생해야 한다.")
     void findPawnNotOnTheBoard() {
-        assertThatThrownBy(() -> board.findPawn(0, Color.BLACK.colorName()))
+        assertThatThrownBy(() -> board.findPawn(0, 0))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class)
-                .hasMessageContaining("Index number 0 is out of range!");
+                .hasMessageContaining("0 is out of range!");
     }
 
     @Test
     @DisplayName("음수 인덱스로 폰을 찾으려고 할 때, 에러가 발생해야 한다.")
     void findPawnWithNegativeIndex() {
-        assertThatThrownBy(() -> board.findPawn(-1, Color.BLACK.colorName()))
+        assertThatThrownBy(() -> board.findPawn(-1, 0))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class)
-                .hasMessageContaining("Index number -1 is out of range!");
+                .hasMessageContaining("-1 is out of range!");
     }
 
     @Test
@@ -69,9 +69,14 @@ class BoardTest {
     }
 
     private void addThePawnProperly(Pawn newPawn, int newPawnIdx) {
+        int rank = getPawnRank(newPawn);
         int sizeBeforeAddThePawn = board.size();
         board.add(newPawn);
         assertThat(sizeBeforeAddThePawn + 1).isEqualTo(board.size());
-        assertThat(newPawn).isEqualTo(board.findPawn(newPawnIdx, newPawn.getColorName()));
+        assertThat(newPawn).isEqualTo(board.findPawn(rank, newPawnIdx));
+    }
+
+    private int getPawnRank(Pawn newPawn) {
+        return (newPawn.getColor() == Color.WHITE) ? Pawn.WHITE_PAWN_RANK : Pawn.BLACK_PAWN_RANK;
     }
 }

@@ -25,6 +25,20 @@ class PieceTest {
         );
     }
 
+    @Test
+    @DisplayName("isBlack(), isWhite() 메소드 테스트")
+    void isBlack_isWhite_Test(){
+        Piece white = Piece.getPawn(Piece.Color.WHITE);
+        Piece black = Piece.getPawn(Piece.Color.BLACK);
+
+        assertAll(
+                () -> assertThat(white.isWhite()).isEqualTo(true),
+                () -> assertThat(white.isBlack()).isEqualTo(false),
+                () -> assertThat(black.isWhite()).isEqualTo(false),
+                () -> assertThat(black.isBlack()).isEqualTo(true)
+        );
+    }
+
     void verifyPiece(final Piece piece, final Piece.Color color, char representation) {
         assertAll(
                 ()->assertThat(piece.getColor()).isEqualTo(color),

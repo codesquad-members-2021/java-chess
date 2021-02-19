@@ -7,14 +7,21 @@ import org.junit.jupiter.api.Test;
 
 import java.security.InvalidParameterException;
 
+import static net.nas.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-
 public class BoardTest {
     private Board board;
-    private static final String INITIAL_STATE_OF_BOARD = "........\nPPPPPPPP\n........\n........\n........\n........\npppppppp\n........";
+    private static final String INITIAL_STATE_OF_BOARD = appendNewLine("........") +
+            appendNewLine("PPPPPPPP") +
+            appendNewLine("........") +
+            appendNewLine("........") +
+            appendNewLine("........") +
+            appendNewLine("........") +
+            appendNewLine("pppppppp") +
+            appendNewLine("........");
 
     @BeforeEach
     void createTestBoard() {

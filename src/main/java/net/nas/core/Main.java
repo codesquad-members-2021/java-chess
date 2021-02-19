@@ -4,6 +4,8 @@ import net.nas.chess.Board;
 
 import java.util.Scanner;
 
+import static net.nas.utils.StringUtils.appendNewLine;
+
 public class Main {
     private static final String START = "START";
     private static final String END = "END";
@@ -19,7 +21,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         Main mainOfGame = new Main();
         boolean isTerminated = false;
-        System.out.print("게임을 시작하려면 start를 입력해주세요\n> ");
+        System.out.print(appendNewLine("게임을 시작하려면 start를 입력해주세요") + " > ");
         while (!isTerminated) {
             String decision = scan.nextLine();
             switch (decision.toUpperCase()) {

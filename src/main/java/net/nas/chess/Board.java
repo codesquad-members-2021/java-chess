@@ -7,6 +7,7 @@ import java.security.InvalidParameterException;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+import static net.nas.utils.StringUtils.appendNewLine;
 /*
     입력 패러미터는 실제 체스판에서의 인덱스를 사용한다.
     예를들면, 실제 체스판에서 랭크의 인덱스는 1부터 8까지이다.
@@ -52,9 +53,7 @@ public class Board {
     public String getRepresentationOfBoard() {
         StringBuilder sb = new StringBuilder();
         for (int i = LENGTH_OF_BOARD - 1; i >= 0; i--) {
-            sb.append(getRepresentationOfRank(i));
-            if (i != 0)
-                sb.append("\n");
+            sb.append(appendNewLine(getRepresentationOfRank(i)));
         }
         return sb.toString();
     }

@@ -8,7 +8,7 @@ import java.util.List;
 import static utils.StringUtils.appendNewLine;
 
 public class Board {
-    public static final int BOARD_SIZE = 8;
+    private static final int BOARD_SIZE = 8;
     private static final String BLANK_LINE = "........";
 
     private final List<Piece> whitePieces = new ArrayList<>();

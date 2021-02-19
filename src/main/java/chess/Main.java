@@ -27,9 +27,6 @@ public class Main {
 
             System.out.println("게임이 종료되었습니다.");
 
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
     }
 }

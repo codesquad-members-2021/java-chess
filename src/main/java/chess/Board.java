@@ -20,4 +20,18 @@ public class Board {
         return pawns.get(index);
     }
 
+    private void initialize() {
+        Pawn whitePawn = new Pawn();
+        List<Pawn> whitePawns = new ArrayList<>(8);
+        for (int i = 0; i < 8; i++) {
+            whitePawns.add(whitePawn);
+        }
+        Pawn blackPawn = new Pawn(Pawn.BLACK);
+        List<Pawn> blackPawns = new ArrayList<>(8);
+        for (int i = 0; i < 8; i++) {
+            blackPawns.add(blackPawn);
+        }
+
+    }
+
 }

@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    public static final int BOARDSIZE = 8;
+    public static final int BOARD_SIZE = 8;
+
     private final List<Piece> whitePieces = new ArrayList<>();
     private final List<Piece> blackPieces = new ArrayList<>();
 
@@ -36,14 +37,14 @@ public class Board {
     }
 
     public String getWhitePiecesResult() {
-        return getPawnsResult(Color.WHITE);
+        return getPiecesResult(Color.WHITE);
     }
 
     public String getBlackPiecesResult() {
-        return getPawnsResult(Color.BLACK);
+        return getPiecesResult(Color.BLACK);
     }
 
-    private String getPawnsResult(Color color) {
+    private String getPiecesResult(Color color) {
         StringBuilder sb = new StringBuilder();
         switch (color) {
             case WHITE:
@@ -69,7 +70,7 @@ public class Board {
     }
 
     private void initializeWhitePieces() {
-        for (int i = 0; i < BOARDSIZE; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             addWhitePieces(Piece.createWhitePawn());
         }
 
@@ -94,25 +95,25 @@ public class Board {
         addBlackPieces(Piece.createBlackKnight());
         addBlackPieces(Piece.createBlackRook());
 
-        for (int i = 0; i < BOARDSIZE; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             addBlackPieces(Piece.createBlackPawn());
         }
 
     }
 
     public String showBoard() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder boardRank = new StringBuilder();
 
-        sb.append(StringUtils.addNewLine(getBlackPiecesResult()));
+        boardRank.append(StringUtils.addNewLine(getBlackPiecesResult()));
 
         String BLANK = "........";
-        sb.append(StringUtils.addNewLine(BLANK));
-        sb.append(StringUtils.addNewLine(BLANK));
-        sb.append(StringUtils.addNewLine(BLANK));
-        sb.append(StringUtils.addNewLine(BLANK));
+        boardRank.append(StringUtils.addNewLine(BLANK));
+        boardRank.append(StringUtils.addNewLine(BLANK));
+        boardRank.append(StringUtils.addNewLine(BLANK));
+        boardRank.append(StringUtils.addNewLine(BLANK));
 
-        sb.append(StringUtils.addNewLine(getWhitePiecesResult()));
+        boardRank.append(StringUtils.addNewLine(getWhitePiecesResult()));
 
-        return sb.toString();
+        return boardRank.toString();
     }
 }

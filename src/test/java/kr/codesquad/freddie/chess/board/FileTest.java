@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -259,5 +262,24 @@ class FileTest {
     void getRepresentation_fillWithBlank() {
         file.fillWithBlank();
         assertThat(file.getRepresentation()).isEqualTo("........");
+    }
+
+    @Test
+    void toMap() {
+        file.fillWithRoyal(Color.BLACK);
+        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
+
+        Map<Character, Piece> expected = new HashMap() {{
+            put('a', blackPieceFactory.createRook());
+            put('b', blackPieceFactory.createKnight());
+            put('c', blackPieceFactory.createBishop());
+            put('d', blackPieceFactory.createQueen());
+            put('e', blackPieceFactory.createKing());
+            put('f', blackPieceFactory.createBishop());
+            put('g', blackPieceFactory.createKnight());
+            put('h', blackPieceFactory.createRook());
+        }};
+
+        assertThat(file.toMap()).isEqualTo(expected);
     }
 }

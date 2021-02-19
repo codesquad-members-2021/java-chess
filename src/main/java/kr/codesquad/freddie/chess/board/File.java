@@ -7,7 +7,9 @@ import kr.codesquad.freddie.chess.piece.PieceFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class File {
     public static final int SIZE = 8;
@@ -96,6 +98,12 @@ public class File {
                 .add(pieceFactory.createKnight())
                 .add(pieceFactory.createRook());
 
+    }
+
+    public Map<Character, Piece> toMap() {
+        return IntStream.range(0, SIZE)
+                .boxed()
+                .collect(Collectors.toMap(i -> (char) (i + 'a'), i -> pieces.get(i)));
     }
 
     public String getRepresentation() {

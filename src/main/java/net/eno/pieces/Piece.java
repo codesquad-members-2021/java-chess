@@ -2,12 +2,12 @@ package net.eno.pieces;
 
 public class Piece {
 
-    private final String color;
-    private final char representation;
+    private final Color color;
+    private final Representation representation;
 
     private Piece(Color color, Representation representation) {
-        this.color = color.toString();
-        this.representation = representation.get(color);
+        this.color = color;
+        this.representation = representation;
     }
 
     public static Piece createPiece(Color color, Representation representation) {
@@ -15,19 +15,19 @@ public class Piece {
     }
 
     public String getColor() {
-        return this.color;
+        return this.color.toString();
     }
 
     public char getRepresentation() {
-        return this.representation;
+        return this.representation.get(this.color);
     }
 
     public boolean isWhite() {
-        return this.color.equals(Color.WHITE.toString());
+        return this.color.equals(Color.WHITE);
     }
 
     public boolean isBlack() {
-        return this.color.equals(Color.BLACK.toString());
+        return this.color.equals(Color.BLACK);
     }
 
 }

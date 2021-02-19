@@ -1,5 +1,7 @@
 package net.kjk402.chess.chess;
 
+import static net.kjk402.chess.utils.StringUtils.appendNewLine;
+
 import net.kjk402.chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,25 +20,18 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("board.initialize를 사용하여 생성된 흰색폰과 검은색폰들의 결과를 확인한다.")
-    void initialize() {
+    @DisplayName("모든 기물들을 보드에 생성 후 상태를 볼 수 있다.")
+    public void create_complete_board() {
         board.initialize();
-        assertAll(
-                () -> assertEquals("pppppppp", board.getWhitePawnsResult()),
-                () -> assertEquals("PPPPPPPP", board.getBlackPawnsResult())
-        );
-    }
-
-    @Test
-    @DisplayName("addWhitePawn 메서드를 사용하여 검정색 Pawn을 넣어본다.")
-    void addBlackPawnInWhitePawnList() {
-        Piece blackPiece = new Piece(Piece.BLACK, Piece.BLACK_REPRESENTATION);
-        board.addWhitePawn(blackPiece);
-        assertAll(
-                () -> assertEquals(1, board.whiteSize()),
-                () -> assertEquals("black", board.findWhitePawn(0).getColor()),
-                () -> assertEquals('P', board.findWhitePawn(0).getRepresentation())
-        );
+        assertEquals(32, board.pieceCount());
+        String blankRank = appendNewLine("........");
+        assertThat(
+                appendNewLine("RNBQKBNR") +
+                        appendNewLine("PPPPPPPP") +
+                        blankRank + blankRank + blankRank + blankRank +
+                        appendNewLine("pppppppp") +
+                        appendNewLine("rnbqkbnr")).isEqualTo(
+                board.showBoard());
     }
 
 }

@@ -37,12 +37,13 @@ public class Board {
         }
     }
 
-    public int whiteSize() {
-        return whitePawnList.size();
-    }
-
-    public int blackSize() {
-        return blackPawnList.size();
+    public int pieceCount() {
+        int pieces = 0;
+        pieces += whitePawnList.size();
+        pieces += blackPawnList.size();
+        pieces += whitePiecesList.size();
+        pieces += blackPiecesList.size();
+        return pieces;
     }
 
     public Piece findWhitePawn(int idx) {
@@ -108,7 +109,7 @@ public class Board {
         return sb.toString();
     }
 
-    public void print() {
+    public String showBoard() {
         StringBuilder boardOutput = new StringBuilder();
         boardOutput.append(appendNewLine(getBlackPiecesResult()));
         boardOutput.append(appendNewLine(getBlackPawnsResult()));
@@ -118,7 +119,8 @@ public class Board {
         boardOutput.append(appendNewLine("........"));
         boardOutput.append(appendNewLine(getWhitePawnsResult()));
         boardOutput.append(appendNewLine(getWhitePiecesResult()));
-        System.out.println(boardOutput.toString());
+        //System.out.println(boardOutput.toString());
+        return boardOutput.toString();
     }
 
 }

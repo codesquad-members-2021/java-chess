@@ -18,7 +18,7 @@ public class Main {
                 if (command.equals("start")) {
                     Board board = new Board();
                     board.initialize();
-                    board.print();
+                    System.out.println(board.showBoard());
                     continue;
                 }
                 if (command.equals("end")) {

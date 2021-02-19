@@ -90,7 +90,6 @@ public class Board {
                 .append(empty + empty + empty + empty)
                 .append(appendNewLine(getWhitePawnResult()))
                 .append(appendNewLine(getWhitePieceResult()));
-
         return result.toString();
     }
 

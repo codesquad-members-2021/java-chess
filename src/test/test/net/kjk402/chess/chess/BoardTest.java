@@ -13,6 +13,11 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BoardTest {
     private Board board;
+    private static final int ALL_PIECES = 32;
+    private static final String BLACK_PIECES = "RNBQKBNR";
+    private static final String BLACK_PAWNS = "PPPPPPPP";
+    private static final String WHITE_PAWNS = "pppppppp";
+    private static final String WHITE_PIECES = "rnbqkbnr";
 
     @BeforeEach
     void init() {
@@ -23,14 +28,14 @@ class BoardTest {
     @DisplayName("모든 기물들을 보드에 생성 후 상태를 볼 수 있다.")
     void create_complete_board() {
         board.initialize();
-        assertThat(32).isEqualTo(board.pieceCount());
+        assertThat(ALL_PIECES).isEqualTo(board.pieceCount());
         String blankRank = appendNewLine("........");
         assertThat(
-                appendNewLine("RNBQKBNR") +
-                        appendNewLine("PPPPPPPP") +
+                appendNewLine(BLACK_PIECES) +
+                        appendNewLine(BLACK_PAWNS) +
                         blankRank + blankRank + blankRank + blankRank +
-                        appendNewLine("pppppppp") +
-                        appendNewLine("rnbqkbnr"))
+                        appendNewLine(WHITE_PAWNS) +
+                        appendNewLine(WHITE_PIECES))
                 .isEqualTo(board.showBoard());
     }
 

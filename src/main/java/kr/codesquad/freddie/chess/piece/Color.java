@@ -14,7 +14,7 @@ public enum Color {
     }, NOCOLOR(-1, -1) {
         @Override
         String getRepresentationBy(String representation) {
-            return Kind.EMPTY.representation;
+            return Kind.EMPTY.representation();
         }
     };
 

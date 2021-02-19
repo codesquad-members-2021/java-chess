@@ -62,12 +62,12 @@ public class Board {
     }
 
     public Board initialize() {
-        initializeBy(Color.BLACK);
-        initializeBy(Color.WHITE);
+        initializePieceBy(Color.BLACK);
+        initializePieceBy(Color.WHITE);
         return this;
     }
 
-    private void initializeBy(Color color) {
+    private void initializePieceBy(Color color) {
         int royalIndex = convertRankIndexToListIndex(color.royalInitializationRank());
         int pawnIndex = convertRankIndexToListIndex(color.pawnInitializationRank());
 

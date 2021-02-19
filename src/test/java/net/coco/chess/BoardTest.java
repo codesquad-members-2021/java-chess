@@ -47,7 +47,7 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("addOtherPiece 아규먼트에 pawn을 넣으면 들어가지 않는다.")
+    @DisplayName("board에 piece를 넣을 때는 piece에 따른 알맞은 메소드를 사용해야한다.")
     void addOtherPieces() {
         Piece blackBishop = Piece.createBlackBishop();
         Piece blackPawn = Piece.createBlackPawn();
@@ -57,6 +57,9 @@ public class BoardTest {
                 () -> assertThat(1).isEqualTo(board.getPiecesSize()),
 
                 () -> board.addOtherPiece(blackPawn),
+                () -> assertThat(1).isEqualTo(board.getPiecesSize()),
+
+                () -> board.addPawn(blackBishop),
                 () -> assertThat(1).isEqualTo(board.getPiecesSize())
         );
     }

@@ -1,6 +1,7 @@
 package net.coco.chess;
 
 import net.coco.pieces.Piece;
+import net.coco.pieces.Representation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,11 @@ public class Board {
 
 
     public void addPawn(Piece piece) {
+        char getRepresentation = piece.getRepresentation();
+        if (!(getRepresentation == Representation.WHITE_PAWN.getRepresentation() || getRepresentation == Representation.BLACK_PAWN.getRepresentation())) {
+            System.out.println("pawn 말고 다른 piece는 넣지 말아주세요.");
+            return;
+        }
         if (piece.getColor().equals(Piece.WHITE))
             whitePawns.add(piece);
         else
@@ -24,8 +30,8 @@ public class Board {
 
     public void addOtherPiece(Piece piece) {
         char getRepresentation = piece.getRepresentation();
-        if (getRepresentation == 'p' || getRepresentation == 'P') {
-            System.out.println("폰은 넣지 말아주세요.");
+        if (getRepresentation == Representation.WHITE_PAWN.getRepresentation() || getRepresentation == Representation.BLACK_PAWN.getRepresentation()) {
+            System.out.println("pawn은 넣지 말아주세요.");
             return;
         }
         if (piece.getColor().equals(Piece.WHITE))

@@ -13,13 +13,10 @@ import static java.util.stream.Collectors.joining;
 import static mj.chess.utils.StringUtils.appendNewLine;
 
 public class Board {
-    private static final int NUM_OF_ALL_PIECES = 32;
     private static final int SECOND_ROW = 1;
     private static final int SEVENTH_ROW = 6;
     private static final int SIZE_OF_ROW = 8;
     private final List<Piece> pieces = new ArrayList<>();
-    private final StringBuilder rowOfBlackPawns = new StringBuilder();
-    private final StringBuilder rowOfWhitePawns = new StringBuilder();
     private final StringBuilder[] cellsOfBoard = new StringBuilder[SIZE_OF_ROW];
 
     public Board() {
@@ -27,10 +24,6 @@ public class Board {
 
     public void add(Piece piece) {
         pieces.add(piece);
-    }
-
-    public int size() {
-        return pieces.size();
     }
 
     public Piece findPawn(int index) {
@@ -47,7 +40,7 @@ public class Board {
     private void initPawns(Color color) {
         for (int i = 0; i < SIZE_OF_ROW; i++) {
             Piece pawn = (color == Color.WHITE) ? Piece.createWhitePawn() : Piece.createBlackPawn();
-            pieces.add(pawn);
+            this.add(pawn);
         }
     }
 

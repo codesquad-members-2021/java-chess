@@ -38,8 +38,8 @@ class BoardTest {
     @DisplayName("보드판을 초기화 합니다")
     void initialize(){
         board.initialize();
-        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
-        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+        assertThat(board.getWhitePawnsRepresentation()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsRepresentation()).isEqualTo("PPPPPPPP");
     }
 
     @Test

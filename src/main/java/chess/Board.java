@@ -46,7 +46,7 @@ public class Board {
         }
     }
 
-    String getWhitePawnsResult() {
+    String getWhitePawnsRepresentation() {
         StringBuilder sb = new StringBuilder();
 
         for(int i= 0; i < whitePawnSize(); i++){
@@ -55,7 +55,7 @@ public class Board {
         return sb.toString();
     }
 
-    String getBlackPawnsResult() {
+    String getBlackPawnsRepresentation() {
         StringBuilder sb = new StringBuilder();
 
         for(int i= 0; i < blackPawnSize(); i++){
@@ -71,12 +71,12 @@ public class Board {
         StringBuilder sb = new StringBuilder();
 
         sb.append(getDotOnBoard()+"\n");
-        sb.append(getWhitePawnsResult()+"\n");
+        sb.append(getWhitePawnsRepresentation()+"\n");
         sb.append(getDotOnBoard()+"\n");
         sb.append(getDotOnBoard()+"\n");
         sb.append(getDotOnBoard()+"\n");
         sb.append(getDotOnBoard()+"\n");
-        sb.append(getBlackPawnsResult()+"\n");
+        sb.append(getBlackPawnsRepresentation()+"\n");
         sb.append(getDotOnBoard());
 
         System.out.println(sb.toString());

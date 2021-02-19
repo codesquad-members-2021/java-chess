@@ -11,8 +11,8 @@ class BoardTest {
     @Test
     void 보드에_폰이_색깔별로_잘_들어가는지_확인한다() throws Exception {
 
-        verifyBoard(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION, 0);
-        verifyBoard(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION, 0);
+        verifyBoard(Piece.WHITE_COLOR, Piece.WHITE_PAWN_REPRESENTATION, 0);
+        verifyBoard(Piece.BLACK_COLOR, Piece.BLACK_PAWN_REPRESENTATION, 0);
     }
 
     private void verifyBoard(String color, char representation, int index) {

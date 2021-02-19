@@ -12,6 +12,10 @@ public class Pawn {
     }
 
     public Color getColor() {
-        return color;
+        return this.color;
+    }
+
+    public char getRepresentation() {
+        return this.color.getRepresentation();
     }
 }

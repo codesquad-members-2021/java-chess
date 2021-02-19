@@ -15,8 +15,8 @@ public enum Color {
         }
     };
 
-    private int royalInitializationRank;
-    private int pawnInitializationRank;
+    public final int royalInitializationRank;
+    public final int pawnInitializationRank;
 
     Color(int royalInitializationRank, int pawnInitializationRank) {
         this.royalInitializationRank = royalInitializationRank;
@@ -24,12 +24,4 @@ public enum Color {
     }
 
     abstract String getRepresentationBy(String representation);
-
-    public int getRoyalInitializationIndex() {
-        return Board.RANK_SIZE - royalInitializationRank;
-    }
-
-    public int getPawnInitializationIndex() {
-        return Board.RANK_SIZE - pawnInitializationRank;
-    }
 }

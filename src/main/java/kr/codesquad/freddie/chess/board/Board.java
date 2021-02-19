@@ -58,7 +58,7 @@ public class Board {
      * @see <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      */
     public Piece findPiece(char fileIndex, int rankIndex) {
-        return files.get(RANK_SIZE - rankIndex).get(fileIndex);
+        return files.get(convertRankIndexToListIndex(rankIndex)).get(fileIndex);
     }
 
     public Board initialize() {
@@ -68,8 +68,15 @@ public class Board {
     }
 
     private void initializeBy(Color color) {
-        files.get(color.getRoyalInitializationIndex()).fillWithRoyal(color);
-        files.get(color.getPawnInitializationIndex()).fillWithPawn(color);
+        int royalIndex = convertRankIndexToListIndex(color.royalInitializationRank);
+        int pawnIndex = convertRankIndexToListIndex(color.pawnInitializationRank);
+
+        files.get(royalIndex).fillWithRoyal(color);
+        files.get(pawnIndex).fillWithPawn(color);
+    }
+
+    private int convertRankIndexToListIndex(int rankIndex) {
+        return RANK_SIZE - rankIndex;
     }
 
     public String getRepresentation() {

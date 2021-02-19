@@ -11,24 +11,23 @@ public class Console {
     }
 
     private void runConsole() {
-        Scanner scanner = new Scanner(System.in);
-        board = new Board();
+
         String command;
+        board = new Board();
 
-        while (true) {
-            System.out.print("> ");
-            command = scanner.nextLine();
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.print("> ");
+                command = scanner.nextLine();
 
-            if (command.equalsIgnoreCase("START")) {
-                startGame();
-            } else if (command.equalsIgnoreCase("END")) {
-                endGame();
-                break;
-            } else System.out.println("Invalid Input");
+                if (command.equalsIgnoreCase("START")) {
+                    startGame();
+                } else if (command.equalsIgnoreCase("END")) {
+                    endGame();
+                    break;
+                } else System.out.println("Invalid Input");
+            }
         }
-        ;
-
-        scanner.close();
     }
 
     private void startGame() {

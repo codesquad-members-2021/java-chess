@@ -3,11 +3,11 @@ package mj.chess.utils;
 public class StringUtils {
     public static final String NEWLINE = System.getProperty("line.separator");
 
-    public static String appendNewLine(String inputString){
-        StringBuffer newLinePlus = new StringBuffer();
+    public static StringBuilder appendNewLine(String inputString){
+        StringBuilder newLinePlus = new StringBuilder();
         newLinePlus.append(inputString);
         newLinePlus.append(NEWLINE);
-        return newLinePlus.toString();
+        return newLinePlus;
     }
 
 }

@@ -1,5 +1,7 @@
 package net.woody.chess;
 
+import net.woody.utils.CommandUtil;
+
 import java.util.Scanner;
 
 public class Game {

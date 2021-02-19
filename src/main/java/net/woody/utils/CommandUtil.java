@@ -1,4 +1,4 @@
-package net.woody.chess;
+package net.woody.utils;
 
 public class CommandUtil {
 

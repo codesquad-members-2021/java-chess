@@ -9,16 +9,16 @@ public class Pawn {
     private char representation;
 
     public Pawn() {
-        this(Color.WHITE.colorName());
+        this(Color.WHITE.toString());
     }
 
     public Pawn(String color) {
-        this.color = Color.color(color);
+        this.color = Color.value(color);
         this.representation = this.color.representation(PAWN_REPRESENTATION);
     }
 
     public String getColorName() {
-        return color.colorName();
+        return color.toString();
     }
 
     public Color getColor() {

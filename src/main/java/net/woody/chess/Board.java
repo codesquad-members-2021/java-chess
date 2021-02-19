@@ -44,7 +44,7 @@ public class Board {
         Rank whitePawns = getRank(Pawn.WHITE_PAWN_RANK);
 
         IntStream.range(0, BOARD_LENGTH).forEach(i -> {
-            blackPawns.add(new Pawn(Color.BLACK.colorName()));
+            blackPawns.add(new Pawn(Color.BLACK.toString()));
             whitePawns.add(new Pawn());
             size += 2;
         });

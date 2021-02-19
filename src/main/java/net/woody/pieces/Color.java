@@ -4,18 +4,16 @@ import java.util.function.Function;
 
 public enum Color {
 
-    WHITE("white", piece -> Character.toLowerCase(piece)),
-    BLACK("black", piece -> Character.toUpperCase(piece));
+    WHITE(piece -> Character.toLowerCase(piece)),
+    BLACK(piece -> Character.toUpperCase(piece));
 
-    private String colorName;
     private Function<Character, Character> represent;
 
-    Color(String colorName, Function<Character, Character> represent) {
-        this.colorName = colorName;
+    Color(Function<Character, Character> represent) {
         this.represent = represent;
     }
 
-    public static Color color(String color) {
+    public static Color value(String color) {
         switch (color) {
             case "white":
                 return WHITE;
@@ -27,11 +25,12 @@ public enum Color {
 
     }
 
-    public String colorName() {
-        return colorName;
-    }
-
     public Character representation(char pieceFirstLetter) {
         return represent.apply(pieceFirstLetter);
+    }
+
+    @Override
+    public String toString() {
+        return this.name().toLowerCase();
     }
 }

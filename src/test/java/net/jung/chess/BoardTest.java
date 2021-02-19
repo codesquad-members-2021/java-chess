@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static net.jung.chess.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -47,8 +48,8 @@ public class BoardTest {
     @DisplayName("initialize()는 Board에 흑백 폰을 8개씩 더한 후 getPawnsResult는 대표알파벳을 합쳐 리턴한다.")
     void initializeToAddPawnsToBoard() {
         board.initialize();
-        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
-        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+        assertThat(board.getWhitePiecesResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPiecesResult()).isEqualTo("PPPPPPPP");
     }
 
     @Test
@@ -80,6 +81,21 @@ public class BoardTest {
                 () -> assertThat(board.whitePieceListSize()).isEqualTo(0),
                 () -> assertThat(board.blackPieceListSize()).isEqualTo(0)
         );
+    }
 
+    @Test
+    @DisplayName("initialize()는 32개 모든 말을 체스판 위에 올린다.")
+    void InitializeAddsEveryPiece(){
+        board.initialize();
+        String blankRank = appendNewLine("********");
+        assertAll(
+                () -> assertThat(board.size()).isEqualTo(32),
+                () -> assertThat(board.print()).isEqualTo(
+                    appendNewLine("RNBQKBNR")
+                    +appendNewLine("PPPPPPPP")
+                    +blankRank+blankRank+blankRank+blankRank
+                    +appendNewLine("pppppppp")
+                    +appendNewLine("rnbqkbnr"))
+        );
     }
 }

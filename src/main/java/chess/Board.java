@@ -1,60 +1,93 @@
 package chess;
 
-import pieces.Color;
-import pieces.Pawn;
+import pieces.Piece;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import static utils.StringUtils.*;
 
 public class Board {
 
-    private final Map<Color, List<Pawn>> pawnList;
+    private final Piece[] pieceList;
+    private int size;
+
+    private final int ROWS = 4;
+    private final int FILES = 8;
 
     public Board() {
-        this.pawnList = new HashMap<>();
-        this.pawnList.put(Color.BLACK, new ArrayList<>());
-        this.pawnList.put(Color.WHITE, new ArrayList<>());
+        this.pieceList = new Piece[ROWS * FILES];
+        this.size = 0;
     }
 
-    public Pawn findPawn(Color color, int index) {
-        return pawnList.get(color).get(index);
+    private void initBlackPawns() {
+        for (int i = 0; i < FILES; i++) {
+            pieceList[1 * FILES + i] = Piece.createBlackPawn();
+        }
+        size += FILES;
     }
 
-    public void add(Pawn pieces) {
-        pawnList.get(pieces.getColor()).add(pieces);
+    private void initWhitePawns() {
+        for (int i = 0; i < FILES; i++) {
+            pieceList[2 * FILES + i] = Piece.createWhitePawn();
+        }
+        size += FILES;
     }
 
-    public int size() {
-        return pawnList.get(Color.BLACK).size() + pawnList.get(Color.WHITE).size();
+    private void initBlackPieces() {
+        pieceList[0] = Piece.createBlackRook();
+        pieceList[1] = Piece.createBlackKnight();
+        pieceList[2] = Piece.createBlackBishop();
+        pieceList[3] = Piece.createBlackQueen();
+        pieceList[4] = Piece.createBlackKing();
+        pieceList[5] = Piece.createBlackBishop();
+        pieceList[6] = Piece.createBlackKnight();
+        pieceList[7] = Piece.createBlackRook();
+        size += FILES;
+    }
+
+    private void initWhitePieces() {
+        pieceList[3 * FILES    ] = Piece.createWhiteRook();
+        pieceList[3 * FILES + 1] = Piece.createWhiteKnight();
+        pieceList[3 * FILES + 2] = Piece.createWhiteBishop();
+        pieceList[3 * FILES + 3] = Piece.createWhiteQueen();
+        pieceList[3 * FILES + 4] = Piece.createWhiteKing();
+        pieceList[3 * FILES + 5] = Piece.createWhiteBishop();
+        pieceList[3 * FILES + 6] = Piece.createWhiteKnight();
+        pieceList[3 * FILES + 7] = Piece.createWhiteRook();
+        size += FILES;
+    }
+
+    private String getPiecesResult(int row) {
+        StringBuilder pieceResult = new StringBuilder();
+        for (int file = 0; file < FILES; file++) {
+            int index = row * FILES + file;
+            if (pieceList[index] != null) {
+                pieceResult.append(pieceList[index].getRepresentation());
+                continue;
+            }
+            pieceResult.append('.');
+        }
+        return pieceResult.toString();
     }
 
     public void initialize() {
-        for (int i = 0; i < 8; i++) {
-            add(new Pawn(Color.WHITE));
-            add(new Pawn(Color.BLACK));
-        }
+        initBlackPieces();
+        initBlackPawns();
+        initWhitePawns();
+        initWhitePieces();
     }
 
-    public String getPawnsResult(Color color) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (Pawn pawn : pawnList.get(color)) {
-            stringBuilder.append(pawn.getRepresentation());
-        }
-        return stringBuilder.toString();
+    public String showBoard() {
+        StringBuilder output = new StringBuilder();
+        String blankRank = appendNewLine("........");
+        output.append(appendNewLine(getPiecesResult(0)));
+        output.append(appendNewLine(getPiecesResult(1)));
+        output.append(blankRank).append(blankRank).append(blankRank).append(blankRank);
+        output.append(appendNewLine(getPiecesResult(2)));
+        output.append(appendNewLine(getPiecesResult(3)));
+        return output.toString();
     }
 
-    public String print() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append(getPawnsResult(Color.BLACK)).append(System.lineSeparator());
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append("........").append(System.lineSeparator());
-        stringBuilder.append(getPawnsResult(Color.WHITE)).append(System.lineSeparator());
-        stringBuilder.append("........");
-        return stringBuilder.toString();
+    public int pieceCount() {
+        return size;
     }
+
 }

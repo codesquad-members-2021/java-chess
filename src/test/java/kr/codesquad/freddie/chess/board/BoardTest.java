@@ -1,7 +1,9 @@
 package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.piece.Color;
-import kr.codesquad.freddie.chess.piece.Pawn;
+import kr.codesquad.freddie.chess.piece.Kind;
+import kr.codesquad.freddie.chess.piece.Piece;
+import kr.codesquad.freddie.chess.piece.PieceFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,9 +27,9 @@ class BoardTest {
             Board board = new Board();
 
             for (int j = 0; j < i; j++) {
-                board.add(new Pawn());
+                board.add(new Piece(Color.WHITE, Kind.PAWN));
             }
-            assertThat(board.size())
+            assertThat(board.pieceCount())
                     .isEqualTo(i);
 
             System.out.println(board);
@@ -39,8 +41,8 @@ class BoardTest {
     void add_fillRank() {
         int size = File.SIZE + 1;
         for (int i = 1; i <= size; i++) {
-            board.add(new Pawn());
-            assertThat(board.size())
+            board.add(new Piece(Color.WHITE, Kind.PAWN));
+            assertThat(board.pieceCount())
                     .isEqualTo(i);
         }
     }
@@ -48,63 +50,90 @@ class BoardTest {
     @Test
     void add_outOfRange() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(new Pawn());
+            board.add(new Piece(Color.WHITE, Kind.PAWN));
         }
 
-        assertThatThrownBy(() -> board.add(new Pawn()))
+        assertThatThrownBy(() -> board.add(new Piece(Color.WHITE, Kind.PAWN)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("더 이상 추가할 수 없습니다. 현재 크기 : 64");
     }
 
     @Test
     @DisplayName("하나만 추가하여 탐색")
-    void findPawn_one() {
-        Pawn white = new Pawn(Color.WHITE);
+    void findPiece_one() {
+        Piece white = new Piece(Color.WHITE, Kind.PAWN);
         board.add(white);
         assertAll(
-                () -> assertThat(board.size()).isEqualTo(1),
-                () -> assertThat(board.findPawn('a', 8)).isEqualTo(white)
+                () -> assertThat(board.pieceCount()).isEqualTo(1),
+                () -> assertThat(board.findPiece('a', 8)).isEqualTo(white)
         );
     }
 
     @Test
     @DisplayName("하나 이상 추가하여 탐색")
-    void findPawn_moreThanOne() {
-        Pawn white = new Pawn(Color.WHITE);
+    void findPiece_moreThanOne() {
+        Piece white = new Piece(Color.WHITE, Kind.PAWN);
         board.add(white);
-        Pawn black = new Pawn(Color.BLACK);
+        Piece black = new Piece(Color.BLACK, Kind.PAWN);
         board.add(black);
 
         assertAll(
-                () -> assertThat(board.size()).isEqualTo(2),
-                () -> assertThat(board.findPawn('a', 8)).isEqualTo(white),
-                () -> assertThat(board.findPawn('b', 8)).isEqualTo(black)
+                () -> assertThat(board.pieceCount()).isEqualTo(2),
+                () -> assertThat(board.findPiece('a', 8)).isEqualTo(white),
+                () -> assertThat(board.findPiece('b', 8)).isEqualTo(black)
         );
     }
 
     @Test
     void initialize() {
         board.initialize();
+        checkInitializeRoyal(Color.BLACK);
+        checkInitializeRoyal(Color.WHITE);
+        checkInitializePawn(Color.BLACK);
+        checkInitializePawn(Color.WHITE);
+    }
 
-        assertAll(
-                () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
-                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
-        );
+    private void checkInitializeRoyal(Color color) {
+        int rank = color == Color.BLACK ? 8 : 1;
+        PieceFactory pieceFactory = new PieceFactory(color);
+
+        assertThat(board.findPiece('a', rank)).isEqualTo(pieceFactory.createRook());
+        assertThat(board.findPiece('b', rank)).isEqualTo(pieceFactory.createKnight());
+        assertThat(board.findPiece('c', rank)).isEqualTo(pieceFactory.createBishop());
+        assertThat(board.findPiece('d', rank)).isEqualTo(pieceFactory.createQueen());
+        assertThat(board.findPiece('e', rank)).isEqualTo(pieceFactory.createKing());
+        assertThat(board.findPiece('f', rank)).isEqualTo(pieceFactory.createBishop());
+        assertThat(board.findPiece('g', rank)).isEqualTo(pieceFactory.createKnight());
+        assertThat(board.findPiece('h', rank)).isEqualTo(pieceFactory.createRook());
+    }
+
+    private void checkInitializePawn(Color color) {
+        int rank = color == Color.BLACK ? 7 : 2;
+        Piece pawn = new Piece(color, Kind.PAWN);
+
+        assertThat(board.findPiece('a', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('b', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('c', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('d', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('e', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('f', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('g', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece('h', rank)).isEqualTo(pawn);
     }
 
     @Test
     void getRepresentation_init_board() {
-        String representation = new Board().initialize().getRepresentation();
+        String representation = board.initialize().getRepresentation();
 
         String expected = new StringBuilder()
-                .append("........").append(System.lineSeparator())
+                .append("RNBQKBNR").append(System.lineSeparator())
                 .append("PPPPPPPP").append(System.lineSeparator())
                 .append("........").append(System.lineSeparator())
                 .append("........").append(System.lineSeparator())
                 .append("........").append(System.lineSeparator())
                 .append("........").append(System.lineSeparator())
                 .append("pppppppp").append(System.lineSeparator())
-                .append("........")
+                .append("rnbqkbnr")
                 .toString();
         assertThat(representation)
                 .isEqualTo(expected);
@@ -112,7 +141,7 @@ class BoardTest {
 
     @Test
     void getRepresentation_not_init_board() {
-        String representation = new Board().getRepresentation();
+        String representation = board.getRepresentation();
 
         String expected = new StringBuilder()
                 .append("........").append(System.lineSeparator())

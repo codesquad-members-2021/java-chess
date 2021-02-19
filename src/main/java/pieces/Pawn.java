@@ -20,4 +20,8 @@ public class Pawn {
     public String getColor() {
         return color;
     }
+
+    public String getRepresentation() {
+        return representation;
+    }
 }

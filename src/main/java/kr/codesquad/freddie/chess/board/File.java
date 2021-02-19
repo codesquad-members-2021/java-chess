@@ -49,14 +49,16 @@ public class File {
     }
 
     public void fillWithPawn(Color color) {
-        while (isAddable()) {
-            pieces.add(new Piece(color, Kind.PAWN));
-        }
+        fillWith(new Piece(color, Kind.PAWN));
     }
 
     public void fillWithBlank() {
+        fillWith(Piece.createBlank());
+    }
+
+    private void fillWith(Piece piece) {
         while (isAddable()) {
-            pieces.add(Piece.createBlank());
+            add(piece);
         }
     }
 

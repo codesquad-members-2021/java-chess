@@ -76,6 +76,10 @@ public class Board {
         }
     }
 
+    public int pieceCount(){
+        return whitePieces.size() + blackPieces.size();
+    }
+
     public void initialize() {
         for (int i = 0; i < BOARDSIZE; i++) {
             addWhitePawn(Piece.createWhitePawn());

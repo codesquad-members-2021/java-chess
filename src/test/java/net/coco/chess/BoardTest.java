@@ -21,7 +21,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("판에 폰이 잘 들어가는지 체크")
-    void BoardAddPawnCheck() {
+    void boardAddPawnCheck() {
 
         Assertions.assertAll(
                 () -> verifyPawnToPawns(Piece.WHITE, 0),
@@ -37,11 +37,13 @@ public class BoardTest {
     void initialize() {
         board.initialize();
         Assertions.assertAll(
+                () -> assertThat(32).isEqualTo(board.getPiecesSize()),
                 () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Piece.BLACK)),
                 () -> assertThat("RNBQKBNR").isEqualTo(board.getOtherPiecesResult(Piece.BLACK)),
                 () -> assertThat("rnbqkbnr").isEqualTo(board.getOtherPiecesResult(Piece.WHITE)),
                 () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(Piece.WHITE))
         );
+        PrintChess.printBoard(board);
     }
 
     @Test
@@ -60,13 +62,16 @@ public class BoardTest {
     }
 
     @Test
-    void print() {
-        board.initialize();
+    void isBlack() {
+        Assertions.assertAll(
+                () -> assertThat(true).isEqualTo(Piece.createBlackBishop().isBlack()),
+                () -> assertThat(true).isEqualTo(Piece.createWhiteBishop().isWhite())
+        );
 
-        PrintChess.printBoard(board);
     }
 
-    private void verifyPawnToPawns(String color, int findPawnIndex) {
+
+    void verifyPawnToPawns(String color, int findPawnIndex) {
 
         if (color.equals(Piece.WHITE))
             verifyWhitePawnsIndex(Piece.createWhitePawn(), findPawnIndex);
@@ -75,17 +80,17 @@ public class BoardTest {
 
     }
 
-    private void verifyWhitePawnsIndex(Piece piece, int findPawnIndex) {
+    void verifyWhitePawnsIndex(Piece piece, int findPawnIndex) {
         board.addPawn(piece);
         assertThat(piece).isEqualTo(board.findWhitePawn(findPawnIndex));
     }
 
-    private void verifyBlackPawnsIndex(Piece piece, int findPawnIndex) {
+    void verifyBlackPawnsIndex(Piece piece, int findPawnIndex) {
         board.addPawn(piece);
         assertThat(piece).isEqualTo(board.findBlackPawn(findPawnIndex));
     }
 
-    private void verifyPawnsSize(int actualSize) {
+    void verifyPawnsSize(int actualSize) {
         assertThat(actualSize).isEqualTo(board.getPiecesSize());
     }
 

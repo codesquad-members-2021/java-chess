@@ -80,4 +80,12 @@ public class Piece {
     public char getRepresentation() {
         return representation;
     }
+
+    public boolean isBlack() {
+        return color.equals("black")? true:false;
+    }
+
+    public boolean isWhite() {
+        return color.equals("white")? true:false;
+    }
 }

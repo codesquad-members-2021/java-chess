@@ -63,6 +63,43 @@ public class Board {
         }
     }
 
+    public void initialize() {
+        initializeBlackPieces();
+        initializeWhitePieces();
+    }
+
+    private void initializeWhitePieces() {
+        for (int i = 0; i < BOARDSIZE; i++) {
+            addWhitePieces(Piece.createWhitePawn());
+        }
+
+        addWhitePieces(Piece.createWhiteRook());
+        addWhitePieces(Piece.createWhiteKnight());
+        addWhitePieces(Piece.createWhiteBishop());
+        addWhitePieces(Piece.createWhiteQueen());
+        addWhitePieces(Piece.createWhiteKing());
+        addWhitePieces(Piece.createWhiteBishop());
+        addWhitePieces(Piece.createWhiteKnight());
+        addWhitePieces(Piece.createWhiteRook());
+    }
+
+    private void initializeBlackPieces() {
+
+        addBlackPieces(Piece.createBlackRook());
+        addBlackPieces(Piece.createBlackKnight());
+        addBlackPieces(Piece.createBlackBishop());
+        addBlackPieces(Piece.createBlackQueen());
+        addBlackPieces(Piece.createBlackKing());
+        addBlackPieces(Piece.createBlackBishop());
+        addBlackPieces(Piece.createBlackKnight());
+        addBlackPieces(Piece.createBlackRook());
+
+        for (int i = 0; i < BOARDSIZE; i++) {
+            addBlackPieces(Piece.createBlackPawn());
+        }
+
+    }
+
     public String showBoard() {
         StringBuilder sb = new StringBuilder();
 

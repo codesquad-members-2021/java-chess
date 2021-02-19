@@ -84,4 +84,8 @@ public class Board {
     public int size(){
         return MAX_SIZE*MAX_SIZE;
     }
+
+    public int pieceCount() {
+        return whitePieces.size() + blackPieces.size();
+    }
 }

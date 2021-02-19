@@ -15,7 +15,9 @@ public class Board {
     private int size = 0;
 
     public Board() {
-        IntStream.range(0, BOARD_LENGTH).forEach(i -> board.add(new Rank()));
+        for (int i = 0; i < BOARD_LENGTH; i++) {
+            board.add(new Rank());
+        }
     }
 
     public void add(Pawn pawn) {
@@ -43,11 +45,11 @@ public class Board {
         Rank blackPawns = getRank(Pawn.BLACK_PAWN_RANK);
         Rank whitePawns = getRank(Pawn.WHITE_PAWN_RANK);
 
-        IntStream.range(0, BOARD_LENGTH).forEach(i -> {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
             blackPawns.add(new Pawn(Color.BLACK.toString()));
             whitePawns.add(new Pawn());
             size += 2;
-        });
+        }
     }
 
     public String getWhitePawnsResult() {

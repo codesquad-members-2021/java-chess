@@ -19,18 +19,18 @@ class BoardTest {
     @DisplayName("체스판에 흰색 폰을 추가 후 갯수와 목록을 확인한다.")
     void putWhitePawn() {
         Pawn white = new Pawn();
-        board.add(white);
-        assertThat(board.size()).isEqualTo(1);
-        assertThat(board.findPawn(0)).isEqualTo(white);
+        board.addWhitePawn(white);
+        assertThat(board.getWhitePawnsSize()).isEqualTo(1);
+        assertThat(board.findWhitePawn(0)).isEqualTo(white);
     }
 
     @Test
     @DisplayName("체스판에 검은색 폰을 추가 후 갯수와 목록을 확인한다.")
     void putBlackPawn() {
         Pawn black = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
-        board.add(black);
-        assertThat(board.size()).isEqualTo(1);
-        assertThat(board.findPawn(0)).isEqualTo(black);
+        board.addBlackPawn(black);
+        assertThat(board.getBlackPawnsSize()).isEqualTo(1);
+        assertThat(board.findBlackPawn(0)).isEqualTo(black);
     }
 
     @Test

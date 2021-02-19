@@ -77,6 +77,19 @@ class FileTest {
     }
 
     @Test
+    void set() {
+        file.fillWithBlank();
+        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
+        PieceFactory whitePieceFactory = new PieceFactory(Color.WHITE);
+
+        assertThat(file.set('a', blackPieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
+        assertThat(file.set('h', whitePieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
+        assertThat(file.get('a')).isEqualTo(blackPieceFactory.createQueen());
+        assertThat(file.get('h')).isEqualTo(whitePieceFactory.createQueen());
+        assertThat(file.getRepresentation()).isEqualTo("Q......q");
+    }
+
+    @Test
     void getPieceNumberBy() {
         PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
         PieceFactory whitePieceFactory = new PieceFactory(Color.WHITE);

@@ -36,6 +36,22 @@ public class File {
         return pieces.get(fileIndex - 'a');
     }
 
+    /**
+     * 기물을 변경하고 기존에 있던 기물을 반환한다.
+     * 체스판의 file은 column으로, 좌측부터 a에서 시작하여 h까지의 알파벳 인덱스로 매겨진다.
+     * 첫 번째 칸 a는 array의 인덱스로 생각했을 때 0과 같고, h는 7과 같다.
+     * 가장 좌측의 기물을 변경하려면 set('a') 와 같이 사용할 수 있다.
+     *
+     * @param fileIndex 변경 대상의 인덱스 a~h 사이의 char
+     * @param piece 변경할 기물
+     * @return 해당 칸에 존재하던 기물
+     * @see List#set(int, Object)
+     * @see Board#findPiece(char, int)
+     */
+    public Piece set(char fileIndex, Piece piece) {
+        return pieces.set(fileIndex - 'a', piece);
+    }
+
     public Piece get(int index) {
         return pieces.get(index);
     }

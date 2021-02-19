@@ -37,11 +37,11 @@ public class BoardTest {
     void initialize() {
         board.initialize();
         Assertions.assertAll(
-                () -> assertThat(32).isEqualTo(board.getPiecesSize()),
-                () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Piece.BLACK)),
-                () -> assertThat("RNBQKBNR").isEqualTo(board.getOtherPiecesResult(Piece.BLACK)),
-                () -> assertThat("rnbqkbnr").isEqualTo(board.getOtherPiecesResult(Piece.WHITE)),
-                () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(Piece.WHITE))
+                () -> assertThat(board.getPiecesSize()).isEqualTo(32),
+                () -> assertThat(board.getPawnsResult(Piece.BLACK)).isEqualTo("PPPPPPPP"),
+                () -> assertThat(board.getOtherPiecesResult(Piece.BLACK)).isEqualTo("RNBQKBNR"),
+                () -> assertThat(board.getOtherPiecesResult(Piece.WHITE)).isEqualTo("rnbqkbnr"),
+                () -> assertThat(board.getPawnsResult(Piece.WHITE)).isEqualTo("pppppppp")
         );
         PrintChess.printBoard(board);
     }
@@ -54,13 +54,13 @@ public class BoardTest {
 
         Assertions.assertAll(
                 () -> board.addOtherPiece(blackBishop),
-                () -> assertThat(1).isEqualTo(board.getPiecesSize()),
+                () -> assertThat(board.getPiecesSize()).isEqualTo(1),
 
                 () -> board.addOtherPiece(blackPawn),
-                () -> assertThat(1).isEqualTo(board.getPiecesSize()),
+                () -> assertThat(board.getPiecesSize()).isEqualTo(1),
 
                 () -> board.addPawn(blackBishop),
-                () -> assertThat(1).isEqualTo(board.getPiecesSize())
+                () -> assertThat(board.getPiecesSize()).isEqualTo(1)
         );
     }
 

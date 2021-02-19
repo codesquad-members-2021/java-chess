@@ -23,10 +23,10 @@ public class Board {
 
     public void addPiece(Piece piece){
         if(piece.getColor()==Color.WHITE) {
-            addWhitePiece(piece);
+            whitePieceList.add(piece);
             return;
         }
-        addBlackPiece(piece);
+        blackPieceList.add(piece);
     }
 
     public int size() {
@@ -50,25 +50,11 @@ public class Board {
     }
 
     public void initialize() {
-        addBlackPiece(Piece.createBlackRook());
-        addBlackPiece(Piece.createBlackKnight());
-        addBlackPiece(Piece.createBlackBishop());
-        addBlackPiece(Piece.createBlackQueen());
-        addBlackPiece(Piece.createBlackKing());
-        addBlackPiece(Piece.createBlackBishop());
-        addBlackPiece(Piece.createBlackKnight());
-        addBlackPiece(Piece.createBlackRook());
+        piecesExceptPawnInitialize(Color.BLACK);
         pawnInitialize(Color.BLACK);
 
         pawnInitialize(Color.WHITE);
-        addWhitePiece(Piece.createWhiteRook());
-        addWhitePiece(Piece.createWhiteKnight());
-        addWhitePiece(Piece.createWhiteBishop());
-        addWhitePiece(Piece.createWhiteQueen());
-        addWhitePiece(Piece.createWhiteKing());
-        addWhitePiece(Piece.createWhiteBishop());
-        addWhitePiece(Piece.createWhiteKnight());
-        addWhitePiece(Piece.createWhiteRook());
+        piecesExceptPawnInitialize(Color.WHITE);
     }
 
     public void pawnInitialize(Color color){
@@ -76,6 +62,17 @@ public class Board {
         for (int i = 0; i < MAX_PAWNS_SIZE; i++) {
             addPiece(Piece.createPiece(color, Name.PAWN));
         }
+    }
+
+    public void piecesExceptPawnInitialize(Color color){
+        addPiece(Piece.createPiece(color, Name.ROOK));
+        addPiece(Piece.createPiece(color, Name.KNIGHT));
+        addPiece(Piece.createPiece(color, Name.BISHOP));
+        addPiece(Piece.createPiece(color, Name.QUEEN));
+        addPiece(Piece.createPiece(color, Name.KING));
+        addPiece(Piece.createPiece(color, Name.BISHOP));
+        addPiece(Piece.createPiece(color, Name.KNIGHT));
+        addPiece(Piece.createPiece(color, Name.ROOK));
     }
 
     public String getWhitePiecesResult() {

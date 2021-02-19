@@ -112,11 +112,18 @@ public class Board {
         return pawnList.size();
     }
 
-    public Pawn findPawn(int i) {
+    public Pawn findPawn(int listIndex) {
 
+<<<<<<< HEAD
         Pawn pawn = pawnList.get(i);
 >>>>>>> feat : Do Mission2
+<<<<<<< HEAD
 >>>>>>> 3c74074... feat : Do Mission2
+=======
+=======
+        Pawn pawn = pawnList.get(listIndex);
+>>>>>>> fix : Fix mission1
+>>>>>>> 124d6ee... fix : Fix mission1
 
     public String getPawnPieces(List<Piece> list) {
         StringBuilder sb = new StringBuilder();

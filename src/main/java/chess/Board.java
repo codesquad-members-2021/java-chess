@@ -50,6 +50,10 @@ public class Board {
         return sb.toString();
     }
 
+    private String getBlankLine() {
+        return "........";
+    }
+
     public Pawn findPawn(int index) {
         return pawns.get(index);
     }
@@ -71,4 +75,23 @@ public class Board {
         }
     }
 
+    void print() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getBlankLine());
+        sb.append('\n');
+        sb.append(getBlackPawnsResult());
+        sb.append('\n');
+        sb.append(getBlankLine());
+        sb.append('\n');
+        sb.append(getBlankLine());
+        sb.append('\n');
+        sb.append(getBlankLine());
+        sb.append('\n');
+        sb.append(getBlankLine());
+        sb.append('\n');
+        sb.append(getWhitePawnsResult());
+        sb.append('\n');
+        sb.append(getBlankLine());
+        System.out.println(sb.toString());
+    }
 }

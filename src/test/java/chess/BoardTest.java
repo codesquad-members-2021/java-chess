@@ -47,4 +47,11 @@ class BoardTest {
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
     }
+
+    @Test
+    @DisplayName("체스판 출력")
+    void print () {
+        board.initialize();
+        board.print();
+    }
 }

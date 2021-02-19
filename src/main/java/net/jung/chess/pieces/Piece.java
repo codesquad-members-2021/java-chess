@@ -37,4 +37,15 @@ public class Piece {
     public static Piece createBlackQueen(){ return new Piece(Color.BLACK, Name.QUEEN); }
     public static Piece createWhiteKing(){ return new Piece(Color.WHITE, Name.KING); }
     public static Piece createBlackKing(){ return new Piece(Color.BLACK, Name.KING); }
+
+    public boolean isWhite(){
+        if (color == Color.WHITE)
+            return true;
+        return false;
+    }
+    public boolean isBlack() {
+        if (color == Color.BLACK)
+            return true;
+        return false;
+    }
 }

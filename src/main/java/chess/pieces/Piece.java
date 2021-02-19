@@ -39,7 +39,6 @@ public class Piece {
         return new Piece(Color.BLACK, Type.PAWN);
     }
 
-
     public static Piece createWhiteRook() {
         return new Piece(Color.WHITE, Type.ROOK);
     }

@@ -11,12 +11,18 @@ public class Pawn {
     private char representation;
 
     public Pawn() {
-        this(Pawn.WHITE, Pawn.WHITE_REPRESENTATION);
+        this(Pawn.WHITE);
+        this.representation = Pawn.WHITE_REPRESENTATION;
     }
 
-    public Pawn(final String color, final char representation) {
+    public Pawn(final String color) {
         this.color = color;
-        this.representation = representation;
+
+        if(color.equals("white")){
+            this.representation = 'p';
+            return;
+        }
+        this.representation = 'P';
     }
 
     public String getColor() {

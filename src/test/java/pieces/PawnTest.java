@@ -12,7 +12,7 @@ class PawnTest {
         verifyPawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
     }
     void verifyPawn(final String color, final char representation){
-        Pawn pawn = new Pawn(color, representation);
+        Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
         assertThat(pawn.getRepresentation()).isEqualTo(representation);
     }

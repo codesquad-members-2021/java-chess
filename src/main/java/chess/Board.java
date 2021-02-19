@@ -38,10 +38,10 @@ public class Board {
 
     void initialize() {
         for(int i = 0; i < PAWN_NUMBER ; i++){
-            Pawn whitePawn = new Pawn(Pawn.WHITE,Pawn.WHITE_REPRESENTATION);
+            Pawn whitePawn = new Pawn(Pawn.WHITE);
             whitePawnAdd(whitePawn);
 
-            Pawn blackPawn = new Pawn(Pawn.BLACK,Pawn.BLACK_REPRESENTATION);
+            Pawn blackPawn = new Pawn(Pawn.BLACK);
             blackPawnAdd(blackPawn);
         }
     }

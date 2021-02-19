@@ -12,6 +12,7 @@ public class Console {
 
     private void runConsole() {
         Scanner scanner = new Scanner(System.in);
+        board = new Board();
         String command;
 
         while (true) {
@@ -31,7 +32,6 @@ public class Console {
     }
 
     private void startGame() {
-        board = new Board();
         board.initialize();
         printCellsOfBoard();
     }

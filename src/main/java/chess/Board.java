@@ -75,7 +75,7 @@ public class Board {
         addWhite(Piece.createWhiteRook());
     }
 
-    private void addBlackPieces(){
+    private void addBlackPieces() {
         addBlack(Piece.createBlackRook());
         addBlack(Piece.createBlackKnight());
         addBlack(Piece.createBlackBishop());

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PieceTest {
     @Test
@@ -27,14 +26,14 @@ public class PieceTest {
     }
 
     private void verifyPiece(final Piece piece, final String color, final char representation) {
-        assertThat(color).isEqualTo(piece.getColor());
-        assertThat(representation).isEqualTo(piece.getRepresentation());
+        assertThat(piece.getColor()).isEqualTo(color);
+        assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
 
     @Test
     @DisplayName("Verify isWhite and isBlack")
     void verifyColor() {
-        assertTrue(Piece.createWhitePawn().isWhite());
-        assertTrue(Piece.createBlackPawn().isBlack());
+        assertThat(Piece.createWhitePawn().isWhite()).isTrue();
+        assertThat(Piece.createBlackPawn().isBlack()).isTrue();
     }
 }

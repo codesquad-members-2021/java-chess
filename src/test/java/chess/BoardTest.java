@@ -15,17 +15,18 @@ public class BoardTest {
 
     @Test
     @DisplayName("Verify Board initialize and toString")
-    public void create() throws Exception {
+    public void create() {
         board.initialize();
-        assertThat(32).isEqualTo(board.size());
+        assertThat(board.size()).isEqualTo(32);
 
         final String BLANK_LINE = appendNewLine("........");
-        assertThat(
-                appendNewLine("RNBQKBNR") +
+        assertThat(board.toString())
+                .isEqualTo(appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         BLANK_LINE + BLANK_LINE + BLANK_LINE + BLANK_LINE +
                         appendNewLine("pppppppp") +
-                        appendNewLine("rnbqkbnr")).isEqualTo(
-                board.toString());
+                        appendNewLine("rnbqkbnr")
+                );
+
     }
 }

@@ -33,6 +33,26 @@ public abstract class Piece {
         return new Pawn(color, Piece.PAWN_REPRESENTATION);
     }
 
+    public static King getKing(Color color) {
+        return new King(color, Piece.KING_REPRESENTATION);
+    }
+
+    public static Queen getQueen(Color color) {
+        return new Queen(color, Piece.QUEEN_REPRESENTATION);
+    }
+
+    public static Rook getRook(Color color) {
+        return new Rook(color, Piece.ROOK_REPRESENTATION);
+    }
+
+    public static Bishop getBishop(Color color) {
+        return new Bishop(color, Piece.BISHOP_REPRESENTATION);
+    }
+
+    public static Knight getKnight(Color color) {
+        return new Knight(color, Piece.KNIGHT_REPRESENTATION);
+    }
+
     public enum Color {
         BLACK,
         WHITE

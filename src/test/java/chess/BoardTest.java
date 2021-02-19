@@ -4,6 +4,7 @@ import chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import utils.StringUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -46,15 +47,18 @@ class BoardTest {
     @DisplayName("폰을 포함한 체스판의 출력이 정상적으로 이루어 지는지 확인한다.")
     void printBoard() {
         board.initialize();
+        String blankRank =  StringUtils.addNewLine("........");
 
+        assertThat(32).isEqualTo(board.pieceCount());
         assertThat(board.showBoard()).isEqualTo(
-                "........\n" +
-                        "PPPPPPPP\n" +
-                        "........\n" +
-                        "........\n" +
-                        "........\n" +
-                        "........\n" +
-                        "pppppppp\n" +
-                        "........\n");
+                StringUtils.addNewLine("RNBQKBNR") +
+                StringUtils.addNewLine("PPPPPPPP") +
+                blankRank +
+                blankRank +
+                blankRank +
+                blankRank +
+                StringUtils.addNewLine("pppppppp") +
+                StringUtils.addNewLine("rnbqkbnr")
+        );
     }
 }

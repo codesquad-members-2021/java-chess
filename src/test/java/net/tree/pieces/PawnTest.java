@@ -1,16 +1,15 @@
 package net.tree.pieces;
 
 
-import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PawnTest {
 
     @Test
-    @DisplayName("흰색 폰이 생성되어야 한다")
+    @DisplayName("흰색, 검정색 pawn이 생성되어야 한다")
     public void create() {
         verifyPawn("white");
         verifyPawn("black");
@@ -19,11 +18,12 @@ public class PawnTest {
     void verifyPawn(final String color) {
         Pawn pawn = new Pawn(color);
         assertEquals(color, pawn.getColor());
-        assertThat(color ,equalTo(pawn.getColor()));
+
     }
 
     @Test
-    public void create_기본생성자() throws Exception {
+    @DisplayName("기본생성자 만들기")
+    public void create_기본생성자() {
         Pawn pawn = new Pawn();
         assertEquals("white", pawn.getColor());
     }

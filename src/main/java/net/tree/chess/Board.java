@@ -9,11 +9,11 @@ public class Board {
 
     List<Pawn> pawnList = new ArrayList<>();
 
-    public void add(Pawn pawnColor) {
-        pawnList.add(pawnColor);
+    public void add(Pawn pawn) {
+        pawnList.add(pawn);
     }
 
-    public int size() {
+    public int checkPawnSize() {
         return pawnList.size();
     }
 

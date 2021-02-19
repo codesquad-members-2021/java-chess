@@ -3,6 +3,7 @@ package kr.codesquad.freddie.chess.board;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
+import kr.codesquad.freddie.chess.piece.PieceFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -73,6 +74,67 @@ class FileTest {
                 () -> assertThatThrownBy(() -> file.get((char) 0))
                         .isInstanceOf(ArrayIndexOutOfBoundsException.class)
         );
+    }
+
+    @Test
+    void getPieceNumberBy() {
+        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
+        PieceFactory whitePieceFactory = new PieceFactory(Color.WHITE);
+
+        file.add(blackPieceFactory.createRook());
+        file.add(PieceFactory.createBlank());
+        file.add(PieceFactory.createBlank());
+        file.add(PieceFactory.createBlank());
+        file.add(blackPieceFactory.createKing());
+        file.add(whitePieceFactory.createQueen());
+        file.add(PieceFactory.createBlank());
+        file.add(blackPieceFactory.createRook());
+
+        assertAll(
+                () -> assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(3),
+                () -> assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(1),
+                () -> assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(4)
+        );
+    }
+
+    @Test
+    void getPieceNumberBy_fillWithBlackPawn() {
+        file.fillWithPawn(Color.BLACK);
+        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(8);
+        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(0);
+        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(0);
+    }
+
+    @Test
+    void getPieceNumberBy_fillWithBlackRoyal() {
+        file.fillWithRoyal(Color.BLACK);
+        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(8);
+        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(0);
+        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(0);
+    }
+
+    @Test
+    void getPieceNumberBy_fillWithWhitePawn() {
+        file.fillWithPawn(Color.WHITE);
+        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(0);
+        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(8);
+        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(0);
+    }
+
+    @Test
+    void getPieceNumberBy_fillWithWhiteRoyal() {
+        file.fillWithRoyal(Color.WHITE);
+        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(0);
+        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(8);
+        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(0);
+    }
+
+    @Test
+    void getPieceNumberBy_fillWithBlank() {
+        file.fillWithRoyal(Color.NOCOLOR);
+        assertThat(file.getPieceNumberBy(Color.BLACK)).isEqualTo(0);
+        assertThat(file.getPieceNumberBy(Color.WHITE)).isEqualTo(0);
+        assertThat(file.getPieceNumberBy(Color.NOCOLOR)).isEqualTo(8);
     }
 
     @Test

@@ -44,6 +44,12 @@ public class File {
         return pieces.size();
     }
 
+    public int getPieceNumberBy(Color color) {
+        return (int) pieces.stream()
+                .filter(piece -> piece.getColor() == color)
+                .count();
+    }
+
     public boolean isAddable() {
         return size() < SIZE;
     }

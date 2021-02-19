@@ -1,8 +1,8 @@
 package cooper.chess.utils;
 
 public class StringUtils {
-    public static final String NEWLINE = System.getProperty("line.separator");
-    public static final StringBuilder stringBuilder = new StringBuilder();
+    private static final String NEWLINE = System.getProperty("line.separator");
+    private static final StringBuilder stringBuilder = new StringBuilder();
 
 
     public static void appendNewLine(String str) {

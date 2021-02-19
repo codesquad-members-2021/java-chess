@@ -83,12 +83,15 @@ public class Board {
     }
 
     public String showBoard() {
+        StringBuilder result = new StringBuilder();
         String empty = appendNewLine(getEmptyResult());
-        return appendNewLine(getBlackPieceResult()) +
-                appendNewLine(getBlackPawnResult()) +
-                empty + empty + empty + empty +
-                appendNewLine(getWhitePawnResult()) +
-                appendNewLine(getWhitePieceResult());
+        result.append(appendNewLine(getBlackPieceResult()))
+                .append(appendNewLine(getBlackPawnResult()))
+                .append(empty + empty + empty + empty)
+                .append(appendNewLine(getWhitePawnResult()))
+                .append(appendNewLine(getWhitePieceResult()));
+
+        return result.toString();
     }
 
     private String getEmptyResult() {

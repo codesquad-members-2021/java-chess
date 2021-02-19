@@ -1,15 +1,15 @@
 package cooper.chess.piece;
 
-public class Pawn {
+public class Piece {
     private final Color color;
     private final char representation;
 
-    public Pawn(String color) {
+    public Piece(String color) {
         this.color = Color.of(color);
         this.representation = this.color.getRepresentation();
     }
 
-    public Pawn() {
+    public Piece() {
         this.color = Color.WHITE;
         this.representation = color.getRepresentation();
     }

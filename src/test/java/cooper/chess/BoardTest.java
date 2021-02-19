@@ -1,7 +1,7 @@
 package cooper.chess;
 
 import cooper.chess.piece.Color;
-import cooper.chess.piece.Pawn;
+import cooper.chess.piece.Piece;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +13,10 @@ class BoardTest {
     public void create() {
         Board board = new Board();
 
-        Pawn white = new Pawn("white");
+        Piece white = new Piece("white");
         board.add(white);
 
-        Pawn black = new Pawn("black");
+        Piece black = new Piece("black");
         board.add(black);
 
         assertAll(
@@ -42,10 +42,10 @@ class BoardTest {
     public void testOutOfBoardSize() {
         Board board = new Board();
 
-        Pawn white = new Pawn("white");
+        Piece white = new Piece("white");
         board.add(white);
 
-        Pawn black = new Pawn("black");
+        Piece black = new Piece("black");
         board.add(black);
 
         assertAll(

@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PawnTest {
+public class PieceTest {
 
     @Test
     @DisplayName("흰색 폰이 생성됨을 확인한다.")
     public void create_defaultConstructor() {
-        Pawn pawn = new Pawn();
-        assertEquals(Color.WHITE.getColorName(), pawn.getColor().getColorName());
-        assertEquals(Color.WHITE.getRepresentation(), pawn.getRepresentation());
+        Piece piece = new Piece();
+        assertEquals(Color.WHITE.getColorName(), piece.getColor().getColorName());
+        assertEquals(Color.WHITE.getRepresentation(), piece.getRepresentation());
     }
 
     @Test
@@ -26,15 +26,15 @@ public class PawnTest {
     @Test
     @DisplayName("흰색과 검정색 외 색상 추가 시, 예외를 발생시킨다.")
     public void checkOtherColorName() {
-        assertThrows(IllegalArgumentException.class, () -> new Pawn("green"));
+        assertThrows(IllegalArgumentException.class, () -> new Piece("green"));
     }
 
     void verifyPawn(final String color, final char representation) {
-        Pawn pawn = new Pawn(color);
+        Piece piece = new Piece(color);
 
         assertAll(
-                () -> assertEquals(color, pawn.getColor().getColorName()),
-                () -> assertEquals(representation, pawn.getRepresentation())
+                () -> assertEquals(color, piece.getColor().getColorName()),
+                () -> assertEquals(representation, piece.getRepresentation())
         );
     }
 }

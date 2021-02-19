@@ -9,14 +9,14 @@ public class Board {
     private static final int PAWN_MAX_SIZE = 8;
     private static final String BLANK = "........";
 
-    private final PawnGroup pawnGroup;
+    private final PieceGroup pieceGroup;
 
     public Board() {
-        this.pawnGroup = new PawnGroup(createPawnGroup());
+        this.pieceGroup = new PieceGroup(createPawnGroup());
     }
 
-    private Map<Color, List<Pawn>> createPawnGroup() {
-        Map<Color, List<Pawn>> pawnListMap = new HashMap<>();
+    private Map<Color, List<Piece>> createPawnGroup() {
+        Map<Color, List<Piece>> pawnListMap = new HashMap<>();
         pawnListMap.put(Color.WHITE, new ArrayList<>());
         pawnListMap.put(Color.BLACK, new ArrayList<>());
 
@@ -28,43 +28,43 @@ public class Board {
         initPawnList(Color.BLACK);
     }
 
-    private List<Pawn> initPawnList(Color color) {
-        List<Pawn> pawnList = pawnGroup.getPawnList(color);
+    private List<Piece> initPawnList(Color color) {
+        List<Piece> pieceList = pieceGroup.getPawnList(color);
 
         int pawnCount = 0;
         while(pawnCount++ < PAWN_MAX_SIZE) {
-            pawnList.add(new Pawn(color.getColorName()));
+            pieceList.add(new Piece(color.getColorName()));
         }
 
-        return pawnList;
+        return pieceList;
     }
 
-    public void add(Pawn pawn) {
-        List<Pawn> pawnList = pawnGroup.getPawnList(pawn.getColor());
+    public void add(Piece piece) {
+        List<Piece> pieceList = pieceGroup.getPawnList(piece.getColor());
 
-        if(pawnList.size() >= 8) {
+        if(pieceList.size() >= 8) {
             return;
         }
 
-        pawnList.add(pawn);
+        pieceList.add(piece);
     }
 
     public int size(Color color) {
-        return pawnGroup.getPawnList(color).size();
+        return pieceGroup.getPawnList(color).size();
     }
 
-    public Pawn findPawn(int index, Color color) {
-        List<Pawn> pawnList = pawnGroup.getPawnList(color);
+    public Piece findPawn(int index, Color color) {
+        List<Piece> pieceList = pieceGroup.getPawnList(color);
 
-        if(pawnList.size() == 0) {
+        if(pieceList.size() == 0) {
             throw new IllegalArgumentException("size가 0입니다.");
         }
 
-        if ((0 > index) || (index >= pawnList.size())) {
+        if ((0 > index) || (index >= pieceList.size())) {
             throw new IllegalArgumentException("범위를 벗어나는 인덱스 입니다.");
         }
 
-        return pawnList.get(index);
+        return pieceList.get(index);
     }
 
     public String getBoardStatus() {
@@ -78,11 +78,11 @@ public class Board {
     }
 
     private String getEachRowStatus (int index) {
-        if(index == PawnGroup.WHITE_INIT_INDEX) {
+        if(index == PieceGroup.WHITE_PAWN_INIT_INDEX) {
             return getPawnsResult(Color.WHITE);
         }
 
-        if(index == PawnGroup.BLACK_INIT_INDEX) {
+        if(index == PieceGroup.BLACK_PAWN_INIT_INDEX) {
             return getPawnsResult(Color.BLACK);
         }
 
@@ -91,10 +91,10 @@ public class Board {
 
     public String getPawnsResult(Color color) {
         StringBuilder sb = new StringBuilder();
-        List<Pawn> pawnList = pawnGroup.getPawnList(color);
+        List<Piece> pieceList = pieceGroup.getPawnList(color);
 
         for (int col = 0; col < PAWN_MAX_SIZE; col++) {
-            sb.append(pawnList.get(col).getRepresentation());
+            sb.append(pieceList.get(col).getRepresentation());
         }
 
         return sb.toString();

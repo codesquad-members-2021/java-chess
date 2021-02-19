@@ -6,6 +6,7 @@ import net.jung.chess.Name;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class PieceTest {
 
@@ -36,5 +37,17 @@ public class PieceTest {
         assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getName()).isEqualTo(name);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
+    }
+
+    @Test
+    @DisplayName("isBlack isWhite는 색깔이 일치하면 true 아니면 false 리턴한다.")
+    void isColorCheck(){
+        assertAll(
+                () -> assertThat(Piece.createWhiteKing().isBlack()).isFalse(),
+                () -> assertThat(Piece.createBlackBishop().isBlack()).isTrue(),
+
+                () -> assertThat(Piece.createBlackPawn().isWhite()).isFalse(),
+                () -> assertThat(Piece.createWhiteKnight().isWhite()).isTrue()
+        );
     }
 }

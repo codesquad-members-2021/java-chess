@@ -124,7 +124,6 @@ public class Board {
         boardOutput.append(blankRank);
         boardOutput.append(appendNewLine(getWhitePawnsResult()));
         boardOutput.append(appendNewLine(getWhitePiecesResult()));
-        //System.out.println(boardOutput.toString());
         return boardOutput.toString();
     }
 

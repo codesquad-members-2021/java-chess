@@ -3,7 +3,6 @@ package net.kjk402.chess.pieces;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class PieceTest {
     @Test
     @DisplayName("모든 말을 색상별로 생성하여 확인한다.")
-    public void create_allPieces() {
+    void create_allPieces() {
         verifyPiece(Piece.createWhitePawn(), Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION);
         verifyPiece(Piece.createBlackPawn(), Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
         verifyPiece(Piece.createWhiteRook(), Piece.WHITE, Piece.WHITE_ROOK_REPRESENTATION);

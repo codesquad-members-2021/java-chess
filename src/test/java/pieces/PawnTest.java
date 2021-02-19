@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PawnTest {
 
     @Test
-    @DisplayName("색을 지정하지 않은 Pawn(흰색이 기본값) 클래스 생성")
+    @DisplayName("색을 지정하지 않을때 흰색 폰이 생성된다.")
     void create() {
         Pawn pawn = new Pawn();
         assertThat(pawn.getColor()).isEqualTo(Pawn.WHITE_COLOR);

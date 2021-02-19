@@ -17,11 +17,4 @@ class PieceTest {
         assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
-
-    @Test
-    void create_기본생성자() throws Exception {
-        Piece pawn = new Piece();
-        assertThat(pawn.getColor()).isEqualTo(pawn.WHITE_COLOR);
-        assertThat(pawn.getRepresentation()).isEqualTo(Piece.WHITE_PAWN_REPRESENTATION);
-    }
 }

@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.*;
 class PieceTest {
     @Test
     @DisplayName("체스말 생성 테스트")
-    public void create_piece() {
+    void create_piece() {
         assertAll(
                 () -> verifyPiece(Piece.getPawn(Piece.Color.WHITE), Piece.Color.WHITE, Piece.PAWN_REPRESENTATION),
                 () -> verifyPiece(Piece.getPawn(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.PAWN_REPRESENTATION)),
@@ -25,7 +25,7 @@ class PieceTest {
         );
     }
 
-    private void verifyPiece(final Piece piece, final Piece.Color color, char representation) {
+    void verifyPiece(final Piece piece, final Piece.Color color, char representation) {
         assertAll(
                 ()->assertThat(piece.getColor()).isEqualTo(color),
                 ()->assertThat(piece.getRepresentation()).isEqualTo(representation)

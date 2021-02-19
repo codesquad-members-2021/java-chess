@@ -7,7 +7,7 @@ public abstract class Piece {
     private final Color color;
     private final char representation;
 
-    public Piece(Color color, char representation){
+    Piece(Color color, char representation){
         this.color = color;
         this.representation = representation;
     }

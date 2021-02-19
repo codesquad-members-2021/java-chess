@@ -35,7 +35,7 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("보드판을 초기화 합니다")
+    @DisplayName("보드판에 초기화 된 이니셜이 의도한 바와 맞는지 테스트합니다")
     void initialize(){
         board.initialize();
         assertThat(board.getWhitePawnsRepresentation()).isEqualTo("pppppppp");

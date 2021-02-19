@@ -29,7 +29,7 @@ public class Board {
     }
 
     //TODO: 메소드의 역할을 잘 드러나도록 이름 더 직관적으로 바꿔보자
-    public void add(Piece piece) {
+    private void add(Piece piece) {
         pieces.add(piece);
     }
 
@@ -37,7 +37,7 @@ public class Board {
         return pieces.get(index);
     }
 
-    public void initialize() {
+     void initialize() {
         for (Type type : Type.values()) {
             for (Color color : Color.values()) {
                 initPieces(color, type);
@@ -101,11 +101,11 @@ public class Board {
         cellsOfBoard[EIGHTH_ROW] = StringUtils.appendNewLine(getRowOfPieces(Color.WHITE));
     }
 
-    public int countPieces() {
+    int countPieces() {
         return pieces.size();
     }
 
-    public int countPawns() {
+    int countPawns() {
         return (int) pieces.stream()
                 .filter(pawn -> pawn.getType() == Type.PAWN)
                 .count();
@@ -119,7 +119,7 @@ public class Board {
         return result.toString();
     }
 
-    public String getRowOfPawns(Color color) {
+    private String getRowOfPawns(Color color) {
         return pieces.stream()
                 .filter(piece -> piece.getType() == Type.PAWN)
                 .filter(piece -> piece.getColor() == color)
@@ -128,7 +128,7 @@ public class Board {
                 .collect(joining());
     }
 
-    public String getRowOfPieces(Color color) {
+    private String getRowOfPieces(Color color) {
         RepresentationMap representationMap = new RepresentationMap();
         StringBuilder stringBuilder = new StringBuilder();
 

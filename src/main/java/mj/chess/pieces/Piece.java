@@ -4,7 +4,7 @@ public class Piece {
 
     private final Color color;
     private final Type type;
-    private final char representation;
+    private final String representation;
 
     private Piece(Color color, Type type) {
         RepresentationMap representationMap = new RepresentationMap();
@@ -58,7 +58,7 @@ public class Piece {
     public Type getType() {
         return type;
     }
-    public char getRepresentation() {
+    public String getRepresentation() {
         return representation;
     }
 }

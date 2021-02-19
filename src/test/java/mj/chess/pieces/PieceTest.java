@@ -18,7 +18,7 @@ class PieceTest {
     };
 
     private void verifyPiece(final Piece piece, Color color, Type type) {
-        char representation = new RepresentationMap().getRepresentation(color, type);
+        String representation = new RepresentationMap().getRepresentation(color, type);
 
         assertAll(
                 () -> verifyColorOfPiece(piece, color),
@@ -35,7 +35,7 @@ class PieceTest {
         assertThat(piece.getType()).isEqualTo(type);
     };
 
-    private void verifyRepresentationOfPiece(final Piece piece, final char representation) {
+    private void verifyRepresentationOfPiece(final Piece piece, final String representation) {
         assertThat(piece.getRepresentation()).isEqualTo(representation);
     };
 }

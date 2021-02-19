@@ -6,7 +6,6 @@ import mj.chess.pieces.Type;
 import mj.chess.utils.StringUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;

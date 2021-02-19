@@ -6,17 +6,73 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private List<Pawn> pawns = new ArrayList<>();
+    private static final int BOARD_SIZE = 8;
+    private static final String NEW_LINE = "\n";
+    private static final String EMPTY = "........" + NEW_LINE;
+    private List<Pawn> whitePawns = new ArrayList<>();
+    private List<Pawn> blackPawns = new ArrayList<>();
 
-    public void add(Pawn pawn){
-        pawns.add(pawn);
+    public void initialize() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            addWhitePawn(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+            addBlackPawn(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+        }
     }
 
-    public Pawn find(int index){
-        return pawns.get(index);
+    public void addWhitePawn(Pawn pawn) {
+        if (checkPawnColor(pawn, Pawn.WHITE_COLOR))
+            whitePawns.add(pawn);
     }
 
-    public int size(){
-        return pawns.size();
+    public void addBlackPawn(Pawn pawn) {
+        if (checkPawnColor(pawn, Pawn.BLACK_COLOR))
+            blackPawns.add(pawn);
+    }
+
+    private boolean checkPawnColor(Pawn pawn, String color) {
+        return pawn.getColor().equals(color);
+    }
+
+    public String getWhitePawnsResult() {
+        return getPawnsResult(whitePawns);
+    }
+
+    public String getBlackPawnsResult() {
+        return getPawnsResult(blackPawns);
+    }
+
+    private String getPawnsResult(List<Pawn> pawns) {
+        StringBuilder pawnsResult = new StringBuilder();
+        for (Pawn pawn : pawns)
+            pawnsResult.append(pawn.getRepresentation());
+        return pawnsResult.toString();
+    }
+
+    public Pawn findWhitePawn(int index) {
+        return whitePawns.get(index);
+    }
+
+    public Pawn findBlackPawn(int index) {
+        return blackPawns.get(index);
+    }
+
+    public int size() {
+        return blackPawns.size() + whitePawns.size();
+    }
+
+    public String printBoard() {
+        StringBuilder result = new StringBuilder();
+        result.append(EMPTY)
+                .append(getWhitePawnsResult())
+                .append(NEW_LINE)
+                .append(EMPTY)
+                .append(EMPTY)
+                .append(EMPTY)
+                .append(EMPTY)
+                .append(getBlackPawnsResult())
+                .append(NEW_LINE)
+                .append(EMPTY);
+
+        return result.toString();
     }
 }

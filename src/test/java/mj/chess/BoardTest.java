@@ -20,20 +20,34 @@ class BoardTest {
         board = new Board();
     }
 
+
+
     @Test
-    @DisplayName("오직 pawns로 구성된 체스판을 생성")
+    @DisplayName("폰의 생성 개수 확인")
+    void initPawns() {
+        verifySizeOfPawns();
+    }
+
+    private void verifySizeOfPawns(){
+        final int maxSizeOfPawns = 16;
+        board.initialize();
+        assertThat(board.countPawns()).isEqualTo(maxSizeOfPawns);
+    }
+
+    @Test
+    @DisplayName("체스판 생성에 따라 폰의 개수 및 초기 출력상태 확인")
     void createBoardOnlyWithPawns() {
-        final int numOfAllPieces = 16;
+        final int numOfAllPawns = 16;
         board.initialize();
 
         assertAll(
-                () -> verifyCounting(board, numOfAllPieces),
+                () -> verifyCountingOnlyPawns(board, numOfAllPawns),
                 () -> verifyRepresentationOfPawns(board)
         );
     }
 
-    private void verifyCounting(Board board, int maxNum) {
-        assertThat(board.countPieces()).isEqualTo(maxNum);
+    private void verifyCountingOnlyPawns(Board board, int maxNum) {
+        assertThat(board.countPawns()).isEqualTo(maxNum);
     }
 
     private void verifyRepresentationOfPawns(Board board) {
@@ -51,27 +65,18 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("폰의 생성 개수를 확인")
-    void checkInitPawns() {
-        verifySizeOfPawns();
-    }
-
-    private void verifySizeOfPawns(){
-        final int maxSizeOfPawns = 16;
-        board.initialize();
-        assertThat(board.countPawns()).isEqualTo(maxSizeOfPawns);
-    }
-
-    @Test
-    @DisplayName("Board class에 ")
+    @DisplayName("체스판 생성에 따라 모든 기물의 개수 및 초기 출력상태 확인")
     void createBoard() {
         final int numOfAllPieces = 32;
         board.initialize();
 
         assertAll(
                 () -> verifyCounting(board, numOfAllPieces),
-                () -> verifyRepresentationOfPawns(board)
+                () -> verifyRepresentationOfPieces(board)
         );
+    }
+    private void verifyCounting(Board board, int maxNum) {
+        assertThat(board.countPieces()).isEqualTo(maxNum);
     }
 
     private void verifyRepresentationOfPieces(Board board) {

@@ -1,6 +1,7 @@
 package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.piece.Color;
+import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
 
 import java.util.ArrayList;
@@ -59,6 +60,16 @@ public class Board {
      */
     public Piece findPiece(char fileIndex, int rankIndex) {
         return files.get(convertRankIndexToListIndex(rankIndex)).get(fileIndex);
+    }
+
+    public Piece set(char fileIndex, int rankIndex, Piece piece) {
+        return files.get(convertRankIndexToListIndex(rankIndex)).set(fileIndex, piece);
+    }
+
+    public int getNumberOf(Color color, Kind kind) {
+        return files.stream()
+                .mapToInt(file -> file.getNumberOf(color, kind))
+                .sum();
     }
 
     public Board initialize() {

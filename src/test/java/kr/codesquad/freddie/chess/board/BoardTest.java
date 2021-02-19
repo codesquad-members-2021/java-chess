@@ -156,4 +156,52 @@ class BoardTest {
         assertThat(representation)
                 .isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("set으로 넣은 뒤 getRepresentation과 getNumberOf로 확인")
+    void verify_set_with_getRepresentation_and_getNumberOf() {
+        for (int i = 0; i < MAX_SIZE; i++) {
+            board.add(Piece.createBlank());
+        }
+
+        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
+        PieceFactory whitePieceFactory = new PieceFactory(Color.WHITE);
+
+        board.set('b', 8, blackPieceFactory.createKing());
+        board.set('c', 8, blackPieceFactory.createRook());
+        board.set('a', 7, blackPieceFactory.createPawn());
+        board.set('c', 7, blackPieceFactory.createPawn());
+        board.set('d', 7, blackPieceFactory.createBishop());
+        board.set('b', 6, blackPieceFactory.createPawn());
+        board.set('e', 6, blackPieceFactory.createQueen());
+        board.set('f', 4, whitePieceFactory.createKnight());
+        board.set('g', 4, whitePieceFactory.createQueen());
+        board.set('f', 3, whitePieceFactory.createPawn());
+        board.set('g', 2, whitePieceFactory.createPawn());
+        board.set('e', 1, whitePieceFactory.createRook());
+        board.set('f', 1, whitePieceFactory.createKing());
+
+        String expected = new StringBuilder()
+                .append(".KR.....").append(System.lineSeparator())
+                .append("P.PB....").append(System.lineSeparator())
+                .append(".P..Q...").append(System.lineSeparator())
+                .append("........").append(System.lineSeparator())
+                .append(".....nq.").append(System.lineSeparator())
+                .append(".....p..").append(System.lineSeparator())
+                .append("......p.").append(System.lineSeparator())
+                .append("....rk..")
+                .toString();
+        assertAll(
+                () -> assertThat(board.getRepresentation()).isEqualTo(expected),
+                () -> assertThat(board.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1),
+                () -> assertThat(board.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(3),
+                () -> assertThat(board.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(1),
+                () -> assertThat(board.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(1),
+                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(1),
+                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(1),
+                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(2),
+                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(1),
+                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(1)
+        );
+    }
 }

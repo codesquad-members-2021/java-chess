@@ -9,11 +9,11 @@ public class Board {
     private List<Pawn> whitePawns = new ArrayList<>(8);
     private List<Pawn> blackPawns = new ArrayList<>(8);
 
-    public void addWhitePawn(Pawn pawn) {
+    void addWhitePawn(Pawn pawn) {
         whitePawns.add(pawn);
     }
 
-    public void addBlackPawn(Pawn pawn) {
+    void addBlackPawn(Pawn pawn) {
         blackPawns.add(pawn);
     }
 
@@ -25,20 +25,20 @@ public class Board {
         return blackPawns.size();
     }
 
-    public String getWhitePawnsResult(){
+    private String getPawnsResult(List<Pawn> pawns) {
         StringBuilder sb = new StringBuilder();
-        for (Pawn aPawn : whitePawns) {
+        for (Pawn aPawn : pawns) {
             sb.append(aPawn.getRepresentation());
         }
         return sb.toString();
     }
 
+    public String getWhitePawnsResult() {
+        return getPawnsResult(whitePawns);
+    }
+
     public String getBlackPawnsResult() {
-        StringBuilder sb = new StringBuilder();
-        for (Pawn aPawn : blackPawns) {
-            sb.append(aPawn.getRepresentation());
-        }
-        return sb.toString();
+        return getPawnsResult(blackPawns);
     }
 
     private String getBlankLine() {

@@ -7,8 +7,8 @@ import pieces.Pawn;
 
 public class Board {
     private List<Pawn> pawns = new ArrayList<>();
-    private List<Pawn> whitePawns = new ArrayList<>();
-    private List<Pawn> blackPawns = new ArrayList<>();
+    private List<Pawn> whitePawns = new ArrayList<>(8);
+    private List<Pawn> blackPawns = new ArrayList<>(8);
 
     public void add(Pawn pawn) {
         pawns.add(pawn);
@@ -48,13 +48,9 @@ public class Board {
 
     private void initialize() {
         Pawn whitePawn = new Pawn();
-        List<Pawn> whitePawns = new ArrayList<>(8);
+        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
         for (int i = 0; i < 8; i++) {
             whitePawns.add(whitePawn);
-        }
-        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
-        List<Pawn> blackPawns = new ArrayList<>(8);
-        for (int i = 0; i < 8; i++) {
             blackPawns.add(blackPawn);
         }
     }

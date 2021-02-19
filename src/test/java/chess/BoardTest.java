@@ -43,7 +43,7 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("보드판을 출력합니다")
+    @DisplayName("보드판 출력이 원하는 그림대로 나오는지 테스트")
     void printBoard(){
         board.initialize();
         board.printBoard();

@@ -1,11 +1,10 @@
 package chess.view;
 
 import chess.domain.board.Board;
-import chess.domain.pieces.Piece;
+import chess.domain.board.position.Position;
 import chess.utils.StringUtils;
 
-import java.util.Iterator;
-import java.util.List;
+import static chess.domain.board.BoardConst.*;
 
 public class BoardView {
     private final Board board;
@@ -14,40 +13,23 @@ public class BoardView {
         this.board = board;
     }
 
-    private void appendRow(StringBuilder sb, Iterator itr) {
-        for (int i = 0; itr.hasNext() && i < 8; i++) {
-            sb.append(itr.next());
+    private void appendRow(StringBuilder sb, int rowId) {
+        for (char columnId = COLUMN_START; columnId <= COLUMN_END; columnId++) {
+            Position position = Position.of(columnId, rowId);
+            sb.append(board.getPiece(position));
             sb.append(" ");
         }
         sb.append(StringUtils.NEWLINE);
-    }
-
-    private String getRepresentation(List list) {
-        StringBuilder sb = new StringBuilder();
-        Iterator itr = list.iterator();
-        for (int i = 0; i < 8; i++) {
-            appendRow(sb, itr);
-        }
-        return sb.toString();
-    }
-
-    public String getPositionRepresentation() {
-        return getRepresentation(board.getPositions());
-    }
-
-    public String getPieceRepresentation() {
-        return getRepresentation(board.getPieces());
     }
 
     public String getBoardRepresentation() {
         StringBuilder sb = new StringBuilder();
         sb.append("  a b c d e f g h ");
         sb.append(StringUtils.NEWLINE);
-        Iterator<Piece> itr = board.getPieces().iterator();
-        for (int i = 8; i >= 1; i--) {
-            sb.append(i);
+        for (int rowId = ROW_END; rowId >= ROW_START; rowId--) {
+            sb.append(rowId);
             sb.append(" ");
-            appendRow(sb, itr);
+            appendRow(sb, rowId);
         }
         return sb.toString();
     }

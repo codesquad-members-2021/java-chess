@@ -11,16 +11,29 @@ class PieceTest {
     @Test
     @DisplayName("특정 색, 타입의 체스말 생성에 따라 색, 타입, 표현문자 상태 확인 ")
     void createPiece() {
-        verifyPiece(Piece.createWhitePawn(), Color.WHITE, Type.PAWN, Piece.WHITE_REPRESENTATION);
-        verifyPiece(Piece.createBlackPawn(), Color.BLACK, Type.PAWN, Piece.BLACK_REPRESENTATION);
-    }
+        assertAll(
+                () -> verifyPiece(Piece.createWhitePawn(), Color.WHITE, Type.PAWN, Piece.WHITE_REPRESENTATION),
+                () -> verifyPiece(Piece.createBlackPawn(), Color.BLACK, Type.PAWN, Piece.BLACK_REPRESENTATION)
+        );
+    };
 
     private void verifyPiece(final Piece piece, Color color, Type type, final char representation) {
         assertAll(
-                () -> assertThat(piece.getColor()).isEqualTo(color),
-                () -> assertThat(piece.getType()).isEqualTo(type),
-                () -> assertThat(piece.getRepresentation()).isEqualTo(representation)
+                () -> verifyColorOfPiece(piece, color),
+                () -> verifyTypeOfPiece(piece, type),
+                () -> verifyRepresentationOfPiece(piece, representation)
         );
-    }
-    ;
+    };
+
+    private void verifyColorOfPiece(final Piece piece, Color color) {
+        assertThat(piece.getColor()).isEqualTo(color);
+    };
+
+    private void verifyTypeOfPiece(final Piece piece, Type type) {
+        assertThat(piece.getType()).isEqualTo(type);
+    };
+
+    private void verifyRepresentationOfPiece(final Piece piece, final char representation) {
+        assertThat(piece.getRepresentation()).isEqualTo(representation);
+    };
 }

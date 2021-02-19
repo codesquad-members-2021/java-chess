@@ -14,29 +14,30 @@ public class Rank {
 
     public Rank(int rank) {
         this.rank = rank;
-        initializePawnsWithNull();
     }
 
-    private void initializePawnsWithNull() {
-        IntStream.rangeClosed(0, BOARD_LENGTH).forEach(i -> pawns.add(null));
+    public void add(Pawn pawn) {
+        pawns.add(pawn);
     }
 
-    public void set(int file, Pawn pawn) {
-        pawns.set(file, pawn);
+    public Pawn find(int file) {
+        if (file < 0 || size() <= file) {
+            throw new ArrayIndexOutOfBoundsException("File number " + file + " is out of range!");
+        }
+        return pawns.get(file);
     }
 
-    public List<Pawn> getPawns() {
-        return pawns;
+    public int size() {
+        return pawns.size();
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Pawn pawn : pawns) {
-            char represent = (pawn == null) ? '.' : pawn.getRepresentation();
-            sb.append(represent);
+        if (pawns.size() == 0) {
+            return "........";
         }
-        sb.append(System.lineSeparator());
+        pawns.forEach(pawn -> sb.append(pawn.getRepresentation()));
         return sb.toString();
     }
 }

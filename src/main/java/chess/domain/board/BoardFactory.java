@@ -14,33 +14,35 @@ import static chess.domain.board.BoardConst.*;
 public class BoardFactory {
     private static final int ROW_MEDIUM = (ROW_START + ROW_END) / 2;
 
+    private static Map<Position, Piece> squares;
+
     private BoardFactory() {}
 
     public static Board create() {
-        Map<Position, Piece> squares = new HashMap<>();
+        squares = new HashMap<>();
         for (int rowId = ROW_START; rowId <= ROW_END; rowId++) {
-            addRow(squares, rowId);
+            addRow(rowId);
         }
         return new Board(squares);
     }
 
-    private static void addRow(Map<Position, Piece> squares, int rowId) {
+    private static void addRow(int rowId) {
         if (rowId == 1 || rowId == 8) {
-            addRoyalRow(squares, rowId);
+            addRoyalRow(rowId);
         } else if (rowId == 2 || rowId == 7) {
-            addPawnRow(squares, rowId);
+            addPawnRow(rowId);
         } else {
-            addEmptyRow(squares, rowId);
+            addEmptyRow(rowId);
         }
     }
 
-    private static void addEmptyRow(Map<Position, Piece> squares, int rowId) {
+    private static void addEmptyRow(int rowId) {
         for (char columnId = COLUMN_START; columnId <= COLUMN_END; columnId++) {
             squares.put(Position.of(columnId, rowId), EmptyPiece.getInstance());
         }
     }
 
-    private static void addPawnRow(Map<Position, Piece> squares, int rowId) {
+    private static void addPawnRow(int rowId) {
         Color color = getColor(rowId);
         for (char columnId = COLUMN_START; columnId <= COLUMN_END; columnId++) {
             squares.put(Position.of(columnId, rowId), new Pawn(color));
@@ -48,8 +50,8 @@ public class BoardFactory {
     }
 
     // TODO: 다음 미션에서 고급 말들이 추가되도록 구현해야한다.
-    private static void addRoyalRow(Map<Position, Piece> squares, int rowId) {
-        addEmptyRow(squares, rowId);
+    private static void addRoyalRow(int rowId) {
+        addEmptyRow(rowId);
     }
 
     private static Color getColor(int rowId) {

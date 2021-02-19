@@ -10,8 +10,9 @@ import java.util.stream.IntStream;
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
+    private int size = 0;
 
-    private final Pawn[][] board = new Pawn[BOARD_LENGTH][BOARD_LENGTH];
+    private final List<Rank> board = new ArrayList<Rank>(BOARD_LENGTH);
 
     private final List<Pawn> whitePawns = new ArrayList<>();
     private final List<Pawn> blackPawns = new ArrayList<>();
@@ -40,43 +41,37 @@ public class Board {
     }
 
     public void initialize() {
+        IntStream.rangeClosed(0, BOARD_LENGTH).forEach(i -> board.add(new Rank(i)));
+        addInitialPawns();
+    }
+
+    private void addInitialPawns() {
+        List<Pawn> whitePawns = getPawns(Pawn.WHITE_PAWN_RANK);
+        List<Pawn> blackPawns = getPawns(Pawn.BLACK_PAWN_RANK);
+
         IntStream.range(0, BOARD_LENGTH).forEach(i -> {
-            whitePawns.add(i, new Pawn());
-            board[Pawn.WHITE_PAWN_ROW][i] = whitePawns.get(i);
-            blackPawns.add(i, new Pawn(Color.BLACK.colorName()));
-            board[Pawn.BLACK_PAWN_ROW][i] = blackPawns.get(i);
+            whitePawns.set(i, new Pawn());
+            blackPawns.set(i, new Pawn(Color.BLACK.colorName()));
+            size += 2;
         });
     }
 
-    private String getPawnsResult(Color color) {
-        StringBuilder sb = new StringBuilder();
-        for (Pawn pawn : getPawnListByColor(color)) {
-            char represent = (pawn == null) ? '.' : pawn.getRepresentation();
-            sb.append(represent);
-        }
-        return sb.toString();
+    private List<Pawn> getPawns(int rank) {
+        return board.get(rank).getPawns();
     }
 
     public String getWhitePawnsResult() {
-        return getPawnsResult(Color.WHITE);
+        return getPawns(Pawn.WHITE_PAWN_RANK).toString();
     }
 
     public String getBlackPawnsResult() {
-        return getPawnsResult(Color.BLACK);
+        return getPawns(Pawn.BLACK_PAWN_RANK).toString();
     }
 
     public String print() {
         StringBuilder sb = new StringBuilder();
-        for (int row = 0; row < Board.BOARD_LENGTH; row++) {
-            for (int col = 0; col < Board.BOARD_LENGTH; col++) {
-                Pawn pawn = board[row][col];
-                if (pawn == null) {
-                    sb.append('.');
-                } else {
-                    sb.append(pawn.getRepresentation());
-                }
-            }
-            sb.append('\n');
+        for (Rank rank : board) {
+            sb.append(rank.toString());
         }
         return sb.toString();
     }

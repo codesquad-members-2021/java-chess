@@ -10,7 +10,7 @@ import java.util.List;
 import static chess.utils.StringUtils.appendNewLine;
 
 public class Board {
-    private static final int PAWNSNUM = 8;
+    private static final int BOARD_RANK = 8;
     private List<Piece> whitePawns = new ArrayList<>(8);
     private List<Piece> blackPawns = new ArrayList<>(8);
     private List<Piece> whitePieces = new ArrayList<>(8);
@@ -66,13 +66,13 @@ public class Board {
     }
 
     private void initWhitePawn() {
-        for (int i = 0; i < PAWNSNUM; i++) {
+        for (int i = 0; i < BOARD_RANK; i++) {
             add(Piece.createWhitePawn());
         }
     }
 
     private void initBlackPawn() {
-        for (int i = 0; i < PAWNSNUM; i++) {
+        for (int i = 0; i < BOARD_RANK; i++) {
             add(Piece.createBlackPawn());
         }
     }
@@ -93,7 +93,7 @@ public class Board {
 
     private String getEmptyResult() {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < PAWNSNUM; i++) {
+        for (int i = 0; i < BOARD_RANK; i++) {
             result.append(".");
         }
         return result.toString();

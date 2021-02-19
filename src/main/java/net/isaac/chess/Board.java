@@ -33,6 +33,12 @@ public class Board {
         add(Piece.getRook(color), row, 7);
     }
 
+    private void initializePawns(Piece.Color color, int row){
+        for(int i = 0; i < MAX_SIZE; i++){
+            add(Piece.getPawn(color),row,i);
+        }
+    }
+
     public void print(){
         System.out.println(getRepresentation());
     }

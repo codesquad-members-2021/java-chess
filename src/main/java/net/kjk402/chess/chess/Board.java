@@ -1,57 +1,73 @@
 package net.kjk402.chess.chess;
 
 import net.kjk402.chess.pieces.Piece;
+
 import static net.kjk402.chess.utils.StringUtils.appendNewLine;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private final List<Piece> whitePieceList = new ArrayList<>();
-    private final List<Piece> blackPieceList = new ArrayList<>();
+    private final List<Piece> whitePawnList = new ArrayList<>();
+    private final List<Piece> blackPawnList = new ArrayList<>();
+    private final List<Piece> whitePicesList = new ArrayList<>();
+    private final List<Piece> blackPicesList = new ArrayList<>();
 
     public void addWhitePawn(Piece piece) {
         if (piece.getColor() == Piece.WHITE) {
-            whitePieceList.add(piece);
+            whitePawnList.add(piece);
         }
     }
 
     public void addBlackPawn(Piece piece) {
         if (piece.getColor() == Piece.BLACK) {
-            blackPieceList.add(piece);
+            blackPawnList.add(piece);
+        }
+    }
+
+    public void addWhitePiece(Piece piece) {
+        if (piece.getColor() == Piece.WHITE) {
+            whitePicesList.add(piece);
+        }
+    }
+
+    public void addBlackPiece(Piece piece) {
+        if (piece.getColor() == Piece.BLACK) {
+            blackPicesList.add(piece);
         }
     }
 
     public int whiteSize() {
-        return whitePieceList.size();
+        return whitePawnList.size();
     }
 
     public int blackSize() {
-        return blackPieceList.size();
+        return blackPawnList.size();
     }
 
     public Piece findWhitePawn(int idx) {
-        return whitePieceList.get(idx);
+        return whitePawnList.get(idx);
     }
 
     public Piece findBlackPawn(int idx) {
-        return blackPieceList.get(idx);
+        return blackPawnList.get(idx);
     }
 
     public void initialize() {
         for (int i = 0; i < 8; i++) {
-            addWhitePawn(new Piece(Piece.WHITE, Piece.WHITE_REPRESENTATION));
-            addBlackPawn(new Piece(Piece.BLACK, Piece.BLACK_REPRESENTATION));
+            addWhitePawn(new Piece(Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION));
+            addBlackPawn(new Piece(Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION));
         }
     }
 
     public String getWhitePawnsResult() {
-        return getPawnsResult(whitePieceList);
+        return getPawnsResult(whitePawnList);
     }
 
     public String getBlackPawnsResult() {
-        return getPawnsResult(blackPieceList);
+        return getPawnsResult(blackPawnList);
     }
+
 
     private String getPawnsResult(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();

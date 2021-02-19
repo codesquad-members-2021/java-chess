@@ -58,4 +58,9 @@ class PieceFactoryTest {
                 () -> assertThat(piece.getKind()).isEqualTo(expectedKind)
         );
     }
+
+    @Test
+    void emptyPiece() {
+        assertThat(PieceFactory.createBlank()).isEqualTo(new Piece(Color.NOCOLOR, Kind.EMPTY));
+    }
 }

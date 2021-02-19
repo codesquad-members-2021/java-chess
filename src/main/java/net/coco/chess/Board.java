@@ -50,11 +50,11 @@ public class Board {
     public void initialize() {
         whitePawns.clear();
         blackPawns.clear();
-        addWhiteOtherPieceToPieces();
         for (int i = 0; i < BOARD_CELLS; i++) {
             addPawn(Piece.createWhitePawn());
             addPawn(Piece.createBlackPawn());
         }
+        addWhiteOtherPieceToPieces();
         addBlackOtherPieceToPieces();
     }
 

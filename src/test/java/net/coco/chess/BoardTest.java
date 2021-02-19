@@ -37,8 +37,25 @@ public class BoardTest {
     void initialize() {
         board.initialize();
         Assertions.assertAll(
-                () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(Piece.WHITE)),
-                () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Piece.BLACK))
+                () -> assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Piece.BLACK)),
+                () -> assertThat("RNBQKBNR").isEqualTo(board.getOtherPiecesResult(Piece.BLACK)),
+                () -> assertThat("rnbqkbnr").isEqualTo(board.getOtherPiecesResult(Piece.WHITE)),
+                () -> assertThat("pppppppp").isEqualTo(board.getPawnsResult(Piece.WHITE))
+        );
+    }
+
+    @Test
+    @DisplayName("addOtherPiece 아규먼트에 pawn을 넣으면 들어가지 않는다.")
+    void addOtherPieces() {
+        Piece blackBishop = Piece.createBlackBishop();
+        Piece blackPawn = Piece.createBlackPawn();
+
+        Assertions.assertAll(
+                () -> board.addOtherPiece(blackBishop),
+                () -> assertThat(1).isEqualTo(board.getPiecesSize()),
+
+                () -> board.addOtherPiece(blackPawn),
+                () -> assertThat(1).isEqualTo(board.getPiecesSize())
         );
     }
 

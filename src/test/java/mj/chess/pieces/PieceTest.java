@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class PieceTest {
 
     @Test
-    @DisplayName("특정 색, 타입의 체스말 생성에 따라 색, 타입, 표현문자 상태 확인 ")
+    @DisplayName("체스말 생성에 따라 색, 타입, 표현문자 상태 확인 ")
     void createPiece() {
         assertAll(
                 () -> verifyPiece(Piece.createWhitePawn(), Color.WHITE, Type.PAWN, Piece.WHITE_REPRESENTATION),

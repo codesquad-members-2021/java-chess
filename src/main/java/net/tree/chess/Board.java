@@ -20,9 +20,9 @@ public class Board {
         return pawnList.size();
     }
 
-    public Pawn findPawn(int i) {
+    public Pawn findPawn(int listIndex) {
 
-        Pawn pawn = pawnList.get(i);
+        Pawn pawn = pawnList.get(listIndex);
 
         return pawn;
     }

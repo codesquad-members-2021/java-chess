@@ -1,13 +1,13 @@
 package cooper.chess;
 
-import cooper.chess.piece.Color;
-import cooper.chess.piece.Pawn;
-import cooper.chess.piece.PawnGroup;
-
+import cooper.chess.piece.*;
 import java.util.*;
+
+import static cooper.chess.utils.StringUtils.*;
 
 public class Board {
     private static final int PAWN_MAX_SIZE = 8;
+    private static final String BLANK = "........";
 
     private final PawnGroup pawnGroup;
 
@@ -68,19 +68,16 @@ public class Board {
     }
 
     public String getBoardStatus() {
-        StringBuilder sb = new StringBuilder();
         int index = 0;
 
         while(index < PAWN_MAX_SIZE) {
-            sb.append(getEachRowStatus(index++)).append("\n");
+            appendNewLine(getEachRowStatus(index++));
         }
 
-        return sb.toString();
+        return convertToString();
     }
 
     private String getEachRowStatus (int index) {
-        StringBuilder sb = new StringBuilder();
-
         if(index == PawnGroup.WHITE_INIT_INDEX) {
             return getPawnsResult(Color.WHITE);
         }
@@ -89,7 +86,7 @@ public class Board {
             return getPawnsResult(Color.BLACK);
         }
 
-        return getBlank(sb);
+        return BLANK;
     }
 
     public String getPawnsResult(Color color) {
@@ -98,14 +95,6 @@ public class Board {
 
         for (int col = 0; col < PAWN_MAX_SIZE; col++) {
             sb.append(pawnList.get(col).getRepresentation());
-        }
-
-        return sb.toString();
-    }
-
-    private String getBlank(StringBuilder sb) {
-        for (int i = 0; i < PAWN_MAX_SIZE; i++) {
-            sb.append('.');
         }
 
         return sb.toString();

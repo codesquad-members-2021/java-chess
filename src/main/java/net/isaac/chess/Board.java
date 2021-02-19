@@ -2,6 +2,7 @@ package net.isaac.chess;
 
 import net.isaac.pieces.Pawn;
 import net.isaac.pieces.Piece;
+import net.isaac.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Board {
         System.out.println(getRepresentation());
     }
 
-    private String getRepresentation(){
+    public String getRepresentation(){
         StringBuilder builder = new StringBuilder();
         for(int i = 0; i < MAX_SIZE; i++) {
             for(int j = 0; j < MAX_SIZE; j++) {
@@ -34,7 +35,7 @@ public class Board {
                 else
                     builder.append(pieces[i][j].getRepresentation());
             }
-            builder.append(System.lineSeparator());
+            builder.append(StringUtils.NEWLINE);
         }
         return builder.toString();
     }

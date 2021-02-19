@@ -39,4 +39,12 @@ class BoardTest {
         int num7 = new Integer(7);
         //board.add(num7);
     }
+
+    @Test
+    @DisplayName("체스판에 흰색, 검은색 폰을 추가 후 결과를 확인한다.")
+    void initialize() {
+        board.initialize();
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+    }
 }

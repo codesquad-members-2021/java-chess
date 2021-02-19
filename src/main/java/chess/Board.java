@@ -34,6 +34,22 @@ public class Board {
         return blackPawns.size();
     }
 
+    public String getWhitePawnsResult(){
+        StringBuilder sb = new StringBuilder();
+        for (Pawn aPawn : whitePawns) {
+            sb.append(aPawn.getRepresentation());
+        }
+        return sb.toString();
+    }
+
+    public String getBlackPawnsResult() {
+        StringBuilder sb = new StringBuilder();
+        for (Pawn aPawn : blackPawns) {
+            sb.append(aPawn.getRepresentation());
+        }
+        return sb.toString();
+    }
+
     public Pawn findPawn(int index) {
         return pawns.get(index);
     }
@@ -46,7 +62,7 @@ public class Board {
         return blackPawns.get(index);
     }
 
-    private void initialize() {
+    void initialize() {
         Pawn whitePawn = new Pawn();
         Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
         for (int i = 0; i < 8; i++) {

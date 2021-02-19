@@ -1,7 +1,5 @@
 package kr.codesquad.freddie.chess.piece;
 
-import kr.codesquad.freddie.chess.board.Board;
-
 public enum Color {
     WHITE(1, 2) {
         @Override

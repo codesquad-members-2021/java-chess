@@ -1,6 +1,6 @@
 package net.isaac.pieces;
 
-public abstract class Piece {
+public class Piece {
     public static final char PAWN_REPRESENTATION = 'p';
     public static final char KING_REPRESENTATION = 'k';
     public static final char QUEEN_REPRESENTATION = 'q';
@@ -12,7 +12,7 @@ public abstract class Piece {
     private final Color color;
     private final char representation;
 
-    Piece(Color color, char representation){
+    private Piece(Color color, char representation){
         this.color = color;
         this.representation = representation;
     }
@@ -37,28 +37,28 @@ public abstract class Piece {
         return this.color == Color.BLACK;
     }
 
-    public static Pawn getPawn(Color color) {
-        return new Pawn(color, Piece.PAWN_REPRESENTATION);
+    public static Piece getPawn(Color color) {
+        return new Piece(color, Piece.PAWN_REPRESENTATION);
     }
 
-    public static King getKing(Color color) {
-        return new King(color, Piece.KING_REPRESENTATION);
+    public static Piece getKing(Color color) {
+        return new Piece(color, Piece.KING_REPRESENTATION);
     }
 
-    public static Queen getQueen(Color color) {
-        return new Queen(color, Piece.QUEEN_REPRESENTATION);
+    public static Piece getQueen(Color color) {
+        return new Piece(color, Piece.QUEEN_REPRESENTATION);
     }
 
-    public static Rook getRook(Color color) {
-        return new Rook(color, Piece.ROOK_REPRESENTATION);
+    public static Piece getRook(Color color) {
+        return new Piece(color, Piece.ROOK_REPRESENTATION);
     }
 
-    public static Bishop getBishop(Color color) {
-        return new Bishop(color, Piece.BISHOP_REPRESENTATION);
+    public static Piece getBishop(Color color) {
+        return new Piece(color, Piece.BISHOP_REPRESENTATION);
     }
 
-    public static Knight getKnight(Color color) {
-        return new Knight(color, Piece.KNIGHT_REPRESENTATION);
+    public static Piece getKnight(Color color) {
+        return new Piece(color, Piece.KNIGHT_REPRESENTATION);
     }
 
     public enum Color {

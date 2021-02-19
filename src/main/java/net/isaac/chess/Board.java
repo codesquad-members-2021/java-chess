@@ -1,6 +1,5 @@
 package net.isaac.chess;
 
-import net.isaac.pieces.Pawn;
 import net.isaac.pieces.Piece;
 import net.isaac.utils.StringUtils;
 

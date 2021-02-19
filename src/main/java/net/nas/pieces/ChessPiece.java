@@ -9,11 +9,62 @@ public class ChessPiece {
         this.color = color;
     }
 
-    public static ChessPiece createChessPiece(NameOfChessPiece name, ColorOfChessPiece color) {
-        return new ChessPiece(name, color);
-    }
 
     public String getRepresentation() {
         return color.getRepresentationByColor(name.getRepresentation());
+    }
+
+    public static ChessPiece createChessPiece(NameOfChessPiece name, ColorOfChessPiece color) {
+        ChessPiece newChessPiece = new ChessPiece(name, color);
+        System.out.println(newChessPiece.getRepresentation());
+        return new ChessPiece(name, color);
+    }
+
+    public static ChessPiece createWhitePawn() {
+        return createChessPiece(NameOfChessPiece.PAWN, ColorOfChessPiece.WHITE);
+    }
+
+    public static ChessPiece createBlackPawn() {
+        return createChessPiece(NameOfChessPiece.PAWN, ColorOfChessPiece.BLACK);
+    }
+
+    public static ChessPiece createWhiteRook() {
+        return createChessPiece(NameOfChessPiece.ROOK, ColorOfChessPiece.WHITE);
+    }
+
+    public static ChessPiece createBlackRook() {
+        return createChessPiece(NameOfChessPiece.ROOK, ColorOfChessPiece.BLACK);
+    }
+
+    public static ChessPiece createWhiteKnight() {
+        return createChessPiece(NameOfChessPiece.KNIGHT, ColorOfChessPiece.WHITE);
+    }
+
+    public static ChessPiece createBlackKnight() {
+        return createChessPiece(NameOfChessPiece.KNIGHT, ColorOfChessPiece.BLACK);
+    }
+
+    public static ChessPiece createWhiteBishop() {
+        return createChessPiece(NameOfChessPiece.BISHOP, ColorOfChessPiece.WHITE);
+    }
+
+    public static ChessPiece createBlackBishop() {
+        return createChessPiece(NameOfChessPiece.BISHOP, ColorOfChessPiece.BLACK);
+    }
+
+    public static ChessPiece createWhiteQueen() {
+        return createChessPiece(NameOfChessPiece.QUEEN, ColorOfChessPiece.WHITE);
+    }
+
+    public static ChessPiece createBlackQueen() {
+        return createChessPiece(NameOfChessPiece.QUEEN, ColorOfChessPiece.BLACK);
+    }
+
+    public static ChessPiece createWhiteKing() {
+        return createChessPiece(NameOfChessPiece.KING, ColorOfChessPiece.WHITE);
+    }
+
+    public static ChessPiece createBlackKing() {
+        return createChessPiece(NameOfChessPiece.KING, ColorOfChessPiece.BLACK);
     }
 }

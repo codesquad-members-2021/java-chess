@@ -1,5 +1,5 @@
 package chess.controller;
 
-public enum Command {
+enum Command {
     START, END, BAD
 }

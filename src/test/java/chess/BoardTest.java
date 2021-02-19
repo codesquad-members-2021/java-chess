@@ -14,7 +14,7 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("보드를 생성한 후 폰 테스트 한다.")
+    @DisplayName("폰 생성 횟수 체크 기능과 원하는 폰의 인덱스를 찾는 기능이 잘 되는지 테스트 한다.")
     void createPawn(){
         Pawn white = new Pawn(Pawn.WHITE);
         addWhitePawnOnBoard(1, white);

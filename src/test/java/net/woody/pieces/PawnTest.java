@@ -21,8 +21,8 @@ class PawnTest {
     @DisplayName("기본 생성자로 폰을 생성할 때, 흰색 폰이 생성되어야 한다")
     void createWithDefaultPawn() {
         Pawn pawn = new Pawn();
-        assertThat(Color.WHITE).isEqualTo(pawn.getColor());
-        assertThat(Pawn.PAWN_REPRESENTATION).isEqualTo(pawn.getRepresentation());
+        assertThat(pawn.getColor()).isEqualTo(Color.WHITE);
+        assertThat(pawn.getRepresentation()).isEqualTo(Pawn.PAWN_REPRESENTATION);
     }
 
     @Test

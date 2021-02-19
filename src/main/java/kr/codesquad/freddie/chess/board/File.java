@@ -43,7 +43,7 @@ public class File {
      * 가장 좌측의 기물을 변경하려면 set('a') 와 같이 사용할 수 있다.
      *
      * @param fileIndex 변경 대상의 인덱스 a~h 사이의 char
-     * @param piece 변경할 기물
+     * @param piece     변경할 기물
      * @return 해당 칸에 존재하던 기물
      * @see List#set(int, Object)
      * @see Board#findPiece(char, int)

@@ -9,8 +9,7 @@ class BoardTest {
 
     @BeforeEach
     void setup() {
-        board = new Board();
-        board.initialize();
+        board = BoardFactory.create();
         boardView = new BoardView(board);
     }
 }

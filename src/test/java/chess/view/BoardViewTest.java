@@ -1,6 +1,7 @@
 package chess.view;
 
 import chess.domain.board.Board;
+import chess.domain.board.BoardFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,11 +16,10 @@ class BoardViewTest {
 
     @BeforeEach
     void setup() {
-        board = new Board();
-        board.initialize();
+        board = BoardFactory.create();
         boardView = new BoardView(board);
     }
-    
+
     @Test
     @DisplayName("main 함수에서 사용할 예쁜 모양을 출력")
     void getBoardRepresentation() {

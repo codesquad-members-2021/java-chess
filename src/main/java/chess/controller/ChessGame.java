@@ -1,6 +1,7 @@
 package chess.controller;
 
 import chess.domain.board.Board;
+import chess.domain.board.BoardFactory;
 import chess.view.BoardView;
 
 import java.util.Scanner;
@@ -17,8 +18,7 @@ public class ChessGame {
             return;
         }
 
-        Board board = new Board();
-        board.initialize();
+        Board board = BoardFactory.create();
         BoardView boardView = new BoardView(board);
 
         while (!command.equals("end")) {

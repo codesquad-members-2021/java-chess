@@ -1,6 +1,6 @@
 package mj.chess.pieces;
 
-final class Piece {
+public class Piece {
     public final static char WHITE_REPRESENTATION = 'p';
     public final static char BLACK_REPRESENTATION = 'P';
 
@@ -8,7 +8,10 @@ final class Piece {
     private final char representation;
     private final Type type;
 
-    public Piece(Color color, Type type, char representation) {
+    //TODO: 해쉬 이용하면 color와 key를 key로 갖고
+    // representation을 value로 가질 수 있을거 같은데?
+    // 그리고 그 해쉬 자료형은 getRepresnetation()에서만 이용하
+    private Piece(Color color, Type type, char representation) {
         this.color = color;
         this.type = type;
         this.representation = representation;

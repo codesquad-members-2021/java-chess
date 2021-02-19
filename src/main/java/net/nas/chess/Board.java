@@ -1,5 +1,14 @@
 package net.nas.chess;
 
+import net.nas.pieces.ChessPiece;
+
+import java.security.InvalidParameterException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static net.nas.pieces.ChessPiece.*;
+import static net.nas.utils.StringUtils.appendNewLine;
+
 /*
     입력 패러미터는 실제 체스판에서의 인덱스를 사용한다.
     예를들면, 실제 체스판에서 랭크의 인덱스는 1부터 8까지이다.
@@ -9,7 +18,6 @@ package net.nas.chess;
     ex : return chessCells[rankIdx - 1][fileIdx - 1].getOccupiedPiece();
  */
 public class Board {
-/*
     public static final int LENGTH_OF_BOARD = 8;
 
     public static final int RANK_OF_WHITE_KING = 1;
@@ -30,16 +38,16 @@ public class Board {
 
     public void initialize() {
         for (int i = 1; i <= LENGTH_OF_BOARD; i++) {
-            add(new ChessPiece(), RANK_OF_WHITE_PAWNS, i);
-            add(new ChessPiece(ColorOfChessPiece.BLACK), RANK_OF_BLACK_PAWNS, i);
+            add(createWhitePawn(), RANK_OF_WHITE_PAWNS, i);
+            add(createBlackPawn(), RANK_OF_BLACK_PAWNS, i);
 
-            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLANK_1, i);
-            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLANK_2, i);
-            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLANK_3, i);
-            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLANK_4, i);
+            add(createBlankPiece(), RANK_OF_BLANK_1, i);
+            add(createBlankPiece(), RANK_OF_BLANK_2, i);
+            add(createBlankPiece(), RANK_OF_BLANK_3, i);
+            add(createBlankPiece(), RANK_OF_BLANK_4, i);
 
-            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLACK_KING, i);
-            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_WHITE_KING, i);
+            add(createBlankPiece(), RANK_OF_BLACK_KING, i);
+            add(createBlankPiece(), RANK_OF_WHITE_KING, i);
         }
     }
 
@@ -81,12 +89,11 @@ public class Board {
         if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
             throw new InvalidParameterException("index exceeded the bounds of the Board");
         chessCells[rankIdx - 1][fileIdx - 1] = piece;
-        if (piece.getColor() != ColorOfChessPiece.BLANK)
+        if (!piece.isBlankPiece())
             numberOfPieces++;
     }
 
     public int size() {
         return numberOfPieces;
     }
-*/
 }

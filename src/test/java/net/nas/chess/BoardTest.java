@@ -1,7 +1,18 @@
 package net.nas.chess;
 
+import net.nas.pieces.ChessPiece;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.security.InvalidParameterException;
+
+import static net.nas.utils.StringUtils.appendNewLine;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
+
 public class BoardTest {
-/*
     private Board board;
     private static final String INITIAL_STATE_OF_BOARD = appendNewLine("........") +
             appendNewLine("PPPPPPPP") +
@@ -20,7 +31,7 @@ public class BoardTest {
     @Test
     @DisplayName("체스 보드에 폰을 추가하고, 찾을 수 있어야 합니다.")
     void testAdditionAndFind() {
-        ChessPiece whiteChessPiece = new ChessPiece();
+        ChessPiece whiteChessPiece = ChessPiece.createWhitePawn();
         for (int i = 1; i <= Board.LENGTH_OF_BOARD; i++) {
             final int fileIdx = i;
             assertAll(
@@ -87,6 +98,5 @@ public class BoardTest {
         board.initialize();
         assertThat(board.getRepresentationOfBoard()).isEqualTo(INITIAL_STATE_OF_BOARD);
     }
-*/
 
 }

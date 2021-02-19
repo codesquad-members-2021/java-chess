@@ -14,10 +14,16 @@ public class ChessPiece {
         return color.getRepresentationByColor(name.getRepresentation());
     }
 
+    public static ChessPiece createBlankPiece() {
+        return createChessPiece(NameOfChessPiece.PAWN, ColorOfChessPiece.BLANK);
+    }
+
     public static ChessPiece createChessPiece(NameOfChessPiece name, ColorOfChessPiece color) {
-        ChessPiece newChessPiece = new ChessPiece(name, color);
-        System.out.println(newChessPiece.getRepresentation());
         return new ChessPiece(name, color);
+    }
+
+    public boolean isBlankPiece() {
+        return color == ColorOfChessPiece.BLANK;
     }
 
     public static ChessPiece createWhitePawn() {

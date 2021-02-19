@@ -1,7 +1,12 @@
 package net.nas.core;
 
+import net.nas.chess.Board;
+
+import java.util.Scanner;
+
+import static net.nas.utils.StringUtils.appendNewLine;
+
 public class Main {
-/*
     private static final String START = "START";
     private static final String END = "END";
 
@@ -52,5 +57,4 @@ public class Main {
         System.out.println("게임을 종료합니다");
         isStarted = false;
     }
-*/
 }

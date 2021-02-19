@@ -54,8 +54,7 @@ public class Board {
     }
 
     public void initialize() {
-        whitePawns.clear();
-        blackPawns.clear();
+        clearPieces();
         for (int i = 0; i < BOARD_CELLS; i++) {
             addPawn(Piece.createWhitePawn());
             addPawn(Piece.createBlackPawn());
@@ -64,20 +63,34 @@ public class Board {
         addBlackOtherPieceToPieces();
     }
 
+    private void clearPieces() {
+        whitePawns.clear();
+        blackPawns.clear();
+        whiteOtherPieces.clear();
+        blackOtherPieces.clear();
+    }
+
 
     public String getPawnsResult(String color) {
+        checkColorType(color);
         if (color.equals(Piece.WHITE))
             return getPiecesToString(whitePawns);
         else
             return getPiecesToString(blackPawns);
     }
+
     public String getOtherPiecesResult(String color) {
+        checkColorType(color);
         if (color.equals(Piece.WHITE))
             return getPiecesToString(whiteOtherPieces);
         else
             return getPiecesToString(blackOtherPieces);
     }
 
+    private void checkColorType(String color) {
+        if (!(color.equals(Piece.WHITE) || color.equals(Piece.BLACK)))
+            throw new IllegalArgumentException("white나 black을 넣어주세요");
+    }
 
     private String getPiecesToString(List<Piece> pieces) {
         return pieces.stream()

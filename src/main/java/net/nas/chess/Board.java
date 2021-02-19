@@ -1,13 +1,5 @@
 package net.nas.chess;
 
-import net.nas.pieces.ColorOfChessPiece;
-import net.nas.pieces.Pawn;
-
-import java.security.InvalidParameterException;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
-import static net.nas.utils.StringUtils.appendNewLine;
 /*
     입력 패러미터는 실제 체스판에서의 인덱스를 사용한다.
     예를들면, 실제 체스판에서 랭크의 인덱스는 1부터 8까지이다.
@@ -17,6 +9,7 @@ import static net.nas.utils.StringUtils.appendNewLine;
     ex : return chessCells[rankIdx - 1][fileIdx - 1].getOccupiedPiece();
  */
 public class Board {
+/*
     public static final int LENGTH_OF_BOARD = 8;
 
     public static final int RANK_OF_WHITE_KING = 1;
@@ -28,25 +21,25 @@ public class Board {
     public static final int RANK_OF_BLACK_PAWNS = 7;
     public static final int RANK_OF_BLACK_KING = 8;
 
-    private final Pawn[][] chessCells;
+    private final ChessPiece[][] chessCells;
     private int numberOfPieces = 0;
 
     public Board() {
-        chessCells = new Pawn[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
+        chessCells = new ChessPiece[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
     }
 
     public void initialize() {
         for (int i = 1; i <= LENGTH_OF_BOARD; i++) {
-            add(new Pawn(), RANK_OF_WHITE_PAWNS, i);
-            add(new Pawn(ColorOfChessPiece.BLACK), RANK_OF_BLACK_PAWNS, i);
+            add(new ChessPiece(), RANK_OF_WHITE_PAWNS, i);
+            add(new ChessPiece(ColorOfChessPiece.BLACK), RANK_OF_BLACK_PAWNS, i);
 
-            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLANK_1, i);
-            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLANK_2, i);
-            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLANK_3, i);
-            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLANK_4, i);
+            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLANK_1, i);
+            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLANK_2, i);
+            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLANK_3, i);
+            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLANK_4, i);
 
-            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_BLACK_KING, i);
-            add(new Pawn(ColorOfChessPiece.BLANK), RANK_OF_WHITE_KING, i);
+            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_BLACK_KING, i);
+            add(new ChessPiece(ColorOfChessPiece.BLANK), RANK_OF_WHITE_KING, i);
         }
     }
 
@@ -60,7 +53,7 @@ public class Board {
 
     private String getRepresentationOfRank(int rankIdx) {
         return Arrays.stream(chessCells[rankIdx])
-                .map(Pawn::getRepresentation)
+                .map(ChessPiece::getRepresentation)
                 .collect(Collectors.joining());
     }
 
@@ -72,7 +65,7 @@ public class Board {
         return getRepresentationOfRank(RANK_OF_BLACK_PAWNS - 1);
     }
 
-    public Pawn findPawn(int rankIdx, int fileIdx) {
+    public ChessPiece findPawn(int rankIdx, int fileIdx) {
         if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
             throw new InvalidParameterException("index exceeded the bounds of the Board");
         return chessCells[rankIdx - 1][fileIdx - 1];
@@ -82,7 +75,7 @@ public class Board {
         return 1 > idx || idx > LENGTH_OF_BOARD;
     }
 
-    public void add(Pawn piece, int rankIdx, int fileIdx) {
+    public void add(ChessPiece piece, int rankIdx, int fileIdx) {
         if (piece == null)
             throw new InvalidParameterException("Null value cannot be added in Board");
         if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
@@ -95,4 +88,5 @@ public class Board {
     public int size() {
         return numberOfPieces;
     }
+*/
 }

@@ -67,6 +67,7 @@ public class Board {
     String getDotOnBoard(){
         return "........";
     }
+
     void printBoard(){
         StringBuilder sb = new StringBuilder();
 

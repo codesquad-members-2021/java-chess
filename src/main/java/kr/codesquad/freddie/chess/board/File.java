@@ -106,6 +106,19 @@ public class File {
                 .collect(Collectors.toMap(i -> (char) (i + 'a'), i -> pieces.get(i)));
     }
 
+    public double calculate() {
+        double result = 0;
+        for (Kind kind : Kind.values()) {
+            double point = pieces.stream()
+                    .filter(piece -> piece.getKind() == kind)
+                    .mapToDouble(piece -> piece.getKind().point())
+                    .sum();
+            result += kind == Kind.PAWN && 1 < point ? point / 2 : point;
+        }
+
+        return result;
+    }
+
     public String getRepresentation() {
         if (pieces.isEmpty()) {
             return "........";

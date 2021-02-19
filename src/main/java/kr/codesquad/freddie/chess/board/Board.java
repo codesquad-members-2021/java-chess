@@ -4,8 +4,7 @@ import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Board {
@@ -102,6 +101,28 @@ public class Board {
         return files.stream()
                 .map(File::getRepresentation)
                 .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    public List<File> getRotatedFilesBy(Color color) {
+        List<File> rotatedFiles = new ArrayList<>();
+
+        for (int i = 0; i < File.SIZE; i++) {
+            rotatedFiles.add(new File());
+        }
+
+        List<Map<Character, Piece>> temp = files.stream()
+                .map(File::toMap)
+                .collect(Collectors.toList());
+
+        for (Map<Character, Piece> map : temp) {
+            for (Map.Entry<Character, Piece> entry : map.entrySet()) {
+                if (entry.getValue().getColor() == color) {
+                    rotatedFiles.get(entry.getKey() - 'a').add(entry.getValue());
+                }
+            }
+        }
+
+        return rotatedFiles;
     }
 
     @Override

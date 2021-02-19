@@ -10,7 +10,7 @@ public class CommandUtil {
         System.out.print("> ");
     }
 
-    public static boolean readCommand(String command) {
+    public static boolean isGameOver(String command) {
         switch (command.toLowerCase()) {
             case "start":
                 return true;

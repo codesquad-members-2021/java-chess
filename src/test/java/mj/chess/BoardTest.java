@@ -16,8 +16,6 @@ class BoardTest {
         board = new Board();
     }
 
-
-
     @Test
     @DisplayName("체스판 생성 시점에서 폰의 생성 개수 확인")
     void initPawns() {
@@ -28,36 +26,6 @@ class BoardTest {
         final int maxSizeOfPawns = 16;
         board.initialize();
         assertThat(board.countPawns()).isEqualTo(maxSizeOfPawns);
-    }
-
-    @Test
-    @DisplayName("체스판 생성에 따라 폰의 개수 및 초기 출력상태 확인")
-    void createBoardOnlyWithPawns() {
-        final int numOfAllPawns = 16;
-        board.initialize();
-
-        assertAll(
-                () -> verifyCountingOnlyPawns(board, numOfAllPawns),
-                () -> verifyRepresentationOfPawns(board)
-        );
-    }
-
-    private void verifyCountingOnlyPawns(Board board, int maxNum) {
-        assertThat(board.countPawns()).isEqualTo(maxNum);
-    }
-
-    private void verifyRepresentationOfPawns(Board board) {
-        StringBuilder blankRank = appendNewLine("........");
-        assertThat(board.showBoard()).isEqualTo(
-                new StringBuilder()
-                        .append(String.valueOf(blankRank))
-                        .append(appendNewLine("PPPPPPPP"))
-                        .append(blankRank).append(blankRank)
-                        .append(blankRank).append(blankRank)
-                        .append(appendNewLine("pppppppp"))
-                        .append(blankRank)
-                        .toString()
-        );
     }
 
     @Test

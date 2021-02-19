@@ -11,6 +11,10 @@ public class Piece {
         this.kind = kind;
     }
 
+    public static Piece createBlank() {
+        return new Piece(Color.NOCOLOR, Kind.EMPTY);
+    }
+
     public Color getColor() {
         return color;
     }

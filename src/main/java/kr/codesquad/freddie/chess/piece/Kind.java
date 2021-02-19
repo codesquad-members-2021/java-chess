@@ -6,7 +6,8 @@ public enum Kind {
     ROOK("r"),
     BISHOP("b"),
     QUEEN("q"),
-    KING("k");
+    KING("k"),
+    EMPTY(".");
 
     private final String representation;
 

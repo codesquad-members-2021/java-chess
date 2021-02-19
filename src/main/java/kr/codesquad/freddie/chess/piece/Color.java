@@ -11,6 +11,11 @@ public enum Color {
         String getRepresentationBy(String representation) {
             return representation.toUpperCase();
         }
+    }, NOCOLOR(-1, -1) {
+        @Override
+        String getRepresentationBy(String representation) {
+            return Kind.EMPTY.representation;
+        }
     };
 
     private final int royalInitializationRank;

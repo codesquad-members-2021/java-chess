@@ -10,68 +10,62 @@ import java.util.stream.IntStream;
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
+
+    private final List<Rank> board = new ArrayList<>(BOARD_LENGTH);
     private int size = 0;
 
-    private final List<Rank> board = new ArrayList<Rank>(BOARD_LENGTH);
-
-    private final List<Pawn> whitePawns = new ArrayList<>();
-    private final List<Pawn> blackPawns = new ArrayList<>();
+    public Board() {
+        IntStream.range(0, BOARD_LENGTH).forEach(i -> board.add(new Rank(i)));
+    }
 
     public void add(Pawn pawn) {
-        getPawnListByColor(pawn.getColor()).add(pawn);
+        int rank = getPawnRank(pawn);
+        getRank(rank).add(pawn);
+        size++;
     }
 
-    public int size() {
-        return whitePawns.size() + blackPawns.size();
+    private int getPawnRank(Pawn newPawn) {
+        return (newPawn.getColor() == Color.WHITE) ? Pawn.WHITE_PAWN_RANK : Pawn.BLACK_PAWN_RANK;
     }
 
-    public Pawn findPawn(int idx, String colorName) {
-        if (idx < 0 || size() <= idx) {
-            throw new ArrayIndexOutOfBoundsException("Index number " + idx + " is out of range!");
+    public Rank getRank(int rank) {
+        if (rank < 0 || board.size() <= rank) {
+            throw new ArrayIndexOutOfBoundsException("Rank number " + rank + " is out of range!");
         }
-        Color color = Color.color(colorName);
-        return getPawnListByColor(color).get(idx);
+        return board.get(rank);
     }
 
-    private List<Pawn> getPawnListByColor(Color color) {
-        if (color.equals(Color.WHITE)) {
-            return whitePawns;
-        }
-        return blackPawns;
+    public Pawn findPawn(int rank, int file) {
+        return getRank(rank).find(file);
     }
 
     public void initialize() {
-        IntStream.rangeClosed(0, BOARD_LENGTH).forEach(i -> board.add(new Rank(i)));
-        addInitialPawns();
-    }
-
-    private void addInitialPawns() {
-        List<Pawn> whitePawns = getPawns(Pawn.WHITE_PAWN_RANK);
-        List<Pawn> blackPawns = getPawns(Pawn.BLACK_PAWN_RANK);
+        Rank blackPawns = getRank(Pawn.BLACK_PAWN_RANK);
+        Rank whitePawns = getRank(Pawn.WHITE_PAWN_RANK);
 
         IntStream.range(0, BOARD_LENGTH).forEach(i -> {
-            whitePawns.set(i, new Pawn());
-            blackPawns.set(i, new Pawn(Color.BLACK.colorName()));
+            blackPawns.add(new Pawn(Color.BLACK.colorName()));
+            whitePawns.add(new Pawn());
             size += 2;
         });
     }
 
-    private List<Pawn> getPawns(int rank) {
-        return board.get(rank).getPawns();
-    }
-
     public String getWhitePawnsResult() {
-        return getPawns(Pawn.WHITE_PAWN_RANK).toString();
+        return getRank(Pawn.WHITE_PAWN_RANK).toString();
     }
 
     public String getBlackPawnsResult() {
-        return getPawns(Pawn.BLACK_PAWN_RANK).toString();
+        return getRank(Pawn.BLACK_PAWN_RANK).toString();
+    }
+
+    public int size() {
+        return size;
     }
 
     public String print() {
         StringBuilder sb = new StringBuilder();
         for (Rank rank : board) {
-            sb.append(rank.toString());
+            sb.append(rank.toString()).append('\n');
         }
         return sb.toString();
     }

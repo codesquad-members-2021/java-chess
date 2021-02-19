@@ -20,10 +20,6 @@ public class Board {
         getPieceList(piece).add(piece);
     }
 
-    public Piece findPiece(Piece piece, int idx) {
-        return getPieceList(piece).get(idx);
-    }
-
     private List<Piece> getPieceList(Piece piece) {
         if (piece.getColor() == Color.WHITE && piece.getName() == PieceName.PAWN) {
             return whitePawns;

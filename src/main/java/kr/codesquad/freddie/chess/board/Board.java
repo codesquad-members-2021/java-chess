@@ -74,6 +74,7 @@ public class Board {
 
     public Board initialize() {
         initializePieceBy(Color.BLACK);
+        initializeEmptyPiece();
         initializePieceBy(Color.WHITE);
         return this;
     }
@@ -84,6 +85,13 @@ public class Board {
 
         files.get(royalIndex).fillWithRoyal(color);
         files.get(pawnIndex).fillWithPawn(color);
+    }
+
+    private void initializeEmptyPiece() {
+        files.get(convertRankIndexToListIndex(3)).fillWithBlank();
+        files.get(convertRankIndexToListIndex(4)).fillWithBlank();
+        files.get(convertRankIndexToListIndex(5)).fillWithBlank();
+        files.get(convertRankIndexToListIndex(6)).fillWithBlank();
     }
 
     private int convertRankIndexToListIndex(int rankIndex) {

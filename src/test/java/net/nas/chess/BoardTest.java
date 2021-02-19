@@ -14,14 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 
 public class BoardTest {
     private Board board;
-    private static final String INITIAL_STATE_OF_BOARD = appendNewLine("........") +
-            appendNewLine("PPPPPPPP") +
-            appendNewLine("........") +
-            appendNewLine("........") +
-            appendNewLine("........") +
-            appendNewLine("........") +
-            appendNewLine("pppppppp") +
-            appendNewLine("........");
+    private static final String INITIAL_STATE_OF_BOARD =
+            appendNewLine("RNBKQBNR") +
+                    appendNewLine("PPPPPPPP") +
+                    appendNewLine("........") +
+                    appendNewLine("........") +
+                    appendNewLine("........") +
+                    appendNewLine("........") +
+                    appendNewLine("pppppppp") +
+                    appendNewLine("rnbqkbnr");
+    private static final int INITIAL_SIZE_OF_BOARD = 32;
 
     @BeforeEach
     void createTestBoard() {
@@ -89,7 +91,7 @@ public class BoardTest {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
-        assertThat(board.size()).isEqualTo(16);
+        assertThat(board.size()).isEqualTo(INITIAL_SIZE_OF_BOARD);
     }
 
     @Test

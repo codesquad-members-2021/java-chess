@@ -29,6 +29,14 @@ public class Board {
     public static final int RANK_OF_BLACK_PAWNS = 7;
     public static final int RANK_OF_BLACK_KING = 8;
 
+    public static final int FILE_OF_ROOK = 1;
+    public static final int FILE_OF_KNIGHT = 2;
+    public static final int FILE_OF_BISHOP = 3;
+    public static final int FILE_OF_WHITE_QUEEN = 4;
+    public static final int FILE_OF_WHITE_KING = 5;
+    public static final int FILE_OF_BLACK_QUEEN = 5;
+    public static final int FILE_OF_BLACK_KING = 4;
+
     private final ChessPiece[][] chessCells;
     private int numberOfPieces = 0;
 
@@ -37,18 +45,52 @@ public class Board {
     }
 
     public void initialize() {
+        initRanksOfPawns();
+        initRanksOfBlank();
+        initRanksOfKings();
+    }
+
+    private void initRanksOfPawns() {
         for (int i = 1; i <= LENGTH_OF_BOARD; i++) {
             add(createWhitePawn(), RANK_OF_WHITE_PAWNS, i);
             add(createBlackPawn(), RANK_OF_BLACK_PAWNS, i);
+        }
+    }
 
+    private void initRanksOfBlank() {
+        for (int i = 1; i <= LENGTH_OF_BOARD; i++) {
             add(createBlankPiece(), RANK_OF_BLANK_1, i);
             add(createBlankPiece(), RANK_OF_BLANK_2, i);
             add(createBlankPiece(), RANK_OF_BLANK_3, i);
             add(createBlankPiece(), RANK_OF_BLANK_4, i);
-
-            add(createBlankPiece(), RANK_OF_BLACK_KING, i);
-            add(createBlankPiece(), RANK_OF_WHITE_KING, i);
         }
+    }
+
+    private void initRanksOfKings() {
+        initRankOfWhiteKing();
+        initRankOfBlackKing();
+    }
+
+    private void initRankOfWhiteKing() {
+        add(createWhiteRook(), RANK_OF_WHITE_KING, FILE_OF_ROOK);
+        add(createWhiteRook(), RANK_OF_WHITE_KING, LENGTH_OF_BOARD - FILE_OF_ROOK + 1);
+        add(createWhiteKnight(), RANK_OF_WHITE_KING, FILE_OF_KNIGHT);
+        add(createWhiteKnight(), RANK_OF_WHITE_KING, LENGTH_OF_BOARD - FILE_OF_KNIGHT + 1);
+        add(createWhiteBishop(), RANK_OF_WHITE_KING, FILE_OF_BISHOP);
+        add(createWhiteBishop(), RANK_OF_WHITE_KING, LENGTH_OF_BOARD - FILE_OF_BISHOP + 1);
+        add(createWhiteQueen(), RANK_OF_WHITE_KING, FILE_OF_WHITE_QUEEN);
+        add(createWhiteKing(), RANK_OF_WHITE_KING, FILE_OF_WHITE_KING);
+    }
+
+    private void initRankOfBlackKing() {
+        add(createBlackRook(), RANK_OF_BLACK_KING, FILE_OF_ROOK);
+        add(createBlackRook(), RANK_OF_BLACK_KING, LENGTH_OF_BOARD - FILE_OF_ROOK + 1);
+        add(createBlackKnight(), RANK_OF_BLACK_KING, FILE_OF_KNIGHT);
+        add(createBlackKnight(), RANK_OF_BLACK_KING, LENGTH_OF_BOARD - FILE_OF_KNIGHT + 1);
+        add(createBlackBishop(), RANK_OF_BLACK_KING, FILE_OF_BISHOP);
+        add(createBlackBishop(), RANK_OF_BLACK_KING, LENGTH_OF_BOARD - FILE_OF_BISHOP + 1);
+        add(createBlackQueen(), RANK_OF_BLACK_KING, FILE_OF_BLACK_QUEEN);
+        add(createBlackKing(), RANK_OF_BLACK_KING, FILE_OF_BLACK_KING);
     }
 
     public String getRepresentationOfBoard() {

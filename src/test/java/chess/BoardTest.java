@@ -54,13 +54,14 @@ class BoardTest {
     void print() {
         board.initialize();
         StringBuilder expectedResult = new StringBuilder();
-        expectedResult.append("........").append("\n")
-                .append("pppppppp").append("\n")
-                .append("........").append("\n")
-                .append("........").append("\n")
-                .append("........").append("\n")
-                .append("........").append("\n")
-                .append("PPPPPPPP").append("\n")
+        String newLine = System.getProperty("line.separator");
+        expectedResult.append("........").append(newLine)
+                .append("pppppppp").append(newLine)
+                .append("........").append(newLine)
+                .append("........").append(newLine)
+                .append("........").append(newLine)
+                .append("........").append(newLine)
+                .append("PPPPPPPP").append(newLine)
                 .append("........");
         String result = board.print();
         System.out.println(result);

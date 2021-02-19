@@ -7,6 +7,8 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.StringUtils.appendNewLine;
+
 public class Board {
     private List<Pawn> whitePawns = new ArrayList<>();
     private List<Pawn> blackPawns = new ArrayList<>();
@@ -71,22 +73,15 @@ public class Board {
 
     public String print() {
         StringBuilder result = new StringBuilder();
-        String emptyLine = "........";
-        result.append(emptyLine)
-                .append("\n")
-                .append(getWhitePawnsResult())
-                .append("\n")
-                .append(emptyLine)
-                .append("\n")
-                .append(emptyLine)
-                .append("\n")
-                .append(emptyLine)
-                .append("\n")
-                .append(emptyLine)
-                .append("\n")
-                .append(getBlackPawnsResult())
-                .append("\n")
-                .append(emptyLine);
+        String emptyRank = "........";
+        result.append(appendNewLine(emptyRank))
+                .append(appendNewLine(getWhitePawnsResult()))
+                .append(appendNewLine(emptyRank))
+                .append(appendNewLine(emptyRank))
+                .append(appendNewLine(emptyRank))
+                .append(appendNewLine(emptyRank))
+                .append(appendNewLine(getBlackPawnsResult()))
+                .append(emptyRank);
         return result.toString();
     }
 }

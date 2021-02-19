@@ -6,13 +6,8 @@ import java.util.List;
 import pieces.Pawn;
 
 public class Board {
-    private List<Pawn> pawns = new ArrayList<>();
     private List<Pawn> whitePawns = new ArrayList<>(8);
     private List<Pawn> blackPawns = new ArrayList<>(8);
-
-    public void add(Pawn pawn) {
-        pawns.add(pawn);
-    }
 
     public void addWhitePawn(Pawn pawn) {
         whitePawns.add(pawn);
@@ -20,10 +15,6 @@ public class Board {
 
     public void addBlackPawn(Pawn pawn) {
         blackPawns.add(pawn);
-    }
-
-    public int size() {
-        return pawns.size();
     }
 
     public int getWhitePawnsSize() {
@@ -52,10 +43,6 @@ public class Board {
 
     private String getBlankLine() {
         return "........";
-    }
-
-    public Pawn findPawn(int index) {
-        return pawns.get(index);
     }
 
     public Pawn findWhitePawn(int index) {

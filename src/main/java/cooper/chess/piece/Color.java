@@ -3,19 +3,13 @@ package cooper.chess.piece;
 import java.util.Arrays;
 
 public enum Color {
-    WHITE("white", 'P'),
-    BLACK("black", 'p');
+    WHITE("white"),
+    BLACK("black");
 
     private final String colorName;
-    private final char representation;
 
-    Color(String colorName, char representation) {
+    Color(String colorName) {
         this.colorName = colorName;
-        this.representation = representation;
-    }
-
-    public char getRepresentation() {
-        return representation;
     }
 
     public String getColorName() {
@@ -29,4 +23,3 @@ public enum Color {
                 .orElseThrow(() -> new IllegalArgumentException("해당 색상이 존재하지 않습니다."));
     }
 }
-

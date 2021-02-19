@@ -65,12 +65,12 @@ public class BoardTest {
     }
 
     @Test
-    void isBlack() {
-        Assertions.assertAll(
-                () -> assertThat(true).isEqualTo(Piece.createBlackBishop().isBlack()),
-                () -> assertThat(true).isEqualTo(Piece.createWhiteBishop().isWhite())
-        );
-
+    void checkBlackColor() {
+        assertThat(Piece.createBlackBishop().isBlack()).isTrue();
+    }
+    @Test
+    void checkWhiteColor() {
+        assertThat(Piece.createWhiteBishop().isWhite()).isTrue();
     }
 
 

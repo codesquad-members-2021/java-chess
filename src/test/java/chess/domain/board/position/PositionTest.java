@@ -1,9 +1,11 @@
 package chess.domain.board.position;
 
+import chess.exception.BadPositionException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
 
 class PositionTest {
 
@@ -19,5 +21,12 @@ class PositionTest {
     void testHashCode() {
         assertThat(Position.of('f', 2).hashCode())
                 .isEqualTo(Position.of("F2").hashCode());
+    }
+
+    @Test
+    @DisplayName("체스판에 존재하지 않는 positionId 를 입력하면, BadPositionException 이 발생한다..")
+    void badPositionException() {
+        assertThatExceptionOfType(BadPositionException.class)
+                .isThrownBy(() -> Position.of("Z9"));
     }
 }

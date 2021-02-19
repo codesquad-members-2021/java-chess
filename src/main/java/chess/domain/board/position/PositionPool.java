@@ -1,7 +1,10 @@
 package chess.domain.board.position;
 
+import chess.exception.BadPositionException;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import static chess.domain.board.BoardConst.*;
 
@@ -24,7 +27,7 @@ class PositionPool {
     }
 
     static Position getPosition(String positionId) {
-        positionId = positionId.toLowerCase();
-        return pool.get(positionId);
+        return Optional.ofNullable(pool.get(positionId.toLowerCase()))
+                .orElseThrow(() -> new BadPositionException(positionId + ": 잘못된 체스 위치 입니다."));
     }
 }

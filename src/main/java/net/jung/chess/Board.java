@@ -12,20 +12,30 @@ public class Board {
     private List<Piece> whitePieceList = new ArrayList();
 
     public void addWhitePiece(Piece piece) {
-        if(piece.getColor() == Color.WHITE)
-        whitePieceList.add(piece);
+        if (piece.getColor() == Color.WHITE)
+            whitePieceList.add(piece);
     }
 
     public void addBlackPiece(Piece piece) {
-        if(piece.getColor() == Color.BLACK)
-        blackPieceList.add(piece);
+        if (piece.getColor() == Color.BLACK)
+            blackPieceList.add(piece);
+    }
+
+    public void addPiece(Piece piece){
+        if(piece.getColor()==Color.WHITE) {
+            addWhitePiece(piece);
+            return;
+        }
+        addBlackPiece(piece);
     }
 
     public int size() {
         return whitePieceList.size() + blackPieceList.size();
     }
 
-    public int whitePieceListSize() { return whitePieceList.size(); }
+    public int whitePieceListSize() {
+        return whitePieceList.size();
+    }
 
     public int blackPieceListSize() {
         return blackPieceList.size();
@@ -40,26 +50,49 @@ public class Board {
     }
 
     public void initialize() {
-        int MAX_PAWNS_SIZE =8;
+        addBlackPiece(Piece.createBlackRook());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackQueen());
+        addBlackPiece(Piece.createBlackKing());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackRook());
+        pawnInitialize(Color.BLACK);
+
+        pawnInitialize(Color.WHITE);
+        addWhitePiece(Piece.createWhiteRook());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteQueen());
+        addWhitePiece(Piece.createWhiteKing());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteRook());
+    }
+
+    public void pawnInitialize(Color color){
+        int MAX_PAWNS_SIZE = 8;
         for (int i = 0; i < MAX_PAWNS_SIZE; i++) {
-            addWhitePiece(Piece.createPiece(Color.WHITE, Name.PAWN));
-            addBlackPiece(Piece.createPiece(Color.BLACK, Name.PAWN));
+            addPiece(Piece.createPiece(color, Name.PAWN));
         }
     }
 
-    public String getWhitePawnsResult() {
-        return getPawnsResult(whitePieceList);
+    public String getWhitePiecesResult() {
+        return getPiecesResult(whitePieceList);
     }
 
-    public String getBlackPawnsResult() {
-        return getPawnsResult(blackPieceList);
+    public String getBlackPiecesResult() {
+        return getPiecesResult(blackPieceList);
     }
 
-    public String getPawnsResult(List<Piece> pieceList) {
+    public String getPiecesResult(List<Piece> pieceList) {
         StringBuilder pawnReps = new StringBuilder();
         int colorPawnSize = pieceList.size();
         for (int i = 0; i < colorPawnSize; i++) {
             pawnReps.append(pieceList.get(i).getRepresentation());
+            if(i==7)
+                pawnReps.append(System.getProperty("line.separator"));
         }
         return pawnReps.toString();
     }
@@ -67,18 +100,17 @@ public class Board {
     public String print() {
         String blankRow = "********";
         StringBuilder boardLayout = new StringBuilder();
-        boardLayout.append(appendNewLine(blankRow))
-                .append(appendNewLine(getBlackPawnsResult()))
+        boardLayout
+                .append(appendNewLine(getBlackPiecesResult()))
                 .append(appendNewLine(blankRow))
                 .append(appendNewLine(blankRow))
                 .append(appendNewLine(blankRow))
                 .append(appendNewLine(blankRow))
-                .append(appendNewLine(getWhitePawnsResult()))
-                .append(blankRow);
+                .append(appendNewLine(getWhitePiecesResult()));
         return boardLayout.toString();
     }
 
-    public void reset(){
+    public void reset() {
         whitePieceList.clear();
         blackPieceList.clear();
     }

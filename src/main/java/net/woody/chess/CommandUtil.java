@@ -6,7 +6,7 @@ public class CommandUtil {
         System.out.println("< Command Menu >");
         System.out.println(" 'start' : game start ");
         System.out.println(" 'end'   : game end ");
-        System.out.println("( not case-sensitive 😊)");
+        System.out.println("( case-insensitive 😊)");
         System.out.print("> ");
     }
 

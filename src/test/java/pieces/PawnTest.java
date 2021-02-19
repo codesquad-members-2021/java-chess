@@ -11,13 +11,13 @@ public class PawnTest {
     @Test
     @DisplayName("흰색 폰 생성")
     void createWhitePawn() {
-        verifyPawn(Pawn.WHITE);
+        verifyPawn(Pawn.WHITE, Pawn.WHITE_REPRESENTATION);
     }
 
     @Test
     @DisplayName("검은색 폰 생성")
     void createBlackPawn() {
-        verifyPawn(Pawn.BLACK);
+        verifyPawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
     }
 
     @Test
@@ -27,8 +27,8 @@ public class PawnTest {
         assertThat(pawn.getColor()).isEqualTo(Pawn.WHITE);
     }
 
-    private void verifyPawn(final String color){
-        Pawn pawn = new Pawn(color);
+    private void verifyPawn(final String color, final String representation){
+        Pawn pawn = new Pawn(color, representation);
         assertThat(pawn.getColor()).isEqualTo(color);
     }
 }

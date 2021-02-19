@@ -26,12 +26,11 @@ public class Board {
         for (int i = 0; i < 8; i++) {
             whitePawns.add(whitePawn);
         }
-        Pawn blackPawn = new Pawn(Pawn.BLACK);
+        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
         List<Pawn> blackPawns = new ArrayList<>(8);
         for (int i = 0; i < 8; i++) {
             blackPawns.add(blackPawn);
         }
-
     }
 
 }

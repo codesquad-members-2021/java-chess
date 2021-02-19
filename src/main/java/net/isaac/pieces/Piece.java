@@ -29,6 +29,14 @@ public abstract class Piece {
         return color;
     }
 
+    public boolean isWhite(){
+        return this.color == Color.WHITE;
+    }
+
+    public boolean isBlack(){
+        return this.color == Color.BLACK;
+    }
+
     public static Pawn getPawn(Color color) {
         return new Pawn(color, Piece.PAWN_REPRESENTATION);
     }

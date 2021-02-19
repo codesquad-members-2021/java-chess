@@ -2,7 +2,7 @@ package net.eno.chess;
 
 import net.eno.pieces.Piece;
 import net.eno.pieces.Color;
-import net.eno.pieces.Representation;
+import net.eno.pieces.PieceType;
 import static net.eno.utils.StringUtils.appendNewLine;
 
 import java.util.Map;
@@ -50,26 +50,26 @@ public class Board {
     }
 
     public void initialize() {
-        List<Representation> representationList = sortRepresentation();
+        List<PieceType> arrangePieceList = arrangePiece();
         for (int i = 0; i < 8; i++) {
-            addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, representationList.get(i)));
-            addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, representationList.get(i)));
-            addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, Representation.PAWN));
-            addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, Representation.PAWN));
+            addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, arrangePieceList.get(i)));
+            addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, arrangePieceList.get(i)));
+            addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, PieceType.PAWN));
+            addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, PieceType.PAWN));
         }
     }
 
-    private List<Representation> sortRepresentation() {
-        List<Representation> representationList = new ArrayList<>();
-        representationList.add(Representation.ROOK);
-        representationList.add(Representation.KNIGHT);
-        representationList.add(Representation.BISHOP);
-        representationList.add(Representation.QUEEN);
-        representationList.add(Representation.KING);
-        representationList.add(Representation.BISHOP);
-        representationList.add(Representation.KNIGHT);
-        representationList.add(Representation.ROOK);
-        return representationList;
+    private List<PieceType> arrangePiece() {
+        List<PieceType> arrangePieceList = new ArrayList<>();
+        arrangePieceList.add(PieceType.ROOK);
+        arrangePieceList.add(PieceType.KNIGHT);
+        arrangePieceList.add(PieceType.BISHOP);
+        arrangePieceList.add(PieceType.QUEEN);
+        arrangePieceList.add(PieceType.KING);
+        arrangePieceList.add(PieceType.BISHOP);
+        arrangePieceList.add(PieceType.KNIGHT);
+        arrangePieceList.add(PieceType.ROOK);
+        return arrangePieceList;
     }
 
     public String showBoard() {

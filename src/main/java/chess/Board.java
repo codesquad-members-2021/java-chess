@@ -20,10 +20,6 @@ public class Board {
         getPieceList(piece).add(piece);
     }
 
-    public int size(Piece piece) {
-        return getPieceList(piece).size();
-    }
-
     public Piece findPiece(Piece piece, int idx) {
         return getPieceList(piece).get(idx);
     }

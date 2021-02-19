@@ -29,13 +29,13 @@ public class Board {
     }
 
     public void addWhitePawn(Piece piece) {
-        if (piece.isWhite()) {
+        if (piece.isWhitePawn()) {
             whitePawns.add(piece);
         }
     }
 
     public void addBlackPawn(Piece piece) {
-        if (piece.isBlack()) {
+        if (piece.isBlackPawn()) {
             blackPawns.add(piece);
         }
     }

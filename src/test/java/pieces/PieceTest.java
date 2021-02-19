@@ -36,4 +36,13 @@ public class PieceTest {
         assertThat(Piece.createWhitePawn().isWhite()).isTrue();
         assertThat(Piece.createBlackPawn().isBlack()).isTrue();
     }
+
+    @Test
+    @DisplayName("Verify isWhitePawn and isBlackPawn")
+    void verifyPawn() {
+        Piece whitePawn = Piece.createWhitePawn();
+        Piece blackPawn = Piece.createBlackPawn();
+        assertThat(whitePawn.isWhitePawn()).isTrue();
+        assertThat(blackPawn.isBlackPawn()).isTrue();
+    }
 }

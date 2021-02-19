@@ -5,57 +5,40 @@ import net.eno.pieces.Color;
 import net.eno.pieces.PieceType;
 import static net.eno.utils.StringUtils.appendNewLine;
 
-import java.util.Map;
 import java.util.List;
-import java.util.HashMap;
 import java.util.ArrayList;
 
 
 public class Board {
 
-    private final Map<String, Map<String, List<Piece>>> pieces;
+    private final List<List<Piece>> board;
 
     public Board() {
-        this.pieces = new HashMap<>();
-        this.pieces.put(Color.WHITE.toString(), new HashMap<String, List<Piece>>() {
-            {
-                put("pawn", new ArrayList<>());
-                put("piece", new ArrayList<>());
-            }
-        });
-        this.pieces.put(Color.BLACK.toString(), new HashMap<String, List<Piece>>() {
-            {
-                put("pawn", new ArrayList<>());
-                put("piece", new ArrayList<>());
-            }
-        });
-    }
-
-    public void addPiece(Color color, Piece piece) {
-        char representation = piece.getRepresentation();
-        if (Character.toLowerCase(representation) == 'p') {
-            this.pieces.get(color.toString()).get("pawn").add(piece);
-        } else {
-            this.pieces.get(color.toString()).get("piece").add(piece);
+        this.board = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            this.board.add(new ArrayList<>());
         }
     }
 
+    public void addPiece(int rank, Piece piece) {
+        this.board.get(rank).add(piece);
+    }
+
     public int pieceCount() {
-        Map<String, List<Piece>> whitePieces = this.pieces.get(Color.WHITE.toString());
-        Map<String, List<Piece>> blackPieces = this.pieces.get(Color.BLACK.toString());
-        return whitePieces.get("pawn").size() +
-                whitePieces.get("piece").size() +
-                blackPieces.get("pawn").size() +
-                blackPieces.get("piece").size();
+        int pieceCount = 0;
+        for (List<Piece> rank : this.board) {
+            pieceCount += rank.size();
+        }
+        return pieceCount;
     }
 
     public void initialize() {
         List<PieceType> arrangePieceList = arrangePiece();
         for (int i = 0; i < 8; i++) {
-            addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, arrangePieceList.get(i)));
-            addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, arrangePieceList.get(i)));
-            addPiece(Color.WHITE, Piece.createPiece(Color.WHITE, PieceType.PAWN));
-            addPiece(Color.BLACK, Piece.createPiece(Color.BLACK, PieceType.PAWN));
+            addPiece(0 , Piece.createPiece(Color.BLACK, arrangePieceList.get(i)));
+            addPiece(1, Piece.createPiece(Color.BLACK, PieceType.PAWN));
+            addPiece(2, Piece.createPiece(Color.WHITE, PieceType.PAWN));
+            addPiece(3, Piece.createPiece(Color.WHITE, arrangePieceList.get(i)));
         }
     }
 
@@ -72,29 +55,33 @@ public class Board {
         return arrangePieceList;
     }
 
-    public String showBoard() {
+    public String showBoard(Color color) {
         StringBuilder result = new StringBuilder();
-        result.append(appendNewLine(getPiecesResult(Color.BLACK, "piece")));
-        result.append(appendNewLine(getPiecesResult(Color.BLACK, "pawn")));
+        int num = color.equals(Color.WHITE) ? 0 : 3;
+
+        result.append(appendNewLine(getPiecesResult(color, num)));
+        result.append(appendNewLine(getPiecesResult(color, Math.abs(1 - num))));
         result.append(appendNewLine("........"));
         result.append(appendNewLine("........"));
         result.append(appendNewLine("........"));
         result.append(appendNewLine("........"));
-        result.append(appendNewLine(getPiecesResult(Color.WHITE, "pawn")));
-        result.append(appendNewLine(getPiecesResult(Color.WHITE, "piece")));
+        result.append(appendNewLine(getPiecesResult(color, Math.abs(2 - num))));
+        result.append(appendNewLine(getPiecesResult(color, Math.abs(3 - num))));
         return result.toString();
     }
 
-    private String getPiecesResult(Color color, String piece) {
+    private String getPiecesResult(Color color, int rank) {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < this.pieces.get(color.toString()).get(piece).size(); i++) {
-            result.append(findPiece(color, piece, i).getRepresentation());
+        int num = color.equals(Color.WHITE) ? 0 : this.board.get(rank).size() - 1;
+
+        for (int i = 0; i < this.board.get(rank).size(); i++) {
+            result.append(findPiece(rank, Math.abs(i - num)).getRepresentation());
         }
         return result.toString();
     }
 
-    private Piece findPiece(Color color, String piece, int index) {
-        return this.pieces.get(color.toString()).get(piece).get(index);
+    private Piece findPiece(int rank, int file) {
+        return this.board.get(rank).get(file);
     }
 
 }

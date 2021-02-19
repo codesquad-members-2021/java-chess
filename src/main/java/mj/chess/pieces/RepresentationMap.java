@@ -6,7 +6,7 @@ import java.util.Map;
 public class RepresentationMap {
     private final Map<String, Character> representationMap = new HashMap<>();
 
-    RepresentationMap(){
+    public RepresentationMap(){
         init();
     }
 

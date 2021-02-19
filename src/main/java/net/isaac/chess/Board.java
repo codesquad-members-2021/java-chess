@@ -22,6 +22,17 @@ public class Board {
         }
     }
 
+    private void initializeSpecialPieces(Piece.Color color, int row){
+        add(Piece.getRook(color), row, 0);
+        add(Piece.getKnight(color), row, 1);
+        add(Piece.getBishop(color), row, 2);
+        add(Piece.getQueen(color),row,3);
+        add(Piece.getKing(color),row,4);
+        add(Piece.getBishop(color), row, 5);
+        add(Piece.getKnight(color), row, 6);
+        add(Piece.getRook(color), row, 7);
+    }
+
     public void print(){
         System.out.println(getRepresentation());
     }

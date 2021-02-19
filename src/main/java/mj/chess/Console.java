@@ -41,8 +41,6 @@ public class Console {
     }
 
     private void printCellsOfBoard() {
-        for (String rowOfBoard : board.getCellsOfBoard()) {
-            System.out.println(rowOfBoard);
-        }
+        System.out.println(board.showBoard());
     }
 }

@@ -64,6 +64,27 @@ public class Board {
         blackOtherPieces.clear();
     }
 
+    private void addBlackOtherPieceToPieces() {
+        addOtherPiece(Piece.createBlackRook());
+        addOtherPiece(Piece.createBlackKnight());
+        addOtherPiece(Piece.createBlackBishop());
+        addOtherPiece(Piece.createBlackQueen());
+        addOtherPiece(Piece.createBlackKing());
+        addOtherPiece(Piece.createBlackBishop());
+        addOtherPiece(Piece.createBlackKnight());
+        addOtherPiece(Piece.createBlackRook());
+    }
+
+    private void addWhiteOtherPieceToPieces() {
+        addOtherPiece(Piece.createWhiteRook());
+        addOtherPiece(Piece.createWhiteKnight());
+        addOtherPiece(Piece.createWhiteBishop());
+        addOtherPiece(Piece.createWhiteQueen());
+        addOtherPiece(Piece.createWhiteKing());
+        addOtherPiece(Piece.createWhiteBishop());
+        addOtherPiece(Piece.createWhiteKnight());
+        addOtherPiece(Piece.createWhiteRook());
+    }
 
     public String getPawnsResult(String color) {
         PieceValid.checkColorType(color);
@@ -87,25 +108,4 @@ public class Board {
                 .collect(Collectors.joining());
     }
 
-    private void addBlackOtherPieceToPieces() {
-        addOtherPiece(Piece.createBlackRook());
-        addOtherPiece(Piece.createBlackKnight());
-        addOtherPiece(Piece.createBlackBishop());
-        addOtherPiece(Piece.createBlackQueen());
-        addOtherPiece(Piece.createBlackKing());
-        addOtherPiece(Piece.createBlackBishop());
-        addOtherPiece(Piece.createBlackKnight());
-        addOtherPiece(Piece.createBlackRook());
-    }
-
-    private void addWhiteOtherPieceToPieces() {
-        addOtherPiece(Piece.createWhiteRook());
-        addOtherPiece(Piece.createWhiteKnight());
-        addOtherPiece(Piece.createWhiteBishop());
-        addOtherPiece(Piece.createWhiteQueen());
-        addOtherPiece(Piece.createWhiteKing());
-        addOtherPiece(Piece.createWhiteBishop());
-        addOtherPiece(Piece.createWhiteKnight());
-        addOtherPiece(Piece.createWhiteRook());
-    }
 }

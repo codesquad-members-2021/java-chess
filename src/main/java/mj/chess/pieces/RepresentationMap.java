@@ -28,4 +28,8 @@ public class RepresentationMap {
     public String getRepresentation(Color color, Type type){
         return representationMap.get(color.name() + type.name());
     }
+
+    public boolean containsValue(String value){
+        return representationMap.containsValue(value);
+    }
 }

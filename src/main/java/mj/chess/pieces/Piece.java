@@ -5,9 +5,10 @@ public class Piece {
     private final Color color;
     private final Type type;
     private final String representation;
+    private final RepresentationMap representationMap;
 
     private Piece(Color color, Type type) {
-        RepresentationMap representationMap = new RepresentationMap();
+        representationMap = new RepresentationMap();
 
         this.color = color;
         this.type = type;
@@ -43,8 +44,11 @@ public class Piece {
         if (!isValid) throw new IllegalArgumentException("Invalid Type");
     }
 
-    private void validateType() {
+    //TODO: 표현문자에 대한 유효성 검사 메소드 완성하기
+    private void validateRepresentation(String representation) {
+        boolean isValid = representationMap.containsValue(representation);
 
+        if (!isValid) throw new IllegalArgumentException("Invalid representation");
     }
 
     //TODO: 이거 반복되는 구조니까 개선해야 한다 어떻게?

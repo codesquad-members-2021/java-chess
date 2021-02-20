@@ -20,7 +20,7 @@ public class ChessGame {
             String command = scanner.nextLine();
 
             if(isStartCommand(command)) {
-                System.out.println(board.getBoardStatus());
+                System.out.println(board.showBoard());
             }
 
             if(isEndCommand(command)) {

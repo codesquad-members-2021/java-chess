@@ -27,10 +27,6 @@ public class Pieces {
         return pieceList.get(index);
     }
 
-    public List<Piece> getPieceList() {
-        return Collections.unmodifiableList(pieceList);
-    }
-
     public String getString() {
         StringBuilder sb = new StringBuilder();
         for(Piece p : this.pieceList){

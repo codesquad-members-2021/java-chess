@@ -15,7 +15,7 @@ public class Board {
     private final List<Piece> blackPieces = new ArrayList<>();
 
     public void addWhitePieces(Piece piece) {
-        if (piece.getColorName().equals(Color.WHITE.getColorName())) {
+        if (piece.getColor().equals(Color.WHITE)) {
             whitePieces.add(piece);
             return;
         }
@@ -24,7 +24,7 @@ public class Board {
     }
 
     public void addBlackPieces(Piece piece) {
-        if (piece.getColorName().equals(Color.BLACK.getColorName())) {
+        if (piece.getColor().equals(Color.BLACK)) {
             blackPieces.add(piece);
             return;
         }

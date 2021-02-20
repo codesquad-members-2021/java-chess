@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PieceTest {
 
@@ -30,15 +31,19 @@ class PieceTest {
     }
 
     private void verifyWhitePiece(Piece piece, Type type) {
-        assertThat(piece.isWhite()).isEqualTo(true);
-        assertThat(piece.getColorName()).isEqualTo(Color.WHITE.getColorName());
-        assertThat(piece.getRepresentation()).isEqualTo(type.getWhiteRepresentation());
+        assertAll(
+                () -> assertThat(piece.isWhite()).isEqualTo(true),
+                () -> assertThat(piece.getColor()).isEqualTo(Color.WHITE),
+                () -> assertThat(piece.getRepresentation()).isEqualTo(type.getWhiteRepresentation())
+        );
     }
 
     private void verifyBlackPiece(Piece piece, Type type) {
-        assertThat(piece.isBlack()).isEqualTo(true);
-        assertThat(piece.getColorName()).isEqualTo(Color.BLACK.getColorName());
-        assertThat(piece.getRepresentation()).isEqualTo(type.getBlackRepresentation());
+        assertAll(
+                () -> assertThat(piece.isBlack()).isEqualTo(true),
+                () -> assertThat(piece.getColor()).isEqualTo(Color.BLACK),
+                () -> assertThat(piece.getRepresentation()).isEqualTo(type.getBlackRepresentation())
+        );
     }
 
 }

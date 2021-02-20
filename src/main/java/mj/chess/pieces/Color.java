@@ -1,5 +1,5 @@
 package mj.chess.pieces;
 
-public enum ColorOfPiece {
+public enum Color {
     BLACK, WHITE
 }

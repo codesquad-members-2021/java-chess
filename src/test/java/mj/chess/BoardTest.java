@@ -1,37 +1,60 @@
 package mj.chess;
 
-import mj.chess.pieces.ColorOfPiece;
+import mj.chess.pieces.Color;
 import mj.chess.pieces.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BoardTest {
     Board board;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         board = new Board();
     }
 
     @Test
-    @DisplayName("보드 객체 내 흰색 폰 1개, 검은색 폰 1개 생성")
+    @DisplayName("Board class에 Pawn class 추가 및 인덱스로 탐색")
     void createBoard() {
-        Pawn blackPawn = new Pawn(ColorOfPiece.BLACK);
-        Pawn whitePawn = new Pawn();
+        Pawn[] testPawns = {
+                new Pawn(Color.BLACK),
+                new Pawn(Color.WHITE)
+        };
 
-        verifyAddition(blackPawn, 1);
-        verifyAddition(whitePawn, 2);
-        verifySearchByIndex(blackPawn, 0);
-        verifySearchByIndex(whitePawn, 1);
+        for (int i = 0; i < testPawns.length; i++) {
+            final int index = i;
+            assertAll(
+                    () -> verifyAddition(testPawns[index], index),
+                    () -> verifySearchByIndex(testPawns[index], index)
+            );
+        }
     }
 
-    void verifyAddition(Pawn pawn, int size){
+    private void verifyAddition(Pawn pawn, int index) {
+        int size = index + 1;
         board.add(pawn);
         assertThat(board.size()).isEqualTo(size);
     }
-    void verifySearchByIndex(Pawn pawn, int index){
+
+    private void verifySearchByIndex(Pawn pawn, int index) {
         assertThat(pawn).isEqualTo(board.findPawn(index));
+    }
+
+    @Test
+    @DisplayName("initialize 메소드 호출에 따라 각 폰의 표현문자 정상출력")
+    void checkRepresentationOfInitialize() {
+        board.initialize();
+        assertAll(
+                () -> verifyRepresentationOfPawns(Color.WHITE, "pppppppp"),
+                () -> verifyRepresentationOfPawns(Color.BLACK, "PPPPPPPP")
+        );
+    }
+
+    private void verifyRepresentationOfPawns(Color color, String representationOfExpected) {
+        assertThat(board.getRowOfPawns(color)).isEqualTo(representationOfExpected);
     }
 }

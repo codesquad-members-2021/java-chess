@@ -13,5 +13,4 @@ public class StringUtils {
         newLinePlus.append(NEWLINE);
         return newLinePlus;
     }
-
 }

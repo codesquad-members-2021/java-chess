@@ -2,7 +2,7 @@ package cooper.chess.piece;
 
 public enum Type {
     PAWN('p'),
-    KNIGHT('k'),
+    KNIGHT('n'),
     ROOK('r'),
     BISHOP('b'),
     QUEEN('q'),

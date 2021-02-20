@@ -4,13 +4,13 @@ import mj.chess.pieces.Color;
 import mj.chess.pieces.Piece;
 import mj.chess.pieces.RepresentationMap;
 import mj.chess.pieces.Type;
-import mj.chess.utils.StringUtils;
+import mj.chess.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
-import static mj.chess.utils.StringUtils.appendNewLine;
+import static mj.chess.utils.StringUtil.appendNewLine;
 
 public class Board {
     private static final int FIRST_ROW = 0;
@@ -95,10 +95,10 @@ public class Board {
                 cellsOfBoard[nthRow] = blankRank;
         }
 
-        cellsOfBoard[FIRST_ROW] = StringUtils.appendNewLine(getRowOfPieces(Color.BLACK));
-        cellsOfBoard[SECOND_ROW] = StringUtils.appendNewLine(getRowOfPawns(Color.BLACK));
-        cellsOfBoard[SEVENTH_ROW] = StringUtils.appendNewLine(getRowOfPawns(Color.WHITE));
-        cellsOfBoard[EIGHTH_ROW] = StringUtils.appendNewLine(getRowOfPieces(Color.WHITE));
+        cellsOfBoard[FIRST_ROW] = StringUtil.appendNewLine(getRowOfPieces(Color.BLACK));
+        cellsOfBoard[SECOND_ROW] = StringUtil.appendNewLine(getRowOfPawns(Color.BLACK));
+        cellsOfBoard[SEVENTH_ROW] = StringUtil.appendNewLine(getRowOfPawns(Color.WHITE));
+        cellsOfBoard[EIGHTH_ROW] = StringUtil.appendNewLine(getRowOfPieces(Color.WHITE));
     }
 
     int countPieces() {

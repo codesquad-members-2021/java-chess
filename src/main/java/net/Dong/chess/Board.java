@@ -1,8 +1,6 @@
 package net.Dong.chess;
-
-import net.Dong.chess.Pawn;
 import static net.Dong.chess.Pawn.Color;
-//import static net.Dong.chess.Pawn;
+
 
 import java.util.ArrayList;
 

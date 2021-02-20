@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import utils.StringUtils;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BoardTest {
     private Board board;
@@ -20,13 +21,17 @@ class BoardTest {
     void printBoard() {
         board.initialize();
         String blankRank = StringUtils.addNewLine("........");
+        final int TOTAL_PIECES_COUNT = 32;
 
-        assertThat(32).isEqualTo(board.totalPiecesCount());
-        assertThat(StringUtils.addNewLine("RNBQKBNR") +
+        assertAll(
+                () -> assertThat(TOTAL_PIECES_COUNT).isEqualTo(board.totalPiecesCount()),
+                () -> assertThat(StringUtils.addNewLine("RNBQKBNR") +
                 StringUtils.addNewLine("PPPPPPPP") +
                 blankRank + blankRank + blankRank + blankRank +
                 StringUtils.addNewLine("pppppppp") +
                 StringUtils.addNewLine("rnbqkbnr"))
-                .isEqualTo(board.showBoard());
+                .isEqualTo(board.getChessBoard())
+        );
+
     }
 }

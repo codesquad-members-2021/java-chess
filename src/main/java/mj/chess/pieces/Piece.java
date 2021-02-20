@@ -16,6 +16,7 @@ public class Piece {
 
         validateColor(this.color);
         validateType(this.type);
+        validateRepresentation(this.representation);
     }
 
     private void validateColor(Color color) {
@@ -44,7 +45,6 @@ public class Piece {
         if (!isValid) throw new IllegalArgumentException("Invalid Type");
     }
 
-    //TODO: 표현문자에 대한 유효성 검사 메소드 완성하기
     private void validateRepresentation(String representation) {
         boolean isValid = representationMap.containsValue(representation);
 
@@ -110,5 +110,13 @@ public class Piece {
 
     public String getRepresentation() {
         return representation;
+    }
+
+    public boolean isBlack() {
+        return this.color == Color.BLACK;
+    }
+
+    public boolean isWhite() {
+        return this.color == Color.WHITE;
     }
 }

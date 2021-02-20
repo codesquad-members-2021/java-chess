@@ -46,19 +46,8 @@ public class Board {
 
     public void initialize() {
    // white pawn 8, black pawn 8
-        addPawn(Color.BALCK , 8);
-        addPawn(Color.WHITE , 8);
-    }
-
-    private void addPawn(Pawn.Color color, int numOfPawn) {
-        if(color == Color.BALCK) {
-            addPawnBlack(numOfPawn);
-            return;
-        }
-
-        if (color == Color.WHITE) {
-            addPawnBlack(numOfPawn);
-        }
+        addPawnWhite(8);
+        addPawnBlack(8);
     }
 
     private void addPawnWhite(int numOfPawn) {

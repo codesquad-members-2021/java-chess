@@ -17,12 +17,12 @@ public class Piece {
         return new Piece(Color.BLACK, Type.PAWN);
     }
 
-    public static Piece createWhiteKnigth() {
+    public static Piece createWhiteKnight() {
         return new Piece(Color.WHITE, Type.KNIGHT);
     }
 
     public static Piece createBlackKnight() {
-        return new Piece(Color.BLACK, Type.ROOK);
+        return new Piece(Color.BLACK, Type.KNIGHT);
     }
 
     public static Piece createWhiteRook() {

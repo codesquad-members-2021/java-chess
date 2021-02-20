@@ -1,7 +1,5 @@
 package utils;
 
-import chess.Board;
-
 public class StringUtils {
     private static final String NEWLINE = System.getProperty("line.separator");
 

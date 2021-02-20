@@ -40,7 +40,7 @@ public class Pawn {
 
 
 
-    public Color getColor() {
+    public Color color() {
         // return current Pawn's color
         return this.color;
     }

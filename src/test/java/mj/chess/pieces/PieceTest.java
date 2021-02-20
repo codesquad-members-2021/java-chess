@@ -17,8 +17,6 @@ class PieceTest {
         );
     }
 
-    ;
-
     private void verifyPiece(final Piece piece, Color color, Type type) {
         String representation = new RepresentationMap().getRepresentation(color, type);
 
@@ -29,25 +27,17 @@ class PieceTest {
         );
     }
 
-    ;
-
     private void verifyColorOfPiece(final Piece piece, Color color) {
         assertThat(piece.getColor()).isEqualTo(color);
     }
-
-    ;
 
     private void verifyTypeOfPiece(final Piece piece, Type type) {
         assertThat(piece.getType()).isEqualTo(type);
     }
 
-    ;
-
     private void verifyRepresentationOfPiece(final Piece piece, final String representation) {
         assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
-
-    ;
 
     @Test
     @DisplayName("모든 기물에 대해 흑백 상태 확인")

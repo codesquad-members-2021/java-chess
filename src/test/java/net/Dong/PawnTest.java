@@ -8,11 +8,9 @@ import org.junit.jupiter.api.Test;
 
 class PawnTest {
 
-
-
     @Test
     @DisplayName("Color Test")
-    public void create() {
+    void create() {
 
         verifyPawn(Color.WHITE);
         verifyPawn(Color.BALCK);

@@ -112,7 +112,7 @@ public class Board {
     }
 
     //TODO: 스트림으로 바꿔보자
-    public String showBoard() {
+    public String getLocationOfPieces() {
         StringBuilder result = new StringBuilder();
         for (StringBuilder rowOfBoard : cellsOfBoard) result.append(rowOfBoard);
 

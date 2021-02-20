@@ -32,14 +32,14 @@ public class Console {
 
     private void startGame() {
         board.initialize();
-        printCellsOfBoard();
+        printLocationOfPieces();
     }
 
     private void endGame() {
         System.out.print("Game Over");
     }
 
-    private void printCellsOfBoard() {
-        System.out.println(board.showBoard());
+    private void printLocationOfPieces() {
+        System.out.println(board.getLocationOfPieces());
     }
 }

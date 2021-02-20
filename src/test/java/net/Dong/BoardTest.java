@@ -12,7 +12,7 @@ class BoardTest {
 
 
     @Test
-    public void create() throws Exception {
+    void create() throws Exception {
         Board board = new Board();
 
         Pawn white = new Pawn(Color.WHITE);

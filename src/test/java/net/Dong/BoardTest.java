@@ -28,7 +28,7 @@ class BoardTest {
 
 
     @Test
-    public void initialize() throws Exception {
+    void initialize() throws Exception {
         Board board = new Board();
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");

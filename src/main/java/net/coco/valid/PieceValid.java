@@ -12,7 +12,7 @@ public class PieceValid {
     public static boolean isPawn(Piece piece) {
         char getRepresentation = Character.toUpperCase(piece.getRepresentation());
 
-        if (getRepresentation != PieceType.KING.getRepresentation(Piece.BLACK)) {
+        if (getRepresentation != PieceType.PAWN.getRepresentation(Piece.BLACK)) {
             System.out.println("pawn 말고 다른 piece는 넣지 말아주세요.");
             return false;
         }

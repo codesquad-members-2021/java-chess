@@ -2,7 +2,7 @@ package net.honux.chess.core;
 
 import net.honux.chess.attribute.Color;
 import net.honux.chess.entity.pieces.Piece;
-import net.honux.chess.util.PieceList;
+import net.honux.chess.util.Pieces;
 import net.honux.chess.util.StringUtils;
 
 import java.util.Optional;
@@ -14,14 +14,16 @@ import static net.honux.chess.util.StringUtils.convertString;
 public class Board {
 
     public static final int BOARD_SIZE = 8;
-    private static final String BLANK = "********";
-    private static final int initialSpaceInterval = 4;
-    private PieceList whitePieceList;
-    private PieceList blackPieceList;
+    private Pieces whitePieces;
+    private Pieces whitePawns;
+    private Pieces blackPieces;
+    private Pieces blackPawns;
 
     public void initialize() {
-        whitePieceList = new PieceList();
-        blackPieceList = new PieceList();
+        whitePieces = new Pieces();
+        blackPieces = new Pieces();
+        whitePawns = new Pieces();
+        blackPawns = new Pieces();
         addPiecesToBoardSize();
     }
 
@@ -30,17 +32,17 @@ public class Board {
     }
 
     public int whitePawnSize() {
-        return whitePieceList.size();
+        return whitePieces.size() + whitePawns.size();
     }
 
     public int blackPawnSize() {
-        return blackPieceList.size();
+        return blackPieces.size() + blackPawns.size();
     }
 
     public Optional<Piece> findWhitePawn(int index) {
         Optional<Piece> pawn = Optional.empty();
         try {
-            pawn = Optional.ofNullable(whitePieceList.get(index));
+            pawn = Optional.ofNullable(whitePieces.get(index));
         } catch (IndexOutOfBoundsException e) {
             return Optional.empty();
         }
@@ -50,71 +52,47 @@ public class Board {
     public Optional<Piece> findBlackPawn(int index) {
         Optional<Piece> pawn = Optional.empty();
         try {
-            pawn = Optional.ofNullable(blackPieceList.get(index));
+            pawn = Optional.ofNullable(blackPieces.get(index));
         } catch (IndexOutOfBoundsException e) {
             return Optional.empty();
         }
         return pawn;
     }
 
-    public String getWhitePawnsResult() {
-        return whitePieceList.getStringPiecesList(0, 7);
-    }
-
-    public String getBlackPawnsResult() {
-        return blackPieceList.getStringPiecesList(8, 15);
-    }
-
-    public String getBlackPiecesExceptPawns() {
-        return blackPieceList.getStringPiecesList(0, 7);
-    }
-
-    public String getWhitePiecesExceptPawns() {
-        return whitePieceList.getStringPiecesList(8, 15);
-    }
-
     public String getBoardStatusToString() {
-        appendNewLine(getBlackPiecesExceptPawns());
-        appendNewLine(getBlackPawnsResult());
+        final String BLANK = "********";
+        final int initialSpaceInterval = 4;
+        StringBuilder sb = new StringBuilder();
+        appendNewLine(sb, getStringPiecesResult(blackPieces));
+        appendNewLine(sb, getStringPiecesResult(blackPawns));
         for (int i = 0; i < initialSpaceInterval; i++) {
-            appendNewLine(BLANK);
+            appendNewLine(sb, BLANK);
         }
-        appendNewLine(getWhitePawnsResult());
-        appendNewLine(getWhitePiecesExceptPawns());
-        return convertString();
+        appendNewLine(sb, getStringPiecesResult(whitePawns));
+        appendNewLine(sb, getStringPiecesResult(whitePieces));
+        return convertString(sb);
     }
 
     public void print() {
-        StringUtils.init();
         System.out.println(this.getBoardStatusToString());
     }
 
     private void addPiecesToBoardSize() {
-        setBlackPiecesExceptPawns();
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            blackPieceList.add(createBlackPawn());
-            whitePieceList.add(createWhitePawn());
-        }
-        setWhitePiecesExceptPawns();
+        blackPieces = Pieces.createBlackPiecesExceptPawns();
+        blackPawns = Pieces.createBlackPawns();
+        whitePawns = Pieces.createWhitePawns();
+        whitePieces = Pieces.createWhitePiecesExceptPawns();
     }
 
-    private void setWhitePiecesExceptPawns() {
-        whitePieceList.add(createWhiteRook()).add(createWhiteKnight())
-                .add(createWhiteBishop()).add(createWhiteQueen()).add(createWhiteKing())
-                .add(createWhiteBishop()).add(createWhiteKnight()).add(createWhiteRook());
-    }
-
-    private void setBlackPiecesExceptPawns() {
-        blackPieceList.add(createBlackRook()).add(createBlackKnight())
-                .add(createBlackBishop()).add(createBlackQueen()).add(createBlackKing())
-                .add(createBlackBishop()).add(createBlackKnight()).add(createBlackRook());
-    }
-
-    private PieceList getListByColor(Piece piece) {
+    private Pieces getListByColor(Piece piece) {
         if (piece.getColor() == Color.BLACK) {
-            return blackPieceList;
+            return blackPieces;
         }
-        return whitePieceList;
+        return whitePieces;
+    }
+
+    private String getStringPiecesResult(Pieces pieces) {
+        return pieces.getString();
     }
 
 }

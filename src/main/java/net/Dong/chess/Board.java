@@ -9,13 +9,11 @@ public class Board {
     private List<Pawn> blackPawn = new ArrayList<>();
 
 
-    public int whiteAdd(Pawn pawn) {
+    public void whiteAdd(Pawn pawn) {
         whitePawn.add(pawn);
-        return whitePawn.size();
     }
-    public int blackAdd(Pawn pawn) {
+    public void blackAdd(Pawn pawn) {
         blackPawn.add(pawn);
-        return blackPawn.size();
     }
 
     public void removePawn(Pawn remove) {

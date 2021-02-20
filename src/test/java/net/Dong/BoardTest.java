@@ -2,8 +2,8 @@ package net.Dong;
 import net.Dong.chess.Board;
 import net.Dong.chess.Pawn;
 import org.junit.jupiter.api.Test;
-//import org.junit.;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 import net.Dong.chess.Pawn.*;
 
@@ -17,13 +17,13 @@ class BoardTest {
 
         Pawn white = new Pawn(Color.WHITE);
         board.whiteAdd(white);
-        assertEquals(1, board.size());
-        assertEquals(Color.WHITE, board.findWhitePawn(0));
+        assertThat(board.size()).isEqualTo(1);
+        assertThat(board.findWhitePawn(0)).isEqualTo(white);
 
         Pawn black = new Pawn(Color.BALCK);
         board.blackAdd(black);
-        assertEquals(2, board.size());
-        assertEquals(Color.BALCK, board.findBlackPawn(1));
+        assertThat(board.size()).isEqualTo(1);
+        assertThat(board.findBlackPawn(0)).isEqualTo(black);
     }
 
 
@@ -31,7 +31,7 @@ class BoardTest {
     public void initialize() throws Exception {
         Board board = new Board();
         board.initialize();
-        assertEquals("pppppppp", board.getWhitePawnsResult());
-        assertEquals("PPPPPPPP", board.getBlackPawnsResult());
+        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
+        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
     }
 }

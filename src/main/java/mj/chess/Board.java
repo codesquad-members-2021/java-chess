@@ -22,22 +22,23 @@ public class Board {
     private static final int SEVENTH_ROW = 6;
     private static final int EIGHTH_ROW = 7;
     private static final int SIZE_OF_ROW = 8;
-    private final List<Piece> pieces = new ArrayList<>();
+    private final List<Piece> whitePieces = new ArrayList<>();
+    private final List<Piece> blackPieces = new ArrayList<>();
     private final StringBuilder[] cellsOfBoard = new StringBuilder[SIZE_OF_ROW];
 
     public Board() {
     }
 
-    //TODO: 메소드의 역할을 잘 드러나도록 이름 더 직관적으로 바꿔보자
-    private void add(Piece piece) {
-        pieces.add(piece);
+    private void addPiece(Piece piece) {
+        if (piece.isWhite()) {
+            whitePieces.add(piece);
+        }
+        if (piece.isBlack()) {
+            blackPieces.add(piece);
+        }
     }
 
-    public Piece findPawn(int index) {
-        return pieces.get(index);
-    }
-
-     void initialize() {
+    void initialize() {
         for (Type type : Type.values()) {
             for (Color color : Color.values()) {
                 initPieces(color, type);
@@ -46,40 +47,33 @@ public class Board {
         initCellsOfBoard();
     }
 
-    private void initPawns(Color color) {
-        for (int i = 0; i < SIZE_OF_ROW; i++) {
-            Piece pawn = (color == Color.WHITE) ? Piece.createWhitePawn() : Piece.createBlackPawn();
-            this.add(pawn);
-        }
-    }
-
     private void initPieces(Color color, Type type) {
         Piece piece;
 
         switch (type) {
             case PAWN:
                 piece = (color == Color.WHITE) ? Piece.createWhitePawn() : Piece.createBlackPawn();
-                for (int i = 0; i < 8; i++) this.add(piece);
+                for (int i = 0; i < 8; i++) this.addPiece(piece);
                 break;
             case ROOK:
                 piece = (color == Color.WHITE) ? Piece.createWhiteRook() : Piece.createBlackRook();
-                for (int i = 0; i < 2; i++) this.add(piece);
+                for (int i = 0; i < 2; i++) this.addPiece(piece);
                 break;
             case KNIGHT:
                 piece = (color == Color.WHITE) ? Piece.createWhiteKnight() : Piece.createBlackKnight();
-                for (int i = 0; i < 2; i++) this.add(piece);
+                for (int i = 0; i < 2; i++) this.addPiece(piece);
                 break;
             case BISHOP:
                 piece = (color == Color.WHITE) ? Piece.createWhiteBishop() : Piece.createBlackBishop();
-                for (int i = 0; i < 2; i++) this.add(piece);
+                for (int i = 0; i < 2; i++) this.addPiece(piece);
                 break;
             case QUEEN:
                 piece = (color == Color.WHITE) ? Piece.createWhiteQueen() : Piece.createBlackQueen();
-                for (int i = 0; i < 1; i++) this.add(piece);
+                for (int i = 0; i < 1; i++) this.addPiece(piece);
                 break;
             case KING:
                 piece = (color == Color.WHITE) ? Piece.createWhiteKing() : Piece.createBlackKing();
-                for (int i = 0; i < 1; i++) this.add(piece);
+                for (int i = 0; i < 1; i++) this.addPiece(piece);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);
@@ -102,13 +96,7 @@ public class Board {
     }
 
     int countPieces() {
-        return pieces.size();
-    }
-
-    int countPawns() {
-        return (int) pieces.stream()
-                .filter(pawn -> pawn.getType() == Type.PAWN)
-                .count();
+        return whitePieces.size() + blackPieces.size();
     }
 
     //TODO: 스트림으로 바꿔보자
@@ -119,7 +107,12 @@ public class Board {
         return result.toString();
     }
 
-    private String getRowOfPawns(Color color) {
+    private String getRowOfPawns(Color color) throws IllegalArgumentException {
+
+        if (!(color == Color.BLACK || color == Color.WHITE) ) throw new IllegalArgumentException("color is White/Black else");
+
+        List<Piece> pieces = (color == Color.BLACK) ? pieces = blackPieces : whitePieces;
+
         return pieces.stream()
                 .filter(piece -> piece.getType() == Type.PAWN && piece.getColor() == color)
                 .map(Piece::getRepresentation)

@@ -112,11 +112,11 @@ public class Piece {
         return representation;
     }
 
-    boolean isBlack() {
+    public boolean isBlack() {
         return this.color == Color.BLACK;
     }
 
-    boolean isWhite() {
+    public boolean isWhite() {
         return this.color == Color.WHITE;
     }
 }

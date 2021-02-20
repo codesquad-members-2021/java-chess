@@ -17,18 +17,6 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("체스판 생성 시점에서 폰의 생성 개수 확인")
-    void initPawns() {
-        verifySizeOfPawns();
-    }
-
-    private void verifySizeOfPawns(){
-        final int maxSizeOfPawns = 16;
-        board.initialize();
-        assertThat(board.countPawns()).isEqualTo(maxSizeOfPawns);
-    }
-
-    @Test
     @DisplayName("체스판 생성에 따라 모든 기물의 개수 및 초기 출력상태 확인")
     void createBoard() {
         final int numOfAllPieces = 32;

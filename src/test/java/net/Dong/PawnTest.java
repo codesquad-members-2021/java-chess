@@ -24,3 +24,4 @@ class PawnTest {
         assertThat(p.getColor()).isEqualTo(c);
     }
 }
+

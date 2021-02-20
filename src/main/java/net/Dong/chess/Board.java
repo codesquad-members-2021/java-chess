@@ -13,7 +13,7 @@ public class Board {
         whitePawn.add(pawn);
     }
     public void blackAdd(Pawn pawn) {
-        blackPawn.add(pawn);
+        blackPawn.add(pawn)
     }
 
     public void removePawn(Pawn remove) {

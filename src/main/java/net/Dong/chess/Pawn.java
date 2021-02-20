@@ -12,18 +12,15 @@ public class Pawn {
 
 
     public Pawn() {
-        // defalut color : WHITE
         this.color = Color.WHITE;
     }
 
     public Pawn(Color color) {
-        // insert color data constructor
         this.color = color;
     }
 
 
     public Pawn(String colorString) {
-        // insert String-type color constructor
         if(colorString.equals("BLACK")) {
             this.color = Color.BALCK;
         }else {
@@ -41,7 +38,6 @@ public class Pawn {
 
 
     public Color color() {
-        // return current Pawn's color
         return this.color;
     }
 

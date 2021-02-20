@@ -59,10 +59,7 @@ public class Board {
 
 
     private String print() {
-        //print current state of chess board
-        // 화면에 출력할 결과를 StringBuilder에 저장한 후 String으로 반환하는 메소드를 구현한다
         StringBuilder sb = new StringBuilder();
-
         return "";
     }
 

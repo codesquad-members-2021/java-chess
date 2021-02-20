@@ -1,8 +1,8 @@
 package net.coco.chess;
 
 
-import net.coco.printer.PrintChess;
 import net.coco.pieces.Piece;
+import net.coco.printer.PrintChess;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -44,6 +44,7 @@ public class BoardTest {
                 () -> assertThat(board.getPawnsResult(Piece.WHITE)).isEqualTo("pppppppp")
         );
         PrintChess.printBoard(board);
+
     }
 
     @Test

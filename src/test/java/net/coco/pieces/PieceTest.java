@@ -12,23 +12,23 @@ class PieceTest {
     @DisplayName("폰이 요구대로 생성되는지 테스트")
     void piecesMake() {
         Assertions.assertAll(
-                () -> verifyPiece(Piece.createWhitePawn(), Piece.WHITE, Representation.WHITE_PAWN.getRepresentation()),
-                () -> verifyPiece(Piece.createBlackPawn(), Piece.BLACK, Representation.BLACK_PAWN.getRepresentation()),
+                () -> verifyPiece(Piece.createWhitePawn(), Piece.WHITE, Representation.PAWN.getWhiteRepresentation()),
+                () -> verifyPiece(Piece.createBlackPawn(), Piece.BLACK, Representation.PAWN.getBlackRepresentation()),
 
-                () -> verifyPiece(Piece.createWhiteRook(), Piece.WHITE, Representation.WHITE_ROOK.getRepresentation()),
-                () -> verifyPiece(Piece.createBlackRook(), Piece.BLACK, Representation.BLACK_ROOK.getRepresentation()),
+                () -> verifyPiece(Piece.createWhiteRook(), Piece.WHITE, Representation.ROOK.getWhiteRepresentation()),
+                () -> verifyPiece(Piece.createBlackRook(), Piece.BLACK, Representation.ROOK.getBlackRepresentation()),
 
-                () -> verifyPiece(Piece.createWhiteBishop(), Piece.WHITE, Representation.WHITE_BISHOP.getRepresentation()),
-                () -> verifyPiece(Piece.createBlackBishop(), Piece.BLACK, Representation.BLACK_BISHOP.getRepresentation()),
+                () -> verifyPiece(Piece.createWhiteBishop(), Piece.WHITE, Representation.BISHOP.getWhiteRepresentation()),
+                () -> verifyPiece(Piece.createBlackBishop(), Piece.BLACK, Representation.BISHOP.getBlackRepresentation()),
 
-                () -> verifyPiece(Piece.createWhiteKing(), Piece.WHITE, Representation.WHITE_KING.getRepresentation()),
-                () -> verifyPiece(Piece.createBlackKing(), Piece.BLACK, Representation.BLACK_KING.getRepresentation()),
+                () -> verifyPiece(Piece.createWhiteKing(), Piece.WHITE, Representation.KING.getWhiteRepresentation()),
+                () -> verifyPiece(Piece.createBlackKing(), Piece.BLACK, Representation.KING.getBlackRepresentation()),
 
-                () -> verifyPiece(Piece.createWhiteKnight(), Piece.WHITE, Representation.WHITE_KNIGHT.getRepresentation()),
-                () -> verifyPiece(Piece.createBlackKnight(), Piece.BLACK, Representation.BLACK_KNIGHT.getRepresentation()),
+                () -> verifyPiece(Piece.createWhiteKnight(), Piece.WHITE, Representation.KNIGHT.getWhiteRepresentation()),
+                () -> verifyPiece(Piece.createBlackKnight(), Piece.BLACK, Representation.KNIGHT.getBlackRepresentation()),
 
-                () -> verifyPiece(Piece.createWhiteQueen(), Piece.WHITE, Representation.WHITE_QUEEN.getRepresentation()),
-                () -> verifyPiece(Piece.createBlackQueen(), Piece.BLACK, Representation.BLACK_QUEEN.getRepresentation())
+                () -> verifyPiece(Piece.createWhiteQueen(), Piece.WHITE, Representation.QUEEN.getWhiteRepresentation()),
+                () -> verifyPiece(Piece.createBlackQueen(), Piece.BLACK, Representation.QUEEN.getBlackRepresentation())
 
         );
 

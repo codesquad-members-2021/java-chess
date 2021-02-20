@@ -1,18 +1,12 @@
 package net.coco.pieces;
 
 public enum Representation {
-    WHITE_PAWN('p'),
-    BLACK_PAWN('P'),
-    WHITE_KNIGHT('n'),
-    BLACK_KNIGHT('N'),
-    WHITE_ROOK('r'),
-    BLACK_ROOK('R'),
-    WHITE_BISHOP('b'),
-    BLACK_BISHOP('B'),
-    WHITE_QUEEN('q'),
-    BLACK_QUEEN('Q'),
-    WHITE_KING('k'),
-    BLACK_KING('K');
+    PAWN('p'),
+    KNIGHT('n'),
+    ROOK('r'),
+    BISHOP('b'),
+    QUEEN('q'),
+    KING('k');
 
     private char representation;
 
@@ -20,7 +14,11 @@ public enum Representation {
         this.representation = representation;
     }
 
-    public char getRepresentation() {
+    public char getWhiteRepresentation() {
         return representation;
     }
+    public char getBlackRepresentation() {
+        return Character.toUpperCase(representation);
+    }
+
 }

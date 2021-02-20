@@ -14,62 +14,62 @@ public class Piece {
 
     public static Piece createWhitePawn() {
         return new Piece(WHITE
-                , Representation.WHITE_PAWN.getRepresentation());
+                , Representation.PAWN.getWhiteRepresentation());
     }
 
     public static Piece createBlackPawn() {
         return new Piece(BLACK
-                , Representation.BLACK_PAWN.getRepresentation());
+                , Representation.PAWN.getBlackRepresentation());
     }
 
     public static Piece createWhiteKnight() {
         return new Piece(WHITE
-                , Representation.WHITE_KNIGHT.getRepresentation());
+                , Representation.KNIGHT.getWhiteRepresentation());
     }
 
     public static Piece createBlackKnight() {
         return new Piece(BLACK
-                , Representation.BLACK_KNIGHT.getRepresentation());
+                , Representation.KNIGHT.getBlackRepresentation());
     }
 
     public static Piece createWhiteRook() {
         return new Piece(WHITE
-                , Representation.WHITE_ROOK.getRepresentation());
+                , Representation.ROOK.getWhiteRepresentation());
     }
 
     public static Piece createBlackRook() {
         return new Piece(BLACK
-                , Representation.BLACK_ROOK.getRepresentation());
+                , Representation.ROOK.getBlackRepresentation());
     }
 
     public static Piece createWhiteBishop() {
         return new Piece(WHITE
-                , Representation.WHITE_BISHOP.getRepresentation());
+                , Representation.BISHOP.getWhiteRepresentation());
     }
 
     public static Piece createBlackBishop() {
         return new Piece(BLACK
-                , Representation.BLACK_BISHOP.getRepresentation());
+                , Representation.BISHOP.getBlackRepresentation());
     }
 
     public static Piece createWhiteQueen() {
         return new Piece(WHITE
-                , Representation.WHITE_QUEEN.getRepresentation());
+                , Representation.QUEEN.getWhiteRepresentation());
     }
 
     public static Piece createBlackQueen() {
         return new Piece(BLACK
-                , Representation.BLACK_QUEEN.getRepresentation());
+                , Representation.QUEEN.getBlackRepresentation());
     }
 
     public static Piece createWhiteKing() {
         return new Piece(WHITE
-                , Representation.WHITE_KING.getRepresentation());
+                , Representation.KING.getWhiteRepresentation());
     }
 
     public static Piece createBlackKing() {
         return new Piece(BLACK
-                , Representation.BLACK_KING.getRepresentation());
+                , Representation.KING.getBlackRepresentation());
     }
 
 

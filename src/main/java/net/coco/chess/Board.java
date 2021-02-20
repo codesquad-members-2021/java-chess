@@ -17,7 +17,7 @@ public class Board {
 
     public void addPawn(Piece piece) {
         char getRepresentation = piece.getRepresentation();
-        if (!(getRepresentation == Representation.WHITE_PAWN.getRepresentation() || getRepresentation == Representation.BLACK_PAWN.getRepresentation())) {
+        if (!(getRepresentation == Representation.PAWN.getWhiteRepresentation() || getRepresentation == Representation.PAWN.getBlackRepresentation())) {
             System.out.println("pawn 말고 다른 piece는 넣지 말아주세요.");
             return;
         }
@@ -30,7 +30,7 @@ public class Board {
 
     public void addOtherPiece(Piece piece) {
         char getRepresentation = piece.getRepresentation();
-        if (getRepresentation == Representation.WHITE_PAWN.getRepresentation() || getRepresentation == Representation.BLACK_PAWN.getRepresentation()) {
+        if (getRepresentation == Representation.PAWN.getWhiteRepresentation() || getRepresentation == Representation.PAWN.getBlackRepresentation()) {
             System.out.println("pawn은 넣지 말아주세요.");
             return;
         }

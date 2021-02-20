@@ -119,14 +119,10 @@ public class Board {
         return result.toString();
     }
 
-    // TODO: map은 한 번만 써야함. 객체 생성 비용 발생? 공부해보자
-    // 그럼 filter는 괜찮나?
     private String getRowOfPawns(Color color) {
         return pieces.stream()
-                .filter(piece -> piece.getType() == Type.PAWN)
-                .filter(piece -> piece.getColor() == color)
+                .filter(piece -> piece.getType() == Type.PAWN && piece.getColor() == color)
                 .map(Piece::getRepresentation)
-                .map(Object::toString)
                 .collect(joining());
     }
 

@@ -20,7 +20,7 @@ class BoardTest {
         assertThat(board.size()).isEqualTo(1);
         assertThat(board.findWhitePawn(0)).isEqualTo(white);
 
-        Pawn black = new Pawn(Color.BALCK);
+        Pawn black = new Pawn(Color.BLACK);
         board.blackAdd(black);
         assertThat(board.size()).isEqualTo(1);
         assertThat(board.findBlackPawn(0)).isEqualTo(black);

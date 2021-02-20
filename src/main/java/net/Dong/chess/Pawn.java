@@ -6,7 +6,7 @@ public class Pawn {
 
     public enum Color {
         WHITE,
-        BALCK
+        BLACK
     };
 
 
@@ -22,7 +22,7 @@ public class Pawn {
 
     public Pawn(String colorString) {
         if(colorString.equals("BLACK")) {
-            this.color = Color.BALCK;
+            this.color = Color.BLACK;
         }else {
             this.color = Color.WHITE;
         }

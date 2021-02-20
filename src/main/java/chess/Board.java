@@ -19,8 +19,7 @@ public class Board {
             whitePieces.add(piece);
             return;
         }
-        System.out.println("알 수 없는 color의 piece입니다.");
-        System.out.println("add에 실패하였습니다.");
+        getAddErrorMessage();
     }
 
     public void addBlackPieces(Piece piece) {
@@ -28,6 +27,10 @@ public class Board {
             blackPieces.add(piece);
             return;
         }
+        getAddErrorMessage();
+    }
+
+    private void getAddErrorMessage(){
         System.out.println("알 수 없는 color의 piece입니다.");
         System.out.println("add에 실패하였습니다.");
     }
@@ -36,24 +39,25 @@ public class Board {
         return whitePieces.size() + blackPieces.size();
     }
 
+    private void appendChessPieceToSort(StringBuilder stringBuilder, Piece piece){
+        stringBuilder.append(piece.getRepresentation());
+        if (stringBuilder.length() == BOARD_SIZE) {
+            stringBuilder.append(StringUtils.getNewLine());
+        }
+    }
+
     private String getPiecesSort(Color color) {
         StringBuilder sb = new StringBuilder();
         switch (color) {
             case WHITE:
                 for (Piece piece : whitePieces) {
-                    sb.append(piece.getRepresentation());
-                    if(sb.length() == BOARD_SIZE){
-                        sb.append(StringUtils.getNewLine());
-                    }
+                    appendChessPieceToSort(sb, piece);
                 }
                 return sb.toString();
 
             case BLACK:
                 for (Piece piece : blackPieces) {
-                    sb.append(piece.getRepresentation());
-                    if(sb.length() == BOARD_SIZE){
-                        sb.append(StringUtils.getNewLine());
-                    }
+                    appendChessPieceToSort(sb, piece);
                 }
                 return sb.toString();
 

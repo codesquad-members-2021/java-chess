@@ -7,6 +7,7 @@ import mj.chess.pieces.Type;
 import mj.chess.utils.StringUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
@@ -99,12 +100,8 @@ public class Board {
         return whitePieces.size() + blackPieces.size();
     }
 
-    //TODO: 스트림으로 바꿔보자
     public String getLocationOfPieces() {
-        StringBuilder result = new StringBuilder();
-        for (String rowOfBoard : cellsOfBoard) result.append(rowOfBoard);
-
-        return result.toString();
+        return String.join("", cellsOfBoard);
     }
 
     private String getRowOfPawns(Color color) {

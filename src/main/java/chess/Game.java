@@ -3,6 +3,9 @@ package chess;
 import java.util.Scanner;
 
 public class Game {
+    private static final String START = "start";
+    private static final String END = "end";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -21,11 +24,11 @@ public class Game {
             String command = scanner.nextLine();
             command = command.toLowerCase();
 
-            if (command.equals("start")) {
+            if (command.equals(Game.START)) {
                 Board board = new Board();
                 board.initialize();
-                print(board);
-            } else if (command.equals("end")) {
+                System.out.println(board);
+            } else if (command.equals(Game.END)) {
                 break;
             } else {
                 System.out.println(command + " not supported.");
@@ -33,16 +36,4 @@ public class Game {
         }
     }
 
-    static void print(Board board) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("........\n");
-        sb.append(board.getBlackPawnsResult()).append("\n");
-        for (int i = 0; i < Board.BOARD_SIZE - 4; i++) {
-            sb.append("........\n");
-        }
-        sb.append(board.getWhitePawnsResult()).append("\n");
-        sb.append("........\n");
-
-        System.out.println(sb.toString());
-    }
 }

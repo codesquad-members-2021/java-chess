@@ -3,67 +3,30 @@ package chess;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertAll;
-
-import pieces.Pawn;
-import pieces.Piece;
+import static utils.StringUtils.appendNewLine;
 
 public class BoardTest {
-    private static Board board;
+    private Board board;
 
     @BeforeEach
-    @DisplayName("Create board")
-    void create_board() {
+    public void setup() {
         board = new Board();
     }
 
     @Test
-    @DisplayName("Create pawns")
-    void create() throws Exception {
-        Piece white = addWhitePawn(Piece.WHITE_COLOR);
-        assertAll(
-                () -> verifySize(1),
-                () -> verifyFindWhitePawn(white, 0)
-        );
-
-        Piece black = addBlackPawn(Piece.BLACK_COLOR);
-        assertAll(
-                () -> verifySize(2),
-                () -> verifyFindBlackPawn(black, 0)
-        );
-    }
-
-    @Test
-    @DisplayName("Init board")
-    public void initialize() throws Exception {
+    @DisplayName("Verify Board initialize and toString")
+    public void create() {
         board.initialize();
-        assertAll(
-                () -> assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult()),
-                () -> assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult())
-        );
-    }
+        assertThat(board.sizeofPiece()).isEqualTo(32);
 
-    void verifySize(int expectedSize) {
-        assertThat(expectedSize).isEqualTo(board.size());
-    }
+        final String BLANK_LINE = appendNewLine("........");
+        assertThat(board.toString())
+                .isEqualTo(appendNewLine("RNBQKBNR") +
+                        appendNewLine("PPPPPPPP") +
+                        BLANK_LINE + BLANK_LINE + BLANK_LINE + BLANK_LINE +
+                        appendNewLine("pppppppp") +
+                        appendNewLine("rnbqkbnr")
+                );
 
-    void verifyFindWhitePawn(Piece piece, int index) {
-        assertThat(piece).isEqualTo(board.findWhite(index));
-    }
-
-    void verifyFindBlackPawn(Piece piece, int index) {
-        assertThat(piece).isEqualTo(board.findBlack(index));
-    }
-
-    Piece addWhitePawn(String color) {
-        Pawn pawn = new Pawn(color);
-        board.addWhite(pawn);
-        return pawn;
-    }
-
-    Piece addBlackPawn(String color) {
-        Pawn pawn = new Pawn(color);
-        board.addBlack(pawn);
-        return pawn;
     }
 }

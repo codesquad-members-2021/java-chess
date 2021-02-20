@@ -7,7 +7,6 @@ import java.util.List;
 
 import net.sky.pieces.Color;
 import net.sky.pieces.Piece;
-import net.sky.pieces.PieceType;
 
 public class Board {
 
@@ -18,22 +17,23 @@ public class Board {
     private int pieceCount = 0;
 
     public void addWhitePawn(Piece piece) {
-        whitePawns.add(piece);
-        pieceCount++;
+        addPiece(whitePawns, piece);
     }
 
     public void addBlackPawn(Piece piece) {
-        blackPawns.add(piece);
-        pieceCount++;
+        addPiece(blackPawns, piece);
     }
 
     public void addWhitePiece(Piece piece) {
-        whitePieces.add(piece);
-        pieceCount++;
+        addPiece(whitePieces, piece);
     }
 
     public void addBlackPiece(Piece piece) {
-        blackPieces.add(piece);
+        addPiece(blackPieces, piece);
+    }
+
+    private void addPiece(List<Piece> pieces, Piece piece) {
+        pieces.add(piece);
         pieceCount++;
     }
 

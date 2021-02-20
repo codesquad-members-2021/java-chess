@@ -1,4 +1,4 @@
-package net.honux.pieces;
+package net.woody.pieces;
 
 import org.junit.jupiter.api.*;
 
@@ -12,15 +12,17 @@ class PawnTest {
     @DisplayName("흰색 폰과 검은색 폰이 생성되어야 한다")
     void createWhiteAndBlackPawns() {
         assertAll(
-                () -> verifyPawn(Pawn.WHITE_COLOR),
-                () -> verifyPawn(Pawn.BLACK_COLOR));
+                () -> verifyPawn(Color.WHITE.toString()),
+                () -> verifyPawn(Color.BLACK.toString())
+        );
     }
 
     @Test
     @DisplayName("기본 생성자로 폰을 생성할 때, 흰색 폰이 생성되어야 한다")
     void createWithDefaultPawn() {
         Pawn pawn = new Pawn();
-        assertThat(Pawn.WHITE_COLOR).isEqualTo(pawn.getColor());
+        assertThat(pawn.getColor()).isEqualTo(Color.WHITE);
+        assertThat(pawn.getRepresentation()).isEqualTo(Pawn.PAWN_REPRESENTATION);
     }
 
     @Test
@@ -30,9 +32,10 @@ class PawnTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    private void verifyPawn(String color) {
+    private void verifyPawn(final String color) {
         Pawn pawn = new Pawn(color);
-        assertThat(pawn.getColor()).isEqualTo(color);
+        assertThat(pawn.getColor().toString()).isEqualTo(color);
+        assertThat(pawn.getRepresentation()).isEqualTo(Color.value(color).representation('p'));
     }
 
 }

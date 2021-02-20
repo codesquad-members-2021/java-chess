@@ -69,6 +69,7 @@ public class BoardTest {
     void checkBlackColor() {
         assertThat(Piece.createBlackBishop().isBlack()).isTrue();
     }
+
     @Test
     void checkWhiteColor() {
         assertThat(Piece.createWhiteBishop().isWhite()).isTrue();

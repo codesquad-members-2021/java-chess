@@ -17,6 +17,7 @@ public enum Representation {
     public char getWhiteRepresentation() {
         return representation;
     }
+
     public char getBlackRepresentation() {
         return Character.toUpperCase(representation);
     }

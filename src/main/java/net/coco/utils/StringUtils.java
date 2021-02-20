@@ -8,6 +8,6 @@ public class StringUtils {
     }
 
     public static String appendNewLine(String message) {
-        return message+NEWLINE;
+        return message + NEWLINE;
     }
 }

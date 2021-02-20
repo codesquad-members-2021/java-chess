@@ -10,12 +10,10 @@ public class Board {
 
 
     public int whiteAdd(Pawn pawn) {
-        //arrPawn.add()
         whitePawn.add(pawn);
         return whitePawn.size();
     }
     public int blackAdd(Pawn pawn) {
-        //arrPawn.add()
         blackPawn.add(pawn);
         return blackPawn.size();
     }

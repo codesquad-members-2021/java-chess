@@ -1,90 +1,107 @@
 package chess;
 
-import chess.pieces.Pawn;
+import chess.pieces.Piece;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
+
+import static chess.utils.StringUtils.appendNewLine;
 
 public class Board {
     public static final int MAX_PAWN = 8;
 
-    private final List<Pawn> blackPawns = new ArrayList<>();
-    private final List<Pawn> whitePawns = new ArrayList<>();
+    private final List<Piece> blackPawns  = new ArrayList<>();
+    private final List<Piece> blackPieces = new ArrayList<>();
+    private final List<Piece> whitePawns  = new ArrayList<>();
+    private final List<Piece> whitePieces = new ArrayList<>();
 
-    public List<Pawn> blackPawns() {
-        return Collections.unmodifiableList(blackPawns);
-    }
-
-    public List<Pawn> whitePawns() {
-        return Collections.unmodifiableList(whitePawns);
-    }
-
-    public boolean addBlackPawn(Pawn pawn) {
+    public boolean addBlackPawn(Piece pawn) {
         return blackPawns.add(pawn);
     }
 
-    public boolean addWhitePawn(Pawn pawn) {
+    public boolean addWhitePawn(Piece pawn) {
         return whitePawns.add(pawn);
     }
 
-    public int size() { // 검은색 pawn과 흰색 pawn의 전체 개수를 반환한다.
-        return blackPawns.size() + whitePawns.size();
+    public int pieceCount() { // 전체 기물의 개수를 반환한다.
+        return blackPawns.size() + whitePawns.size() + blackPieces.size() + whitePieces.size();
     }
 
-    public Pawn findBlackPawn(int index) {
-        return blackPawns.get(index);
-    }
-
-    public Pawn findWhitePawn(int index) {
-        return whitePawns.get(index);
-    }
-
-    /* 흰색 pawn 8개, 검은색 pawn 8개를 생성해서 각각의 list에 추가한다. */
+    /* 체스판을 초기화한다. */
     public void initialize() {
-        blackPawns.removeAll(blackPawns);  // initialize를 여러번 실행했을 때 pawn이 연속으로 추가되는 경우를 막는다.
-        whitePawns.removeAll(whitePawns);
+        clearAll();
 
+        addBlackPieces();
+        addBlackPawns();
+        addWhitePawns();
+        addWhitePieces();
+    }
+
+    private void addBlackPieces() {
+        blackPieces.addAll(Arrays.asList(
+                Piece.createBlackRook()
+                , Piece.createBlackKnight()
+                , Piece.createBlackBishop()
+                , Piece.createBlackQueen()
+                , Piece.createBlackKing()
+                , Piece.createBlackBishop()
+                , Piece.createBlackKnight()
+                , Piece.createBlackRook())
+        );
+    }
+
+    private void addBlackPawns() {
         for (int i = 0; i < Board.MAX_PAWN; i++) {
-            addBlackPawn(Pawn.newBlackPawn());
-            addWhitePawn(Pawn.newWhitePawn());
+            addBlackPawn(Piece.createBlackPawn());
+        }
+    }
+
+    private void addWhitePieces() {
+        whitePieces.addAll(Arrays.asList(
+                Piece.createWhiteRook()
+                , Piece.createWhiteKnight()
+                , Piece.createWhiteBishop()
+                , Piece.createWhiteQueen()
+                , Piece.createWhiteKing()
+                , Piece.createWhiteBishop()
+                , Piece.createWhiteKnight()
+                , Piece.createWhiteRook())
+        );
+    }
+
+    private void addWhitePawns() {
+        for (int i = 0; i < Board.MAX_PAWN; i++) {
+            addWhitePawn(Piece.createWhitePawn());
         }
     }
 
     /* 체스판의 결과를 StringBuilder에 저장한 후 String으로 반환한다. */
-    public String print() {
+    public String showBoard() {
         StringBuilder chessBoard = new StringBuilder();
+        String blankRank = appendNewLine("........");
 
-        chessBoard.append("........\n")
-                .append(getBlackPawnsResult() + "\n")
-                .append("........\n")
-                .append("........\n")
-                .append("........\n")
-                .append("........\n")
-                .append(getWhitePawnsResult() + "\n")
-                .append("........\n");
+        chessBoard.append(appendNewLine(getPieceResult(blackPieces)))
+                .append(appendNewLine(getPieceResult(blackPawns)))
+                .append(blankRank + blankRank + blankRank + blankRank)
+                .append(appendNewLine(getPieceResult(whitePawns)))
+                .append(appendNewLine(getPieceResult(whitePieces)));
 
         return chessBoard.toString();
     }
 
-    public String getBlackPawnsResult() {
-        StringBuilder blackPawnRepresentations = new StringBuilder();
-
-        for (Pawn black : blackPawns) {
-            blackPawnRepresentations.append(black.getRepresentation());
-        }
-
-        return blackPawnRepresentations.toString();
+    private String getPieceResult(final List<Piece> pieces) {
+        StringBuilder piecesRepresentations = new StringBuilder();
+        pieces.stream()
+                .map(piece -> piece.getRepresentation())
+                .forEach(piecesRepresentations::append);
+        return piecesRepresentations.toString();
     }
 
-    public String getWhitePawnsResult() {
-        StringBuilder whitePawnRepresentations = new StringBuilder();
-
-        for (Pawn white : whitePawns) {
-            whitePawnRepresentations.append(white.getRepresentation());
-        }
-
-        return whitePawnRepresentations.toString();
+    private void clearAll() {
+        blackPawns.clear();
+        whitePawns.clear();
+        blackPieces.clear();
+        whitePieces.clear();
     }
-
 }

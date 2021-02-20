@@ -1,14 +1,14 @@
 package net.kjk402.chess.chess;
 
-
+import static net.kjk402.chess.utils.StringUtils.appendNewLine;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         String command = "";
         StringBuilder help = new StringBuilder();
-        help.append("시작명령어: start\n");
-        help.append("종료명령어: end\n");
+        help.append(appendNewLine("시작명령어: start"));
+        help.append(appendNewLine("종료명령어: end"));
 
         System.out.print(help);
         try (Scanner sc = new Scanner(System.in)) {
@@ -18,7 +18,7 @@ public class Main {
                 if (command.equals("start")) {
                     Board board = new Board();
                     board.initialize();
-                    board.print();
+                    System.out.println(board.showBoard());
                     continue;
                 }
                 if (command.equals("end")) {

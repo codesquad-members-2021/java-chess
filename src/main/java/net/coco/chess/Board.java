@@ -1,7 +1,8 @@
 package net.coco.chess;
 
 import net.coco.pieces.Piece;
-import net.coco.pieces.Representation;
+import net.coco.pieces.PieceType;
+import net.coco.valid.PieceValid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,24 +17,17 @@ public class Board {
 
 
     public void addPawn(Piece piece) {
-        char getRepresentation = piece.getRepresentation();
-        if (!(getRepresentation == Representation.PAWN.getWhiteRepresentation() || getRepresentation == Representation.PAWN.getBlackRepresentation())) {
-            System.out.println("pawn 말고 다른 piece는 넣지 말아주세요.");
+        if (!PieceValid.isPawn(piece))
             return;
-        }
         if (piece.getColor().equals(Piece.WHITE))
             whitePawns.add(piece);
         else
             blackPawns.add(piece);
-
     }
 
     public void addOtherPiece(Piece piece) {
-        char getRepresentation = piece.getRepresentation();
-        if (getRepresentation == Representation.PAWN.getWhiteRepresentation() || getRepresentation == Representation.PAWN.getBlackRepresentation()) {
-            System.out.println("pawn은 넣지 말아주세요.");
+        if (!PieceValid.isOtherPiece(piece))
             return;
-        }
         if (piece.getColor().equals(Piece.WHITE))
             whiteOtherPieces.add(piece);
         else
@@ -72,7 +66,7 @@ public class Board {
 
 
     public String getPawnsResult(String color) {
-        checkColorType(color);
+        PieceValid.checkColorType(color);
         if (color.equals(Piece.WHITE))
             return getPiecesToString(whitePawns);
         else
@@ -80,16 +74,11 @@ public class Board {
     }
 
     public String getOtherPiecesResult(String color) {
-        checkColorType(color);
+        PieceValid.checkColorType(color);
         if (color.equals(Piece.WHITE))
             return getPiecesToString(whiteOtherPieces);
         else
             return getPiecesToString(blackOtherPieces);
-    }
-
-    private void checkColorType(String color) {
-        if (!(color.equals(Piece.WHITE) || color.equals(Piece.BLACK)))
-            throw new IllegalArgumentException("white나 black을 넣어주세요");
     }
 
     private String getPiecesToString(List<Piece> pieces) {

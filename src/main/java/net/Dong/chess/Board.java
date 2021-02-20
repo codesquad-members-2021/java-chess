@@ -1,12 +1,12 @@
 package net.Dong.chess;
 import static net.Dong.chess.Pawn.Color;
 
-
+import java.util.List;
 import java.util.ArrayList;
 
 public class Board {
-    ArrayList<Pawn> whitePawn = new ArrayList<>();
-    ArrayList<Pawn> blackPawn = new ArrayList<>();
+    private List<Pawn> whitePawn = new ArrayList<>();
+    private List<Pawn> blackPawn = new ArrayList<>();
 
 
     public int whiteAdd(Pawn pawn) {
@@ -93,7 +93,7 @@ public class Board {
         return getPawnsResult(blackPawn);
     }
 
-    private String getPawnsResult(ArrayList<Pawn> whatPawn) {
+    private String getPawnsResult(List<Pawn> whatPawn) {
         StringBuilder sb = new StringBuilder();
         int len = whatPawn.size();
         for(Pawn p : whatPawn) {

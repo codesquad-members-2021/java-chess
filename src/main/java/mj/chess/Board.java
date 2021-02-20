@@ -24,7 +24,7 @@ public class Board {
     private static final int SIZE_OF_ROW = 8;
     private final List<Piece> whitePieces = new ArrayList<>();
     private final List<Piece> blackPieces = new ArrayList<>();
-    private final StringBuilder[] cellsOfBoard = new StringBuilder[SIZE_OF_ROW];
+    private final String[] cellsOfBoard = new String[SIZE_OF_ROW];
 
     public Board() {
     }
@@ -82,7 +82,7 @@ public class Board {
 
     // TODO: 스트림으로 바꿔보자
     private void initCellsOfBoard() {
-        StringBuilder blankRank = appendNewLine("........");
+        String blankRank = appendNewLine("........");
 
         for (int nthRow = 0; nthRow < SIZE_OF_ROW; nthRow++) {
             if (nthRow < SEVENTH_ROW && nthRow > SECOND_ROW)
@@ -102,7 +102,7 @@ public class Board {
     //TODO: 스트림으로 바꿔보자
     public String getLocationOfPieces() {
         StringBuilder result = new StringBuilder();
-        for (StringBuilder rowOfBoard : cellsOfBoard) result.append(rowOfBoard);
+        for (String rowOfBoard : cellsOfBoard) result.append(rowOfBoard);
 
         return result.toString();
     }

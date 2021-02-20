@@ -33,7 +33,7 @@ class BoardTest {
     }
 
     private void verifyRepresentationOfPieces(Board board) {
-        StringBuilder blankRank = appendNewLine("........");
+        String blankRank = appendNewLine("........");
         assertThat(board.getLocationOfPieces()).isEqualTo(
                 new StringBuilder()
                         .append(appendNewLine("RNBQKBNR"))

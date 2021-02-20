@@ -1,20 +1,29 @@
 package net.nas.chess;
 
-import net.nas.pieces.Pawn;
+import net.nas.pieces.ChessPiece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.security.InvalidParameterException;
 
+import static net.nas.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-
 public class BoardTest {
     private Board board;
-    private static final String INITIAL_STATE_OF_BOARD = "........\nPPPPPPPP\n........\n........\n........\n........\npppppppp\n........";
+    private static final String INITIAL_STATE_OF_BOARD =
+            appendNewLine("RNBKQBNR") +
+                    appendNewLine("PPPPPPPP") +
+                    appendNewLine("........") +
+                    appendNewLine("........") +
+                    appendNewLine("........") +
+                    appendNewLine("........") +
+                    appendNewLine("pppppppp") +
+                    appendNewLine("rnbqkbnr");
+    private static final int INITIAL_SIZE_OF_BOARD = 32;
 
     @BeforeEach
     void createTestBoard() {
@@ -24,24 +33,24 @@ public class BoardTest {
     @Test
     @DisplayName("체스 보드에 폰을 추가하고, 찾을 수 있어야 합니다.")
     void testAdditionAndFind() {
-        Pawn whitePawn = new Pawn();
+        ChessPiece whiteChessPiece = ChessPiece.createWhitePawn();
         for (int i = 1; i <= Board.LENGTH_OF_BOARD; i++) {
             final int fileIdx = i;
             assertAll(
-                    () -> verifyAddition(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx),
-                    () -> verifyFind(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx)
+                    () -> verifyAddition(whiteChessPiece, Board.RANK_OF_WHITE_PAWNS, fileIdx),
+                    () -> verifyFind(whiteChessPiece, Board.RANK_OF_WHITE_PAWNS, fileIdx)
             );
         }
     }
 
-    private void verifyAddition(Pawn pawn, int rankIdx, int fileIdx) {
+    private void verifyAddition(ChessPiece chessPiece, int rankIdx, int fileIdx) {
         int prevSize = board.size();
-        board.add(pawn, rankIdx, fileIdx);
+        board.add(chessPiece, rankIdx, fileIdx);
         assertThat(board.size()).isEqualTo(prevSize + 1);
     }
 
-    private void verifyFind(Pawn pawn, int rankIdx, int fileIdx) {
-        assertThat(board.findPawn(rankIdx, fileIdx)).isEqualTo(pawn);
+    private void verifyFind(ChessPiece chessPiece, int rankIdx, int fileIdx) {
+        assertThat(board.findPawn(rankIdx, fileIdx)).isEqualTo(chessPiece);
     }
 
     @Test
@@ -72,7 +81,7 @@ public class BoardTest {
     }
 
     private void testAdditionThrowException(Object tc, Class<?> exceptionClass) {
-        assertThatThrownBy(() -> board.add((Pawn) tc, 1, 1))
+        assertThatThrownBy(() -> board.add((ChessPiece) tc, 1, 1))
                 .isInstanceOf(exceptionClass);
     }
 
@@ -82,7 +91,7 @@ public class BoardTest {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
-        assertThat(board.size()).isEqualTo(16);
+        assertThat(board.size()).isEqualTo(INITIAL_SIZE_OF_BOARD);
     }
 
     @Test

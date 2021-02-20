@@ -19,7 +19,7 @@ public class Main {
             while (!command.equals("end")) {
                 if (command.equals("start")) {
                     board.initialize();
-                    System.out.println(board.showBoard());
+                    System.out.println(board.getChessBoard());
                 }
                 System.out.print("> ");
                 command = scanner.nextLine();

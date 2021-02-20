@@ -9,23 +9,21 @@ public class Piece {
         this.type = type;
     }
 
-    public String getColorName() {
-        return color.getColorName();
+    public Color getColor() {
+        return this.color;
     }
 
     public boolean isWhite() {
-        return getColorName().equals("white");
+        return getColor() == Color.WHITE;
     }
 
     public boolean isBlack() {
-        return getColorName().equals("black");
+        return getColor() == Color.BLACK;
     }
 
     public char getRepresentation() {
         return color == Color.WHITE ? type.getWhiteRepresentation() : type.getBlackRepresentation();
     }
-
-    ////////////////////////////////////////////////
 
     public static Piece createWhitePawn() {
         return new Piece(Color.WHITE, Type.PAWN);

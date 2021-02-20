@@ -107,11 +107,17 @@ public class Board {
         return result.toString();
     }
 
-    private String getRowOfPawns(Color color) throws IllegalArgumentException {
+    private String getRowOfPawns(Color color) {
 
-        if (!(color == Color.BLACK || color == Color.WHITE) ) throw new IllegalArgumentException("color is White/Black else");
+        List<Piece> pieces;
 
-        List<Piece> pieces = (color == Color.BLACK) ? pieces = blackPieces : whitePieces;
+        if (color == Color.BLACK) {
+            pieces = blackPieces;
+        } else if (color == Color.WHITE) {
+            pieces = whitePieces;
+        } else {
+            throw new IllegalArgumentException("color is White/Black else");
+        }
 
         return pieces.stream()
                 .filter(piece -> piece.getType() == Type.PAWN && piece.getColor() == color)

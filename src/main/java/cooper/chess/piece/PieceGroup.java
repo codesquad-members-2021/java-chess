@@ -7,13 +7,13 @@ public class PieceGroup {
     public static final int WHITE_PAWN_INIT_INDEX = 1;
     public static final int BLACK_PAWN_INIT_INDEX = 6;
 
-    private final Map<Color, List<Piece>> pawnListMap;
+    private final Map<Color, List<Piece>> pieceListMap;
 
-    public PieceGroup(Map<Color, List<Piece>> pawnListMap) {
-        this.pawnListMap = pawnListMap;
+    public PieceGroup(Map<Color, List<Piece>> pieceListMap) {
+        this.pieceListMap = pieceListMap;
     }
 
     public List<Piece> getPawnList(Color color) {
-        return pawnListMap.get(color);
+        return pieceListMap.get(color);
     }
 }

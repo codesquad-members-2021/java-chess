@@ -53,22 +53,22 @@ class PieceTest {
     private void verifyIsWhite(Type type) {
         switch (type) {
             case PAWN:
-                assertThat(Piece.createWhitePawn().isWhite()).isEqualTo(true);
+                assertThat(Piece.createWhitePawn().isWhite()).isTrue();
                 break;
             case KNIGHT:
-                assertThat(Piece.createWhiteKnight().isWhite()).isEqualTo(true);
+                assertThat(Piece.createWhiteKnight().isWhite()).isTrue();
                 break;
             case ROOK:
-                assertThat(Piece.createWhiteRook().isWhite()).isEqualTo(true);
+                assertThat(Piece.createWhiteRook().isWhite()).isTrue();
                 break;
             case BISHOP:
-                assertThat(Piece.createWhiteBishop().isWhite()).isEqualTo(true);
+                assertThat(Piece.createWhiteBishop().isWhite()).isTrue();
                 break;
             case QUEEN:
-                assertThat(Piece.createWhiteQueen().isWhite()).isEqualTo(true);
+                assertThat(Piece.createWhiteQueen().isWhite()).isTrue();
                 break;
             case KING:
-                assertThat(Piece.createWhiteKing().isWhite()).isEqualTo(true);
+                assertThat(Piece.createWhiteKing().isWhite()).isTrue();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);
@@ -78,22 +78,22 @@ class PieceTest {
     private void verifyIsBlack(Type type) {
         switch (type) {
             case PAWN:
-                assertThat(Piece.createBlackPawn().isBlack()).isEqualTo(true);
+                assertThat(Piece.createBlackPawn().isBlack()).isTrue();
                 break;
             case KNIGHT:
-                assertThat(Piece.createBlackKnight().isBlack()).isEqualTo(true);
+                assertThat(Piece.createBlackKnight().isBlack()).isTrue();
                 break;
             case ROOK:
-                assertThat(Piece.createBlackRook().isBlack()).isEqualTo(true);
+                assertThat(Piece.createBlackRook().isBlack()).isTrue();
                 break;
             case BISHOP:
-                assertThat(Piece.createBlackBishop().isBlack()).isEqualTo(true);
+                assertThat(Piece.createBlackBishop().isBlack()).isTrue();
                 break;
             case QUEEN:
-                assertThat(Piece.createBlackQueen().isBlack()).isEqualTo(true);
+                assertThat(Piece.createBlackQueen().isBlack()).isTrue();
                 break;
             case KING:
-                assertThat(Piece.createBlackKing().isBlack()).isEqualTo(true);
+                assertThat(Piece.createBlackKing().isBlack()).isTrue();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + type);

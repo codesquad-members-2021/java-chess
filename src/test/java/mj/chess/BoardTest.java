@@ -39,13 +39,14 @@ class BoardTest {
                 () -> verifyRepresentationOfPieces(board)
         );
     }
+
     private void verifyCounting(Board board, int maxNum) {
         assertThat(board.countPieces()).isEqualTo(maxNum);
     }
 
     private void verifyRepresentationOfPieces(Board board) {
         StringBuilder blankRank = appendNewLine("........");
-        assertThat(board.showBoard()).isEqualTo(
+        assertThat(board.getLocationOfPieces()).isEqualTo(
                 new StringBuilder()
                         .append(appendNewLine("RNBQKBNR"))
                         .append(appendNewLine("PPPPPPPP"))

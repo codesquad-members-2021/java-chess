@@ -58,7 +58,7 @@ public class Board {
 
     private void addPawnBlack(int numOfPawn) {
         for(int i=0 ; i<numOfPawn ; i++) {
-            whitePawn.add(new Pawn(Color.WHITE));
+            whitePawn.add(new Pawn(Color.BALCK));
         }
     }
 

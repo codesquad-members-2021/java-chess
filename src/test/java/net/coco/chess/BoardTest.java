@@ -1,7 +1,7 @@
 package net.coco.chess;
 
 
-import net.coco.Printer.PrintChess;
+import net.coco.printer.PrintChess;
 import net.coco.pieces.Piece;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

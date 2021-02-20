@@ -1,4 +1,4 @@
-package net.coco.Printer;
+package net.coco.printer;
 
 import net.coco.chess.Board;
 import net.coco.pieces.Piece;

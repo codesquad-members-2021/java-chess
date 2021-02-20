@@ -8,13 +8,14 @@ public enum Type {
     QUEEN('q'),
     KING('k');
 
-    private final Character representaion;
+    private final Character representation;
 
-    Type(Character representaion) {
-        this.representaion = representaion;
+    Type(Character representation) {
+        this.representation = representation;
     }
 
-    public char getRepresentaion() {
-        return representaion;
+    public char getRepresentaion(Color color) {
+        return color == Color.WHITE ?
+                Character.toUpperCase(representation) : representation ;
     }
 }

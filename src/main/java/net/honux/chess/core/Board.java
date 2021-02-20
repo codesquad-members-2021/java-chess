@@ -1,9 +1,6 @@
 package net.honux.chess.core;
 
-import net.honux.chess.attribute.Color;
 import net.honux.chess.entity.pieces.Piece;
-import net.honux.chess.util.Pieces;
-import net.honux.chess.util.StringUtils;
 
 import java.util.Optional;
 
@@ -20,15 +17,14 @@ public class Board {
     private Pieces blackPawns;
 
     public void initialize() {
-        whitePieces = new Pieces();
-        blackPieces = new Pieces();
-        whitePawns = new Pieces();
-        blackPawns = new Pieces();
-        addPiecesToBoardSize();
+        blackPieces = Pieces.createBlackPiecesExceptPawns();
+        blackPawns = Pieces.createBlackPawns();
+        whitePawns = Pieces.createWhitePawns();
+        whitePieces = Pieces.createWhitePiecesExceptPawns();
     }
 
     public void add(Piece piece) {
-        getListByColor(piece).add(piece);
+        getPiecesByColor(piece).add(piece);
     }
 
     public int whitePawnSize() {
@@ -42,6 +38,16 @@ public class Board {
     public Optional<Piece> findWhitePawn(int index) {
         Optional<Piece> pawn = Optional.empty();
         try {
+            pawn = Optional.ofNullable(whitePawns.get(index));
+        } catch (IndexOutOfBoundsException e) {
+            return Optional.empty();
+        }
+        return pawn;
+    }
+
+    public Optional<Piece> findWhitePiece(int index) {
+        Optional<Piece> pawn = Optional.empty();
+        try {
             pawn = Optional.ofNullable(whitePieces.get(index));
         } catch (IndexOutOfBoundsException e) {
             return Optional.empty();
@@ -50,6 +56,16 @@ public class Board {
     }
 
     public Optional<Piece> findBlackPawn(int index) {
+        Optional<Piece> pawn = Optional.empty();
+        try {
+            pawn = Optional.ofNullable(blackPawns.get(index));
+        } catch (IndexOutOfBoundsException e) {
+            return Optional.empty();
+        }
+        return pawn;
+    }
+
+    public Optional<Piece> findBlackPiece(int index) {
         Optional<Piece> pawn = Optional.empty();
         try {
             pawn = Optional.ofNullable(blackPieces.get(index));
@@ -77,18 +93,14 @@ public class Board {
         System.out.println(this.getBoardStatusToString());
     }
 
-    private void addPiecesToBoardSize() {
-        blackPieces = Pieces.createBlackPiecesExceptPawns();
-        blackPawns = Pieces.createBlackPawns();
-        whitePawns = Pieces.createWhitePawns();
-        whitePieces = Pieces.createWhitePiecesExceptPawns();
-    }
-
-    private Pieces getListByColor(Piece piece) {
-        if (piece.getColor() == Color.BLACK) {
-            return blackPieces;
+    private Pieces getPiecesByColor(Piece piece) {
+        if (piece.isBlack() && piece.getRepresentation() == BLACK_PAWN_REPRESENTATION) {
+            return blackPawns;
         }
-        return whitePieces;
+        if (piece.isWhite() && piece.getRepresentation() == WHITE_PAWN_REPRESENTATION) {
+            return whitePawns;
+        }
+        return piece.isBlack() ? blackPieces : whitePieces;
     }
 
     private String getStringPiecesResult(Pieces pieces) {

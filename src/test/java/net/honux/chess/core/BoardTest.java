@@ -1,6 +1,5 @@
 package net.honux.chess.core;
 
-import net.honux.chess.util.StringUtils;
 import net.honux.chess.util.StringUtilsTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static net.honux.chess.util.StringUtils.*;
 
 class BoardTest {
 
@@ -32,14 +32,14 @@ class BoardTest {
     void checkBoardPrintMessage() {
         board.initialize();
         String expectedMessage =
-                "RNBQKBNR" + StringUtils.NEWLINE +
-                "PPPPPPPP" + StringUtils.NEWLINE +
-                "********" + StringUtils.NEWLINE +
-                "********" + StringUtils.NEWLINE +
-                "********" + StringUtils.NEWLINE +
-                "********" + StringUtils.NEWLINE +
-                "pppppppp" + StringUtils.NEWLINE +
-                "rnbqkbnr" + StringUtils.NEWLINE ;
+                "RNBQKBNR" + NEWLINE +
+                "PPPPPPPP" + NEWLINE +
+                "********" + NEWLINE +
+                "********" + NEWLINE +
+                "********" + NEWLINE +
+                "********" + NEWLINE +
+                "pppppppp" + NEWLINE +
+                "rnbqkbnr" + NEWLINE ;
         assertThat(board.getBoardStatusToString()).isEqualTo(expectedMessage);
         // TestCode 에서 출력 해달라는 요구사항 을 만족시키기 위해 작성
         board.print();

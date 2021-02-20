@@ -13,7 +13,7 @@ class PawnTest {
     void create() {
 
         verifyPawn(Color.WHITE);
-        verifyPawn(Color.BALCK);
+        verifyPawn(Color.BLACK);
 
     }
 

@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PieceGroup {
-    public static final int WHITE_PAWN_INIT_INDEX = 1;
-    public static final int BLACK_PAWN_INIT_INDEX = 6;
+    public static final int PIECE_LIST_MAX = 16;
 
     private final Map<Color, List<Piece>> pieceListMap;
 
@@ -15,5 +14,10 @@ public class PieceGroup {
 
     public List<Piece> getPawnList(Color color) {
         return pieceListMap.get(color);
+    }
+
+    public int size() {
+        return pieceListMap.get(Color.BLACK).size() +
+                pieceListMap.get(Color.WHITE).size();
     }
 }

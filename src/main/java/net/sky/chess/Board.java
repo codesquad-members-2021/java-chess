@@ -19,50 +19,63 @@ public class Board {
 
     public void addWhitePawn(Piece piece) {
         whitePawns.add(piece);
+        pieceCount++;
     }
 
     public void addBlackPawn(Piece piece) {
         blackPawns.add(piece);
+        pieceCount++;
     }
 
     public void addWhitePiece(Piece piece) {
         whitePieces.add(piece);
+        pieceCount++;
     }
 
     public void addBlackPiece(Piece piece) {
         blackPieces.add(piece);
+        pieceCount++;
     }
 
     public void initialize() {
-        initializePawns();
-        initializePieces();
+        initializeWhitePawns();
+        initializeBlackPawns();
+        initializeWhitePieces();
+        initializeBlackPieces();
     }
 
-    private void initializePawns() {
+    private void initializeWhitePawns() {
         for (int i = 0; i < 8; i++) {
-            addWhitePawn(Piece.createPiece(Color.WHITE, PieceType.PAWN));
-            addBlackPawn(Piece.createPiece(Color.BLACK, PieceType.PAWN));
+            addWhitePawn(Piece.getPawnInstance(Color.WHITE));
         }
     }
 
-    private void initializePieces() {
-        addWhitePiece(Piece.createPiece(Color.WHITE, PieceType.ROOK));
-        addWhitePiece(Piece.createPiece(Color.WHITE, PieceType.KNIGHT));
-        addWhitePiece(Piece.createPiece(Color.WHITE, PieceType.BISHOP));
-        addWhitePiece(Piece.createPiece(Color.WHITE, PieceType.QUEEN));
-        addWhitePiece(Piece.createPiece(Color.WHITE, PieceType.KING));
-        addWhitePiece(Piece.createPiece(Color.WHITE, PieceType.BISHOP));
-        addWhitePiece(Piece.createPiece(Color.WHITE, PieceType.KNIGHT));
-        addWhitePiece(Piece.createPiece(Color.WHITE, PieceType.ROOK));
+    private void initializeBlackPawns() {
+        for (int i = 0; i < 8; i++) {
+            addBlackPawn(Piece.getPawnInstance(Color.BLACK));
+        }
+    }
 
-        addBlackPiece(Piece.createPiece(Color.BLACK, PieceType.ROOK));
-        addBlackPiece(Piece.createPiece(Color.BLACK, PieceType.KNIGHT));
-        addBlackPiece(Piece.createPiece(Color.BLACK, PieceType.BISHOP));
-        addBlackPiece(Piece.createPiece(Color.BLACK, PieceType.QUEEN));
-        addBlackPiece(Piece.createPiece(Color.BLACK, PieceType.KING));
-        addBlackPiece(Piece.createPiece(Color.BLACK, PieceType.BISHOP));
-        addBlackPiece(Piece.createPiece(Color.BLACK, PieceType.KNIGHT));
-        addBlackPiece(Piece.createPiece(Color.BLACK, PieceType.ROOK));
+    private void initializeWhitePieces() {
+        addWhitePiece(Piece.getRookInstance(Color.WHITE));
+        addWhitePiece(Piece.getKnightInstance(Color.WHITE));
+        addWhitePiece(Piece.getBishopInstance(Color.WHITE));
+        addWhitePiece(Piece.getQueenInstance(Color.WHITE));
+        addWhitePiece(Piece.getKingInstance(Color.WHITE));
+        addWhitePiece(Piece.getBishopInstance(Color.WHITE));
+        addWhitePiece(Piece.getKnightInstance(Color.WHITE));
+        addWhitePiece(Piece.getRookInstance(Color.WHITE));
+    }
+
+    private void initializeBlackPieces() {
+        addBlackPiece(Piece.getRookInstance(Color.BLACK));
+        addBlackPiece(Piece.getKnightInstance(Color.BLACK));
+        addBlackPiece(Piece.getBishopInstance(Color.BLACK));
+        addBlackPiece(Piece.getQueenInstance(Color.BLACK));
+        addBlackPiece(Piece.getKingInstance(Color.BLACK));
+        addBlackPiece(Piece.getBishopInstance(Color.BLACK));
+        addBlackPiece(Piece.getKnightInstance(Color.BLACK));
+        addBlackPiece(Piece.getRookInstance(Color.BLACK));
     }
 
     public String getPiecesResult(List<Piece> pieces) {
@@ -75,10 +88,6 @@ public class Board {
 
     public void print() {
         System.out.println(showBoard());
-    }
-
-    public int pieceCount() {
-        return pieceCount;
     }
 
     public String showBoard() {
@@ -95,5 +104,9 @@ public class Board {
         result.append(appendNewLine(getPiecesResult(whitePieces)));
 
         return result.toString();
+    }
+
+    public int pieceCount() {
+        return pieceCount;
     }
 }

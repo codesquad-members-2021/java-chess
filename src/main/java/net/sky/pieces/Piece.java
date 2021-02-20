@@ -12,8 +12,28 @@ public class Piece {
         this.REPRESENTATION = classifyRepresentation();
     }
 
-    public static Piece createPiece(Color color, PieceType pieceType) {
-        return new Piece(color, pieceType);
+    public static Piece getPawnInstance(Color color) {
+        return new Piece(color, PieceType.PAWN);
+    }
+
+    public static Piece getKnightInstance(Color color) {
+        return new Piece(color, PieceType.KNIGHT);
+    }
+
+    public static Piece getRookInstance(Color color) {
+        return new Piece(color, PieceType.ROOK);
+    }
+
+    public static Piece getBishopInstance(Color color) {
+        return new Piece(color, PieceType.BISHOP);
+    }
+
+    public static Piece getQueenInstance(Color color) {
+        return new Piece(color, PieceType.QUEEN);
+    }
+
+    public static Piece getKingInstance(Color color) {
+        return new Piece(color, PieceType.KING);
     }
 
     public Color getColor() {
@@ -26,6 +46,20 @@ public class Piece {
 
     public PieceType getPieceType() {
         return pieceType;
+    }
+
+    public boolean isWhite(Piece piece) {
+        if (piece.getColor() == Color.WHITE) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isBlack(Piece piece) {
+        if (piece.getColor() == Color.BLACK) {
+            return true;
+        }
+        return false;
     }
 
     private char classifyRepresentation() {

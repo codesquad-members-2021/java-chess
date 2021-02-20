@@ -17,7 +17,6 @@ public class Board {
     }
 
     public void removePawn(Pawn remove) {
-        //arrlist에서 삭제하는 코드 작성
     }
 
     public int size() {
@@ -41,7 +40,6 @@ public class Board {
     }
 
     public void initialize() {
-   // white pawn 8, black pawn 8
         addPawnWhite(8);
         addPawnBlack(8);
     }

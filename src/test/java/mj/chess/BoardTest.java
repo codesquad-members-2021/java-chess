@@ -34,14 +34,14 @@ class BoardTest {
 
     private void verifyRepresentationOfPieces(Board board) {
         String blankRank = appendNewLine("........");
-        assertThat(board.getLocationOfPieces()).isEqualTo(
-                new StringBuilder()
-                        .append(appendNewLine("RNBQKBNR"))
-                        .append(appendNewLine("PPPPPPPP"))
-                        .append(blankRank).append(blankRank).append(blankRank).append(blankRank)
-                        .append(appendNewLine("pppppppp"))
-                        .append(appendNewLine("rnbqkbnr"))
-                        .toString()
-        );
+        String initialLocationOfPieces = new StringBuilder()
+                .append(appendNewLine("RNBQKBNR"))
+                .append(appendNewLine("PPPPPPPP"))
+                .append(blankRank).append(blankRank).append(blankRank).append(blankRank)
+                .append(appendNewLine("pppppppp"))
+                .append(appendNewLine("rnbqkbnr"))
+                .toString();
+
+        assertThat(board.getLocationOfPieces()).isEqualTo(initialLocationOfPieces);
     }
 }

@@ -26,14 +26,6 @@ class BoardTest {
     }
 
     @Test
-    void initialize() {
-        board = new Board();
-        board.initialize();
-        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
-        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
-    }
-
-    @Test
     void 전체기물의_상태를_볼수있는_체스판구현_테스트() {
         board.initialize();
         assertThat(board.pieceCount()).isEqualTo(32);

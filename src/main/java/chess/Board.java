@@ -4,12 +4,12 @@ import pieces.Piece;
 
 import java.util.*;
 
-import static utils.StringUtils.*;
+import static util.StringUtil.*;
 
 public class Board {
     private final List<Piece> blackPieces;
     private final List<Piece> whitePieces;
-    final int BOARD_SIZE = 8;
+    private final int BOARD_SIZE = 8;
 
     public Board() {
         blackPieces = new ArrayList<>();

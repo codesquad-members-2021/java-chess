@@ -38,8 +38,8 @@ class PieceTest {
     void verifyIsWhite() {
         Piece whitePawn = Piece.createWhitePawn();
         Piece blackKnight = Piece.createBlackKnight();
-        assertThat(whitePawn.isWhite()).isEqualTo(true);
-        assertThat(blackKnight.isWhite()).isEqualTo(false);
+        assertThat(whitePawn.isWhite()).isTrue();
+        assertThat(blackKnight.isWhite()).isFalse();
     }
 
     @Test

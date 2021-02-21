@@ -1,9 +1,9 @@
-package utils;
+package util;
 
-public class StringUtils {
+public class StringUtil {
     public static final String NEWLINE = System.getProperty("line.separator");
 
-    private StringUtils() {
+    private StringUtil() {
     }
 
     public static String appendNewLine(String text) {

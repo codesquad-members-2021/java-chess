@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static utils.StringUtils.*;
+import static util.StringUtil.*;
 
 class BoardTest {
     private Board board;
@@ -20,11 +20,12 @@ class BoardTest {
         board.initialize();
         String blankRank = appendNewLine("........");
         assertAll(() -> assertThat(board.pieceNum()).isEqualTo(32),
-                () -> assertThat(appendNewLine("RNBQKBNR") +
-                        appendNewLine("PPPPPPPP") +
-                        blankRank + blankRank + blankRank + blankRank +
-                        appendNewLine("pppppppp") +
-                        appendNewLine("rnbqkbnr")).isEqualTo(board.getResultToPrint()));
+                () -> assertThat(board.getResultToPrint())
+                        .isEqualTo(appendNewLine("RNBQKBNR") +
+                                appendNewLine("PPPPPPPP") +
+                                blankRank + blankRank + blankRank + blankRank +
+                                appendNewLine("pppppppp") +
+                                appendNewLine("rnbqkbnr")));
     }
 }
 

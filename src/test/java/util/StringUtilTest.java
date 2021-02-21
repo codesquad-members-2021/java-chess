@@ -1,11 +1,11 @@
-package utils;
+package util;
 
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
-import static utils.StringUtils.*;
+import static util.StringUtil.*;
 
-class StringUtilsTest {
+class StringUtilTest {
 
     @Test
     @DisplayName("문자열에 8자 단위로 개행문자를 추가해야 한다")

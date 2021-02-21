@@ -12,14 +12,14 @@ class PawnTest {
 
     @Test
     @DisplayName("Color Test")
-    void create() {
+    void PawnCreate() {
 
-        verifyPawn(Color.WHITE);
-        verifyPawn(Color.BLACK);
+        verifyPawnColor(Color.WHITE);
+        verifyPawnColor(Color.BLACK);
 
     }
 
-    void verifyPawn(Color color) {
+    void verifyPawnColor(Color color) {
         Pawn pawn = new Pawn(color);
         assertThat(pawn.getColor()).isEqualTo(color);
     }

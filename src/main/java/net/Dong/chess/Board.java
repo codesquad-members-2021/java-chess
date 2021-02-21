@@ -56,12 +56,9 @@ public class Board {
         }
     }
 
-
-
     public String getWhitePawnsResult() {
         return getPawnsResult(whitePawn);
     }
-
 
     public String getBlackPawnsResult() {
         return getPawnsResult(blackPawn);

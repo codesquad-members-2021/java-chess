@@ -28,8 +28,7 @@ public class ChessStarter {
                 break;
             }
             if (input.equals(END)) {
-                System.out.println("게임을 종료합니다.");
-                end();
+                System.exit(0);
                 break;
             }
             System.out.println("지정되지 않은 명령어입니다. 다시 입력해 주세요.");
@@ -42,7 +41,4 @@ public class ChessStarter {
         board.print();
     }
 
-    void end() {
-        System.exit(0);
-    }
 }

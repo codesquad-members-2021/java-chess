@@ -58,15 +58,23 @@ public class Board {
         blackPieces.add(new Piece(Piece.BLACK_COLOR, Piece.Black.ROOK.representation));
     }
 
-    public String getWhitePawnsResult() {
-        return listPawnsToSingleLine(whitePawns);
+    private String getWhitePiecesResult() {
+        return listPiecesToSingleLine(whitePieces);
     }
 
-    public String getBlackPawnsResult() {
-        return listPawnsToSingleLine(blackPawns);
+    private String getWhitePawnsResult() {
+        return listPiecesToSingleLine(whitePawns);
     }
 
-    public String getBlankLine() {
+    private String getBlackPiecesResult() {
+        return listPiecesToSingleLine(blackPieces);
+    }
+
+    private String getBlackPawnsResult() {
+        return listPiecesToSingleLine(blackPawns);
+    }
+
+    private String getBlankLine() {
         return "........";
     }
 

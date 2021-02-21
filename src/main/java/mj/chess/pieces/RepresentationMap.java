@@ -33,7 +33,6 @@ public class RepresentationMap {
     }
 
     public boolean containsValue(String value) {
-        String lowerCaseOfValue = value.toLowerCase(Locale.ROOT);
-        return representationMap.containsValue(lowerCaseOfValue);
+        return representationMap.containsValue(value.toLowerCase());
     }
 }

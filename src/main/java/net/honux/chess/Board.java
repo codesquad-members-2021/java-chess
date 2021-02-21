@@ -70,10 +70,10 @@ public class Board {
         return "........";
     }
 
-    private String listPawnsToSingleLine(ArrayList<Piece> whichGroupOfPawns) {
+    private String listPiecesToSingleLine(ArrayList<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
 
-        for (Piece p : whichGroupOfPawns)
+        for (Piece p : pieces)
             sb.append(p.getRepresentation());
 
         return sb.toString();

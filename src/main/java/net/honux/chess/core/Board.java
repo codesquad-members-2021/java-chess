@@ -23,10 +23,6 @@ public class Board {
         whitePieces = Pieces.createWhitePiecesExceptPawns();
     }
 
-    public void add(Piece piece) {
-        getPiecesByColor(piece).add(piece);
-    }
-
     private Pieces getPiecesByColor(Piece piece) {
         if (piece.isBlack() && piece.getRepresentation() == BLACK_PAWN_REPRESENTATION) {
             return blackPawns;

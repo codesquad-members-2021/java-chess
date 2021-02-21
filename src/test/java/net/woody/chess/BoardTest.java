@@ -54,14 +54,14 @@ class BoardTest {
     void print() {
         board.initialize();
         String expectedResult =
-                "........\n" +
-                        "PPPPPPPP\n" +
-                        "........\n" +
-                        "........\n" +
-                        "........\n" +
-                        "........\n" +
-                        "pppppppp\n" +
-                        "........\n";
+                "........" + System.getProperty("line.separator") +
+                        "PPPPPPPP" + System.getProperty("line.separator") +
+                        "........" + System.getProperty("line.separator") +
+                        "........" + System.getProperty("line.separator") +
+                        "........" + System.getProperty("line.separator") +
+                        "........" + System.getProperty("line.separator") +
+                        "pppppppp" + System.getProperty("line.separator") +
+                        "........" + System.getProperty("line.separator");
 
         String actualResult = board.print();
         assertThat(expectedResult).isEqualTo(actualResult);

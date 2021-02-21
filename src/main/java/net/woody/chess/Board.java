@@ -5,7 +5,6 @@ import net.woody.pieces.Pawn;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Board {
 
@@ -67,7 +66,8 @@ public class Board {
     public String print() {
         StringBuilder sb = new StringBuilder();
         for (Rank rank : board) {
-            sb.append(rank.toString()).append('\n');
+            sb.append(rank.toString());
+            sb.append(System.getProperty("line.separator"));
         }
         return sb.toString();
     }

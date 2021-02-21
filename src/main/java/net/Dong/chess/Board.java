@@ -40,8 +40,8 @@ public class Board {
     }
 
     public void initialize() {
-        addPawnWhite(8);
-        addPawnBlack(8);
+        addPawnWhite(Pawn.InitialNumOfPawn);
+        addPawnBlack(Pawn.InitialNumOfPawn);
     }
 
     private void addPawnWhite(int numOfPawn) {

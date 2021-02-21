@@ -68,12 +68,12 @@ public class Pieces {
     }
 
     private boolean validateSize() {
-        return this.size() >= 8;
+        return this.size() < 8;
     }
 
 
     private Pieces add(Piece piece) {
-        if (validateSize()) {
+        if (!validateSize()) {
             throw new IndexOutOfBoundsException("더 이상 Piece 를 추가할 수 없습니다.");
         }
         pieceList.add(piece);

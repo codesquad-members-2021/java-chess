@@ -7,7 +7,6 @@ import mj.chess.pieces.Type;
 import mj.chess.utils.StringUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.joining;
@@ -16,10 +15,6 @@ import static mj.chess.utils.StringUtil.appendNewLine;
 public class Board {
     private static final int FIRST_ROW = 0;
     private static final int SECOND_ROW = 1;
-    private static final int THIRD_ROW = 2;
-    private static final int FORTH_ROW = 3;
-    private static final int FIFTH_ROW = 4;
-    private static final int SIXTH_ROW = 5;
     private static final int SEVENTH_ROW = 6;
     private static final int EIGHTH_ROW = 7;
     private static final int SIZE_OF_ROW = 8;
@@ -81,7 +76,6 @@ public class Board {
         }
     }
 
-    // TODO: 스트림으로 바꿔보자
     private void initCellsOfBoard() {
         String blankRank = appendNewLine("........");
 

@@ -1,7 +1,6 @@
 package mj.chess.pieces;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class RepresentationMap {

@@ -17,9 +17,9 @@ class PawnTest {
 
     }
 
-    void verifyPawn(Color c) {
-        Pawn p = new Pawn(c);
-        assertThat(p.color()).isEqualTo(c);
+    void verifyPawn(Color color) {
+        Pawn pawn = new Pawn(color);
+        assertThat(pawn.color()).isEqualTo(color);
     }
 }
 

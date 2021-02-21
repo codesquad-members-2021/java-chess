@@ -12,6 +12,6 @@ public class StringUtilsTest {
     void appendNewLineTest() {
         StringBuilder sb = new StringBuilder();
         appendNewLine(sb, "test");
-        assertThat(convertString(sb)).isEqualTo("test"+NEWLINE);
+        assertThat(convertString(sb)).isEqualTo("test" + NEWLINE);
     }
 }

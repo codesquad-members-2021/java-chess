@@ -99,5 +99,9 @@ public class Board {
         sb.append(appendNewLine(getWhitePiecesResult()));
         return sb.toString();
     }
+
+    public int pieceCount() {
+        return whitePieces.size() + whitePawns.size() + blackPieces.size() + whitePawns.size();
+    }
 }
 

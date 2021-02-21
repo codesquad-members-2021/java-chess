@@ -1,5 +1,7 @@
 package net.eno.chess;
 
+import net.eno.pieces.Color;
+
 import java.util.Scanner;
 
 public class Game {
@@ -19,7 +21,7 @@ public class Game {
                 System.out.println("> 체스 게임을 시작합니다.");
                 board = new Board();
                 board.initialize();
-                board.print();
+                System.out.println(board.showBoard(Color.WHITE));
                 check = true;
             }
 

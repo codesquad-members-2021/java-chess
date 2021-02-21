@@ -1,24 +1,33 @@
 package net.eno.pieces;
 
-public enum Piece {
+public class Piece {
 
-    WHITE("white", 'p'),
-    BLACK("black", 'P');
+    private final Color color;
+    private final PieceType pieceType;
 
-    private final String color;
-    private final char pawn;
-
-    Piece(String color, char pawn) {
+    private Piece(Color color, PieceType pieceType) {
         this.color = color;
-        this.pawn = pawn;
+        this.pieceType = pieceType;
+    }
+
+    public static Piece createPiece(Color color, PieceType pieceType) {
+        return new Piece(color, pieceType);
     }
 
     public String getColor() {
-        return this.color;
+        return this.color.toString();
     }
 
-    public char getPawn() {
-        return this.pawn;
+    public char getRepresentation() {
+        return this.pieceType.getRepresentation(this.color);
+    }
+
+    public boolean isWhite() {
+        return this.color.equals(Color.WHITE);
+    }
+
+    public boolean isBlack() {
+        return this.color.equals(Color.BLACK);
     }
 
 }

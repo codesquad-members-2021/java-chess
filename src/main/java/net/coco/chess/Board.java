@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Board {
-    private List<Piece> otherWhitePieces = new ArrayList<>();
+    private OtherWhitePieces otherWhitePieces = new OtherWhitePieces();
     private List<Piece> otherBlackPieces = new ArrayList<>();
     private List<Piece> whitePawns = new ArrayList<>();
     private List<Piece> blackPawns = new ArrayList<>();
@@ -20,7 +20,6 @@ public class Board {
             System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
             return;
         }
-
         whitePawns.add(piece);
     }
 
@@ -33,11 +32,6 @@ public class Board {
     }
 
     public void addOtherWhitePiece(Piece piece) {
-        if (!PieceValid.isOtherPiece(piece) || !piece.isWhite()) {
-            System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
-            return;
-        }
-
         otherWhitePieces.add(piece);
     }
 
@@ -107,7 +101,7 @@ public class Board {
 
     public String getOtherWhitePiecesResult(String color) {
         if (color.equals(Piece.WHITE))
-            return getPiecesToString(otherWhitePieces);
+            return getPiecesToString(otherWhitePieces.getList());
         throw new IllegalArgumentException("매개변수를 확인하세요.");
     }
 

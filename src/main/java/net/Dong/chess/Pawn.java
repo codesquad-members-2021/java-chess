@@ -27,12 +27,6 @@ public class Pawn {
         }
     }
 
-
-    public Pawn(Color color, char represent) {
-        this.color = color;
-    }
-
-
     public Color getColor() {
         return this.color;
     }

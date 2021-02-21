@@ -10,15 +10,18 @@ import net.honux.chess.pieces.Piece;
 class BoardTest {
     private Board board;
 
+    @BeforeEach
+    void setup() {
+        board = new Board();
+    }
+
     @Test
     void 보드에_폰이_색깔별로_잘_들어가는지_확인한다() {
-
         verifyBoard(Piece.WHITE_COLOR, Piece.White.PAWN.representation, 0);
         verifyBoard(Piece.BLACK_COLOR, Piece.Black.PAWN.representation, 0);
     }
 
     private void verifyBoard(String color, char representation, int index) {
-
         Piece pawnColor = new Piece(color, representation);
         board.add(pawnColor);
         assertThat(board.size(pawnColor)).isEqualTo(index + 1);

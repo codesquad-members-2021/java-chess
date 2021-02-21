@@ -10,11 +10,11 @@ public class Board {
     private List<Pawn> blackPawn = new ArrayList<>();
 
 
-    public void whiteAdd(Pawn pawn) {
+    public void addWhite(Pawn pawn) {
         whitePawn.add(pawn);
     }
 
-    public void blackAdd(Pawn pawn) {
+    public void addBlack(Pawn pawn) {
         blackPawn.add(pawn);
     }
 

@@ -1,5 +1,7 @@
 package net.woody.chess;
 
+import static net.woody.utils.StringUtils.appendNewLine;
+
 import net.woody.pieces.Color;
 import net.woody.pieces.Pawn;
 
@@ -66,8 +68,7 @@ public class Board {
     public String print() {
         StringBuilder sb = new StringBuilder();
         for (Rank rank : board) {
-            sb.append(rank.toString());
-            sb.append(System.getProperty("line.separator"));
+            sb.append(appendNewLine(rank.toString()));
         }
         return sb.toString();
     }

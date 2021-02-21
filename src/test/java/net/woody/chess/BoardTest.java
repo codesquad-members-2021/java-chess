@@ -4,6 +4,7 @@ import net.woody.pieces.Pawn;
 import net.woody.pieces.Color;
 import org.junit.jupiter.api.*;
 
+import static net.woody.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.*;
 
 class BoardTest {
@@ -54,14 +55,14 @@ class BoardTest {
     void print() {
         board.initialize();
         String expectedResult =
-                "........" + System.getProperty("line.separator") +
-                        "PPPPPPPP" + System.getProperty("line.separator") +
-                        "........" + System.getProperty("line.separator") +
-                        "........" + System.getProperty("line.separator") +
-                        "........" + System.getProperty("line.separator") +
-                        "........" + System.getProperty("line.separator") +
-                        "pppppppp" + System.getProperty("line.separator") +
-                        "........" + System.getProperty("line.separator");
+                appendNewLine("........") +
+                        appendNewLine("PPPPPPPP") +
+                        appendNewLine("........") +
+                        appendNewLine("........") +
+                        appendNewLine("........") +
+                        appendNewLine("........") +
+                        appendNewLine("pppppppp") +
+                        appendNewLine("........");
 
         String actualResult = board.print();
         assertThat(expectedResult).isEqualTo(actualResult);

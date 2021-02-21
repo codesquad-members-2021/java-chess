@@ -1,7 +1,7 @@
 package net.Dong.chess;
 
 public class Pawn {
-
+    public static final int InitialNumOfPawn = 8;
     private final Color color;
 
     public enum Color {

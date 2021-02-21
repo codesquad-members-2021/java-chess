@@ -1,8 +1,12 @@
 package cooper.chess;
 
-import cooper.chess.piece.*;
-import org.junit.jupiter.api.*;
+import cooper.chess.piece.Color;
+import cooper.chess.piece.Piece;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
+import static cooper.chess.utils.StringUtils.NEW_LINE;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BoardTest {
@@ -23,14 +27,14 @@ class BoardTest {
         StringBuilder sb = new StringBuilder();
         String blankRank = "........";
 
-        sb.append("RNBQKBNR").append("\n");
-        sb.append("PPPPPPPP").append("\n");
-        sb.append(blankRank).append("\n");
-        sb.append(blankRank).append("\n");
-        sb.append(blankRank).append("\n");
-        sb.append(blankRank).append("\n");
-        sb.append("pppppppp").append("\n");
-        sb.append("rnbqkbnr").append("\n");
+        sb.append("RNBQKBNR").append(NEW_LINE);
+        sb.append("PPPPPPPP").append(NEW_LINE);
+        sb.append(blankRank).append(NEW_LINE);
+        sb.append(blankRank).append(NEW_LINE);
+        sb.append(blankRank).append(NEW_LINE);
+        sb.append(blankRank).append(NEW_LINE);
+        sb.append("pppppppp").append(NEW_LINE);
+        sb.append("rnbqkbnr").append(NEW_LINE);
 
         assertEquals(
                 sb.toString(),

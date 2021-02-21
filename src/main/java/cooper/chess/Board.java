@@ -110,7 +110,7 @@ public class Board {
             sb.append(pieceList.get(col).getRepresentation());
         }
 
-        sb.append("\n");
+        sb.append(NEW_LINE);
 
         for (int col = BOARD_SIZE; col < PieceGroup.PIECE_LIST_MAX; col++) {
             sb.append(pieceList.get(col).getRepresentation());

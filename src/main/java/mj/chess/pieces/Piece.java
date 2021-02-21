@@ -51,7 +51,6 @@ public class Piece {
         if (!isValid) throw new IllegalArgumentException("Invalid representation");
     }
 
-    //TODO: 이거 반복되는 구조니까 개선해야 한다 어떻게?
     public static Piece createWhitePawn() {
         return new Piece(Color.WHITE, Type.PAWN);
     }

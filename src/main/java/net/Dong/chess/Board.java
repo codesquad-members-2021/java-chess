@@ -1,4 +1,5 @@
 package net.Dong.chess;
+
 import static net.Dong.chess.Pawn.Color;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class Board {
     public void whiteAdd(Pawn pawn) {
         whitePawn.add(pawn);
     }
+
     public void blackAdd(Pawn pawn) {
         blackPawn.add(pawn);
     }
@@ -20,7 +22,7 @@ public class Board {
     }
 
     public int size() {
-        return whitePawn.size()+blackPawn.size();
+        return whitePawn.size() + blackPawn.size();
     }
 
     private int whitePawnSize() {
@@ -45,17 +47,16 @@ public class Board {
     }
 
     private void addPawnWhite(int numOfPawn) {
-        for(int i=0 ; i<numOfPawn ; i++) {
+        for (int i = 0; i < numOfPawn; i++) {
             whitePawn.add(new Pawn(Color.WHITE));
         }
     }
 
     private void addPawnBlack(int numOfPawn) {
-        for(int i=0 ; i<numOfPawn ; i++) {
+        for (int i = 0; i < numOfPawn; i++) {
             whitePawn.add(new Pawn(Color.BLACK));
         }
     }
-
 
 
     private String print() {
@@ -76,12 +77,11 @@ public class Board {
     private String getPawnsResult(List<Pawn> whatPawn) {
         StringBuilder sb = new StringBuilder();
         int len = whatPawn.size();
-        for(Pawn p : whatPawn) {
-            sb.append(p.getSymbol());
+        for (Pawn pawn : whatPawn) {
+            sb.append(pawn.getSymbol());
         }
         return sb.toString();
     }
-
 
 
 }

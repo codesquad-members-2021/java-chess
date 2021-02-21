@@ -89,4 +89,18 @@ public class Piece {
     public static Piece createBlackKing() {
         return new Piece(BLACK_COLOR, Black.KING.representation);
     }
+
+    public boolean isWhite() {
+        if (this.color == WHITE_COLOR)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean isBlack() {
+        if (this.color == BLACK_COLOR)
+            return true;
+        else
+            return false;
+    }
 }

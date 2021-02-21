@@ -72,13 +72,13 @@ public class BoardTest {
         Piece blackPawn = Piece.createBlackPawn();
 
         Assertions.assertAll(
-                () -> board.addOtherPiece(blackBishop),
+                () -> board.addOtherBlackPiece(blackBishop),
                 () -> assertThat(board.getPiecesSize()).isEqualTo(1),
 
-                () -> board.addOtherPiece(blackPawn),
+                () -> board.addOtherBlackPiece(blackPawn),
                 () -> assertThat(board.getPiecesSize()).isEqualTo(1),
 
-                () -> board.addPawn(blackBishop),
+                () -> board.addOtherWhitePiece(blackBishop),
                 () -> assertThat(board.getPiecesSize()).isEqualTo(1)
         );
     }
@@ -104,12 +104,12 @@ public class BoardTest {
     }
 
     void verifyWhitePawnsIndex(Piece piece, int findPawnIndex) {
-        board.addPawn(piece);
+        board.addWhitePawn(piece);
         assertThat(piece).isEqualTo(board.findWhitePawn(findPawnIndex));
     }
 
     void verifyBlackPawnsIndex(Piece piece, int findPawnIndex) {
-        board.addPawn(piece);
+        board.addBlackPawn(piece);
         assertThat(piece).isEqualTo(board.findBlackPawn(findPawnIndex));
     }
 

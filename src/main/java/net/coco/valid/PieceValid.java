@@ -13,7 +13,6 @@ public class PieceValid {
         char getRepresentation = Character.toUpperCase(piece.getRepresentation());
 
         if (getRepresentation != PieceType.PAWN.getRepresentation(Piece.BLACK)) {
-            System.out.println("pawn 말고 다른 piece는 넣지 말아주세요.");
             return false;
         }
         return true;
@@ -23,7 +22,6 @@ public class PieceValid {
         char getRepresentation = Character.toUpperCase(piece.getRepresentation());
 
         if (getRepresentation == PieceType.PAWN.getRepresentation(Piece.BLACK)) {
-            System.out.println("pawn은 넣지 말아주세요.");
             return false;
         }
         return true;

@@ -72,10 +72,10 @@ public class Piece {
     }
 
     public boolean isBlack() {
-        return color.equals("black");
+        return color.equals(BLACK);
     }
 
     public boolean isWhite() {
-        return color.equals("white");
+        return color.equals(WHITE);
     }
 }

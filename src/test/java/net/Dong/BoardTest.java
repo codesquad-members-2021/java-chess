@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 import net.Dong.chess.Pawn.*;
 
 
@@ -14,7 +13,7 @@ class BoardTest {
 
 
     @Test
-    void BoardPawnCreate() throws Exception {
+    void BoardPawnCreate() {
         Board board = new Board();
 
         Pawn white = new Pawn(Color.WHITE);
@@ -30,7 +29,7 @@ class BoardTest {
 
 
     @Test
-    void boardInitialize() throws Exception {
+    void boardInitialize() {
         Board board = new Board();
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");

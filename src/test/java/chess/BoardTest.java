@@ -54,4 +54,11 @@ class BoardTest {
         board.initialize();
         board.print();
     }
+
+    @Test
+    @DisplayName("addWhitePawn()에 검은색 Pawn 추가")
+    void addWrong() {
+        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
+        board.addWhitePawn(blackPawn);
+    }
 }

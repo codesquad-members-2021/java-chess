@@ -54,14 +54,6 @@ public class Board {
                 + otherWhitePieces.size() + otherBlackPieces.size();
     }
 
-    public Piece findWhitePawn(int index) {
-        return whitePawns.get(index);
-    }
-
-    public Piece findBlackPawn(int index) {
-        return blackPawns.get(index);
-    }
-
     public void initialize() {
         clearPieces();
         for (int i = 0; i < BOARD_CELLS; i++) {
@@ -101,26 +93,42 @@ public class Board {
         addOtherWhitePiece(Piece.createWhiteRook());
     }
 
-    public String getPawnsResult(String color) {
-        PieceValid.checkColorType(color);
+    public String getWhitePawnsResult(String color) {
         if (color.equals(Piece.WHITE))
             return getPiecesToString(whitePawns);
-        else
-            return getPiecesToString(blackPawns);
+        throw new IllegalArgumentException("매개변수를 확인하세요.");
     }
 
-    public String getOtherPiecesResult(String color) {
-        PieceValid.checkColorType(color);
+    public String getBlackPawnsResult(String color) {
+        if (color.equals(Piece.BLACK))
+            return getPiecesToString(blackPawns);
+        throw new IllegalArgumentException("매개변수를 확인하세요.");
+    }
+
+    public String getOtherWhitePiecesResult(String color) {
         if (color.equals(Piece.WHITE))
             return getPiecesToString(otherWhitePieces);
-        else
+        throw new IllegalArgumentException("매개변수를 확인하세요.");
+    }
+
+    public String getOtherBlackPiecesResult(String color) {
+        if (color.equals(Piece.BLACK))
             return getPiecesToString(otherBlackPieces);
+        throw new IllegalArgumentException("매개변수를 확인하세요.");
     }
 
     private String getPiecesToString(List<Piece> pieces) {
         return pieces.stream()
                 .map(piece -> String.valueOf(piece.getRepresentation()))
                 .collect(Collectors.joining());
+    }
+
+    public Piece findWhitePawn(int index) {
+        return whitePawns.get(index);
+    }
+
+    public Piece findBlackPawn(int index) {
+        return blackPawns.get(index);
     }
 
 }

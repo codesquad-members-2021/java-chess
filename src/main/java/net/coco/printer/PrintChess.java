@@ -10,19 +10,19 @@ public class PrintChess {
         String blank = StringUtils.appendNewLine("********");
 
         StringBuilder boardPrint = new StringBuilder();
-        String blackPawns = board.getPawnsResult(Piece.BLACK);
-        String whitePawns = board.getPawnsResult(Piece.WHITE);
-        String blackOtherPieces = board.getOtherPiecesResult(Piece.BLACK);
-        String whiteOtherPieces = board.getOtherPiecesResult(Piece.WHITE);
+        String blackPawns = board.getBlackPawnsResult(Piece.BLACK);
+        String whitePawns = board.getWhitePawnsResult(Piece.WHITE);
+        String otherBlackPieces = board.getOtherBlackPiecesResult(Piece.BLACK);
+        String otherWhitePieces = board.getOtherWhitePiecesResult(Piece.WHITE);
 
-        boardPrint.append(StringUtils.appendNewLine(blackOtherPieces))
+        boardPrint.append(StringUtils.appendNewLine(otherBlackPieces))
                 .append(StringUtils.appendNewLine(blackPawns))
                 .append(blank)
                 .append(blank)
                 .append(blank)
                 .append(blank)
                 .append(StringUtils.appendNewLine(whitePawns))
-                .append(StringUtils.appendNewLine(whiteOtherPieces));
+                .append(StringUtils.appendNewLine(otherWhitePieces));
 
         System.out.println(boardPrint);
 

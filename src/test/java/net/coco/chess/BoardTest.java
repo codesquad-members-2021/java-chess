@@ -41,10 +41,10 @@ public class BoardTest {
         board.initialize();
         Assertions.assertAll(
                 () -> assertThat(board.getPiecesSize()).isEqualTo(32),
-                () -> assertThat(board.getPawnsResult(Piece.BLACK)).isEqualTo("PPPPPPPP"),
-                () -> assertThat(board.getOtherPiecesResult(Piece.BLACK)).isEqualTo("RNBQKBNR"),
-                () -> assertThat(board.getOtherPiecesResult(Piece.WHITE)).isEqualTo("rnbqkbnr"),
-                () -> assertThat(board.getPawnsResult(Piece.WHITE)).isEqualTo("pppppppp")
+                () -> assertThat(board.getBlackPawnsResult(Piece.BLACK)).isEqualTo("PPPPPPPP"),
+                () -> assertThat(board.getOtherBlackPiecesResult(Piece.BLACK)).isEqualTo("RNBQKBNR"),
+                () -> assertThat(board.getOtherWhitePiecesResult(Piece.WHITE)).isEqualTo("rnbqkbnr"),
+                () -> assertThat(board.getWhitePawnsResult(Piece.WHITE)).isEqualTo("pppppppp")
         );
         PrintChess.printBoard(board);
 

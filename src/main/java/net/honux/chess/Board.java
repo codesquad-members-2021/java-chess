@@ -76,7 +76,7 @@ public class Board {
         sb.append("\n");
         sb.append(getBlankLine());
         sb.append("\n");
-        System.out.println(sb.toString());
+        return sb.toString();
     }
 }
 

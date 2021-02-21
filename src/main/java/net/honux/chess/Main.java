@@ -13,7 +13,7 @@ public class Main {
 
         if (game.equals("start")) {
             while (true) {
-                board.print();
+                board.showBoard();
                 String move = sc.nextLine();
                 if (move.equals("end")) {
                     System.exit(0);

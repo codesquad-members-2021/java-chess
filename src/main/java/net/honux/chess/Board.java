@@ -58,7 +58,7 @@ public class Board {
         return sb.toString();
     }
 
-    public void print() {
+    public String showBoard() {
         StringBuilder sb = new StringBuilder();
         sb.append(getBlankLine());
         sb.append("\n");

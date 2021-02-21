@@ -34,13 +34,6 @@ class BoardTest {
     }
 
     @Test
-    void print_잘되는지_확인하자() {
-        board = new Board();
-        board.initialize();
-        board.print();
-    }
-
-    @Test
     void 전체기물의_상태를_볼수있는_체스판구현_테스트() {
         board.initialize();
         assertThat(board.pieceCount()).isEqualTo(32);

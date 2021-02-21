@@ -6,9 +6,8 @@ public class Pawn {
 
     public enum Color {
         WHITE,
-        BLACK
-    };
-
+        BLACK;
+    }
 
 
     public Pawn() {
@@ -21,9 +20,9 @@ public class Pawn {
 
 
     public Pawn(String colorString) {
-        if(colorString.equals("BLACK")) {
+        if (colorString.equals("BLACK")) {
             this.color = Color.BLACK;
-        }else {
+        } else {
             this.color = Color.WHITE;
         }
     }
@@ -34,15 +33,12 @@ public class Pawn {
     }
 
 
-
-
-
     public Color color() {
         return this.color;
     }
 
     public String getSymbol() {
-        if(this.color == Color.WHITE) {
+        if (this.color == Color.WHITE) {
             return "p";
         }
         return "P";

@@ -6,8 +6,9 @@ import java.util.List;
 import pieces.Pawn;
 
 public class Board {
-    private List<Pawn> whitePawns = new ArrayList<>(8);
-    private List<Pawn> blackPawns = new ArrayList<>(8);
+    private static int PAWN_NUM = 8;
+    private List<Pawn> whitePawns = new ArrayList<>(PAWN_NUM);
+    private List<Pawn> blackPawns = new ArrayList<>(PAWN_NUM);
 
     boolean addWhitePawn(Pawn pawn) {
         if (pawn.getColor().equals(Pawn.WHITE)) {
@@ -64,7 +65,7 @@ public class Board {
     void initialize() {
         Pawn whitePawn = new Pawn();
         Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < PAWN_NUM; i++) {
             whitePawns.add(whitePawn);
             blackPawns.add(blackPawn);
         }

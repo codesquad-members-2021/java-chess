@@ -10,7 +10,7 @@ public class OtherWhitePieces {
     private final List<Piece> otherWhitePieces = new ArrayList<>();
 
     public void add(Piece piece) {
-        if (!PieceValid.isPawn(piece) || !piece.isWhite()) {
+        if (!PieceValid.isOtherPiece(piece) || !piece.isWhite()) {
             System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
             return;
         }

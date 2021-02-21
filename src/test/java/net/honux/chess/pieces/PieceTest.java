@@ -17,4 +17,10 @@ class PieceTest {
         assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
+
+    @Test
+    void 검색은색_흰색_말들을_구분하는_테스트() {
+        assertThat(Piece.createWhiteQueen().isWhite()).isTrue();
+        assertThat(Piece.createBlackBishop().isBlack()).isTrue();
+    }
 }

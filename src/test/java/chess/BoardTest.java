@@ -57,8 +57,9 @@ class BoardTest {
 
     @Test
     @DisplayName("addWhitePawn()에 검은색 Pawn 추가")
-    void addWrong() {
+    void addBlackToWhiteAdder() {
         Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
-        board.addWhitePawn(blackPawn);
+        boolean result = board.addWhitePawn(blackPawn);
+        assertThat(result).isEqualTo(false);
     }
 }

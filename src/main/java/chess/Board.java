@@ -9,12 +9,20 @@ public class Board {
     private List<Pawn> whitePawns = new ArrayList<>(8);
     private List<Pawn> blackPawns = new ArrayList<>(8);
 
-    void addWhitePawn(Pawn pawn) {
-        whitePawns.add(pawn);
+    boolean addWhitePawn(Pawn pawn) {
+        if (pawn.getColor().equals(Pawn.WHITE)) {
+            whitePawns.add(pawn);
+            return true;
+        }
+        return false;
     }
 
-    void addBlackPawn(Pawn pawn) {
-        blackPawns.add(pawn);
+    boolean addBlackPawn(Pawn pawn) {
+        if (pawn.getColor().equals(Pawn.BLACK)) {
+            blackPawns.add(pawn);
+            return true;
+        }
+        return false;
     }
 
     public int getWhitePawnsSize() {

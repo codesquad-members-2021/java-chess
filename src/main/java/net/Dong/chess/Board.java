@@ -18,8 +18,6 @@ public class Board {
         blackPawn.add(pawn);
     }
 
-    public void removePawn(Pawn remove) {
-    }
 
     public int size() {
         return whitePawn.size() + blackPawn.size();

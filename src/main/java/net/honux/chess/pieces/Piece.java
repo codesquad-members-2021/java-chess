@@ -9,6 +9,7 @@ public class Piece {
         BISHOP('b'), QUEEN('q'), KING('k');
 
         public char representation;
+
         White(char representation) {
             this.representation = representation;
         }
@@ -19,6 +20,7 @@ public class Piece {
         BISHOP('B'), QUEEN('Q'), KING('K');
 
         public char representation;
+
         Black(char representation) {
             this.representation = representation;
         }
@@ -27,7 +29,8 @@ public class Piece {
     private String color;
     private char representation;
 
-    private Piece() {}
+    private Piece() {
+    }
 
     public Piece(String color, char representation) {
         this.color = color;

@@ -9,7 +9,9 @@ public class Board {
     private static final int BOARD_LENGTH = 8;
 
     private ArrayList<Piece> whitePawns = new ArrayList<>();
+    private ArrayList<Piece> whitePieces = new ArrayList<>();
     private ArrayList<Piece> blackPawns = new ArrayList<>();
+    private ArrayList<Piece> blackPieces = new ArrayList<>();
 
     public void add(Piece pawn) {
         distinguishPawnsColor(pawn).add(pawn);
@@ -35,6 +37,23 @@ public class Board {
             whitePawns.add(new Piece(Piece.WHITE_COLOR, Piece.White.PAWN.representation));
             blackPawns.add(new Piece(Piece.BLACK_COLOR, Piece.Black.PAWN.representation));
         }
+        whitePieces.add(new Piece(Piece.WHITE_COLOR, Piece.White.ROOK.representation));
+        whitePieces.add(new Piece(Piece.WHITE_COLOR, Piece.White.KNIGHT.representation));
+        whitePieces.add(new Piece(Piece.WHITE_COLOR, Piece.White.BISHOP.representation));
+        whitePieces.add(new Piece(Piece.WHITE_COLOR, Piece.White.QUEEN.representation));
+        whitePieces.add(new Piece(Piece.WHITE_COLOR, Piece.White.KING.representation));
+        whitePieces.add(new Piece(Piece.WHITE_COLOR, Piece.White.BISHOP.representation));
+        whitePieces.add(new Piece(Piece.WHITE_COLOR, Piece.White.KNIGHT.representation));
+        whitePieces.add(new Piece(Piece.WHITE_COLOR, Piece.White.ROOK.representation));
+
+        blackPieces.add(new Piece(Piece.BLACK_COLOR, Piece.Black.ROOK.representation));
+        blackPieces.add(new Piece(Piece.BLACK_COLOR, Piece.Black.KNIGHT.representation));
+        blackPieces.add(new Piece(Piece.BLACK_COLOR, Piece.Black.BISHOP.representation));
+        blackPieces.add(new Piece(Piece.BLACK_COLOR, Piece.Black.QUEEN.representation));
+        blackPieces.add(new Piece(Piece.BLACK_COLOR, Piece.Black.KING.representation));
+        blackPieces.add(new Piece(Piece.BLACK_COLOR, Piece.Black.BISHOP.representation));
+        blackPieces.add(new Piece(Piece.BLACK_COLOR, Piece.Black.KNIGHT.representation));
+        blackPieces.add(new Piece(Piece.BLACK_COLOR, Piece.Black.ROOK.representation));
     }
 
     public String getWhitePawnsResult() {

@@ -14,7 +14,7 @@ class BoardTest {
 
 
     @Test
-    void create() throws Exception {
+    void BoardPawnCreate() throws Exception {
         Board board = new Board();
 
         Pawn white = new Pawn(Color.WHITE);
@@ -30,7 +30,7 @@ class BoardTest {
 
 
     @Test
-    void initialize() throws Exception {
+    void boardInitialize() throws Exception {
         Board board = new Board();
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");

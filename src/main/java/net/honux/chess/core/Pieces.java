@@ -28,15 +28,31 @@ public class Pieces {
     }
 
     public static Pieces createWhitePiecesExceptPawns() {
-        return new Pieces().add(createWhiteRook()).add(createWhiteKnight()).add(createWhiteBishop()).add(createWhiteQueen()).add(createWhiteKing()).add(createWhiteBishop()).add(createWhiteKnight()).add(createWhiteRook());
+        return new Pieces()
+                .add(createWhiteRook())
+                .add(createWhiteKnight())
+                .add(createWhiteBishop())
+                .add(createWhiteQueen())
+                .add(createWhiteKing())
+                .add(createWhiteBishop())
+                .add(createWhiteKnight())
+                .add(createWhiteRook());
     }
 
     public static Pieces createBlackPiecesExceptPawns() {
-        return new Pieces().add(createBlackRook()).add(createBlackKnight()).add(createBlackBishop()).add(createBlackQueen()).add(createBlackKing()).add(createBlackBishop()).add(createBlackKnight()).add(createBlackRook());
+        return new Pieces()
+                .add(createBlackRook())
+                .add(createBlackKnight())
+                .add(createBlackBishop())
+                .add(createBlackQueen())
+                .add(createBlackKing())
+                .add(createBlackBishop())
+                .add(createBlackKnight())
+                .add(createBlackRook());
     }
 
     public Pieces add(Piece piece) {
-        if (!validateSize()) {
+        if (validateSize()) {
             throw new IndexOutOfBoundsException("더 이상 Piece 를 추가할 수 없습니다.");
         }
         pieceList.add(piece);
@@ -60,7 +76,7 @@ public class Pieces {
     }
 
     private boolean validateSize() {
-        return this.size() < 8;
+        return this.size() >= 8;
     }
 
 }

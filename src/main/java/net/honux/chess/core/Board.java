@@ -27,6 +27,16 @@ public class Board {
         getPiecesByColor(piece).add(piece);
     }
 
+    private Pieces getPiecesByColor(Piece piece) {
+        if (piece.isBlack() && piece.getRepresentation() == BLACK_PAWN_REPRESENTATION) {
+            return blackPawns;
+        }
+        if (piece.isWhite() && piece.getRepresentation() == WHITE_PAWN_REPRESENTATION) {
+            return whitePawns;
+        }
+        return piece.isBlack() ? blackPieces : whitePieces;
+    }
+
     public int whitePawnSize() {
         return whitePieces.size() + whitePawns.size();
     }
@@ -91,16 +101,6 @@ public class Board {
 
     public void print() {
         System.out.println(this.getBoardStatusToString());
-    }
-
-    private Pieces getPiecesByColor(Piece piece) {
-        if (piece.isBlack() && piece.getRepresentation() == BLACK_PAWN_REPRESENTATION) {
-            return blackPawns;
-        }
-        if (piece.isWhite() && piece.getRepresentation() == WHITE_PAWN_REPRESENTATION) {
-            return whitePawns;
-        }
-        return piece.isBlack() ? blackPieces : whitePieces;
     }
 
     private String getStringPiecesResult(Pieces pieces) {

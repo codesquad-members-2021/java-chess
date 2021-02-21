@@ -1,5 +1,7 @@
 package net.honux.chess;
 
+import static net.honux.chess.utils.StringUtils.appendNewLine;
+
 import net.honux.chess.pieces.Piece;
 
 import java.util.ArrayList;
@@ -79,22 +81,14 @@ public class Board {
 
     public String showBoard() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getBlankLine());
-        sb.append("\n");
-        sb.append(getBlackPawnsResult());
-        sb.append("\n");
-        sb.append(getBlankLine());
-        sb.append("\n");
-        sb.append(getBlankLine());
-        sb.append("\n");
-        sb.append(getBlankLine());
-        sb.append("\n");
-        sb.append(getBlankLine());
-        sb.append("\n");
-        sb.append(getWhitePawnsResult());
-        sb.append("\n");
-        sb.append(getBlankLine());
-        sb.append("\n");
+        sb.append(appendNewLine(getBlackPiecesResult()));
+        sb.append(appendNewLine(getBlackPawnsResult()));
+        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getWhitePawnsResult()));
+        sb.append(appendNewLine(getWhitePiecesResult()));
         return sb.toString();
     }
 }

@@ -57,11 +57,6 @@ public class Board {
     }
 
 
-    private String print() {
-        StringBuilder sb = new StringBuilder();
-        return "";
-    }
-
 
     public String getWhitePawnsResult() {
         return getPawnsResult(whitePawn);

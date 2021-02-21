@@ -16,16 +16,18 @@ public class ChessStarter {
     }
 
     void ready() {
+        final String START = "start";
+        final String END = "end";
         while (true) {
             System.out.print("> ");
             Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
-            if (input.equals("start")) {
+            if (input.equals(START)) {
                 System.out.println("게임을 시작합니다.");
                 start();
                 break;
             }
-            if (input.equals("end")) {
+            if (input.equals(END)) {
                 System.out.println("게임을 종료합니다.");
                 end();
                 break;

@@ -49,4 +49,44 @@ public class Piece {
     public static Piece createBlackPawn() {
         return new Piece(BLACK_COLOR, Black.PAWN.representation);
     }
+
+    public static Piece createWhiteKnight() {
+        return new Piece(WHITE_COLOR, White.KNIGHT.representation);
+    }
+
+    public static Piece createBlackKnight() {
+        return new Piece(BLACK_COLOR, Black.KNIGHT.representation);
+    }
+
+    public static Piece createWhiteRook() {
+        return new Piece(WHITE_COLOR, White.ROOK.representation);
+    }
+
+    public static Piece createBlackRook() {
+        return new Piece(BLACK_COLOR, Black.ROOK.representation);
+    }
+
+    public static Piece createWhiteBishop() {
+        return new Piece(WHITE_COLOR, White.BISHOP.representation);
+    }
+
+    public static Piece createBlackBishop() {
+        return new Piece(BLACK_COLOR, Black.BISHOP.representation);
+    }
+
+    public static Piece createWhiteQueen() {
+        return new Piece(WHITE_COLOR, White.QUEEN.representation);
+    }
+
+    public static Piece createBlackQueen() {
+        return new Piece(BLACK_COLOR, Black.QUEEN.representation);
+    }
+
+    public static Piece createWhiteKing() {
+        return new Piece(WHITE_COLOR, White.KING.representation);
+    }
+
+    public static Piece createBlackKing() {
+        return new Piece(BLACK_COLOR, Black.KING.representation);
+    }
 }

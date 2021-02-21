@@ -7,6 +7,7 @@ import java.util.List;
 
 import net.sky.pieces.Color;
 import net.sky.pieces.Piece;
+import net.sky.pieces.PieceMaker;
 
 public class Board {
 
@@ -14,27 +15,23 @@ public class Board {
     private List<Piece> blackPawns = new ArrayList<>();
     private List<Piece> whitePieces = new ArrayList<>();
     private List<Piece> blackPieces = new ArrayList<>();
-    private int pieceCount = 0;
+    private final PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
+    private final PieceMaker blackPieceMaker = new PieceMaker(Color.BLACK);
 
     public void addWhitePawn(Piece piece) {
-        addPiece(whitePawns, piece);
+        whitePawns.add(piece);
     }
 
     public void addBlackPawn(Piece piece) {
-        addPiece(blackPawns, piece);
+        blackPawns.add(piece);
     }
 
     public void addWhitePiece(Piece piece) {
-        addPiece(whitePieces, piece);
+        whitePieces.add(piece);
     }
 
     public void addBlackPiece(Piece piece) {
-        addPiece(blackPieces, piece);
-    }
-
-    private void addPiece(List<Piece> pieces, Piece piece) {
-        pieces.add(piece);
-        pieceCount++;
+        blackPieces.add(piece);
     }
 
     public void initialize() {
@@ -46,39 +43,39 @@ public class Board {
 
     private void initializeWhitePawns() {
         for (int i = 0; i < 8; i++) {
-            addWhitePawn(Piece.getPawnInstance(Color.WHITE));
+            addWhitePawn(whitePieceMaker.createPawn());
         }
     }
 
     private void initializeBlackPawns() {
         for (int i = 0; i < 8; i++) {
-            addBlackPawn(Piece.getPawnInstance(Color.BLACK));
+            addBlackPawn(blackPieceMaker.createPawn());
         }
     }
 
     private void initializeWhitePieces() {
-        addWhitePiece(Piece.getRookInstance(Color.WHITE));
-        addWhitePiece(Piece.getKnightInstance(Color.WHITE));
-        addWhitePiece(Piece.getBishopInstance(Color.WHITE));
-        addWhitePiece(Piece.getQueenInstance(Color.WHITE));
-        addWhitePiece(Piece.getKingInstance(Color.WHITE));
-        addWhitePiece(Piece.getBishopInstance(Color.WHITE));
-        addWhitePiece(Piece.getKnightInstance(Color.WHITE));
-        addWhitePiece(Piece.getRookInstance(Color.WHITE));
+        addWhitePiece(whitePieceMaker.createRook());
+        addWhitePiece(whitePieceMaker.createKnight());
+        addWhitePiece(whitePieceMaker.createBishop());
+        addWhitePiece(whitePieceMaker.createQueen());
+        addWhitePiece(whitePieceMaker.createKing());
+        addWhitePiece(whitePieceMaker.createBishop());
+        addWhitePiece(whitePieceMaker.createKnight());
+        addWhitePiece(whitePieceMaker.createRook());
     }
 
     private void initializeBlackPieces() {
-        addBlackPiece(Piece.getRookInstance(Color.BLACK));
-        addBlackPiece(Piece.getKnightInstance(Color.BLACK));
-        addBlackPiece(Piece.getBishopInstance(Color.BLACK));
-        addBlackPiece(Piece.getQueenInstance(Color.BLACK));
-        addBlackPiece(Piece.getKingInstance(Color.BLACK));
-        addBlackPiece(Piece.getBishopInstance(Color.BLACK));
-        addBlackPiece(Piece.getKnightInstance(Color.BLACK));
-        addBlackPiece(Piece.getRookInstance(Color.BLACK));
+        addBlackPiece(blackPieceMaker.createRook());
+        addBlackPiece(blackPieceMaker.createKnight());
+        addBlackPiece(blackPieceMaker.createBishop());
+        addBlackPiece(blackPieceMaker.createQueen());
+        addBlackPiece(blackPieceMaker.createKing());
+        addBlackPiece(blackPieceMaker.createBishop());
+        addBlackPiece(blackPieceMaker.createKnight());
+        addBlackPiece(blackPieceMaker.createRook());
     }
 
-    public String getPiecesResult(List<Piece> pieces) {
+    private String getPiecesResult(List<Piece> pieces) {
         StringBuilder result = new StringBuilder();
         for (Piece piece : pieces) {
             result.append(piece.getRepresentation());
@@ -107,6 +104,6 @@ public class Board {
     }
 
     public int pieceCount() {
-        return pieceCount;
+        return whitePawns.size() + blackPawns.size() + whitePieces.size() + blackPieces.size();
     }
 }

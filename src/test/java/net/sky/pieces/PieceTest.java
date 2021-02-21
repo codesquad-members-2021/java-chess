@@ -8,38 +8,41 @@ import org.junit.jupiter.api.Test;
 
 class PieceTest {
 
-
     @Test
     @DisplayName("팩토리 메서드로 생성된 각 piece별 인스턴스가 제대로 생성되었는지 확인")
     void createPiece() {
-        Piece whitePawn = Piece.getPawnInstance(Color.WHITE);
+        PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
+        PieceMaker blackPieceMaker = new PieceMaker(Color.BLACK);
+
+
+        Piece whitePawn = whitePieceMaker.createPawn();
         verifyPiece(whitePawn, Color.WHITE, 'p', PieceType.PAWN);
-        Piece blackPawn = Piece.getPawnInstance(Color.BLACK);
+        Piece blackPawn = blackPieceMaker.createPawn();
         verifyPiece(blackPawn, Color.BLACK, 'P', PieceType.PAWN);
 
-        Piece whiteKnight = Piece.getKnightInstance(Color.WHITE);
+        Piece whiteKnight = whitePieceMaker.createKnight();
         verifyPiece(whiteKnight, Color.WHITE, 'n', PieceType.KNIGHT);
-        Piece blackKnight = Piece.getKnightInstance(Color.BLACK);
+        Piece blackKnight = blackPieceMaker.createKnight();
         verifyPiece(blackKnight, Color.BLACK, 'N', PieceType.KNIGHT);
 
-        Piece whiteRook = Piece.getRookInstance(Color.WHITE);
+        Piece whiteRook = whitePieceMaker.createRook();
         verifyPiece(whiteRook, Color.WHITE, 'r', PieceType.ROOK);
-        Piece blackRook = Piece.getRookInstance(Color.BLACK);
+        Piece blackRook = blackPieceMaker.createRook();
         verifyPiece(blackRook, Color.BLACK, 'R', PieceType.ROOK);
 
-        Piece whiteBishop = Piece.getBishopInstance(Color.WHITE);
+        Piece whiteBishop = whitePieceMaker.createBishop();
         verifyPiece(whiteBishop, Color.WHITE, 'b', PieceType.BISHOP);
-        Piece blackBishop = Piece.getBishopInstance(Color.BLACK);
+        Piece blackBishop = blackPieceMaker.createBishop();
         verifyPiece(blackBishop, Color.BLACK, 'B', PieceType.BISHOP);
 
-        Piece whiteQueen = Piece.getQueenInstance(Color.WHITE);
+        Piece whiteQueen = whitePieceMaker.createQueen();
         verifyPiece(whiteQueen, Color.WHITE, 'q', PieceType.QUEEN);
-        Piece blackQueen = Piece.getQueenInstance(Color.BLACK);
+        Piece blackQueen = blackPieceMaker.createQueen();
         verifyPiece(blackQueen, Color.BLACK, 'Q', PieceType.QUEEN);
 
-        Piece whiteKing = Piece.getKingInstance(Color.WHITE);
+        Piece whiteKing = whitePieceMaker.createKing();
         verifyPiece(whiteKing, Color.WHITE, 'k', PieceType.KING);
-        Piece blackKing = Piece.getKingInstance(Color.BLACK);
+        Piece blackKing = blackPieceMaker.createKing();
         verifyPiece(blackKing, Color.BLACK, 'K', PieceType.KING);
     }
 

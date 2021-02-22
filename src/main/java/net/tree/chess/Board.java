@@ -12,11 +12,11 @@ public class Board {
     String blankDot = "........\n";
 
 
-    public void add(Pawn pawnColor) {
-        pawnList.add(pawnColor);
+    public void add(Pawn pawn) {
+        pawnList.add(pawn);
     }
 
-    public int size() {
+    public int checkPawnSize() {
         return pawnList.size();
     }
 

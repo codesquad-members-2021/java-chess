@@ -14,7 +14,7 @@ public class Board {
 
     private String startLine = "* * * * * * * *";
 
-    private final int PAWNCOUNT = 8;
+    private final int PAWN_COUNT = 8;
 
     public Piece findPawn(Piece.Color color, int index) {
         if (color == Piece.Color.WHITE) {
@@ -35,16 +35,17 @@ public class Board {
         return whitePieceList.size() + blackPieceList.size() +
                 whitePawnList.size() + blackPawnList.size();
     }
-    public void addPiece(Piece pawn) {
-        if (pawn.getColor() == Piece.Color.WHITE) {
-            whitePawnList.add(pawn);
+
+    public void addPiece(Piece piece) {
+        if (piece.getColor() == Piece.Color.WHITE) {
+            whitePawnList.add(piece);
         }
-        blackPawnList.add(pawn);
+        blackPawnList.add(piece);
     }
 
     public void initialize(){
 
-        for(int i = 0; i < 8; i++){
+        for(int i = 0; i < PAWN_COUNT; i++){
             addPiece(Piece.createWhitePawn());
             addPiece(Piece.createBlackPawn());
         }
@@ -91,7 +92,6 @@ public class Board {
 
         for (Piece piece : pieceList) {
             sb.append(piece.getRepresentation());
-            sb.append(" ");
         }
         return sb.toString();
     }

@@ -13,14 +13,14 @@ class BoardTest {
     private Board board;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         board = new Board();
         board.initialize();
     }
 
     @Test
     @DisplayName("boardInit")
-    public void create() throws Exception {
+    void create() throws Exception {
 
         assertEquals(32, board.pieceCount());
 
@@ -41,5 +41,7 @@ class BoardTest {
 
                 board.showBoard());
     }
+
+
 
 }

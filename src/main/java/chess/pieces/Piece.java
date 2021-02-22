@@ -20,6 +20,7 @@ public class Piece {
     public static Piece createBlank() {
         return new Piece(Type.NO_PIECE, Piece.Color.NO_COLOR);
     }
+
     public Type getType() {
         return type;
     }

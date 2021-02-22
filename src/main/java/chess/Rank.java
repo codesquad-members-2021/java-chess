@@ -24,4 +24,11 @@ public class Rank {
     public void addAll(final List<Piece> piece) {
         pieces.addAll(piece);
     }
+
+    public long pieceCountOf(Piece.Color color, Piece.Type type) {
+        long pieceCount = pieces.stream()
+                .filter(piece -> piece.getColor() == color && piece.getType() == type)
+                .count();
+        return pieceCount;
+    }
 }

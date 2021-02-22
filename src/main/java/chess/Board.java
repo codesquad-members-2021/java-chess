@@ -35,6 +35,15 @@ public class Board {
                 + file.get(Board.RANK8).size();
     }
 
+    public int pieceCountOf(Piece.Color color, Piece.Type type) {
+        int pieceCount = 0;
+        for (int i = 0; i < MAX_FILE; i++) {
+            pieceCount += file.get(i).pieceCountOf(color, type);
+
+        }
+        return pieceCount;
+    }
+
     /* 체스판을 초기화한다. */
     public void initialize() {
         addBlackPieces();

@@ -9,52 +9,12 @@ public class Piece {
         this.color = color;
     }
 
-    public static Piece createWhitePawn() {
-        return new Piece(Piece.Type.PAWN, Piece.Color.WHITE);
+    public static Piece createWhite(Type type) {
+        return new Piece(type, Piece.Color.WHITE);
     }
 
-    public static Piece createBlackPawn() {
-        return new Piece(Piece.Type.PAWN, Piece.Color.BLACK);
-    }
-
-    public static Piece createWhiteKnight() {
-        return new Piece(Piece.Type.KNIGHT, Piece.Color.WHITE);
-    }
-
-    public static Piece createBlackKnight() {
-        return new Piece(Piece.Type.KNIGHT, Piece.Color.BLACK);
-    }
-
-    public static Piece createWhiteRook() {
-        return new Piece(Piece.Type.ROOK, Piece.Color.WHITE);
-    }
-
-    public static Piece createBlackRook() {
-        return new Piece(Piece.Type.ROOK, Piece.Color.BLACK);
-    }
-
-    public static Piece createWhiteBishop() {
-        return new Piece(Piece.Type.BISHOP, Piece.Color.WHITE);
-    }
-
-    public static Piece createBlackBishop() {
-        return new Piece(Piece.Type.BISHOP, Piece.Color.BLACK);
-    }
-
-    public static Piece createWhiteQueen() {
-        return new Piece(Piece.Type.QUEEN, Piece.Color.WHITE);
-    }
-
-    public static Piece createBlackQueen() {
-        return new Piece(Piece.Type.QUEEN, Piece.Color.BLACK);
-    }
-
-    public static Piece createWhiteKing() {
-        return new Piece(Piece.Type.KING, Piece.Color.WHITE);
-    }
-
-    public static Piece createBlackKing() {
-        return new Piece(Piece.Type.KING, Piece.Color.BLACK);
+    public static Piece createBlack(Type type) {
+        return new Piece(type, Piece.Color.BLACK);
     }
 
     public static Piece createBlank() {

@@ -10,12 +10,12 @@ public class PieceTest {
     @Test
     @DisplayName("팩토리 메소드를 통해 각 기물은 알맞는 타입과 색상을 가져야한다.")
     void create_pieces() {
-        verifyPiece(Piece.createWhitePawn()  , Piece.createBlackPawn(), Piece.Type.PAWN);
-        verifyPiece(Piece.createWhiteKnight(), Piece.createBlackKnight(), Piece.Type.KNIGHT);
-        verifyPiece(Piece.createWhiteRook()  , Piece.createBlackRook(), Piece.Type.ROOK);
-        verifyPiece(Piece.createWhiteBishop(), Piece.createBlackBishop(), Piece.Type.BISHOP);
-        verifyPiece(Piece.createWhiteQueen() , Piece.createBlackQueen(), Piece.Type.QUEEN);
-        verifyPiece(Piece.createWhiteKing()  , Piece.createBlackKing(), Piece.Type.KING);
+        verifyPiece(Piece.createWhite(Piece.Type.PAWN)  , Piece.createBlack(Piece.Type.PAWN), Piece.Type.PAWN);
+        verifyPiece(Piece.createWhite(Piece.Type.KNIGHT), Piece.createBlack(Piece.Type.KNIGHT), Piece.Type.KNIGHT);
+        verifyPiece(Piece.createWhite(Piece.Type.ROOK)  , Piece.createBlack(Piece.Type.ROOK), Piece.Type.ROOK);
+        verifyPiece(Piece.createWhite(Piece.Type.BISHOP), Piece.createBlack(Piece.Type.BISHOP), Piece.Type.BISHOP);
+        verifyPiece(Piece.createWhite(Piece.Type.QUEEN) , Piece.createBlack(Piece.Type.QUEEN), Piece.Type.QUEEN);
+        verifyPiece(Piece.createWhite(Piece.Type.KING)  , Piece.createBlack(Piece.Type.KING), Piece.Type.KING);
 
         Piece blank = Piece.createBlank();
         assertThat(blank.isWhite()).isFalse();

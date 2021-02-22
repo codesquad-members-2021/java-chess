@@ -4,6 +4,7 @@ import net.coco.pieces.Piece;
 import net.coco.valid.PieceValid;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Rank {
@@ -17,39 +18,61 @@ public class Rank {
         pieces.clear();
     }
 
-    public List<Piece> getList() {
-        return pieces;
+    public List<Piece> getPieces() {
+        return Collections.unmodifiableList(pieces);
     }
 
-    public void addWhitePawn(Piece piece) {
-        if (!PieceValid.isPawn(piece) || !piece.isWhite()) {
-            System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
-            return;
-        }
-        pieces.add(piece);
+    public static Rank initBlackPieces() {
+        Rank rank = new Rank();
+        rank.addPiece(Piece.createBlackRook());
+        rank.addPiece(Piece.createBlackKnight());
+        rank.addPiece(Piece.createBlackBishop());
+        rank.addPiece(Piece.createBlackQueen());
+        rank.addPiece(Piece.createBlackKing());
+        rank.addPiece(Piece.createBlackBishop());
+        rank.addPiece(Piece.createBlackKnight());
+        rank.addPiece(Piece.createBlackRook());
+        return rank;
     }
 
-    public void addBlackPawn(Piece piece) {
-        if (!PieceValid.isPawn(piece) || !piece.isBlack()) {
-            System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
-            return;
-        }
-        pieces.add(piece);
+    public static Rank initWhitePieces() {
+        Rank rank = new Rank();
+        rank.addPiece(Piece.createWhiteRook());
+        rank.addPiece(Piece.createWhiteKnight());
+        rank.addPiece(Piece.createWhiteBishop());
+        rank.addPiece(Piece.createWhiteQueen());
+        rank.addPiece(Piece.createWhiteKing());
+        rank.addPiece(Piece.createWhiteBishop());
+        rank.addPiece(Piece.createWhiteKnight());
+        rank.addPiece(Piece.createWhiteRook());
+        return rank;
     }
 
-    public void addOtherWhitePiece(Piece piece) {
-        if (!PieceValid.isOtherPiece(piece) || !piece.isWhite()) {
-            System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
-            return;
+    public static Rank initWhitePawns() {
+        Rank rank = new Rank();
+        for (int i = 0; i < Board.BOARD_CELLS; i++) {
+            rank.addPiece(Piece.createWhitePawn());
         }
-        pieces.add(piece);
+        return rank;
     }
 
-    public void addOtherBlackPiece(Piece piece) {
-        if (!PieceValid.isOtherPiece(piece) || !piece.isBlack()) {
-            System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
-            return;
+    public static Rank initBlackPawns() {
+        Rank rank = new Rank();
+        for (int i = 0; i < Board.BOARD_CELLS; i++) {
+            rank.addPiece(Piece.createBlackPawn());
         }
+        return rank;
+    }
+
+    public static Rank initBlankLine() {
+        Rank rank = new Rank();
+        for (int i = 0; i < Board.BOARD_CELLS; i++) {
+            rank.addPiece(Piece.createBlank());
+        }
+        return rank;
+    }
+
+    private void addPiece(Piece piece) {
         pieces.add(piece);
     }
 }

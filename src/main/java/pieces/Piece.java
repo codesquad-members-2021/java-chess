@@ -5,7 +5,7 @@ public class Piece {
     private final Type type;
 
     public enum Color {
-        WHITE, BLACK;
+        WHITE, BLACK, NO_COLOR;
     }
 
     public enum Type {
@@ -14,7 +14,8 @@ public class Piece {
         ROOK('r'),
         BISHOP('b'),
         QUEEN('q'),
-        KING('k');
+        KING('k'),
+        NO_PIECE('.');
 
         private final char representation;
 
@@ -54,6 +55,10 @@ public class Piece {
 
     public char getRepresentation() {
         return isWhite() ? type.getWhiteRepresentation() : type.getBlackRepresentation();
+    }
+
+    public static Piece createBlank() {
+        return new Piece(Color.NO_COLOR, Type.NO_PIECE);
     }
 
     public static Piece createWhitePawn() {

@@ -20,6 +20,12 @@ public class PawnTest {
         verifyPawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
     }
 
+    private void verifyPawn(final String color, final String representation){
+        Pawn pawn = new Pawn(color, representation);
+        assertThat(pawn.getColor()).isEqualTo(color);
+        assertThat(pawn.getRepresentation()).isEqualTo(representation);
+    }
+
     @Test
     @DisplayName("기본생성자로 폰 생성")
     public void createDefaultConstructor() {
@@ -28,9 +34,4 @@ public class PawnTest {
         assertThat(pawn.getRepresentation()).isEqualTo(Pawn.WHITE_REPRESENTATION);
     }
 
-    private void verifyPawn(final String color, final String representation){
-        Pawn pawn = new Pawn(color, representation);
-        assertThat(pawn.getColor()).isEqualTo(color);
-        assertThat(pawn.getRepresentation()).isEqualTo(representation);
-    }
 }

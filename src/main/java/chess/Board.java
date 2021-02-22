@@ -34,14 +34,6 @@ public class Board {
         return blackPawns.size();
     }
 
-    private String getPawnsResult(List<Pawn> pawns) {
-        StringBuilder sb = new StringBuilder();
-        for (Pawn aPawn : pawns) {
-            sb.append(aPawn.getRepresentation());
-        }
-        return sb.toString();
-    }
-
     public String getWhitePawnsResult() {
         return getPawnsResult(whitePawns);
     }
@@ -50,8 +42,12 @@ public class Board {
         return getPawnsResult(blackPawns);
     }
 
-    private String getBlankLine() {
-        return "........";
+    private String getPawnsResult(List<Pawn> pawns) {
+        StringBuilder sb = new StringBuilder();
+        for (Pawn aPawn : pawns) {
+            sb.append(aPawn.getRepresentation());
+        }
+        return sb.toString();
     }
 
     public Pawn findWhitePawn(int index) {
@@ -89,5 +85,9 @@ public class Board {
         sb.append('\n');
         sb.append(getBlankLine());
         System.out.println(sb.toString());
+    }
+
+    private String getBlankLine() {
+        return "........";
     }
 }

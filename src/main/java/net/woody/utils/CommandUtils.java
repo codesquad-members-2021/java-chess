@@ -1,8 +1,9 @@
 package net.woody.utils;
 
-public class CommandUtil {
+public class CommandUtils {
 
-    //TODO : private 생성자
+    private CommandUtils() {
+    }
 
     public static void printMenu() {
         System.out.println("< Command Menu >");

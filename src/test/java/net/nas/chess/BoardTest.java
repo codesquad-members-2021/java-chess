@@ -52,7 +52,7 @@ public class BoardTest {
     }
 
     private void verifyFind(ChessPiece chessPiece, int rankIdx, int fileIdx) {
-        assertThat(board.findPawn(rankIdx, fileIdx)).isEqualTo(chessPiece);
+        assertThat(board.findPiece(rankIdx, fileIdx)).isEqualTo(chessPiece);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class BoardTest {
     }
 
     private void testFindThrowException(int rankIdx, int fileIdx, Class<?> exceptionClass) {
-        assertThatThrownBy(() -> board.findPawn(rankIdx, fileIdx))
+        assertThatThrownBy(() -> board.findPiece(rankIdx, fileIdx))
                 .isInstanceOf(exceptionClass);
     }
 
@@ -106,17 +106,7 @@ public class BoardTest {
     @Test
     @DisplayName("기물과 색에 해당하는 기물의 개수를 반환할 수 있어야 합니다")
     void testGetNumberOfDesignatedPiece() {
-        String[] testcase = {
-                ".KR.....",
-                "P.PB....",
-                ".P..Q...",
-                "........",
-                ".....nq.",
-                ".....p..",
-                "......p.",
-                "....rk..",
-        };
-        board.initBoardByStringArray(testcase);
+        initTestCase();
         assertAll(
                 () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.PAWN, ColorOfChessPiece.BLACK)).isEqualTo(3),
                 () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.KING, ColorOfChessPiece.BLACK)).isEqualTo(1),
@@ -130,5 +120,36 @@ public class BoardTest {
                 () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.ROOK, ColorOfChessPiece.WHITE)).isEqualTo(1),
                 () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.KNIGHT, ColorOfChessPiece.WHITE)).isEqualTo(1)
         );
+    }
+
+    @Test
+    @DisplayName("체스좌표로 체스말을 획득할 수 있어야 합니다.")
+    void testGetPieceByCoordinates() {
+        initTestCase();
+        assertAll(
+                () -> testGetPieceByCoordinate("e1", NameOfChessPiece.ROOK, ColorOfChessPiece.WHITE),
+                () -> testGetPieceByCoordinate("f1", NameOfChessPiece.KING, ColorOfChessPiece.WHITE),
+                () -> testGetPieceByCoordinate("b6", NameOfChessPiece.PAWN, ColorOfChessPiece.BLACK),
+                () -> testGetPieceByCoordinate("c8", NameOfChessPiece.ROOK, ColorOfChessPiece.BLACK)
+        );
+    }
+
+    private void testGetPieceByCoordinate(String strCoordinate, NameOfChessPiece name, ColorOfChessPiece color) {
+        assertThat(board.findPiece(strCoordinate).getRepresentation())
+                .isEqualTo(color.getRepresentationByColor(name));
+    }
+
+    private void initTestCase() {
+        String[] testcase = {
+                ".KR.....",
+                "P.PB....",
+                ".P..Q...",
+                "........",
+                ".....nq.",
+                ".....p..",
+                "......p.",
+                "....rk..",
+        };
+        board.initBoardByStringArray(testcase);
     }
 }

@@ -27,6 +27,9 @@ public class Board {
     public static final int FILE_OF_BLACK_QUEEN = 4;
     public static final int FILE_OF_BLACK_KING = 3;
 
+    public static final char START_OF_FILE = 'a';
+    public static final char END_OF_FILE = 'h';
+
     private final ChessPiece[][] chessCells;
     private int numberOfPieces = 0;
 
@@ -42,6 +45,23 @@ public class Board {
     public void initialize() {
         initRanksOfPawns();
         initRanksOfKings();
+    }
+
+    private static ChessCoordinate parseStringCoordinate(String strCoordinate) {
+        if (strCoordinate.length() != 2) {
+            throw new InvalidParameterException("Invalid Coordinate! can not parse parameter");
+        }
+        char fileIndex = Character.toLowerCase(strCoordinate.charAt(0));
+        int rankIndex = Character.getNumericValue(strCoordinate.charAt(1));
+
+        if (fileIndex < START_OF_FILE || END_OF_FILE < fileIndex) {
+            throw new InvalidParameterException("Invalid File Index! fileIndex : " + fileIndex);
+        }
+        if (rankIndex < 1 || LENGTH_OF_BOARD < rankIndex) {
+            throw new InvalidParameterException("Invalid Rank Index! rankIndex : " + rankIndex);
+        }
+
+        return new ChessCoordinate(rankIndex - 1, fileIndex - START_OF_FILE);
     }
 
     private void initRanksOfPawns() {
@@ -100,16 +120,6 @@ public class Board {
         return getRepresentationOfRank(RANK_OF_BLACK_PAWNS);
     }
 
-    public ChessPiece findPawn(int rankIdx, int fileIdx) {
-        if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
-            throw new InvalidParameterException("index exceeded the bounds of the Board");
-        return chessCells[rankIdx][fileIdx];
-    }
-
-    private boolean isInvalidIdx(int idx) {
-        return 0 > idx || idx >= LENGTH_OF_BOARD;
-    }
-
     public void add(ChessPiece piece, int rankIdx, int fileIdx) {
         if (piece == null) {
             throw new InvalidParameterException("Null value cannot be added in Board");
@@ -123,8 +133,33 @@ public class Board {
         }
     }
 
+    public ChessPiece findPiece(int rankIdx, int fileIdx) {
+        if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
+            throw new InvalidParameterException("index exceeded the bounds of the Board");
+        return chessCells[rankIdx][fileIdx];
+    }
+
+    public ChessPiece findPiece(String strCoordinate) {
+        ChessCoordinate coordinate = parseStringCoordinate(strCoordinate);
+        return chessCells[coordinate.rankIndex][coordinate.fileIndex];
+    }
+
+    private boolean isInvalidIdx(int idx) {
+        return 0 > idx || idx >= LENGTH_OF_BOARD;
+    }
+
     public int size() {
         return numberOfPieces;
+    }
+
+    public void initBoardByStringArray(String[] stringArray) {
+        if (stringArray.length != LENGTH_OF_BOARD) {
+            throw new InvalidParameterException("The length of a string array should have to be same with a " +
+                    "length of a chess board. Length of stringArray : " + stringArray.length);
+        }
+        for (int i = 0; i < stringArray.length; i++) {
+            initRankByString(stringArray[i], stringArray.length - i - 1);
+        }
     }
 
     private void initRankByString(String strRank, int rankIndex) {
@@ -143,16 +178,6 @@ public class Board {
         }
     }
 
-    public void initBoardByStringArray(String[] stringArray) {
-        if (stringArray.length != LENGTH_OF_BOARD) {
-            throw new InvalidParameterException("The length of a string array should have to be same with a " +
-                    "length of a chess board. Length of stringArray : " + stringArray.length);
-        }
-        for (int i = 0; i < stringArray.length; i++) {
-            initRankByString(stringArray[i], stringArray.length - i - 1);
-        }
-    }
-
     public int getNumberOfDesignatedPiece(NameOfChessPiece name, ColorOfChessPiece color) {
         int numberOfDesignatedPiece = 0;
         for (int rankIndex = 0; rankIndex < LENGTH_OF_BOARD; rankIndex++) {
@@ -165,4 +190,5 @@ public class Board {
         }
         return numberOfDesignatedPiece;
     }
+
 }

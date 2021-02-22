@@ -9,7 +9,7 @@ class PieceTest {
 
     @Test
     @DisplayName("create Piece test")
-    public void create() {
+    void create() {
         verifyPawn(Piece.createWhitePawn(), Piece.createWhitePawn().getColor(), Piece.createWhitePawn().getRepresentation());
         verifyPawn(Piece.createBlackPawn(), Piece.createBlackPawn().getColor(), Piece.createBlackPawn().getRepresentation());
 
@@ -30,7 +30,7 @@ class PieceTest {
 
     }
 
-    public void verifyPawn(Piece piece, Piece.Color color, Piece.PieceRepresentation representation){
+    void verifyPawn(Piece piece, Piece.Color color, Piece.PieceRepresentation representation){
         assertThat(color).isEqualTo(piece.getColor());
         assertThat(representation).isEqualTo(piece.getRepresentation());
     }
@@ -38,7 +38,7 @@ class PieceTest {
 
     @Test
     @DisplayName("Distinguish color")
-    public void distinguishColor(){
+    void distinguishColor(){
         Piece whitePiece = Piece.createWhiteKnight();
         Piece blackPiece = Piece.createBlackKnight();
 
@@ -51,7 +51,7 @@ class PieceTest {
 
     }
 
-    public boolean isWhite(Piece piece){
+    boolean isWhite(Piece piece){
 
         if(piece.getColor() == Piece.Color.WHITE){
             return true;
@@ -59,7 +59,7 @@ class PieceTest {
         return false;
     }
 
-    public boolean isBlack(Piece piece){
+    boolean isBlack(Piece piece){
 
         if(piece.getColor() == Piece.Color.BLACK){
             return true;

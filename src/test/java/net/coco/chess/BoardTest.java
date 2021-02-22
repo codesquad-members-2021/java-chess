@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import static net.coco.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BoardTest {
 
@@ -20,7 +21,7 @@ public class BoardTest {
     @BeforeEach
     void makeBoard() {
         board = new Board();
-
+        board.initialize();
     }
 
     @Test
@@ -32,7 +33,6 @@ public class BoardTest {
 
     @Test
     void printChessBoard() {
-        board.initialize();
         String blank = appendNewLine("........");
         assertThat(
                 PrintChess.printBoard(board)
@@ -47,14 +47,35 @@ public class BoardTest {
 
     @Test
     @DisplayName("기물과 색에 해당하는 기물의 개수를 반환")
-    void getPiecesCount(){
-        board.initialize();
+    void getPiecesCount() {
         Assertions.assertAll(
-                ()->assertThat(board.getPieceCount(Piece.WHITE, PieceType.PAWN)).isEqualTo(8),
-                ()->assertThat(board.getPieceCount(Piece.WHITE, PieceType.KING)).isEqualTo(1),
-                ()->assertThat(board.getPieceCount(Piece.NO_COLOR, PieceType.NO_PIECE)).isEqualTo(32)
+                () -> assertThat(board.getPieceCount(Piece.WHITE, PieceType.PAWN)).isEqualTo(8),
+                () -> assertThat(board.getPieceCount(Piece.WHITE, PieceType.KING)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Piece.NO_COLOR, PieceType.NO_PIECE)).isEqualTo(32)
         );
 
+    }
+
+    @Test
+    @DisplayName("주어진 위치의 기물을 조회시 올바르지 않은 point 입력시")
+    void getPieceFromWrongPoint() {
+
+        assertThatThrownBy(
+                () -> board.getPieceFromPoint("f9")
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("올바른 point가 아닙니다.");
+
+    }
+
+    @Test
+    @DisplayName("주어진 위치의 기물을 조회")
+    void getPieceFromPoint() {
+        Piece findPiece = board.getPieceFromPoint("a8");
+        Piece makeBlackRook = Piece.createBlackRook();
+        Assertions.assertAll(
+                ()->assertThat(findPiece.getRepresentation()).isEqualTo(makeBlackRook.getRepresentation()),
+                ()->assertThat(findPiece.getColor()).isEqualTo(makeBlackRook.getColor())
+        );
     }
 
 

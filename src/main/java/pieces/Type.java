@@ -6,7 +6,8 @@ public enum Type {
     ROOK  ('r'),
     BISHOP('b'),
     QUEEN ('q'),
-    KING  ('k');
+    KING  ('k'),
+    NO_PIECE(' ');
 
     private final char representation;
 
@@ -23,5 +24,13 @@ public enum Type {
             representation = Character.toLowerCase(this.representation);
         }
         return representation;
+    }
+
+    public char getWhiteRepresentation() {
+        return ' ';
+    }
+
+    public char getBlackRepresentation() {
+        return ' ';
     }
 }

@@ -51,4 +51,23 @@ class PieceTest {
         softly.assertThat(whitePiece.isWhite()).isEqualTo(true);
     }
 
+    @Test
+    @DisplayName("색깔 별 체스말 Type 테스트")
+    void checkPieceType() {
+        softly.assertThat(Type.PAWN.getWhiteRepresentation()).as("White Pawn").isEqualTo('p');
+        softly.assertThat(Type.PAWN.getBlackRepresentation()).as("Black Pawn").isEqualTo('P');
+        softly.assertThat(Type.ROOK.getWhiteRepresentation()).as("White Rook").isEqualTo('r');
+        softly.assertThat(Type.ROOK.getBlackRepresentation()).as("Black Rook").isEqualTo('R');
+        softly.assertThat(Type.KNIGHT.getWhiteRepresentation()).as("White Knight").isEqualTo('n');
+        softly.assertThat(Type.KNIGHT.getBlackRepresentation()).as("Black Knight").isEqualTo('N');
+        softly.assertThat(Type.BISHOP.getWhiteRepresentation()).as("White Bishop").isEqualTo('b');
+        softly.assertThat(Type.BISHOP.getBlackRepresentation()).as("Black Bishop").isEqualTo('B');
+        softly.assertThat(Type.QUEEN.getWhiteRepresentation()).as("White Queen").isEqualTo('q');
+        softly.assertThat(Type.QUEEN.getBlackRepresentation()).as("Black Queen").isEqualTo('Q');
+        softly.assertThat(Type.KING.getWhiteRepresentation()).as("White King").isEqualTo('k');
+        softly.assertThat(Type.KING.getBlackRepresentation()).as("Black King").isEqualTo('K');
+        softly.assertThat(Type.NO_PIECE.getWhiteRepresentation()).as("No Piece (White)").isEqualTo('.');
+        softly.assertThat(Type.NO_PIECE.getBlackRepresentation()).as("No Piece (Black)").isEqualTo('.');
+    }
+
 }

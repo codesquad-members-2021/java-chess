@@ -1,24 +1,24 @@
 package net.tree.pieces;
 
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PawnTest {
 
-
-    public void create_기본생성자() throws Exception {
+    @DisplayName("기본생성자로 생성한 pawn")
+    @Test
+    public void create_기본생성자() {
         Pawn pawn = new Pawn();
-        assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
-        assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getRepresentation());
+        Assertions.assertAll(
+                () -> assertEquals(Pawn.WHITE_COLOR, pawn.getColor()),
+                () -> assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getRepresentation())
+        );
     }
 
-    @DisplayName("")
+    @DisplayName("color, representation 매개변수로 받아서 생성한 pawn")
     @Test
     public void create() {
         verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
@@ -28,9 +28,12 @@ public class PawnTest {
 
     void verifyPawn(final String color, final  char representation) {
         Pawn pawn = new Pawn(color, representation);
-        assertEquals(color, pawn.getColor());
-        assertEquals(representation, pawn.getRepresentation());
-        assertThat(color ,equalTo(pawn.getColor()));
+
+        Assertions.assertAll(
+            () -> assertEquals(color, pawn.getColor()),
+            () -> assertEquals(representation, pawn.getRepresentation())
+        );
+
     }
 
 }

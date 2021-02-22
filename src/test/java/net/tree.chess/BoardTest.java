@@ -1,11 +1,11 @@
 package net.tree.chess;
 
 import net.tree.pieces.Pawn;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class BoardTest {
@@ -33,14 +33,15 @@ public class BoardTest {
 
     @DisplayName("보드 초기화 및 그리기")
     @Test
-    public void initializeBoardAndPrint() throws Exception {
+    public void initializeBoardAndPrint() {
         Board board = new Board();
         board.initialize();
         board.print();
     }
 
+    @DisplayName("보드 초기화하기")
     @Test
-    public void initialize() throws Exception {
+    public void initialize() {
         Board board = new Board();
         board.initialize();
         assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));

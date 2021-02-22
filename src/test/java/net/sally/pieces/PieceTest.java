@@ -37,9 +37,9 @@ public class PieceTest {
         Piece blackPawn = Piece.createBlackPawn();
         Piece whitePawn = Piece.createWhitePawn();
 
-        assertThat(blackPawn.isBlack()).isEqualTo(blackPawn.getColor() == "black");
-        assertThat(whitePawn.isWhite()).isEqualTo(whitePawn.getColor() == "white");
-        assertThat(blackPawn.isWhite()).isEqualTo(blackPawn.getColor() == "white");
-        assertThat(whitePawn.isBlack()).isEqualTo(whitePawn.getColor() == "black");
+        assertThat(blackPawn.isBlack()).isEqualTo(blackPawn.getColor().equals("black"));
+        assertThat(whitePawn.isWhite()).isEqualTo(whitePawn.getColor().equals("white"));
+        assertThat(blackPawn.isWhite()).isEqualTo(blackPawn.getColor().equals("white"));
+        assertThat(whitePawn.isBlack()).isEqualTo(whitePawn.getColor().equals("black"));
     }
 }

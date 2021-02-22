@@ -60,4 +60,11 @@ public class Board {
                 .collect(Collectors.joining());
     }
 
+    public void move(String point,Piece piece) {
+        int row = point.charAt(0) - 'a';
+        int column = Character.getNumericValue(point.charAt(1)) - 1;
+        PieceValid.piecePointValid(row,column);
+
+        ranks.get(column).movePieceToPoint(piece,row);
+    }
 }

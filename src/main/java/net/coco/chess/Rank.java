@@ -87,4 +87,8 @@ public class Rank {
     public Piece findPieceFromPoint(int row) {
         return pieces.get(row);
     }
+
+    public void movePieceToPoint(Piece piece,int row){
+        pieces.set(row,piece);
+    }
 }

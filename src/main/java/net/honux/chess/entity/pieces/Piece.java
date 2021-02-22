@@ -5,14 +5,16 @@ import net.honux.chess.attribute.Type;
 
 import java.util.Objects;
 
-public class Piece {
+public class Piece implements Comparable<Piece> {
 
     private final Color color;
     private final char representation;
+    private final double point;
 
-    private Piece(Color color, char representation) {
+    private Piece(Color color, char representation, double point) {
         this.color = color;
         this.representation = representation;
+        this.point = point;
     }
 
     public static Piece createWhitePawn() {
@@ -64,7 +66,7 @@ public class Piece {
     }
 
     public static Piece createBlank() {
-        return new Piece(Color.NOCOLOR, Type.NO_PIECE.getRepresentation(Color.NOCOLOR));
+        return new Piece(Color.NOCOLOR, Type.NO_PIECE.getRepresentation(Color.NOCOLOR), Type.NO_PIECE.getPoint());
     }
 
     public Color getColor() {
@@ -84,11 +86,11 @@ public class Piece {
     }
 
     private static Piece createWhite(Type type) {
-        return new Piece(Color.WHITE, type.getRepresentation(Color.WHITE));
+        return new Piece(Color.WHITE, type.getRepresentation(Color.WHITE), type.getPoint());
     }
 
     private static Piece createBlack(Type type) {
-        return new Piece(Color.BLACK, type.getRepresentation(Color.BLACK));
+        return new Piece(Color.BLACK, type.getRepresentation(Color.BLACK), type.getPoint());
     }
 
     @Override
@@ -107,5 +109,16 @@ public class Piece {
     @Override
     public String toString() {
         return String.valueOf(representation);
+    }
+
+    @Override
+    public int compareTo(Piece o) {
+        if(this.point > o.point){
+            return 1;
+        }
+        if(this.point == o.point) {
+            return 0;
+        }
+        return -1;
     }
 }

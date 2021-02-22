@@ -42,6 +42,11 @@ public class Rank {
         }
         getAddErrorMessage();
     }
+
+    public void move(int position, Piece piece) {
+        pieces.set(position, piece);
+    }
+
     private void getAddErrorMessage(){
         System.out.println("알 수 없는 color의 piece입니다.");
         System.out.println("add에 실패하였습니다.");

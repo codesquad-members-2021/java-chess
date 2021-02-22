@@ -20,8 +20,6 @@ class BoardTest {
     @Test
     @DisplayName("모든 기물이 생성됨을 확인한다.")
     public void create() {
-        board.initialize();
-
         assertEquals(32, board.pieceCount());
 
         StringBuilder sb = new StringBuilder();
@@ -43,13 +41,6 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("board 사이즈가 0일 때의 예외를 발생시킨다.")
-    public void testZeroSizeOfBoard() {
-        assertThrows(IllegalArgumentException.class,
-                () -> board.findPawn(0, Color.WHITE));
-    }
-
-    @Test
     @DisplayName("index 외에 값을 입력이 예외를 발생시킨다.")
     public void testOutOfBoardSize() {
         Piece white = Piece.createWhitePawn();
@@ -60,14 +51,15 @@ class BoardTest {
 
         assertAll(
                 () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(-1, Color.WHITE)),
-                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(3, Color.BLACK))
+                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(17, Color.WHITE)),
+                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(-1, Color.BLACK)),
+                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(17, Color.BLACK))
         );
     }
 
     @Test
     @DisplayName("board의 상태를 확인한다.")
     public void getBoardStatusTest() {
-        board.initialize();
         System.out.println(board.showBoard());
     }
 }

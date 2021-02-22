@@ -55,6 +55,10 @@ public class Piece {
             this.representation = representation;
         }
 
+        public char getRepresentation() {
+            return representation;
+        }
+
         public char getWhiteRepresentation() {
             return representation;
         }

@@ -1,102 +1,106 @@
 package net.honux.chess.core;
 
-import net.honux.chess.attribute.Color;
-import net.honux.chess.entity.pieces.Pawn;
+import net.honux.chess.entity.pieces.Piece;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
+
+import static net.honux.chess.entity.pieces.Piece.*;
+import static net.honux.chess.util.StringUtils.appendNewLine;
+import static net.honux.chess.util.StringUtils.convertString;
 
 public class Board {
 
-    private static final int BOARD_SIZE = 8;
-    private static final String BLANK = "********";
-    private static final int initialSpaceInterval = 4;
-    private List<Pawn> whitePawnList;
-    private List<Pawn> blackPawnList;
+    public static final int BOARD_SIZE = 8;
+    private Pieces whitePieces;
+    private Pieces whitePawns;
+    private Pieces blackPieces;
+    private Pieces blackPawns;
 
     public void initialize() {
-        whitePawnList = new ArrayList<>();
-        blackPawnList = new ArrayList<>();
-        addPawnToBoardSize();
+        blackPieces = Pieces.createBlackPiecesExceptPawns();
+        blackPawns = Pieces.createBlackPawns();
+        whitePawns = Pieces.createWhitePawns();
+        whitePieces = Pieces.createWhitePiecesExceptPawns();
     }
 
-    public void add(Pawn pawn) {
-        getListByColor(pawn).add(pawn);
+    private Pieces getPiecesByColor(Piece piece) {
+        if (piece.isBlack() && piece.getRepresentation() == BLACK_PAWN_REPRESENTATION) {
+            return blackPawns;
+        }
+        if (piece.isWhite() && piece.getRepresentation() == WHITE_PAWN_REPRESENTATION) {
+            return whitePawns;
+        }
+        return piece.isBlack() ? blackPieces : whitePieces;
     }
 
     public int whitePawnSize() {
-        return whitePawnList.size();
+        return whitePieces.size() + whitePawns.size();
     }
 
     public int blackPawnSize() {
-        return blackPawnList.size();
+        return blackPieces.size() + blackPawns.size();
     }
 
-    public Optional<Pawn> findWhitePawn(int index) {
-        Optional<Pawn> pawn = Optional.empty();
+    public Optional<Piece> findWhitePawn(int index) {
+        Optional<Piece> pawn = Optional.empty();
         try {
-            pawn = Optional.ofNullable(whitePawnList.get(index));
+            pawn = Optional.ofNullable(whitePawns.get(index));
         } catch (IndexOutOfBoundsException e) {
             return Optional.empty();
         }
         return pawn;
     }
 
-    public Optional<Pawn> findBlackPawn(int index) {
-        Optional<Pawn> pawn = Optional.empty();
+    public Optional<Piece> findWhitePiece(int index) {
+        Optional<Piece> pawn = Optional.empty();
         try {
-            pawn = Optional.ofNullable(blackPawnList.get(index));
+            pawn = Optional.ofNullable(whitePieces.get(index));
         } catch (IndexOutOfBoundsException e) {
             return Optional.empty();
         }
         return pawn;
     }
 
-    public String getWhitePawnsResult() {
-        StringBuilder sb = new StringBuilder();
-        for (Pawn pawn : whitePawnList) {
-            sb.append(pawn.getRepresentation());
+    public Optional<Piece> findBlackPawn(int index) {
+        Optional<Piece> pawn = Optional.empty();
+        try {
+            pawn = Optional.ofNullable(blackPawns.get(index));
+        } catch (IndexOutOfBoundsException e) {
+            return Optional.empty();
         }
-        return sb.toString();
+        return pawn;
     }
 
-    public String getBlackPawnsResult() {
-        StringBuilder sb = new StringBuilder();
-        for (Pawn pawn : blackPawnList) {
-            sb.append(pawn.getRepresentation());
+    public Optional<Piece> findBlackPiece(int index) {
+        Optional<Piece> pawn = Optional.empty();
+        try {
+            pawn = Optional.ofNullable(blackPieces.get(index));
+        } catch (IndexOutOfBoundsException e) {
+            return Optional.empty();
         }
-        return sb.toString();
+        return pawn;
     }
 
     public String getBoardStatusToString() {
+        final String BLANK = "********";
+        final int initialSpaceInterval = 4;
         StringBuilder sb = new StringBuilder();
-        sb.append(BLANK).append("\n");
-        sb.append(getBlackPawnsResult()).append("\n");
+        appendNewLine(sb, getStringPiecesResult(blackPieces));
+        appendNewLine(sb, getStringPiecesResult(blackPawns));
         for (int i = 0; i < initialSpaceInterval; i++) {
-            sb.append(BLANK).append("\n");
+            appendNewLine(sb, BLANK);
         }
-        sb.append(getWhitePawnsResult()).append("\n");
-        sb.append(BLANK);
-        return sb.toString();
+        appendNewLine(sb, getStringPiecesResult(whitePawns));
+        appendNewLine(sb, getStringPiecesResult(whitePieces));
+        return convertString(sb);
     }
 
     public void print() {
         System.out.println(this.getBoardStatusToString());
     }
 
-    private void addPawnToBoardSize() {
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            whitePawnList.add(new Pawn(Color.WHITE));
-            blackPawnList.add(new Pawn(Color.BLACK));
-        }
-    }
-
-    private List<Pawn> getListByColor(Pawn pawn) {
-        if (pawn.getColor() == Color.BLACK) {
-            return blackPawnList;
-        }
-        return whitePawnList;
+    private String getStringPiecesResult(Pieces pieces) {
+        return pieces.getString();
     }
 
 }

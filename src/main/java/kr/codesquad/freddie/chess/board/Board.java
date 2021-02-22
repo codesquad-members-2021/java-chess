@@ -28,18 +28,49 @@ public class Board {
         }
     }
 
+    public Board initialize() {
+        initializePieceBy(Color.BLACK);
+        initializeEmptyPiece();
+        initializePieceBy(Color.WHITE);
+        return this;
+    }
+
+    private void initializePieceBy(Color color) {
+        int royalIndex = convertRankIndexToListIndex(color.royalInitializationRank());
+        int pawnIndex = convertRankIndexToListIndex(color.pawnInitializationRank());
+
+        files.get(royalIndex).fillWithRoyal(color);
+        files.get(pawnIndex).fillWithPawn(color);
+    }
+
+    private void initializeEmptyPiece() {
+        files.get(convertRankIndexToListIndex(3)).fillWithBlank();
+        files.get(convertRankIndexToListIndex(4)).fillWithBlank();
+        files.get(convertRankIndexToListIndex(5)).fillWithBlank();
+        files.get(convertRankIndexToListIndex(6)).fillWithBlank();
+    }
+
+    public Board initializeWithSort() {
+        initialize();
+        blackAndWhitePieces.put(Color.BLACK, getPiecesBy(Color.BLACK));
+        blackAndWhitePieces.put(Color.WHITE, getPiecesBy(Color.WHITE));
+        return this;
+    }
+
+    private List<Piece> getPiecesBy(Color color) {
+        return files.stream()
+                .flatMap(File::getPieces)
+                .filter(file -> file.getColor() == color)
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
     public void add(Piece piece) {
         files.stream()
                 .filter(File::isAddable)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("더 이상 추가할 수 없습니다. 현재 크기 : " + pieceCount()))
                 .add(piece);
-    }
-
-    public int pieceCount() {
-        return files.stream()
-                .mapToInt(File::size)
-                .sum();
     }
 
     /**
@@ -75,55 +106,14 @@ public class Board {
         return files.get(convertRankIndexToListIndex(rankIndex)).set(fileIndex, piece);
     }
 
-    public int getNumberOf(Color color, Kind kind) {
+    public int pieceCount() {
         return files.stream()
-                .mapToInt(file -> file.getNumberOf(color, kind))
+                .mapToInt(File::size)
                 .sum();
-    }
-
-    public Board initializeWithSort() {
-        initialize();
-        blackAndWhitePieces.put(Color.BLACK, getPiecesBy(Color.BLACK));
-        blackAndWhitePieces.put(Color.WHITE, getPiecesBy(Color.WHITE));
-        return this;
     }
 
     public Map<Color, List<Piece>> getBlackAndWhitePieces() {
         return Collections.unmodifiableMap(blackAndWhitePieces);
-    }
-
-    private List<Piece> getPiecesBy(Color color) {
-        return files.stream()
-                .flatMap(File::getPieces)
-                .filter(file -> file.getColor() == color)
-                .sorted()
-                .collect(Collectors.toList());
-    }
-
-    public Board initialize() {
-        initializePieceBy(Color.BLACK);
-        initializeEmptyPiece();
-        initializePieceBy(Color.WHITE);
-        return this;
-    }
-
-    private void initializePieceBy(Color color) {
-        int royalIndex = convertRankIndexToListIndex(color.royalInitializationRank());
-        int pawnIndex = convertRankIndexToListIndex(color.pawnInitializationRank());
-
-        files.get(royalIndex).fillWithRoyal(color);
-        files.get(pawnIndex).fillWithPawn(color);
-    }
-
-    private void initializeEmptyPiece() {
-        files.get(convertRankIndexToListIndex(3)).fillWithBlank();
-        files.get(convertRankIndexToListIndex(4)).fillWithBlank();
-        files.get(convertRankIndexToListIndex(5)).fillWithBlank();
-        files.get(convertRankIndexToListIndex(6)).fillWithBlank();
-    }
-
-    private int convertRankIndexToListIndex(int rankIndex) {
-        return RANK_SIZE - rankIndex;
     }
 
     public String getRepresentation() {
@@ -134,6 +124,16 @@ public class Board {
 
     public double getScoreOf(Color color) {
         return chessCalculator.calculate(files, color);
+    }
+
+    public int getNumberOf(Color color, Kind kind) {
+        return files.stream()
+                .mapToInt(file -> file.getNumberOf(color, kind))
+                .sum();
+    }
+
+    private int convertRankIndexToListIndex(int rankIndex) {
+        return RANK_SIZE - rankIndex;
     }
 
     @Override

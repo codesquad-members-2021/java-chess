@@ -3,17 +3,14 @@ package mj.chess;
 import java.util.Scanner;
 
 public class Console {
-    private Board board;
-
     public static void main(String[] args) {
         Console console = new Console();
         console.runConsole();
     }
 
     private void runConsole() {
-
+        Board board = new Board();
         String command;
-        board = new Board();
 
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
@@ -21,7 +18,7 @@ public class Console {
                 command = scanner.nextLine();
 
                 if (command.equalsIgnoreCase("START")) {
-                    startGame();
+                    startGame(board);
                 } else if (command.equalsIgnoreCase("END")) {
                     endGame();
                     break;
@@ -30,16 +27,16 @@ public class Console {
         }
     }
 
-    private void startGame() {
+    private void startGame(Board board) {
         board.initialize();
-        printLocationOfPieces();
+        printLocationOfPieces(board);
     }
 
     private void endGame() {
         System.out.print("Game Over");
     }
 
-    private void printLocationOfPieces() {
+    private void printLocationOfPieces(Board board) {
         System.out.println(board.getLocationOfPieces());
     }
 }

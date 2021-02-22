@@ -75,4 +75,20 @@ public class Board {
         files.add(Rank.initializeBlackPawns());
         files.add(Rank.initializeBlackPieces());
     }
+
+    public String getChessBoard() {
+        StringBuilder boardRank = new StringBuilder();
+
+        String fileIndex = "a b c d e f g h";
+
+        for(int i = BOARD_SIZE-1; i >= 0; i--){
+            boardRank.append(getRank(files.get(i)));
+            boardRank.append(" ").append(i+1);
+            boardRank.append(StringUtils.getNewLine());
+        }
+
+        boardRank.append(StringUtils.getNewLine());
+        boardRank.append(StringUtils.addNewLine(fileIndex));
+        return boardRank.toString();
+    }
 }

@@ -2,6 +2,8 @@ package net.coco.pieces;
 
 import net.coco.valid.PieceValid;
 
+import java.util.Arrays;
+
 public enum PieceType {
     PAWN('p'),
     KNIGHT('n'),
@@ -25,7 +27,7 @@ public enum PieceType {
         return Character.toUpperCase(representation);
     }
 
-    public char getRepresentation(String color){
+    public char getRepresentation(String color) {
         PieceValid.checkColorType(color);
         //색깔 체크 필요
         if (color.equals(Piece.WHITE))

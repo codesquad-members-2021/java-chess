@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import pieces.Piece;
 import org.junit.jupiter.api.*;
-
+import static org.assertj.core.api.Assertions.assertThat;
 class PieceTest {
 
     @Test
@@ -31,8 +31,8 @@ class PieceTest {
     }
 
     public void verifyPawn(Piece piece, Piece.Color color, Piece.PieceRepresentation representation){
-        assertEquals(color, piece.getColor());
-        assertEquals(representation, piece.getRepresentation());
+        assertThat(color).isEqualTo(piece.getColor());
+        assertThat(representation).isEqualTo(piece.getRepresentation());
     }
 
 
@@ -42,11 +42,12 @@ class PieceTest {
         Piece whitePiece = Piece.createWhiteKnight();
         Piece blackPiece = Piece.createBlackKnight();
 
-        assertEquals(true, isWhite(whitePiece));
-        assertEquals(true, isBlack(blackPiece));
+        assertThat(isWhite(whitePiece)).isEqualTo(true);
+        assertThat(isBlack(blackPiece)).isEqualTo(true)
 
-        assertEquals(false, isWhite(blackPiece));
-        assertEquals(false, isBlack(whitePiece));
+        assertThat(false).isEqualTo(isWhite(blackPiece));
+        assertThat(false).isEqualTo(isBlack(whitePiece));
+
 
     }
 
@@ -55,9 +56,7 @@ class PieceTest {
         if(piece.getColor() == Piece.Color.WHITE){
             return true;
         }
-
         return false;
-
     }
 
     public boolean isBlack(Piece piece){
@@ -65,7 +64,6 @@ class PieceTest {
         if(piece.getColor() == Piece.Color.BLACK){
             return true;
         }
-
         return false;
     }
 

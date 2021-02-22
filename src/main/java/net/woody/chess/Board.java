@@ -21,14 +21,9 @@ public class Board {
         }
     }
 
-    public void add(Piece piece) {
-        int rank = getPawnRank(piece);
+    public void add(Piece piece, int rank) {
         getRank(rank).add(piece);
         size++;
-    }
-
-    private int getPawnRank(Piece newPiece) {
-        return (newPiece.getColor() == Color.WHITE) ? Piece.WHITE_PAWN_RANK : Piece.BLACK_PAWN_RANK;
     }
 
     public Rank getRank(int rank) {
@@ -38,7 +33,7 @@ public class Board {
         return board.get(rank);
     }
 
-    public Piece findPawn(int rank, int file) {
+    public Piece findPiece(int rank, int file) {
         return getRank(rank).find(file);
     }
 
@@ -69,7 +64,7 @@ public class Board {
         whitePieces.add(Piece.createWhiteBishop());
         whitePieces.add(Piece.createWhiteKnight());
         whitePieces.add(Piece.createWhiteRook());
-
+        size += 16;
     }
 
     public void initPawns() {

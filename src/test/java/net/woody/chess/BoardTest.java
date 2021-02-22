@@ -1,7 +1,6 @@
 package net.woody.chess;
 
 import net.woody.pieces.Piece;
-import net.woody.pieces.Color;
 import org.junit.jupiter.api.*;
 
 import static net.woody.utils.StringUtils.appendNewLine;
@@ -14,22 +13,26 @@ class BoardTest {
     @BeforeEach
     void setup() {
         this.board = new Board();
+        board.initialize();
+    }
+
+    @Test
+    @DisplayName("보드를 초기화한 후, 체스말이 총 32개여야 한다.")
+    void checkTheNumberOfPieces() {
+        assertThat(board.size()).isEqualTo(32);
     }
 
     @Test
     @DisplayName("보드에 있는 폰을 정상적으로 찾을 수 있어야 한다.")
     void findPawnOnTheBoard() {
-        Piece firstPiece = Piece.createWhitePawn();
-        addThePawnProperly(firstPiece, 0);
-
-        Piece secondPiece = Piece.createWhitePawn();
-        addThePawnProperly(secondPiece, 1);
+        addThePieceProperly(Piece.createWhitePawn(), 2, 0);
+        addThePieceProperly(Piece.createWhiteKing(), 2, 1);
     }
 
     @Test
-    @DisplayName("보드에 폰이 존재하지 않을 때, 폰을 찾으려고 시도하면 에러가 발생해야 한다.")
+    @DisplayName("체스말이 존재하지 않는 위치에서, 폰을 찾으려고 시도하면 에러가 발생해야 한다.")
     void findPawnNotOnTheBoard() {
-        assertThatThrownBy(() -> board.findPawn(0, 0))
+        assertThatThrownBy(() -> board.findPiece(4, 0))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class)
                 .hasMessageContaining("0 is out of range!");
     }
@@ -37,25 +40,22 @@ class BoardTest {
     @Test
     @DisplayName("음수 인덱스로 폰을 찾으려고 할 때, 에러가 발생해야 한다.")
     void findPawnWithNegativeIndex() {
-        assertThatThrownBy(() -> board.findPawn(-1, 0))
+        assertThatThrownBy(() -> board.findPiece(-1, 0))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class)
                 .hasMessageContaining("-1 is out of range!");
     }
 
+
     @Test
-    @DisplayName("보드를 초기화할 때, 폰들이 올바르게 생성되어야 한다.")
-        // TODO : 메소드 명 상세하게
-    void initialize() {
-        board.initialize();
+    @DisplayName("보드를 초기화한 후, 폰들이 올바르게 생성되어야 한다.")
+    void initializeBoard() {
         assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult());
         assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult());
     }
 
     @Test
     @DisplayName("보드를 초기화 한 뒤 출력된 결과가 예상된 결과와 같아야 한다.")
-        // TODO : 메소드 명 상세하게
-    void print() {
-        board.initialize();
+    void printBoard() {
         String expectedResult =
                 appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
@@ -70,15 +70,11 @@ class BoardTest {
         assertThat(expectedResult).isEqualTo(actualResult);
     }
 
-    private void addThePawnProperly(Piece newPiece, int newPawnIdx) {
-        int rank = getPawnRank(newPiece);
-        int sizeBeforeAddThePawn = board.size();
-        board.add(newPiece);
-        assertThat(sizeBeforeAddThePawn + 1).isEqualTo(board.size());
-        assertThat(newPiece).isEqualTo(board.findPawn(rank, newPawnIdx));
+    private void addThePieceProperly(Piece newPiece, int rank, int file) {
+        int sizeBeforeAddThePiece = board.size();
+        board.add(newPiece, rank);
+        assertThat(sizeBeforeAddThePiece + 1).isEqualTo(board.size());
+        assertThat(newPiece).isEqualTo(board.findPiece(rank, file));
     }
 
-    private int getPawnRank(Piece newPiece) {
-        return (newPiece.getColor() == Color.WHITE) ? Piece.WHITE_PAWN_RANK : Piece.BLACK_PAWN_RANK;
-    }
 }

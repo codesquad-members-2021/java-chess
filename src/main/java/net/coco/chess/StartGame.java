@@ -1,7 +1,6 @@
 package net.coco.chess;
 
-import net.coco.Printer.PrintChess;
-import net.coco.pieces.PawnEnum;
+import net.coco.printer.PrintChess;
 
 import java.util.Scanner;
 

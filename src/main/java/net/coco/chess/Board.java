@@ -1,59 +1,128 @@
 package net.coco.chess;
 
-import net.coco.pieces.Pawn;
-import net.coco.pieces.PawnEnum;
+import net.coco.pieces.Piece;
+import net.coco.valid.PieceValid;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Board {
-    private List<Pawn> whitePawns = new ArrayList<>();
-    private List<Pawn> blackPawns = new ArrayList<>();
+    private OtherWhitePieces otherWhitePieces = new OtherWhitePieces();
+    private List<Piece> otherBlackPieces = new ArrayList<>();
+    private List<Piece> whitePawns = new ArrayList<>();
+    private List<Piece> blackPawns = new ArrayList<>();
     private static final int BOARD_CELLS = 8;
 
 
-    public void addPawn(Pawn pawn) {
-        if (pawn.getColor() == PawnEnum.WHITE)
-            whitePawns.add(pawn);
-        else
-            blackPawns.add(pawn);
-
+    public void addWhitePawn(Piece piece) {
+        if (!PieceValid.isPawn(piece) || !piece.isWhite()) {
+            System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
+            return;
+        }
+        whitePawns.add(piece);
     }
 
-    public int getPawnsSize() {
-        return whitePawns.size() + blackPawns.size();
+    public void addBlackPawn(Piece piece) {
+        if (!PieceValid.isPawn(piece) || !piece.isBlack()) {
+            System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
+            return;
+        }
+        blackPawns.add(piece);
     }
 
-
-    public Pawn findWhitePawn(int index) {
-        return whitePawns.get(index);
+    public void addOtherWhitePiece(Piece piece) {
+        otherWhitePieces.add(piece);
     }
 
-    public Pawn findBlackPawn(int index) {
-        return blackPawns.get(index);
+    public void addOtherBlackPiece(Piece piece) {
+        if (!PieceValid.isOtherPiece(piece) || !piece.isBlack()) {
+            System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
+            return;
+        }
+        otherBlackPieces.add(piece);
+    }
+
+    public int getPiecesSize() {
+        return whitePawns.size() + blackPawns.size()
+                + otherWhitePieces.size() + otherBlackPieces.size();
     }
 
     public void initialize() {
+        clearPieces();
+        for (int i = 0; i < BOARD_CELLS; i++) {
+            addWhitePawn(Piece.createWhitePawn());
+            addBlackPawn(Piece.createBlackPawn());
+        }
+        addWhiteOtherPieceToPieces();
+        addBlackOtherPieceToPieces();
+    }
+
+    private void clearPieces() {
         whitePawns.clear();
         blackPawns.clear();
-        for (int i = 0; i < BOARD_CELLS; i++) {
-            addPawn(new Pawn());
-            addPawn(new Pawn(PawnEnum.BLACK));
-        }
+        otherWhitePieces.clear();
+        otherBlackPieces.clear();
     }
 
-    public String getPawnsResult(PawnEnum pawnEnum) {
-        if (pawnEnum == PawnEnum.WHITE)
-            return getPawnsToString(whitePawns);
-        else
-            return getPawnsToString(blackPawns);
+    private void addBlackOtherPieceToPieces() {
+        addOtherBlackPiece(Piece.createBlackRook());
+        addOtherBlackPiece(Piece.createBlackKnight());
+        addOtherBlackPiece(Piece.createBlackBishop());
+        addOtherBlackPiece(Piece.createBlackQueen());
+        addOtherBlackPiece(Piece.createBlackKing());
+        addOtherBlackPiece(Piece.createBlackBishop());
+        addOtherBlackPiece(Piece.createBlackKnight());
+        addOtherBlackPiece(Piece.createBlackRook());
     }
 
-    private String getPawnsToString(List<Pawn> Pawns) {
-        return Pawns.stream()
-                .map(pawn -> String.valueOf(pawn.getRepresentation()))
+    private void addWhiteOtherPieceToPieces() {
+        addOtherWhitePiece(Piece.createWhiteRook());
+        addOtherWhitePiece(Piece.createWhiteKnight());
+        addOtherWhitePiece(Piece.createWhiteBishop());
+        addOtherWhitePiece(Piece.createWhiteQueen());
+        addOtherWhitePiece(Piece.createWhiteKing());
+        addOtherWhitePiece(Piece.createWhiteBishop());
+        addOtherWhitePiece(Piece.createWhiteKnight());
+        addOtherWhitePiece(Piece.createWhiteRook());
+    }
+
+    public String getWhitePawnsResult(String color) {
+        if (color.equals(Piece.WHITE))
+            return getPiecesToString(whitePawns);
+        throw new IllegalArgumentException("매개변수를 확인하세요.");
+    }
+
+    public String getBlackPawnsResult(String color) {
+        if (color.equals(Piece.BLACK))
+            return getPiecesToString(blackPawns);
+        throw new IllegalArgumentException("매개변수를 확인하세요.");
+    }
+
+    public String getOtherWhitePiecesResult(String color) {
+        if (color.equals(Piece.WHITE))
+            return getPiecesToString(otherWhitePieces.getList());
+        throw new IllegalArgumentException("매개변수를 확인하세요.");
+    }
+
+    public String getOtherBlackPiecesResult(String color) {
+        if (color.equals(Piece.BLACK))
+            return getPiecesToString(otherBlackPieces);
+        throw new IllegalArgumentException("매개변수를 확인하세요.");
+    }
+
+    private String getPiecesToString(List<Piece> pieces) {
+        return pieces.stream()
+                .map(piece -> String.valueOf(piece.getRepresentation()))
                 .collect(Collectors.joining());
+    }
+
+    public Piece findWhitePawn(int index) {
+        return whitePawns.get(index);
+    }
+
+    public Piece findBlackPawn(int index) {
+        return blackPawns.get(index);
     }
 
 }

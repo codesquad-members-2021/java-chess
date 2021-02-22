@@ -75,28 +75,28 @@ class BoardTest extends TestBaseOfBoardPackage {
         int rank = color == Color.BLACK ? 8 : 1;
         PieceFactory pieceFactory = new PieceFactory(color);
 
-        assertThat(board.findPiece('a', rank)).isEqualTo(pieceFactory.createRook());
-        assertThat(board.findPiece('b', rank)).isEqualTo(pieceFactory.createKnight());
-        assertThat(board.findPiece('c', rank)).isEqualTo(pieceFactory.createBishop());
-        assertThat(board.findPiece('d', rank)).isEqualTo(pieceFactory.createQueen());
-        assertThat(board.findPiece('e', rank)).isEqualTo(pieceFactory.createKing());
-        assertThat(board.findPiece('f', rank)).isEqualTo(pieceFactory.createBishop());
-        assertThat(board.findPiece('g', rank)).isEqualTo(pieceFactory.createKnight());
-        assertThat(board.findPiece('h', rank)).isEqualTo(pieceFactory.createRook());
+        assertThat(board.findPiece("a" + rank)).isEqualTo(pieceFactory.createRook());
+        assertThat(board.findPiece("b" + rank)).isEqualTo(pieceFactory.createKnight());
+        assertThat(board.findPiece("c" + rank)).isEqualTo(pieceFactory.createBishop());
+        assertThat(board.findPiece("d" + rank)).isEqualTo(pieceFactory.createQueen());
+        assertThat(board.findPiece("e" + rank)).isEqualTo(pieceFactory.createKing());
+        assertThat(board.findPiece("f" + rank)).isEqualTo(pieceFactory.createBishop());
+        assertThat(board.findPiece("g" + rank)).isEqualTo(pieceFactory.createKnight());
+        assertThat(board.findPiece("h" + rank)).isEqualTo(pieceFactory.createRook());
     }
 
     private void checkInitializePawn(Color color) {
         int rank = color == Color.BLACK ? 7 : 2;
         Piece pawn = new Piece(color, Kind.PAWN);
 
-        assertThat(board.findPiece('a', rank)).isEqualTo(pawn);
-        assertThat(board.findPiece('b', rank)).isEqualTo(pawn);
-        assertThat(board.findPiece('c', rank)).isEqualTo(pawn);
-        assertThat(board.findPiece('d', rank)).isEqualTo(pawn);
-        assertThat(board.findPiece('e', rank)).isEqualTo(pawn);
-        assertThat(board.findPiece('f', rank)).isEqualTo(pawn);
-        assertThat(board.findPiece('g', rank)).isEqualTo(pawn);
-        assertThat(board.findPiece('h', rank)).isEqualTo(pawn);
+        assertThat(board.findPiece("a" + rank)).isEqualTo(pawn);
+        assertThat(board.findPiece("b" + rank)).isEqualTo(pawn);
+        assertThat(board.findPiece("c" + rank)).isEqualTo(pawn);
+        assertThat(board.findPiece("d" + rank)).isEqualTo(pawn);
+        assertThat(board.findPiece("e" + rank)).isEqualTo(pawn);
+        assertThat(board.findPiece("f" + rank)).isEqualTo(pawn);
+        assertThat(board.findPiece("g" + rank)).isEqualTo(pawn);
+        assertThat(board.findPiece("h" + rank)).isEqualTo(pawn);
     }
 
     @Test
@@ -144,7 +144,7 @@ class BoardTest extends TestBaseOfBoardPackage {
         board.add(white);
         assertAll(
                 () -> assertThat(board.pieceCount()).isEqualTo(1),
-                () -> assertThat(board.findPiece('a', 8)).isEqualTo(white)
+                () -> assertThat(board.findPiece("a8")).isEqualTo(white)
         );
     }
 
@@ -158,8 +158,8 @@ class BoardTest extends TestBaseOfBoardPackage {
 
         assertAll(
                 () -> assertThat(board.pieceCount()).isEqualTo(2),
-                () -> assertThat(board.findPiece('a', 8)).isEqualTo(white),
-                () -> assertThat(board.findPiece('b', 8)).isEqualTo(black)
+                () -> assertThat(board.findPiece("a8")).isEqualTo(white),
+                () -> assertThat(board.findPiece("b8")).isEqualTo(black)
         );
     }
 
@@ -211,19 +211,19 @@ class BoardTest extends TestBaseOfBoardPackage {
             board.add(Piece.createBlank());
         }
 
-        board.set('b', 8, blackPieceFactory.createKing());
-        board.set('c', 8, blackPieceFactory.createRook());
-        board.set('a', 7, blackPieceFactory.createPawn());
-        board.set('c', 7, blackPieceFactory.createPawn());
-        board.set('d', 7, blackPieceFactory.createBishop());
-        board.set('b', 6, blackPieceFactory.createPawn());
-        board.set('e', 6, blackPieceFactory.createQueen());
-        board.set('f', 4, whitePieceFactory.createKnight());
-        board.set('g', 4, whitePieceFactory.createQueen());
-        board.set('f', 3, whitePieceFactory.createPawn());
-        board.set('g', 2, whitePieceFactory.createPawn());
-        board.set('e', 1, whitePieceFactory.createRook());
-        board.set('f', 1, whitePieceFactory.createKing());
+        board.set("b8", blackPieceFactory.createKing());
+        board.set("c8", blackPieceFactory.createRook());
+        board.set("a7", blackPieceFactory.createPawn());
+        board.set("c7", blackPieceFactory.createPawn());
+        board.set("d7", blackPieceFactory.createBishop());
+        board.set("b6", blackPieceFactory.createPawn());
+        board.set("e6", blackPieceFactory.createQueen());
+        board.set("f4", whitePieceFactory.createKnight());
+        board.set("g4", whitePieceFactory.createQueen());
+        board.set("f3", whitePieceFactory.createPawn());
+        board.set("g2", whitePieceFactory.createPawn());
+        board.set("e1", whitePieceFactory.createRook());
+        board.set("f1", whitePieceFactory.createKing());
 
         String expected = new StringBuilder()
                 .append(".KR.....").append(System.lineSeparator())
@@ -255,9 +255,9 @@ class BoardTest extends TestBaseOfBoardPackage {
             board.add(new Piece(Color.WHITE, Kind.PAWN));
         }
 
-        board.set('a', 1, blackPieceFactory.createPawn());
-        board.set('a', 2, blackPieceFactory.createPawn());
-        board.set('a', 3, blackPieceFactory.createPawn());
+        board.set("a1", blackPieceFactory.createPawn());
+        board.set("a2", blackPieceFactory.createPawn());
+        board.set("a3", blackPieceFactory.createPawn());
 
         double result = board.getScoreOf(Color.BLACK);
 

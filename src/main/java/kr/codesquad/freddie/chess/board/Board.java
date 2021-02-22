@@ -76,7 +76,7 @@ public class Board {
     /**
      * 체스판은 아래와 같이 8*8칸으로 구성되는데, coulmn은 file row는 rank라고 한다.
      * 각 칸은 h1, d6와 같이 file + rank로 명명한다.
-     * 만약 h1에 있는 체스말을 찾고 싶으면 findPiece(h, 1) 과 같이 사용할 수 있다.
+     * 만약 h1에 있는 체스말을 찾고 싶으면 <code>findPiece("h1")</code> 과 같이 사용할 수 있다.
      *
      * <p>
      * <code>
@@ -93,16 +93,19 @@ public class Board {
      * ╚══╧══╧══╧══╧══╧══╧══╧══╝╯
      * </code>
      *
-     * @param fileIndex a~h 사이의 char
-     * @param rankIndex 1~8 사이의 int
+     * @param position a~h 사이의 알파벳과 1~8 사이의 숫자 조합
      * @return 해당 칸에 존재하는 기물
      * @see <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      */
-    public Piece findPiece(char fileIndex, int rankIndex) {
+    public Piece findPiece(String position) {
+        char fileIndex = position.charAt(0);
+        int rankIndex = Character.getNumericValue(position.charAt(1));
         return files.get(convertRankIndexToListIndex(rankIndex)).get(fileIndex);
     }
 
-    public Piece set(char fileIndex, int rankIndex, Piece piece) {
+    public Piece set(String position, Piece piece) {
+        char fileIndex = position.charAt(0);
+        int rankIndex = Character.getNumericValue(position.charAt(1));
         return files.get(convertRankIndexToListIndex(rankIndex)).set(fileIndex, piece);
     }
 

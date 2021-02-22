@@ -2,6 +2,7 @@ package pieces;
 
 import org.junit.jupiter.api.*;
 import pieces.Piece.Color;
+import pieces.Piece.Type;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -9,28 +10,23 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class PieceTest {
 
     @Test
-    @DisplayName("색상과 출력 양식에 알맞게 말이 생성되어야 한다")
+    @DisplayName("색상과 타입에 알맞게 말이 생성되어야 한다")
     void createPiece() {
-        assertAll(
-                () -> verifyPiece(Piece.createWhitePawn(), Color.WHITE, 'p'),
-                () -> verifyPiece(Piece.createWhiteKnight(), Color.WHITE, 'n'),
-                () -> verifyPiece(Piece.createWhiteRook(), Color.WHITE, 'r'),
-                () -> verifyPiece(Piece.createWhiteBishop(), Color.WHITE, 'b'),
-                () -> verifyPiece(Piece.createWhiteQueen(), Color.WHITE, 'q'),
-                () -> verifyPiece(Piece.createWhiteKing(), Color.WHITE, 'k'),
-
-                () -> verifyPiece(Piece.createBlackPawn(), Color.BLACK, 'P'),
-                () -> verifyPiece(Piece.createBlackKnight(), Color.BLACK, 'N'),
-                () -> verifyPiece(Piece.createBlackRook(), Color.BLACK, 'R'),
-                () -> verifyPiece(Piece.createBlackBishop(), Color.BLACK, 'B'),
-                () -> verifyPiece(Piece.createBlackQueen(), Color.BLACK, 'Q'),
-                () -> verifyPiece(Piece.createBlackKing(), Color.BLACK, 'K')
-        );
+        assertAll(() -> verifyPiece(Piece.createWhitePawn(), Piece.createBlackPawn(), Type.PAWN),
+                () -> verifyPiece(Piece.createWhiteKnight(), Piece.createBlackKnight(), Type.KNIGHT),
+                () -> verifyPiece(Piece.createWhiteRook(), Piece.createBlackRook(), Type.ROOK),
+                () -> verifyPiece(Piece.createWhiteBishop(), Piece.createBlackBishop(), Type.BISHOP),
+                () -> verifyPiece(Piece.createWhiteQueen(), Piece.createBlackQueen(), Type.QUEEN),
+                () -> verifyPiece(Piece.createWhiteKing(), Piece.createBlackKing(), Type.KING),
+                () -> assertThat(Piece.createBlank().isWhite()).isFalse(),
+                () -> assertThat(Piece.createBlank().isBlack()).isFalse());
     }
 
-    private void verifyPiece(final Piece piece, final Color color, final char representation) {
-        assertAll(() -> assertThat(piece.getColor()).isEqualTo(color),
-                () -> assertThat(piece.getRepresentation()).isEqualTo(representation));
+    private void verifyPiece(final Piece whitePiece, final Piece blackPiece, final Type type) {
+        assertAll(() -> assertThat(whitePiece.isWhite()).isTrue(),
+                () -> assertThat(whitePiece.getType()).isEqualTo(type),
+                () -> assertThat(blackPiece.isBlack()).isTrue(),
+                () -> assertThat(blackPiece.getType()).isEqualTo(type));
     }
 
     @Test
@@ -38,8 +34,11 @@ class PieceTest {
     void verifyIsWhite() {
         Piece whitePawn = Piece.createWhitePawn();
         Piece blackKnight = Piece.createBlackKnight();
-        assertThat(whitePawn.isWhite()).isTrue();
-        assertThat(blackKnight.isWhite()).isFalse();
+
+        assertAll(() -> assertThat(whitePawn.isWhite()).isTrue(),
+                () -> assertThat(whitePawn.getRepresentation()).isEqualTo('p'),
+                () -> assertThat(blackKnight.isWhite()).isFalse(),
+                () -> assertThat(blackKnight.getRepresentation()).isEqualTo('N'));
     }
 
     @Test
@@ -47,8 +46,10 @@ class PieceTest {
     void verifyIsBlack() {
         Piece whiteQueen = Piece.createWhiteQueen();
         Piece blackKing = Piece.createBlackKing();
-        assertThat(whiteQueen.isBlack()).isEqualTo(false);
-        assertThat(blackKing.isBlack()).isEqualTo(true);
+        assertAll(() -> assertThat(whiteQueen.isBlack()).isEqualTo(false),
+                () -> assertThat(whiteQueen.getRepresentation()).isEqualTo('q'),
+                () -> assertThat(blackKing.isBlack()).isEqualTo(true),
+                () -> assertThat(blackKing.getRepresentation()).isEqualTo('K'));
     }
 }
 

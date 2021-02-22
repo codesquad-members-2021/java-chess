@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static net.honux.chess.util.StringUtils.*;
 
@@ -122,5 +121,15 @@ class BoardTest {
         String position = "b5";
         board.move(position , Piece.createBlackRook());
         assertThat(board.findPiece(position).get()).isEqualTo(Piece.createBlackRook());
+    }
+
+    @Test
+    @DisplayName("같은 랭크에 같은색의 폰이 있을때 점수가 차감되어 계산되는지 확인한다.")
+    void checkPointOfTeam() {
+        board.initializeEmpty();
+        board.move("b5", Piece.createBlackPawn());
+        board.move("b1", Piece.createBlackPawn());
+        board.move("b2", Piece.createBlackPawn());
+        assertThat(board.blackTeamPoint()).isEqualTo(1.5);
     }
 }

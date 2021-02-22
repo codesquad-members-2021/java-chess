@@ -32,5 +32,8 @@ public class PieceMaker {
         return new Piece(color, PieceType.KING);
     }
 
+    public static Piece createBlank() {
+        return new Piece(Color.NOCOLOR, PieceType.NO_PIECE);
+    }
 
 }

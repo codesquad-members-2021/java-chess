@@ -14,7 +14,6 @@ class PieceTest {
         PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
         PieceMaker blackPieceMaker = new PieceMaker(Color.BLACK);
 
-
         Piece whitePawn = whitePieceMaker.createPawn();
         verifyPiece(whitePawn, Color.WHITE, 'p', PieceType.PAWN);
         Piece blackPawn = blackPieceMaker.createPawn();
@@ -44,6 +43,9 @@ class PieceTest {
         verifyPiece(whiteKing, Color.WHITE, 'k', PieceType.KING);
         Piece blackKing = blackPieceMaker.createKing();
         verifyPiece(blackKing, Color.BLACK, 'K', PieceType.KING);
+
+        Piece blank = PieceMaker.createBlank();
+        verifyPiece(blank, Color.NOCOLOR, '.', PieceType.NO_PIECE);
     }
 
     void verifyPiece(final Piece piece, final Color color, final char representation,
@@ -51,16 +53,27 @@ class PieceTest {
         assertAll(
             () -> assertThat(piece.getColor()).isEqualTo(color),
             () -> assertThat(piece.getRepresentation()).isEqualTo(representation),
-            () -> assertThat(piece.getPieceType()).isEqualTo(pieceType),
-            () -> assertThat(verifyColor(piece, color)).isTrue()
+            () -> assertThat(piece.getPieceType()).isEqualTo(pieceType)
         );
+        verifyColor(piece, color);
     }
 
-    private boolean verifyColor(Piece piece, Color color) {
-        if (color == Color.BLACK) {
-            return piece.isBlack(piece);
+    private void verifyColor(Piece piece, Color color) {
+        if (color == Color.NOCOLOR) {
+            assertAll(
+                () -> assertThat(piece.isWhite(piece)).isFalse(),
+                () -> assertThat(piece.isBlack(piece)).isFalse()
+            );
         }
-        return piece.isWhite(piece);
+
+        if (color == Color.WHITE) {
+            assertThat(piece.isWhite(piece)).isTrue();
+        }
+
+        if (color == Color.BLACK) {
+            assertThat(piece.isBlack(piece)).isTrue();
+        }
+
     }
 
 }

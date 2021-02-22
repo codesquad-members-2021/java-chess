@@ -1,26 +1,27 @@
 package net.Dong;
 
 import net.Dong.chess.Pawn;
-import org.junit.jupiter.api.*;
+import net.Dong.chess.Pawn.Color;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static net.Dong.chess.Pawn.Color.*;
-import static net.Dong.chess.Pawn.*;
+import static org.assertj.core.api.Assertions.*;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
 class PawnTest {
 
-
-
     @Test
-    @DisplayName("TSET >> START ")
-    public void create() {
-        verifyPawn(WHITE);
-        verifyPawn(BALCK);
+    @DisplayName("Color Test")
+    void PawnCreate() {
+
+        verifyPawnColor(Color.WHITE);
+        verifyPawnColor(Color.BLACK);
 
     }
 
-    void verifyPawn(Color c) {
-        Pawn p = new Pawn(c);
-        assertEquals(c, p.getColor(),"fail");
+    void verifyPawnColor(Color color) {
+        Pawn pawn = new Pawn(color);
+        assertThat(pawn.getColor()).isEqualTo(color);
     }
-
 }
+

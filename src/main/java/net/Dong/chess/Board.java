@@ -1,31 +1,77 @@
 package net.Dong.chess;
 
-import net.Dong.chess.Pawn;
+import static net.Dong.chess.Pawn.Color;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Board {
-    ArrayList<Pawn> arrPawn = new ArrayList<>();
+    private List<Pawn> whitePawn = new ArrayList<>();
+    private List<Pawn> blackPawn = new ArrayList<>();
 
 
-    public int add(Pawn pawn) {
-        //arrPawn.add()
-        arrPawn.add(pawn);
-        return arrPawn.size();
+    public void addWhite(Pawn pawn) {
+        whitePawn.add(pawn);
     }
 
-    public void removePawn(Pawn remove) {
-        //arrlist에서 삭제하는 코드 작성
+    public void addBlack(Pawn pawn) {
+        blackPawn.add(pawn);
     }
+
 
     public int size() {
-        // return number of Mal
-        return arrPawn.size();
+        return whitePawn.size() + blackPawn.size();
     }
 
-    public Pawn.Color findPawn(int index) {
-        // Receives an index and returns it as an object color
-        return arrPawn.get(index).getColor();
+    private int whitePawnSize() {
+        return whitePawn.size();
     }
+
+    public int blackPawnSize() {
+        return blackPawn.size();
+    }
+
+    public Pawn findWhitePawn(int index) {
+        return whitePawn.get(index);
+    }
+
+    public Pawn findBlackPawn(int index) {
+        return whitePawn.get(index);
+    }
+
+    public void initialize() {
+        addPawnWhite(Pawn.InitialNumOfPawn);
+        addPawnBlack(Pawn.InitialNumOfPawn);
+    }
+
+    private void addPawnWhite(int numOfPawn) {
+        for (int i = 0; i < numOfPawn; i++) {
+            whitePawn.add(new Pawn(Color.WHITE));
+        }
+    }
+
+    private void addPawnBlack(int numOfPawn) {
+        for (int i = 0; i < numOfPawn; i++) {
+            whitePawn.add(new Pawn(Color.BLACK));
+        }
+    }
+
+    public String getWhitePawnsResult() {
+        return getPawnsResult(whitePawn);
+    }
+
+    public String getBlackPawnsResult() {
+        return getPawnsResult(blackPawn);
+    }
+
+    private String getPawnsResult(List<Pawn> whatPawn) {
+        StringBuilder sb = new StringBuilder();
+        int len = whatPawn.size();
+        for (Pawn pawn : whatPawn) {
+            sb.append(pawn.getSymbol());
+        }
+        return sb.toString();
+    }
+
 
 }

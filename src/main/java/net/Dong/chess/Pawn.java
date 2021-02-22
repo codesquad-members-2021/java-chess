@@ -1,38 +1,41 @@
 package net.Dong.chess;
 
 public class Pawn {
-
+    public static final int InitialNumOfPawn = 8;
+    private final Color color;
 
     public enum Color {
         WHITE,
-        BALCK
-    };
-
-    final Color color;
-
-    public Pawn(Color color) {
-        this.color = color;
+        BLACK;
     }
+
 
     public Pawn() {
         this.color = Color.WHITE;
     }
 
+    public Pawn(Color color) {
+        this.color = color;
+    }
+
+
     public Pawn(String colorString) {
-        if(colorString.equals("BLACK")) {
-            this.color = Color.BALCK;
-        }else {
+        if (colorString.equals("BLACK")) {
+            this.color = Color.BLACK;
+        } else {
             this.color = Color.WHITE;
         }
     }
 
-    //public static Pawn create(String color) {
-    //    return new Pawn(color);
-    //}
-
     public Color getColor() {
-
         return this.color;
+    }
+
+    public String getSymbol() {
+        if (this.color == Color.WHITE) {
+            return "p";
+        }
+        return "P";
     }
 
 }

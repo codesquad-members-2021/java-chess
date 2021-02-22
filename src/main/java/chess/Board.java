@@ -51,4 +51,18 @@ public class Board {
 
         return files.get((fileIndexPos-1)).getPiece(rankIndexPos);
     }
+
+    private String getRank(Rank rank) {
+        StringBuilder sb = new StringBuilder();
+        for(Piece piece : rank.getPieces()){
+            if(piece.isBlack()){
+                sb.append(piece.getType().getBlackRepresentation()).append(" ");
+            } else {
+                sb.append(piece.getType().getWhiteRepresentation()).append(" ");
+            }
+
+        }
+        return sb.toString();
+    }
+    
 }

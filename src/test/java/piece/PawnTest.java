@@ -43,7 +43,7 @@ class PieceTest {
         Piece blackPiece = Piece.createBlackKnight();
 
         assertThat(isWhite(whitePiece)).isEqualTo(true);
-        assertThat(isBlack(blackPiece)).isEqualTo(true)
+        assertThat(isBlack(blackPiece)).isEqualTo(true);
 
         assertThat(false).isEqualTo(isWhite(blackPiece));
         assertThat(false).isEqualTo(isBlack(whitePiece));

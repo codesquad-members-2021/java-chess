@@ -14,9 +14,7 @@ public class ChessPieceTest {
     void testIsWhite() {
         testAllCasesWithParamFuncion((name, color) -> {
             ChessPiece piece = ChessPiece.createChessPiece(name, color);
-            if (color == ColorOfChessPiece.WHITE)
-                assertThat(piece.isWhite()).isTrue();
-            else assertThat(piece.isWhite()).isFalse();
+            assertThat(piece.isWhite()).isEqualTo(color == ColorOfChessPiece.WHITE);
         });
     }
 
@@ -25,9 +23,7 @@ public class ChessPieceTest {
     void testIsBlack() {
         testAllCasesWithParamFuncion((name, color) -> {
             ChessPiece piece = ChessPiece.createChessPiece(name, color);
-            if (color == ColorOfChessPiece.BLACK)
-                assertThat(piece.isBlack()).isTrue();
-            else assertThat(piece.isBlack()).isFalse();
+            assertThat(piece.isBlack()).isEqualTo(color == ColorOfChessPiece.BLACK);
         });
     }
 
@@ -36,9 +32,7 @@ public class ChessPieceTest {
     void testIsBlank() {
         testAllCasesWithParamFuncion((name, color) -> {
             ChessPiece piece = ChessPiece.createChessPiece(name, color);
-            if (color == ColorOfChessPiece.BLANK)
-                assertThat(piece.isBlank()).isTrue();
-            else assertThat(piece.isBlank()).isFalse();
+            assertThat(piece.isBlank()).isEqualTo(color == ColorOfChessPiece.BLANK);
         });
     }
 

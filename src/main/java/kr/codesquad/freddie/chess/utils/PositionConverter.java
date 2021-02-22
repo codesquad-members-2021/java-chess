@@ -1,7 +1,5 @@
 package kr.codesquad.freddie.chess.utils;
 
-import kr.codesquad.freddie.chess.board.Board;
-
 public class PositionConverter {
     private FileIndexConverter fileIndexConverter;
     private RankIndexConverter rankIndexConverter;

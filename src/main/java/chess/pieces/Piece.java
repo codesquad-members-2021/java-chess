@@ -72,4 +72,6 @@ public class Piece {
     public static Piece createBlackKing() {
         return new Piece(Color.BLACK, Type.KING);
     }
+
+    public static Piece createBlank() { return new Piece(Color.NO_COLOR, Type.BLANK); }
 }

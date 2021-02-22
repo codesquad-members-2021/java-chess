@@ -29,7 +29,6 @@ public enum PieceType {
 
     public char getRepresentation(String color) {
         PieceValid.checkColorType(color);
-        //색깔 체크 필요
         if (color.equals(Piece.WHITE))
             return getWhiteRepresentation();
         return getBlackRepresentation();

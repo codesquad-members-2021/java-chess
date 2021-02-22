@@ -8,6 +8,7 @@ import net.tree.pieces.Pawn;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 >>>>>>> 3c74074... feat : Do Mission2
@@ -46,7 +47,17 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.Assert.assertEquals;
 >>>>>>> feat : Do Mission2
+<<<<<<< HEAD
 >>>>>>> 8a78563... feat : Do Mission2
+=======
+=======
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+
+import static org.junit.jupiter.api.Assertions.*;
+>>>>>>> fix : mission3
+>>>>>>> 50300b1... fix : mission3
 
 class BoardTest {
 
@@ -160,14 +171,15 @@ class BoardTest {
 =======
     @DisplayName("보드 초기화 및 그리기")
     @Test
-    public void initializeBoardAndPrint() throws Exception {
+    public void initializeBoardAndPrint() {
         Board board = new Board();
         board.initialize();
         board.print();
     }
 
+    @DisplayName("보드 초기화하기")
     @Test
-    public void initialize() throws Exception {
+    public void initialize() {
         Board board = new Board();
         board.initialize();
         assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));

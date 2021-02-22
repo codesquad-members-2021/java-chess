@@ -52,27 +52,8 @@ class FileTest extends TestBaseOfBoardPackage {
         file.add(pieceB);
 
         assertAll(
-                () -> assertThat(file.get('a')).isEqualTo(pieceA).isEqualTo(file.get(0)),
-                () -> assertThat(file.get('b')).isEqualTo(pieceB).isEqualTo(file.get(1))
-        );
-    }
-
-    @Test
-    @DisplayName("a~h를 벗어나도록 get을 하는 경우")
-    void get_outOfRange() {
-        for (int i = 0; i < File.SIZE; i++) {
-            file.add(new Piece(Color.WHITE, Kind.PAWN));
-        }
-
-        assertAll(
-                () -> assertThatThrownBy(() -> file.get('i'))
-                        .isInstanceOf(IndexOutOfBoundsException.class),
-                () -> assertThatThrownBy(() -> file.get((char) 96))
-                        .isInstanceOf(ArrayIndexOutOfBoundsException.class),
-                () -> assertThatThrownBy(() -> file.get('0'))
-                        .isInstanceOf(ArrayIndexOutOfBoundsException.class),
-                () -> assertThatThrownBy(() -> file.get((char) 0))
-                        .isInstanceOf(ArrayIndexOutOfBoundsException.class)
+                () -> assertThat(file.get(0)).isEqualTo(pieceA).isEqualTo(file.get(0)),
+                () -> assertThat(file.get(1)).isEqualTo(pieceB).isEqualTo(file.get(1))
         );
     }
 
@@ -80,10 +61,10 @@ class FileTest extends TestBaseOfBoardPackage {
     void set() {
         file.fillWithBlank();
 
-        assertThat(file.set('a', blackPieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
-        assertThat(file.set('h', whitePieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
-        assertThat(file.get('a')).isEqualTo(blackPieceFactory.createQueen());
-        assertThat(file.get('h')).isEqualTo(whitePieceFactory.createQueen());
+        assertThat(file.set(0, blackPieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
+        assertThat(file.set(7, whitePieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
+        assertThat(file.get(0)).isEqualTo(blackPieceFactory.createQueen());
+        assertThat(file.get(7)).isEqualTo(whitePieceFactory.createQueen());
         assertThat(file.getRepresentation()).isEqualTo("Q......q");
     }
 

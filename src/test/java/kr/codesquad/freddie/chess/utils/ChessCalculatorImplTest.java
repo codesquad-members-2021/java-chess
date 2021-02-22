@@ -27,9 +27,9 @@ class ChessCalculatorImplTest {
             files.add(file);
         }
 
-        files.get(0).set('a', blackPieceFactory.createPawn());
-        files.get(1).set('a', blackPieceFactory.createPawn());
-        files.get(2).set('a', blackPieceFactory.createPawn());
+        files.get(0).set(0, blackPieceFactory.createPawn());
+        files.get(1).set(0, blackPieceFactory.createPawn());
+        files.get(2).set(0, blackPieceFactory.createPawn());
 
         double result = new ChessCalculatorImpl().calculate(files, Color.BLACK);
         assertThat(result).isEqualTo(1.5);

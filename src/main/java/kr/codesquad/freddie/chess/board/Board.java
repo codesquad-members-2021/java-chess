@@ -100,13 +100,13 @@ public class Board {
     public Piece findPiece(String position) {
         char fileIndex = position.charAt(0);
         int rankIndex = Character.getNumericValue(position.charAt(1));
-        return files.get(convertRankIndexToListIndex(rankIndex)).get(fileIndex);
+        return files.get(convertRankIndexToListIndex(rankIndex)).get(fileIndex - 'a');
     }
 
     public Piece set(String position, Piece piece) {
         char fileIndex = position.charAt(0);
         int rankIndex = Character.getNumericValue(position.charAt(1));
-        return files.get(convertRankIndexToListIndex(rankIndex)).set(fileIndex, piece);
+        return files.get(convertRankIndexToListIndex(rankIndex)).set(fileIndex - 'a', piece);
     }
 
     public int pieceCount() {

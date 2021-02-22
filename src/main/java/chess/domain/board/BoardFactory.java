@@ -17,21 +17,19 @@ public class BoardFactory {
 
     public static Board create() {
         squares = new HashMap<>();
-        for (int rowId = ROW_START; rowId <= ROW_END; rowId++) {
-            addConditionalRow(rowId);
-        }
+
+        addWhiteRoyalRow(1);
+        addWhitePawnRow(2);
+        addEmptyRow(3);
+        addEmptyRow(4);
+        addEmptyRow(5);
+        addEmptyRow(6);
+        addBlackPawnRow(7);
+        addBlackRoyalRow(8);
+
         return new Board(squares);
     }
 
-    private static void addConditionalRow(int rowId) {
-        if (rowId == 1 || rowId == 8) {
-            addRoyalRow(rowId);
-        } else if (rowId == 2 || rowId == 7) {
-            addPawnRow(rowId);
-        } else {
-            addEmptyRow(rowId);
-        }
-    }
 
     private static void addRow(int rowId, Piece piece) {
         for (char columnId = COLUMN_START; columnId <= COLUMN_END; columnId++) {
@@ -43,24 +41,33 @@ public class BoardFactory {
         addRow(rowId, NoPiece.getInstance());
     }
 
-    private static void addPawnRow(int rowId) {
-        Color color = getColor(rowId);
-        addRow(rowId, Pawn.of(color));
+    private static void addWhitePawnRow(int rowId) {
+        addRow(rowId, Pawn.ofWhite());
     }
 
-    private static void addRoyalRow(int rowId) {
-        Color color = getColor(rowId);
-        squares.put(Position.of('a', rowId), Rook.of(color));
-        squares.put(Position.of('b', rowId), Knight.of(color));
-        squares.put(Position.of('c', rowId), Bishop.of(color));
-        squares.put(Position.of('d', rowId), Queen.of(color));
-        squares.put(Position.of('e', rowId), King.of(color));
-        squares.put(Position.of('f', rowId), Bishop.of(color));
-        squares.put(Position.of('g', rowId), Knight.of(color));
-        squares.put(Position.of('h', rowId), Rook.of(color));
+    private static void addBlackPawnRow(int rowId) {
+        addRow(rowId, Pawn.ofBlack());
     }
 
-    private static Color getColor(int rowId) {
-        return rowId < ROW_MEDIUM ? Color.WHITE : Color.BLACK;
+    private static void addWhiteRoyalRow(int rowId) {
+        squares.put(Position.of('a', rowId), Rook.ofWhite());
+        squares.put(Position.of('b', rowId), Knight.ofWhite());
+        squares.put(Position.of('c', rowId), Bishop.ofWhite());
+        squares.put(Position.of('d', rowId), Queen.ofWhite());
+        squares.put(Position.of('e', rowId), King.ofWhite());
+        squares.put(Position.of('f', rowId), Bishop.ofWhite());
+        squares.put(Position.of('g', rowId), Knight.ofWhite());
+        squares.put(Position.of('h', rowId), Rook.ofWhite());
+    }
+
+    private static void addBlackRoyalRow(int rowId) {
+        squares.put(Position.of('a', rowId), Rook.ofBlack());
+        squares.put(Position.of('b', rowId), Knight.ofBlack());
+        squares.put(Position.of('c', rowId), Bishop.ofBlack());
+        squares.put(Position.of('d', rowId), Queen.ofBlack());
+        squares.put(Position.of('e', rowId), King.ofBlack());
+        squares.put(Position.of('f', rowId), Bishop.ofBlack());
+        squares.put(Position.of('g', rowId), Knight.ofBlack());
+        squares.put(Position.of('h', rowId), Rook.ofBlack());
     }
 }

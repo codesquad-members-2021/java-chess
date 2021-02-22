@@ -9,18 +9,14 @@ class KnightTest {
     @Test
     @DisplayName("흰색 Knight 의 representation 은 n여야 한다.")
     void getRepresentation_white() {
-        String actual = Knight.of(Color.WHITE)
-                .toString();
-        assertThat(actual)
+        assertThat(Knight.ofWhite().toString())
                 .isEqualTo("n");
     }
 
     @Test
     @DisplayName("까만 Knight 의 representation 은 N여야 한다.")
     void getRepresentation_black() {
-        String actual = Knight.of(Color.BLACK)
-                .toString();
-        assertThat(actual)
+        assertThat(Knight.ofBlack().toString())
                 .isEqualTo("N");
     }
 }

@@ -9,18 +9,14 @@ class QueenTest {
     @Test
     @DisplayName("흰색 Queen 의 representation 은 q여야 한다.")
     void getRepresentation_white() {
-        String actual = Queen.of(Color.WHITE)
-                .toString();
-        assertThat(actual)
+        assertThat(Queen.ofWhite().toString())
                 .isEqualTo("q");
     }
 
     @Test
     @DisplayName("까만 Queen 의 representation 은 Q여야 한다.")
     void getRepresentation_black() {
-        String actual = Queen.of(Color.BLACK)
-                .toString();
-        assertThat(actual)
+        assertThat(Queen.ofBlack().toString())
                 .isEqualTo("Q");
     }
 }

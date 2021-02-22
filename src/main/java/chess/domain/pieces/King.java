@@ -8,10 +8,12 @@ public class King extends Piece {
         super(color);
     }
 
-    public static King of(Color color) {
-        return color.equals(Color.WHITE)
-                ? whiteKing
-                : blackKing;
+    public static King ofWhite() {
+        return whiteKing;
+    }
+
+    public static King ofBlack() {
+        return blackKing;
     }
 
     @Override

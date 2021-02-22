@@ -8,10 +8,12 @@ public class Rook extends Piece {
         super(color);
     }
 
-    public static Rook of(Color color) {
-        return color.equals(Color.WHITE)
-                ? whiteRook
-                : blackRook;
+    public static Rook ofWhite() {
+        return whiteRook;
+    }
+
+    public static Rook ofBlack() {
+        return blackRook;
     }
 
     @Override

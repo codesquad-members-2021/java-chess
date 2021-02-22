@@ -8,10 +8,12 @@ public class Knight extends Piece {
         super(color);
     }
 
-    public static Knight of(Color color) {
-        return color.equals(Color.WHITE)
-                ? whiteKnight
-                : blackKnight;
+    public static Knight ofWhite() {
+        return whiteKnight;
+    }
+
+    public static Knight ofBlack() {
+        return blackKnight;
     }
 
     @Override

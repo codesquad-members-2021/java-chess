@@ -8,10 +8,12 @@ public class Bishop extends Piece {
         super(color);
     }
 
-    public static Bishop of(Color color) {
-        return color.equals(Color.WHITE)
-                ? whiteBishop
-                : blackBishop;
+    public static Bishop ofWhite() {
+        return whiteBishop;
+    }
+
+    public static Bishop ofBlack() {
+        return blackBishop;
     }
 
     @Override

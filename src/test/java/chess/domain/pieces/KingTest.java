@@ -9,18 +9,14 @@ class KingTest {
     @Test
     @DisplayName("흰색 King 의 representation 은 k여야 한다.")
     void getRepresentation_white() {
-        String actual = King.of(Color.WHITE)
-                .toString();
-        assertThat(actual)
+        assertThat(King.ofWhite().toString())
                 .isEqualTo("k");
     }
 
     @Test
     @DisplayName("까만 King 의 representation 은 K여야 한다.")
     void getRepresentation_black() {
-        String actual = King.of(Color.BLACK)
-                .toString();
-        assertThat(actual)
+        assertThat(King.ofBlack().toString())
                 .isEqualTo("K");
     }
 }

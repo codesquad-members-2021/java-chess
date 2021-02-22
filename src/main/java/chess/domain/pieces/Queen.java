@@ -8,10 +8,12 @@ public class Queen extends Piece {
         super(color);
     }
 
-    public static Queen of(Color color) {
-        return color.equals(Color.WHITE)
-                ? whiteQueen
-                : blackQueen;
+    public static Queen ofWhite() {
+        return whiteQueen;
+    }
+
+    public static Queen ofBlack() {
+        return blackQueen;
     }
 
     @Override

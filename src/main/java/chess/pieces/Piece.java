@@ -33,6 +33,10 @@ public class Piece {
         return getColor()==color && getType()==type;
     }
 
+    public boolean matchColor(Color color) {
+        return getColor()==color;
+    }
+
     private static Piece createWhite(Type type) {
         return new Piece(Color.WHITE, type);
     }

@@ -8,11 +8,7 @@ public abstract class Piece {
         this.color = color;
         representation = color.generateRepresentation(getIcon());
     }
-
-    public Color getColor() {
-        return color;
-    }
-
+    
     abstract String getIcon();
 
     public String getRepresentation() {

@@ -1,10 +1,7 @@
 package chess.domain.board;
 
 import chess.domain.board.position.Position;
-import chess.domain.pieces.Color;
-import chess.domain.pieces.EmptyPiece;
-import chess.domain.pieces.Pawn;
-import chess.domain.pieces.Piece;
+import chess.domain.pieces.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,9 +48,16 @@ public class BoardFactory {
         addRow(rowId, Pawn.of(color));
     }
 
-    // TODO: 다음 미션에서 고급 말들이 추가되도록 구현해야한다.
     private static void addRoyalRow(int rowId) {
-        addEmptyRow(rowId);
+        Color color = getColor(rowId);
+        squares.put(Position.of('a', rowId), Rook.of(color));
+        squares.put(Position.of('b', rowId), Knight.of(color));
+        squares.put(Position.of('c', rowId), Bishop.of(color));
+        squares.put(Position.of('d', rowId), Queen.of(color));
+        squares.put(Position.of('e', rowId), King.of(color));
+        squares.put(Position.of('f', rowId), Bishop.of(color));
+        squares.put(Position.of('g', rowId), Knight.of(color));
+        squares.put(Position.of('h', rowId), Rook.of(color));
     }
 
     private static Color getColor(int rowId) {

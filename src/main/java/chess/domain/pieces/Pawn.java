@@ -8,7 +8,7 @@ public class Pawn extends Piece {
         super(color);
     }
 
-    public static Piece of(Color color) {
+    public static Pawn of(Color color) {
         return color.equals(Color.WHITE)
                 ? whitePawn
                 : blackPawn;

@@ -5,22 +5,22 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-class PawnTest {
+class KingTest {
     @Test
-    @DisplayName("흰색 Pawn 의 representation 은 p여야 한다.")
+    @DisplayName("흰색 King 의 representation 은 k여야 한다.")
     void getRepresentation_white() {
-        String actual = Pawn.of(Color.WHITE)
+        String actual = King.of(Color.WHITE)
                 .getRepresentation();
         assertThat(actual)
-                .isEqualTo("p");
+                .isEqualTo("k");
     }
 
     @Test
-    @DisplayName("까만 Pawn 의 representation 은 P여야 한다.")
+    @DisplayName("까만 King 의 representation 은 K여야 한다.")
     void getRepresentation_black() {
-        String actual = Pawn.of(Color.BLACK)
+        String actual = King.of(Color.BLACK)
                 .getRepresentation();
         assertThat(actual)
-                .isEqualTo("P");
+                .isEqualTo("K");
     }
-} 
+}

@@ -2,7 +2,8 @@ package pieces;
 
 public enum Color {
     BLACK("black"),
-    WHITE("white");
+    WHITE("white"),
+    NO_COLOR("noColor");
 
     private final String color;
     Color(String color) {

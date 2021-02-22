@@ -14,12 +14,8 @@ public class Piece {
         return type.getRepresentation(color);
     }
 
-    public Color getColor() {
-        return color;
-    }
-
     public Type getType() {
-        return null;
+        return type;
     }
 
     public boolean isWhite() {
@@ -31,7 +27,7 @@ public class Piece {
     }
 
     public static Piece createBlank() {
-        return new Piece(Color.WHITE, Type.PAWN);
+        return new Piece(Color.NO_COLOR, Type.NO_PIECE);
     }
 
     public static Piece createWhitePawn() {

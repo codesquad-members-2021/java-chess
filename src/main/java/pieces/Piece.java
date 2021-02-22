@@ -42,6 +42,8 @@ public class Piece {
         return this.color;
     }
 
+    public Type getType() { return this.type; }
+
     public char getRepresentation() {
         return (this.color == Color.WHITE) ? this.type.getWhiteRepresentation() : this.type.getBlackRepresentation();
     }

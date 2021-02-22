@@ -9,69 +9,55 @@ import java.security.InvalidParameterException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import static utils.StringUtils.appendNewLine;
 
 
 class BoardTest {
     private Board board;
 
     @BeforeEach
-    void createBoard() {
+    void setup() {
         board = new Board();
     }
 
     @Test
-    @DisplayName("흰색, 검은색 Pawn을 생성해 board에 추가한다")
-    void createPawn() {
-        Piece white = Piece.createWhitePawn();
-        board.addWhitePawn(white);
-        assertAll(
-                () -> assertThat(board.size()).isEqualTo(1),
-                () -> assertThat(board.findWhitePawn(0)).isEqualTo(white)
-        );
-
-        Piece black = Piece.createBlackPawn();
-        board.addBlackPawn(black);
-        assertAll(
-                () -> assertThat(board.size()).isEqualTo(2),
-                () -> assertThat(board.findBlackPawn(0)).isEqualTo(black)
-        );
-    }
-
-    @Test
-    @DisplayName("게임을 시작하고, 대표값이 맞게 나오는지 확인한다")
-    void initialize() {
+    void create() {
         board.initialize();
-        assertAll(
-                () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
-                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
-        );
+        assertThat(board.pieceCount()).isEqualTo(32);
+        String blankRank = appendNewLine("........");
+        assertThat(board.showBoard()).isEqualTo(
+                        appendNewLine("RNBQKBNR") +
+                        appendNewLine("PPPPPPPP") +
+                        blankRank + blankRank + blankRank + blankRank +
+                        appendNewLine("pppppppp") +
+                        appendNewLine("rnbqkbnr"));
     }
 
     @Test
-    @DisplayName("board를 초기화 하고 print한다")
-    void print() {
-        board.initialize();
-        StringBuilder expectedResult = new StringBuilder();
-        String newLine = System.getProperty("line.separator");
-        expectedResult.append("........").append(newLine)
-                .append("pppppppp").append(newLine)
-                .append("........").append(newLine)
-                .append("........").append(newLine)
-                .append("........").append(newLine)
-                .append("........").append(newLine)
-                .append("PPPPPPPP").append(newLine)
-                .append("........");
-        String result = board.print();
-        System.out.println(result);
-        assertThat(result).isEqualTo(expectedResult.toString());
-    }
-
-    @Test
-    @DisplayName("잘못된 색의 pawn을 추가할 수 없다")
+    @DisplayName("잘못된 색의 pawn을 추가하거나 pawn아닌 다른 pawn을 추가할 수 없다")
     void addWrongPawn() {
-        Piece black = Piece.createBlackPawn();
+        Piece blackPawn = Piece.createBlackPawn();
         assertThatExceptionOfType(InvalidParameterException.class)
-                .isThrownBy(() -> board.addWhitePawn(black));
+                .isThrownBy(() -> board.addWhitePawn(blackPawn));
+        Piece whitePawn = Piece.createWhitePawn();
+        assertThatExceptionOfType(InvalidParameterException.class)
+                .isThrownBy(() -> board.addBlackPawn(whitePawn));
+        Piece whiteRook = Piece.createWhiteRook();
+        assertThatExceptionOfType(InvalidParameterException.class)
+                .isThrownBy(() -> board.addWhitePawn(whiteRook));
+        Piece blackRook = Piece.createBlackRook();
+        assertThatExceptionOfType(InvalidParameterException.class)
+                .isThrownBy(()->board.addBlackPawn(blackRook));
+    }
+
+    @Test
+    @DisplayName("잘못된 색의 piece를 추가할 수 없다")
+    void addWrongPiece() {
+        Piece blackPiece = Piece.createBlackRook();
+        assertThatExceptionOfType(InvalidParameterException.class)
+                .isThrownBy(() -> board.addWhitePiece(blackPiece));
+        Piece whitePiece = Piece.createWhiteRook();
+        assertThatExceptionOfType(InvalidParameterException.class)
+                .isThrownBy(() -> board.addBlackPiece(whitePiece));
     }
 }

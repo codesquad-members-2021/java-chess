@@ -63,12 +63,22 @@ public class BoardTest {
     @Test
     @DisplayName("주어진 위치의 기물을 조회")
     void getPieceFromPoint() {
+        board.initializeWithPieces();
         Piece findPiece = board.getPieceFromPoint("a8");
         Piece makeBlackRook = Piece.createBlackRook();
         Assertions.assertAll(
-                ()->assertThat(findPiece.getRepresentation()).isEqualTo(makeBlackRook.getRepresentation()),
-                ()->assertThat(findPiece.getColor()).isEqualTo(makeBlackRook.getColor())
+                () -> assertThat(findPiece.getRepresentation()).isEqualTo(makeBlackRook.getRepresentation()),
+                () -> assertThat(findPiece.getColor()).isEqualTo(makeBlackRook.getColor())
         );
+    }
+
+    @Test
+    void move() {
+        board.initializeEmpty();
+        Piece blackPawn = Piece.createBlackPawn();
+        board.move("a8",blackPawn);
+
+        assertThat(board.getPieceFromPoint("a8")).isEqualTo(blackPawn);
     }
 
 

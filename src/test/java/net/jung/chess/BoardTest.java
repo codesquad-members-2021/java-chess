@@ -1,7 +1,5 @@
 package net.jung.chess;
 
-import net.jung.chess.pieces.Color;
-import net.jung.chess.pieces.Type;
 import net.jung.chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,8 +18,8 @@ class BoardTest {
     @BeforeEach
     void setUp() {
         board = new Board();
-        whitePawn = Piece.createPiece(Color.WHITE, Type.PAWN);
-        blackPawn = Piece.createPiece(Color.BLACK, Type.PAWN);
+        whitePawn = Piece.createWhitePawn();
+        blackPawn = Piece.createBlackPawn();
 
     }
 

@@ -16,11 +16,6 @@ public class Piece {
     public char getRepresentation() {
         return color == Color.WHITE ? type.getWhiteRepresentation() : type.getBlackRepresentation(); }
 
-
-    public static Piece createPiece(Color color, Type type){
-        return new Piece(color, type);
-    }
-
     public static Piece createWhitePawn() { return new Piece(Color.WHITE, Type.PAWN); }
     public static Piece createBlackPawn() { return new Piece(Color.BLACK, Type.PAWN); }
     public static Piece createWhiteKnight() { return new Piece(Color.WHITE, Type.KNIGHT); }

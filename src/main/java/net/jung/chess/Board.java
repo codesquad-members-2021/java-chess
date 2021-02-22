@@ -1,7 +1,6 @@
 package net.jung.chess;
 
 import net.jung.chess.pieces.Color;
-import net.jung.chess.pieces.Type;
 import net.jung.chess.pieces.Piece;
 
 import java.util.ArrayList;
@@ -26,13 +25,6 @@ public class Board {
         }
     }
 
-    public void addPiece(Piece piece){
-        if(piece.getColor()==Color.WHITE) {
-            whitePieceList.add(piece);
-            return;
-        }
-        blackPieceList.add(piece);
-    }
 
     public int size() {
         return whitePieceList.size() + blackPieceList.size();
@@ -55,30 +47,41 @@ public class Board {
     }
 
     public void initialize() {
-        initializePiecesExceptPawn(Color.BLACK);
-        iniitializePawns(Color.BLACK);
+        addBlackPiece(Piece.createBlackRook());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackQueen());
+        addBlackPiece(Piece.createBlackKing());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackRook());
+        initializePawns(Color.BLACK);
 
-        iniitializePawns(Color.WHITE);
-        initializePiecesExceptPawn(Color.WHITE);
+        initializePawns(Color.WHITE);
+        addWhitePiece(Piece.createWhiteRook());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteQueen());
+        addWhitePiece(Piece.createWhiteKing());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteRook());
     }
 
-    public void iniitializePawns(Color color){
+    public void initializePawns(Color color) {
         int maxPawnsSize = 8;
+        if(color == Color.WHITE) {
         for (int i = 0; i < maxPawnsSize; i++) {
-            addPiece(Piece.createPiece(color, Type.PAWN));
+            addWhitePiece(Piece.createWhitePawn());
+             }
+        return;
+        }
+
+        for(int j = 0; j < maxPawnsSize; j++) {
+            addBlackPiece(Piece.createBlackPawn());
         }
     }
 
-    public void initializePiecesExceptPawn(Color color){
-        addPiece(Piece.createPiece(color, Type.ROOK));
-        addPiece(Piece.createPiece(color, Type.KNIGHT));
-        addPiece(Piece.createPiece(color, Type.BISHOP));
-        addPiece(Piece.createPiece(color, Type.QUEEN));
-        addPiece(Piece.createPiece(color, Type.KING));
-        addPiece(Piece.createPiece(color, Type.BISHOP));
-        addPiece(Piece.createPiece(color, Type.KNIGHT));
-        addPiece(Piece.createPiece(color, Type.ROOK));
-    }
 
     public String getWhitePiecesRepresentation() {
         return getPiecesRepresentation(whitePieceList);

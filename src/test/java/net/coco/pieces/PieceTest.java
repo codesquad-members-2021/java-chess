@@ -28,7 +28,9 @@ class PieceTest {
                 () -> verifyPiece(Piece.createBlackKnight(), Piece.BLACK, PieceType.KNIGHT),
 
                 () -> verifyPiece(Piece.createWhiteQueen(), Piece.WHITE, PieceType.QUEEN),
-                () -> verifyPiece(Piece.createBlackQueen(), Piece.BLACK, PieceType.QUEEN)
+                () -> verifyPiece(Piece.createBlackQueen(), Piece.BLACK, PieceType.QUEEN),
+
+                () -> verifyPiece(Piece.createBlank(), Piece.NO_COLOR, PieceType.NO_PIECE)
 
         );
 

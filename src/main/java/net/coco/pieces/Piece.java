@@ -3,6 +3,7 @@ package net.coco.pieces;
 public class Piece {
     public static final String WHITE = "white";
     public static final String BLACK = "black";
+    public static final String NO_COLOR="noColor";
 
     private final String color;
     private final char representation;
@@ -44,6 +45,9 @@ public class Piece {
 
     public static Piece createBlackBishop() {
         return new Piece(BLACK, PieceType.BISHOP);
+    }
+    public static Piece createBlank(){
+        return new Piece(NO_COLOR,PieceType.NO_PIECE);
     }
 
     public static Piece createWhiteQueen() {

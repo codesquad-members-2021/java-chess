@@ -32,6 +32,10 @@ public class Board {
     }
 
     public void addOtherWhitePiece(Piece piece) {
+        if (!PieceValid.isOtherPiece(piece) || !piece.isWhite()) {
+            System.out.println("넣지 못했습니다. 요구 조건을 확인하세요.");
+            return;
+        }
         otherWhitePieces.add(piece);
     }
 

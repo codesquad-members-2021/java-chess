@@ -8,7 +8,8 @@ public enum PieceType {
     ROOK('r'),
     BISHOP('b'),
     QUEEN('q'),
-    KING('k');
+    KING('k'),
+    NO_PIECE('.');
 
     private char representation;
 

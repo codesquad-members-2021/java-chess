@@ -82,6 +82,16 @@ public class Board {
         }
     }
 
+    public void move(String position, Piece piece){
+        char rankIndex = position.charAt(0);
+        char fileIndex = position.charAt(1);
+
+        int rankIndexPos = rankIndex - 'a';
+        int fileIndexPos = Character.getNumericValue(fileIndex);
+
+        files.get(fileIndexPos-1).move(rankIndexPos, piece);
+    }
+
     public String getChessBoard() {
         StringBuilder boardRank = new StringBuilder();
 

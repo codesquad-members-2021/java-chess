@@ -25,10 +25,10 @@ public class ChessCalculatorImpl implements ChessCalculator {
 
     public Map<CalculablePiece, Double> groupingByCalculablePiece(List<File> files, Color color) {
         return files.stream()
-                .flatMap(file -> file.getCalculablePieces())
+                .flatMap(File::getCalculablePieces)
                 .filter(calculablePiece -> calculablePiece.getColor() == color)
                 .collect(Collectors.groupingBy(Function.identity(),
-                        Collectors.summingDouble(calculablePiece -> calculablePiece.getKind().point()))
-                );
+                        Collectors.summingDouble(CalculablePiece::getPoint)
+                ));
     }
 }

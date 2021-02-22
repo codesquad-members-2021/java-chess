@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-class FileTest {
+class FileTest extends TestBaseOfBoardPackage {
     private File file;
 
     @BeforeEach
@@ -79,8 +79,6 @@ class FileTest {
     @Test
     void set() {
         file.fillWithBlank();
-        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
-        PieceFactory whitePieceFactory = new PieceFactory(Color.WHITE);
 
         assertThat(file.set('a', blackPieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
         assertThat(file.set('h', whitePieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
@@ -91,8 +89,6 @@ class FileTest {
 
     @Test
     void getPieceNumberBy() {
-        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
-        PieceFactory whitePieceFactory = new PieceFactory(Color.WHITE);
 
         file.add(blackPieceFactory.createRook());
         file.add(PieceFactory.createBlank());

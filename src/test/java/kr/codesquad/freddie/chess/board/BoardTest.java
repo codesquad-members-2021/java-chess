@@ -16,15 +16,12 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BoardTest {
+class BoardTest extends TestBaseOfBoardPackage {
     private Board board;
     private static final int MAX_SIZE = Board.RANK_SIZE * File.SIZE;
 
     @Test
     void initializeWithSort() {
-        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
-        PieceFactory whitePieceFactory = new PieceFactory(Color.WHITE);
-
         board.initializeWithSort();
         Map<Color, List<Piece>> blackAndWhitePieces = board.getBlackAndWhitePieces();
         assertThat(blackAndWhitePieces.get(Color.BLACK)).isEqualTo(new ArrayList<>(Arrays.asList(
@@ -214,9 +211,6 @@ class BoardTest {
             board.add(Piece.createBlank());
         }
 
-        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
-        PieceFactory whitePieceFactory = new PieceFactory(Color.WHITE);
-
         board.set('b', 8, blackPieceFactory.createKing());
         board.set('c', 8, blackPieceFactory.createRook());
         board.set('a', 7, blackPieceFactory.createPawn());
@@ -260,8 +254,6 @@ class BoardTest {
         for (int i = 0; i < MAX_SIZE; i++) {
             board.add(new Piece(Color.WHITE, Kind.PAWN));
         }
-
-        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
 
         board.set('a', 1, blackPieceFactory.createPawn());
         board.set('a', 2, blackPieceFactory.createPawn());

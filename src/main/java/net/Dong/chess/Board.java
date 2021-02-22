@@ -1,34 +1,31 @@
 package net.Dong.chess;
 
-import net.Dong.chess.Pawn;
 import static net.Dong.chess.Pawn.Color;
-//import static net.Dong.chess.Pawn;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Board {
 
-    ArrayList<Pawn> whitePawns = new ArrayList<Pawn>();
-    ArrayList<Pawn> blackPawns = new ArrayList<Pawn>();
+    private List<Pawn> whitePawn = new ArrayList<>();
+    private List<Pawn> blackPawn = new ArrayList<>();
 
 
-    public int whiteAdd(Pawn pawn) {
-        //arrPawn.add()
-        whitePawns.add(pawn);
-        return whitePawns.size();
-    }
-    public int blackAdd(Pawn pawn) {
-        //arrPawn.add()
-        blackPawns.add(pawn);
-        return blackPawns.size();
+    public void addWhite(Pawn pawn) {
+        whitePawn.add(pawn);
     }
 
-    public void removePawn(Pawn remove) {
-        //arrlist에서 삭제하는 코드 작성
+    public void addBlack(Pawn pawn) {
+        blackPawn.add(pawn);
+
+
     }
+
 
     public int size() {
-        return whitePawns.size()+blackPawns.size();
+
+        return whitePawn.size() + blackPawn.size();
+
     }
 
     private int whitePawnSize() {
@@ -58,38 +55,24 @@ public class Board {
 
 
     public void initialize() {
-        // white pawn 8, black pawn 8
-        for(int i = 0; i < 8; i++) {
-            addWhitePawn(new Pawn(Color.WHITE, Pawn.WHITE_REPRESENTATION));
-        }
 
-        for(int i = 0; i < 8; i++) {
-            addBlackPawn(new Pawn(Color.BLACK, Pawn.BLACK_REPRESENTATION));
-        }
-    }
-
-    private void addPawn(Pawn.Color color, int numOfPawn) {
-        if(color == Color.BLACK) {
-            addPawnBlack(numOfPawn);
-            return;
-        }
-
-        if (color == Color.WHITE) {
-            addPawnBlack(numOfPawn);
-        }
+        addPawnWhite(Pawn.InitialNumOfPawn);
+        addPawnBlack(Pawn.InitialNumOfPawn);
     }
 
     private void addPawnWhite(int numOfPawn) {
-        for(int i=0 ; i<numOfPawn ; i++) {
-            whitePawns.add(new Pawn(Color.WHITE));
+        for (int i = 0; i < numOfPawn; i++) {
+            whitePawn.add(new Pawn(Color.WHITE));
+
         }
     }
 
     private void addPawnBlack(int numOfPawn) {
-        for(int i=0 ; i<numOfPawn ; i++) {
-            whitePawns.add(new Pawn(Color.WHITE));
+        for (int i = 0; i < numOfPawn; i++) {
+            whitePawn.add(new Pawn(Color.BLACK));
         }
     }
+
 
     private String getBlankLine() {
         return "........";
@@ -118,25 +101,24 @@ public class Board {
         return "";
     }
 
-
     public String getWhitePawnsResult() {
         return getPawnsResult(whitePawns);
     }
-
 
     public String getBlackPawnsResult() {
         return getPawnsResult(blackPawns);
     }
 
-    private String getPawnsResult(ArrayList<Pawn> whatPawns) {
-        StringBuilder sb = new StringBuilder();
 
-        for(Pawn p : whatPawns) {
-            sb.append(p.getSymbol());
+    private String getPawnsResult(List<Pawn> whatPawn) {
+        StringBuilder sb = new StringBuilder();
+        int len = whatPawn.size();
+        for (Pawn pawn : whatPawn) {
+            sb.append(pawn.getSymbol());
+
         }
         return sb.toString();
     }
-
 
 
 }

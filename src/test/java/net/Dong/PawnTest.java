@@ -11,12 +11,10 @@ import org.junit.jupiter.api.Test;
 class PawnTest {
 
     @Test
-    @DisplayName("Color Test")
+    @DisplayName("Pawn Color Test")
     void PawnCreate() {
-
         verifyPawnColor(Color.WHITE);
         verifyPawnColor(Color.BLACK);
-
     }
 
     void verifyPawnColor(Color color) {
@@ -24,4 +22,3 @@ class PawnTest {
         assertThat(pawn.getColor()).isEqualTo(color);
     }
 }
-

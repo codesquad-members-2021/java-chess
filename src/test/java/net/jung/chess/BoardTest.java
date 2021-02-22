@@ -11,7 +11,7 @@ import static net.jung.chess.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class BoardTest {
+class BoardTest {
 
     private Board board;
     private Piece whitePawn;
@@ -60,15 +60,18 @@ public class BoardTest {
 
     @Test
     @DisplayName("initialize()는 32개 모든 말을 체스판 위에 올린다.")
-    void InitializeAddsEveryPiece(){
+    void initializeAddsEveryPiece(){
+        int maxNumOfPieces = 32;
         board.initialize();
-        String blankRank = appendNewLine("********");
         assertAll(
-                () -> assertThat(board.size()).isEqualTo(32),
+                () -> assertThat(board.size()).isEqualTo(maxNumOfPieces),
                 () -> assertThat(board.boardLayoutToString()).isEqualTo(
                     appendNewLine("RNBQKBNR")
                     +appendNewLine("PPPPPPPP")
-                    +blankRank+blankRank+blankRank+blankRank
+                    +board.BLANK_RANK
+                    +board.BLANK_RANK
+                    +board.BLANK_RANK
+                    +board.BLANK_RANK
                     +appendNewLine("pppppppp")
                     +appendNewLine("rnbqkbnr"))
         );

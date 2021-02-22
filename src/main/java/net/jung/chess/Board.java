@@ -12,6 +12,7 @@ import static net.jung.chess.utils.StringUtils.appendNewLine;
 public class Board {
     private List<Piece> blackPieceList = new ArrayList();
     private List<Piece> whitePieceList = new ArrayList();
+    public final String BLANK_RANK = appendNewLine("********");
 
     public void addWhitePiece(Piece piece) {
         if (piece.isWhite()) {
@@ -79,11 +80,11 @@ public class Board {
         addPiece(Piece.createPiece(color, Type.ROOK));
     }
 
-    public String getWhitePiecesResult() {
+    public String getWhitePiecesRepresentation() {
         return getPiecesRepresentation(whitePieceList);
     }
 
-    public String getBlackPiecesResult() {
+    public String getBlackPiecesRepresentation() {
         return getPiecesRepresentation(blackPieceList);
     }
 
@@ -98,15 +99,15 @@ public class Board {
     }
 
     public String boardLayoutToString() {
-        String blankRow = "********";
+
         StringBuilder boardLayout = new StringBuilder();
         boardLayout
-                .append(appendNewLine(getBlackPiecesResult()))
-                .append(appendNewLine(blankRow))
-                .append(appendNewLine(blankRow))
-                .append(appendNewLine(blankRow))
-                .append(appendNewLine(blankRow))
-                .append(appendNewLine(getWhitePiecesResult()));
+                .append(appendNewLine(getBlackPiecesRepresentation()))
+                .append(BLANK_RANK)
+                .append(BLANK_RANK)
+                .append(BLANK_RANK)
+                .append(BLANK_RANK)
+                .append(appendNewLine(getWhitePiecesRepresentation()));
         return boardLayout.toString();
     }
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class PieceTest {
+class PieceTest {
 
     @Test
     @DisplayName("팩토리메서드로 생성되는 말의 색, 이름이 정확한지 검증한다.")
@@ -31,14 +31,16 @@ public class PieceTest {
     }
 
     private void verifyPiece(final Piece piece, final Color color, final Type type, final char representation){
-        assertThat(piece.getColor()).isEqualTo(color);
-        assertThat(piece.getType()).isEqualTo(type);
-        assertThat(piece.getRepresentation()).isEqualTo(representation);
+        assertAll(
+                () -> assertThat(piece.getColor()).isEqualTo(color),
+                () -> assertThat(piece.getType()).isEqualTo(type),
+                () ->  assertThat(piece.getRepresentation()).isEqualTo(representation)
+        );
     }
 
     @Test
-    @DisplayName("isBlack isWhite는 색깔이 일치하면 true 아니면 false 리턴한다.")
-    void isColorCheck(){
+    @DisplayName("isWhite isBlack은 색깔이 일치하면 true 아니면 false 리턴한다.")
+    void checkIsColor(){
         assertAll(
                 () -> assertThat(Piece.createWhiteKing().isBlack()).isFalse(),
                 () -> assertThat(Piece.createBlackBishop().isBlack()).isTrue(),

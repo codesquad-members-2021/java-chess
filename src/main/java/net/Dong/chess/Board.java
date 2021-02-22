@@ -10,6 +10,9 @@ public class Board {
     private List<Pawn> blackPawn = new ArrayList<>();
 
 
+    private static final String EMPTYLINE = "........";
+    private static final String NEWLINE = "\n\r";
+
     public void addWhite(Pawn pawn) {
         whitePawn.add(pawn);
     }
@@ -73,5 +76,16 @@ public class Board {
         return sb.toString();
     }
 
-
+    public void print() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(EMPTYLINE).append(NEWLINE);
+        sb.append(getBlackPawnsResult()).append(NEWLINE);
+        sb.append(EMPTYLINE).append(NEWLINE);
+        sb.append(EMPTYLINE).append(NEWLINE);
+        sb.append(EMPTYLINE).append(NEWLINE);
+        sb.append(EMPTYLINE).append(NEWLINE);
+        sb.append(getWhitePawnsResult()).append(NEWLINE);
+        sb.append(EMPTYLINE).append(NEWLINE);
+        System.out.println(sb.toString());
+    }
 }

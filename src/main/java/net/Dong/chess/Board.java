@@ -68,7 +68,6 @@ public class Board {
 
     private String getPawnsResult(List<Pawn> whatPawn) {
         StringBuilder sb = new StringBuilder();
-        int len = whatPawn.size();
         for (Pawn pawn : whatPawn) {
             sb.append(pawn.getSymbol());
         }

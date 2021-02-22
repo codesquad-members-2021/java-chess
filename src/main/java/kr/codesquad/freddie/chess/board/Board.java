@@ -6,6 +6,7 @@ import kr.codesquad.freddie.chess.piece.Piece;
 import kr.codesquad.freddie.chess.utils.ChessCalculator;
 import kr.codesquad.freddie.chess.utils.ChessCalculatorImpl;
 import kr.codesquad.freddie.chess.utils.PositionConverter;
+import kr.codesquad.freddie.chess.utils.RankIndexConverter;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,18 +38,18 @@ public class Board {
     }
 
     private void initializePieceBy(Color color) {
-        int royalIndex = convertRankIndexToListIndex(color.royalInitializationRank());
-        int pawnIndex = convertRankIndexToListIndex(color.pawnInitializationRank());
+        int royalIndex = new RankIndexConverter(color.royalInitializationRank()).getRankIndexForList();
+        int pawnIndex = new RankIndexConverter(color.pawnInitializationRank()).getRankIndexForList();
 
         files.get(royalIndex).fillWithRoyal(color);
         files.get(pawnIndex).fillWithPawn(color);
     }
 
     private void initializeEmptyPiece() {
-        files.get(convertRankIndexToListIndex(3)).fillWithBlank();
-        files.get(convertRankIndexToListIndex(4)).fillWithBlank();
-        files.get(convertRankIndexToListIndex(5)).fillWithBlank();
-        files.get(convertRankIndexToListIndex(6)).fillWithBlank();
+        files.get(new RankIndexConverter(3).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndexConverter(4).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndexConverter(5).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndexConverter(6).getRankIndexForList()).fillWithBlank();
     }
 
     public Board initializeWithSort() {
@@ -135,10 +136,6 @@ public class Board {
         return files.stream()
                 .mapToInt(file -> file.getNumberOf(color, kind))
                 .sum();
-    }
-
-    private int convertRankIndexToListIndex(int rankIndex) {
-        return RANK_SIZE - rankIndex;
     }
 
     @Override

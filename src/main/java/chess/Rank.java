@@ -1,2 +1,4 @@
-package chess;public class Rank {
+package chess;
+
+public class Rank {
 }

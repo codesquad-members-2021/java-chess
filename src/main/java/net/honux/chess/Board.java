@@ -34,7 +34,7 @@ public class Board {
             return blackPawns;
     }
 
-    void initialize() {
+    public void initialize() {
         for (int i = 0; i < BOARD_LENGTH; i++) {
             whitePawns.add(new Piece(Piece.WHITE_COLOR, Piece.White.PAWN.representation));
             blackPawns.add(new Piece(Piece.BLACK_COLOR, Piece.Black.PAWN.representation));

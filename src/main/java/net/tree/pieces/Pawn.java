@@ -11,6 +11,8 @@ public class Pawn {
     public static final String WHITE_COLOR = "white";
     public static final String BLACK_COLOR = "black";
 
+    public Pawn() { }
+
 
     public Pawn(String color, char representation) {
         this.color = color;

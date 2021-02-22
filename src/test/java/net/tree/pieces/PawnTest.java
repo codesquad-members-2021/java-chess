@@ -3,6 +3,7 @@ package net.tree.pieces;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Test;
 =======
 import org.junit.jupiter.api.Test;
+=======
+>>>>>>> rebase mission3
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 >>>>>>> feat : Do Mission2
 
@@ -24,11 +28,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 >>>>>>> feat : Do Mission3
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.*;
-
 public class PawnTest {
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     @Test
 <<<<<<< HEAD
@@ -52,7 +54,10 @@ public class PawnTest {
 =======
 >>>>>>> feat : Do Mission2
 
+=======
+>>>>>>> rebase mission3
     @Test
+    @DisplayName("흰색, 검정색 pawn이 생성되어야 한다")
     public void create() {
         verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
         verifyPawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
@@ -88,10 +93,19 @@ public class PawnTest {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> feat : Do Mission3
 =======
 
 
 
 >>>>>>> feat : Do Mission2
+=======
+    @Test
+    @DisplayName("기본생성자 만들기")
+    public void create_기본생성자() {
+        Pawn pawn = new Pawn();
+        assertEquals("white", pawn.getColor());
+    }
+>>>>>>> rebase mission3
 }

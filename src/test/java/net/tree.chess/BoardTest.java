@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 =======
 import net.tree.pieces.Pawn;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 >>>>>>> 3c74074... feat : Do Mission2
@@ -24,17 +25,30 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 >>>>>>> feat : Do Mission2
+<<<<<<< HEAD
 >>>>>>> 3c74074... feat : Do Mission2
+=======
+=======
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+
+import static org.junit.jupiter.api.Assertions.*;
+>>>>>>> rebase mission3
+>>>>>>> 5913482... rebase mission3
 
 class BoardTest {
 
     private Board board;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     @BeforeEach
     void setup() {
         board = new Board();
 =======
+=======
+>>>>>>> 5913482... rebase mission3
 <<<<<<< HEAD
     @DisplayName("하얀색, 검정색 pawn 만들기")
     @Test
@@ -43,15 +57,24 @@ class BoardTest {
     @Test
     public void create() throws Exception {
 >>>>>>> feat : Do Mission2
+=======
+    @DisplayName("하얀색, 검정색 pawn 만들기")
+    @Test
+    public void create() {
+>>>>>>> rebase mission3
         Board board = new Board();
 
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
         board.add(white);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> rebase mission3
         Assertions.assertAll(
             () -> assertEquals(1, board.checkPawnSize()),
             () -> assertEquals(white, board.findPawn(0))
         );
+<<<<<<< HEAD
 
         Pawn black = new Pawn(Pawn.BLACK_COLOR);
         board.add(black);
@@ -85,12 +108,15 @@ class BoardTest {
         assertEquals(1, board.size());
         assertEquals(white, board.findPawn(0));
 
+=======
+>>>>>>> rebase mission3
 
         Pawn black = new Pawn(Pawn.BLACK_COLOR);
         board.add(black);
-        assertEquals(2, board.size());
-        assertEquals(black, board.findPawn(1));
-
+        Assertions.assertAll(
+                () -> assertEquals(2, board.checkPawnSize()),
+                () -> assertEquals(black, board.findPawn(1))
+        );
     }
 
 <<<<<<< HEAD
@@ -140,5 +166,15 @@ class BoardTest {
 >>>>>>> a101753... feat : Do Mission3
 =======
 
+<<<<<<< HEAD
 >>>>>>> 1f82d36... feat : Do Mission2
+=======
+    @DisplayName("pawnList 확인해보기 ")
+    @Test
+    public void checkPawnList() {
+        Board board = new Board();
+        assertTrue(board.pawnList.add(new Pawn()));
+    }
+
+>>>>>>> 5913482... rebase mission3
 }

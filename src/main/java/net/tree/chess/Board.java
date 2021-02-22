@@ -98,12 +98,17 @@ public class Board {
 =======
 =======
 
+<<<<<<< HEAD
 >>>>>>> feat : Do Mission2
     public void add(Pawn pawnColor) {
         pawnList.add(pawnColor);
+=======
+    public void add(Pawn pawn) {
+        pawnList.add(pawn);
+>>>>>>> rebase mission3
     }
 
-    public int size() {
+    public int checkPawnSize() {
         return pawnList.size();
     }
 

@@ -13,8 +13,17 @@ dependencies {
     compile('ch.qos.logback:logback-classic:1.2.3')
     testCompile("org.assertj:assertj-core:3.11.1")
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 }
 =======
 }
 >>>>>>> a101753... feat : Do Mission3
+=======
+}
+=======
+    //testCompile 'junit:junit:4.12'
+    testCompile 'org.junit.jupiter:junit-jupiter:5.4.2'
+}
+>>>>>>> rebase mission3
+>>>>>>> 5913482... rebase mission3

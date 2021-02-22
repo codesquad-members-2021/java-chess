@@ -24,7 +24,7 @@ public class Board {
     public Board() {
     }
 
-    private void addPiece(Piece piece) {
+    public void addPiece(Piece piece) {
         if (piece.isWhite()) {
             whitePieces.add(piece);
         }
@@ -36,43 +36,10 @@ public class Board {
     void initialize() {
         for (Type type : Type.values()) {
             for (Color color : Color.values()) {
-                initPieces(color, type);
+                type.initPiece(this, color);
             }
         }
         initCellsOfBoard();
-    }
-
-    private void initPieces(Color color, Type type) {
-        Piece piece;
-
-        switch (type) {
-            case PAWN:
-                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhitePawn() : Piece.PieceMaker.createBlackPawn();
-                for (int i = 0; i < 8; i++) this.addPiece(piece);
-                break;
-            case ROOK:
-                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteRook() : Piece.PieceMaker.createBlackRook();
-                for (int i = 0; i < 2; i++) this.addPiece(piece);
-                break;
-            case KNIGHT:
-                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteKnight() : Piece.PieceMaker.createBlackKnight();
-                for (int i = 0; i < 2; i++) this.addPiece(piece);
-                break;
-            case BISHOP:
-                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteBishop() : Piece.PieceMaker.createBlackBishop();
-                for (int i = 0; i < 2; i++) this.addPiece(piece);
-                break;
-            case QUEEN:
-                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteQueen() : Piece.PieceMaker.createBlackQueen();
-                for (int i = 0; i < 1; i++) this.addPiece(piece);
-                break;
-            case KING:
-                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteKing() : Piece.PieceMaker.createBlackKing();
-                for (int i = 0; i < 1; i++) this.addPiece(piece);
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + type);
-        }
     }
 
     private void initCellsOfBoard() {

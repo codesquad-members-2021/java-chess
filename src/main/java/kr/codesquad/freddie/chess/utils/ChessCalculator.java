@@ -1,6 +1,5 @@
 package kr.codesquad.freddie.chess.utils;
 
-import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.piece.CalculablePiece;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
@@ -8,8 +7,8 @@ import kr.codesquad.freddie.chess.piece.Kind;
 import java.util.Map;
 
 public class ChessCalculator {
-    public double calculateScore(Board board, Color color) {
-        Map<CalculablePiece, Double> calculablePieces = board.groupingByCalculablePiece(color);
+    public double calculateScore(Calculable calculable, Color color) {
+        Map<CalculablePiece, Double> calculablePieces = calculable.groupingByCalculablePiece(color);
 
         return calculablePieces.entrySet().stream()
                 .mapToDouble(calculablePieceDoubleEntry -> {

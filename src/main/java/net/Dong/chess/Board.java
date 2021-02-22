@@ -36,23 +36,23 @@ public class Board {
     }
 
     public Pawn findBlackPawn(int index) {
-        return whitePawn.get(index);
+        return blackPawn.get(index);
     }
 
     public void initialize() {
-        addPawnWhite(Pawn.InitialNumOfPawn);
-        addPawnBlack(Pawn.InitialNumOfPawn);
+        addWhitePawn(Pawn.InitialNumOfPawn);
+        addBlackPawn(Pawn.InitialNumOfPawn);
     }
 
-    private void addPawnWhite(int numOfPawn) {
+    private void addWhitePawn(int numOfPawn) {
         for (int i = 0; i < numOfPawn; i++) {
             whitePawn.add(new Pawn(Color.WHITE));
         }
     }
 
-    private void addPawnBlack(int numOfPawn) {
+    private void addBlackPawn(int numOfPawn) {
         for (int i = 0; i < numOfPawn; i++) {
-            whitePawn.add(new Pawn(Color.BLACK));
+            blackPawn.add(new Pawn(Color.BLACK));
         }
     }
 

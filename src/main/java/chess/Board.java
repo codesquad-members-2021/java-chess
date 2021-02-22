@@ -1,6 +1,8 @@
 package chess;
 
+import pieces.Color;
 import pieces.Piece;
+import pieces.Type;
 
 import java.util.ArrayList;
 
@@ -95,4 +97,7 @@ public class Board {
         return size;
     }
 
+    public int countPieceByColorAndType(Color black, Type pawn) {
+        return 0;
+    }
 }

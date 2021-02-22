@@ -3,8 +3,7 @@ package chess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pieces.Color;
-import pieces.Pawn;
+import pieces.Piece;
 
 import java.security.InvalidParameterException;
 
@@ -24,14 +23,14 @@ class BoardTest {
     @Test
     @DisplayName("흰색, 검은색 Pawn을 생성해 board에 추가한다")
     void createPawn() {
-        Pawn white = new Pawn(Color.WHITE);
+        Piece white = Piece.createWhitePawn();
         board.addWhitePawn(white);
         assertAll(
                 () -> assertThat(board.size()).isEqualTo(1),
                 () -> assertThat(board.findWhitePawn(0)).isEqualTo(white)
         );
 
-        Pawn black = new Pawn(Color.BLACK);
+        Piece black = Piece.createBlackPawn();
         board.addBlackPawn(black);
         assertAll(
                 () -> assertThat(board.size()).isEqualTo(2),
@@ -71,7 +70,7 @@ class BoardTest {
     @Test
     @DisplayName("잘못된 색의 pawn을 추가할 수 없다")
     void addWrongPawn() {
-        Pawn black = new Pawn(Color.BLACK);
+        Piece black = Piece.createBlackPawn();
         assertThatExceptionOfType(InvalidParameterException.class)
                 .isThrownBy(() -> board.addWhitePawn(black));
     }

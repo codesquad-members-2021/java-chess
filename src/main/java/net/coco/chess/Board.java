@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Board {
-    private OtherWhitePieces otherWhitePieces = new OtherWhitePieces();
+    private List<Piece> otherWhitePieces = new ArrayList<>();
     private List<Piece> otherBlackPieces = new ArrayList<>();
     private List<Piece> whitePawns = new ArrayList<>();
     private List<Piece> blackPawns = new ArrayList<>();
@@ -101,7 +101,7 @@ public class Board {
 
     public String getOtherWhitePiecesResult(String color) {
         if (color.equals(Piece.WHITE))
-            return getPiecesToString(otherWhitePieces.getList());
+            return getPiecesToString(otherWhitePieces);
         throw new IllegalArgumentException("매개변수를 확인하세요.");
     }
 

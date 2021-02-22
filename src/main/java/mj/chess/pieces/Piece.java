@@ -27,7 +27,9 @@ public class Piece {
             }
         }
 
-        if (!isValid) throw new IllegalArgumentException("Invalid Color");
+        if (!isValid) {
+            throw new IllegalArgumentException("Invalid Color");
+        }
     }
 
     private void validateType(Type type) {
@@ -40,7 +42,9 @@ public class Piece {
             }
         }
 
-        if (!isValid) throw new IllegalArgumentException("Invalid Type");
+        if (!isValid) {
+            throw new IllegalArgumentException("Invalid Type");
+        }
     }
 
     private void validateRepresentation(String representation) {
@@ -55,7 +59,9 @@ public class Piece {
             }
         }
 
-        if (!isValid) throw new IllegalArgumentException("Invalid representation");
+        if (!isValid) {
+            throw new IllegalArgumentException("Invalid representation");
+        }
     }
 
     public Color getColor() {

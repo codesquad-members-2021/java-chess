@@ -8,19 +8,19 @@ public enum Type {
     QUEEN('q', 'Q'),
     KING('k', 'K');
 
-    private final char whiteRep;
-    private final char blackRep;
+    private final char whiteRepresentation;
+    private final char blackRepresentation;
 
-    Type(char whiteRep, char blackRep) {
-        this.whiteRep = whiteRep;
-        this.blackRep = blackRep;
+    Type(char whiteRepresentation, char blackRepresentation) {
+        this.whiteRepresentation = whiteRepresentation;
+        this.blackRepresentation = blackRepresentation;
     }
 
-    public char getWhiteRep(){
-        return whiteRep;
+    public char getWhiteRepresentation(){
+        return whiteRepresentation;
     }
 
-    public char getBlackRep(){
-        return blackRep;
+    public char getBlackRepresentation(){
+        return blackRepresentation;
     }
 }

@@ -3,19 +3,18 @@ package net.jung.chess.pieces;
 public class Piece {
     private final Color color;
     private final Type type;
-    private final char representation;
 
     private Piece(Color color, Type type) {
         this.type = type;
         this.color = color;
-        representation = color == Color.WHITE ? type.getWhiteRep() : type.getBlackRep();
     }
 
     public Color getColor() { return color; }
 
-    public Type getName() { return type; }
+    public Type getType() { return type; }
 
-    public char getRepresentation() { return representation; }
+    public char getRepresentation() {
+        return color == Color.WHITE ? type.getWhiteRepresentation() : type.getBlackRepresentation(); }
 
 
     public static Piece createPiece(Color color, Type type){

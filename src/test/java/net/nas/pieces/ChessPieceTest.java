@@ -60,107 +60,88 @@ public class ChessPieceTest {
     @DisplayName("createWhitePawn 팩토리 메서드는 WhitePawn을 생성할 수 있어야 합니다")
     void testCreateWhitePawn() {
         ChessPiece testPiece = ChessPiece.createWhitePawn();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.PAWN));
+        testSinglePiece(testPiece, NameOfChessPiece.PAWN, ColorOfChessPiece.WHITE);
     }
 
     @Test
     @DisplayName("createBlackPawn 팩토리 메서드는 BlackPawn을 생성할 수 있어야 합니다")
     void testCreateBlackPawn() {
         ChessPiece testPiece = ChessPiece.createBlackPawn();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.PAWN));
+        testSinglePiece(testPiece, NameOfChessPiece.PAWN, ColorOfChessPiece.BLACK);
     }
 
     @Test
     @DisplayName("createWhiteRook 팩토리 메서드는 WhiteRook을 생성할 수 있어야 합니다")
     void testCreateWhiteRook() {
         ChessPiece testPiece = ChessPiece.createWhiteRook();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.ROOK));
+        testSinglePiece(testPiece, NameOfChessPiece.ROOK, ColorOfChessPiece.WHITE);
     }
 
     @Test
     @DisplayName("createBlackRook 팩토리 메서드는 BlackRook을 생성할 수 있어야 합니다")
     void testCreateBlackRook() {
         ChessPiece testPiece = ChessPiece.createBlackRook();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.ROOK));
+        testSinglePiece(testPiece, NameOfChessPiece.ROOK, ColorOfChessPiece.BLACK);
     }
 
     @Test
     @DisplayName("createWhiteKnight 팩토리 메서드는 WhiteKnight을 생성할 수 있어야 합니다")
     void testCreateWhiteKnight() {
         ChessPiece testPiece = ChessPiece.createWhiteKnight();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.KNIGHT));
+        testSinglePiece(testPiece, NameOfChessPiece.KNIGHT, ColorOfChessPiece.WHITE);
     }
 
     @Test
     @DisplayName("createBlackKnight 팩토리 메서드는 BlackKnight을 생성할 수 있어야 합니다")
     void testCreateBlackKnight() {
         ChessPiece testPiece = ChessPiece.createBlackKnight();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.KNIGHT));
+        testSinglePiece(testPiece, NameOfChessPiece.KNIGHT, ColorOfChessPiece.BLACK);
     }
 
     @Test
     @DisplayName("createWhiteBishop 팩토리 메서드는 WhiteBishop을 생성할 수 있어야 합니다")
     void testCreateWhiteBishop() {
         ChessPiece testPiece = ChessPiece.createWhiteBishop();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.BISHOP));
+        testSinglePiece(testPiece, NameOfChessPiece.BISHOP, ColorOfChessPiece.WHITE);
     }
 
     @Test
     @DisplayName("createBlackBishop 팩토리 메서드는 BlackBishop을 생성할 수 있어야 합니다")
     void testCreateBlackBishop() {
         ChessPiece testPiece = ChessPiece.createBlackBishop();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.BISHOP));
+        testSinglePiece(testPiece, NameOfChessPiece.BISHOP, ColorOfChessPiece.BLACK);
     }
 
     @Test
     @DisplayName("createWhiteQueen 팩토리 메서드는 WhiteQueen을 생성할 수 있어야 합니다")
     void testCreateWhiteQueen() {
         ChessPiece testPiece = ChessPiece.createWhiteQueen();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.QUEEN));
+        testSinglePiece(testPiece, NameOfChessPiece.QUEEN, ColorOfChessPiece.WHITE);
     }
 
     @Test
     @DisplayName("createBlackQueen 팩토리 메서드는 BlackQueen을 생성할 수 있어야 합니다")
     void testCreateBlackQueen() {
         ChessPiece testPiece = ChessPiece.createBlackQueen();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.QUEEN));
+        testSinglePiece(testPiece, NameOfChessPiece.QUEEN, ColorOfChessPiece.BLACK);
     }
 
     @Test
     @DisplayName("createWhiteKing 팩토리 메서드는 WhiteKing을 생성할 수 있어야 합니다")
     void testCreateWhiteKing() {
         ChessPiece testPiece = ChessPiece.createWhiteKing();
-        assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.KING));
+        testSinglePiece(testPiece, NameOfChessPiece.KING, ColorOfChessPiece.WHITE);
     }
 
     @Test
     @DisplayName("createBlackKing 팩토리 메서드는 BlackKing을 생성할 수 있어야 합니다")
     void testCreateBlackKing() {
         ChessPiece testPiece = ChessPiece.createBlackKing();
+        testSinglePiece(testPiece, NameOfChessPiece.KING, ColorOfChessPiece.BLACK);
+    }
+
+    private void testSinglePiece(ChessPiece testPiece, NameOfChessPiece name, ColorOfChessPiece color) {
         assertThat(testPiece.getRepresentation())
-                .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.KING));
+                .isEqualTo(color.getRepresentationByColor(name));
     }
 }

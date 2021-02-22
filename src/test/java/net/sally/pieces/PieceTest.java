@@ -1,0 +1,34 @@
+package net.sally.pieces;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
+
+
+public class PieceTest {
+
+    @Test
+    void create_piece() {
+        verifyPiece(Piece.createWhitePawn(), Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION);
+        verifyPiece(Piece.createBlackPawn(), Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
+
+    }
+
+    private void verifyPiece(final Piece piece, final String color, final char representation) {
+        assertThat(piece.getColor()).isEqualTo(color);
+        assertThat(piece.getRepresentation()).isEqualTo(representation);
+    }
+
+    @Test
+    @DisplayName("isWhite()과 isBlack()이 정상적으로 작동하는지 확인")
+    void isColorTest() {
+        Piece blackPawn = Piece.createBlackPawn();
+        Piece whitePawn = Piece.createWhitePawn();
+
+        assertThat(blackPawn.isBlack()).isEqualTo(blackPawn.getColor() == "black");
+        assertThat(whitePawn.isWhite()).isEqualTo(whitePawn.getColor() == "white");
+        assertThat(blackPawn.isWhite()).isEqualTo(blackPawn.getColor() == "white");
+        assertThat(whitePawn.isBlack()).isEqualTo(whitePawn.getColor() == "black");
+    }
+}

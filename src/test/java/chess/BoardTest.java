@@ -43,4 +43,18 @@ public class BoardTest {
         assertThat(board.pieceCountOf(Piece.Color.WHITE, Piece.Type.KING)).isEqualTo(1);
         assertThat(board.pieceCountOf(Piece.Color.WHITE, Piece.Type.PAWN)).isEqualTo(8);
     }
+
+    @Test
+    @DisplayName("입력된 위치의 piece객체를 반환한다.")
+    void find_piece() {
+        board.initialize();
+
+        assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlack(Piece.Type.ROOK));
+        assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlack(Piece.Type.ROOK));
+
+        assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhite(Piece.Type.ROOK));
+        assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhite(Piece.Type.ROOK));
+
+        assertThat(board.findPiece("a4")).isEqualTo(Piece.createBlank());
+    }
 }

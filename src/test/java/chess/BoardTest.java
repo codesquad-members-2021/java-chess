@@ -40,4 +40,21 @@ class BoardTest {
                         .isEqualTo(board.getChessBoard())
         );
     }
+
+    @Test
+    void findPiece() {
+        board.initialize();
+
+        verifyPieceColorAndType(Color.BLACK, Type.ROOK, "a8");
+        verifyPieceColorAndType(Color.BLACK, Type.ROOK, "h8");
+        verifyPieceColorAndType(Color.WHITE, Type.ROOK, "a1");
+        verifyPieceColorAndType(Color.WHITE, Type.ROOK, "h1");
+    }
+
+    void verifyPieceColorAndType(Color color, Type type, String index) {
+        assertAll(
+                () -> assertThat(type).isEqualTo(board.findPiece(index).getType()),
+                () -> assertThat(color).isEqualTo(board.findPiece(index).getColor())
+                );
+    }
 }

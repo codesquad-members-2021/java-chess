@@ -12,7 +12,7 @@ public class Board {
     private List<Piece> whitePawnList = new ArrayList<>();
     private List<Piece> blackPawnList = new ArrayList<>();
 
-    private String startLine = "* * * * * * * *";
+    private String startLine = "********";
 
     private final int PAWN_COUNT = 8;
 
@@ -36,18 +36,27 @@ public class Board {
                 whitePawnList.size() + blackPawnList.size();
     }
 
+    public void addPawn(Piece pawn) {
+        if (pawn.getColor() == Piece.Color.WHITE) {
+            whitePawnList.add(pawn);
+            return;
+        }
+        blackPawnList.add(pawn);
+    }
+
     public void addPiece(Piece piece) {
         if (piece.getColor() == Piece.Color.WHITE) {
-            whitePawnList.add(piece);
+            whitePieceList.add(piece);
+            return;
         }
-        blackPawnList.add(piece);
+        blackPieceList.add(piece);
     }
 
     public void initialize(){
 
         for(int i = 0; i < PAWN_COUNT; i++){
-            addPiece(Piece.createWhitePawn());
-            addPiece(Piece.createBlackPawn());
+            addPawn(Piece.createWhitePawn());
+            addPawn(Piece.createBlackPawn());
         }
 
         addPiece(Piece.createBlackRook());
@@ -67,7 +76,6 @@ public class Board {
         addPiece(Piece.createWhiteBishop());
         addPiece(Piece.createWhiteKnight());
         addPiece(Piece.createWhiteRook());
-
 
     }
 
@@ -98,6 +106,7 @@ public class Board {
 
     public void print(){
         StringBuilder sb = new StringBuilder();
+
         sb.append(getBlackPieceResult());
         sb.append(appendNewLine(NEWLINE));
         sb.append(getBlackPawnResult());
@@ -119,6 +128,7 @@ public class Board {
 
     public String showBoard(){
         StringBuilder sb = new StringBuilder();
+
         sb.append(getBlackPieceResult());
         sb.append(appendNewLine(NEWLINE));
         sb.append(getBlackPawnResult());

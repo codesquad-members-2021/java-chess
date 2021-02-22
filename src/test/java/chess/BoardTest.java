@@ -4,7 +4,7 @@ package chess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static utils.StringUtils.*;
 
@@ -22,24 +22,22 @@ class BoardTest {
     @DisplayName("boardInit")
     void create() throws Exception {
 
-        assertEquals(32, board.pieceCount());
+        assertThat(board.pieceCount()).isEqualTo(32);
 
-        String blankRank = appendNewLine("* * * * * * * *");
+        String blankRank = appendNewLine("********");
 
-        assertEquals(
-                appendNewLine("R"+" "+"N"+" "+"B"+" "+"Q"+" "+"K"+" "+"B"+" "+"N"+" "+"R"+" ") +
-                        appendNewLine(NEWLINE)+
-                        appendNewLine("P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" ") +
-                        appendNewLine(NEWLINE)+
-                        blankRank +appendNewLine(NEWLINE)+
-                        blankRank +appendNewLine(NEWLINE)+
-                        blankRank +appendNewLine(NEWLINE)+
-                        blankRank +appendNewLine(NEWLINE)+
-                        appendNewLine("p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" ")+
-                        appendNewLine(NEWLINE)+
-                        appendNewLine("r"+" "+"n"+" "+"b"+" "+"q"+" "+"k"+" "+"b"+" "+"n"+" "+"r"+" "),
+        assertThat(appendNewLine("RNBQKBNR")+
+                appendNewLine(NEWLINE)+
+                appendNewLine("PPPPPPPP")+
+                appendNewLine(NEWLINE)+
+                blankRank +appendNewLine(NEWLINE)+
+                blankRank +appendNewLine(NEWLINE)+
+                blankRank +appendNewLine(NEWLINE)+
+                blankRank +appendNewLine(NEWLINE)+
+                appendNewLine("pppppppp") +
+                appendNewLine(NEWLINE)+
+                appendNewLine("rnbqkbnr")).isEqualTo(board.showBoard());
 
-                board.showBoard());
     }
 
 

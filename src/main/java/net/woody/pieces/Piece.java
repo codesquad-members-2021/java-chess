@@ -13,7 +13,7 @@ public class Piece {
 
     private Piece(Color color, char representation) {
         this.color = color;
-        this.representation = representation;
+        this.representation = color.represent(representation);
     }
 
     public Color getColor() {
@@ -33,50 +33,50 @@ public class Piece {
     }
 
     public static Piece createBlackPawn() {
-        return new Piece(Color.BLACK, Representation.PAWN.black());
+        return new Piece(Color.BLACK, Representation.PAWN.value());
     }
 
     public static Piece createWhitePawn() {
-        return new Piece(Color.WHITE, Representation.PAWN.white());
+        return new Piece(Color.WHITE, Representation.PAWN.value());
     }
 
     public static Piece createBlackKnight() {
-        return new Piece(Color.WHITE, Representation.KNGINT.black());
+        return new Piece(Color.BLACK, Representation.KNGINT.value());
     }
 
     public static Piece createWhiteKnight() {
-        return new Piece(Color.WHITE, Representation.KNGINT.white());
+        return new Piece(Color.WHITE, Representation.KNGINT.value());
     }
 
     public static Piece createBlackRook() {
-        return new Piece(Color.WHITE, Representation.ROOK.black());
+        return new Piece(Color.BLACK, Representation.ROOK.value());
     }
 
     public static Piece createWhiteRook() {
-        return new Piece(Color.WHITE, Representation.ROOK.white());
+        return new Piece(Color.WHITE, Representation.ROOK.value());
     }
 
     public static Piece createBlackBishop() {
-        return new Piece(Color.WHITE, Representation.BISHOP.black());
+        return new Piece(Color.BLACK, Representation.BISHOP.value());
     }
 
     public static Piece createWhiteBishop() {
-        return new Piece(Color.WHITE, Representation.BISHOP.white());
+        return new Piece(Color.WHITE, Representation.BISHOP.value());
     }
 
     public static Piece createBlackQueen() {
-        return new Piece(Color.WHITE, Representation.QUEEN.black());
+        return new Piece(Color.BLACK, Representation.QUEEN.value());
     }
 
     public static Piece createWhiteQueen() {
-        return new Piece(Color.WHITE, Representation.QUEEN.white());
+        return new Piece(Color.WHITE, Representation.QUEEN.value());
     }
 
     public static Piece createBlackKing() {
-        return new Piece(Color.WHITE, Representation.KING.black());
+        return new Piece(Color.BLACK, Representation.KING.value());
     }
 
     public static Piece createWhiteKing() {
-        return new Piece(Color.WHITE, Representation.KING.white());
+        return new Piece(Color.WHITE, Representation.KING.value());
     }
 }

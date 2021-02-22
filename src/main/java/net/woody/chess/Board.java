@@ -2,7 +2,6 @@ package net.woody.chess;
 
 import static net.woody.utils.StringUtils.appendNewLine;
 
-import net.woody.pieces.Color;
 import net.woody.pieces.Piece;
 
 import java.util.ArrayList;

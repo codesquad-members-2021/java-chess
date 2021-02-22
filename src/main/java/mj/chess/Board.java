@@ -47,27 +47,27 @@ public class Board {
 
         switch (type) {
             case PAWN:
-                piece = (color == Color.WHITE) ? Piece.createWhitePawn() : Piece.createBlackPawn();
+                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhitePawn() : Piece.PieceMaker.createBlackPawn();
                 for (int i = 0; i < 8; i++) this.addPiece(piece);
                 break;
             case ROOK:
-                piece = (color == Color.WHITE) ? Piece.createWhiteRook() : Piece.createBlackRook();
+                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteRook() : Piece.PieceMaker.createBlackRook();
                 for (int i = 0; i < 2; i++) this.addPiece(piece);
                 break;
             case KNIGHT:
-                piece = (color == Color.WHITE) ? Piece.createWhiteKnight() : Piece.createBlackKnight();
+                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteKnight() : Piece.PieceMaker.createBlackKnight();
                 for (int i = 0; i < 2; i++) this.addPiece(piece);
                 break;
             case BISHOP:
-                piece = (color == Color.WHITE) ? Piece.createWhiteBishop() : Piece.createBlackBishop();
+                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteBishop() : Piece.PieceMaker.createBlackBishop();
                 for (int i = 0; i < 2; i++) this.addPiece(piece);
                 break;
             case QUEEN:
-                piece = (color == Color.WHITE) ? Piece.createWhiteQueen() : Piece.createBlackQueen();
+                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteQueen() : Piece.PieceMaker.createBlackQueen();
                 for (int i = 0; i < 1; i++) this.addPiece(piece);
                 break;
             case KING:
-                piece = (color == Color.WHITE) ? Piece.createWhiteKing() : Piece.createBlackKing();
+                piece = (color == Color.WHITE) ? Piece.PieceMaker.createWhiteKing() : Piece.PieceMaker.createBlackKing();
                 for (int i = 0; i < 1; i++) this.addPiece(piece);
                 break;
             default:

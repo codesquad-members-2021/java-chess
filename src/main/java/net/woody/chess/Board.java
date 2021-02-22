@@ -43,6 +43,36 @@ public class Board {
     }
 
     public void initialize() {
+        initPieces();
+        initPawns();
+    }
+
+    // TODO : 간결하게 수정
+    public void initPieces() {
+        Rank blackPieces = getRank(Piece.BLACK_PIECES_RANK);
+        Rank whitePieces = getRank(Piece.WHITE_PIECES_RANK);
+
+        blackPieces.add(Piece.createBlackRook());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackQueen());
+        blackPieces.add(Piece.createBlackKing());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackRook());
+
+        whitePieces.add(Piece.createWhiteRook());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteQueen());
+        whitePieces.add(Piece.createWhiteKing());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteRook());
+
+    }
+
+    public void initPawns() {
         Rank blackPawns = getRank(Piece.BLACK_PAWN_RANK);
         Rank whitePawns = getRank(Piece.WHITE_PAWN_RANK);
 

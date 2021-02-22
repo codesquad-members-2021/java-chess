@@ -3,8 +3,10 @@ package net.woody.pieces;
 import net.woody.chess.Representation;
 
 public class Piece {
+    public static final int BLACK_PIECES_RANK = 0;
     public static final int BLACK_PAWN_RANK = 1;
     public static final int WHITE_PAWN_RANK = 6;
+    public static final int WHITE_PIECES_RANK = 7;
 
     private Color color;
     private char representation;

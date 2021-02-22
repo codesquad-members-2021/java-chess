@@ -105,7 +105,7 @@ public class Board {
     private String getPiecesResult(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
         for (Piece piece : pieces) {
-            sb.append(piece.getRepresentation());
+            sb.append(piece.getType());
         }
         return sb.toString();
     }

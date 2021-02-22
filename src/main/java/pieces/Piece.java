@@ -33,6 +33,8 @@ public class Piece {
     private Color color;
     private Type representation;
 
+
+
     public Piece(Color color, Type representation) {
         this.color = color;
         this.representation = representation;
@@ -86,11 +88,15 @@ public class Piece {
         return new Piece(Color.BLACK, Type.KING);
     }
 
+    public static Piece createBlank() {
+        return new Piece(Color.NO_COLOR, Type.NO_PIECE);
+    }
+
     public Color getColor() {
         return color;
     }
 
-    public Type getRepresentation() {
+    public Type getType() {
         return representation;
     }
 

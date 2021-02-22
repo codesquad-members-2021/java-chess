@@ -1,6 +1,7 @@
 package chess;
 
 import chess.pieces.Color;
+import chess.pieces.Piece;
 import chess.pieces.Type;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -56,5 +57,17 @@ class BoardTest {
                 () -> assertThat(type).isEqualTo(board.findPiece(index).getType()),
                 () -> assertThat(color).isEqualTo(board.findPiece(index).getColor())
                 );
+    }
+
+    @Test
+    public void move() {
+        board.initializeEmpty();
+
+        String position = "b5";
+        Piece piece = Piece.createBlackRook();
+        board.move(position, piece);
+
+        assertThat(piece).isEqualTo(board.findPiece(position));
+        System.out.println(board.getChessBoard());
     }
 }

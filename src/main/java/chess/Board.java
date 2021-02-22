@@ -68,7 +68,7 @@ public class Board {
         return "........";
     }
 
-    void printBoard(){
+    String getBoard(){
         StringBuilder sb = new StringBuilder();
 
         sb.append(getDotOnBoard()+"\n");
@@ -80,7 +80,13 @@ public class Board {
         sb.append(getBlackPawnsRepresentation()+"\n");
         sb.append(getDotOnBoard());
 
-        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+    public void printBoard(){
+
+        String board = getBoard();
+        System.out.println(board);
     }
 }
 

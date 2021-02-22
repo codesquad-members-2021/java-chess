@@ -46,6 +46,14 @@ class BoardTest {
     @DisplayName("보드판 출력이 원하는 그림대로 나오는지 테스트")
     void printBoard(){
         board.initialize();
-        board.printBoard();
+        assertThat(board.getBoard()).isEqualTo(
+                "........\n" +
+                "pppppppp\n" +
+                "........\n" +
+                "........\n" +
+                "........\n" +
+                "........\n" +
+                "PPPPPPPP\n" +
+                "........");
     }
 }

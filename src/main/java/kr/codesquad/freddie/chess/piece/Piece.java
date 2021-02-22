@@ -23,6 +23,10 @@ public class Piece {
         return kind;
     }
 
+    public double getPoint() {
+        return kind.point();
+    }
+
     public String getRepresentation() {
         return color.getRepresentationBy(kind.representation());
     }

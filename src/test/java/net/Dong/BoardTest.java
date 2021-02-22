@@ -17,12 +17,12 @@ class BoardTest {
         Board board = new Board();
 
         Pawn white = new Pawn(Color.WHITE);
-        board.addWhite(white);
+        board.addWhitePawn(white);
         assertThat(board.size()).isEqualTo(1);
         assertThat(board.findWhitePawn(0)).isEqualTo(white);
 
         Pawn black = new Pawn(Color.BLACK);
-        board.addWhite(black);
+        board.addBlackPawn(black);
         assertThat(board.size()).isEqualTo(1);
         assertThat(board.findBlackPawn(0)).isEqualTo(black);
     }

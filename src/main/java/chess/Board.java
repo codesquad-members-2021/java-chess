@@ -1,6 +1,6 @@
 package chess;
 
-import pieces.Pawn;
+import pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,27 +9,27 @@ public class Board {
     private static final int BOARD_SIZE = 8;
     private static final String NEW_LINE = "\n";
     private static final String EMPTY = "........" + NEW_LINE;
-    private List<Pawn> whitePawns = new ArrayList<>();
-    private List<Pawn> blackPawns = new ArrayList<>();
+    private List<Piece> whitePawns = new ArrayList<>();
+    private List<Piece> blackPawns = new ArrayList<>();
 
     public void initialize() {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            addWhitePawn(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            addBlackPawn(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            addWhitePawn(new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION));
+            addBlackPawn(new Piece(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION));
         }
     }
 
-    public void addWhitePawn(Pawn pawn) {
-        if (checkPawnColor(pawn, Pawn.WHITE_COLOR))
+    public void addWhitePawn(Piece pawn) {
+        if (checkPawnColor(pawn, Piece.WHITE_COLOR))
             whitePawns.add(pawn);
     }
 
-    public void addBlackPawn(Pawn pawn) {
-        if (checkPawnColor(pawn, Pawn.BLACK_COLOR))
+    public void addBlackPawn(Piece pawn) {
+        if (checkPawnColor(pawn, Piece.BLACK_COLOR))
             blackPawns.add(pawn);
     }
 
-    private boolean checkPawnColor(Pawn pawn, String color) {
+    private boolean checkPawnColor(Piece pawn, String color) {
         return pawn.getColor().equals(color);
     }
 
@@ -41,18 +41,18 @@ public class Board {
         return getPawnRepresentations(blackPawns);
     }
 
-    private String getPawnRepresentations(List<Pawn> pawns) {
+    private String getPawnRepresentations(List<Piece> pawns) {
         StringBuilder pawnsResult = new StringBuilder();
-        for (Pawn pawn : pawns)
+        for (Piece pawn : pawns)
             pawnsResult.append(pawn.getRepresentation());
         return pawnsResult.toString();
     }
 
-    public Pawn findWhitePawn(int index) {
+    public Piece findWhitePawn(int index) {
         return whitePawns.get(index);
     }
 
-    public Pawn findBlackPawn(int index) {
+    public Piece findBlackPawn(int index) {
         return blackPawns.get(index);
     }
 

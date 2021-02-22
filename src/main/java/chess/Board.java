@@ -4,6 +4,7 @@ import pieces.Color;
 import pieces.Piece;
 import pieces.Type;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static utils.StringUtils.*;
@@ -97,7 +98,15 @@ public class Board {
         return size;
     }
 
-    public int countPieceByColorAndType(Color black, Type pawn) {
-        return 0;
+    public int countPieceByColorAndType(Color color, Type type) {
+        int count = 0;
+        for (ArrayList<Piece> rank : pieceRanks) {
+            for (Piece piece : rank) {
+                if (piece.getColor() == color && piece.getType() == type) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }

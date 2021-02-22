@@ -14,6 +14,10 @@ public class Piece {
         return type.getRepresentation(color);
     }
 
+    public Color getColor() {
+        return color;
+    }
+
     public Type getType() {
         return type;
     }

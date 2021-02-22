@@ -78,9 +78,13 @@ public class Rank {
         pieces.add(piece);
     }
 
-    public int findPiece(char representation) {
+    public int findPieceCount(char representation) {
         return (int) pieces.stream()
-                .filter(piece -> piece.getRepresentation()==representation)
+                .filter(piece -> piece.getRepresentation() == representation)
                 .count();
+    }
+
+    public Piece findPieceFromPoint(int row) {
+        return pieces.get(row);
     }
 }

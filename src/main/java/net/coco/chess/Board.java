@@ -30,10 +30,20 @@ public class Board {
         PieceValid.checkColorType(color);
         int count = 0;
         for (Rank rank : ranks) {
-            count += rank.findPiece(pieceType.getRepresentation(color));
+            count += rank.findPieceCount(pieceType.getRepresentation(color));
         }
         return count;
     }
+
+    public Piece getPieceFromPoint(String point) {
+        int row = point.charAt(0) - 'a';
+        int column = Character.getNumericValue(point.charAt(1)) - 1;
+        PieceValid.piecePointValid(row, column);
+
+        return ranks.get(column).findPieceFromPoint(row);
+    }
+
+
 
     public String getRankResult(int findRank) {
         return getPiecesToString(ranks.get(findRank).getPieces());

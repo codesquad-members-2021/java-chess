@@ -1,6 +1,6 @@
 package net.woody.pieces;
 
-public class Pawn {
+public class Piece {
     public static final char PAWN_REPRESENTATION = 'p';
     public static final int BLACK_PAWN_RANK = 1;
     public static final int WHITE_PAWN_RANK = 6;
@@ -8,17 +8,13 @@ public class Pawn {
     private Color color;
     private char representation;
 
-    public Pawn() {
+    public Piece() {
         this(Color.WHITE.toString());
     }
 
-    public Pawn(String color) {
+    public Piece(String color) {
         this.color = Color.value(color);
         this.representation = this.color.representation(PAWN_REPRESENTATION);
-    }
-
-    public String getColorName() {
-        return color.toString();
     }
 
     public Color getColor() {

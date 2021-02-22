@@ -1,6 +1,6 @@
 package net.woody.chess;
 
-import net.woody.pieces.Pawn;
+import net.woody.pieces.Piece;
 import net.woody.pieces.Color;
 import org.junit.jupiter.api.*;
 
@@ -19,11 +19,11 @@ class BoardTest {
     @Test
     @DisplayName("보드에 있는 폰을 정상적으로 찾을 수 있어야 한다.")
     void findPawnOnTheBoard() {
-        Pawn firstPawn = new Pawn();
-        addThePawnProperly(firstPawn, 0);
+        Piece firstPiece = new Piece();
+        addThePawnProperly(firstPiece, 0);
 
-        Pawn secondPawn = new Pawn();
-        addThePawnProperly(secondPawn, 1);
+        Piece secondPiece = new Piece();
+        addThePawnProperly(secondPiece, 1);
     }
 
     @Test
@@ -69,15 +69,15 @@ class BoardTest {
         System.out.println(actualResult);
     }
 
-    private void addThePawnProperly(Pawn newPawn, int newPawnIdx) {
-        int rank = getPawnRank(newPawn);
+    private void addThePawnProperly(Piece newPiece, int newPawnIdx) {
+        int rank = getPawnRank(newPiece);
         int sizeBeforeAddThePawn = board.size();
-        board.add(newPawn);
+        board.add(newPiece);
         assertThat(sizeBeforeAddThePawn + 1).isEqualTo(board.size());
-        assertThat(newPawn).isEqualTo(board.findPawn(rank, newPawnIdx));
+        assertThat(newPiece).isEqualTo(board.findPawn(rank, newPawnIdx));
     }
 
-    private int getPawnRank(Pawn newPawn) {
-        return (newPawn.getColor() == Color.WHITE) ? Pawn.WHITE_PAWN_RANK : Pawn.BLACK_PAWN_RANK;
+    private int getPawnRank(Piece newPiece) {
+        return (newPiece.getColor() == Color.WHITE) ? Piece.WHITE_PAWN_RANK : Piece.BLACK_PAWN_RANK;
     }
 }

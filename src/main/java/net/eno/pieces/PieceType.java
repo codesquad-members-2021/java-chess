@@ -13,7 +13,8 @@ public enum PieceType {
     BLACK_KNIGHT("black", 'N'),
     BLACK_BISHOP("black", 'B'),
     BLACK_QUEEN("black", 'Q'),
-    BLACK_KING("black", 'K');
+    BLACK_KING("black", 'K'),
+    NO_PIECE("", '.');
 
     private final String color;
     private final char representation;

@@ -18,14 +18,6 @@ class PieceTest {
     }
 
     @Test
-    @DisplayName("기본 생성자로 폰을 생성할 때, 흰색 폰이 생성되어야 한다")
-    void createWithDefaultPawn() {
-        Piece piece = new Piece();
-        assertThat(piece.getColor()).isEqualTo(Color.WHITE);
-        assertThat(piece.getRepresentation()).isEqualTo(Piece.PAWN_REPRESENTATION);
-    }
-
-    @Test
     @DisplayName("다른 색 폰이 생성되면 안된다")
     void createRedPawn() {
         assertThatThrownBy(() -> new Piece("red"))

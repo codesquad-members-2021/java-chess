@@ -8,11 +8,7 @@ public class Piece {
     private Color color;
     private char representation;
 
-    public Piece() {
-        this(Color.WHITE.toString());
-    }
-
-    public Piece(String color) {
+    private Piece(String color) {
         this.color = Color.value(color);
         this.representation = this.color.representation(PAWN_REPRESENTATION);
     }

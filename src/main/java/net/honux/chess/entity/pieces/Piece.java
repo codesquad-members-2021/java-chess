@@ -103,4 +103,9 @@ public class Piece {
         Piece piece = (Piece) o;
         return representation == piece.representation && color == piece.color;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(representation);
+    }
 }

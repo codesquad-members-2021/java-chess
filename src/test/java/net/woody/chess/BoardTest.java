@@ -57,14 +57,14 @@ class BoardTest {
     void print() {
         board.initialize();
         String expectedResult =
-                appendNewLine("........") +
+                appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         appendNewLine("........") +
                         appendNewLine("........") +
                         appendNewLine("........") +
                         appendNewLine("........") +
                         appendNewLine("pppppppp") +
-                        appendNewLine("........");
+                        appendNewLine("rnbqkbnr");
 
         String actualResult = board.print();
         assertThat(expectedResult).isEqualTo(actualResult);

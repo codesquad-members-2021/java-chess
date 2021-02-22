@@ -115,4 +115,16 @@ public class Rank {
 
         return countPiece;
     }
+
+    public List<Piece> findPieceByColor(Color color) {
+        List<Piece> pieceByColor = new ArrayList<>(Board.BOARD_SIZE);
+
+        for (Piece piece : pieces){
+            if(piece.matchColor(color)){
+                pieceByColor.add(piece);
+            }
+        }
+
+        return pieceByColor;
+    }
 }

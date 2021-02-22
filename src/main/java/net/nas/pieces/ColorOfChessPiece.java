@@ -6,6 +6,7 @@ public enum ColorOfChessPiece {
     WHITE(String::toLowerCase),
     BLACK(String::toUpperCase),
     BLANK((representationString) -> ".");
+
     private final Function<String, String> representationFunction;
 
     ColorOfChessPiece(Function<String, String> representationFunction) {

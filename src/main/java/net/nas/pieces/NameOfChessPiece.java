@@ -1,7 +1,13 @@
 package net.nas.pieces;
 
 public enum NameOfChessPiece {
-    PAWN("P"), ROOK("R"), KNIGHT("N"), BISHOP("B"), QUEEN("Q"), KING("K");
+    PAWN("P"),
+    ROOK("R"),
+    KNIGHT("N"),
+    BISHOP("B"),
+    QUEEN("Q"),
+    KING("K");
+
     private final String representation;
 
     NameOfChessPiece(String representation) {

@@ -2,6 +2,7 @@ package net.coco.chess;
 
 import net.coco.pieces.Piece;
 import net.coco.pieces.PieceType;
+import net.coco.pieces.Point;
 import net.coco.valid.PieceValid;
 
 import java.util.ArrayList;
@@ -26,8 +27,8 @@ public class Board {
         ranks.add(Rank.initBlackPieces());
     }
 
-    public void initializeEmpty(){
-        for (int i = 0; i <BOARD_CELLS; i++) {
+    public void initializeEmpty() {
+        for (int i = 0; i < BOARD_CELLS; i++) {
             ranks.add(Rank.initBlankLine());
         }
     }
@@ -41,12 +42,9 @@ public class Board {
         return count;
     }
 
-    public Piece getPieceFromPoint(String point) {
-        int row = point.charAt(0) - 'a';
-        int column = Character.getNumericValue(point.charAt(1)) - 1;
-        PieceValid.piecePointValid(row, column);
-
-        return ranks.get(column).findPieceFromPoint(row);
+    public Piece getPieceFromPoint(String pointStr) {
+        Point point = new Point(pointStr);
+        return ranks.get(point.getColumn()).findPieceFromPoint(point.getRow());
     }
 
     public String getRankResult(int findRank) {
@@ -60,11 +58,9 @@ public class Board {
                 .collect(Collectors.joining());
     }
 
-    public void move(String point,Piece piece) {
-        int row = point.charAt(0) - 'a';
-        int column = Character.getNumericValue(point.charAt(1)) - 1;
-        PieceValid.piecePointValid(row,column);
+    public void move(String pointStr, Piece piece) {
+        Point point = new Point(pointStr);
 
-        ranks.get(column).movePieceToPoint(piece,row);
+        ranks.get(point.getColumn()).movePieceToPoint(piece, point.getRow());
     }
 }

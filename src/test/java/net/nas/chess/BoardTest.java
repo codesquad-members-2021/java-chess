@@ -33,12 +33,12 @@ public class BoardTest {
     @Test
     @DisplayName("체스 보드에 폰을 추가하고, 찾을 수 있어야 합니다.")
     void testAdditionAndFind() {
-        ChessPiece whiteChessPiece = ChessPiece.createWhitePawn();
+        ChessPiece whitePawn = ChessPiece.createWhitePawn();
         for (int i = 0; i < Board.LENGTH_OF_BOARD; i++) {
             final int fileIdx = i;
             assertAll(
-                    () -> verifyAddition(whiteChessPiece, Board.RANK_OF_WHITE_PAWNS, fileIdx),
-                    () -> verifyFind(whiteChessPiece, Board.RANK_OF_WHITE_PAWNS, fileIdx)
+                    () -> verifyAddition(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx),
+                    () -> verifyFind(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx)
             );
         }
     }

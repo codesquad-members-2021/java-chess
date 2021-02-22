@@ -12,7 +12,7 @@ public class ChessPieceTest {
     @Test
     @DisplayName("isWhite메서드는 흰색의 말에 대해 true를 리턴하고, 다른 색상인 경우엔 false를 리턴해야 합니다")
     void testIsWhite() {
-        testAllCasesWidhParamFuncion((name, color) -> {
+        testAllCasesWithParamFuncion((name, color) -> {
             ChessPiece piece = ChessPiece.createChessPiece(name, color);
             if (color == ColorOfChessPiece.WHITE)
                 assertThat(piece.isWhite()).isTrue();
@@ -23,7 +23,7 @@ public class ChessPieceTest {
     @Test
     @DisplayName("isBlack메서드는 검정색의 말에 대해 true를 리턴하고, 다른 색상인 경우엔 false를 리턴해야 합니다")
     void testIsBlack() {
-        testAllCasesWidhParamFuncion((name, color) -> {
+        testAllCasesWithParamFuncion((name, color) -> {
             ChessPiece piece = ChessPiece.createChessPiece(name, color);
             if (color == ColorOfChessPiece.BLACK)
                 assertThat(piece.isBlack()).isTrue();
@@ -34,7 +34,7 @@ public class ChessPieceTest {
     @Test
     @DisplayName("isBlank메서드는 Blank인 말에 대해 true를 리턴하고, 다른 색상인 경우엔 false를 리턴해야 합니다")
     void testIsBlank() {
-        testAllCasesWidhParamFuncion((name, color) -> {
+        testAllCasesWithParamFuncion((name, color) -> {
             ChessPiece piece = ChessPiece.createChessPiece(name, color);
             if (color == ColorOfChessPiece.BLANK)
                 assertThat(piece.isBlank()).isTrue();
@@ -46,7 +46,7 @@ public class ChessPieceTest {
     @DisplayName("모든 흰색, 검정색 체스말을 생성할 수 있어야 합니다. " +
             "생성된 체스말이 올바른지는 표현문자를 이용해 검사합니다")
     void testCreationOfChessPieces() {
-        testAllCasesWidhParamFuncion((name, color) -> {
+        testAllCasesWithParamFuncion((name, color) -> {
             ChessPiece piece = ChessPiece.createChessPiece(name, color);
             String expectedRepresentation = color.getRepresentationByColor(name);
             assertThat(piece.getRepresentation()).isEqualTo(expectedRepresentation);
@@ -54,7 +54,7 @@ public class ChessPieceTest {
     }
 
     //체스말의 이름과 색상을 가지고 조합가능한 모든 경우에 대해, 패러미터 testMethod로 테스트합니다.
-    private void testAllCasesWidhParamFuncion(BiConsumer<NameOfChessPiece, ColorOfChessPiece> testMethod) {
+    private void testAllCasesWithParamFuncion(BiConsumer<NameOfChessPiece, ColorOfChessPiece> testMethod) {
         for (NameOfChessPiece name : NameOfChessPiece.values()) {
             for (ColorOfChessPiece color : ColorOfChessPiece.values()) {
                 testMethod.accept(name, color);

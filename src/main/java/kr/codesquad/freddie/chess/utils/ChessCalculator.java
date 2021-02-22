@@ -1,10 +1,21 @@
 package kr.codesquad.freddie.chess.utils;
 
-import kr.codesquad.freddie.chess.board.File;
+import kr.codesquad.freddie.chess.board.Board;
+import kr.codesquad.freddie.chess.piece.CalculablePiece;
 import kr.codesquad.freddie.chess.piece.Color;
+import kr.codesquad.freddie.chess.piece.Kind;
 
-import java.util.List;
+import java.util.Map;
 
-public interface ChessCalculator {
-     double calculate(List<File> files, Color color);
+public class ChessCalculator {
+    public double calculateScore(Board board, Color color) {
+        Map<CalculablePiece, Double> calculablePieces = board.groupingByCalculablePiece(color);
+
+        return calculablePieces.entrySet().stream()
+                .mapToDouble(calculablePieceDoubleEntry -> {
+                    double point = calculablePieceDoubleEntry.getValue();
+                    Kind kind = calculablePieceDoubleEntry.getKey().getKind();
+                    return kind == Kind.PAWN && 1 < point ? point / 2 : point;
+                }).sum();
+    }
 }

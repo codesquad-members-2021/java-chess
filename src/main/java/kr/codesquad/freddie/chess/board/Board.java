@@ -1,14 +1,14 @@
 package kr.codesquad.freddie.chess.board;
 
+import kr.codesquad.freddie.chess.piece.CalculablePiece;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
-import kr.codesquad.freddie.chess.utils.ChessCalculator;
-import kr.codesquad.freddie.chess.utils.ChessCalculatorImpl;
 import kr.codesquad.freddie.chess.utils.PositionConverter;
 import kr.codesquad.freddie.chess.utils.RankIndexConverter;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Board {
@@ -16,15 +16,8 @@ public class Board {
     public static final int RANK_SIZE = 8;
     private List<File> files = new ArrayList<>();
     private Map<Color, List<Piece>> blackAndWhitePieces = new HashMap<>();
-    private ChessCalculator chessCalculator;
 
     public Board() {
-        this(new ChessCalculatorImpl());
-    }
-
-    public Board(ChessCalculator chessCalculator) {
-        this.chessCalculator = chessCalculator;
-
         for (int i = 0; i < RANK_SIZE; i++) {
             files.add(new File());
         }
@@ -128,14 +121,19 @@ public class Board {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public double getScoreOf(Color color) {
-        return chessCalculator.calculate(files, color);
-    }
-
     public int getNumberOf(Color color, Kind kind) {
         return files.stream()
                 .mapToInt(file -> file.getNumberOf(color, kind))
                 .sum();
+    }
+
+    public Map<CalculablePiece, Double> groupingByCalculablePiece(Color color) {
+        return files.stream()
+                .flatMap(File::getCalculablePieces)
+                .filter(calculablePiece -> calculablePiece.getColor() == color)
+                .collect(Collectors.groupingBy(Function.identity(),
+                        Collectors.summingDouble(CalculablePiece::getPoint)
+                ));
     }
 
     @Override
@@ -143,7 +141,6 @@ public class Board {
         return "Board{" +
                 "files=" + files +
                 ", blackAndWhitePieces=" + blackAndWhitePieces +
-                ", chessCalculator=" + chessCalculator +
                 '}';
     }
 }

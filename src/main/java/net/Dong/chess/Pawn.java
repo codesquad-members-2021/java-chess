@@ -4,10 +4,19 @@ public class Pawn {
     public static final int InitialNumOfPawn = 8;
     private final Color color;
 
+    public static final char WHITE_REPRESENTATION = 'p';
+    public static final char BLACK_REPRESENTATION = 'P';
+
+
+    char representation;
+    private final Color color;
     public enum Color {
         WHITE,
+
         BLACK;
     }
+
+
 
 
     public Pawn() {
@@ -20,12 +29,14 @@ public class Pawn {
 
 
     public Pawn(String colorString) {
+
         if (colorString.equals("BLACK")) {
             this.color = Color.BLACK;
         } else {
             this.color = Color.WHITE;
         }
     }
+
 
     public Color getColor() {
         return this.color;
@@ -34,8 +45,9 @@ public class Pawn {
     public String getSymbol() {
         if (this.color == Color.WHITE) {
             return "p";
+
         }
-        return "P";
+        return 'P';
     }
 
 }

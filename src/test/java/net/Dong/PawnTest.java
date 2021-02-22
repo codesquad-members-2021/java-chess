@@ -16,6 +16,13 @@ class PawnTest {
 
         verifyPawnColor(Color.WHITE);
         verifyPawnColor(Color.BLACK);
+    @Test
+    public void  create() throws Exception{
+        Pawn pawn = new Pawn();
+        assertEquals(Color.WHITE, pawn.getColor());
+        assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getSymbol());
+    }
+
 
     }
 

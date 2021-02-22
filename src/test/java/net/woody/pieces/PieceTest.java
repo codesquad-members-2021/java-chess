@@ -1,5 +1,6 @@
 package net.woody.pieces;
 
+import net.woody.chess.Representation;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -8,11 +9,28 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PieceTest {
 
     @Test
-    @DisplayName("흰색 폰과 검은색 폰이 생성되어야 한다")
-    void createWhiteAndBlackPieces() {
+    @DisplayName("검은색 체스말들이 정상적으로 생성되어야 한다")
+    void createBlackPieces() {
         assertAll(
-                () -> verifyPawn(Piece.createWhitePawn(), Color.WHITE.toString(), 'p'),
-                () -> verifyPawn(Piece.createBlackPawn(), Color.BLACK.toString(), 'P')
+                () -> verifyBlackPiece(Piece.createBlackPawn(), Representation.PAWN),
+                () -> verifyBlackPiece(Piece.createBlackKnight(), Representation.KNGINT),
+                () -> verifyBlackPiece(Piece.createBlackRook(), Representation.ROOK),
+                () -> verifyBlackPiece(Piece.createBlackBishop(), Representation.BISHOP),
+                () -> verifyBlackPiece(Piece.createBlackQueen(), Representation.QUEEN),
+                () -> verifyBlackPiece(Piece.createBlackKing(), Representation.KING)
+        );
+    }
+
+    @Test
+    @DisplayName("흰색 체스말들이 정상적으로 생성되어야 한다")
+    void createWhitePieces() {
+        assertAll(
+                () -> verifyWhitePiece(Piece.createWhitePawn(), Representation.PAWN),
+                () -> verifyWhitePiece(Piece.createWhiteKnight(), Representation.KNGINT),
+                () -> verifyWhitePiece(Piece.createWhiteRook(), Representation.ROOK),
+                () -> verifyWhitePiece(Piece.createWhiteBishop(), Representation.BISHOP),
+                () -> verifyWhitePiece(Piece.createWhiteQueen(), Representation.QUEEN),
+                () -> verifyWhitePiece(Piece.createWhiteKing(), Representation.KING)
         );
     }
 
@@ -25,8 +43,16 @@ class PieceTest {
         );
     }
 
-    private void verifyPawn(final Piece piece, final String color, final char representation) {
-        assertThat(piece.getColor().toString()).isEqualTo(color);
+    private void verifyBlackPiece(final Piece piece, final Representation representation) {
+        verifyPiece(piece, Color.BLACK, Character.toUpperCase(representation.value()));
+    }
+
+    private void verifyWhitePiece(final Piece piece, final Representation representation) {
+        verifyPiece(piece, Color.WHITE, Character.toLowerCase(representation.value()));
+    }
+
+    private void verifyPiece(final Piece piece, final Color color, final char representation) {
+        assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
 

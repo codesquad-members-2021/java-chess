@@ -47,8 +47,8 @@ public class Board {
         Rank whitePawns = getRank(Piece.WHITE_PAWN_RANK);
 
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            blackPawns.add(new Piece(Color.BLACK.toString()));
-            whitePawns.add(new Piece());
+            blackPawns.add(Piece.createBlackPawn());
+            whitePawns.add(Piece.createWhitePawn());
             size += 2;
         }
     }

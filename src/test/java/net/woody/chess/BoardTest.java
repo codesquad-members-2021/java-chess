@@ -19,10 +19,10 @@ class BoardTest {
     @Test
     @DisplayName("보드에 있는 폰을 정상적으로 찾을 수 있어야 한다.")
     void findPawnOnTheBoard() {
-        Piece firstPiece = new Piece();
+        Piece firstPiece = Piece.createWhitePawn();
         addThePawnProperly(firstPiece, 0);
 
-        Piece secondPiece = new Piece();
+        Piece secondPiece = Piece.createWhitePawn();
         addThePawnProperly(secondPiece, 1);
     }
 

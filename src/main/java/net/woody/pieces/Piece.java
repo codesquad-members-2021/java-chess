@@ -8,27 +8,18 @@ public class Piece {
     private Color color;
     private char representation;
 
-    private Piece(String color) {
-        this.color = Color.value(color);
-        this.representation = this.color.representation(PAWN_REPRESENTATION);
+    private Piece(Color color, char representation) {
+        this.color = color;
+        this.representation = color.representation(representation);
     }
 
     public static Piece createBlackPawn() {
-        return new Piece(Color.BLACK);
+        return new Piece(Color.BLACK, PAWN_REPRESENTATION);
     }
 
     public static Piece createWhitePawn() {
-        return new Piece(Color.WHITE);
+        return new Piece(Color.WHITE, PAWN_REPRESENTATION);
     }
-
-    public static Piece createBlackPawn() {
-        return new Piece("");
-    }
-
-    public static Piece createWhitePawn() {
-        return new Piece("");
-    }
-
 
     public Color getColor() {
         return color;

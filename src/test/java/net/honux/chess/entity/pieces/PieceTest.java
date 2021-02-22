@@ -95,6 +95,13 @@ class PieceTest {
     }
 
     @Test
+    @DisplayName("Blank Piece 가 정상적으로 생성되어야 한다.")
+    void createBlankPiece() {
+        Piece blankPiece = createBlank();
+        assertThat(blankPiece.getRepresentation()).isEqualTo('x');
+    }
+
+    @Test
     @DisplayName("isBlack() / isWhite() 가 정상적으로 작동하는지 확인한다.")
     void testSeparateColorMethod() {
         Piece whitePawn = createWhitePawn();

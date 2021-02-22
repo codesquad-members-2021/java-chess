@@ -61,6 +61,8 @@ public class Piece {
         return new Piece(Color.BLACK, Type.KING.getRepresentation(Color.BLACK));
     }
 
+    public static Piece createBlank() { return new Piece(Color.NOCOLOR, Type.NO_PIECE.getRepresentation(Color.NOCOLOR));}
+
     public Color getColor() {
         return color;
     }

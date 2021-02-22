@@ -1,17 +1,17 @@
 package net.nas.pieces;
 
 public class ChessPiece {
-    private final NameOfChessPiece name;
-    private final ColorOfChessPiece color;
+    private final NameOfChessPiece nameOfChessPiece;
+    private final ColorOfChessPiece colorOfChessPiece;
 
-    private ChessPiece(NameOfChessPiece name, ColorOfChessPiece color) {
-        this.name = name;
-        this.color = color;
+    private ChessPiece(NameOfChessPiece nameOfChessPiece, ColorOfChessPiece colorOfChessPiece) {
+        this.nameOfChessPiece = nameOfChessPiece;
+        this.colorOfChessPiece = colorOfChessPiece;
     }
 
 
     public String getRepresentation() {
-        return color.getRepresentationByColor(name.getRepresentation());
+        return colorOfChessPiece.getRepresentationByColor(nameOfChessPiece.getRepresentation());
     }
 
     public static ChessPiece createBlankPiece() {
@@ -23,15 +23,15 @@ public class ChessPiece {
     }
 
     public boolean isBlank() {
-        return color == ColorOfChessPiece.BLANK;
+        return colorOfChessPiece == ColorOfChessPiece.BLANK;
     }
 
     public boolean isBlack() {
-        return color == ColorOfChessPiece.BLACK;
+        return colorOfChessPiece == ColorOfChessPiece.BLACK;
     }
 
     public boolean isWhite() {
-        return color == ColorOfChessPiece.WHITE;
+        return colorOfChessPiece == ColorOfChessPiece.WHITE;
     }
 
     public static ChessPiece createWhitePawn() {

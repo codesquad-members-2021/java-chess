@@ -3,6 +3,8 @@ package net.honux.chess.entity.pieces;
 import net.honux.chess.attribute.Color;
 import net.honux.chess.attribute.Type;
 
+import java.util.Objects;
+
 public class Piece {
 
     private final Color color;
@@ -65,14 +67,6 @@ public class Piece {
         return new Piece(Color.NOCOLOR, Type.NO_PIECE.getRepresentation(Color.NOCOLOR));
     }
 
-    private static Piece createWhite(Type type) {
-        return new Piece(Color.WHITE, type.getRepresentation(Color.WHITE));
-    }
-
-    private static Piece createBlack(Type type) {
-        return new Piece(Color.BLACK, type.getRepresentation(Color.BLACK));
-    }
-
     public Color getColor() {
         return color;
     }
@@ -87,5 +81,26 @@ public class Piece {
 
     public boolean isWhite() {
         return this.color == Color.WHITE;
+    }
+
+    private static Piece createWhite(Type type) {
+        return new Piece(Color.WHITE, type.getRepresentation(Color.WHITE));
+    }
+
+    private static Piece createBlack(Type type) {
+        return new Piece(Color.BLACK, type.getRepresentation(Color.BLACK));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.color, this.representation);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Piece)) return false;
+        Piece piece = (Piece) o;
+        return representation == piece.representation && color == piece.color;
     }
 }

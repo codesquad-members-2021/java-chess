@@ -1,112 +1,79 @@
 package net.honux.chess.core;
 
+import net.honux.chess.attribute.Color;
+import net.honux.chess.attribute.RANK;
+import net.honux.chess.attribute.Type;
 import net.honux.chess.entity.pieces.Piece;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
-import static net.honux.chess.entity.pieces.Piece.*;
 import static net.honux.chess.util.StringUtils.appendNewLine;
 import static net.honux.chess.util.StringUtils.convertString;
+import static net.honux.chess.attribute.RANK.*;
+import static net.honux.chess.util.Position.*;
 
 public class Board {
 
     public static final int BOARD_SIZE = 8;
-    private Pieces whitePieces;
-    private Pieces whitePawns;
-    private Pieces blackPieces;
-    private Pieces blackPawns;
+    private ArrayList<RANK> board;
 
     public void initialize() {
-        blackPieces = Pieces.createBlackPiecesExceptPawns();
-        blackPawns = Pieces.createBlackPawns();
-        whitePawns = Pieces.createWhitePawns();
-        whitePieces = Pieces.createWhitePiecesExceptPawns();
+        board = new ArrayList(BOARD_SIZE);
+        board.add(createBlackPiecesExceptPawns());
+        board.add(createBlackPawns());
+        board.add(createBlankPieces());
+        board.add(createBlankPieces());
+        board.add(createBlankPieces());
+        board.add(createBlankPieces());
+        board.add(createWhitePawns());
+        board.add(createWhitePiecesExceptPawns());
     }
 
-    public Pieces getWhitePieces() {
-        return whitePieces;
+    public int blackPiecesCount() {
+        int countOfBlackPieces = 0;
+        for (RANK RANK : board){
+            countOfBlackPieces += RANK.countOfBlackPieces();
+        }
+        return countOfBlackPieces;
     }
 
-    public Pieces getWhitePawns() {
-        return whitePawns;
+    public int whitePiecesCount() {
+        int countOfWhitePieces = 0;
+        for (RANK RANK : board){
+            countOfWhitePieces += RANK.countOfWhitePieces();
+        }
+        return countOfWhitePieces;
     }
 
-    public Pieces getBlackPieces() {
-        return blackPieces;
+    public int countOfPiece(Color color, Type type) {
+        int countOfBlackPawns = 0;
+        for(RANK rank : board) {
+            countOfBlackPawns += rank.countOfPiece(color, type);
+        }
+        return countOfBlackPawns;
     }
 
-    public Pieces getBlackPawns() {
-        return blackPawns;
-    }
-
-    public int whitePawnSize() {
-        return whitePieces.size() + whitePawns.size();
-    }
-
-    public int blackPawnSize() {
-        return blackPieces.size() + blackPawns.size();
-    }
-
-    public Optional<Piece> findWhitePawn(int index) {
-        Optional<Piece> pawn = Optional.empty();
+    public Optional<Piece> findPiece(String position) {
+        Optional<Piece> piece = Optional.empty();
         try {
-            pawn = Optional.ofNullable(whitePawns.get(index));
+            piece = Optional.ofNullable(board.get(getIndex(position)).get(getRank(position)));
         } catch (IndexOutOfBoundsException e) {
             return Optional.empty();
         }
-        return pawn;
-    }
-
-    public Optional<Piece> findWhitePiece(int index) {
-        Optional<Piece> pawn = Optional.empty();
-        try {
-            pawn = Optional.ofNullable(whitePieces.get(index));
-        } catch (IndexOutOfBoundsException e) {
-            return Optional.empty();
-        }
-        return pawn;
-    }
-
-    public Optional<Piece> findBlackPawn(int index) {
-        Optional<Piece> pawn = Optional.empty();
-        try {
-            pawn = Optional.ofNullable(blackPawns.get(index));
-        } catch (IndexOutOfBoundsException e) {
-            return Optional.empty();
-        }
-        return pawn;
-    }
-
-    public Optional<Piece> findBlackPiece(int index) {
-        Optional<Piece> pawn = Optional.empty();
-        try {
-            pawn = Optional.ofNullable(blackPieces.get(index));
-        } catch (IndexOutOfBoundsException e) {
-            return Optional.empty();
-        }
-        return pawn;
+        return piece;
     }
 
     public String getBoardStatusToString() {
-        final String BLANK = "********";
-        final int initialSpaceInterval = 4;
         StringBuilder sb = new StringBuilder();
-        appendNewLine(sb, getStringPiecesResult(blackPieces));
-        appendNewLine(sb, getStringPiecesResult(blackPawns));
-        for (int i = 0; i < initialSpaceInterval; i++) {
-            appendNewLine(sb, BLANK);
+        for(int i = 0; i < BOARD_SIZE; i++){
+            appendNewLine(sb, board.get(i).getString());
         }
-        appendNewLine(sb, getStringPiecesResult(whitePawns));
-        appendNewLine(sb, getStringPiecesResult(whitePieces));
         return convertString(sb);
     }
 
     public void print() {
         System.out.println(this.getBoardStatusToString());
-    }
-
-    private String getStringPiecesResult(Pieces pieces) {
-        return pieces.getString();
     }
 
 }

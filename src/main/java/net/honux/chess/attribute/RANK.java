@@ -1,5 +1,6 @@
-package net.honux.chess.core;
+package net.honux.chess.attribute;
 
+import net.honux.chess.core.Board;
 import net.honux.chess.entity.pieces.Piece;
 
 import java.util.ArrayList;
@@ -7,28 +8,28 @@ import java.util.List;
 
 import static net.honux.chess.entity.pieces.Piece.*;
 
-public class Pieces {
+public class RANK {
 
     private final List<Piece> pieceList = new ArrayList<>();
 
-    public static Pieces createWhitePawns() {
-        Pieces pieces = new Pieces();
+    public static RANK createWhitePawns() {
+        RANK RANK = new RANK();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            pieces.add(createWhitePawn());
+            RANK.add(createWhitePawn());
         }
-        return pieces;
+        return RANK;
     }
 
-    public static Pieces createBlackPawns() {
-        Pieces pieces = new Pieces();
+    public static RANK createBlackPawns() {
+        RANK RANK = new RANK();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
-            pieces.add(createBlackPawn());
+            RANK.add(createBlackPawn());
         }
-        return pieces;
+        return RANK;
     }
 
-    public static Pieces createWhitePiecesExceptPawns() {
-        return new Pieces()
+    public static RANK createWhitePiecesExceptPawns() {
+        return new RANK()
                 .add(createWhiteRook())
                 .add(createWhiteKnight())
                 .add(createWhiteBishop())
@@ -39,8 +40,8 @@ public class Pieces {
                 .add(createWhiteRook());
     }
 
-    public static Pieces createBlackPiecesExceptPawns() {
-        return new Pieces()
+    public static RANK createBlackPiecesExceptPawns() {
+        return new RANK()
                 .add(createBlackRook())
                 .add(createBlackKnight())
                 .add(createBlackBishop())
@@ -49,6 +50,14 @@ public class Pieces {
                 .add(createBlackBishop())
                 .add(createBlackKnight())
                 .add(createBlackRook());
+    }
+
+    public static RANK createBlankPieces() {
+        RANK blankRANK = new RANK();
+        for(int i = 0; i < Board.BOARD_SIZE; i++) {
+            blankRANK.add(createBlank());
+        }
+        return blankRANK;
     }
 
     public int size() {
@@ -67,14 +76,25 @@ public class Pieces {
         return sb.toString();
     }
 
+    public int countOfBlackPieces() {
+        return (int) pieceList.stream().filter(piece -> Character.isUpperCase(piece.getRepresentation())).count();
+    }
+
+    public int countOfWhitePieces() {
+        return (int) pieceList.stream().filter(piece -> piece.getRepresentation() != '.').filter(piece -> Character.isLowerCase(piece.getRepresentation())).count();
+    }
+
+    public int countOfPiece(Color color, Type type) {
+        return (int) pieceList.stream().filter(piece -> piece.getRepresentation() == type.getRepresentation(color)).count();
+    }
+
     private void validateSize() {
         if(this.size() >= Board.BOARD_SIZE) {
             throw new IndexOutOfBoundsException("더 이상 Piece 를 추가할 수 없습니다.");
         }
     }
 
-
-    private Pieces add(Piece piece) {
+    private RANK add(Piece piece) {
         validateSize();
         pieceList.add(piece);
         return this;

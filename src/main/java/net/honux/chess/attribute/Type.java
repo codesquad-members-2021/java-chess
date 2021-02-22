@@ -1,7 +1,7 @@
 package net.honux.chess.attribute;
 
 public enum Type {
-    PAWN('p'), ROOK('r'), KNIGHT('n'), BISHOP('b'), QUEEN('q'), KING('k'), NO_PIECE('x');
+    PAWN('p'), ROOK('r'), KNIGHT('n'), BISHOP('b'), QUEEN('q'), KING('k'), NO_PIECE('.');
 
     private final char representation;
 

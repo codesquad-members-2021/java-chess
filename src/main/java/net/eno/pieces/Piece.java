@@ -2,32 +2,30 @@ package net.eno.pieces;
 
 public class Piece {
 
-    private final Color color;
     private final PieceType pieceType;
 
-    private Piece(Color color, PieceType pieceType) {
-        this.color = color;
+    private Piece(PieceType pieceType) {
         this.pieceType = pieceType;
     }
 
-    public static Piece createPiece(Color color, PieceType pieceType) {
-        return new Piece(color, pieceType);
+    public static Piece createPiece(PieceType pieceType) {
+        return new Piece(pieceType);
     }
 
     public String getColor() {
-        return this.color.toString();
+        return this.pieceType.getColor();
     }
 
     public char getRepresentation() {
-        return this.pieceType.getRepresentation(this.color);
+        return this.pieceType.getRepresentation();
     }
 
     public boolean isWhite() {
-        return this.color.equals(Color.WHITE);
+        return getColor().equals("white");
     }
 
     public boolean isBlack() {
-        return this.color.equals(Color.BLACK);
+        return getColor().equals("black");
     }
 
 }

@@ -1,6 +1,8 @@
 package net.coco.chess;
 
 import net.coco.pieces.Piece;
+import net.coco.pieces.PieceType;
+import net.coco.valid.PieceValid;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,15 @@ public class Board {
         ranks.add(Rank.initBlankLine());
         ranks.add(Rank.initBlackPawns());
         ranks.add(Rank.initBlackPieces());
+    }
+
+    public int getPieceCount(String color, PieceType pieceType) {
+        PieceValid.checkColorType(color);
+        int count = 0;
+        for (Rank rank : ranks) {
+            count += rank.findPiece(pieceType.getRepresentation(color));
+        }
+        return count;
     }
 
     public String getRankResult(int findRank) {

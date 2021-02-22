@@ -1,11 +1,13 @@
 package net.coco.chess;
 
 import net.coco.pieces.Piece;
+import net.coco.pieces.PieceType;
 import net.coco.valid.PieceValid;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Rank {
     private final List<Piece> pieces = new ArrayList<>();
@@ -74,5 +76,11 @@ public class Rank {
 
     private void addPiece(Piece piece) {
         pieces.add(piece);
+    }
+
+    public int findPiece(char representation) {
+        return (int) pieces.stream()
+                .filter(piece -> piece.getRepresentation()==representation)
+                .count();
     }
 }

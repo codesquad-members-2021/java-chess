@@ -1,5 +1,7 @@
 package net.jung.chess;
 
+import net.jung.chess.pieces.Color;
+import net.jung.chess.pieces.Type;
 import net.jung.chess.pieces.Piece;
 
 import java.util.ArrayList;
@@ -60,19 +62,19 @@ public class Board {
     public void pawnInitialize(Color color){
         int MAX_PAWNS_SIZE = 8;
         for (int i = 0; i < MAX_PAWNS_SIZE; i++) {
-            addPiece(Piece.createPiece(color, Name.PAWN));
+            addPiece(Piece.createPiece(color, Type.PAWN));
         }
     }
 
     public void piecesExceptPawnInitialize(Color color){
-        addPiece(Piece.createPiece(color, Name.ROOK));
-        addPiece(Piece.createPiece(color, Name.KNIGHT));
-        addPiece(Piece.createPiece(color, Name.BISHOP));
-        addPiece(Piece.createPiece(color, Name.QUEEN));
-        addPiece(Piece.createPiece(color, Name.KING));
-        addPiece(Piece.createPiece(color, Name.BISHOP));
-        addPiece(Piece.createPiece(color, Name.KNIGHT));
-        addPiece(Piece.createPiece(color, Name.ROOK));
+        addPiece(Piece.createPiece(color, Type.ROOK));
+        addPiece(Piece.createPiece(color, Type.KNIGHT));
+        addPiece(Piece.createPiece(color, Type.BISHOP));
+        addPiece(Piece.createPiece(color, Type.QUEEN));
+        addPiece(Piece.createPiece(color, Type.KING));
+        addPiece(Piece.createPiece(color, Type.BISHOP));
+        addPiece(Piece.createPiece(color, Type.KNIGHT));
+        addPiece(Piece.createPiece(color, Type.ROOK));
     }
 
     public String getWhitePiecesResult() {

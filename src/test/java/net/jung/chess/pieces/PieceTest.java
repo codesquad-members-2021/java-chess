@@ -1,8 +1,5 @@
 package net.jung.chess.pieces;
 
-import net.jung.chess.Color;
-import net.jung.chess.Name;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -13,29 +10,29 @@ public class PieceTest {
     @Test
     @DisplayName("팩토리메서드로 생성되는 말의 색, 이름이 정확한지 검증한다.")
     void checkCreateFactoryMethod(){
-        verifyPiece(Piece.createWhitePawn(), Color.WHITE, Name.PAWN, 'p');
-        verifyPiece(Piece.createBlackPawn(), Color.BLACK, Name.PAWN, 'P');
+        verifyPiece(Piece.createWhitePawn(), Color.WHITE, Type.PAWN, 'p');
+        verifyPiece(Piece.createBlackPawn(), Color.BLACK, Type.PAWN, 'P');
 
-        verifyPiece(Piece.createWhiteKnight(), Color.WHITE, Name.KNIGHT, 'n');
-        verifyPiece(Piece.createBlackKnight(), Color.BLACK, Name.KNIGHT, 'N');
+        verifyPiece(Piece.createWhiteKnight(), Color.WHITE, Type.KNIGHT, 'n');
+        verifyPiece(Piece.createBlackKnight(), Color.BLACK, Type.KNIGHT, 'N');
 
-        verifyPiece(Piece.createWhiteRook(), Color.WHITE, Name.ROOK, 'r');
-        verifyPiece(Piece.createBlackRook(), Color.BLACK, Name.ROOK, 'R');
+        verifyPiece(Piece.createWhiteRook(), Color.WHITE, Type.ROOK, 'r');
+        verifyPiece(Piece.createBlackRook(), Color.BLACK, Type.ROOK, 'R');
 
-        verifyPiece(Piece.createWhiteBishop(), Color.WHITE, Name.BISHOP, 'b');
-        verifyPiece(Piece.createBlackBishop(), Color.BLACK, Name.BISHOP, 'B');
+        verifyPiece(Piece.createWhiteBishop(), Color.WHITE, Type.BISHOP, 'b');
+        verifyPiece(Piece.createBlackBishop(), Color.BLACK, Type.BISHOP, 'B');
 
-        verifyPiece(Piece.createWhiteQueen(), Color.WHITE, Name.QUEEN, 'q');
-        verifyPiece(Piece.createBlackQueen(), Color.BLACK, Name.QUEEN, 'Q');
+        verifyPiece(Piece.createWhiteQueen(), Color.WHITE, Type.QUEEN, 'q');
+        verifyPiece(Piece.createBlackQueen(), Color.BLACK, Type.QUEEN, 'Q');
 
-        verifyPiece(Piece.createWhiteKing(), Color.WHITE, Name.KING, 'k');
-        verifyPiece(Piece.createBlackKing(), Color.BLACK, Name.KING, 'K');
+        verifyPiece(Piece.createWhiteKing(), Color.WHITE, Type.KING, 'k');
+        verifyPiece(Piece.createBlackKing(), Color.BLACK, Type.KING, 'K');
 
     }
 
-    private void verifyPiece(final Piece piece, final Color color, final Name name, final char representation){
+    private void verifyPiece(final Piece piece, final Color color, final Type type, final char representation){
         assertThat(piece.getColor()).isEqualTo(color);
-        assertThat(piece.getName()).isEqualTo(name);
+        assertThat(piece.getName()).isEqualTo(type);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
 
@@ -50,4 +47,5 @@ public class PieceTest {
                 () -> assertThat(Piece.createWhiteKnight().isWhite()).isTrue()
         );
     }
+
 }

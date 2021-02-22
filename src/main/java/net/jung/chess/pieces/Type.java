@@ -1,6 +1,6 @@
-package net.jung.chess;
+package net.jung.chess.pieces;
 
-public enum Name{
+public enum Type {
     PAWN('p', 'P'),
     KNIGHT('n', 'N'),
     ROOK('r', 'R'),
@@ -11,7 +11,7 @@ public enum Name{
     private final char whiteRep;
     private final char blackRep;
 
-    Name(char whiteRep, char blackRep) {
+    Type(char whiteRep, char blackRep) {
         this.whiteRep = whiteRep;
         this.blackRep = blackRep;
     }

@@ -13,14 +13,13 @@ public class Board {
     private static final String EMPTYLINE = "........";
     private static final String NEWLINE = "\n\r";
 
-    public void addWhite(Pawn pawn) {
+    public void addWhitePawn(Pawn pawn) {
         whitePawn.add(pawn);
     }
 
-    public void addBlack(Pawn pawn) {
+    public void addBlackPawn(Pawn pawn) {
         blackPawn.add(pawn);
     }
-
 
     public int size() {
         return whitePawn.size() + blackPawn.size();
@@ -43,17 +42,17 @@ public class Board {
     }
 
     public void initialize() {
-        addPawnWhite(Pawn.InitialNumOfPawn);
-        addPawnBlack(Pawn.InitialNumOfPawn);
+        addWhitePawn(Pawn.InitialNumOfPawn);
+        addBlackPawn(Pawn.InitialNumOfPawn);
     }
 
-    private void addPawnWhite(int numOfPawn) {
+    private void addWhitePawn(int numOfPawn) {
         for (int i = 0; i < numOfPawn; i++) {
             whitePawn.add(new Pawn(Color.WHITE));
         }
     }
 
-    private void addPawnBlack(int numOfPawn) {
+    private void addBlackPawn(int numOfPawn) {
         for (int i = 0; i < numOfPawn; i++) {
             whitePawn.add(new Pawn(Color.BLACK));
         }

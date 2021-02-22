@@ -12,7 +12,7 @@ public enum ColorOfChessPiece {
         this.representationFunction = representationFunction;
     }
 
-    public String getRepresentationByColor(String representationString) {
-        return representationFunction.apply(representationString);
+    public String getRepresentationByColor(NameOfChessPiece name) {
+        return representationFunction.apply(name.getRepresentation());
     }
 }

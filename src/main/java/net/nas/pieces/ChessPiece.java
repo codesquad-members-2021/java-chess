@@ -11,7 +11,7 @@ public class ChessPiece {
 
 
     public String getRepresentation() {
-        return colorOfChessPiece.getRepresentationByColor(nameOfChessPiece.getRepresentation());
+        return colorOfChessPiece.getRepresentationByColor(nameOfChessPiece);
     }
 
     public static ChessPiece createBlankPiece() {

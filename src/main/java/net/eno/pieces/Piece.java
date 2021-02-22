@@ -12,6 +12,10 @@ public class Piece {
         return new Piece(pieceType);
     }
 
+    public PieceType getPieceType() {
+        return this.pieceType;
+    }
+
     public String getColor() {
         return this.pieceType.getColor();
     }

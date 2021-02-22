@@ -1,39 +1,45 @@
+
 package chess;
 
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import static org.assertj.core.api.Assertions.assertThat;
-import pieces.Pawn;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static utils.StringUtils.*;
 
 class BoardTest {
 
-    @Test
-    void create() {
-        Board board = new Board();
+    private Board board;
 
-        Pawn white = new Pawn();
-        board.add(white);
-        assertEquals(1, board.size());
-
-        Pawn black = new Pawn(Pawn.Color.BLACK);
-        board.add(black);
-        assertEquals(2, board.size());
-
+    @BeforeEach
+    public void setup() {
+        board = new Board();
+        board.initialize();
     }
 
     @Test
-    @DisplayName("board initialize test")
-    void initialize() throws Exception {
-        Board board = new Board();
-        board.initialize();
+    @DisplayName("boardInit")
+    public void create() throws Exception {
 
-        String whitePawns = "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " " + "p" + " ";
-        String blackPawns = "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " " + "P" + " ";
+        assertEquals(32, board.pieceCount());
 
-        assertThat(board.getWhitePawnResult()).isEqualTo(whitePawns);
-        assertThat(board.getBlackPawnResult()).isEqualTo(blackPawns);
+        String blankRank = appendNewLine("* * * * * * * *");
 
+        assertEquals(
+                appendNewLine("R"+" "+"N"+" "+"B"+" "+"Q"+" "+"K"+" "+"B"+" "+"N"+" "+"R"+" ") +
+                        appendNewLine(NEWLINE)+
+                        appendNewLine("P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" " +"P" +" ") +
+                        appendNewLine(NEWLINE)+
+                        blankRank +appendNewLine(NEWLINE)+
+                        blankRank +appendNewLine(NEWLINE)+
+                        blankRank +appendNewLine(NEWLINE)+
+                        blankRank +appendNewLine(NEWLINE)+
+                        appendNewLine("p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" "+"p"+" ")+
+                        appendNewLine(NEWLINE)+
+                        appendNewLine("r"+" "+"n"+" "+"b"+" "+"q"+" "+"k"+" "+"b"+" "+"n"+" "+"r"+" "),
+
+                board.showBoard());
     }
 
 }

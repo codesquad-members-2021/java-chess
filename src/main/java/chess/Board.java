@@ -1,81 +1,141 @@
 package chess;
 
-import pieces.Pawn;
-
+import pieces.Piece;
+import static utils.StringUtils.*;
 import java.util.ArrayList;
 import java.util.List;
-
-
 public class Board {
 
-    private List<Pawn> whitePawnList = new ArrayList<>();
-    private List<Pawn> blackPawnList = new ArrayList<>();
+    private List<Piece> whitePieceList = new ArrayList<>();
+    private List<Piece> blackPieceList = new ArrayList<>();
+
+    private List<Piece> whitePawnList = new ArrayList<>();
+    private List<Piece> blackPawnList = new ArrayList<>();
 
     private String startLine = "* * * * * * * *";
 
     private final int PAWNCOUNT = 8;
 
-    public Pawn findPawn(Pawn.Color color, int index) {
-        if (color == Pawn.Color.WHITE) {
+    public Piece findPawn(Piece.Color color, int index) {
+        if (color == Piece.Color.WHITE) {
             return whitePawnList.get(index);
         }
         return blackPawnList.get(index);
     }
 
-    public void add(Pawn pawn) {
-        if (pawn.getColor() == Pawn.Color.WHITE) {
+    public Piece findPiece(Piece.Color color, int index){
+        if(color == Piece.Color.WHITE){
+            return whitePieceList.get(index);
+        }else {
+            return blackPieceList.get(index);
+        }
+    }
+
+    public int pieceCount() {
+        return whitePieceList.size() + blackPieceList.size() +
+                whitePawnList.size() + blackPawnList.size();
+    }
+    public void addPiece(Piece pawn) {
+        if (pawn.getColor() == Piece.Color.WHITE) {
             whitePawnList.add(pawn);
         }
         blackPawnList.add(pawn);
     }
 
-    public int size() {
-        return whitePawnList.size() + blackPawnList.size();
-    }
+    public void initialize(){
 
-    public void initialize() {
-        for (int i = 0; i < PAWNCOUNT; i++) {
-            whitePawnList.add(new Pawn());
-            blackPawnList.add(new Pawn(Pawn.Color.BLACK));
+        for(int i = 0; i < 8; i++){
+            addPiece(Piece.createWhitePawn());
+            addPiece(Piece.createBlackPawn());
         }
+
+        addPiece(Piece.createBlackRook());
+        addPiece(Piece.createBlackKnight());
+        addPiece(Piece.createBlackBishop());
+        addPiece(Piece.createBlackQueen());
+        addPiece(Piece.createBlackKing());
+        addPiece(Piece.createBlackBishop());
+        addPiece(Piece.createBlackKnight());
+        addPiece(Piece.createBlackRook());
+
+        addPiece(Piece.createWhiteRook());
+        addPiece(Piece.createWhiteKnight());
+        addPiece(Piece.createWhiteBishop());
+        addPiece(Piece.createWhiteQueen());
+        addPiece(Piece.createWhiteKing());
+        addPiece(Piece.createWhiteBishop());
+        addPiece(Piece.createWhiteKnight());
+        addPiece(Piece.createWhiteRook());
+
+
     }
 
-    public String getWhitePawnResult() {
-        return getPawnRepresentation(whitePawnList);
+    public String getWhitePieceResult(){
+        return getPieceRepresentation(whitePieceList);
     }
 
-    public String getBlackPawnResult() {
-        return getPawnRepresentation(blackPawnList);
+    public String getBlackPieceResult(){
+        return getPieceRepresentation(blackPieceList);
     }
 
-    private String getPawnRepresentation(List<Pawn> pawnList) {
+    public String getWhitePawnResult(){
+        return getPieceRepresentation(whitePawnList);
+    }
+
+    public String getBlackPawnResult(){
+        return getPieceRepresentation(blackPawnList);
+    }
+
+    private String getPieceRepresentation(List<Piece> pieceList) {
         StringBuilder sb = new StringBuilder();
 
-        for (Pawn pawn : pawnList) {
-            sb.append(pawn.getRepresentation());
+        for (Piece piece : pieceList) {
+            sb.append(piece.getRepresentation());
             sb.append(" ");
         }
         return sb.toString();
     }
 
-    public void print() {
+    public void print(){
         StringBuilder sb = new StringBuilder();
-        sb.append(startLine);
-        sb.append('\n');
+        sb.append(getBlackPieceResult());
+        sb.append(appendNewLine(NEWLINE));
         sb.append(getBlackPawnResult());
-        sb.append('\n');
+        sb.append(appendNewLine(NEWLINE));
         sb.append(startLine);
-        sb.append('\n');
+        sb.append(appendNewLine(NEWLINE));
         sb.append(startLine);
-        sb.append('\n');
+        sb.append(appendNewLine(NEWLINE));
         sb.append(startLine);
-        sb.append('\n');
+        sb.append(appendNewLine(NEWLINE));
         sb.append(startLine);
-        sb.append('\n');
+        sb.append(appendNewLine(NEWLINE));
         sb.append(getWhitePawnResult());
-        sb.append('\n');
-        sb.append(startLine);
+        sb.append(appendNewLine(NEWLINE));
+        sb.append(getWhitePieceResult());
+
         System.out.println(sb.toString());
+    }
+
+    public String showBoard(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(getBlackPieceResult());
+        sb.append(appendNewLine(NEWLINE));
+        sb.append(getBlackPawnResult());
+        sb.append(appendNewLine(NEWLINE));
+        sb.append(startLine);
+        sb.append(appendNewLine(NEWLINE));
+        sb.append(startLine);
+        sb.append(appendNewLine(NEWLINE));
+        sb.append(startLine);
+        sb.append(appendNewLine(NEWLINE));
+        sb.append(startLine);
+        sb.append(appendNewLine(NEWLINE));
+        sb.append(getWhitePawnResult());
+        sb.append(appendNewLine(NEWLINE));
+        sb.append(getWhitePieceResult());
+
+        return sb.toString();
     }
 
 }

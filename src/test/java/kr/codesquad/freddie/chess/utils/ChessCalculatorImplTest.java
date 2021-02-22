@@ -2,6 +2,7 @@ package kr.codesquad.freddie.chess.utils;
 
 import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.board.File;
+import kr.codesquad.freddie.chess.piece.CalculablePiece;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.PieceFactory;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -32,9 +34,8 @@ class ChessCalculatorImplTest {
         double result = new ChessCalculatorImpl().calculate(files, Color.BLACK);
         assertThat(result).isEqualTo(1.5);
     }
-
     @Test
-    void getRotatedFiles() {
+    void groupingByCalculablePiece() {
         List<File> files = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             File file = new File();
@@ -51,24 +52,25 @@ class ChessCalculatorImplTest {
         files.get(Board.RANK_SIZE - Color.WHITE.royalInitializationRank()).fillWithRoyal(Color.WHITE);
 
 
-        List<File> rotatedFiles = chessCalculatorImpl.getRotatedFilesBy(files, Color.BLACK);
+        Map<CalculablePiece, Double> calculablePieceDoubleMap = chessCalculatorImpl.groupingByCalculablePiece(files, Color.BLACK);
 
-        assertThat(rotatedFiles.get(0).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(1).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(2).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(3).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(4).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(5).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(6).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(7).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
 
-        assertThat(rotatedFiles.get(0).getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(1);
-        assertThat(rotatedFiles.get(1).getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(1);
-        assertThat(rotatedFiles.get(2).getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(1);
-        assertThat(rotatedFiles.get(3).getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(4).getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1);
-        assertThat(rotatedFiles.get(5).getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(1);
-        assertThat(rotatedFiles.get(6).getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(1);
-        assertThat(rotatedFiles.get(7).getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(1);
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'a'))).isEqualTo(Kind.PAWN.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'b'))).isEqualTo(Kind.PAWN.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'c'))).isEqualTo(Kind.PAWN.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'd'))).isEqualTo(Kind.PAWN.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'e'))).isEqualTo(Kind.PAWN.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'f'))).isEqualTo(Kind.PAWN.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'g'))).isEqualTo(Kind.PAWN.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'h'))).isEqualTo(Kind.PAWN.point());
+
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createRook(), 'a'))).isEqualTo(Kind.ROOK.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createKnight(), 'b'))).isEqualTo(Kind.KNIGHT.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createBishop(), 'c'))).isEqualTo(Kind.BISHOP.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createQueen(), 'd'))).isEqualTo(Kind.QUEEN.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createKing(), 'e'))).isEqualTo(Kind.KING.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createBishop(), 'f'))).isEqualTo(Kind.BISHOP.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createKnight(), 'g'))).isEqualTo(Kind.KNIGHT.point());
+        assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createRook(), 'h'))).isEqualTo(Kind.ROOK.point());
     }
 }

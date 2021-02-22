@@ -1,15 +1,13 @@
 package kr.codesquad.freddie.chess.board;
 
-import kr.codesquad.freddie.chess.piece.Color;
-import kr.codesquad.freddie.chess.piece.Kind;
-import kr.codesquad.freddie.chess.piece.Piece;
-import kr.codesquad.freddie.chess.piece.PieceFactory;
+
+import kr.codesquad.freddie.chess.piece.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class File {
     public static final int SIZE = 8;
@@ -100,23 +98,9 @@ public class File {
 
     }
 
-    public Map<Character, Piece> toMap() {
+    public Stream<CalculablePiece> getCalculablePieces() {
         return IntStream.range(0, SIZE)
-                .boxed()
-                .collect(Collectors.toMap(i -> (char) (i + 'a'), i -> pieces.get(i)));
-    }
-
-    public double calculate() {
-        double result = 0;
-        for (Kind kind : Kind.values()) {
-            double point = pieces.stream()
-                    .filter(piece -> piece.getKind() == kind)
-                    .mapToDouble(piece -> piece.getKind().point())
-                    .sum();
-            result += kind == Kind.PAWN && 1 < point ? point / 2 : point;
-        }
-
-        return result;
+                .mapToObj(i -> CalculablePiece.create(this.pieces.get(i), (char) (i + 'a')));
     }
 
     public String getRepresentation() {

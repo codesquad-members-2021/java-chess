@@ -28,6 +28,14 @@ class PieceTest {
 
         verifyWhitePiece(Piece.createWhiteKing(), Type.KING);
         verifyBlackPiece(Piece.createBlackKing(), Type.KING);
+
+        Piece blank = Piece.createBlank();
+        assertAll(
+                () -> assertThat(blank.isWhite()).isEqualTo(false),
+                () -> assertThat(blank.isBlack()).isEqualTo(false),
+                () -> assertThat(blank.getColor()).isEqualTo(Color.NO_COLOR),
+                () -> assertThat(blank.getRepresentation()).isEqualTo(Type.BLANK.getWhiteRepresentation())
+        );
     }
 
     private void verifyWhitePiece(Piece piece, Type type) {

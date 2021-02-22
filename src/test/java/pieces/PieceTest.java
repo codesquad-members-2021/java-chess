@@ -33,4 +33,13 @@ class PieceTest {
                 () -> assertThat(piece.getRepresentation()).isEqualTo(representation)
         );
     }
+
+    @Test
+    @DisplayName("체스 말의 색을 isWhite(), isBlack()로 확인할 수 있어야한다")
+    void checkColor() {
+        Piece blackPiece = Piece.createBlackPawn();
+        Piece whitePiece = Piece.createWhitePawn();
+        assertThat(blackPiece.isBlack()).isTrue();
+        assertThat(whitePiece.isWhite()).isTrue();
+    }
 }

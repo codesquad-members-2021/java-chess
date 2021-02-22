@@ -42,7 +42,9 @@ public class Piece {
         return this.color;
     }
 
-    public Type getType() { return this.type; }
+    public Type getType() {
+        return this.type;
+    }
 
     public char getRepresentation() {
         return (this.color == Color.WHITE) ? this.type.getWhiteRepresentation() : this.type.getBlackRepresentation();
@@ -94,5 +96,13 @@ public class Piece {
 
     public static Piece createBlackKing() {
         return new Piece(Color.BLACK, Type.KING);
+    }
+
+    public boolean isBlack() {
+        return this.color == Color.BLACK;
+    }
+
+    public boolean isWhite() {
+        return this.color == Color.WHITE;
     }
 }

@@ -39,12 +39,12 @@ class BoardTest {
         Piece blackPawn = Piece.createBlackPawn();
         assertThatExceptionOfType(InvalidParameterException.class)
                 .isThrownBy(() -> board.addWhitePawn(blackPawn));
-        Piece whitePawn = Piece.createWhitePawn();
-        assertThatExceptionOfType(InvalidParameterException.class)
-                .isThrownBy(() -> board.addBlackPawn(whitePawn));
         Piece whiteRook = Piece.createWhiteRook();
         assertThatExceptionOfType(InvalidParameterException.class)
                 .isThrownBy(() -> board.addWhitePawn(whiteRook));
+        Piece whitePawn = Piece.createWhitePawn();
+        assertThatExceptionOfType(InvalidParameterException.class)
+                .isThrownBy(() -> board.addBlackPawn(whitePawn));
         Piece blackRook = Piece.createBlackRook();
         assertThatExceptionOfType(InvalidParameterException.class)
                 .isThrownBy(()->board.addBlackPawn(blackRook));

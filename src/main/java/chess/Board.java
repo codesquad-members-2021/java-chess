@@ -42,4 +42,13 @@ public class Board {
         return countPiece;
     }
 
+    public Piece findPiece(String s) {
+        char rankIndex = s.charAt(0);
+        char fileIndex = s.charAt(1);
+
+        int rankIndexPos = rankIndex - 'a';
+        int fileIndexPos = Character.getNumericValue(fileIndex);
+
+        return files.get((fileIndexPos-1)).getPiece(rankIndexPos);
+    }
 }

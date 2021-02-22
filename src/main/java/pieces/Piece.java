@@ -26,56 +26,64 @@ public class Piece {
         return this.color == Color.BLACK;
     }
 
+    private static Piece createWhite(Type type) {
+        return new Piece(Color.WHITE, type);
+    }
+
+    private static Piece createBlack(Type type) {
+        return new Piece(Color.BLACK, type);
+    }
+
     public static Piece createBlank() {
         return new Piece(Color.NO_COLOR, Type.NO_PIECE);
     }
 
     public static Piece createWhitePawn() {
-        return new Piece(Color.WHITE, Type.PAWN);
+        return createWhite(Type.PAWN);
     }
 
     public static Piece createWhiteKnight() {
-        return new Piece(Color.WHITE, Type.KNIGHT);
+        return createWhite(Type.KNIGHT);
     }
 
     public static Piece createWhiteRook() {
-        return new Piece(Color.WHITE, Type.ROOK);
+        return createWhite(Type.ROOK);
     }
 
     public static Piece createWhiteBishop() {
-        return new Piece(Color.WHITE, Type.BISHOP);
+        return createWhite(Type.BISHOP);
     }
 
     public static Piece createWhiteQueen() {
-        return new Piece(Color.WHITE, Type.QUEEN);
+        return createWhite(Type.QUEEN);
     }
 
     public static Piece createWhiteKing() {
-        return new Piece(Color.WHITE, Type.KING);
+        return createWhite(Type.KING);
     }
 
     public static Piece createBlackPawn() {
-        return new Piece(Color.BLACK, Type.PAWN);
+        return createBlack(Type.PAWN);
     }
 
     public static Piece createBlackKnight() {
-        return new Piece(Color.BLACK, Type.KNIGHT);
+        return createBlack(Type.KNIGHT);
     }
 
     public static Piece createBlackRook() {
-        return new Piece(Color.BLACK, Type.ROOK);
+        return createBlack(Type.ROOK);
     }
 
     public static Piece createBlackBishop() {
-        return new Piece(Color.BLACK, Type.BISHOP);
+        return createBlack(Type.BISHOP);
     }
 
     public static Piece createBlackQueen() {
-        return new Piece(Color.BLACK, Type.QUEEN);
+        return createBlack(Type.QUEEN);
     }
 
     public static Piece createBlackKing() {
-        return new Piece(Color.BLACK, Type.KING);
+        return createBlack(Type.KING);
     }
 
 }

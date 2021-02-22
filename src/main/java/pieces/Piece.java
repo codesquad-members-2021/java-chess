@@ -18,12 +18,20 @@ public class Piece {
         return color;
     }
 
+    public Type getType() {
+        return null;
+    }
+
     public boolean isWhite() {
         return this.color == Color.WHITE;
     }
 
     public boolean isBlack() {
         return this.color == Color.BLACK;
+    }
+
+    public static Piece createBlank() {
+        return new Piece(Color.WHITE, Type.PAWN);
     }
 
     public static Piece createWhitePawn() {

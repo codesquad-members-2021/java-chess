@@ -76,6 +76,12 @@ public class Board {
         files.add(Rank.initializeBlackPieces());
     }
 
+    public void initializeEmpty() {
+        for(int i = 0; i < BOARD_SIZE; i++){
+            files.add(Rank.initializeBlank());
+        }
+    }
+
     public String getChessBoard() {
         StringBuilder boardRank = new StringBuilder();
 

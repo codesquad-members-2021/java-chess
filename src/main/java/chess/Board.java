@@ -62,8 +62,8 @@ public class Board {
         Pawn whitePawn = new Pawn();
         Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
         for (int i = 0; i < PAWN_NUM; i++) {
-            whitePawns.add(whitePawn);
-            blackPawns.add(blackPawn);
+            addWhitePawn(whitePawn);
+            addBlackPawn(blackPawn);
         }
     }
 

@@ -1,7 +1,7 @@
 package chess.domain.pieces;
 
 public abstract class Piece {
-    private final Character representation;
+    private final char representation;
     private final Color color;
 
     Piece(Color color) {

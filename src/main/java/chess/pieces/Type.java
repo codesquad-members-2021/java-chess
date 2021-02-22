@@ -6,7 +6,8 @@ public enum Type {
     KNIGHT('n'),
     BISHOP('b'),
     QUEEN('q'),
-    KING('k');
+    KING('k'),
+    BLANK('.');
 
     private final char representation;
 

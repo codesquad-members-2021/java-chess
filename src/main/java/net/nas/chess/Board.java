@@ -14,10 +14,7 @@ public class Board {
 
     public static final int RANK_OF_WHITE_KING = 0;
     public static final int RANK_OF_WHITE_PAWNS = 1;
-    public static final int RANK_OF_BLANK_1 = 2;
-    public static final int RANK_OF_BLANK_2 = 3;
-    public static final int RANK_OF_BLANK_3 = 4;
-    public static final int RANK_OF_BLANK_4 = 5;
+    public static final int[] RANK_OF_BLANKS = {2, 3, 4, 5};
     public static final int RANK_OF_BLACK_PAWNS = 6;
     public static final int RANK_OF_BLACK_KING = 7;
 
@@ -51,10 +48,9 @@ public class Board {
 
     private void initRanksOfBlank() {
         for (int i = 0; i < LENGTH_OF_BOARD; i++) {
-            add(createBlankPiece(), RANK_OF_BLANK_1, i);
-            add(createBlankPiece(), RANK_OF_BLANK_2, i);
-            add(createBlankPiece(), RANK_OF_BLANK_3, i);
-            add(createBlankPiece(), RANK_OF_BLANK_4, i);
+            for (int rankOfBlank : RANK_OF_BLANKS) {
+                add(createBlankPiece(), rankOfBlank, i);
+            }
         }
     }
 

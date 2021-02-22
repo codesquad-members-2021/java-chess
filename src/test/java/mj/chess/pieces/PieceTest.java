@@ -18,7 +18,7 @@ class PieceTest {
     }
 
     private void verifyPiece(final Piece piece, Color color, Type type) {
-        String representation = new RepresentationMap().getRepresentation(color, type);
+        String representation = type.getRepresentation(color);
 
         assertAll(
                 () -> verifyColorOfPiece(piece, color),

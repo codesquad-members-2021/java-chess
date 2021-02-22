@@ -2,7 +2,6 @@ package mj.chess;
 
 import mj.chess.pieces.Color;
 import mj.chess.pieces.Piece;
-import mj.chess.pieces.RepresentationMap;
 import mj.chess.pieces.Type;
 import mj.chess.utils.StringUtil;
 
@@ -117,17 +116,16 @@ public class Board {
     }
 
     private String getRowOfPieces(Color color) {
-        RepresentationMap representationMap = new RepresentationMap();
         StringBuilder stringBuilder = new StringBuilder();
 
-        return stringBuilder.append(representationMap.getRepresentation(color, Type.ROOK))
-                .append(representationMap.getRepresentation(color, Type.KNIGHT))
-                .append(representationMap.getRepresentation(color, Type.BISHOP))
-                .append(representationMap.getRepresentation(color, Type.QUEEN))
-                .append(representationMap.getRepresentation(color, Type.KING))
-                .append(representationMap.getRepresentation(color, Type.BISHOP))
-                .append(representationMap.getRepresentation(color, Type.KNIGHT))
-                .append(representationMap.getRepresentation(color, Type.ROOK))
+        return stringBuilder.append(Type.ROOK.getRepresentation(color))
+                .append(Type.KNIGHT.getRepresentation(color))
+                .append(Type.BISHOP.getRepresentation(color))
+                .append(Type.QUEEN.getRepresentation(color))
+                .append(Type.KING.getRepresentation(color))
+                .append(Type.BISHOP.getRepresentation(color))
+                .append(Type.KNIGHT.getRepresentation(color))
+                .append(Type.ROOK.getRepresentation(color))
                 .toString();
     }
 }

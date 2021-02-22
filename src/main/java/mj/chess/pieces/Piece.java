@@ -5,14 +5,12 @@ public class Piece {
     private final Color color;
     private final Type type;
     private final String representation;
-    private final RepresentationMap representationMap;
 
     private Piece(Color color, Type type) {
-        representationMap = new RepresentationMap();
 
         this.color = color;
         this.type = type;
-        this.representation = representationMap.getRepresentation(color, type);
+        this.representation = type.getRepresentation(color);
 
         validateColor(this.color);
         validateType(this.type);
@@ -46,7 +44,16 @@ public class Piece {
     }
 
     private void validateRepresentation(String representation) {
-        boolean isValid = representationMap.containsValue(representation);
+        boolean isValid = false;
+
+        for (Type eachType : Type.values()){
+            for(Color color : Color.values()){
+                if(eachType.getRepresentation(color).equals(representation)){
+                    isValid = true;
+                    break;
+                }
+            }
+        }
 
         if (!isValid) throw new IllegalArgumentException("Invalid representation");
     }

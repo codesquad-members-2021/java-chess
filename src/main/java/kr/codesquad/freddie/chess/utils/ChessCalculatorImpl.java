@@ -1,5 +1,6 @@
 package kr.codesquad.freddie.chess.utils;
 
+import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.board.File;
 import kr.codesquad.freddie.chess.piece.CalculablePiece;
 import kr.codesquad.freddie.chess.piece.Color;
@@ -13,14 +14,12 @@ import java.util.stream.Collectors;
 public class ChessCalculatorImpl implements ChessCalculator {
     @Override
     public double calculate(List<File> files, Color color) {
-        double result = 0;
-        for (Map.Entry<CalculablePiece, Double> entry : groupingByCalculablePiece(files, color).entrySet()) {
-            double point = entry.getValue();
-            Kind kind = entry.getKey().getKind();
-            result += kind == Kind.PAWN && 1 < point ? point / 2 : point;
-        }
-
-        return result;
+        return groupingByCalculablePiece(files, color).entrySet().stream()
+                .mapToDouble(calculablePieceDoubleEntry -> {
+                    double point = calculablePieceDoubleEntry.getValue();
+                    Kind kind = calculablePieceDoubleEntry.getKey().getKind();
+                    return kind == Kind.PAWN && 1 < point ? point / 2 : point;
+                }).sum();
     }
 
     public Map<CalculablePiece, Double> groupingByCalculablePiece(List<File> files, Color color) {

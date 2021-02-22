@@ -38,7 +38,7 @@ public class Board {
     }
 
     public Pawn findBlackPawn(int index) {
-        return whitePawn.get(index);
+        return blackPawn.get(index);
     }
 
     public void initialize() {
@@ -54,7 +54,7 @@ public class Board {
 
     private void addBlackPawn(int numOfPawn) {
         for (int i = 0; i < numOfPawn; i++) {
-            whitePawn.add(new Pawn(Color.BLACK));
+            blackPawn.add(new Pawn(Color.BLACK));
         }
     }
 

@@ -34,7 +34,7 @@ public class BoardTest {
     @DisplayName("체스 보드에 폰을 추가하고, 찾을 수 있어야 합니다.")
     void testAdditionAndFind() {
         ChessPiece whiteChessPiece = ChessPiece.createWhitePawn();
-        for (int i = 1; i <= Board.LENGTH_OF_BOARD; i++) {
+        for (int i = 0; i < Board.LENGTH_OF_BOARD; i++) {
             final int fileIdx = i;
             assertAll(
                     () -> verifyAddition(whiteChessPiece, Board.RANK_OF_WHITE_PAWNS, fileIdx),
@@ -56,7 +56,7 @@ public class BoardTest {
     @Test
     @DisplayName("폰을 찾을때 넣는 인덱스가 배열의 범위를 벗어나면 예외가 발생해야 합니다")
     void testErrorFind() {
-        int[] testcases = {-1, 0, Board.LENGTH_OF_BOARD + 1};
+        int[] testcases = {-1, Board.LENGTH_OF_BOARD};
         for (int tc : testcases)
             testFindThrowException(tc, tc, InvalidParameterException.class);
     }

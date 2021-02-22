@@ -6,7 +6,8 @@ public enum NameOfChessPiece {
     KNIGHT("N"),
     BISHOP("B"),
     QUEEN("Q"),
-    KING("K");
+    KING("K"),
+    NO_PIECE(".");
 
     private final String representation;
 

@@ -15,7 +15,7 @@ public class ChessPiece {
     }
 
     public static ChessPiece createBlankPiece() {
-        return createChessPiece(NameOfChessPiece.PAWN, ColorOfChessPiece.BLANK);
+        return createChessPiece(NameOfChessPiece.NO_PIECE, ColorOfChessPiece.BLANK);
     }
 
     public static ChessPiece createChessPiece(NameOfChessPiece name, ColorOfChessPiece color) {

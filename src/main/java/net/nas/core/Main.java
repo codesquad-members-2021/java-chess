@@ -34,14 +34,16 @@ public class Main {
                     break;
             }
             mainOfGame.print();
-            if (!isTerminated)
+            if (!isTerminated) {
                 System.out.print("> ");
+            }
         }
     }
 
     public void startGame() {
-        if (isStarted)
+        if (isStarted) {
             return;
+        }
         System.out.println("게임을 시작합니다");
         board.initialize();
         isStarted = true;
@@ -52,8 +54,9 @@ public class Main {
     }
 
     public void endGame() {
-        if (!isStarted)
+        if (!isStarted) {
             return;
+        }
         System.out.println("게임을 종료합니다");
         isStarted = false;
     }

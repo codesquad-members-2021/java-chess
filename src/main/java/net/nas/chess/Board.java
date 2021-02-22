@@ -126,13 +126,16 @@ public class Board {
     }
 
     public void add(ChessPiece piece, int rankIdx, int fileIdx) {
-        if (piece == null)
+        if (piece == null) {
             throw new InvalidParameterException("Null value cannot be added in Board");
-        if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
+        }
+        if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx)) {
             throw new InvalidParameterException("index exceeded the bounds of the Board");
+        }
         chessCells[rankIdx - 1][fileIdx - 1] = piece;
-        if (!piece.isBlank())
+        if (!piece.isBlank()) {
             numberOfPieces++;
+        }
     }
 
     public int size() {

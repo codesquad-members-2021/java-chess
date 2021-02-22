@@ -5,24 +5,18 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String game;
+
         Board board = new Board();
         board.initialize();
 
-        Scanner sc = new Scanner(System.in);
-        String game = sc.nextLine();
+        while (!(game = sc.nextLine()).equals("end")) {
+            if(game.equals("start"))
+                System.out.println(board.showBoard());
+        }
+        System.exit(0);
 
-        if (game.equals("start")) {
-            while (true) {
-                board.showBoard();
-                String move = sc.nextLine();
-                if (move.equals("end")) {
-                    System.exit(0);
-                }
-            }
-        }
-        if (game.equals("end")) {
-            System.exit(0);
-        }
     }
 }
 

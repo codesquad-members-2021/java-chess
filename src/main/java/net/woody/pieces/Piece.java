@@ -1,7 +1,8 @@
 package net.woody.pieces;
 
+import net.woody.chess.Representation;
+
 public class Piece {
-    public static final char PAWN_REPRESENTATION = 'p';
     public static final int BLACK_PAWN_RANK = 1;
     public static final int WHITE_PAWN_RANK = 6;
 
@@ -10,15 +11,7 @@ public class Piece {
 
     private Piece(Color color, char representation) {
         this.color = color;
-        this.representation = color.representation(representation);
-    }
-
-    public static Piece createBlackPawn() {
-        return new Piece(Color.BLACK, PAWN_REPRESENTATION);
-    }
-
-    public static Piece createWhitePawn() {
-        return new Piece(Color.WHITE, PAWN_REPRESENTATION);
+        this.representation = representation;
     }
 
     public Color getColor() {
@@ -28,4 +21,13 @@ public class Piece {
     public char getRepresentation() {
         return representation;
     }
+
+    public static Piece createBlackPawn() {
+        return new Piece(Color.BLACK, Representation.PAWN.black());
+    }
+
+    public static Piece createWhitePawn() {
+        return new Piece(Color.WHITE, Representation.PAWN.white());
+    }
+
 }

@@ -10,9 +10,11 @@ public enum Representation {
         this.representation = representation;
     }
 
-    public char value() {
+    public char white() {
         return representation;
     }
 
-
+    public char black() {
+        return Character.toUpperCase(representation);
+    }
 }

@@ -1,17 +1,8 @@
 package net.woody.pieces;
 
-import java.util.function.Function;
-
 public enum Color {
 
-    WHITE(piece -> Character.toLowerCase(piece)),
-    BLACK(piece -> Character.toUpperCase(piece));
-
-    private Function<Character, Character> represent;
-
-    Color(Function<Character, Character> represent) {
-        this.represent = represent;
-    }
+    WHITE, BLACK;
 
     public static Color value(String color) {
         switch (color) {
@@ -22,11 +13,6 @@ public enum Color {
             default:
                 throw new IllegalArgumentException("color should be white or black!");
         }
-
-    }
-
-    public Character representation(char pieceFirstLetter) {
-        return represent.apply(pieceFirstLetter);
     }
 
     @Override

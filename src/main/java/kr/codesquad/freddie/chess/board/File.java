@@ -98,6 +98,10 @@ public class File {
 
     }
 
+    public Stream<Piece> getPieces() {
+        return pieces.stream();
+    }
+
     public Stream<CalculablePiece> getCalculablePieces() {
         return IntStream.range(0, SIZE)
                 .mapToObj(i -> CalculablePiece.create(this.pieces.get(i), (char) (i + 'a')));

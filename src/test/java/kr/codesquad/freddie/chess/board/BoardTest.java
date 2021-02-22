@@ -8,6 +8,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -82,6 +87,51 @@ class BoardTest {
                 () -> assertThat(board.findPiece('a', 8)).isEqualTo(white),
                 () -> assertThat(board.findPiece('b', 8)).isEqualTo(black)
         );
+    }
+
+    @Test
+    void initializeWithSort() {
+        PieceFactory blackPieceFactory = new PieceFactory(Color.BLACK);
+        PieceFactory whitePieceFactory = new PieceFactory(Color.WHITE);
+
+        board.initializeWithSort();
+        Map<Color, List<Piece>> blackAndWhitePieces = board.getBlackAndWhitePieces();
+        assertThat(blackAndWhitePieces.get(Color.BLACK)).isEqualTo(new ArrayList<>(Arrays.asList(
+                blackPieceFactory.createQueen(),
+                blackPieceFactory.createRook(),
+                blackPieceFactory.createRook(),
+                blackPieceFactory.createBishop(),
+                blackPieceFactory.createBishop(),
+                blackPieceFactory.createKnight(),
+                blackPieceFactory.createKnight(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createKing()
+        )));
+        assertThat(blackAndWhitePieces.get(Color.WHITE)).isEqualTo(new ArrayList<>(Arrays.asList(
+                whitePieceFactory.createQueen(),
+                whitePieceFactory.createRook(),
+                whitePieceFactory.createRook(),
+                whitePieceFactory.createBishop(),
+                whitePieceFactory.createBishop(),
+                whitePieceFactory.createKnight(),
+                whitePieceFactory.createKnight(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createKing()
+        )));
     }
 
     @Test
@@ -204,7 +254,6 @@ class BoardTest {
                 () -> assertThat(board.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(1)
         );
     }
-
 
     @Test
     void getScoreOf() {

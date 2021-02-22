@@ -13,6 +13,7 @@ public class Board {
     // 체스에서 row를 rank라고 한다.
     public static final int RANK_SIZE = 8;
     private List<File> files = new ArrayList<>();
+    private Map<Color, List<Piece>> blackAndWhitePieces = new HashMap<>();
     private ChessCalculator chessCalculator;
 
     public Board() {
@@ -78,6 +79,25 @@ public class Board {
         return files.stream()
                 .mapToInt(file -> file.getNumberOf(color, kind))
                 .sum();
+    }
+
+    public Board initializeWithSort() {
+        initialize();
+        blackAndWhitePieces.put(Color.BLACK, getPiecesBy(Color.BLACK));
+        blackAndWhitePieces.put(Color.WHITE, getPiecesBy(Color.WHITE));
+        return this;
+    }
+
+    public Map<Color, List<Piece>> getBlackAndWhitePieces() {
+        return Collections.unmodifiableMap(blackAndWhitePieces);
+    }
+
+    private List<Piece> getPiecesBy(Color color) {
+        return files.stream()
+                .flatMap(File::getPieces)
+                .filter(file -> file.getColor() == color)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public Board initialize() {

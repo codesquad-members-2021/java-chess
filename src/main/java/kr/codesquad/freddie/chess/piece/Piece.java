@@ -2,7 +2,7 @@ package kr.codesquad.freddie.chess.piece;
 
 import java.util.Objects;
 
-public class Piece {
+public class Piece implements Comparable<Piece> {
     private Color color;
     private Kind kind;
 
@@ -58,5 +58,10 @@ public class Piece {
                 "color=" + color +
                 ", kind=" + kind +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Piece o) {
+        return Double.compare(getPoint(), o.getPoint()) * -1;
     }
 }

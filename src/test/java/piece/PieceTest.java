@@ -35,7 +35,7 @@ class PieceTest {
 
 
     @Test
-    @DisplayName("Distinguish color")
+    @DisplayName("Piece의 색상 확인")
     void distinguishColor(){
         Piece whitePiece = Piece.createWhiteKnight();
         Piece blackPiece = Piece.createBlackKnight();
@@ -45,7 +45,6 @@ class PieceTest {
 
         assertThat(false).isEqualTo(isWhite(blackPiece));
         assertThat(false).isEqualTo(isBlack(whitePiece));
-
 
     }
 

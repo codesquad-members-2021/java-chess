@@ -11,73 +11,69 @@ import net.sky.pieces.PieceMaker;
 
 public class Board {
 
-    private List<Piece> whitePawns = new ArrayList<>();
-    private List<Piece> blackPawns = new ArrayList<>();
-    private List<Piece> whitePieces = new ArrayList<>();
-    private List<Piece> blackPieces = new ArrayList<>();
+    private List<Rank> board = new ArrayList<>();
     private final PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
     private final PieceMaker blackPieceMaker = new PieceMaker(Color.BLACK);
 
-    public void addWhitePawn(Piece piece) {
-        whitePawns.add(piece);
-    }
-
-    public void addBlackPawn(Piece piece) {
-        blackPawns.add(piece);
-    }
-
-    public void addWhitePiece(Piece piece) {
-        whitePieces.add(piece);
-    }
-
-    public void addBlackPiece(Piece piece) {
-        blackPieces.add(piece);
-    }
-
     public void initialize() {
-        initializeWhitePawns();
-        initializeBlackPawns();
-        initializeWhitePieces();
         initializeBlackPieces();
+        initializeBlackPawns();
+        initializeBlank();
+        initializeBlank();
+        initializeBlank();
+        initializeBlank();
+        initializeWhitePawns();
+        initializeWhitePieces();
     }
 
     private void initializeWhitePawns() {
-        for (int i = 0; i < 8; i++) {
-            addWhitePawn(whitePieceMaker.createPawn());
-        }
+        initializePawns(whitePieceMaker);
     }
 
     private void initializeBlackPawns() {
+        initializePawns(blackPieceMaker);
+    }
+
+    private void initializePawns(PieceMaker pieceMaker) {
+        Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
-            addBlackPawn(blackPieceMaker.createPawn());
+            rank.add(pieceMaker.createPawn());
         }
+        board.add(rank);
     }
 
     private void initializeWhitePieces() {
-        addWhitePiece(whitePieceMaker.createRook());
-        addWhitePiece(whitePieceMaker.createKnight());
-        addWhitePiece(whitePieceMaker.createBishop());
-        addWhitePiece(whitePieceMaker.createQueen());
-        addWhitePiece(whitePieceMaker.createKing());
-        addWhitePiece(whitePieceMaker.createBishop());
-        addWhitePiece(whitePieceMaker.createKnight());
-        addWhitePiece(whitePieceMaker.createRook());
+        initializePieces(whitePieceMaker);
     }
 
     private void initializeBlackPieces() {
-        addBlackPiece(blackPieceMaker.createRook());
-        addBlackPiece(blackPieceMaker.createKnight());
-        addBlackPiece(blackPieceMaker.createBishop());
-        addBlackPiece(blackPieceMaker.createQueen());
-        addBlackPiece(blackPieceMaker.createKing());
-        addBlackPiece(blackPieceMaker.createBishop());
-        addBlackPiece(blackPieceMaker.createKnight());
-        addBlackPiece(blackPieceMaker.createRook());
+        initializePieces(blackPieceMaker);
     }
 
-    private String getPiecesResult(List<Piece> pieces) {
+    private void initializePieces(PieceMaker pieceMaker) {
+        Rank rank = new Rank();
+        rank.add(pieceMaker.createRook());
+        rank.add(pieceMaker.createKnight());
+        rank.add(pieceMaker.createBishop());
+        rank.add(pieceMaker.createQueen());
+        rank.add(pieceMaker.createKing());
+        rank.add(pieceMaker.createBishop());
+        rank.add(pieceMaker.createKnight());
+        rank.add(pieceMaker.createRook());
+        board.add(rank);
+    }
+
+    private void initializeBlank() {
+        Rank rank = new Rank();
+        for (int i = 0; i < 8; i++) {
+            rank.add(PieceMaker.createBlank());
+        }
+        board.add(rank);
+    }
+
+    private String getPiecesResult(Rank rank) {
         StringBuilder result = new StringBuilder();
-        for (Piece piece : pieces) {
+        for (Piece piece : rank.getRank()) {
             result.append(piece.getRepresentation());
         }
         return result.toString();
@@ -88,22 +84,13 @@ public class Board {
     }
 
     public String showBoard() {
-        String blankLine = "........";
         StringBuilder result = new StringBuilder();
 
-        result.append(appendNewLine(getPiecesResult(blackPieces)));
-        result.append(appendNewLine(getPiecesResult(blackPawns)));
-        result.append(appendNewLine(blankLine));
-        result.append(appendNewLine(blankLine));
-        result.append(appendNewLine(blankLine));
-        result.append(appendNewLine(blankLine));
-        result.append(appendNewLine(getPiecesResult(whitePawns)));
-        result.append(appendNewLine(getPiecesResult(whitePieces)));
+        for (Rank rank : board) {
+            result.append(appendNewLine(getPiecesResult(rank)));
+        }
 
         return result.toString();
     }
 
-    public int pieceCount() {
-        return whitePawns.size() + blackPawns.size() + whitePieces.size() + blackPieces.size();
-    }
 }

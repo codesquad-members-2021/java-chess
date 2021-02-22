@@ -30,7 +30,7 @@ public class File {
      *
      * @param fileIndex a~h 사이의 char
      * @return 해당 칸에 존재하는 기물
-     * @see Board#findPiece(char, int)
+     * @see Board#findPiece(String)
      */
     public Piece get(char fileIndex) {
         return pieces.get(fileIndex - 'a');
@@ -46,7 +46,7 @@ public class File {
      * @param piece     변경할 기물
      * @return 해당 칸에 존재하던 기물
      * @see List#set(int, Object)
-     * @see Board#findPiece(char, int)
+     * @see Board#findPiece(String)
      */
     public Piece set(char fileIndex, Piece piece) {
         return pieces.set(fileIndex - 'a', piece);

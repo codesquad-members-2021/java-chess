@@ -8,16 +8,16 @@ public class Game {
     public static void main(String[] args) {
         boolean ongoing = true;
         Board board = new Board();
-        Scanner sc = new Scanner(System.in);
-        do {
-            CommandUtils.printMenu();
-            String command = sc.nextLine();
-            ongoing = CommandUtils.isGameOver(command);
-            if (ongoing) {
-                board.initialize();
-                System.out.println(board.print());
-            }
-        } while (ongoing);
-        sc.close();
+        try (Scanner sc = new Scanner(System.in)) {
+            do {
+                CommandUtils.printMenu();
+                String command = sc.nextLine();
+                ongoing = CommandUtils.isGameOver(command);
+                if (ongoing) {
+                    board.initialize();
+                    System.out.println(board.print());
+                }
+            } while (ongoing);
+        }
     }
 }

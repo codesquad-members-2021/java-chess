@@ -99,4 +99,15 @@ public class Rank {
         return rank;
     }
 
+    public int getCountPieceByColorAndType(Color color, Type type) {
+        int countPiece = 0;
+
+        for (Piece piece : pieces){
+            if(piece.matchColorAndType(color,type)){
+                countPiece += 1;
+            }
+        }
+
+        return countPiece;
+    }
 }

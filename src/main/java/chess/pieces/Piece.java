@@ -13,6 +13,10 @@ public class Piece {
         return this.color;
     }
 
+    public Type getType(){
+        return this.type;
+    }
+
     public boolean isWhite() {
         return getColor() == Color.WHITE;
     }
@@ -23,6 +27,10 @@ public class Piece {
 
     public char getRepresentation() {
         return color == Color.WHITE ? type.getWhiteRepresentation() : type.getBlackRepresentation();
+    }
+
+    public boolean matchColorAndType(Color color, Type type) {
+        return getColor()==color && getType()==type;
     }
 
     private static Piece createWhite(Type type) {

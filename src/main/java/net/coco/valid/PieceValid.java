@@ -18,6 +18,15 @@ public class PieceValid {
         return true;
     }
 
+    public static void piecePointValid(int row, int column) {
+        if (row >= 8 || row < 0) {
+            throw new IllegalArgumentException("올바른 point가 아닙니다.");
+        }
+        if (column >= 8 || column < 0) {
+            throw new IllegalArgumentException("올바른 point가 아닙니다.");
+        }
+    }
+
     public static boolean isOtherPiece(Piece piece) {
         char getRepresentation = Character.toUpperCase(piece.getRepresentation());
 

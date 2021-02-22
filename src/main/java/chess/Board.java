@@ -2,70 +2,78 @@ package chess;
 
 import pieces.Piece;
 
+import java.util.ArrayList;
+
 import static utils.StringUtils.*;
 
 public class Board {
 
-    private final Piece[] pieceList;
+    private final ArrayList<ArrayList<Piece>> pieceRanks;
     private int size;
 
-    private final int ROWS = 4;
+    private final int RANKS = 8;
     private final int FILES = 8;
 
     public Board() {
-        this.pieceList = new Piece[ROWS * FILES];
+        this.pieceRanks = new ArrayList<>();
+        for (int i = 0; i < RANKS; i++) {
+            ArrayList<Piece> rank = new ArrayList<>();
+            for (int j = 0; j < FILES; j++) {
+                rank.add(Piece.createBlank());
+            }
+            this.pieceRanks.add(rank);
+        }
         this.size = 0;
     }
 
     private void initBlackPawns() {
+        ArrayList<Piece> initBlackPawnsRank = pieceRanks.get(1);
         for (int i = 0; i < FILES; i++) {
-            pieceList[1 * FILES + i] = Piece.createBlackPawn();
+            initBlackPawnsRank.set(i, Piece.createBlackPawn());
         }
         size += FILES;
     }
 
     private void initWhitePawns() {
+        ArrayList<Piece> initWhitePawnsRank = pieceRanks.get(6);
         for (int i = 0; i < FILES; i++) {
-            pieceList[2 * FILES + i] = Piece.createWhitePawn();
+            initWhitePawnsRank.set(i, Piece.createWhitePawn());
         }
         size += FILES;
     }
 
     private void initBlackPieces() {
-        pieceList[0] = Piece.createBlackRook();
-        pieceList[1] = Piece.createBlackKnight();
-        pieceList[2] = Piece.createBlackBishop();
-        pieceList[3] = Piece.createBlackQueen();
-        pieceList[4] = Piece.createBlackKing();
-        pieceList[5] = Piece.createBlackBishop();
-        pieceList[6] = Piece.createBlackKnight();
-        pieceList[7] = Piece.createBlackRook();
+        ArrayList<Piece> initBlackPieceRank = pieceRanks.get(0);
+        initBlackPieceRank.set(0, Piece.createBlackRook());
+        initBlackPieceRank.set(1, Piece.createBlackKnight());
+        initBlackPieceRank.set(2, Piece.createBlackBishop());
+        initBlackPieceRank.set(3, Piece.createBlackQueen());
+        initBlackPieceRank.set(4, Piece.createBlackKing());
+        initBlackPieceRank.set(5, Piece.createBlackBishop());
+        initBlackPieceRank.set(6, Piece.createBlackKnight());
+        initBlackPieceRank.set(7, Piece.createBlackRook());
         size += FILES;
     }
 
     private void initWhitePieces() {
-        pieceList[3 * FILES    ] = Piece.createWhiteRook();
-        pieceList[3 * FILES + 1] = Piece.createWhiteKnight();
-        pieceList[3 * FILES + 2] = Piece.createWhiteBishop();
-        pieceList[3 * FILES + 3] = Piece.createWhiteQueen();
-        pieceList[3 * FILES + 4] = Piece.createWhiteKing();
-        pieceList[3 * FILES + 5] = Piece.createWhiteBishop();
-        pieceList[3 * FILES + 6] = Piece.createWhiteKnight();
-        pieceList[3 * FILES + 7] = Piece.createWhiteRook();
+        ArrayList<Piece> initWhitePieceRank = pieceRanks.get(7);
+        initWhitePieceRank.set(0, Piece.createWhiteRook());
+        initWhitePieceRank.set(1, Piece.createWhiteKnight());
+        initWhitePieceRank.set(2, Piece.createWhiteBishop());
+        initWhitePieceRank.set(3, Piece.createWhiteQueen());
+        initWhitePieceRank.set(4, Piece.createWhiteKing());
+        initWhitePieceRank.set(5, Piece.createWhiteBishop());
+        initWhitePieceRank.set(6, Piece.createWhiteKnight());
+        initWhitePieceRank.set(7, Piece.createWhiteRook());
         size += FILES;
     }
 
-    private String getPiecesResult(int row) {
-        StringBuilder pieceResult = new StringBuilder();
-        for (int file = 0; file < FILES; file++) {
-            int index = row * FILES + file;
-            if (pieceList[index] != null) {
-                pieceResult.append(pieceList[index].getRepresentation());
-                continue;
-            }
-            pieceResult.append('.');
+    private String getRankRepresentation(ArrayList<Piece> rank) {
+        StringBuilder RankRepresentation = new StringBuilder();
+        for (Piece piece : rank) {
+            RankRepresentation.append(piece.getRepresentation());
         }
-        return pieceResult.toString();
+        return RankRepresentation.toString();
     }
 
     public void initialize() {
@@ -77,12 +85,9 @@ public class Board {
 
     public String showBoard() {
         StringBuilder output = new StringBuilder();
-        String blankRank = appendNewLine("........");
-        output.append(appendNewLine(getPiecesResult(0)));
-        output.append(appendNewLine(getPiecesResult(1)));
-        output.append(blankRank).append(blankRank).append(blankRank).append(blankRank);
-        output.append(appendNewLine(getPiecesResult(2)));
-        output.append(appendNewLine(getPiecesResult(3)));
+        for (ArrayList<Piece> rank : pieceRanks) {
+            output.append(appendNewLine(getRankRepresentation(rank)));
+        }
         return output.toString();
     }
 

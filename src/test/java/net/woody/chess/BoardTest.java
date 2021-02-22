@@ -44,6 +44,7 @@ class BoardTest {
 
     @Test
     @DisplayName("보드를 초기화할 때, 폰들이 올바르게 생성되어야 한다.")
+        // TODO : 메소드 명 상세하게
     void initialize() {
         board.initialize();
         assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult());
@@ -52,6 +53,7 @@ class BoardTest {
 
     @Test
     @DisplayName("보드를 초기화 한 뒤 출력된 결과가 예상된 결과와 같아야 한다.")
+        // TODO : 메소드 명 상세하게
     void print() {
         board.initialize();
         String expectedResult =
@@ -66,7 +68,6 @@ class BoardTest {
 
         String actualResult = board.print();
         assertThat(expectedResult).isEqualTo(actualResult);
-        System.out.println(actualResult);
     }
 
     private void addThePawnProperly(Piece newPiece, int newPawnIdx) {

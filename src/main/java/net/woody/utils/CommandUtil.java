@@ -2,6 +2,8 @@ package net.woody.utils;
 
 public class CommandUtil {
 
+    //TODO : private 생성자
+
     public static void printMenu() {
         System.out.println("< Command Menu >");
         System.out.println(" 'start' : game start ");

@@ -15,7 +15,7 @@ public class ChessCalculator {
                 .mapToDouble(calculablePieceDoubleEntry -> {
                     double point = calculablePieceDoubleEntry.getValue();
                     Kind kind = calculablePieceDoubleEntry.getKey().getKind();
-                    return kind == Kind.PAWN && 1 < point ? point / 2 : point;
+                    return kind == Kind.PAWN && Kind.PAWN.point() < point ? point / 2 : point;
                 }).sum();
     }
 }

@@ -1,18 +1,35 @@
 package pieces;
 
 public class Pawn {
-    private Color color;
+
+    public static final String WHITE = "white";
+    public static final String BLACK = "black";
+    public static final char WHITE_REPRESENTATION = 'p';
+    public static final char BLACK_REPRESENTATION = 'P';
+
+    private String color;
+    private char representation;
 
     public Pawn() {
-        this(Color.WHITE);
+        this(Pawn.WHITE);
+        this.representation = Pawn.WHITE_REPRESENTATION;
     }
 
-    public Pawn(Color color) {
+    public Pawn(final String color) {
         this.color = color;
+
+        if(color.equals("white")){
+            this.representation = 'p';
+            return;
+        }
+        this.representation = 'P';
     }
 
-    public Color getColor() {
+    public String getColor() {
         return color;
     }
 
+    public char getRepresentation() {
+        return representation;
+    }
 }

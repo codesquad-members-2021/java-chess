@@ -11,16 +11,16 @@ class PositionConverterTest {
     void create_outOfRange() {
         assertThatThrownBy(()->PositionConverter.createBy("01"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("올바른 fileIndex가 아닙니다. position : 01");
+                .hasMessage("올바른 fileIndex가 아닙니다. fileIndex : 0");
         assertThatThrownBy(()->PositionConverter.createBy("i1"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("올바른 fileIndex가 아닙니다. position : i1");
+                .hasMessage("올바른 fileIndex가 아닙니다. fileIndex : i");
         assertThatThrownBy(()->PositionConverter.createBy("a0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("올바른 rankIndex가 아닙니다. position : a0");
+                .hasMessage("올바른 rankIndex가 아닙니다. rankIndex : 0");
         assertThatThrownBy(()->PositionConverter.createBy("a9"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("올바른 rankIndex가 아닙니다. position : a9");
+                .hasMessage("올바른 rankIndex가 아닙니다. rankIndex : 9");
     }
 
     @Test

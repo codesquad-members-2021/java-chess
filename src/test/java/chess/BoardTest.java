@@ -70,4 +70,28 @@ class BoardTest {
         assertThat(piece).isEqualTo(board.findPiece(position));
         System.out.println(board.getChessBoard());
     }
+
+    @Test
+    public void caculcatePoint() throws Exception {
+        board.initializeEmpty();
+
+        addPiece("b6", Piece.createBlackPawn());
+        addPiece("e6", Piece.createBlackQueen());
+        addPiece("b8", Piece.createBlackKing());
+        addPiece("c8", Piece.createBlackRook());
+
+        addPiece("f2", Piece.createWhitePawn());
+        addPiece("g2", Piece.createWhitePawn());
+        addPiece("e1", Piece.createWhiteRook());
+        addPiece("f1", Piece.createWhiteKing());
+
+        assertThat(15.0).isEqualTo(board.caculcatePoint(Color.BLACK));
+        assertThat(7.0).isEqualTo(board.caculcatePoint(Color.WHITE));
+
+        System.out.println(board.getChessBoard());
+    }
+
+    private void addPiece(String position, Piece piece) {
+        board.move(position, piece);
+    }
 }

@@ -48,7 +48,7 @@ public class ChessPieceTest {
     void testCreationOfChessPieces() {
         testAllCasesWidhParamFuncion((name, color) -> {
             ChessPiece piece = ChessPiece.createChessPiece(name, color);
-            String expectedRepresentation = color.getRepresentationByColor(name.getRepresentation());
+            String expectedRepresentation = color.getRepresentationByColor(name);
             assertThat(piece.getRepresentation()).isEqualTo(expectedRepresentation);
         });
     }
@@ -68,7 +68,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createWhitePawn();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.PAWN.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.PAWN));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createBlackPawn();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.PAWN.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.PAWN));
     }
 
     @Test
@@ -86,7 +86,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createWhiteRook();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.ROOK.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.ROOK));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createBlackRook();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.ROOK.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.ROOK));
     }
 
     @Test
@@ -104,7 +104,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createWhiteKnight();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.KNIGHT.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.KNIGHT));
     }
 
     @Test
@@ -113,7 +113,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createBlackKnight();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.KNIGHT.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.KNIGHT));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createWhiteBishop();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.BISHOP.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.BISHOP));
     }
 
     @Test
@@ -131,7 +131,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createBlackBishop();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.BISHOP.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.BISHOP));
     }
 
     @Test
@@ -140,7 +140,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createWhiteQueen();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.QUEEN.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.QUEEN));
     }
 
     @Test
@@ -149,7 +149,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createBlackQueen();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.QUEEN.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.QUEEN));
     }
 
     @Test
@@ -158,7 +158,7 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createWhiteKing();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.WHITE
-                        .getRepresentationByColor(NameOfChessPiece.KING.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.KING));
     }
 
     @Test
@@ -167,6 +167,6 @@ public class ChessPieceTest {
         ChessPiece testPiece = ChessPiece.createBlackKing();
         assertThat(testPiece.getRepresentation())
                 .isEqualTo(ColorOfChessPiece.BLACK
-                        .getRepresentationByColor(NameOfChessPiece.KING.getRepresentation()));
+                        .getRepresentationByColor(NameOfChessPiece.KING));
     }
 }

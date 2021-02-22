@@ -115,4 +115,12 @@ class BoardTest {
                 );
     }
 
+    @Test
+    @DisplayName("보드위에서 말들이 정확히 놓여지는지 확인한다.")
+    void checkCorrectPosition() {
+        board.initializeEmpty();
+        String position = "b5";
+        board.move(position , Piece.createBlackRook());
+        assertThat(board.findPiece(position).get()).isEqualTo(Piece.createBlackRook());
+    }
 }

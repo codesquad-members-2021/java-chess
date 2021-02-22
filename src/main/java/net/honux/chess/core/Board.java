@@ -23,14 +23,20 @@ public class Board {
         whitePieces = Pieces.createWhitePiecesExceptPawns();
     }
 
-    private Pieces getPiecesByColor(Piece piece) {
-        if (piece.isBlack() && piece.getRepresentation() == BLACK_PAWN_REPRESENTATION) {
-            return blackPawns;
-        }
-        if (piece.isWhite() && piece.getRepresentation() == WHITE_PAWN_REPRESENTATION) {
-            return whitePawns;
-        }
-        return piece.isBlack() ? blackPieces : whitePieces;
+    public Pieces getWhitePieces() {
+        return whitePieces;
+    }
+
+    public Pieces getWhitePawns() {
+        return whitePawns;
+    }
+
+    public Pieces getBlackPieces() {
+        return blackPieces;
+    }
+
+    public Pieces getBlackPawns() {
+        return blackPawns;
     }
 
     public int whitePawnSize() {

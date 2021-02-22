@@ -67,15 +67,15 @@ public class Pieces {
         return sb.toString();
     }
 
-    private boolean validateSize() {
-        return this.size() < 8;
+    private void validateSize() {
+        if(this.size() >= Board.BOARD_SIZE) {
+            throw new IndexOutOfBoundsException("더 이상 Piece 를 추가할 수 없습니다.");
+        }
     }
 
 
     private Pieces add(Piece piece) {
-        if (!validateSize()) {
-            throw new IndexOutOfBoundsException("더 이상 Piece 를 추가할 수 없습니다.");
-        }
+        validateSize();
         pieceList.add(piece);
         return this;
     }

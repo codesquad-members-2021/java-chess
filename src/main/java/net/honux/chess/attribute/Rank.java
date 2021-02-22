@@ -8,28 +8,28 @@ import java.util.List;
 
 import static net.honux.chess.entity.pieces.Piece.*;
 
-public class RANK {
+public class Rank {
 
     private final List<Piece> pieceList = new ArrayList<>();
 
-    public static RANK createWhitePawns() {
-        RANK RANK = new RANK();
+    public static Rank createWhitePawns() {
+        Rank RANK = new Rank();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             RANK.add(createWhitePawn());
         }
         return RANK;
     }
 
-    public static RANK createBlackPawns() {
-        RANK RANK = new RANK();
+    public static Rank createBlackPawns() {
+        Rank RANK = new Rank();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             RANK.add(createBlackPawn());
         }
         return RANK;
     }
 
-    public static RANK createWhitePiecesExceptPawns() {
-        return new RANK()
+    public static Rank createWhitePiecesExceptPawns() {
+        return new Rank()
                 .add(createWhiteRook())
                 .add(createWhiteKnight())
                 .add(createWhiteBishop())
@@ -40,8 +40,8 @@ public class RANK {
                 .add(createWhiteRook());
     }
 
-    public static RANK createBlackPiecesExceptPawns() {
-        return new RANK()
+    public static Rank createBlackPiecesExceptPawns() {
+        return new Rank()
                 .add(createBlackRook())
                 .add(createBlackKnight())
                 .add(createBlackBishop())
@@ -52,12 +52,16 @@ public class RANK {
                 .add(createBlackRook());
     }
 
-    public static RANK createBlankPieces() {
-        RANK blankRANK = new RANK();
+    public void putPiece(int index, Piece piece) {
+        this.pieceList.set(index, piece);
+    }
+
+    public static Rank createBlankPieces() {
+        Rank blankRank = new Rank();
         for(int i = 0; i < Board.BOARD_SIZE; i++) {
-            blankRANK.add(createBlank());
+            blankRank.add(createBlank());
         }
-        return blankRANK;
+        return blankRank;
     }
 
     public int size() {
@@ -94,7 +98,7 @@ public class RANK {
         }
     }
 
-    private RANK add(Piece piece) {
+    private Rank add(Piece piece) {
         validateSize();
         pieceList.add(piece);
         return this;

@@ -1,7 +1,7 @@
 package net.honux.chess.core;
 
 import net.honux.chess.attribute.Color;
-import net.honux.chess.attribute.RANK;
+import net.honux.chess.attribute.Rank;
 import net.honux.chess.attribute.Type;
 import net.honux.chess.entity.pieces.Piece;
 
@@ -10,13 +10,13 @@ import java.util.Optional;
 
 import static net.honux.chess.util.StringUtils.appendNewLine;
 import static net.honux.chess.util.StringUtils.convertString;
-import static net.honux.chess.attribute.RANK.*;
+import static net.honux.chess.attribute.Rank.*;
 import static net.honux.chess.util.Position.*;
 
 public class Board {
 
     public static final int BOARD_SIZE = 8;
-    private ArrayList<RANK> board;
+    private ArrayList<Rank> board;
 
     public void initialize() {
         board = new ArrayList(BOARD_SIZE);
@@ -30,9 +30,20 @@ public class Board {
         board.add(createWhitePiecesExceptPawns());
     }
 
+    public void initializeEmpty() {
+        board = new ArrayList(BOARD_SIZE);
+        for(int i = 0; i < BOARD_SIZE; i++){
+            board.add(createBlankPieces());
+        }
+    }
+
+    public void move(String position, Piece piece) {
+        board.get(getIndex(position)).putPiece(getRank(position), piece);
+    }
+
     public int blackPiecesCount() {
         int countOfBlackPieces = 0;
-        for (RANK RANK : board){
+        for (Rank RANK : board){
             countOfBlackPieces += RANK.countOfBlackPieces();
         }
         return countOfBlackPieces;
@@ -40,7 +51,7 @@ public class Board {
 
     public int whitePiecesCount() {
         int countOfWhitePieces = 0;
-        for (RANK RANK : board){
+        for (Rank RANK : board){
             countOfWhitePieces += RANK.countOfWhitePieces();
         }
         return countOfWhitePieces;
@@ -48,7 +59,7 @@ public class Board {
 
     public int countOfPiece(Color color, Type type) {
         int countOfBlackPawns = 0;
-        for(RANK rank : board) {
+        for(Rank rank : board) {
             countOfBlackPawns += rank.countOfPiece(color, type);
         }
         return countOfBlackPawns;

@@ -14,6 +14,14 @@ public class Piece {
     }
 
     public static Piece createBlackPawn() {
+        return new Piece(Color.BLACK);
+    }
+
+    public static Piece createWhitePawn() {
+        return new Piece(Color.WHITE);
+    }
+
+    public static Piece createBlackPawn() {
         return new Piece("");
     }
 

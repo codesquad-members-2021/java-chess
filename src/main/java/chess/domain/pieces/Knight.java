@@ -15,7 +15,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    String getIcon() {
-        return "N";
+    char getIcon() {
+        return 'N';
     }
 }

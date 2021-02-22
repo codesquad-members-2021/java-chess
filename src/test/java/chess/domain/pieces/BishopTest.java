@@ -10,7 +10,7 @@ class BishopTest {
     @DisplayName("흰색 Bishop 의 representation 은 b여야 한다.")
     void getRepresentation_white() {
         String actual = Bishop.of(Color.WHITE)
-                .getRepresentation();
+                .toString();
         assertThat(actual)
                 .isEqualTo("b");
     }
@@ -19,7 +19,7 @@ class BishopTest {
     @DisplayName("까만 Bishop 의 representation 은 B여야 한다.")
     void getRepresentation_black() {
         String actual = Bishop.of(Color.BLACK)
-                .getRepresentation();
+                .toString();
         assertThat(actual)
                 .isEqualTo("B");
     }

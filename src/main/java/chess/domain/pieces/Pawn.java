@@ -15,7 +15,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    String getIcon() {
-        return "P";
+    char getIcon() {
+        return 'P';
     }
 }

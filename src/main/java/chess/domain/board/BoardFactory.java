@@ -40,7 +40,7 @@ public class BoardFactory {
     }
 
     private static void addEmptyRow(int rowId) {
-        addRow(rowId, EmptyPiece.getInstance());
+        addRow(rowId, NoPiece.getInstance());
     }
 
     private static void addPawnRow(int rowId) {

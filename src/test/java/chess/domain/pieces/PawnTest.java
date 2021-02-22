@@ -10,7 +10,7 @@ class PawnTest {
     @DisplayName("흰색 Pawn 의 representation 은 p여야 한다.")
     void getRepresentation_white() {
         String actual = Pawn.of(Color.WHITE)
-                .getRepresentation();
+                .toString();
         assertThat(actual)
                 .isEqualTo("p");
     }
@@ -19,7 +19,7 @@ class PawnTest {
     @DisplayName("까만 Pawn 의 representation 은 P여야 한다.")
     void getRepresentation_black() {
         String actual = Pawn.of(Color.BLACK)
-                .getRepresentation();
+                .toString();
         assertThat(actual)
                 .isEqualTo("P");
     }

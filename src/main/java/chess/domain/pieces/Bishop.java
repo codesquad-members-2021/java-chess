@@ -15,7 +15,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    String getIcon() {
-        return "B";
+    char getIcon() {
+        return 'B';
     }
 }

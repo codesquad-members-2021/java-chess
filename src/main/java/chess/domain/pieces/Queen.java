@@ -15,7 +15,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    String getIcon() {
-        return "Q";
+    char getIcon() {
+        return 'Q';
     }
 }

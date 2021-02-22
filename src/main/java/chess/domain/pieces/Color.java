@@ -3,16 +3,17 @@ package chess.domain.pieces;
 import java.util.function.Function;
 
 public enum Color {
-    WHITE(icon -> icon.toLowerCase()),
-    BLACK(icon -> icon.toUpperCase());
+    WHITE(icon -> Character.toLowerCase(icon)),
+    BLACK(icon -> Character.toUpperCase(icon)),
+    NOCOLOR(icon -> icon);
 
-    private final Function<String, String> representationStrategy;
+    private final Function<Character, Character> representationStrategy;
 
-    Color(Function<String, String> representationStrategy) {
+    Color(Function<Character, Character> representationStrategy) {
         this.representationStrategy = representationStrategy;
     }
 
-    public String generateRepresentation(String representation) {
+    public char generateRepresentation(char representation) {
         return representationStrategy.apply(representation);
     }
 }

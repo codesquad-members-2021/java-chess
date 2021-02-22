@@ -10,7 +10,7 @@ class RookTest {
     @DisplayName("흰색 Rook 의 representation 은 r여야 한다.")
     void getRepresentation_white() {
         String actual = Rook.of(Color.WHITE)
-                .getRepresentation();
+                .toString();
         assertThat(actual)
                 .isEqualTo("r");
     }
@@ -19,7 +19,7 @@ class RookTest {
     @DisplayName("까만 Rook 의 representation 은 R여야 한다.")
     void getRepresentation_black() {
         String actual = Rook.of(Color.BLACK)
-                .getRepresentation();
+                .toString();
         assertThat(actual)
                 .isEqualTo("R");
     }

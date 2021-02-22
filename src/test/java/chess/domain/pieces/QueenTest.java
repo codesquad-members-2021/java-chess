@@ -10,7 +10,7 @@ class QueenTest {
     @DisplayName("흰색 Queen 의 representation 은 q여야 한다.")
     void getRepresentation_white() {
         String actual = Queen.of(Color.WHITE)
-                .getRepresentation();
+                .toString();
         assertThat(actual)
                 .isEqualTo("q");
     }
@@ -19,7 +19,7 @@ class QueenTest {
     @DisplayName("까만 Queen 의 representation 은 Q여야 한다.")
     void getRepresentation_black() {
         String actual = Queen.of(Color.BLACK)
-                .getRepresentation();
+                .toString();
         assertThat(actual)
                 .isEqualTo("Q");
     }

@@ -64,5 +64,15 @@ public class Board {
         }
         return sb.toString();
     }
-    
+
+    public void initialize() {
+        files.add(Rank.initializeWhitePieces());
+        files.add(Rank.initializeWhitePawns());
+        files.add(Rank.initializeBlank());
+        files.add(Rank.initializeBlank());
+        files.add(Rank.initializeBlank());
+        files.add(Rank.initializeBlank());
+        files.add(Rank.initializeBlackPawns());
+        files.add(Rank.initializeBlackPieces());
+    }
 }

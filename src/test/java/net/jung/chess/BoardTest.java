@@ -65,7 +65,7 @@ public class BoardTest {
         String blankRank = appendNewLine("********");
         assertAll(
                 () -> assertThat(board.size()).isEqualTo(32),
-                () -> assertThat(board.print()).isEqualTo(
+                () -> assertThat(board.boardLayoutToString()).isEqualTo(
                     appendNewLine("RNBQKBNR")
                     +appendNewLine("PPPPPPPP")
                     +blankRank+blankRank+blankRank+blankRank

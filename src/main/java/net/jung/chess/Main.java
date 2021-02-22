@@ -20,7 +20,7 @@ public class Main {
                     System.out.println("체스게임을 시작합니다.\n");
                     board.reset();
                     board.initialize();
-                    System.out.print(board.print());
+                    System.out.print(board.boardLayoutToString());
                     System.out.println();
                     continue;
                 }

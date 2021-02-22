@@ -14,13 +14,15 @@ public class Board {
     private List<Piece> whitePieceList = new ArrayList();
 
     public void addWhitePiece(Piece piece) {
-        if (piece.getColor() == Color.WHITE)
+        if (piece.isWhite()) {
             whitePieceList.add(piece);
+        }
     }
 
     public void addBlackPiece(Piece piece) {
-        if (piece.getColor() == Color.BLACK)
+        if (piece.isBlack()) {
             blackPieceList.add(piece);
+        }
     }
 
     public void addPiece(Piece piece){
@@ -52,21 +54,21 @@ public class Board {
     }
 
     public void initialize() {
-        piecesExceptPawnInitialize(Color.BLACK);
-        pawnInitialize(Color.BLACK);
+        initializePiecesExceptPawn(Color.BLACK);
+        iniitializePawns(Color.BLACK);
 
-        pawnInitialize(Color.WHITE);
-        piecesExceptPawnInitialize(Color.WHITE);
+        iniitializePawns(Color.WHITE);
+        initializePiecesExceptPawn(Color.WHITE);
     }
 
-    public void pawnInitialize(Color color){
-        int MAX_PAWNS_SIZE = 8;
-        for (int i = 0; i < MAX_PAWNS_SIZE; i++) {
+    public void iniitializePawns(Color color){
+        int maxPawnsSize = 8;
+        for (int i = 0; i < maxPawnsSize; i++) {
             addPiece(Piece.createPiece(color, Type.PAWN));
         }
     }
 
-    public void piecesExceptPawnInitialize(Color color){
+    public void initializePiecesExceptPawn(Color color){
         addPiece(Piece.createPiece(color, Type.ROOK));
         addPiece(Piece.createPiece(color, Type.KNIGHT));
         addPiece(Piece.createPiece(color, Type.BISHOP));
@@ -78,24 +80,24 @@ public class Board {
     }
 
     public String getWhitePiecesResult() {
-        return getPiecesResult(whitePieceList);
+        return getPiecesRepresentation(whitePieceList);
     }
 
     public String getBlackPiecesResult() {
-        return getPiecesResult(blackPieceList);
+        return getPiecesRepresentation(blackPieceList);
     }
 
-    public String getPiecesResult(List<Piece> pieceList) {
-        StringBuilder pawnReps = new StringBuilder();
+    public String getPiecesRepresentation(List<Piece> pieceList) {
+        StringBuilder piecesRepresentation = new StringBuilder();
         for (int i = 0, colorPawnSize = pieceList.size(); i < colorPawnSize; i++) {
-            pawnReps.append(pieceList.get(i).getRepresentation());
+            piecesRepresentation.append(pieceList.get(i).getRepresentation());
             if(i==7)
-                pawnReps.append(System.getProperty("line.separator"));
+                piecesRepresentation.append(System.getProperty("line.separator"));
         }
-        return pawnReps.toString();
+        return piecesRepresentation.toString();
     }
 
-    public String print() {
+    public String boardLayoutToString() {
         String blankRow = "********";
         StringBuilder boardLayout = new StringBuilder();
         boardLayout

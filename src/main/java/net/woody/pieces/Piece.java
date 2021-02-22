@@ -24,6 +24,14 @@ public class Piece {
         return representation;
     }
 
+    public boolean isWhite() {
+        return false;
+    }
+
+    public boolean isBlack() {
+        return false;
+    }
+
     public static Piece createBlackPawn() {
         return new Piece(Color.BLACK, Representation.PAWN.black());
     }

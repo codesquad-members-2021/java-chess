@@ -10,24 +10,16 @@ class PieceTest {
 
     @Test
     @DisplayName("흰색 폰과 검은색 폰이 생성되어야 한다")
-    void createWhiteAndBlackPawns() {
+    void createWhiteAndBlackPieces() {
         assertAll(
-                () -> verifyPawn(Color.WHITE.toString()),
-                () -> verifyPawn(Color.BLACK.toString())
+                () -> verifyPawn(Piece.createWhitePawn(), Color.WHITE.toString(), 'p'),
+                () -> verifyPawn(Piece.createBlackPawn(), Color.BLACK.toString(), 'P')
         );
     }
 
-    @Test
-    @DisplayName("다른 색 폰이 생성되면 안된다")
-    void createRedPawn() {
-        assertThatThrownBy(() -> new Piece("red"))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    private void verifyPawn(final String color) {
-        Piece piece = new Piece(color);
+    private void verifyPawn(final Piece piece, final String color, final char representation) {
         assertThat(piece.getColor().toString()).isEqualTo(color);
-        assertThat(piece.getRepresentation()).isEqualTo(Color.value(color).representation('p'));
+        assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
 
 }

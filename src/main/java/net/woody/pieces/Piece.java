@@ -13,6 +13,15 @@ public class Piece {
         this.representation = this.color.representation(PAWN_REPRESENTATION);
     }
 
+    public static Piece createBlackPawn() {
+        return new Piece("");
+    }
+
+    public static Piece createWhitePawn() {
+        return new Piece("");
+    }
+
+
     public Color getColor() {
         return color;
     }

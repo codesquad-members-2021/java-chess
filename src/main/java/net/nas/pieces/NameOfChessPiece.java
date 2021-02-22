@@ -18,4 +18,14 @@ public enum NameOfChessPiece {
     public String getRepresentation() {
         return representation;
     }
+
+    public static NameOfChessPiece getNameByRepresentation(String representation) {
+        representation = representation.toUpperCase();
+        for (NameOfChessPiece name : NameOfChessPiece.values()) {
+            if (name.representation.equals(representation)) {
+                return name;
+            }
+        }
+        return NO_PIECE;
+    }
 }

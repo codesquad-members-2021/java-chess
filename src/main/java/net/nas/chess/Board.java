@@ -1,6 +1,8 @@
 package net.nas.chess;
 
 import net.nas.pieces.ChessPiece;
+import net.nas.pieces.ColorOfChessPiece;
+import net.nas.pieces.NameOfChessPiece;
 
 import java.security.InvalidParameterException;
 import java.util.Arrays;
@@ -14,7 +16,6 @@ public class Board {
 
     public static final int RANK_OF_WHITE_KING = 0;
     public static final int RANK_OF_WHITE_PAWNS = 1;
-    public static final int[] RANK_OF_BLANKS = {2, 3, 4, 5};
     public static final int RANK_OF_BLACK_PAWNS = 6;
     public static final int RANK_OF_BLACK_KING = 7;
 
@@ -31,11 +32,15 @@ public class Board {
 
     public Board() {
         chessCells = new ChessPiece[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
+        for (int i = 0; i < LENGTH_OF_BOARD; i++) {
+            for (int j = 0; j < LENGTH_OF_BOARD; j++) {
+                chessCells[i][j] = ChessPiece.createBlankPiece();
+            }
+        }
     }
 
     public void initialize() {
         initRanksOfPawns();
-        initRanksOfBlank();
         initRanksOfKings();
     }
 
@@ -43,14 +48,6 @@ public class Board {
         for (int i = 0; i < LENGTH_OF_BOARD; i++) {
             add(createWhitePawn(), RANK_OF_WHITE_PAWNS, i);
             add(createBlackPawn(), RANK_OF_BLACK_PAWNS, i);
-        }
-    }
-
-    private void initRanksOfBlank() {
-        for (int i = 0; i < LENGTH_OF_BOARD; i++) {
-            for (int rankOfBlank : RANK_OF_BLANKS) {
-                add(createBlankPiece(), rankOfBlank, i);
-            }
         }
     }
 
@@ -128,5 +125,44 @@ public class Board {
 
     public int size() {
         return numberOfPieces;
+    }
+
+    private void initRankByString(String strRank, int rankIndex) {
+        for (int i = 0; i < LENGTH_OF_BOARD; i++) {
+            char currChar = strRank.charAt(i);
+            NameOfChessPiece nameOfCurrPiece = NameOfChessPiece.getNameByRepresentation(String.valueOf(currChar));
+            ColorOfChessPiece colorOfCurrPiece;
+            if (currChar == '.') {
+                colorOfCurrPiece = ColorOfChessPiece.BLANK;
+            } else if (currChar < 'a') {
+                colorOfCurrPiece = ColorOfChessPiece.BLACK;
+            } else {
+                colorOfCurrPiece = ColorOfChessPiece.WHITE;
+            }
+            add(createChessPiece(nameOfCurrPiece, colorOfCurrPiece), rankIndex, i);
+        }
+    }
+
+    public void initBoardByStringArray(String[] stringArray) {
+        if (stringArray.length != LENGTH_OF_BOARD) {
+            throw new InvalidParameterException("The length of a string array should have to be same with a " +
+                    "length of a chess board. Length of stringArray : " + stringArray.length);
+        }
+        for (int i = 0; i < stringArray.length; i++) {
+            initRankByString(stringArray[i], stringArray.length - i - 1);
+        }
+    }
+
+    public int getNumberOfDesignatedPiece(NameOfChessPiece name, ColorOfChessPiece color) {
+        int numberOfDesignatedPiece = 0;
+        for (int rankIndex = 0; rankIndex < LENGTH_OF_BOARD; rankIndex++) {
+            for (int fileIndex = 0; fileIndex < LENGTH_OF_BOARD; fileIndex++) {
+                ChessPiece currCell = chessCells[rankIndex][fileIndex];
+                if (currCell.getRepresentation().equals(color.getRepresentationByColor(name))) {
+                    numberOfDesignatedPiece++;
+                }
+            }
+        }
+        return numberOfDesignatedPiece;
     }
 }

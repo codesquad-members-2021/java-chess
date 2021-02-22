@@ -1,6 +1,8 @@
 package net.nas.chess;
 
 import net.nas.pieces.ChessPiece;
+import net.nas.pieces.ColorOfChessPiece;
+import net.nas.pieces.NameOfChessPiece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -101,4 +103,32 @@ public class BoardTest {
         assertThat(board.getRepresentationOfBoard()).isEqualTo(INITIAL_STATE_OF_BOARD);
     }
 
+    @Test
+    @DisplayName("기물과 색에 해당하는 기물의 개수를 반환할 수 있어야 합니다")
+    void testGetNumberOfDesignatedPiece() {
+        String[] testcase = {
+                ".KR.....",
+                "P.PB....",
+                ".P..Q...",
+                "........",
+                ".....nq.",
+                ".....p..",
+                "......p.",
+                "....rk..",
+        };
+        board.initBoardByStringArray(testcase);
+        assertAll(
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.PAWN, ColorOfChessPiece.BLACK)).isEqualTo(3),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.KING, ColorOfChessPiece.BLACK)).isEqualTo(1),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.KING, ColorOfChessPiece.BLACK)).isEqualTo(1),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.KING, ColorOfChessPiece.WHITE)).isEqualTo(1),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.QUEEN, ColorOfChessPiece.BLACK)).isEqualTo(1),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.QUEEN, ColorOfChessPiece.WHITE)).isEqualTo(1),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.PAWN, ColorOfChessPiece.WHITE)).isEqualTo(2),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.BISHOP, ColorOfChessPiece.BLACK)).isEqualTo(1),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.ROOK, ColorOfChessPiece.BLACK)).isEqualTo(1),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.ROOK, ColorOfChessPiece.WHITE)).isEqualTo(1),
+                () -> assertThat(board.getNumberOfDesignatedPiece(NameOfChessPiece.KNIGHT, ColorOfChessPiece.WHITE)).isEqualTo(1)
+        );
+    }
 }

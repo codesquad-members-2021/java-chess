@@ -12,7 +12,7 @@ public class Board {
     public static final int BOARD_CELLS = 8;
 
     public void initialize() {
-        clearPieces();
+        ranks.clear();
         ranks.add(Rank.initWhitePieces());
         ranks.add(Rank.initWhitePawns());
         ranks.add(Rank.initBlankLine());
@@ -21,12 +21,6 @@ public class Board {
         ranks.add(Rank.initBlankLine());
         ranks.add(Rank.initBlackPawns());
         ranks.add(Rank.initBlackPieces());
-    }
-
-    private void clearPieces() {
-        for (Rank rank : ranks) {
-            rank.clear();
-        }
     }
 
     public String getRankResult(int findRank) {

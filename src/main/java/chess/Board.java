@@ -1,72 +1,63 @@
 package chess;
 
 import chess.pieces.Color;
-import chess.pieces.Pawn;
+import chess.pieces.Piece;
+import chess.pieces.Type;
+import utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
-    private final List<Pawn> whitePawns = new ArrayList<>();
-    private final List<Pawn> blackPawns = new ArrayList<>();
+    public static final int BOARD_SIZE = 8;
 
-    public static final int BOARDSIZE = 8;
-    private final String blank = "........";
+    private final List<Piece> whitePieces = new ArrayList<>();
+    private final List<Piece> blackPieces = new ArrayList<>();
 
-    public void addWhitePawn(Pawn pawn) {
-        if (pawn.getColorName().equals(Color.WHITE.getColorName())) {
-            whitePawns.add(pawn);
-        } else {
-            System.out.println("알 수 없는 color의 pawn입니다.");
-            System.out.println("add에 실패하였습니다.");
+    public void addWhitePieces(Piece piece) {
+        if (piece.isWhite()) {
+            whitePieces.add(piece);
+            return;
+        }
+        getAddErrorMessage();
+    }
+
+    public void addBlackPieces(Piece piece) {
+        if (piece.isBlack()) {
+            blackPieces.add(piece);
+            return;
+        }
+        getAddErrorMessage();
+    }
+
+    private void getAddErrorMessage(){
+        System.out.println("알 수 없는 color의 piece입니다.");
+        System.out.println("add에 실패하였습니다.");
+    }
+
+    public int totalPiecesCount() {
+        return whitePieces.size() + blackPieces.size();
+    }
+
+    private void appendChessPieceToSort(StringBuilder stringBuilder, Piece piece){
+        stringBuilder.append(piece.getRepresentation());
+        if (stringBuilder.length() == BOARD_SIZE) {
+            stringBuilder.append(StringUtils.getNewLine());
         }
     }
 
-    public void addBlackPawn(Pawn pawn) {
-        if (pawn.getColorName().equals(Color.BLACK.getColorName())) {
-            blackPawns.add(pawn);
-        } else {
-            System.out.println("알 수 없는 color의 pawn입니다.");
-            System.out.println("add에 실패하였습니다.");
-        }
-    }
-
-    public int whitePawnSize() {
-        return whitePawns.size();
-    }
-
-    public int blackPawnSize() {
-        return blackPawns.size();
-    }
-
-    public Pawn getWhitePawn(int index) {
-        return whitePawns.get(index);
-    }
-
-    public Pawn getBlackPawn(int index) {
-        return blackPawns.get(index);
-    }
-
-    public String getWhitePawnsResult() {
-        return getPawnsResult(Color.WHITE);
-    }
-
-    public String getBlackPawnsResult() {
-        return getPawnsResult(Color.BLACK);
-    }
-
-    private String getPawnsResult(Color color) {
+    private String getPiecesSort(Color color) {
         StringBuilder sb = new StringBuilder();
         switch (color) {
             case WHITE:
-                for (Pawn pawn : whitePawns) {
-                    sb.append(pawn.getRepresentation());
+                for (Piece piece : whitePieces) {
+                    appendChessPieceToSort(sb, piece);
                 }
                 return sb.toString();
 
             case BLACK:
-                for (Pawn pawn : blackPawns) {
-                    sb.append(pawn.getRepresentation());
+                for (Piece piece : blackPieces) {
+                    appendChessPieceToSort(sb, piece);
                 }
                 return sb.toString();
 
@@ -76,32 +67,54 @@ public class Board {
     }
 
     public void initialize() {
-        for (int i = 0; i < BOARDSIZE; i++) {
-            addWhitePawn(new Pawn(Color.WHITE));
-            addBlackPawn(new Pawn(Color.BLACK));
+        initializeBlackPieces();
+        initializeWhitePieces();
+    }
+
+    private void initializeWhitePieces() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            addWhitePieces(Piece.createWhitePawn());
+        }
+
+        addWhitePieces(Piece.createWhiteRook());
+        addWhitePieces(Piece.createWhiteKnight());
+        addWhitePieces(Piece.createWhiteBishop());
+        addWhitePieces(Piece.createWhiteQueen());
+        addWhitePieces(Piece.createWhiteKing());
+        addWhitePieces(Piece.createWhiteBishop());
+        addWhitePieces(Piece.createWhiteKnight());
+        addWhitePieces(Piece.createWhiteRook());
+    }
+
+    private void initializeBlackPieces() {
+
+        addBlackPieces(Piece.createBlackRook());
+        addBlackPieces(Piece.createBlackKnight());
+        addBlackPieces(Piece.createBlackBishop());
+        addBlackPieces(Piece.createBlackQueen());
+        addBlackPieces(Piece.createBlackKing());
+        addBlackPieces(Piece.createBlackBishop());
+        addBlackPieces(Piece.createBlackKnight());
+        addBlackPieces(Piece.createBlackRook());
+
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            addBlackPieces(Piece.createBlackPawn());
         }
     }
 
-    public String showBoard() {
-        StringBuilder sb = new StringBuilder();
+    public String getChessBoard() {
+        StringBuilder boardRank = new StringBuilder();
+        String blank = "........";
 
-        final int blackPawnIndex = 1;
-        final int whitePawnIndex = 6;
+        boardRank.append(StringUtils.addNewLine(getPiecesSort(Color.BLACK)));
 
-        for (int i = 0; i < BOARDSIZE; i++) {
-            switch (i) {
-                case blackPawnIndex:
-                    sb.append(getBlackPawnsResult());
-                    break;
-                case whitePawnIndex:
-                    sb.append(getWhitePawnsResult());
-                    break;
+        boardRank.append(StringUtils.addNewLine(blank));
+        boardRank.append(StringUtils.addNewLine(blank));
+        boardRank.append(StringUtils.addNewLine(blank));
+        boardRank.append(StringUtils.addNewLine(blank));
 
-                default:
-                    sb.append(blank);
-            }
-            sb.append("\n");
-        }
-        return sb.toString();
+        boardRank.append(StringUtils.addNewLine(getPiecesSort(Color.WHITE)));
+
+        return boardRank.toString();
     }
 }

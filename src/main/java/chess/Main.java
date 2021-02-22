@@ -13,13 +13,13 @@ public class Main {
         System.out.println(" start   |   end");
         System.out.print("> ");
 
-        try (Scanner scanner = new Scanner(System.in)){
+        try (Scanner scanner = new Scanner(System.in)) {
             String command = scanner.nextLine();
 
             while (!command.equals("end")) {
                 if (command.equals("start")) {
                     board.initialize();
-                    System.out.println(board.showBoard());
+                    System.out.println(board.getChessBoard());
                 }
                 System.out.print("> ");
                 command = scanner.nextLine();
@@ -27,9 +27,6 @@ public class Main {
 
             System.out.println("게임이 종료되었습니다.");
 
-        } catch (Exception e){
-            e.printStackTrace();
         }
-
     }
 }

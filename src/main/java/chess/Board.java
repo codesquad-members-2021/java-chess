@@ -109,4 +109,8 @@ public class Board {
         }
         return count;
     }
+
+    public Piece findPiece(String a1) {
+        return Piece.createBlank();
+    }
 }

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pieces.Color;
+import pieces.Piece;
 import pieces.Type;
 
 import static utils.StringUtils.*;
@@ -22,7 +23,7 @@ class BoardTest {
 
     @Test
     @DisplayName("게임 보드 초기화")
-    void initialize() throws Exception {
+    void initialize() {
         String blankRank = appendNewLine("........");
         String initBoard =
                 appendNewLine("RNBQKBNR") +
@@ -50,6 +51,28 @@ class BoardTest {
     private void countPieceByType(Type type, int count) {
         assertThat(board.countPieceByColorAndType(Color.BLACK, type)).isEqualTo(count);
         assertThat(board.countPieceByColorAndType(Color.WHITE, type)).isEqualTo(count);
+    }
+
+    @Test
+    @DisplayName("주어진 위치의 기물을 조회")
+    void findPiece() {
+        assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlackRook());
+        assertThat(board.findPiece("b8")).isEqualTo(Piece.createBlackKnight());
+        assertThat(board.findPiece("c8")).isEqualTo(Piece.createBlackBishop());
+        assertThat(board.findPiece("d8")).isEqualTo(Piece.createBlackQueen());
+        assertThat(board.findPiece("e8")).isEqualTo(Piece.createBlackKing());
+        assertThat(board.findPiece("f8")).isEqualTo(Piece.createBlackBishop());
+        assertThat(board.findPiece("g8")).isEqualTo(Piece.createBlackKnight());
+        assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlackRook());
+
+        assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhiteRook());
+        assertThat(board.findPiece("b1")).isEqualTo(Piece.createWhiteKnight());
+        assertThat(board.findPiece("c1")).isEqualTo(Piece.createWhiteBishop());
+        assertThat(board.findPiece("d1")).isEqualTo(Piece.createWhiteQueen());
+        assertThat(board.findPiece("e1")).isEqualTo(Piece.createWhiteKing());
+        assertThat(board.findPiece("f1")).isEqualTo(Piece.createWhiteBishop());
+        assertThat(board.findPiece("g1")).isEqualTo(Piece.createWhiteKnight());
+        assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhiteRook());
     }
 
 }

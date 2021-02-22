@@ -5,6 +5,7 @@ import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
 import kr.codesquad.freddie.chess.utils.ChessCalculator;
 import kr.codesquad.freddie.chess.utils.ChessCalculatorImpl;
+import kr.codesquad.freddie.chess.utils.PositionConverter;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -98,15 +99,16 @@ public class Board {
      * @see <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      */
     public Piece findPiece(String position) {
-        char fileIndex = position.charAt(0);
-        int rankIndex = Character.getNumericValue(position.charAt(1));
-        return files.get(convertRankIndexToListIndex(rankIndex)).get(fileIndex - 'a');
+        PositionConverter positionConverter = PositionConverter.createBy(position);
+        return files.get(positionConverter.getRankIndexForList())
+                .get(positionConverter.getFileIndexForList());
     }
 
     public Piece set(String position, Piece piece) {
-        char fileIndex = position.charAt(0);
-        int rankIndex = Character.getNumericValue(position.charAt(1));
-        return files.get(convertRankIndexToListIndex(rankIndex)).set(fileIndex - 'a', piece);
+        PositionConverter positionConverter = PositionConverter.createBy(position);
+
+        return files.get(positionConverter.getRankIndexForList())
+                .set(positionConverter.getFileIndexForList(), piece);
     }
 
     public int pieceCount() {

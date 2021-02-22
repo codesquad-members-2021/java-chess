@@ -3,24 +3,25 @@ package net.Dong.chess;
 import java.util.Scanner;
 
 public class Game {
-
+    private static final String PROMPT = "J-chess>> ";
     private static String[] JAVACHESSHELP = {
-            " 명령어  |  기능",
+            " Command  |  description",
             "-----------------------------",
-            " start   :  게임을 시작합니다",
-            " end     :  게임을 종료합니다",
+            " start   :  Java chess start",
+            " end     :  Java chess Terminate",
             "-----------------------------"
     };
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("==== 체스게임을 시작합니다! ===");
+        System.out.println("==== Java chess started ===");
         for (String str : JAVACHESSHELP) {
             System.out.println(str);
         }
 
 
         while (true) {
+            System.out.print(PROMPT);
             String cmd = scanner.nextLine();
             if (cmd.equals("start")) {
                 Board board = new Board();
@@ -33,7 +34,7 @@ public class Game {
             }
         }
 
-        System.out.println("==== 체스게임을 종료합니다! ===");
+        System.out.println("==== Java chess ended ===");
 
     }
 }

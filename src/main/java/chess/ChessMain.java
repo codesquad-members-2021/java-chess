@@ -23,5 +23,6 @@ public class ChessMain {
                 System.out.println("올바른 명령어를 입력해주세요 ");
             }
         }
+        scanner.close();
     }
 }

@@ -7,7 +7,6 @@ import static cooper.chess.utils.StringUtils.*;
 
 public class Board {
     private static final int BOARD_SIZE = 8;
-    private static final String BLANK = "........";
 
     private final PieceGroup pieceGroup;
 
@@ -92,14 +91,17 @@ public class Board {
     }
 
     public String showBoard() {
-        appendNewLine(getPawnsResult(Color.WHITE));
-        appendNewLine(BLANK);
-        appendNewLine(BLANK);
-        appendNewLine(BLANK);
-        appendNewLine(BLANK);
-        appendNewLine(getPawnsResult(Color.BLACK));
+        StringBuilder sb = new StringBuilder();
+        final String BLANK = "........";
 
-        return convertToString();
+        sb.append(appendNewLine(getPawnsResult(Color.WHITE)));
+        sb.append(appendNewLine(BLANK));
+        sb.append(appendNewLine(BLANK));
+        sb.append(appendNewLine(BLANK));
+        sb.append(appendNewLine(BLANK));
+        sb.append(appendNewLine(getPawnsResult(Color.BLACK)));
+
+        return sb.toString();
     }
 
     private String getPawnsResult(Color color) {

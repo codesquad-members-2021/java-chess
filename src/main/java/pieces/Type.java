@@ -7,7 +7,7 @@ public enum Type {
     BISHOP('b'),
     QUEEN ('q'),
     KING  ('k'),
-    NO_PIECE(' ');
+    NO_PIECE('.');
 
     private final char representation;
 
@@ -27,10 +27,10 @@ public enum Type {
     }
 
     public char getWhiteRepresentation() {
-        return ' ';
+        return representation;
     }
 
     public char getBlackRepresentation() {
-        return ' ';
+        return Character.toUpperCase(representation);
     }
 }

@@ -25,11 +25,11 @@ public class Piece {
     }
 
     public boolean isWhite() {
-        return false;
+        return color == Color.WHITE;
     }
 
     public boolean isBlack() {
-        return false;
+        return color == Color.BLACK;
     }
 
     public static Piece createBlackPawn() {

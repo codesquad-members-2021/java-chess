@@ -42,6 +42,16 @@ public class Board {
         return countPiece;
     }
 
+    public List<Piece> findPiecesByColor(Color color){
+        List<Piece> pieces = new ArrayList<>();
+
+        for(Rank rank : files) {
+            pieces.addAll(rank.findPieceByColor(color));
+        }
+
+        return pieces;
+    }
+
     public Piece findPiece(String s) {
         char rankIndex = s.charAt(0);
         char fileIndex = s.charAt(1);
@@ -90,6 +100,16 @@ public class Board {
         int fileIndexPos = Character.getNumericValue(fileIndex);
 
         files.get(fileIndexPos-1).move(rankIndexPos, piece);
+    }
+
+    public double caculcatePoint(Color color) {
+        List<Piece> pieces = findPiecesByColor(color);
+        double point = 0.0;
+        for(Piece piece : pieces){
+            point += piece.getPoint(pieces);
+        }
+
+        return point;
     }
 
     public String getChessBoard() {

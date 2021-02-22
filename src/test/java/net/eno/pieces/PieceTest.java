@@ -6,17 +6,33 @@ import static org.assertj.core.api.Assertions.*;
 public class PieceTest {
 
     @Test
-    @DisplayName("모든 피스의 흰색말과 검은색말이 생성되어야 한다.")
+    @DisplayName("공백 말과 모든 피스의 흰색, 검은색 말이 생성되어야 한다.")
     public void create() {
         for (PieceType pieceType : PieceType.values()) {
             verifyPiece(pieceType);
         }
     }
 
-    public void verifyPiece(PieceType pieceType) {
+    private void verifyPiece(PieceType pieceType) {
         Piece piece = Piece.createPiece(pieceType);
+        assertThat(piece.getPieceType()).isEqualTo((pieceType));
         assertThat(piece.getColor()).isEqualTo(pieceType.getColor());
         assertThat(piece.getRepresentation()).isEqualTo(pieceType.getRepresentation());
+        verifyPieceColor(piece);
+    }
+
+    private void verifyPieceColor(Piece piece) {
+        switch (piece.getColor()) {
+            case "white" :
+                assertThat(piece.isWhite()).isTrue();
+                break;
+            case "black" :
+                assertThat(piece.isBlack()).isTrue();
+                break;
+            default :
+                assertThat(piece.isWhite()).isFalse();
+                assertThat(piece.isBlack()).isFalse();
+        }
     }
 
 }

@@ -3,6 +3,8 @@ package kr.codesquad.freddie.chess.board;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
+import kr.codesquad.freddie.chess.utils.ChessCalculator;
+import kr.codesquad.freddie.chess.utils.ChessCalculatorImpl;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,8 +13,15 @@ public class Board {
     // 체스에서 row를 rank라고 한다.
     public static final int RANK_SIZE = 8;
     private List<File> files = new ArrayList<>();
+    private ChessCalculator chessCalculator;
 
     public Board() {
+        this(new ChessCalculatorImpl());
+    }
+
+    public Board(ChessCalculator chessCalculator) {
+        this.chessCalculator = chessCalculator;
+
         for (int i = 0; i < RANK_SIZE; i++) {
             files.add(new File());
         }
@@ -103,26 +112,8 @@ public class Board {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    public List<File> getRotatedFilesBy(Color color) {
-        List<File> rotatedFiles = new ArrayList<>();
-
-        for (int i = 0; i < File.SIZE; i++) {
-            rotatedFiles.add(new File());
-        }
-
-        List<Map<Character, Piece>> temp = files.stream()
-                .map(File::toMap)
-                .collect(Collectors.toList());
-
-        for (Map<Character, Piece> map : temp) {
-            for (Map.Entry<Character, Piece> entry : map.entrySet()) {
-                if (entry.getValue().getColor() == color) {
-                    rotatedFiles.get(entry.getKey() - 'a').add(entry.getValue());
-                }
-            }
-        }
-
-        return rotatedFiles;
+    public double getScoreOf(Color color) {
+        return chessCalculator.calculate(files, color);
     }
 
     @Override

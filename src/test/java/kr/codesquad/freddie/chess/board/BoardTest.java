@@ -8,10 +8,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -209,32 +205,9 @@ class BoardTest {
         );
     }
 
-    @Test
-    void getRotatedFiles() {
-        board.initialize();
-        List<File> rotatedFiles = board.getRotatedFilesBy(Color.BLACK);
-
-        assertThat(rotatedFiles.get(0).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(1).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(2).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(3).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(4).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(5).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(6).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(7).getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(1);
-
-        assertThat(rotatedFiles.get(0).getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(1);
-        assertThat(rotatedFiles.get(1).getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(1);
-        assertThat(rotatedFiles.get(2).getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(1);
-        assertThat(rotatedFiles.get(3).getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(1);
-        assertThat(rotatedFiles.get(4).getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1);
-        assertThat(rotatedFiles.get(5).getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(1);
-        assertThat(rotatedFiles.get(6).getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(1);
-        assertThat(rotatedFiles.get(7).getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(1);
-    }
 
     @Test
-    void calculate() {
+    void getScoreOf() {
         for (int i = 0; i < MAX_SIZE; i++) {
             board.add(new Piece(Color.WHITE, Kind.PAWN));
         }
@@ -245,11 +218,7 @@ class BoardTest {
         board.set('a', 2, blackPieceFactory.createPawn());
         board.set('a', 3, blackPieceFactory.createPawn());
 
-        List<File> rotatedFiles = board.getRotatedFilesBy(Color.BLACK);
-
-        double result = rotatedFiles.stream()
-                .mapToDouble(File::calculate)
-                .sum();
+        double result = board.getScoreOf(Color.BLACK);
 
         assertThat(result).isEqualTo(1.5);
     }

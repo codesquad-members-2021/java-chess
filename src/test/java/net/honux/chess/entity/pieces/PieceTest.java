@@ -98,7 +98,7 @@ class PieceTest {
     @DisplayName("Blank Piece 가 정상적으로 생성되어야 한다.")
     void createBlankPiece() {
         Piece blankPiece = createBlank();
-        assertThat(blankPiece.getRepresentation()).isEqualTo('x');
+        assertThat(blankPiece.getRepresentation()).isEqualTo('.');
     }
 
     @Test

@@ -4,7 +4,6 @@ package net.coco.chess;
 import net.coco.pieces.Piece;
 import net.coco.pieces.PieceType;
 import net.coco.printer.PrintChess;
-import net.coco.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,18 +20,11 @@ public class BoardTest {
     @BeforeEach
     void makeBoard() {
         board = new Board();
-        board.initialize();
-    }
-
-    @Test
-    void initialize() {
-        board.initialize();
-        PrintChess.printBoard(board);
-
     }
 
     @Test
     void printChessBoard() {
+        board.initializeWithPieces();
         String blank = appendNewLine("........");
         assertThat(
                 PrintChess.printBoard(board)
@@ -48,6 +40,7 @@ public class BoardTest {
     @Test
     @DisplayName("기물과 색에 해당하는 기물의 개수를 반환")
     void getPiecesCount() {
+        board.initializeWithPieces();
         Assertions.assertAll(
                 () -> assertThat(board.getPieceCount(Piece.WHITE, PieceType.PAWN)).isEqualTo(8),
                 () -> assertThat(board.getPieceCount(Piece.WHITE, PieceType.KING)).isEqualTo(1),
@@ -59,7 +52,7 @@ public class BoardTest {
     @Test
     @DisplayName("주어진 위치의 기물을 조회시 올바르지 않은 point 입력시")
     void getPieceFromWrongPoint() {
-
+        board.initializeWithPieces();
         assertThatThrownBy(
                 () -> board.getPieceFromPoint("f9")
         ).isInstanceOf(IllegalArgumentException.class)

@@ -27,7 +27,7 @@ public class StartGame {
     private static boolean commandSwitch(Board board, String input) {
         switch (input) {
             case START:
-                board.initialize();
+                board.initializeWithPieces();
                 PrintChess.printBoard(board);
                 break;
             case END:

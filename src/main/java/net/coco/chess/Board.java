@@ -13,7 +13,7 @@ public class Board {
     private List<Rank> ranks = new ArrayList<>();
     public static final int BOARD_CELLS = 8;
 
-    public void initialize() {
+    public void initializeWithPieces() {
         //rank1이 화이트쪽이라 먼저 쌓인다.
         ranks.clear();
         ranks.add(Rank.initWhitePieces());
@@ -24,6 +24,12 @@ public class Board {
         ranks.add(Rank.initBlankLine());
         ranks.add(Rank.initBlackPawns());
         ranks.add(Rank.initBlackPieces());
+    }
+
+    public void initializeEmpty(){
+        for (int i = 0; i <BOARD_CELLS; i++) {
+            ranks.add(Rank.initBlankLine());
+        }
     }
 
     public int getPieceCount(String color, PieceType pieceType) {
@@ -42,8 +48,6 @@ public class Board {
 
         return ranks.get(column).findPieceFromPoint(row);
     }
-
-
 
     public String getRankResult(int findRank) {
         return getPiecesToString(ranks.get(findRank).getPieces());

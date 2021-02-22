@@ -154,12 +154,19 @@ public class Rank {
         return sb.toString();
     }
 
+    public int countOfTeamPieces(Color color) {
+        if(color == Color.BLACK) {
+            return countOfBlackPieces();
+        }
+        return countOfWhitePieces();
+    }
+
     public int countOfBlackPieces() {
         return (int) pieceList.stream().filter(piece -> Character.isUpperCase(piece.getRepresentation())).count();
     }
 
     public int countOfWhitePieces() {
-        return (int) pieceList.stream().filter(piece -> piece.getRepresentation() != '.').filter(piece -> Character.isLowerCase(piece.getRepresentation())).count();
+        return (int) pieceList.stream().filter(piece -> Character.isLowerCase(piece.getRepresentation())).count();
     }
 
     public int countOfPiece(Color color, Type type) {

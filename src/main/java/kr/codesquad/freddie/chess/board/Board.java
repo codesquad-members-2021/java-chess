@@ -138,8 +138,10 @@ public class Board {
 
     @Override
     public String toString() {
-        return "Board{" + System.lineSeparator() +
-                "files=" + System.lineSeparator() + files +
+        return "Board{" +
+                "files=" + files +
+                ", blackAndWhitePieces=" + blackAndWhitePieces +
+                ", chessCalculator=" + chessCalculator +
                 '}';
     }
 }

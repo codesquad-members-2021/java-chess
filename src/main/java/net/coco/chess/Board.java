@@ -14,6 +14,7 @@ public class Board {
     public static final int BOARD_CELLS = 8;
 
     public void initialize() {
+        //rank1이 화이트쪽이라 먼저 쌓인다.
         ranks.clear();
         ranks.add(Rank.initWhitePieces());
         ranks.add(Rank.initWhitePawns());

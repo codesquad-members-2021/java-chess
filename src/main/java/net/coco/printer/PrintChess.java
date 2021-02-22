@@ -8,7 +8,7 @@ public class PrintChess {
 
     public static String printBoard(Board board) {
         StringBuilder boardPrint = new StringBuilder();
-        for (int i = 0; i < Board.BOARD_CELLS; i++) {
+        for (int i = Board.BOARD_CELLS - 1; i >= 0; i--) {
             String getRankToString = StringUtils.appendNewLine(board.getRankResult(i));
             boardPrint.append(getRankToString);
         }

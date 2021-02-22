@@ -1,5 +1,7 @@
 package chess.pieces;
 
+import java.util.List;
+
 public class Piece {
     private final Color color;
     private final Type type;
@@ -15,6 +17,14 @@ public class Piece {
 
     public Type getType(){
         return this.type;
+    }
+
+    public double getPoint(List<Piece> pieces){
+        if(getType()!= Type.PAWN){
+            return getType().getDefaultPoint();
+        }
+        // TODO: getPoint
+        return getType().getDefaultPoint();
     }
 
     public boolean isWhite() {

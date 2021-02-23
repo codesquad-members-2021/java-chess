@@ -81,6 +81,21 @@ public class BoardTest {
         assertThat(board.getPieceFromPoint("a8")).isEqualTo(blackPawn);
     }
 
+    @Test
+    void calculateScore(){
+        board.initializeEmpty();
+        board.move("a8",Piece.createBlackPawn());
+        board.move("a7",Piece.createBlackPawn());
+        board.move("a6",Piece.createBlackPawn());
+        board.move("g8",Piece.createBlackKing());
+        board.move("g7",Piece.createBlackPawn());
+        board.move("g6",Piece.createBlackPawn());
+        board.move("g5",Piece.createWhitePawn());
+
+        assertThat(board.calculateScore(Piece.BLACK)).isEqualTo(2.5);
+
+    }
+
 
     @Test
     void checkBlackColor() {

@@ -56,4 +56,11 @@ class PieceTest {
                 () -> assertThat(piece.getRepresentation()).isEqualTo(representation)
         );
     }
+
+    @Test
+    @DisplayName("생성된 기물이 폰이 맞는지 확인")
+    void checkPawn(){
+        assertThat(Piece.createBlackPawn().isPawn()).isTrue();
+        assertThat(Piece.createWhiteBishop().isPawn()).isFalse();
+    }
 }

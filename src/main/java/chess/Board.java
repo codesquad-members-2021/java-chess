@@ -45,22 +45,22 @@ public class Board {
         addBlackPiece(Piece.createBlackRook());
     }
 
-    public void addWhitePiece(Piece piece) {
+    private void addWhitePiece(Piece piece) {
         if (piece.isWhite() && !piece.isPawn())
             whitePieces.add(piece);
     }
 
-    public void addBlackPiece(Piece piece) {
+    private void addBlackPiece(Piece piece) {
         if (piece.isBlack() && !piece.isPawn())
             blackPieces.add(piece);
     }
 
-    public void addWhitePawn(Piece pawn) {
+    private void addWhitePawn(Piece pawn) {
         if (pawn.isWhite() && pawn.isPawn())
             whitePawns.add(pawn);
     }
 
-    public void addBlackPawn(Piece pawn) {
+    private void addBlackPawn(Piece pawn) {
         if (pawn.isBlack() && pawn.isPawn())
             blackPawns.add(pawn);
     }

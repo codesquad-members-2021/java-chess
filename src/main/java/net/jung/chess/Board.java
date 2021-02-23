@@ -11,7 +11,7 @@ import static net.jung.chess.utils.StringUtils.appendNewLine;
 public class Board {
     private List<Piece> blackPieceList = new ArrayList();
     private List<Piece> whitePieceList = new ArrayList();
-    public final String BLANK_RANK = appendNewLine("********");
+    public static final String BLANK_RANK = appendNewLine("********");
 
     public void addWhitePiece(Piece piece) {
         if (piece.isWhite()) {
@@ -27,7 +27,7 @@ public class Board {
 
 
     public int size() {
-        return whitePieceList.size() + blackPieceList.size();
+        return whitePieceListSize() + blackPieceListSize();
     }
 
     public int whitePieceListSize() {
@@ -47,6 +47,28 @@ public class Board {
     }
 
     public void initialize() {
+        initializeBlackPieces();
+        initializePawns(Color.BLACK);
+
+        initializePawns(Color.WHITE);
+        initializeWhitePieces();
+    }
+
+    public void initializePawns(Color color) {
+        int maxPawnsSize = 8;
+        if(color == Color.WHITE) {
+            for (int i = 0; i < maxPawnsSize; i++) {
+            addWhitePiece(Piece.createWhitePawn());
+            }
+        return;
+        }
+
+        for(int j = 0; j < maxPawnsSize; j++) {
+            addBlackPiece(Piece.createBlackPawn());
+        }
+    }
+
+    public void initializeBlackPieces(){
         addBlackPiece(Piece.createBlackRook());
         addBlackPiece(Piece.createBlackKnight());
         addBlackPiece(Piece.createBlackBishop());
@@ -55,9 +77,9 @@ public class Board {
         addBlackPiece(Piece.createBlackBishop());
         addBlackPiece(Piece.createBlackKnight());
         addBlackPiece(Piece.createBlackRook());
-        initializePawns(Color.BLACK);
+    }
 
-        initializePawns(Color.WHITE);
+    public void initializeWhitePieces(){
         addWhitePiece(Piece.createWhiteRook());
         addWhitePiece(Piece.createWhiteKnight());
         addWhitePiece(Piece.createWhiteBishop());
@@ -66,20 +88,6 @@ public class Board {
         addWhitePiece(Piece.createWhiteBishop());
         addWhitePiece(Piece.createWhiteKnight());
         addWhitePiece(Piece.createWhiteRook());
-    }
-
-    public void initializePawns(Color color) {
-        int maxPawnsSize = 8;
-        if(color == Color.WHITE) {
-        for (int i = 0; i < maxPawnsSize; i++) {
-            addWhitePiece(Piece.createWhitePawn());
-             }
-        return;
-        }
-
-        for(int j = 0; j < maxPawnsSize; j++) {
-            addBlackPiece(Piece.createBlackPawn());
-        }
     }
 
 
@@ -93,10 +101,11 @@ public class Board {
 
     public String getPiecesRepresentation(List<Piece> pieceList) {
         StringBuilder piecesRepresentation = new StringBuilder();
-        for (int i = 0, colorPawnSize = pieceList.size(); i < colorPawnSize; i++) {
+        for (int i = 0; i < pieceList.size(); i++) {
             piecesRepresentation.append(pieceList.get(i).getRepresentation());
-            if(i==7)
+            if(i==7) {
                 piecesRepresentation.append(System.getProperty("line.separator"));
+            }
         }
         return piecesRepresentation.toString();
     }

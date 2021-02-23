@@ -45,8 +45,8 @@ public class Board {
     }
 
     private void initializePawns(Piece.Color color, int row) {
-        for (int i = 0; i < MAX_SIZE; i++) {
-            add(Piece.createPawn(color), row, i);
+        for (int column = 0; column < MAX_SIZE; column++) {
+            add(Piece.createPawn(color), row, column);
         }
     }
 

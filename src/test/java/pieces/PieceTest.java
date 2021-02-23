@@ -12,7 +12,7 @@ class PieceTest {
     @DisplayName("생성된 기물들의 색과 representation 이 올바른지 확인")
     void createPiece() {
         verifyPiece(Piece.createWhitePawn(),Piece.WHITE_COLOR, Piece.WHITE_PAWN_REPRESENTATION);
-        verifyPiece(Piece.craeteBlakPawn(),Piece.BLACK_COLOR, Piece.BLACK_PAWN_REPRESENTATION);
+        verifyPiece(Piece.createBlackPawn(),Piece.BLACK_COLOR, Piece.BLACK_PAWN_REPRESENTATION);
 
         verifyPiece(Piece.createWhiteKnight(),Piece.WHITE_COLOR, Piece.WHITE_KNIGHT_REPRESENTATION);
         verifyPiece(Piece.createBlackKnight(),Piece.WHITE_COLOR, Piece.BLACK_KNIGHT_REPRESENTATION);

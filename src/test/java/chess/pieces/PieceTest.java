@@ -14,7 +14,7 @@ class PieceTest {
     Position position;
 
     @BeforeEach
-    void positionInit(){
+    void positionInit() {
         int testPositionIndex = 1;
         position = new Position(testPositionIndex, testPositionIndex);
     }

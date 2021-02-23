@@ -21,15 +21,12 @@ public class Board {
     private List<Piece> blackKingList  = new ArrayList<>();
 
     public static final int PAWN_NUMBER = 8;
-
-    public void AddPawn(Piece pawn){
-        if(pawn.getColor().equals("White")){
-            whitePawnAdd(pawn);
-            return;
-        }
-        blackPawnAdd(pawn);
-        return;
-    }
+    public static final int ROOK_NUMBER = 2;
+    public static final int KNIGHT_NUMBER = 2;
+    public static final int BISHOP_NUMBER = 2;
+    public static final int KING_NUMBER = 2;
+    public static final int QUEEN_NUMBER = 2;
+    public static final int UNIT_NUMBER_WITHOUT_PAWN = 2;
 
     private void whitePawnAdd(Piece whitePawn) {
         whitePawnList.add(whitePawn);
@@ -55,14 +52,16 @@ public class Board {
         return blackPawnList.get(index);
     }
 
-    void initialize() {
-        for(int i = 0; i < PAWN_NUMBER ; i++){
-            Piece whitePawn = new Piece(Piece.WHITE);
-            whitePawnAdd(whitePawn);
-
-            Piece blackPawn = new Piece(Piece.BLACK);
-            blackPawnAdd(blackPawn);
+    public void initialize() {
+        for(int i = 0; i < PAWN_NUMBER; i++){
+            whitePawnAdd(Piece.getWhitePawnInstance());
+            blackPawnAdd(Piece.getBlackPawnInstance());
         }
+
+        for(int i = 0; i < UNIT_NUMBER_WITHOUT_PAWN; i++){
+
+        }
+
     }
 
     String getWhitePawnsRepresentation() {

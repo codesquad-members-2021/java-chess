@@ -15,10 +15,16 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("보드판 출력이 원하는 그림대로 나오는지 테스트")
-    public void showPieceNumAndTotalBoard(){
+    @DisplayName("piece의 갯수를 정확히 세는지 테스트")
+    public void showPieceNum() {
         board.initialize();
         assertThat(32).isEqualTo(board.pieceCount());
+    }
+
+    @Test
+    @DisplayName("보드판 출력이 원하는 그림대로 나오는지 테스트")
+    public void showTotalBoard(){
+        board.initialize();
         String blankArea = appendNewLine("........");
         assertThat(
                 appendNewLine("RNBQKBNR") +

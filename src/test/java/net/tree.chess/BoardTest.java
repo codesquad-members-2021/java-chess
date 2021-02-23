@@ -1,19 +1,15 @@
 package net.tree.chess;
 
 import net.tree.pieces.Pawn;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class BoardTest {
+class BoardTest {
 
     Board board;
 
-    @DisplayName("new Board() 중복코드 줄이기 위해 사용.")
     @BeforeEach
     void makeNewBoard() {
         board = new Board();
@@ -21,50 +17,51 @@ public class BoardTest {
 
     @DisplayName("하얀색, 검정색 pawn 만들기")
     @Test
-    public void create() {
-        Pawn white = new Pawn(Pawn.WHITE_COLOR);
-        board.add(white);
+    void createWhitePawnAndBlackPawn() {
+        Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        board.addPawntopawnList(white);
         Assertions.assertAll(
-            () -> assertEquals(1, board.checkPawnSize()),
-            () -> assertEquals(white, board.findPawn(0))
+            () -> assertThat(board.checkPawnSize()).isEqualTo(1),
+            () -> assertThat(board.findPawn(0)).isEqualTo(white)
         );
 
-        Pawn black = new Pawn(Pawn.BLACK_COLOR);
-        board.add(black);
+        Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+        board.addPawntopawnList(black);
         Assertions.assertAll(
-                () -> assertEquals(2, board.checkPawnSize()),
-                () -> assertEquals(black, board.findPawn(1))
+                () -> assertThat(board.checkPawnSize()).isEqualTo(2),
+                () -> assertThat(board.findPawn(1)).isEqualTo(black)
         );
     }
 
 
     @DisplayName("보드 초기화 및 그리기")
     @Test
-    public void initializeBoardAndPrint() {
+    void initializeBoardAndAppend() {
         board.initialize();
-        board.print();
+        board.appendBoardWithPawns();
     }
 
     @DisplayName("보드 초기화하기")
     @Test
-    public void initialize() {
+    void initializeBoard() {
         board.initialize();
-        assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
-        assertEquals("PPPPPPPP", board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
+        assertThat("pppppppp").isEqualTo(board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
+        assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
+
     }
 
-    @DisplayName("pawnList 확인해보기 ")
+    @DisplayName("whitePawn과 blackPawn 1개씩으로 pawnList 확인해보기 ")
     @Test
-    public void checkPawnList() {
-        Pawn white = new Pawn(Pawn.WHITE_COLOR);
-        board.add(white);
-        assertEquals(1, board.checkPawnSize());
-        assertEquals(white, board.findPawn(0));
+    void checkPawnListWithWhitePawnAndBlackPawn() {
+        Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        board.addPawntopawnList(white);
+        assertThat(board.checkPawnSize()).isEqualTo(1);
+        assertThat(board.findPawn(0)).isEqualTo(white);
 
-        Pawn black = new Pawn(Pawn.BLACK_COLOR);
-        board.add(black);
-        assertEquals(2, board.checkPawnSize());
-        assertEquals(black, board.findPawn(1));
+        Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+        board.addPawntopawnList(black);
+        assertThat(board.checkPawnSize()).isEqualTo(2);
+        assertThat(board.findPawn(1)).isEqualTo(black);
     }
 
 }

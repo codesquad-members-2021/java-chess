@@ -8,9 +8,10 @@ import java.util.List;
 public class Board {
 
     List<Pawn> pawnList = new ArrayList<>();
-    final int BOARD_SIZE = 8;
+    private final int BOARD_SIZE = 8;
     private String blankDot = "........\n";
-    public void add(Pawn pawn) {
+
+    public void addPawntopawnList(Pawn pawn) {
         pawnList.add(pawn);
     }
 
@@ -24,12 +25,11 @@ public class Board {
         return pawn;
     }
 
-    public List<Pawn> initialize() {
+    public void initialize() {
         for(int i = 0 ; i < BOARD_SIZE ; i++) {
-            add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            addPawntopawnList(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+            addPawntopawnList(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
         }
-        return pawnList;
     }
 
     public String getPawnsResult(char representation) {
@@ -43,7 +43,7 @@ public class Board {
         return sb.toString();
     }
 
-    public String saveStringBuilder() {
+    public String appendBoardWithPawns() {
         StringBuilder sb = new StringBuilder();
         sb.append(blankDot);
         sb.append(getPawnsResult(Pawn.BLACK_REPRESENTATION) + "\n");
@@ -57,8 +57,5 @@ public class Board {
         return sb.toString();
     }
 
-    public void print() {
-        System.out.println(saveStringBuilder());
-    }
 
 }

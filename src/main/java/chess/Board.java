@@ -4,7 +4,6 @@ import pieces.Color;
 import pieces.Piece;
 import pieces.Type;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static utils.StringUtils.*;
@@ -30,7 +29,15 @@ public class Board {
         this.size = 0;
     }
 
-    private void initBlackPawns() {
+    public void initializeEmpty() {
+        for (ArrayList<Piece> rank : pieceRanks) {
+            for (int i = 0; i < FILES; i++) {
+                rank.set(i, Piece.createBlank());
+            }
+        }
+    }
+
+    private void initializeBlackPawns() {
         ArrayList<Piece> initBlackPawnsRank = pieceRanks.get(1);
         for (int i = 0; i < FILES; i++) {
             initBlackPawnsRank.set(i, Piece.createBlackPawn());
@@ -38,7 +45,7 @@ public class Board {
         size += FILES;
     }
 
-    private void initWhitePawns() {
+    private void initializeWhitePawns() {
         ArrayList<Piece> initWhitePawnsRank = pieceRanks.get(6);
         for (int i = 0; i < FILES; i++) {
             initWhitePawnsRank.set(i, Piece.createWhitePawn());
@@ -46,7 +53,7 @@ public class Board {
         size += FILES;
     }
 
-    private void initBlackPieces() {
+    private void initializeBlackPieces() {
         ArrayList<Piece> initBlackPieceRank = pieceRanks.get(0);
         initBlackPieceRank.set(0, Piece.createBlackRook());
         initBlackPieceRank.set(1, Piece.createBlackKnight());
@@ -59,7 +66,7 @@ public class Board {
         size += FILES;
     }
 
-    private void initWhitePieces() {
+    private void initializeWhitePieces() {
         ArrayList<Piece> initWhitePieceRank = pieceRanks.get(7);
         initWhitePieceRank.set(0, Piece.createWhiteRook());
         initWhitePieceRank.set(1, Piece.createWhiteKnight());
@@ -81,10 +88,11 @@ public class Board {
     }
 
     public void initialize() {
-        initBlackPieces();
-        initBlackPawns();
-        initWhitePawns();
-        initWhitePieces();
+        initializeEmpty();
+        initializeBlackPieces();
+        initializeBlackPawns();
+        initializeWhitePawns();
+        initializeWhitePieces();
     }
 
     public String showBoard() {
@@ -118,10 +126,9 @@ public class Board {
     }
 
     public void move(String position, Piece piece) {
-
-    }
-
-    public void initializeEmpty() {
+        int rankIndex = positionParser.parseRankIndex(position);
+        int fileIndex = positionParser.parseFileIndex(position);
+        pieceRanks.get(rankIndex).set(fileIndex, piece);
     }
 
     private class PositionParser {

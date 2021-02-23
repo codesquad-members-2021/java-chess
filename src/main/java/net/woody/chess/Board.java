@@ -12,7 +12,6 @@ public class Board {
     private static final int BOARD_LENGTH = 8;
 
     private final List<Rank> board = new ArrayList<>(BOARD_LENGTH);
-    private int size = 0;
 
     public Board() {
         for (int i = 0; i < BOARD_LENGTH; i++) {
@@ -22,7 +21,6 @@ public class Board {
 
     public void add(Piece piece, int rank) {
         getRank(rank).add(piece);
-        size++;
     }
 
     public Rank getRank(int rank) {
@@ -52,14 +50,12 @@ public class Board {
         blackPieces.add(Piece.createBlackBishop());
         blackPieces.add(Piece.createBlackKnight());
         blackPieces.add(Piece.createBlackRook());
-        size += 8;
 
         Rank blackPawns = getRank(Piece.BLACK_PAWN_RANK);
 
         for (int i = 0; i < BOARD_LENGTH; i++) {
             blackPawns.add(Piece.createBlackPawn());
         }
-        size += 8;
     }
 
     public void initWhitePieces() {
@@ -73,26 +69,20 @@ public class Board {
         whitePieces.add(Piece.createWhiteBishop());
         whitePieces.add(Piece.createWhiteKnight());
         whitePieces.add(Piece.createWhiteRook());
-        size += 8;
 
         Rank whitePawns = getRank(Piece.WHITE_PAWN_RANK);
 
         for (int i = 0; i < BOARD_LENGTH; i++) {
             whitePawns.add(Piece.createWhitePawn());
         }
-        size += 8;
-    }
-
-    public String getWhitePawnsResult() {
-        return getRank(Piece.WHITE_PAWN_RANK).toString();
-    }
-
-    public String getBlackPawnsResult() {
-        return getRank(Piece.BLACK_PAWN_RANK).toString();
     }
 
     public int size() {
-        return size;
+        int numOfPieces = 0;
+        for (Rank rank : board) {
+            numOfPieces += rank.size();
+        }
+        return numOfPieces;
     }
 
     public String showBoard() {

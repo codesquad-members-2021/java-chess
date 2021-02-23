@@ -56,6 +56,11 @@ public class Piece {
         return new Piece(BLACK_COLOR,BLACK_BISHOP_REPRESENTATION);
     }
 
+    public static Piece createWhiteQueen(){
+        return new Piece(WHITE_COLOR,WHITE_QUEEN_REPRESENTATION);
+    }
+
+
 
 
     public String getColor() {

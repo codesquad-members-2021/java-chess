@@ -36,22 +36,6 @@ public class Board {
         blackPawnList.add(blackPawn);
     }
 
-    int whitePawnSize() {
-        return whitePawnList.size();
-    }
-
-    int blackPawnSize() {
-        return blackPawnList.size();
-    }
-
-    Piece findWhitePawn(int index) {
-        return whitePawnList.get(index);
-    }
-
-    Piece findBlackPawn(int index) {
-        return blackPawnList.get(index);
-    }
-
     public void initialize() {
         for(int i = 0; i < PAWN_NUMBER; i++){
             whitePawnAdd(Piece.getWhitePawnInstance());
@@ -61,7 +45,6 @@ public class Board {
         for(int i = 0; i < UNIT_NUMBER_WITHOUT_PAWN; i++){
 
         }
-
     }
 
     String getWhitePawnsRepresentation() {

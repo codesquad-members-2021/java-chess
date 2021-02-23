@@ -22,6 +22,10 @@ public class ChessPiece {
         return new ChessPiece(name, color);
     }
 
+    public boolean hasSameProperty(NameOfChessPiece name, ColorOfChessPiece color) {
+        return name == nameOfChessPiece && color == colorOfChessPiece;
+    }
+
     public boolean isBlank() {
         return colorOfChessPiece == ColorOfChessPiece.BLANK;
     }

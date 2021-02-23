@@ -169,10 +169,12 @@ public class Board {
             ColorOfChessPiece colorOfCurrPiece;
             if (currChar == '.') {
                 colorOfCurrPiece = ColorOfChessPiece.BLANK;
-            } else if (currChar < 'a') {
+            } else if (Character.isUpperCase(currChar)) {
                 colorOfCurrPiece = ColorOfChessPiece.BLACK;
-            } else {
+            } else if (Character.isLowerCase(currChar)) {
                 colorOfCurrPiece = ColorOfChessPiece.WHITE;
+            } else {
+                throw new InvalidParameterException("Invalid color detected! currChar : " + currChar);
             }
             add(createChessPiece(nameOfCurrPiece, colorOfCurrPiece), rankIndex, i);
         }
@@ -183,7 +185,7 @@ public class Board {
         for (int rankIndex = 0; rankIndex < LENGTH_OF_BOARD; rankIndex++) {
             for (int fileIndex = 0; fileIndex < LENGTH_OF_BOARD; fileIndex++) {
                 ChessPiece currCell = chessCells[rankIndex][fileIndex];
-                if (currCell.getRepresentation().equals(color.getRepresentationByColor(name))) {
+                if (currCell.hasSameProperty(name, color)) {
                     numberOfDesignatedPiece++;
                 }
             }

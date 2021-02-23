@@ -70,18 +70,22 @@ public class Board {
     }
 
     public String getWhitePawnsResult() {
-        return getPieceRepresentations(whitePawns);
+        return getPiecesRepresentations(whitePawns);
     }
 
     public String getBlackPawnsResult() {
-        return getPieceRepresentations(blackPawns);
+        return getPiecesRepresentations(blackPawns);
     }
 
     public String getWhitePiecesResult(){
-        return getPieceRepresentations(whitePieces);
+        return getPiecesRepresentations(whitePieces);
     }
 
-    private String getPieceRepresentations(List<Piece> pieces) {
+    public String getBlackPiecesResult(){
+        return getPiecesRepresentations(blackPieces);
+    }
+
+    private String getPiecesRepresentations(List<Piece> pieces) {
         StringBuilder piecesResult = new StringBuilder();
         for (Piece piece : pieces)
             piecesResult.append(piece.getRepresentation());

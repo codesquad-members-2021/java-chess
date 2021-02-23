@@ -1,6 +1,7 @@
 package chess;
 
 import org.junit.jupiter.api.*;
+
 import static org.assertj.core.api.Assertions.*;
 import static utils.StringUtils.appendNewLine;
 
@@ -9,7 +10,7 @@ class BoardTest {
     private Board board;
 
     @BeforeEach
-    void createBoard(){
+    void createBoard() {
         board = new Board();
     }
 
@@ -22,15 +23,15 @@ class BoardTest {
 
     @Test
     @DisplayName("보드판 출력이 원하는 그림대로 나오는지 테스트")
-    void showTotalBoard(){
+    void showTotalBoard() {
         board.initialize();
         String blankArea = appendNewLine("........");
         assertThat(
                 appendNewLine("RNBQKBNR") +
-                appendNewLine("PPPPPPPP") +
-                blankArea + blankArea + blankArea + blankArea +
-                appendNewLine("pppppppp") +
-                appendNewLine("rnbqkbnr")
+                        appendNewLine("PPPPPPPP") +
+                        blankArea + blankArea + blankArea + blankArea +
+                        appendNewLine("pppppppp") +
+                        appendNewLine("rnbqkbnr")
         ).isEqualTo(board.bringBoard());
     }
 }

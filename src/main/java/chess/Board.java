@@ -55,7 +55,7 @@ public class Board {
         return sb.toString();
     }
 
-    public void printBoard(){
+    public void printBoard() {
 
         System.out.println(bringBoard());
     }

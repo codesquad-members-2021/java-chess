@@ -34,51 +34,51 @@ public class Piece {
         return representation;
     }
 
-    public static Piece createWhitePawnInstance(){
+    public static Piece createWhitePawnInstance() {
         return new Piece(WHITE, WHITE_PAWN_REPRESENTATION);
     }
 
-    public static Piece createBlackPawnInstance(){
+    public static Piece createBlackPawnInstance() {
         return new Piece(BLACK, BLACK_PAWN_REPRESENTATION);
     }
 
-    public static Piece createWhiteKnightInstance(){
+    public static Piece createWhiteKnightInstance() {
         return new Piece(WHITE, WHITE_KNIGHT_REPRESENTATION);
     }
 
-    public static Piece createBlackKnightInstance(){
+    public static Piece createBlackKnightInstance() {
         return new Piece(BLACK, BLACK_KNIGHT_REPRESENTATION);
     }
 
-    public static Piece createWhiteRookInstance(){
+    public static Piece createWhiteRookInstance() {
         return new Piece(WHITE, WHITE_ROOK_REPRESENTATION);
     }
 
-    public static Piece createBlackRookInstance(){
+    public static Piece createBlackRookInstance() {
         return new Piece(BLACK, BLACK_ROOK_REPRESENTATION);
     }
 
-    public static Piece createWhiteBishopInstance(){
+    public static Piece createWhiteBishopInstance() {
         return new Piece(WHITE, WHITE_BISHOP_REPRESENTATION);
     }
 
-    public static Piece createBlackBishopInstance(){
+    public static Piece createBlackBishopInstance() {
         return new Piece(BLACK, BLACK_BISHOP_REPRESENTATION);
     }
 
-    public static Piece createWhiteQueenInstance(){
+    public static Piece createWhiteQueenInstance() {
         return new Piece(WHITE, WHITE_QUEEN_REPRESENTATION);
     }
 
-    public static Piece createBlackQueenInstance(){
+    public static Piece createBlackQueenInstance() {
         return new Piece(BLACK, BLACK_QUEEN_REPRESENTATION);
     }
 
-    public static Piece createWhiteKingInstance(){
+    public static Piece createWhiteKingInstance() {
         return new Piece(WHITE, WHITE_KING_REPRESENTATION);
     }
 
-    public static Piece createBlackKingInstance(){
+    public static Piece createBlackKingInstance() {
         return new Piece(BLACK, BLACK_KING_REPRESENTATION);
     }
 

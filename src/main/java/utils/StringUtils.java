@@ -4,10 +4,10 @@ public class StringUtils {
 
     public static final String NEWLINE = System.getProperty("line.separator");
 
-    private StringUtils(){
+    private StringUtils() {
     }
 
-    public static String appendNewLine(String string){
-        return string+NEWLINE;
+    public static String appendNewLine(String string) {
+        return string + NEWLINE;
     }
 }

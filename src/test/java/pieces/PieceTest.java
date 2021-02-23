@@ -1,13 +1,14 @@
 package pieces;
 
 import org.junit.jupiter.api.*;
+
 import static org.assertj.core.api.Assertions.*;
 
 class PieceTest {
 
     @Test
     @DisplayName("유닛의 객체를 만들고, 색상을 가져오는 메소드와 이니셜을 가져오는 메소드가 잘 작동하는지 테스트")
-     void create_Piece() {
+    void create_Piece() {
         verifyPiece(Piece.createWhitePawnInstance(), Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION);
         verifyPiece(Piece.createBlackPawnInstance(), Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
 
@@ -26,14 +27,15 @@ class PieceTest {
         verifyPiece(Piece.createWhiteKingInstance(), Piece.WHITE, Piece.WHITE_KING_REPRESENTATION);
         verifyPiece(Piece.createBlackKingInstance(), Piece.BLACK, Piece.BLACK_KING_REPRESENTATION);
     }
-    void verifyPiece(final Piece piece, final String color, final char representation){
+
+    void verifyPiece(final Piece piece, final String color, final char representation) {
         assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
     }
 
     @Test
     @DisplayName("흰색인지 검정색인지 구분해주는 테스트")
-    void isWhiteAndBlack(){
+    void isWhiteAndBlack() {
         assertThat(Piece.createWhitePawnInstance().isWhite()).isEqualTo(true);
         assertThat(Piece.createWhitePawnInstance().isBlack()).isEqualTo(false);
         assertThat(Piece.createBlackPawnInstance().isWhite()).isEqualTo(false);

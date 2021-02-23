@@ -36,10 +36,12 @@ public class Board {
 
     public void initialize() {
         initBlackPieces();
+        initBlackPawns();
+        initWhitePawns();
         initWhitePieces();
     }
 
-    public void initBlackPieces() {
+    private void initBlackPieces() {
         Rank blackPieces = getRank(Piece.BLACK_PIECES_RANK);
 
         blackPieces.add(Piece.createBlackRook());
@@ -50,7 +52,9 @@ public class Board {
         blackPieces.add(Piece.createBlackBishop());
         blackPieces.add(Piece.createBlackKnight());
         blackPieces.add(Piece.createBlackRook());
+    }
 
+    private void initBlackPawns() {
         Rank blackPawns = getRank(Piece.BLACK_PAWN_RANK);
 
         for (int i = 0; i < BOARD_LENGTH; i++) {
@@ -58,7 +62,7 @@ public class Board {
         }
     }
 
-    public void initWhitePieces() {
+    private void initWhitePieces() {
         Rank whitePieces = getRank(Piece.WHITE_PIECES_RANK);
 
         whitePieces.add(Piece.createWhiteRook());
@@ -69,7 +73,9 @@ public class Board {
         whitePieces.add(Piece.createWhiteBishop());
         whitePieces.add(Piece.createWhiteKnight());
         whitePieces.add(Piece.createWhiteRook());
+    }
 
+    private void initWhitePawns() {
         Rank whitePawns = getRank(Piece.WHITE_PAWN_RANK);
 
         for (int i = 0; i < BOARD_LENGTH; i++) {

@@ -5,6 +5,7 @@ import net.honux.chess.pieces.Piece;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
+
 import static utils.StringUtils.appendNewLine;
 
 public class Board {
@@ -46,36 +47,7 @@ public class Board {
     public int pieceCount() {
         return pieceCount;
     }
-
-    public Piece findWhitePawn(int index) {
-        if (whitePawns.size() < index + 1) {
-            throw new InvalidParameterException("The index must be equal to or less than the size of the whitePawns.");
-        }
-        return whitePawns.get(index);
-    }
-
-    public Piece findBlackPawn(int index) {
-        if (blackPawns.size() < index + 1) {
-            throw new InvalidParameterException("The index must be equal to or less than the size of the whitePawns.");
-        }
-        return blackPawns.get(index);
-    }
-
-    public Piece findWhitePiece(int index) {
-        if (whitePawns.size() < index + 1) {
-            throw new InvalidParameterException("The index must be equal to or less than the size of the whitePawns.");
-        }
-        return whitePieces.get(index);
-    }
-
-    public Piece findBlackPiece(int index) {
-        if (blackPawns.size() < index + 1) {
-            throw new InvalidParameterException("The index must be equal to or less than the size of the whitePawns.");
-        }
-        return blackPieces.get(index);
-    }
-
-
+    
     public void initialize() {
         int boardSize = 8;
         addWhitePiece(Piece.createWhiteRook());

@@ -10,10 +10,12 @@ public class Piece {
     private final String color;
     private final char representation;
     private final PieceType pieceType;
+    private final double score;
 
     private Piece(String color, PieceType pieceType) {
         this.color = color;
         this.representation = pieceType.getRepresentation(color);
+        this.score = pieceType.getScore();
         this.pieceType = pieceType;
     }
 
@@ -77,13 +79,20 @@ public class Piece {
         return new Piece(BLACK, PieceType.KING);
     }
 
-
     public String getColor() {
         return color;
     }
 
+    public double getScore() {
+        return score;
+    }
+
     public char getRepresentation() {
         return representation;
+    }
+
+    public PieceType getPieceType() {
+        return pieceType;
     }
 
     public boolean isBlack() {

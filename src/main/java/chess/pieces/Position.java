@@ -1,5 +1,8 @@
 package chess.pieces;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Position {
     private int rank, file;
 
@@ -22,6 +25,15 @@ public class Position {
 
     public int getFile() {
         return file;
+    }
+
+    public List<Position> getFileNeighborPosition(){
+        List<Position> neighborPosition = new ArrayList<>();
+
+        neighborPosition.add(new Position(this.rank, this.file +1));
+        neighborPosition.add(new Position(this.rank, this.file -1));
+
+        return neighborPosition;
     }
 
 }

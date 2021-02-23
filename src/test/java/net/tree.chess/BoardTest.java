@@ -9,6 +9,10 @@ import net.tree.pieces.Pawn;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import org.junit.jupiter.api.BeforeEach;
+>>>>>>> kyu가 리뷰해준 내용 반영하였습니다.
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 >>>>>>> 3c74074... feat : Do Mission2
@@ -65,12 +69,15 @@ class BoardTest {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     @BeforeEach
     void setup() {
         board = new Board();
 =======
 =======
 >>>>>>> 5913482... rebase mission3
+=======
+>>>>>>> a20eb16... kyu가 리뷰해준 내용 반영하였습니다.
 <<<<<<< HEAD
     @DisplayName("하얀색, 검정색 pawn 만들기")
     @Test
@@ -86,6 +93,19 @@ class BoardTest {
 >>>>>>> rebase mission3
         Board board = new Board();
 
+=======
+    Board board;
+
+    @DisplayName("new Board() 중복코드 줄이기 위해 사용.")
+    @BeforeEach
+    void makeNewBoard() {
+        board = new Board();
+    }
+
+    @DisplayName("하얀색, 검정색 pawn 만들기")
+    @Test
+    public void create() {
+>>>>>>> kyu가 리뷰해준 내용 반영하였습니다.
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
         board.add(white);
 <<<<<<< HEAD
@@ -172,7 +192,6 @@ class BoardTest {
     @DisplayName("보드 초기화 및 그리기")
     @Test
     public void initializeBoardAndPrint() {
-        Board board = new Board();
         board.initialize();
         board.print();
     }
@@ -180,7 +199,6 @@ class BoardTest {
     @DisplayName("보드 초기화하기")
     @Test
     public void initialize() {
-        Board board = new Board();
         board.initialize();
         assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
         assertEquals("PPPPPPPP", board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
@@ -195,7 +213,6 @@ class BoardTest {
     @DisplayName("pawnList 확인해보기 ")
     @Test
     public void checkPawnList() {
-        Board board = new Board();
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
         board.add(white);
         assertEquals(1, board.checkPawnSize());
@@ -208,7 +225,11 @@ class BoardTest {
         board.add(black);
         assertEquals(2, board.checkPawnSize());
         assertEquals(black, board.findPawn(1));
-
     }
+<<<<<<< HEAD
 >>>>>>> 8a78563... feat : Do Mission2
+=======
+
+>>>>>>> a20eb16... kyu가 리뷰해준 내용 반영하였습니다.
 }
+

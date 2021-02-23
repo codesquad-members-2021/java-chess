@@ -163,5 +163,9 @@ public class PawnTest {
 >>>>>>> feat : Do Mission2
 =======
 
+<<<<<<< HEAD
 >>>>>>> feat : Do Mission3
 }
+=======
+}
+>>>>>>> kyu가 리뷰해준 내용 반영하였습니다.

@@ -22,6 +22,7 @@ public class Board {
 =======
     List<Pawn> pawnList = new ArrayList<>();
     final int BOARD_SIZE = 8;
+<<<<<<< HEAD
     String blankDot = "........\n";
 <<<<<<< HEAD
 >>>>>>> a101753... feat : Do Mission3
@@ -109,6 +110,9 @@ public class Board {
 =======
 =======
 >>>>>>> feat : Do Mission3
+=======
+    private String blankDot = "........\n";
+>>>>>>> kyu가 리뷰해준 내용 반영하였습니다.
     public void add(Pawn pawn) {
         pawnList.add(pawn);
 >>>>>>> rebase mission3
@@ -190,10 +194,14 @@ public class Board {
     }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a101753... feat : Do Mission3
 =======
 
 >>>>>>> 1f82d36... feat : Do Mission2
 =======
 >>>>>>> e071e51... feat : Do Mission3
+=======
+
+>>>>>>> a20eb16... kyu가 리뷰해준 내용 반영하였습니다.
 }

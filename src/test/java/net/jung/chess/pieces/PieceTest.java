@@ -3,6 +3,7 @@ package net.jung.chess.pieces;
 import net.jung.chess.Piece;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -62,6 +63,20 @@ class PieceTest {
 
                 () -> assertThat(Piece.Type.NO_PIECE.getWhiteRepresentation()).isEqualTo('*'),
                 () -> assertThat(Piece.Type.NO_PIECE.getBlackRepresentation()).isEqualTo('*')
+        );
+    }
+
+    @Test
+    @DisplayName("createBlack로 만들어진 Piece는 Color.NO_COLOR, Type.NO_PIECE이다. ")
+    void checkCreateBlank(){
+        Piece blank = Piece.createBlank();
+        assertAll(
+                () -> assertThat(blank.getType()).isEqualTo(Piece.Type.NO_PIECE),
+                () -> assertThat(blank.getColor()).isEqualTo(Piece.Color.NO_COLOR),
+                () -> assertThat(blank.getRepresentation()).isEqualTo('*'),
+
+                () -> assertThat(blank.isWhite()).isFalse(),
+                () -> assertThat(blank.isBlack()).isFalse()
         );
     }
 }

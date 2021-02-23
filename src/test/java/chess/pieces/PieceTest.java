@@ -11,26 +11,29 @@ class PieceTest {
     @Test
     @DisplayName("체스말이 정상적으로 생성되는지 확인한다.")
     public void createPieces() {
-        verifyWhitePiece(Piece.createWhitePawn(), Type.PAWN);
-        verifyBlackPiece(Piece.createBlackPawn(), Type.PAWN);
+        int testPositionIndex = 1;
+        Position position = new Position(testPositionIndex, testPositionIndex);
+        Piece blank = Piece.createBlank(position);
 
-        verifyWhitePiece(Piece.createWhiteRook(), Type.ROOK);
-        verifyBlackPiece(Piece.createBlackRook(), Type.ROOK);
-
-        verifyWhitePiece(Piece.createWhiteKnight(), Type.KNIGHT);
-        verifyBlackPiece(Piece.createBlackKnight(), Type.KNIGHT);
-
-        verifyWhitePiece(Piece.createWhiteBishop(), Type.BISHOP);
-        verifyBlackPiece(Piece.createBlackBishop(), Type.BISHOP);
-
-        verifyWhitePiece(Piece.createWhiteQueen(), Type.QUEEN);
-        verifyBlackPiece(Piece.createBlackQueen(), Type.QUEEN);
-
-        verifyWhitePiece(Piece.createWhiteKing(), Type.KING);
-        verifyBlackPiece(Piece.createBlackKing(), Type.KING);
-
-        Piece blank = Piece.createBlank();
         assertAll(
+                () -> verifyWhitePiece(Piece.createWhitePawn(position), Type.PAWN),
+                () -> verifyBlackPiece(Piece.createBlackPawn(position), Type.PAWN),
+
+                () -> verifyWhitePiece(Piece.createWhiteRook(position), Type.ROOK),
+                () -> verifyBlackPiece(Piece.createBlackRook(position), Type.ROOK),
+
+                () -> verifyWhitePiece(Piece.createWhiteKnight(position), Type.KNIGHT),
+                () -> verifyBlackPiece(Piece.createBlackKnight(position), Type.KNIGHT),
+
+                () -> verifyWhitePiece(Piece.createWhiteBishop(position), Type.BISHOP),
+                () -> verifyBlackPiece(Piece.createBlackBishop(position), Type.BISHOP),
+
+                () -> verifyWhitePiece(Piece.createWhiteQueen(position), Type.QUEEN),
+                () -> verifyBlackPiece(Piece.createBlackQueen(position), Type.QUEEN),
+
+                () -> verifyWhitePiece(Piece.createWhiteKing(position), Type.KING),
+                () -> verifyBlackPiece(Piece.createBlackKing(position), Type.KING),
+
                 () -> assertThat(blank.isWhite()).isEqualTo(false),
                 () -> assertThat(blank.isBlack()).isEqualTo(false),
                 () -> assertThat(blank.getColor()).isEqualTo(Color.NO_COLOR),

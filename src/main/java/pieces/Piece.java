@@ -79,4 +79,8 @@ public class Piece {
     public char getRepresentation() {
         return this.representation;
     }
+
+    public boolean isWhite(){
+        return getColor().equals(WHITE_COLOR);
+    }
 }

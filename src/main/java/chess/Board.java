@@ -46,27 +46,23 @@ public class Board {
     }
 
     public void addWhitePiece(Piece piece) {
-        if (checkPieceColor(piece, Piece.WHITE_COLOR))
+        if (piece.isWhite() && !piece.isPawn())
             whitePieces.add(piece);
     }
 
     public void addBlackPiece(Piece piece) {
-        if (checkPieceColor(piece, Piece.BLACK_COLOR))
+        if (piece.isBlack() && !piece.isPawn())
             blackPieces.add(piece);
     }
 
     public void addWhitePawn(Piece pawn) {
-        if (checkPieceColor(pawn, Piece.WHITE_COLOR))
+        if (pawn.isWhite() && pawn.isPawn())
             whitePawns.add(pawn);
     }
 
     public void addBlackPawn(Piece pawn) {
-        if (checkPieceColor(pawn, Piece.BLACK_COLOR))
+        if (pawn.isBlack() && pawn.isPawn())
             blackPawns.add(pawn);
-    }
-
-    private boolean checkPieceColor(Piece piece, String color) {
-        return piece.getColor().equals(color);
     }
 
     public String getWhitePawnsResult() {

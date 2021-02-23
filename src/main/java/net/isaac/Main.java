@@ -27,6 +27,6 @@ public class Main {
         Board board = new Board();
         board.initialize();
         System.out.println("New game started.");
-        board.print();
+        System.out.println(board.getRepresentation());
     }
 }

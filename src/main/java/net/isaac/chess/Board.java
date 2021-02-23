@@ -50,10 +50,6 @@ public class Board {
         }
     }
 
-    public void print() {
-        System.out.println(getRepresentation());
-    }
-
     public String getRepresentation() {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < MAX_SIZE; i++) {

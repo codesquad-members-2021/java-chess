@@ -35,6 +35,6 @@ public class Game {
         }
 
         System.out.println("==== Java chess ended ===");
-
+        scanner.close();
     }
 }

@@ -33,6 +33,8 @@ public class Board {
         }
     }
 
+    // TODO: 접근제어자를 무엇으로 할까? 현재로써는 본 메소드는 테스트 코드에만 사용되는데...
+    // 요구사항에서 본 메소드에 요구하는 접근제어 수준은 무엇일까?
     void initialize() {
         for (Type type : Type.values()) {
             for (Color color : Color.values()) {

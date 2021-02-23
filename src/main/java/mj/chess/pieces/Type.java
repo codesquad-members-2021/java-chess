@@ -3,74 +3,23 @@ package mj.chess.pieces;
 import mj.chess.Board;
 
 import java.util.function.BiConsumer;
+import java.util.stream.IntStream;
 
 public enum Type {
-    BISHOP("b", (board, color) -> {
-        Piece piece = (color == Color.WHITE)
-                ? Piece.PieceMaker.createWhiteBishop()
-                : Piece.PieceMaker.createBlackBishop();
-
-        for (int i = 0; i < 2; i++) {
-            board.addPiece(piece);
-        }
-    }),
-    KING("k", (board, color) -> {
-        Piece piece = (color == Color.WHITE)
-                ? Piece.PieceMaker.createWhiteKing()
-                : Piece.PieceMaker.createBlackKing();
-
-        for (int i = 0; i < 1; i++) {
-            board.addPiece(piece);
-        }
-    }),
-    KNIGHT("n", (board, color) -> {
-        Piece piece = (color == Color.WHITE)
-                ? Piece.PieceMaker.createWhiteKnight()
-                : Piece.PieceMaker.createBlackKnight();
-
-        for (int i = 0; i < 2; i++) {
-            board.addPiece(piece);
-        }
-    }),
-    PAWN("p", (board, color) -> {
-        Piece piece = (color == Color.WHITE)
-                ? Piece.PieceMaker.createWhitePawn()
-                : Piece.PieceMaker.createBlackPawn();
-
-        for (int i = 0; i < 8; i++) {
-            board.addPiece(piece);
-        }
-    }),
-    QUEEN("q", (board, color) -> {
-        Piece piece = (color == Color.WHITE)
-                ? Piece.PieceMaker.createWhiteQueen()
-                : Piece.PieceMaker.createBlackQueen();
-
-        for (int i = 0; i < 1; i++) {
-            board.addPiece(piece);
-        }
-    }),
-    ROOK("r", (board, color) -> {
-        Piece piece = (color == Color.WHITE)
-                ? Piece.PieceMaker.createWhiteRook()
-                : Piece.PieceMaker.createBlackRook();
-
-        for (int i = 0; i < 2; i++) {
-            board.addPiece(piece);
-        }
-    });
+    BISHOP("b", Type::initBishopOnBoard),
+    KING("k", Type::initKingOnBoard),
+    KNIGHT("n", Type::initKnightOnBoard),
+    PAWN("p", Type::initPawnOnBoard),
+    QUEEN("q", Type::initQueenOnBoard),
+    ROOK("r", Type::initRookOnBoard);
 
     private final String representation;
 
-    private BiConsumer<Board, Color> expression;
+    private final BiConsumer<Board, Color> expression;
 
     Type(String representation, BiConsumer<Board, Color> expression) {
         this.representation = representation;
         this.expression = expression;
-    }
-
-    public void initPiece(Board board, Color color) {
-        this.expression.accept(board, color);
     }
 
     public String getRepresentation(Color color) {
@@ -79,5 +28,69 @@ public enum Type {
         }
 
         return representation;
+    }
+
+    public void initPiece(Board board, Color color) {
+        this.expression.accept(board, color);
+    }
+
+    private static void initPawnOnBoard(Board board, Color color) {
+        Piece piece = (color == Color.WHITE)
+                ? Piece.PieceMaker.createWhitePawn()
+                : Piece.PieceMaker.createBlackPawn();
+
+        IntStream.range(0, 8)
+                .mapToObj(i -> piece)
+                .forEach(board::addPiece);
+    }
+
+    private static void initBishopOnBoard(Board board, Color color) {
+        Piece piece = (color == Color.WHITE)
+                ? Piece.PieceMaker.createWhiteBishop()
+                : Piece.PieceMaker.createBlackBishop();
+
+        IntStream.range(0, 2)
+                .mapToObj(i -> piece)
+                .forEach(board::addPiece);
+    }
+
+    private static void initKnightOnBoard(Board board, Color color) {
+        Piece piece = (color == Color.WHITE)
+                ? Piece.PieceMaker.createWhiteKnight()
+                : Piece.PieceMaker.createBlackKnight();
+
+        IntStream.range(0, 2)
+                .mapToObj(i -> piece)
+                .forEach(board::addPiece);
+    }
+
+    private static void initKingOnBoard(Board board, Color color) {
+        Piece piece = (color == Color.WHITE)
+                ? Piece.PieceMaker.createWhiteKing()
+                : Piece.PieceMaker.createBlackKing();
+
+        IntStream.range(0, 1)
+                .mapToObj(i -> piece)
+                .forEach(board::addPiece);
+    }
+
+    private static void initQueenOnBoard(Board board, Color color) {
+        Piece piece = (color == Color.WHITE)
+                ? Piece.PieceMaker.createWhiteQueen()
+                : Piece.PieceMaker.createBlackQueen();
+
+        IntStream.range(0, 1)
+                .mapToObj(i -> piece)
+                .forEach(board::addPiece);
+    }
+
+    private static void initRookOnBoard(Board board, Color color) {
+        Piece piece = (color == Color.WHITE)
+                ? Piece.PieceMaker.createWhiteRook()
+                : Piece.PieceMaker.createBlackRook();
+
+        IntStream.range(0, 2)
+                .mapToObj(i -> piece)
+                .forEach(board::addPiece);
     }
 }

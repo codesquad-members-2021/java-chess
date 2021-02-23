@@ -13,9 +13,9 @@ public class Piece {
 
     public char createRepresentation(Color color, Type name) {
         if (color == Color.WHITE) {
-            return name.getTempRepresentation();
+            return name.getWhiteRepresentation();
         }
-        return Character.toUpperCase(name.getTempRepresentation());
+        return name.getBlackRepresentation();
     }
 
     public Color getColor() {
@@ -99,14 +99,18 @@ public class Piece {
         KING('k'),
         NO_PIECE('.');
 
-        private final char tempRepresentation;
+        private final char representation;
 
         Type(char representation) {
-            this.tempRepresentation = representation;
+            this.representation = representation;
         }
 
-        public char getTempRepresentation() {
-            return tempRepresentation;
+        public char getBlackRepresentation() {
+            return Character.toUpperCase(representation);
+        }
+
+        public char getWhiteRepresentation() {
+            return representation;
         }
     }
 }

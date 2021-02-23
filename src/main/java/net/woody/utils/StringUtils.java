@@ -8,8 +8,7 @@ public class StringUtils {
     }
 
     public static String appendNewLine(String line) {
-        return new StringBuilder()
-                .append(line)
+        return new StringBuilder(line)
                 .append(NEWLINE)
                 .toString();
     }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 
 import static net.woody.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class BoardTest {
 
@@ -25,8 +26,16 @@ class BoardTest {
     @Test
     @DisplayName("보드에 있는 체스말들을 정상적으로 찾을 수 있어야 한다.")
     void findPawnOnTheBoard() {
-        addThePieceProperly(Piece.createWhitePawn(), 2, 0);
-        addThePieceProperly(Piece.createWhiteKing(), 2, 1);
+        assertAll(
+                () -> {
+                    Piece shouldBeBlackRook = board.findPiece(0, 0);
+                    assertThat(shouldBeBlackRook.isBlack()).isTrue();
+                    assertThat(shouldBeBlackRook.getRepresentation()).isEqualTo('R');
+                }, () -> {
+                    Piece shouldBeWhitePawn = board.findPiece(6, 0);
+                    assertThat(shouldBeWhitePawn.isWhite()).isTrue();
+                    assertThat(shouldBeWhitePawn.getRepresentation()).isEqualTo('p');
+                });
     }
 
     @Test
@@ -47,13 +56,6 @@ class BoardTest {
 
 
     @Test
-    @DisplayName("보드를 초기화한 후, 폰들이 올바르게 생성되어야 한다.")
-    void initializeBoard() {
-        assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult());
-        assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult());
-    }
-
-    @Test
     @DisplayName("보드를 초기화 한 뒤 출력된 결과가 예상된 결과와 같아야 한다.")
     void printBoard() {
         String expectedResult =
@@ -69,12 +71,4 @@ class BoardTest {
         String actualResult = board.print();
         assertThat(expectedResult).isEqualTo(actualResult);
     }
-
-    private void addPieceProperly(Piece newPiece, int rank, int file) {
-        int sizeBefore = board.size();
-        board.add(newPiece, rank);
-        assertThat(board.size()).isEqualTo(sizeBefore + 1);
-        assertThat(board.findPiece(rank, file)).isEqualTo(newPiece);
-    }
-
 }

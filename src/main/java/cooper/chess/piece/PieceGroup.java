@@ -21,7 +21,7 @@ public class PieceGroup {
     }
 
     private void initWhitePiece() {
-        List<Piece> pieceList = getPawnList(Color.WHITE);
+        List<Piece> pieceList = getPieceList(Color.WHITE);
 
         pieceList.add(Piece.createWhiteRook());
         pieceList.add(Piece.createWhiteKnight());
@@ -38,7 +38,7 @@ public class PieceGroup {
     }
 
     private void initBlackPiece() {
-        List<Piece> pieceList = getPawnList(Color.BLACK);
+        List<Piece> pieceList = getPieceList(Color.BLACK);
 
         for (int pawnCount = 0; pawnCount < PIECE_LIST_MAX / 2; pawnCount++) {
             pieceList.add(Piece.createBlackPawn());
@@ -54,7 +54,7 @@ public class PieceGroup {
         pieceList.add(Piece.createBlackRook());
     }
 
-    public List<Piece> getPawnList(Color color) {
+    public List<Piece> getPieceList(Color color) {
         return pieceListMap.get(color);
     }
 
@@ -64,9 +64,9 @@ public class PieceGroup {
     }
 
     public void add(Piece piece) {
-        List<Piece> pieceList = getPawnList(piece.getColor());
+        List<Piece> pieceList = getPieceList(piece.getColor());
 
-        if (pieceList.size() >= 8) {
+        if (pieceList.size() >= PIECE_LIST_MAX) {
             return;
         }
 
@@ -74,7 +74,7 @@ public class PieceGroup {
     }
 
     public Piece findPawn(int index, Color color) {
-        List<Piece> pieceList = getPawnList(color);
+        List<Piece> pieceList = getPieceList(color);
 
         if (pieceList.size() == 0) {
             throw new IllegalArgumentException("size가 0입니다.");

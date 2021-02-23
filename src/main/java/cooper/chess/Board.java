@@ -42,7 +42,7 @@ public class Board {
 
     private String getPawnsResult(Color color) {
         StringBuilder sb = new StringBuilder();
-        List<Piece> pieceList = pieceGroup.getPawnList(color);
+        List<Piece> pieceList = pieceGroup.getPieceList(color);
 
         for (int col = 0; col < BOARD_SIZE; col++) {
             sb.append(pieceList.get(col).getRepresentation());

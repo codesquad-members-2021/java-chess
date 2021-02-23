@@ -51,4 +51,14 @@ class PieceTest {
         );
     }
 
+    @Test
+    @DisplayName("getWhiteRepresentation()은 Type representation의 소문자를 반환, getBlackRepresentation()은 대문자를 반환한다.")
+    void checkGetColorRepresentation() {
+        assertAll(
+                () -> assertThat(Piece.Type.PAWN.getWhiteRepresentation()).isEqualTo('p'),
+                () -> assertThat(Piece.Type.PAWN.getBlackRepresentation()).isEqualTo('P'),
+                () -> assertThat(Piece.Type.KNIGHT.getWhiteRepresentation()).isEqualTo('n'),
+                () -> assertThat(Piece.Type.KNIGHT.getBlackRepresentation()).isEqualTo('N')
+        );
+    }
 }

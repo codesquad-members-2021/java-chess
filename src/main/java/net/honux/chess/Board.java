@@ -1,7 +1,6 @@
 package net.honux.chess;
 
-import net.honux.chess.pieces.Pawn;
-import org.omg.CORBA.DynAnyPackage.InvalidValue;
+import net.honux.chess.pieces.Piece;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -9,35 +8,36 @@ import java.util.List;
 
 public class Board {
 
-    private List<Pawn> whitePawns = new ArrayList<Pawn>();
-    private List<Pawn> blackPawns = new ArrayList<Pawn>();
+    private List<Piece> whitePawns = new ArrayList<Piece>();
+    private List<Piece> blackPawns = new ArrayList<Piece>();
 
 
-    public void addWhitePawns(Pawn pawn) {
-        if (!pawn.getColor().equals(Pawn.WHITE_COLOR)) {
+    public void addWhitePawns(Piece piece) {
+        if (!piece.getColor().equals(Piece.WHITE_COLOR)) {
             throw new InvalidParameterException("The color of this pawn must be white.");
-        }whitePawns.add(pawn);
+        }
+        whitePawns.add(piece);
     }
 
-    public void addBlackPawns(Pawn pawn) {
-        if (!pawn.getColor().equals(Pawn.BLACK_COLOR)){
+    public void addBlackPawns(Piece piece) {
+        if (!piece.getColor().equals(Piece.BLACK_COLOR)) {
             throw new InvalidParameterException("The color of this pawn must be black.");
         }
-        blackPawns.add(pawn);
+        blackPawns.add(piece);
     }
 
     public int size() {
         return whitePawns.size() + blackPawns.size();
     }
 
-    public Pawn findWhitePawn(int index) {
+    public Piece findWhitePawn(int index) {
         if (whitePawns.size() < index + 1) {
             throw new InvalidParameterException("The index must be equal to or less than the size of the whitePawns.");
         }
         return whitePawns.get(index);
     }
 
-    public Pawn findBlackPawn(int index) {
+    public Piece findBlackPawn(int index) {
         if (blackPawns.size() < index + 1) {
             throw new InvalidParameterException("The index must be equal to or less than the size of the whitePawns.");
         }
@@ -48,8 +48,8 @@ public class Board {
         int boardSize = 8;
 
         for (int i = 0; i < boardSize; i++) {
-            addWhitePawns(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            addBlackPawns(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            addWhitePawns(new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION));
+            addBlackPawns(new Piece(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION));
         }
 
     }
@@ -57,8 +57,8 @@ public class Board {
     public String getWhitePawnsResult() {
         StringBuilder whiteResult = new StringBuilder();
 
-        for (Pawn whitePawn : whitePawns) {
-            whiteResult.append(whitePawn.getRepresentation());
+        for (Piece whitePiece : whitePawns) {
+            whiteResult.append(whitePiece.getRepresentation());
         }
         return whiteResult.toString();
 
@@ -67,8 +67,8 @@ public class Board {
     public String getBlackPawnsResult() {
         StringBuilder blackResult = new StringBuilder();
 
-        for (Pawn blackPawn : blackPawns) {
-            blackResult.append(blackPawn.getRepresentation());
+        for (Piece blackPiece : blackPawns) {
+            blackResult.append(blackPiece.getRepresentation());
         }
         return blackResult.toString();
     }

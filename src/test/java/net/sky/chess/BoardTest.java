@@ -73,4 +73,14 @@ class BoardTest {
         );
     }
 
+    @Test
+    @DisplayName("주어진 기물의 위치 확인")
+    void findPiece() {
+        assertAll(
+            () -> assertThat(board.findPiece("a8")).isEqualTo(blackPieceMaker.createRook()),
+            () -> assertThat(board.findPiece("h8")).isEqualTo(blackPieceMaker.createRook()),
+            () -> assertThat(board.findPiece("a1")).isEqualTo(whitePieceMaker.createRook()),
+            () -> assertThat(board.findPiece("h1")).isEqualTo(whitePieceMaker.createRook())
+        );
+    }
 }

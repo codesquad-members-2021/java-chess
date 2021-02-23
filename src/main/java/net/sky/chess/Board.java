@@ -12,6 +12,7 @@ import net.sky.pieces.PieceMaker;
 public class Board {
 
     private List<Rank> board = new ArrayList<>();
+    private final int BOARD_SIZE = 8;
     private final PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
     private final PieceMaker blackPieceMaker = new PieceMaker(Color.BLACK);
 
@@ -36,7 +37,7 @@ public class Board {
 
     private void initializePawns(PieceMaker pieceMaker) {
         Rank rank = new Rank();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             rank.add(pieceMaker.createPawn());
         }
         board.add(rank);
@@ -65,7 +66,7 @@ public class Board {
 
     private void initializeBlank() {
         Rank rank = new Rank();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             rank.add(PieceMaker.createBlank());
         }
         board.add(rank);
@@ -85,10 +86,15 @@ public class Board {
 
     public String showBoard() {
         StringBuilder result = new StringBuilder();
+        int initRank = 8;
 
         for (Rank rank : board) {
-            result.append(appendNewLine(getPiecesResult(rank)));
+            result.append(getPiecesResult(rank))
+                .append(appendNewLine(" " + initRank--));
         }
+
+        result.append(appendNewLine(""));
+        result.append(appendNewLine("abcdefgh"));
 
         return result.toString();
     }
@@ -101,6 +107,13 @@ public class Board {
         }
 
         return pieceCount;
+    }
+
+    public Piece findPiece(String position) {
+        int x = Math.abs(Character.getNumericValue(position.charAt(1)) - BOARD_SIZE);
+        int y = position.charAt(0) - 'a';
+        Piece piece = board.get(x).getRank().get(y);
+        return piece;
     }
 
 }

@@ -10,26 +10,26 @@ class PieceTest {
     @DisplayName("체스말 생성 테스트")
     void create_piece() {
         assertAll(
-                () -> verifyPiece(Piece.getPawn(Piece.Color.WHITE), Piece.Color.WHITE, Piece.PAWN_REPRESENTATION),
-                () -> verifyPiece(Piece.getPawn(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.PAWN_REPRESENTATION)),
-                () -> verifyPiece(Piece.getKing(Piece.Color.WHITE), Piece.Color.WHITE, Piece.KING_REPRESENTATION),
-                () -> verifyPiece(Piece.getKing(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.KING_REPRESENTATION)),
-                () -> verifyPiece(Piece.getQueen(Piece.Color.WHITE), Piece.Color.WHITE, Piece.QUEEN_REPRESENTATION),
-                () -> verifyPiece(Piece.getQueen(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.QUEEN_REPRESENTATION)),
-                () -> verifyPiece(Piece.getRook(Piece.Color.WHITE), Piece.Color.WHITE, Piece.ROOK_REPRESENTATION),
-                () -> verifyPiece(Piece.getRook(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.ROOK_REPRESENTATION)),
-                () -> verifyPiece(Piece.getBishop(Piece.Color.WHITE), Piece.Color.WHITE, Piece.BISHOP_REPRESENTATION),
-                () -> verifyPiece(Piece.getBishop(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.BISHOP_REPRESENTATION)),
-                () -> verifyPiece(Piece.getKnight(Piece.Color.WHITE), Piece.Color.WHITE, Piece.KNIGHT_REPRESENTATION),
-                () -> verifyPiece(Piece.getKnight(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.KNIGHT_REPRESENTATION))
+                () -> verifyPiece(Piece.createPawn(Piece.Color.WHITE), Piece.Color.WHITE, Piece.PAWN_REPRESENTATION),
+                () -> verifyPiece(Piece.createPawn(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.PAWN_REPRESENTATION)),
+                () -> verifyPiece(Piece.createKing(Piece.Color.WHITE), Piece.Color.WHITE, Piece.KING_REPRESENTATION),
+                () -> verifyPiece(Piece.createKing(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.KING_REPRESENTATION)),
+                () -> verifyPiece(Piece.createQueen(Piece.Color.WHITE), Piece.Color.WHITE, Piece.QUEEN_REPRESENTATION),
+                () -> verifyPiece(Piece.createQueen(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.QUEEN_REPRESENTATION)),
+                () -> verifyPiece(Piece.createRook(Piece.Color.WHITE), Piece.Color.WHITE, Piece.ROOK_REPRESENTATION),
+                () -> verifyPiece(Piece.createRook(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.ROOK_REPRESENTATION)),
+                () -> verifyPiece(Piece.createBishop(Piece.Color.WHITE), Piece.Color.WHITE, Piece.BISHOP_REPRESENTATION),
+                () -> verifyPiece(Piece.createBishop(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.BISHOP_REPRESENTATION)),
+                () -> verifyPiece(Piece.createKnight(Piece.Color.WHITE), Piece.Color.WHITE, Piece.KNIGHT_REPRESENTATION),
+                () -> verifyPiece(Piece.createKnight(Piece.Color.BLACK), Piece.Color.BLACK, Character.toUpperCase(Piece.KNIGHT_REPRESENTATION))
         );
     }
 
     @Test
     @DisplayName("isBlack(), isWhite() 메소드 테스트")
     void isBlack_isWhite_Test() {
-        Piece white = Piece.getPawn(Piece.Color.WHITE);
-        Piece black = Piece.getPawn(Piece.Color.BLACK);
+        Piece white = Piece.createPawn(Piece.Color.WHITE);
+        Piece black = Piece.createPawn(Piece.Color.BLACK);
 
         assertAll(
                 () -> assertThat(white.isWhite()).isEqualTo(true),

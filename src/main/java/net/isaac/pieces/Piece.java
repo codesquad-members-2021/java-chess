@@ -39,27 +39,27 @@ public class Piece {
         return this.color == Color.BLACK;
     }
 
-    public static Piece getPawn(Color color) {
+    public static Piece createPawn(Color color) {
         return new Piece(color, Piece.PAWN_REPRESENTATION);
     }
 
-    public static Piece getKing(Color color) {
+    public static Piece createKing(Color color) {
         return new Piece(color, Piece.KING_REPRESENTATION);
     }
 
-    public static Piece getQueen(Color color) {
+    public static Piece createQueen(Color color) {
         return new Piece(color, Piece.QUEEN_REPRESENTATION);
     }
 
-    public static Piece getRook(Color color) {
+    public static Piece createRook(Color color) {
         return new Piece(color, Piece.ROOK_REPRESENTATION);
     }
 
-    public static Piece getBishop(Color color) {
+    public static Piece createBishop(Color color) {
         return new Piece(color, Piece.BISHOP_REPRESENTATION);
     }
 
-    public static Piece getKnight(Color color) {
+    public static Piece createKnight(Color color) {
         return new Piece(color, Piece.KNIGHT_REPRESENTATION);
     }
 

@@ -1,7 +1,7 @@
 package chess;
 
 import org.junit.jupiter.api.*;
-import piece.PieceFactory;
+import piece.Piece;
 import piece.attribute.Color;
 import piece.attribute.Type;
 
@@ -44,8 +44,23 @@ class BoardTest {
 
     @Test
     void verifyFindPiece() {
-        assertAll(() -> assertThat(board.findPiece("a8")).isEqualTo(createPiece(Color.BLACK, Type.ROOK)),
-                () -> assertThat(board.findPiece("e1")).isEqualTo(createPiece(Color.WHITE, Type.KING)));
+        assertAll(() -> assertThat(board.findPiece(new Position('a', 8)))
+                        .isEqualTo(createPiece(Color.BLACK, Type.ROOK)),
+                () -> assertThat(board.findPiece(new Position('e', 1)))
+                        .isEqualTo(createPiece(Color.WHITE, Type.KING)));
+    }
+
+    @Test
+    void verifyMove() {
+        board.initializeEmpty();
+        Position before = new Position('b', 6);
+        Position after = new Position('d', 3);
+        Piece blackQueen = createPiece(Color.BLACK, Type.QUEEN);
+
+        board.addPiece(before.getFile(), before.getRank(), blackQueen);
+        board.move(before, after);
+
+        assertThat(board.findPiece(after)).isEqualTo(blackQueen);
     }
 }
 

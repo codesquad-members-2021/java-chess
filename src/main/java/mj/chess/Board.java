@@ -19,6 +19,7 @@ public class Board {
     private final List<Piece> eighthRow = new ArrayList<>();
 
     private int numOfPieces = 0;
+    private final int ROWS = 8;
 
     public Board() {
     }
@@ -59,7 +60,7 @@ public class Board {
 
     private void initBlackPawns() {
         Piece pawn = Piece.PieceMaker.createBlackPawn();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < ROWS; i++) {
             secondRow.add(pawn);
             numOfPieces++;
         }
@@ -67,7 +68,7 @@ public class Board {
 
     private void initWhitePawns() {
         Piece pawn = Piece.PieceMaker.createWhitePawn();
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < ROWS; i++) {
             seventhRow.add(pawn);
             numOfPieces++;
         }
@@ -87,7 +88,7 @@ public class Board {
         firstRow.add(Piece.PieceMaker.createBlackBishop());
         firstRow.add(Piece.PieceMaker.createBlackKnight());
         firstRow.add(Piece.PieceMaker.createBlackRook());
-        numOfPieces += 8;
+        numOfPieces += ROWS;
     }
 
     private void initWhiteRoyalPieces() {
@@ -99,11 +100,11 @@ public class Board {
         eighthRow.add(Piece.PieceMaker.createWhiteBishop());
         eighthRow.add(Piece.PieceMaker.createWhiteKnight());
         eighthRow.add(Piece.PieceMaker.createWhiteRook());
-        numOfPieces += 8;
+        numOfPieces += ROWS;
     }
 
     private void initBlank() {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < ROWS; i++) {
             thirdRow.add(Piece.PieceMaker.createBlack());
             forthRow.add(Piece.PieceMaker.createBlack());
             fifthRow.add(Piece.PieceMaker.createBlack());

@@ -87,4 +87,8 @@ public class Piece {
     public boolean isBlack(){
         return getColor().equals(BLACK_COLOR);
     }
+
+    public boolean isPawn(){
+        return getRepresentation()==WHITE_PAWN_REPRESENTATION || getRepresentation()==BLACK_PAWN_REPRESENTATION;
+    }
 }

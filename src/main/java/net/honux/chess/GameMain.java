@@ -8,8 +8,9 @@ public class GameMain {
         System.out.println("> 체스 게임을 시작하시려면 start, 끝내시려면 end 명령을 입력하세요.");
         Board board = new Board();
 
-        String command;
+
         try (Scanner sc = new Scanner(System.in);) {
+            String command;
             while (true) {
                 command = sc.nextLine();
                 if (command.equals("end")) {
@@ -19,7 +20,7 @@ public class GameMain {
 
                 if (command.equals("start")) {
                     board.initialize();
-                    System.out.println(board.boardPrint());
+                    System.out.println(board.showBoard());
                 }
             }
         } catch (Exception e) {

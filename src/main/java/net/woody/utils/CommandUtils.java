@@ -13,7 +13,7 @@ public class CommandUtils {
         System.out.print("> ");
     }
 
-    public static boolean isGameOver(String command) {
+    public static boolean isGameContinued(String command) {
         switch (command.toLowerCase()) {
             case "start":
                 return true;

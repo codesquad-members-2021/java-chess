@@ -25,7 +25,7 @@ public enum Color {
 
     }
 
-    public Character represent(char pieceFirstLetter) {
+    public Character getRepresentation(char pieceFirstLetter) {
         return representation.apply(pieceFirstLetter);
     }
 

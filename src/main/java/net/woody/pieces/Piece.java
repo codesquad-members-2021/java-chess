@@ -13,7 +13,7 @@ public class Piece {
 
     private Piece(Color color, char representation) {
         this.color = color;
-        this.representation = color.represent(representation);
+        this.representation = color.getRepresentation(representation);
     }
 
     public Color getColor() {

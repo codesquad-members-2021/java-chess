@@ -12,10 +12,10 @@ public class Game {
             do {
                 CommandUtils.printMenu();
                 String command = sc.nextLine();
-                ongoing = CommandUtils.isGameOver(command);
+                ongoing = CommandUtils.isGameContinued(command);
                 if (ongoing) {
                     board.initialize();
-                    System.out.println(board.print());
+                    System.out.println(board.showBoard());
                 }
             } while (ongoing);
         }

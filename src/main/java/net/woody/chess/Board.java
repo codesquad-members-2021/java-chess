@@ -95,7 +95,7 @@ public class Board {
         return size;
     }
 
-    public String print() {
+    public String showBoard() {
         StringBuilder sb = new StringBuilder();
         for (Rank rank : board) {
             sb.append(appendNewLine(rank.toString()));

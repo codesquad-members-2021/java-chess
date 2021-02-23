@@ -21,10 +21,12 @@ class BoardTest {
     }
 
     @Test
+    @DisplayName("board를 initialize()하고 출력을 확인한다")
     void create() {
         board.initialize();
         assertThat(board.pieceCount()).isEqualTo(32);
-        String blankRank = appendNewLine("........");
+
+        final String blankRank = appendNewLine("........");
         assertThat(board.showBoard()).isEqualTo(
                         appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +

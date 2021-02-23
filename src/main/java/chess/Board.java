@@ -97,6 +97,7 @@ public class Board {
             addWhitePawn(Piece.createWhitePawn());
             addBlackPawn(Piece.createBlackPawn());
         }
+
         addBlackPiece(Piece.createBlackRook());
         addBlackPiece(Piece.createBlackKnight());
         addBlackPiece(Piece.createBlackBishop());

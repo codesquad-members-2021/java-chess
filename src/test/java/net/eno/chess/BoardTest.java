@@ -45,15 +45,6 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("체스판에 해당하는 좌표의 기물을 가져올 수 있어야 한다.")
-    public void findPiece() {
-        assertThat(Piece.createPiece(PieceType.BLACK_ROOK)).isEqualTo(board.findPiece("a8"));
-        assertThat(Piece.createPiece(PieceType.BLACK_ROOK)).isEqualTo(board.findPiece("h8"));
-        assertThat(Piece.createPiece(PieceType.WHITE_ROOK)).isEqualTo(board.findPiece("a1"));
-        assertThat(Piece.createPiece(PieceType.WHITE_ROOK)).isEqualTo(board.findPiece("h1"));
-    }
-
-    @Test
     @DisplayName("초기화 된 보드의 기물의 배치가 일치해야 한다.")
     public void initialize() {
         String blankRank = appendNewLine("........");
@@ -75,11 +66,25 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("초기화 된 보드가 출력되어야 한다.")
-    public void print() {
+    @DisplayName("체스판에 해당하는 좌표의 기물을 가져올 수 있어야 한다.")
+    public void findPiece() {
+        assertThat(board.findPiece("a8")).isEqualTo(Piece.createPiece(PieceType.BLACK_ROOK));
+        assertThat(board.findPiece("h8")).isEqualTo(Piece.createPiece(PieceType.BLACK_ROOK));
+        assertThat(board.findPiece("a1")).isEqualTo(Piece.createPiece(PieceType.WHITE_ROOK));
+        assertThat(board.findPiece("h1")).isEqualTo(Piece.createPiece(PieceType.WHITE_ROOK));
+    }
+
+    @Test
+    @DisplayName("체스판에 임의의 기물을 추가할 수 있어야 한다.")
+    public void move() {
+        board.initializeEmpty();
+
+        String position = "b5";
+        Piece piece = Piece.createPiece(PieceType.BLACK_ROOK);
+        board.move(position, piece);
+
+        assertThat(board.findPiece(position)).isEqualTo(piece);
         System.out.println(board.showBoard("white"));
-        System.out.println();
-        System.out.println(board.showBoard("black"));
     }
 
 }

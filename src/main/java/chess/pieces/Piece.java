@@ -87,7 +87,7 @@ public class Piece {
     }
 
     public enum Color {
-        WHITE, BLACK;
+        WHITE, BLACK, NOCOLOR;
     }
 
     public enum Type {
@@ -96,7 +96,8 @@ public class Piece {
         ROOK('r'),
         BISHOP('b'),
         QUEEN('q'),
-        KING('k');
+        KING('k'),
+        NO_PIECE('.');
 
         private final char tempRepresentation;
 

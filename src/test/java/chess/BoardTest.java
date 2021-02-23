@@ -126,9 +126,10 @@ class BoardTest {
         addPiece("f1", Piece.createWhiteKing());
 
         assertThat(board.showBoard()).isEqualTo(currentBoard);
-        assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.0, within(0.01));
-        assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(7.0, within(0.01));
         System.out.println(board.showBoard());
+        assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(20.0, within(0.01));
+        assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(19.5, within(0.01));
+
     }
     private void addPiece(String position, Piece piece) {
         board.move(position, piece);

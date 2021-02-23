@@ -132,7 +132,26 @@ public class Board {
     }
 
     public double calculatePoint(Color color) {
-        return 0;
+        double resultPoint = 0;
+
+        for (int j = 0; j < FILES; j++) {
+            int pawnCount = 0;
+            for (int i = 0; i < RANKS; i++) {
+                Piece piece = pieceRanks.get(i).get(j);
+                Type type = piece.getType();
+                if (piece.getColor() == color) {
+                    resultPoint += type.getPoint();
+                    if (type == Type.PAWN) {
+                        pawnCount++;
+                    }
+                }
+            }
+            if (pawnCount >= 2) {
+                resultPoint -= pawnCount * 0.5;
+            }
+        }
+
+        return resultPoint;
     }
 
     private class PositionParser {

@@ -37,4 +37,30 @@ public class PieceTest {
                 () -> assertEquals(representation, piece.getRepresentation())
         );
     }
+
+    @Test
+    @DisplayName("타입에 따라 알맞는 representation을 반환한다.")
+    public void getRepresentationPerPiece() {
+        assertAll(
+                () -> assertEquals('P', Type.PAWN.getRepresentaion(Color.WHITE)),
+                () -> assertEquals('p', Type.PAWN.getRepresentaion(Color.BLACK)),
+
+                () -> assertEquals('N', Type.KNIGHT.getRepresentaion(Color.WHITE)),
+                () -> assertEquals('n', Type.KNIGHT.getRepresentaion(Color.BLACK)),
+
+                () -> assertEquals('R', Type.ROOK.getRepresentaion(Color.WHITE)),
+                () -> assertEquals('r', Type.ROOK.getRepresentaion(Color.BLACK)),
+
+                () -> assertEquals('B', Type.BISHOP.getRepresentaion(Color.WHITE)),
+                () -> assertEquals('b', Type.BISHOP.getRepresentaion(Color.BLACK)),
+
+                () -> assertEquals('Q', Type.QUEEN.getRepresentaion(Color.WHITE)),
+                () -> assertEquals('q', Type.QUEEN.getRepresentaion(Color.BLACK)),
+
+                () -> assertEquals('K', Type.KING.getRepresentaion(Color.WHITE)),
+                () -> assertEquals('k', Type.KING.getRepresentaion(Color.BLACK)),
+
+                () -> assertEquals('.', Type.NO_PIECE.getRepresentaion(Color.NO_COLOR))
+        );
+    }
 }

@@ -23,6 +23,16 @@ public class Board {
         initializeBlackPieces();
     }
 
+    private void addWhitePawn(Piece pawn) {
+        if (pawn.isWhite() && pawn.isPawn())
+            whitePawns.add(pawn);
+    }
+
+    private void addBlackPawn(Piece pawn) {
+        if (pawn.isBlack() && pawn.isPawn())
+            blackPawns.add(pawn);
+    }
+
     private void initializeWhitePieces() {
         addWhitePiece(Piece.createWhiteRook());
         addWhitePiece(Piece.createWhiteKnight());
@@ -53,16 +63,6 @@ public class Board {
     private void addBlackPiece(Piece piece) {
         if (piece.isBlack() && !piece.isPawn())
             blackPieces.add(piece);
-    }
-
-    private void addWhitePawn(Piece pawn) {
-        if (pawn.isWhite() && pawn.isPawn())
-            whitePawns.add(pawn);
-    }
-
-    private void addBlackPawn(Piece pawn) {
-        if (pawn.isBlack() && pawn.isPawn())
-            blackPawns.add(pawn);
     }
 
     public String getWhitePawnsResult() {

@@ -2,7 +2,7 @@ package chess.pieces;
 
 import java.util.List;
 
-public class Piece {
+public class Piece implements Comparable<Piece> {
     private final Color color;
     private final Type type;
     private Position position;
@@ -29,6 +29,10 @@ public class Piece {
         this.position = position;
     }
 
+    public double getPoint() {
+        return this.getType().getDefaultPoint();
+    }
+
     public double getPoint(List<Piece> pieces) {
         if (getType() != Type.PAWN) {
             return this.type.getDefaultPoint();
@@ -42,6 +46,16 @@ public class Piece {
             }
         }
         return this.type.getDefaultPoint();
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(getRepresentation());
+    }
+
+    @Override
+    public int compareTo(Piece o) {
+        return Double.compare(getPoint(), o.getPoint()) * -1;
     }
 
     public boolean isWhite() {

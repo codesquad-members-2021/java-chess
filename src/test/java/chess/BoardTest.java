@@ -42,4 +42,10 @@ class BoardTest {
                         appendNewLine("pppppppp") +
                         appendNewLine("rnbqkbnr"));
     }
+    @Test
+    @DisplayName("초기화 하면 32개의 기물이 올라가는지 확인")
+    void size(){
+        board.initialize();
+        assertThat(board.size()).isEqualTo(32);
+    }
 }

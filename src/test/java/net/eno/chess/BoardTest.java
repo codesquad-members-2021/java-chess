@@ -1,5 +1,6 @@
 package net.eno.chess;
 
+import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
@@ -41,6 +42,15 @@ public class BoardTest {
             default :
                 return 2;
         }
+    }
+
+    @Test
+    @DisplayName("체스판에 해당하는 좌표의 기물을 가져올 수 있어야 한다.")
+    public void findPiece() {
+        assertThat(Piece.createPiece(PieceType.BLACK_ROOK)).isEqualTo(board.findPiece("a8"));
+        assertThat(Piece.createPiece(PieceType.BLACK_ROOK)).isEqualTo(board.findPiece("h8"));
+        assertThat(Piece.createPiece(PieceType.WHITE_ROOK)).isEqualTo(board.findPiece("a1"));
+        assertThat(Piece.createPiece(PieceType.WHITE_ROOK)).isEqualTo(board.findPiece("h1"));
     }
 
     @Test

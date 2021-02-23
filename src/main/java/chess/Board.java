@@ -53,6 +53,13 @@ public class Board {
         return target;
     }
 
+    public void putPieceIn(String position, Piece piece) {
+        String[] pos = position.split("");
+        int file = pos[0].charAt(0) - 'a';
+        int rank = Integer.valueOf(pos[1]) - 1;
+        board.get(rank).set(file, piece);
+    }
+
     /* 체스판을 초기화한다. */
     public void initialize() {
         addBlackPieces();
@@ -60,6 +67,20 @@ public class Board {
         addBlank();
         addWhitePawns();
         addWhitePieces();
+    }
+
+    public void initializeEmpty() {
+        for (int i = 0; i < MAX_RANK; i++) {
+            board.set(i, getBlankRank());
+        }
+    }
+
+    private Rank getBlankRank() {
+        Rank rank = new Rank();
+        for (int i = 0; i < MAX_FILE; i++) {
+            rank.add(Piece.createBlank());
+        }
+        return rank;
     }
 
     private void addBlackPieces() {
@@ -113,38 +134,32 @@ public class Board {
     public String showBoard() {
         StringBuilder chessBoard = new StringBuilder();
 
-        chessBoard.append(appendNewLine(getBlackPieceResult(board.get(Board.RANK8)) + "  8 (rank 8)"))
-                .append(appendNewLine(getBlackPieceResult(board.get(Board.RANK7)) + "  7"))
-                .append(appendNewLine(getBlankResult(board.get(Board.RANK6)) + "  6"))
-                .append(appendNewLine(getBlankResult(board.get(Board.RANK5)) + "  5"))
-                .append(appendNewLine(getBlankResult(board.get(Board.RANK4)) + "  4"))
-                .append(appendNewLine(getBlankResult(board.get(Board.RANK3)) + "  3"))
-                .append(appendNewLine(getWhitePieceResult(board.get(Board.RANK2)) + "  2"))
-                .append(appendNewLine(getWhitePieceResult(board.get(Board.RANK1)) + "  1 (rank 1)"))
+        chessBoard.append(appendNewLine(getRankResult(board.get(Board.RANK8)) + "  8 (rank 8)"))
+                .append(appendNewLine(getRankResult(board.get(Board.RANK7)) + "  7"))
+                .append(appendNewLine(getRankResult(board.get(Board.RANK6)) + "  6"))
+                .append(appendNewLine(getRankResult(board.get(Board.RANK5)) + "  5"))
+                .append(appendNewLine(getRankResult(board.get(Board.RANK4)) + "  4"))
+                .append(appendNewLine(getRankResult(board.get(Board.RANK3)) + "  3"))
+                .append(appendNewLine(getRankResult(board.get(Board.RANK2)) + "  2"))
+                .append(appendNewLine(getRankResult(board.get(Board.RANK1)) + "  1 (rank 1)"))
                 .append(appendNewLine(" "))
                 .append("abcdefgh");
 
         return chessBoard.toString();
     }
 
-    private String getBlackPieceResult(final Rank rank) {
+    private String getRankResult(final Rank rank) {
         StringBuilder piecesRepresentations = new StringBuilder();
-        rank.pieces().forEach(
-                piece -> piecesRepresentations.append(piece.getType().getBlackRepresentation()));
-        return piecesRepresentations.toString();
-    }
-
-    private String getWhitePieceResult(final Rank rank) {
-        StringBuilder piecesRepresentations = new StringBuilder();
-        rank.pieces().forEach(
-                piece -> piecesRepresentations.append(piece.getType().getWhiteRepresentation()));
-        return piecesRepresentations.toString();
-    }
-
-    private String getBlankResult(final Rank rank) {
-        StringBuilder piecesRepresentations = new StringBuilder();
-        rank.pieces().forEach(
-                piece -> piecesRepresentations.append(piece.getType().getRepresentation()));
+        char representation = ' ';
+        for (int i = 0; i < rank.pieces().size(); i++) {
+            Piece piece = rank.pieces().get(i);
+            if (piece.getColor() == Piece.Color.BLACK) {
+                representation = piece.getType().getBlackRepresentation();
+            } else {
+                representation = piece.getType().getWhiteRepresentation();
+            }
+            piecesRepresentations.append(representation);
+        }
         return piecesRepresentations.toString();
     }
 }

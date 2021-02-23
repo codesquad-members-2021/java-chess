@@ -35,4 +35,8 @@ public class Rank {
     public Piece getPieceOf(int file) {
         return pieces.get(file);
     }
+
+    public void set(int index, Piece piece) {
+        pieces.set(index, piece);
+    }
 }

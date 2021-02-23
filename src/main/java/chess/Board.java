@@ -77,6 +77,10 @@ public class Board {
         return getPieceRepresentations(blackPawns);
     }
 
+    public String getWhitePiecesResult(){
+        return getPieceRepresentations(whitePieces);
+    }
+
     private String getPieceRepresentations(List<Piece> pieces) {
         StringBuilder piecesResult = new StringBuilder();
         for (Piece piece : pieces)

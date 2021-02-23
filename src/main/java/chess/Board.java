@@ -7,39 +7,25 @@ import java.util.List;
 
 public class Board {
 
-    private List<Piece> whitePawnList  = new ArrayList<>();
-    private List<Piece> blackPawnList  = new ArrayList<>();
-    private List<Piece> whiteRookList  = new ArrayList<>();
-    private List<Piece> blackRookList  = new ArrayList<>();
-    private List<Piece> whiteKnightList  = new ArrayList<>();
-    private List<Piece> blackKnightList  = new ArrayList<>();
-    private List<Piece> whiteBishopList  = new ArrayList<>();
-    private List<Piece> blackBishopList  = new ArrayList<>();
-    private List<Piece> whiteQueenList  = new ArrayList<>();
-    private List<Piece> blackQueenList  = new ArrayList<>();
-    private List<Piece> whiteKingList  = new ArrayList<>();
-    private List<Piece> blackKingList  = new ArrayList<>();
+    private List<Piece> whitePawns = new ArrayList<>();
+    private List<Piece> blackPawns = new ArrayList<>();
+    private List<Piece> whitePieces  = new ArrayList<>();
+    private List<Piece> blackPieces  = new ArrayList<>();
 
     public static final int PAWN_NUMBER = 8;
-    public static final int ROOK_NUMBER = 2;
-    public static final int KNIGHT_NUMBER = 2;
-    public static final int BISHOP_NUMBER = 2;
-    public static final int KING_NUMBER = 2;
-    public static final int QUEEN_NUMBER = 2;
-    public static final int UNIT_NUMBER_WITHOUT_PAWN = 2;
 
     private void whitePawnAdd(Piece whitePawn) {
-        whitePawnList.add(whitePawn);
+        whitePawns.add(whitePawn);
     }
 
     private void blackPawnAdd(Piece blackPawn) {
-        blackPawnList.add(blackPawn);
+        blackPawns.add(blackPawn);
     }
 
     public void initialize() {
         for(int i = 0; i < PAWN_NUMBER; i++){
             whitePawnAdd(Piece.getWhitePawnInstance());
-            blackPawnAdd(Piece.getBlackPawnInstance());
+            blackPawnAdd(Piece.createBlackPawnInstance());
         }
 
         for(int i = 0; i < UNIT_NUMBER_WITHOUT_PAWN; i++){
@@ -47,7 +33,7 @@ public class Board {
         }
     }
 
-    String getWhitePawnsRepresentation() {
+    String bringWhitePawnsRepresentation() {
         StringBuilder sb = new StringBuilder();
 
         for(int i= 0; i < whitePawnSize(); i++){
@@ -56,7 +42,7 @@ public class Board {
         return sb.toString();
     }
 
-    String getBlackPawnsRepresentation() {
+    String bringBlackPawnsRepresentation() {
         StringBuilder sb = new StringBuilder();
 
         for(int i= 0; i < blackPawnSize(); i++){
@@ -76,6 +62,10 @@ public class Board {
     }
 
     public int pieceCount() {
+        return sizeOfPieces();
+    }
+
+    private int sizeOfPieces() {
         return 0;
     }
 
@@ -83,12 +73,12 @@ public class Board {
         StringBuilder sb = new StringBuilder();
 
         sb.append(getDotOnBoard()+"\n");
-        sb.append(getWhitePawnsRepresentation()+"\n");
+        sb.append(bringWhitePawnsRepresentation()+"\n");
         sb.append(getDotOnBoard()+"\n");
         sb.append(getDotOnBoard()+"\n");
         sb.append(getDotOnBoard()+"\n");
         sb.append(getDotOnBoard()+"\n");
-        sb.append(getBlackPawnsRepresentation()+"\n");
+        sb.append(bringBlackPawnsRepresentation()+"\n");
         sb.append(getDotOnBoard());
 
         return sb.toString();

@@ -115,7 +115,7 @@ public class BoardTest {
                 () -> assertThat(Piece.createWhitePawn()).isEqualTo(getWhitePiecesSortByScore.get(7)),
                 () -> assertThat(Piece.createWhitePawn()).isEqualTo(getWhitePiecesSortByScore.get(8)),
                 () -> assertThat(Piece.createWhiteKing()).isEqualTo(getWhitePiecesSortByScore.get(15))
-                );
+        );
 
     }
 

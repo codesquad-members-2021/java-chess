@@ -9,41 +9,33 @@ import java.util.stream.Collectors;
 public class Rank {
     private final List<Piece> pieces = new ArrayList<>();
 
-    public int size() {
-        return pieces.size();
-    }
-
-    public void clear() {
-        pieces.clear();
-    }
-
     public List<Piece> getPieces() {
         return Collections.unmodifiableList(pieces);
     }
 
     public static Rank initBlackPieces() {
         Rank rank = new Rank();
-        rank.addPiece(Piece.createBlackRook());
-        rank.addPiece(Piece.createBlackKnight());
-        rank.addPiece(Piece.createBlackBishop());
-        rank.addPiece(Piece.createBlackQueen());
-        rank.addPiece(Piece.createBlackKing());
-        rank.addPiece(Piece.createBlackBishop());
-        rank.addPiece(Piece.createBlackKnight());
-        rank.addPiece(Piece.createBlackRook());
+        rank.addPiece(Piece.createBlackRook())
+                .addPiece(Piece.createBlackKnight())
+                .addPiece(Piece.createBlackBishop())
+                .addPiece(Piece.createBlackQueen())
+                .addPiece(Piece.createBlackKing())
+                .addPiece(Piece.createBlackBishop())
+                .addPiece(Piece.createBlackKnight())
+                .addPiece(Piece.createBlackRook());
         return rank;
     }
 
     public static Rank initWhitePieces() {
         Rank rank = new Rank();
-        rank.addPiece(Piece.createWhiteRook());
-        rank.addPiece(Piece.createWhiteKnight());
-        rank.addPiece(Piece.createWhiteBishop());
-        rank.addPiece(Piece.createWhiteQueen());
-        rank.addPiece(Piece.createWhiteKing());
-        rank.addPiece(Piece.createWhiteBishop());
-        rank.addPiece(Piece.createWhiteKnight());
-        rank.addPiece(Piece.createWhiteRook());
+        rank.addPiece(Piece.createWhiteRook())
+                .addPiece(Piece.createWhiteKnight())
+                .addPiece(Piece.createWhiteBishop())
+                .addPiece(Piece.createWhiteQueen())
+                .addPiece(Piece.createWhiteKing())
+                .addPiece(Piece.createWhiteBishop())
+                .addPiece(Piece.createWhiteKnight())
+                .addPiece(Piece.createWhiteRook());
         return rank;
     }
 
@@ -71,8 +63,9 @@ public class Rank {
         return rank;
     }
 
-    private void addPiece(Piece piece) {
+    private Rank addPiece(Piece piece) {
         pieces.add(piece);
+        return this;
     }
 
     public int findPieceCount(char representation) {

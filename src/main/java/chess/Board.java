@@ -110,7 +110,12 @@ public class Board {
         return count;
     }
 
-    public Piece findPiece(String a1) {
-        return Piece.createBlank();
+    public Piece findPiece(String position) {
+        char file = position.charAt(0);
+        char rank = position.charAt(1);
+        int filePosition = file - 'a';
+        int rankPosition = Character.getNumericValue(rank);
+        int rankIndex = RANKS - rankPosition;
+        return pieceRanks.get(rankIndex).get(filePosition);
     }
 }

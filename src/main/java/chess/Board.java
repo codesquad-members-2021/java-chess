@@ -93,14 +93,6 @@ public class Board {
         return piecesResult.toString();
     }
 
-    public Piece findWhitePawn(int index) {
-        return whitePawns.get(index);
-    }
-
-    public Piece findBlackPawn(int index) {
-        return blackPawns.get(index);
-    }
-
     public int size() {
         return blackPawns.size() + whitePawns.size() + blackPieces.size() + whitePieces.size();
     }

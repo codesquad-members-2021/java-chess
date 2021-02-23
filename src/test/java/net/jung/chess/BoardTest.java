@@ -1,6 +1,5 @@
 package net.jung.chess;
 
-import net.jung.chess.pieces.Piece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -41,7 +40,6 @@ class BoardTest {
                             () -> assertThat(board.findBlackPiece(0)).isEqualTo(blackPawn));
                 }
         );
-
     }
 
 
@@ -58,7 +56,7 @@ class BoardTest {
 
     @Test
     @DisplayName("initialize()는 32개 모든 말을 체스판 위에 올린다.")
-    void initializeAddsEveryPiece(){
+    void initializeAddsEveryPiece() {
         int maxNumOfPieces = 32;
         board.initialize();
         assertAll(

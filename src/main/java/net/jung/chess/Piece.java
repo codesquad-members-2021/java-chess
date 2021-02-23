@@ -1,6 +1,26 @@
-package net.jung.chess.pieces;
+package net.jung.chess;
 
 public class Piece {
+    public enum Color {
+        WHITE, BLACK, NO_COLOR;
+    }
+
+    public enum Type {
+        PAWN('p'),
+        KNIGHT('n'),
+        ROOK('r'),
+        BISHOP('b'),
+        QUEEN('q'),
+        KING('k'),
+        NO_PIECE(' ');
+
+        private final char representation;
+
+        Type(char representation) {
+            this.representation = representation;
+        }
+    }
+
     private final Color color;
     private final Type type;
 
@@ -14,7 +34,7 @@ public class Piece {
     public Type getType() { return type; }
 
     public char getRepresentation() {
-        return color == Color.WHITE ? type.getWhiteRepresentation() : type.getBlackRepresentation(); }
+        return color == Color.WHITE ? type.representation : Character.toUpperCase(type.representation); }
 
     public static Piece createWhitePawn() { return new Piece(Color.WHITE, Type.PAWN); }
     public static Piece createBlackPawn() { return new Piece(Color.BLACK, Type.PAWN); }
@@ -36,4 +56,6 @@ public class Piece {
     public boolean isBlack() {
         return color == Color.BLACK;
     }
+
+
 }

@@ -1,8 +1,5 @@
 package net.jung.chess;
 
-import net.jung.chess.pieces.Color;
-import net.jung.chess.pieces.Piece;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,15 +45,15 @@ public class Board {
 
     public void initialize() {
         initializeBlackPieces();
-        initializePawns(Color.BLACK);
+        initializePawns(Piece.Color.BLACK);
 
-        initializePawns(Color.WHITE);
+        initializePawns(Piece.Color.WHITE);
         initializeWhitePieces();
     }
 
-    public void initializePawns(Color color) {
+    public void initializePawns(Piece.Color color) {
         int maxPawnsSize = 8;
-        if(color == Color.WHITE) {
+        if(color == Piece.Color.WHITE) {
             for (int i = 0; i < maxPawnsSize; i++) {
             addWhitePiece(Piece.createWhitePawn());
             }

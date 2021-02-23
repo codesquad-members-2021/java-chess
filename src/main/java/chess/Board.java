@@ -22,6 +22,11 @@ public class Board {
             whitePieces.add(piece);
     }
 
+    public void addBlackPiece(Piece piece){
+        if(checkPieceColor(piece, Piece.BLACK_COLOR))
+            blackPieces.add(piece);
+    }
+
     public void addWhitePawn(Piece pawn) {
         if (checkPieceColor(pawn, Piece.WHITE_COLOR))
             whitePawns.add(pawn);

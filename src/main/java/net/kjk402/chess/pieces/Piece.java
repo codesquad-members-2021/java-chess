@@ -47,6 +47,18 @@ public class Piece {
         return isWhite() ? this.type.getWhiteRepresentation() : this.type.getBlackRepresentation();
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    private static Piece createWhite(Type type) {
+        return new Piece(Color.WHITE, type);
+    }
+
+    private static Piece crateBlack(Type type) {
+        return new Piece(Color.BLACK, type);
+    }
+
     public static Piece createWhitePawn() {
         return new Piece(Color.WHITE, Type.PAWN);
     }
@@ -95,6 +107,10 @@ public class Piece {
         return new Piece(Color.BLACK, Type.KING);
     }
 
+    public static Piece createBlack() {
+        return new Piece(Color.NOCOLOR, Type.NO_PIECE);
+    }
+
     public boolean isWhite() {
         return getColor() == Color.WHITE;
     }
@@ -106,4 +122,5 @@ public class Piece {
     public boolean isPawn() {
         return getRepresentation() == 'p' || getRepresentation() == 'P';
     }
+
 }

@@ -44,25 +44,4 @@ class BoardTest {
                         "PPPPPPPP\n" +
                         "........\n");
     }
-
-    @Test
-    @DisplayName("Board에 흰색 폰 한개와 흑색 폰 한개가 제대로 추가되는지 확인")
-    void create() {
-    }
-
-    void verifyAddWhitePawn(Piece whitePawn, int size) {
-        board.addWhitePawn(whitePawn);
-        assertAll(
-                () -> assertThat(board.findWhitePawn(0)).isEqualTo(whitePawn),
-                () -> assertThat(board.size()).isEqualTo(size)
-        );
-    }
-
-    void verifyAddBlackPawn(Piece blackPawn, int size) {
-        board.addBlackPawn(blackPawn);
-        assertAll(
-                () -> assertThat(board.findBlackPawn(0)).isEqualTo(blackPawn),
-                () -> assertThat(board.size()).isEqualTo(size)
-        );
-    }
 }

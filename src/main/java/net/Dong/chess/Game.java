@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Game {
     private static final String PROMPT = "J-chess>> ";
-    private static String[] JAVACHESSHELP = {
+    private static final String[] HELP = {
             " Command  |  description",
             "-----------------------------",
             " start   :  Java chess start",
@@ -15,7 +15,7 @@ public class Game {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("==== Java chess started ===");
-        for (String str : JAVACHESSHELP) {
+        for (String str : HELP) {
             System.out.println(str);
         }
 

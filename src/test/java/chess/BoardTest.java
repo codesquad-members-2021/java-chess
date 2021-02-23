@@ -94,4 +94,44 @@ class BoardTest {
         System.out.println(board.showBoard());
     }
 
+    @Test
+    @DisplayName("체스 프로그램 점수 계산하기")
+    void calculatePoint() {
+        board.initializeEmpty();
+        String currentBoard =
+                appendNewLine(".KR.....") +
+                appendNewLine("P.PB....") +
+                appendNewLine(".P..Q...") +
+                BLANK_RANK +
+                appendNewLine(".....nq.") +
+                appendNewLine(".....p.p") +
+                appendNewLine(".....pp.") +
+                appendNewLine("....rk..");
+
+        addPiece("b8", Piece.createBlackKing());
+        addPiece("c8", Piece.createBlackRook());
+        addPiece("a7", Piece.createBlackPawn());
+        addPiece("c7", Piece.createBlackPawn());
+        addPiece("d7", Piece.createBlackBishop());
+        addPiece("b6", Piece.createBlackPawn());
+        addPiece("e6", Piece.createBlackQueen());
+
+        addPiece("f4", Piece.createWhiteKnight());
+        addPiece("g4", Piece.createWhiteQueen());
+        addPiece("f3", Piece.createWhitePawn());
+        addPiece("h3", Piece.createWhitePawn());
+        addPiece("f2", Piece.createWhitePawn());
+        addPiece("g2", Piece.createWhitePawn());
+        addPiece("e1", Piece.createWhiteRook());
+        addPiece("f1", Piece.createWhiteKing());
+
+        assertThat(board.showBoard()).isEqualTo(currentBoard);
+        assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.0, within(0.01));
+        assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(7.0, within(0.01));
+        System.out.println(board.showBoard());
+    }
+    private void addPiece(String position, Piece piece) {
+        board.move(position, piece);
+    }
+
 }

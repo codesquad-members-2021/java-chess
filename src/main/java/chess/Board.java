@@ -131,6 +131,10 @@ public class Board {
         pieceRanks.get(rankIndex).set(fileIndex, piece);
     }
 
+    public double calculatePoint(Color color) {
+        return 0;
+    }
+
     private class PositionParser {
         private int parseRankIndex(String position) {
             char rank = position.charAt(1);

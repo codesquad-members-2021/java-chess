@@ -36,6 +36,10 @@ public class Piece {
         return new Piece(WHITE_COLOR,WHITE_KNIGHT_REPRESENTATION);
     }
 
+    public static Piece createBlackKnight(){
+        return new Piece(BLACK_COLOR,BLACK_KNIGHT_REPRESENTATION);
+    }
+
 
 
     public String getColor() {

@@ -22,8 +22,9 @@ class BoardTest {
     void initializeTest() throws Exception {
         board.initialize();
         String initialBoardRepresentation = getInitialBoardRepresentation();
+        int initialPiecesCount = 32;
         assertAll(
-                () -> assertThat(board.pieceCount()).isEqualTo(32),
+                () -> assertThat(board.pieceCount()).isEqualTo(initialPiecesCount),
                 () -> assertThat(board.getRepresentation()).isEqualTo(initialBoardRepresentation)
         );
     }

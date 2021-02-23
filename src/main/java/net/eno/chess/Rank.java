@@ -1,5 +1,6 @@
 package net.eno.chess;
 
+import net.eno.pieces.Color;
 import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
 import net.eno.pieces.Position;
@@ -18,17 +19,17 @@ public class Rank {
     public int pieceCount() {
         int count = 0;
         for (Piece piece : this.rank) {
-            if (piece.getRepresentation() != '.') {
+            if (piece.getRepresentation(Color.WHITE) != '.') {
                 count++;
             }
         }
         return count;
     }
 
-    public int targetPieceCount(PieceType pieceType) {
+    public int targetPieceCount(Color color, PieceType pieceType) {
         int count = 0;
         for (Piece piece : this.rank) {
-            if (piece.getPieceType().equals(pieceType)) {
+            if (piece.getColor().equals(color) && piece.getPieceType().equals(pieceType)) {
                 count++;
             }
         }
@@ -47,7 +48,7 @@ public class Rank {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
             String position = String.valueOf((char)('a' + i)) + 2;
-            rank.addPiece(Piece.createPiece(PieceType.WHITE_PAWN, new Position(position)));
+            rank.addPiece(Piece.createPiece(Color.WHITE, PieceType.PAWN, new Position(position)));
         }
         return rank;
     }
@@ -56,34 +57,34 @@ public class Rank {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
             String position = String.valueOf((char)('a' + i)) + 7;
-            rank.addPiece(Piece.createPiece(PieceType.BLACK_PAWN, new Position(position)));
+            rank.addPiece(Piece.createPiece(Color.BLACK, PieceType.PAWN, new Position(position)));
         }
         return rank;
     }
 
     public static Rank createWhitePieces() {
         Rank rank = new Rank();
-        rank.addPiece(Piece.createPiece(PieceType.WHITE_ROOK, new Position("a1")));
-        rank.addPiece(Piece.createPiece(PieceType.WHITE_KNIGHT, new Position("b1")));
-        rank.addPiece(Piece.createPiece(PieceType.WHITE_BISHOP, new Position("c1")));
-        rank.addPiece(Piece.createPiece(PieceType.WHITE_QUEEN, new Position("d1")));
-        rank.addPiece(Piece.createPiece(PieceType.WHITE_KING, new Position("e1")));
-        rank.addPiece(Piece.createPiece(PieceType.WHITE_BISHOP, new Position("f1")));
-        rank.addPiece(Piece.createPiece(PieceType.WHITE_KNIGHT, new Position("g1")));
-        rank.addPiece(Piece.createPiece(PieceType.WHITE_ROOK, new Position("h1")));
+        rank.addPiece(Piece.createPiece(Color.WHITE, PieceType.ROOK, new Position("a1")));
+        rank.addPiece(Piece.createPiece(Color.WHITE, PieceType.KNIGHT, new Position("b1")));
+        rank.addPiece(Piece.createPiece(Color.WHITE, PieceType.BISHOP, new Position("c1")));
+        rank.addPiece(Piece.createPiece(Color.WHITE, PieceType.QUEEN, new Position("d1")));
+        rank.addPiece(Piece.createPiece(Color.WHITE, PieceType.KING, new Position("e1")));
+        rank.addPiece(Piece.createPiece(Color.WHITE, PieceType.BISHOP, new Position("f1")));
+        rank.addPiece(Piece.createPiece(Color.WHITE, PieceType.KNIGHT, new Position("g1")));
+        rank.addPiece(Piece.createPiece(Color.WHITE, PieceType.ROOK, new Position("h1")));
         return rank;
     }
 
     public static Rank createBlackPieces() {
         Rank rank = new Rank();
-        rank.addPiece(Piece.createPiece(PieceType.BLACK_ROOK, new Position("a8")));
-        rank.addPiece(Piece.createPiece(PieceType.BLACK_KNIGHT, new Position("b8")));
-        rank.addPiece(Piece.createPiece(PieceType.BLACK_BISHOP, new Position("c8")));
-        rank.addPiece(Piece.createPiece(PieceType.BLACK_QUEEN, new Position("d8")));
-        rank.addPiece(Piece.createPiece(PieceType.BLACK_KING, new Position("e8")));
-        rank.addPiece(Piece.createPiece(PieceType.BLACK_BISHOP, new Position("f8")));
-        rank.addPiece(Piece.createPiece(PieceType.BLACK_KNIGHT, new Position("g8")));
-        rank.addPiece(Piece.createPiece(PieceType.BLACK_ROOK, new Position("h8")));
+        rank.addPiece(Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position("a8")));
+        rank.addPiece(Piece.createPiece(Color.BLACK, PieceType.KNIGHT, new Position("b8")));
+        rank.addPiece(Piece.createPiece(Color.BLACK, PieceType.BISHOP, new Position("c8")));
+        rank.addPiece(Piece.createPiece(Color.BLACK, PieceType.QUEEN, new Position("d8")));
+        rank.addPiece(Piece.createPiece(Color.BLACK, PieceType.KING, new Position("e8")));
+        rank.addPiece(Piece.createPiece(Color.BLACK, PieceType.BISHOP, new Position("f8")));
+        rank.addPiece(Piece.createPiece(Color.BLACK, PieceType.KNIGHT, new Position("g8")));
+        rank.addPiece(Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position("h8")));
         return rank;
     }
 
@@ -91,7 +92,7 @@ public class Rank {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {
             String position = String.valueOf((char)('a' + i)) + rankNumber;
-            rank.addPiece(Piece.createPiece(PieceType.NO_PIECE, new Position(position)));
+            rank.addPiece(Piece.createPiece(Color.NOCOLOR, PieceType.NO_PIECE, new Position(position)));
         }
         return rank;
     }
@@ -99,7 +100,8 @@ public class Rank {
     public String getPiecesResult(int num) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < this.rank.size(); i++) {
-            result.append(rank.get(Math.abs(i - num)).getRepresentation());
+            Piece piece = rank.get(Math.abs(i - num));
+            result.append(piece.getRepresentation(piece.getColor()));
         }
         return result.toString();
     }

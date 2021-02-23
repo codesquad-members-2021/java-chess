@@ -9,29 +9,28 @@ public class PieceTest {
     @DisplayName("공백 기물과 모든 피스의 흰색, 검은색 기물이 생성되어야 한다.")
     public void create() {
         for (PieceType pieceType : PieceType.values()) {
-            verifyPiece(pieceType);
+            verifyPiece(Color.WHITE, pieceType);
+            verifyPiece(Color.BLACK, pieceType);
         }
     }
 
-    private void verifyPiece(PieceType pieceType) {
-        Piece piece = Piece.createPiece(pieceType, new Position("a1"));
+    private void verifyPiece(Color color, PieceType pieceType) {
+        Piece piece = Piece.createPiece(color, pieceType, new Position("a1"));
         assertThat(piece.getPieceType()).isEqualTo((pieceType));
-        assertThat(piece.getColor()).isEqualTo(pieceType.getColor());
-        assertThat(piece.getRepresentation()).isEqualTo(pieceType.getRepresentation());
+        assertThat(piece.getColor()).isEqualTo(color);
+        assertThat(piece.getRepresentation(color)).isEqualTo(pieceType.getRepresentation(color));
         verifyPieceColor(piece);
     }
 
     private void verifyPieceColor(Piece piece) {
-        switch (piece.getColor()) {
-            case "white" :
-                assertThat(piece.isWhite()).isTrue();
-                break;
-            case "black" :
-                assertThat(piece.isBlack()).isTrue();
-                break;
-            default :
-                assertThat(piece.isWhite()).isFalse();
-                assertThat(piece.isBlack()).isFalse();
+        Color PieceColor = piece.getColor();
+        if (PieceColor.equals(Color.WHITE)) {
+            assertThat(piece.isWhite()).isTrue();
+        } else if (PieceColor.equals(Color.BLACK)) {
+            assertThat(piece.isBlack()).isTrue();
+        } else {
+            assertThat(piece.isWhite()).isFalse();
+            assertThat(piece.isBlack()).isFalse();
         }
     }
 

@@ -4,36 +4,38 @@ import java.util.Objects;
 
 public class Piece {
 
+    private final Color color;
     private final PieceType pieceType;
     private Position position;
 
-    private Piece(PieceType pieceType, Position position) {
+    private Piece(Color color, PieceType pieceType, Position position) {
+        this.color = color;
         this.pieceType = pieceType;
         this.position = position;
     }
 
-    public static Piece createPiece(PieceType pieceType, Position position) {
-        return new Piece(pieceType, position);
+    public static Piece createPiece(Color color, PieceType pieceType, Position position) {
+        return new Piece(color, pieceType, position);
     }
 
     public PieceType getPieceType() {
         return this.pieceType;
     }
 
-    public String getColor() {
-        return this.pieceType.getColor();
+    public Color getColor() {
+        return this.color;
     }
 
-    public char getRepresentation() {
-        return this.pieceType.getRepresentation();
+    public char getRepresentation(Color color) {
+        return this.pieceType.getRepresentation(color);
     }
 
     public boolean isWhite() {
-        return getColor().equals("white");
+        return getColor().equals(Color.WHITE);
     }
 
     public boolean isBlack() {
-        return getColor().equals("black");
+        return getColor().equals(Color.BLACK);
     }
 
     @Override
@@ -41,12 +43,13 @@ public class Piece {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
-        return pieceType == piece.pieceType && Objects.equals(position, piece.position);
+        return this.color == piece.color &&
+                this.pieceType == piece.pieceType &&
+                Objects.equals(this.position, piece.position);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pieceType, position);
+        return Objects.hash(color, pieceType, position);
     }
-
 }

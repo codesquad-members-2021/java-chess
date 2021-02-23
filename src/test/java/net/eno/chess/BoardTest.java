@@ -1,5 +1,6 @@
 package net.eno.chess;
 
+import net.eno.pieces.Color;
 import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
 import net.eno.pieces.Position;
@@ -27,8 +28,14 @@ public class BoardTest {
     @Test
     @DisplayName("타입 별 기물의 개수가 일치해야 한다.")
     public void count() {
-        for (PieceType pieceType : PieceType.values()) {
-            assertThat(board.targetPieceCount(pieceType)).isEqualTo(pieceCount(pieceType));
+        PieceType[] pieceTypeArray = PieceType.values();
+        for (int i = 0; i < pieceTypeArray.length; i++) {
+            if (i != 6) {
+                assertThat(board.targetPieceCount(Color.WHITE, pieceTypeArray[i])).isEqualTo(pieceCount(pieceTypeArray[i]));
+                assertThat(board.targetPieceCount(Color.BLACK, pieceTypeArray[i])).isEqualTo(pieceCount(pieceTypeArray[i]));
+            } else {
+                assertThat(board.targetPieceCount(Color.NOCOLOR, pieceTypeArray[i])).isEqualTo(pieceCount(pieceTypeArray[i]));
+            }
         }
     }
 
@@ -36,9 +43,9 @@ public class BoardTest {
         switch (pieceType) {
             case NO_PIECE :
                 return 32;
-            case WHITE_PAWN : case BLACK_PAWN :
+            case PAWN :
                 return 8;
-            case WHITE_KING : case BLACK_KING : case WHITE_QUEEN : case BLACK_QUEEN :
+            case KING : case QUEEN :
                 return 1;
             default :
                 return 2;
@@ -49,15 +56,14 @@ public class BoardTest {
     @DisplayName("초기화 된 보드의 기물의 배치가 일치해야 한다.")
     public void initialize() {
         String blankRank = appendNewLine("........");
-        assertThat(board.showBoard("white")).isEqualTo(
+        assertThat(board.showBoard(Color.WHITE)).isEqualTo(
                 appendNewLine("RNBQKBNR") +
                 appendNewLine("PPPPPPPP") +
                 blankRank + blankRank + blankRank + blankRank +
                 appendNewLine("pppppppp") +
                 appendNewLine("rnbqkbnr")
         );
-
-        assertThat(board.showBoard("black")).isEqualTo(
+        assertThat(board.showBoard(Color.BLACK)).isEqualTo(
                 appendNewLine("rnbkqbnr") +
                 appendNewLine("pppppppp") +
                 blankRank + blankRank + blankRank + blankRank +
@@ -69,10 +75,10 @@ public class BoardTest {
     @Test
     @DisplayName("체스판에 해당하는 좌표의 기물을 가져올 수 있어야 한다.")
     public void findPiece() {
-        assertThat(board.findPiece("a8")).isEqualTo(Piece.createPiece(PieceType.BLACK_ROOK, new Position("a8")));
-        assertThat(board.findPiece("h8")).isEqualTo(Piece.createPiece(PieceType.BLACK_ROOK, new Position("h8")));
-        assertThat(board.findPiece("a1")).isEqualTo(Piece.createPiece(PieceType.WHITE_ROOK, new Position("a1")));
-        assertThat(board.findPiece("h1")).isEqualTo(Piece.createPiece(PieceType.WHITE_ROOK, new Position("h1")));
+        assertThat(board.findPiece("a8")).isEqualTo(Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position("a8")));
+        assertThat(board.findPiece("h8")).isEqualTo(Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position("h8")));
+        assertThat(board.findPiece("a1")).isEqualTo(Piece.createPiece(Color.WHITE, PieceType.ROOK, new Position("a1")));
+        assertThat(board.findPiece("h1")).isEqualTo(Piece.createPiece(Color.WHITE, PieceType.ROOK, new Position("h1")));
     }
 
     @Test
@@ -81,11 +87,11 @@ public class BoardTest {
         board.initializeEmpty();
 
         String position = "b5";
-        Piece piece = Piece.createPiece(PieceType.BLACK_ROOK, new Position(position));
+        Piece piece = Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position(position));
         board.move(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
-        System.out.println(board.showBoard("white"));
+        System.out.println(board.showBoard(Color.WHITE));
     }
 
 }

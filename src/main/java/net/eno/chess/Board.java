@@ -1,5 +1,6 @@
 package net.eno.chess;
 
+import net.eno.pieces.Color;
 import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
 import net.eno.pieces.Position;
@@ -31,10 +32,10 @@ public class Board {
         return count;
     }
 
-    public int targetPieceCount(PieceType pieceType) {
+    public int targetPieceCount(Color color, PieceType pieceType) {
         int count = 0;
         for (Rank rank : this.board) {
-            count += rank.targetPieceCount(pieceType);
+            count += rank.targetPieceCount(color, pieceType);
         }
         return count;
     }
@@ -74,23 +75,14 @@ public class Board {
         }
     }
 
-    public String showBoard(String color) {
+    public String showBoard(Color color) {
         StringBuilder result = new StringBuilder();
-        int num = reverseOrder(color);
+        int num = color.equals(Color.BLACK) ? 7 : 0;
         for (int i = 0; i < this.board.size(); i++) {
             Rank rank = board.get(Math.abs(i - num));
             result.append(appendNewLine(rank.getPiecesResult(num)));
         }
         return result.toString();
-    }
-
-    private int reverseOrder(String color) {
-        if (color.equals("white")) {
-            return 0;
-        } else if (color.equals("black")) {
-            return 7;
-        }
-        throw new InvalidParameterException("Color error");
     }
 
 }

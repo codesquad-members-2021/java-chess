@@ -38,6 +38,10 @@ public class Rank {
         return this.rank.get(i - 97);
     }
 
+    public void move(int i, Piece piece) {
+        this.rank.set(i - 97, piece);
+    }
+
     public static Rank createWhitePawns() {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {

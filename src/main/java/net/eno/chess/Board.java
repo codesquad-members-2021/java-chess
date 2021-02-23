@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Board {
 
-    private final List<Rank> board;
+    private List<Rank> board;
 
     public Board() {
         this.board = new ArrayList<>();
@@ -47,6 +47,14 @@ public class Board {
         return targetRank.findPiece(parseLocation[0]);
     }
 
+    public void move(String location, Piece piece) {
+        int[] parseLocation = parseLocation(location);
+        if (parseLocation[0] != 0) {
+            Rank targetRank = this.board.get(8 - parseLocation[1]);
+            targetRank.move(parseLocation[0], piece);
+        }
+    }
+
     private int[] parseLocation(String location) {
         int[] splitLocation = new int[2];
 
@@ -69,6 +77,7 @@ public class Board {
     }
 
     public void initialize() {
+        this.board = new ArrayList<>();
         addRank(Rank.createBlackPieces());
         addRank(Rank.createBlackPawns());
         addRank(Rank.createBlankLine());
@@ -77,6 +86,13 @@ public class Board {
         addRank(Rank.createBlankLine());
         addRank(Rank.createWhitePawns());
         addRank(Rank.createWhitePieces());
+    }
+
+    public void initializeEmpty() {
+        this.board = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            addRank(Rank.createBlankLine());
+        }
     }
 
     public String showBoard(String color) {

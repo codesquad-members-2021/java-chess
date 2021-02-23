@@ -1,30 +1,21 @@
 package net.isaac.pieces;
 
 public class Piece {
-    public static final char PAWN_REPRESENTATION = 'p';
-    public static final char KING_REPRESENTATION = 'k';
-    public static final char QUEEN_REPRESENTATION = 'q';
-    public static final char ROOK_REPRESENTATION = 'r';
-    public static final char BISHOP_REPRESENTATION = 'b';
-    public static final char KNIGHT_REPRESENTATION = 'n';
-
     private final Color color;
-    private final char representation;
+    private final Type type;
 
-    private Piece(Color color, char representation) {
+    private Piece(Color color, Type type) {
         this.color = color;
-        this.representation = representation;
+        this.type = type;
     }
 
     //Board 출력을 위한 문자 반환
     public char getRepresentation() {
         if (color == Color.BLACK) {
-            return Character.toUpperCase(representation);
+            return Character.toUpperCase(type.representation);
         }
-        return representation;
+        return type.representation;
     }
-
-    ;
 
     public Color getColor() {
         return color;
@@ -38,32 +29,21 @@ public class Piece {
         return this.color == Color.BLACK;
     }
 
-    public static Piece createPawn(Color color) {
-        return new Piece(color, Piece.PAWN_REPRESENTATION);
-    }
-
-    public static Piece createKing(Color color) {
-        return new Piece(color, Piece.KING_REPRESENTATION);
-    }
-
-    public static Piece createQueen(Color color) {
-        return new Piece(color, Piece.QUEEN_REPRESENTATION);
-    }
-
-    public static Piece createRook(Color color) {
-        return new Piece(color, Piece.ROOK_REPRESENTATION);
-    }
-
-    public static Piece createBishop(Color color) {
-        return new Piece(color, Piece.BISHOP_REPRESENTATION);
-    }
-
-    public static Piece createKnight(Color color) {
-        return new Piece(color, Piece.KNIGHT_REPRESENTATION);
+    public static Piece createPiece(Color color, Type type) {
+        return new Piece(color, type);
     }
 
     public enum Color {
         BLACK,
         WHITE
+    }
+
+    public enum Type {
+        PAWN('p'), KING('k'), QUEEN('q'), ROOK('r'), BISHOP('b'), KNIGHT('n');
+        public final char representation;
+
+        Type(char representation) {
+            this.representation = representation;
+        }
     }
 }

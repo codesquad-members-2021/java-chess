@@ -45,9 +45,9 @@ class BoardTest {
     @Test
     @DisplayName("Board의 Pawn 등록 테스트")
     void pawnAddTest() throws Exception {
-        Piece white = Piece.createPawn(Piece.Color.WHITE);
+        Piece white = Piece.createPiece(Piece.Color.WHITE, Piece.Type.PAWN);
         board.add(white, 0, 0);
-        Piece black = Piece.createPawn(Piece.Color.BLACK);
+        Piece black = Piece.createPiece(Piece.Color.BLACK, Piece.Type.PAWN);
         board.add(black, 0, 1);
 
         assertAll(

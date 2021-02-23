@@ -24,27 +24,27 @@ public class Board {
 
     private void initializeSpecialPieces(Piece.Color color, int row) {
         int rookColumn = 0;
-        add(Piece.createRook(color), row, rookColumn);
-        add(Piece.createRook(color), row, MAX_IDX - rookColumn);
+        add(Piece.createPiece(color, Piece.Type.ROOK), row, rookColumn);
+        add(Piece.createPiece(color, Piece.Type.ROOK), row, MAX_IDX - rookColumn);
 
         int knightColumn = 1;
-        add(Piece.createKnight(color), row, knightColumn);
-        add(Piece.createKnight(color), row, MAX_IDX - knightColumn);
+        add(Piece.createPiece(color, Piece.Type.KNIGHT), row, knightColumn);
+        add(Piece.createPiece(color, Piece.Type.KNIGHT), row, MAX_IDX - knightColumn);
 
         int bishopColumn = 2;
-        add(Piece.createBishop(color), row, bishopColumn);
-        add(Piece.createBishop(color), row, MAX_IDX - bishopColumn);
+        add(Piece.createPiece(color, Piece.Type.BISHOP), row, bishopColumn);
+        add(Piece.createPiece(color, Piece.Type.BISHOP), row, MAX_IDX - bishopColumn);
 
         int QueenColumn = 3;
-        add(Piece.createQueen(color), row, QueenColumn);
+        add(Piece.createPiece(color, Piece.Type.QUEEN), row, QueenColumn);
 
         int KingColumn = 4;
-        add(Piece.createKing(color), row, KingColumn);
+        add(Piece.createPiece(color, Piece.Type.KING), row, KingColumn);
     }
 
     private void initializePawns(Piece.Color color, int row) {
         for (int column = 0; column < MAX_SIZE; column++) {
-            add(Piece.createPawn(color), row, column);
+            add(Piece.createPiece(color, Piece.Type.PAWN), row, column);
         }
     }
 

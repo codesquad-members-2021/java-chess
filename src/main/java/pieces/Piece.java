@@ -64,6 +64,10 @@ public class Piece {
         return new Piece(BLACK_COLOR,BLACK_QUEEN_REPRESENTATION);
     }
 
+    public static Piece createWhiteKing(){
+        return new Piece(WHITE_COLOR,WHITE_KING_REPRESENTATION);
+    }
+
 
 
 

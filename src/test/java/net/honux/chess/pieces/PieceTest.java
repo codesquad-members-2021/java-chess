@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PieceTest {
 
     @Test
+    @DisplayName("각 기물들이 컬러와 표시문자가 잘 생성되는지 확인")
     void create_piece() {
         verifyPiece(Piece.createWhitePawn(), Piece.WHITE_COLOR, Piece.WHITE_PAWN_REPRESENTATION);
         verifyPiece(Piece.createBlackPawn(), Piece.BLACK_COLOR, Piece.BLACK_PAWN_REPRESENTATION);
@@ -26,5 +27,12 @@ class PieceTest {
     private void verifyPiece(final Piece piece, final String color, final char representation) {
         assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
+    }
+
+    @Test
+    @DisplayName("white색인지 black색인지 알아보는 테스트")
+    void check_color(){
+        assertThat(Piece.createWhitePawn().isWhite()).isTrue();
+        assertThat(Piece.createWhitePawn().isBlack()).isFalse();
     }
 }

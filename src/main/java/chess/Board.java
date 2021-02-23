@@ -13,6 +13,7 @@ public class Board {
 
     private final ArrayList<ArrayList<Piece>> pieceRanks;
     private int size;
+    private PositionParser positionParser = new PositionParser();
 
     private final int RANKS = 8;
     private final int FILES = 8;
@@ -111,18 +112,28 @@ public class Board {
     }
 
     public Piece findPiece(String position) {
-        char file = position.charAt(0);
-        char rank = position.charAt(1);
-        int filePosition = file - 'a';
-        int rankPosition = Character.getNumericValue(rank);
-        int rankIndex = RANKS - rankPosition;
-        return pieceRanks.get(rankIndex).get(filePosition);
+        int rankIndex = positionParser.parseRankIndex(position);
+        int fileIndex = positionParser.parseFileIndex(position);
+        return pieceRanks.get(rankIndex).get(fileIndex);
     }
 
     public void move(String position, Piece piece) {
+
     }
 
     public void initializeEmpty() {
+    }
+
+    private class PositionParser {
+        private int parseRankIndex(String position) {
+            char rank = position.charAt(1);
+            int rankPosition = Character.getNumericValue(rank);
+            return RANKS - rankPosition;
+        }
+        private int parseFileIndex(String position) {
+            char file = position.charAt(0);
+            return file - 'a';
+        }
     }
 
 }

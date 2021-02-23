@@ -15,10 +15,13 @@ public class Board {
     private List<Piece> blackPieces = new ArrayList<>();
 
     public void initialize() {
-        initializeSpecialPieces(Piece.Color.BLACK, 0);
-        initializePawns(Piece.Color.BLACK, 1);
-        initializePawns(Piece.Color.WHITE, MAX_IDX - 1);
-        initializeSpecialPieces(Piece.Color.WHITE, MAX_IDX);
+        int pawnsRow = 1;
+        initializePawns(Piece.Color.BLACK, pawnsRow);
+        initializePawns(Piece.Color.WHITE, MAX_IDX - pawnsRow);
+
+        int specialRow = 0;
+        initializeSpecialPieces(Piece.Color.BLACK, specialRow);
+        initializeSpecialPieces(Piece.Color.WHITE, MAX_IDX - specialRow);
     }
 
     private void initializeSpecialPieces(Piece.Color color, int row) {

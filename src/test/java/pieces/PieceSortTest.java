@@ -52,22 +52,22 @@ public class PieceSortTest {
     private void verifySortUsingStream(Collection<Piece> pieceCollection) {
         Collection<Piece> blackPiecesDescOrderByStream = pieceCollection.stream()
                 .filter(Piece::isBlack)
-                .sorted(Comparator.comparing(piece -> piece.getType().getPoint(), Comparator.reverseOrder()))
+                .sorted(Comparator.comparing(Piece::getType, Comparator.reverseOrder()))
                 .collect(Collectors.toList());
 
         Collection<Piece> whitePiecesDescOrderByStream = pieceCollection.stream()
                 .filter(Piece::isWhite)
-                .sorted(Comparator.comparing(piece -> piece.getType().getPoint(), Comparator.reverseOrder()))
+                .sorted(Comparator.comparing(Piece::getType, Comparator.reverseOrder()))
                 .collect(Collectors.toList());
 
         Collection<Piece> blackPiecesAscOrderByStream = pieceCollection.stream()
                 .filter(Piece::isBlack)
-                .sorted(Comparator.comparing(piece -> piece.getType().getPoint()))
+                .sorted(Comparator.comparing(Piece::getType))
                 .collect(Collectors.toList());
 
         Collection<Piece> whitePiecesAscOrderByStream = pieceCollection.stream()
                 .filter(Piece::isWhite)
-                .sorted(Comparator.comparing(piece -> piece.getType().getPoint()))
+                .sorted(Comparator.comparing(Piece::getType))
                 .collect(Collectors.toList());
 
         verifyBlackPiecesDecreasingOrder(blackPiecesDescOrderByStream);
@@ -88,18 +88,16 @@ public class PieceSortTest {
             }
         }
 
-        Collections.sort(blackPieces, Comparator.comparing(piece -> piece.getType().getPoint()));
+        Collections.sort(blackPieces, Comparator.comparing(Piece::getType));
         verifyBlackPiecesAscendingOrder(blackPieces);
 
-        Collections.sort(blackPieces, Comparator.comparing(piece -> piece.getType().getPoint(),
-                Comparator.reverseOrder()));
+        Collections.sort(blackPieces, Comparator.comparing(Piece::getType, Comparator.reverseOrder()));
         verifyBlackPiecesDecreasingOrder(blackPieces);
 
-        whitePieces.sort(Comparator.comparing(piece -> piece.getType().getPoint()));
+        whitePieces.sort(Comparator.comparing(Piece::getType));
         verifyWhitePiecesAscendingOrder(whitePieces);
 
-        whitePieces.sort(Comparator.comparing(piece -> piece.getType().getPoint(),
-                Comparator.reverseOrder()));
+        whitePieces.sort(Comparator.comparing(Piece::getType, Comparator.reverseOrder()));
         verifyWhitePiecesDecreasingOrder(whitePieces);
     }
 

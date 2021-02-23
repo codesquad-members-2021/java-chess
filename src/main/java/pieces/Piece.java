@@ -25,51 +25,51 @@ public class Piece {
         this.representation = representation;
     }
 
-    public Piece getWhitePawnInstance(){
+    public static Piece getWhitePawnInstance(){
         return new Piece(WHITE, WHITE_PAWN_REPRESENTATION);
     }
 
-    public Piece getBlackPawnInstance(){
+    public static Piece getBlackPawnInstance(){
         return new Piece(BLACK, BLACK_PAWN_REPRESENTATION);
     }
 
-    public Piece getWhiteKnightInstance(){
+    public static Piece getWhiteKnightInstance(){
         return new Piece(WHITE, WHITE_KNIGHT_REPRESENTATION);
     }
 
-    public Piece getBlackKnightInstance(){
+    public static Piece getBlackKnightInstance(){
         return new Piece(BLACK, BLACK_KNIGHT_REPRESENTATION);
     }
 
-    public Piece getWhiteRookInstance(){
+    public static Piece getWhiteRookInstance(){
         return new Piece(WHITE, WHITE_ROOK_REPRESENTATION);
     }
 
-    public Piece getBlackRookInstance(){
+    public static Piece getBlackRookInstance(){
         return new Piece(BLACK, BLACK_ROOK_REPRESENTATION);
     }
 
-    public Piece getWhiteBishopInstance(){
+    public static Piece getWhiteBishopInstance(){
         return new Piece(WHITE, WHITE_BISHOP_REPRESENTATION);
     }
 
-    public Piece getBlackBishopInstance(){
+    public static Piece getBlackBishopInstance(){
         return new Piece(BLACK, BLACK_BISHOP_REPRESENTATION);
     }
 
-    public Piece getWhiteQueenInstance(){
+    public static Piece getWhiteQueenInstance(){
         return new Piece(WHITE, WHITE_QUEEN_REPRESENTATION);
     }
 
-    public Piece getBlackQueenInstance(){
+    public static Piece getBlackQueenInstance(){
         return new Piece(BLACK, BLACK_QUEEN_REPRESENTATION);
     }
 
-    public Piece getWhiteKingInstance(){
+    public static Piece getWhiteKingInstance(){
         return new Piece(WHITE, WHITE_KING_REPRESENTATION);
     }
 
-    public Piece getBlackKingInstance(){
+    public static Piece getBlackKingInstance(){
         return new Piece(BLACK, BLACK_KING_REPRESENTATION);
     }
 

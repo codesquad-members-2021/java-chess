@@ -102,7 +102,7 @@ public class Board {
     }
 
     public int size() {
-        return blackPawns.size() + whitePawns.size();
+        return blackPawns.size() + whitePawns.size() + blackPieces.size() + whitePieces.size();
     }
 
     public String printBoard() {

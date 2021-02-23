@@ -21,6 +21,8 @@ public class Board {
             addWhitePawn(Piece.createWhitePawn());
             addBlackPawn(Piece.createBlackPawn());
         }
+        initializeWhitePieces();
+        initializeBlackPieces();
     }
 
     private void initializeWhitePieces() {

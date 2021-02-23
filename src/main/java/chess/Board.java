@@ -77,11 +77,11 @@ public class Board {
         return getPawnRepresentations(blackPawns);
     }
 
-    private String getPawnRepresentations(List<Piece> pawns) {
-        StringBuilder pawnsResult = new StringBuilder();
-        for (Piece pawn : pawns)
-            pawnsResult.append(pawn.getRepresentation());
-        return pawnsResult.toString();
+    private String getPieceRepresentations(List<Piece> pieces) {
+        StringBuilder piecesResult = new StringBuilder();
+        for (Piece piece : pieces)
+            piecesResult.append(piece.getRepresentation());
+        return piecesResult.toString();
     }
 
     public Piece findWhitePawn(int index) {

@@ -82,12 +82,17 @@ public class Piece {
         return new Piece(BLACK, BLACK_KING_REPRESENTATION);
     }
 
-
     public boolean isWhite() {
+        if (this.color.equals("white")) {
+            return true;
+        }
         return false;
     }
 
     public boolean isBlack() {
+        if (this.color.equals("black")) {
+            return true;
+        }
         return false;
     }
 }

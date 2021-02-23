@@ -3,10 +3,11 @@ package chess;
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
 import pieces.Piece;
+import static utils.StringUtils.appendNewLine;
 
 class BoardTest {
 
-    Board board;
+    private Board board;
 
     @BeforeEach
     void createBoard(){
@@ -14,46 +15,17 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("폰 생성 횟수 체크 기능과 원하는 폰의 인덱스를 찾는 기능이 잘 되는지 테스트 한다.")
-    void createPawn(){
-        Piece white = new Piece(Piece.WHITE);
-        addWhitePawnOnBoard(1, white);
-        Piece black = new Piece(Piece.BLACK);
-        addBlackPawnOnBoard(1, black);
-    }
-    
-    void addWhitePawnOnBoard(int index, Piece whitePawnInstance) {
-        board.whitePawnAdd(whitePawnInstance);
-        assertThat(index).isEqualTo(board.whitePawnSize());
-        assertThat(whitePawnInstance).isEqualTo(board.findWhitePawn(index-1));
-    }
-
-    void addBlackPawnOnBoard(int index, Piece blackPawnInstance) {
-        board.blackPawnAdd(blackPawnInstance);
-        assertThat(index).isEqualTo(board.blackPawnSize());
-        assertThat(blackPawnInstance).isEqualTo(board.findBlackPawn(index-1));
-    }
-
-    @Test
-    @DisplayName("보드판에 초기화 된 이니셜이 의도한 바와 맞는지 테스트합니다")
-    void initialize(){
-        board.initialize();
-        assertThat(board.getWhitePawnsRepresentation()).isEqualTo("pppppppp");
-        assertThat(board.getBlackPawnsRepresentation()).isEqualTo("PPPPPPPP");
-    }
-
-    @Test
     @DisplayName("보드판 출력이 원하는 그림대로 나오는지 테스트")
-    void printBoard(){
+    public void showPieceNumAndTotalBoard(){
         board.initialize();
-        assertThat(board.getBoard()).isEqualTo(
-                "........\n" +
-                "pppppppp\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "PPPPPPPP\n" +
-                "........");
+        assertThat(32).isEqualTo(board.pieceCount());
+        String blankArea = appendNewLine("........");
+        assertThat(
+                appendNewLine("RNBQKBNR") +
+                appendNewLine("PPPPPPPP") +
+                blankArea + blankArea + blankArea + blankArea +
+                appendNewLine("pppppppp") +
+                appendNewLine("rnbqkbnr")
+        ).isEqualTo(board.showBoard());
     }
 }

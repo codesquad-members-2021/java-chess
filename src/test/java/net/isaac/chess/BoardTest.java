@@ -34,7 +34,10 @@ class BoardTest {
 
         return appendNewLine("RNBQKBNR") +
                 appendNewLine("PPPPPPPP") +
-                blankRank + blankRank + blankRank + blankRank +
+                blankRank +
+                blankRank +
+                blankRank +
+                blankRank +
                 appendNewLine("pppppppp") +
                 appendNewLine("rnbqkbnr");
     }

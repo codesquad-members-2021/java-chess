@@ -16,11 +16,17 @@ class PieceTest {
     }
 
     @Test
+    @DisplayName("흑나이트 백나이트가 제대로 생성되는지 확인")
+    void createKnightPiece(){
+        verifyPiece(Piece.createWhiteKnight(),Piece.WHITE_COLOR, Piece.WHITE_KNIGHT_REPRESENTATION);
+        verifyPiece(Piece.createBlackKnight(),Piece.BLACK_COLOR, Piece.BLACK_KNIGHT_REPRESENTATION);
+    }
+
+    @Test
     @DisplayName("생성된 기물들의 색과 representation 이 올바른지 확인")
     void createPiece() {
 
-        verifyPiece(Piece.createWhiteKnight(),Piece.WHITE_COLOR, Piece.WHITE_KNIGHT_REPRESENTATION);
-        verifyPiece(Piece.createBlackKnight(),Piece.BLACK_COLOR, Piece.BLACK_KNIGHT_REPRESENTATION);
+
 
         verifyPiece(Piece.createWhiteRook(),Piece.WHITE_COLOR, Piece.WHITE_ROOK_REPRESENTATION);
         verifyPiece(Piece.createBlackRook(),Piece.BLACK_COLOR, Piece.BLACK_ROOK_REPRESENTATION);

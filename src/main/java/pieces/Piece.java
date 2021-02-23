@@ -26,6 +26,14 @@ public class Piece {
         this.representation = representation;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public char getRepresentation() {
+        return representation;
+    }
+
     public static Piece createWhitePawnInstance(){
         return new Piece(WHITE, WHITE_PAWN_REPRESENTATION);
     }
@@ -74,13 +82,12 @@ public class Piece {
         return new Piece(BLACK, BLACK_KING_REPRESENTATION);
     }
 
-    public String getColor() {
-        return color;
+
+    public boolean isWhite() {
+        return false;
     }
 
-    public char getRepresentation() {
-        return representation;
+    public boolean isBlack() {
+        return false;
     }
-
-
 }

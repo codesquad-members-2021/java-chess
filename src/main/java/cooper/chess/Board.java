@@ -1,111 +1,57 @@
 package cooper.chess;
 
-import cooper.chess.piece.Color;
-import cooper.chess.piece.Pawn;
-import cooper.chess.piece.PawnGroup;
-
+import cooper.chess.piece.*;
 import java.util.*;
 
-public class Board {
-    private static final int PAWN_MAX_SIZE = 8;
+import static cooper.chess.utils.StringUtils.*;
 
-    private final PawnGroup pawnGroup;
+public class Board {
+    private static final int BOARD_SIZE = 8;
+
+    private final PieceGroup pieceGroup;
 
     public Board() {
-        this.pawnGroup = new PawnGroup(createPawnGroup());
+        this.pieceGroup = new PieceGroup();
     }
 
-    private Map<Color, List<Pawn>> createPawnGroup() {
-        Map<Color, List<Pawn>> pawnListMap = new HashMap<>();
-        pawnListMap.put(Color.WHITE, new ArrayList<>());
-        pawnListMap.put(Color.BLACK, new ArrayList<>());
-
-        return pawnListMap;
+    public void add(Piece piece) {
+        pieceGroup.add(piece);
     }
 
-    public void initialize() {
-        initPawnList(Color.WHITE);
-        initPawnList(Color.BLACK);
+    public int pieceCount() {
+        return pieceGroup.size();
     }
 
-    private List<Pawn> initPawnList(Color color) {
-        List<Pawn> pawnList = pawnGroup.getPawnList(color);
-
-        int pawnCount = 0;
-        while(pawnCount++ < PAWN_MAX_SIZE) {
-            pawnList.add(new Pawn(color.getColorName()));
-        }
-
-        return pawnList;
+    public Piece findPawn(int index, Color color) {
+        return pieceGroup.findPawn(index, color);
     }
 
-    public void add(Pawn pawn) {
-        List<Pawn> pawnList = pawnGroup.getPawnList(pawn.getColor());
-
-        if(pawnList.size() >= 8) {
-            return;
-        }
-
-        pawnList.add(pawn);
-    }
-
-    public int size(Color color) {
-        return pawnGroup.getPawnList(color).size();
-    }
-
-    public Pawn findPawn(int index, Color color) {
-        List<Pawn> pawnList = pawnGroup.getPawnList(color);
-
-        if(pawnList.size() == 0) {
-            throw new IllegalArgumentException("size가 0입니다.");
-        }
-
-        if ((0 > index) || (index >= pawnList.size())) {
-            throw new IllegalArgumentException("범위를 벗어나는 인덱스 입니다.");
-        }
-
-        return pawnList.get(index);
-    }
-
-    public String getBoardStatus() {
+    public String showBoard() {
         StringBuilder sb = new StringBuilder();
-        int index = 0;
+        final String BLANK = "........";
 
-        while(index < PAWN_MAX_SIZE) {
-            sb.append(getEachRowStatus(index++)).append("\n");
-        }
+        sb.append(appendNewLine(getPawnsResult(Color.WHITE)));
+        sb.append(appendNewLine(BLANK));
+        sb.append(appendNewLine(BLANK));
+        sb.append(appendNewLine(BLANK));
+        sb.append(appendNewLine(BLANK));
+        sb.append(appendNewLine(getPawnsResult(Color.BLACK)));
 
         return sb.toString();
     }
 
-    private String getEachRowStatus (int index) {
+    private String getPawnsResult(Color color) {
         StringBuilder sb = new StringBuilder();
+        List<Piece> pieceList = pieceGroup.getPawnList(color);
 
-        if(index == PawnGroup.WHITE_INIT_INDEX) {
-            return getPawnsResult(Color.WHITE);
+        for (int col = 0; col < BOARD_SIZE; col++) {
+            sb.append(pieceList.get(col).getRepresentation());
         }
 
-        if(index == PawnGroup.BLACK_INIT_INDEX) {
-            return getPawnsResult(Color.BLACK);
-        }
+        sb.append(NEW_LINE);
 
-        return getBlank(sb);
-    }
-
-    public String getPawnsResult(Color color) {
-        StringBuilder sb = new StringBuilder();
-        List<Pawn> pawnList = pawnGroup.getPawnList(color);
-
-        for (int col = 0; col < PAWN_MAX_SIZE; col++) {
-            sb.append(pawnList.get(col).getRepresentation());
-        }
-
-        return sb.toString();
-    }
-
-    private String getBlank(StringBuilder sb) {
-        for (int i = 0; i < PAWN_MAX_SIZE; i++) {
-            sb.append('.');
+        for (int col = BOARD_SIZE; col < PieceGroup.PIECE_LIST_MAX; col++) {
+            sb.append(pieceList.get(col).getRepresentation());
         }
 
         return sb.toString();

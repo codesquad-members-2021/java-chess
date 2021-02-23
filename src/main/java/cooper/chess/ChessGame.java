@@ -9,10 +9,6 @@ public class ChessGame {
     private final Scanner scanner = new Scanner(System.in);
     private final Board board = new Board();
 
-    public void init() {
-        board.initialize();
-    }
-
     public void play() {
         boolean isPlaying = true;
 
@@ -20,7 +16,7 @@ public class ChessGame {
             String command = scanner.nextLine();
 
             if(isStartCommand(command)) {
-                System.out.println(board.getBoardStatus());
+                System.out.println(board.showBoard());
             }
 
             if(isEndCommand(command)) {

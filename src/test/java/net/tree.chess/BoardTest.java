@@ -52,7 +52,7 @@ class BoardTest {
 
     @DisplayName("whitePawn과 blackPawn 1개씩으로 pawnList 확인해보기 ")
     @Test
-    void checkPawnListWithWhitePawnAndBlackPawn() {
+    void checkPawnList() {
         Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
         board.addPawntopawnList(white);
         assertThat(board.checkPawnSize()).isEqualTo(1);

@@ -17,18 +17,23 @@ public class Board {
     public void initialize() {
     }
 
+    public void addWhitePiece(Piece piece){
+        if(checkPieceColor(piece, Piece.WHITE_COLOR))
+            whitePieces.add(piece);
+    }
+
     public void addWhitePawn(Piece pawn) {
-        if (checkPawnColor(pawn, Piece.WHITE_COLOR))
+        if (checkPieceColor(pawn, Piece.WHITE_COLOR))
             whitePawns.add(pawn);
     }
 
     public void addBlackPawn(Piece pawn) {
-        if (checkPawnColor(pawn, Piece.BLACK_COLOR))
+        if (checkPieceColor(pawn, Piece.BLACK_COLOR))
             blackPawns.add(pawn);
     }
 
-    private boolean checkPawnColor(Piece pawn, String color) {
-        return pawn.getColor().equals(color);
+    private boolean checkPieceColor(Piece piece, String color) {
+        return piece.getColor().equals(color);
     }
 
     public String getWhitePawnsResult() {

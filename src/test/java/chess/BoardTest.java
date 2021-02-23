@@ -71,4 +71,24 @@ public class BoardTest {
         System.out.println(board.showBoard());
     }
 
+    @Test
+    @DisplayName("현재 남아 있는 기물에 따라 점수를 계산한다.")
+    void calculate_score() {
+        board.initializeEmpty();
+
+        board.putPieceIn("b6", Piece.createBlack(Piece.Type.PAWN));  // 1
+        board.putPieceIn("e6", Piece.createBlack(Piece.Type.QUEEN)); // 9
+        board.putPieceIn("b8", Piece.createBlack(Piece.Type.KING));
+        board.putPieceIn("c8", Piece.createBlack(Piece.Type.ROOK));  // 5
+
+        board.putPieceIn("f2", Piece.createWhite(Piece.Type.PAWN));  // 1
+        board.putPieceIn("g2", Piece.createWhite(Piece.Type.PAWN));  // 1
+        board.putPieceIn("e1", Piece.createWhite(Piece.Type.ROOK));  // 5
+        board.putPieceIn("f1", Piece.createWhite(Piece.Type.KING));
+
+        assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(15.0);
+        assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(7.0);
+
+        System.out.println(board.showBoard());
+    }
 }

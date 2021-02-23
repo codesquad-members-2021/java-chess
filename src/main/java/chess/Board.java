@@ -1,6 +1,7 @@
 package chess;
 
 import pieces.Piece;
+
 import static utils.StringUtils.appendNewLine;
 
 import java.util.ArrayList;
@@ -16,14 +17,14 @@ public class Board {
     private List<Piece> blackPieces = new ArrayList<>();
 
     public void initialize() {
-        for(int i=0; i<BOARD_SIZE; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             addWhitePawn(Piece.createWhitePawn());
             addBlackPawn(Piece.createBlackPawn());
         }
     }
 
-    private void initializeWhitePieces(){
-        for(int i=0; i<PIECES_COUNT; i++){
+    private void initializeWhitePieces() {
+        for (int i = 0; i < PIECES_COUNT; i++) {
             addWhitePiece(Piece.createWhiteRook());
             addWhitePiece(Piece.createWhiteKnight());
             addWhitePiece(Piece.createWhiteBishop());
@@ -32,13 +33,23 @@ public class Board {
         }
     }
 
-    public void addWhitePiece(Piece piece){
-        if(checkPieceColor(piece, Piece.WHITE_COLOR))
+    private void initializeBlackPieces() {
+        for (int i = 0; i < PIECES_COUNT; i++) {
+            addBlackPiece(Piece.createBlackRook());
+            addBlackPiece(Piece.createBlackKnight());
+            addBlackPiece(Piece.createBlackBishop());
+            addBlackPiece(Piece.createBlackQueen());
+            addBlackPiece(Piece.createBlackKing());
+        }
+    }
+
+    public void addWhitePiece(Piece piece) {
+        if (checkPieceColor(piece, Piece.WHITE_COLOR))
             whitePieces.add(piece);
     }
 
-    public void addBlackPiece(Piece piece){
-        if(checkPieceColor(piece, Piece.BLACK_COLOR))
+    public void addBlackPiece(Piece piece) {
+        if (checkPieceColor(piece, Piece.BLACK_COLOR))
             blackPieces.add(piece);
     }
 

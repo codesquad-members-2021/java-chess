@@ -10,7 +10,6 @@ import java.util.List;
 
 public class Board {
     private static final int BOARD_SIZE = 8;
-    private final int PIECES_COUNT = 2;
     private List<Piece> whitePawns = new ArrayList<>();
     private List<Piece> blackPawns = new ArrayList<>();
     private List<Piece> whitePieces = new ArrayList<>();
@@ -26,23 +25,25 @@ public class Board {
     }
 
     private void initializeWhitePieces() {
-        for (int i = 0; i < PIECES_COUNT; i++) {
-            addWhitePiece(Piece.createWhiteRook());
-            addWhitePiece(Piece.createWhiteKnight());
-            addWhitePiece(Piece.createWhiteBishop());
-            addWhitePiece(Piece.createWhiteQueen());
-            addWhitePiece(Piece.createWhiteKing());
-        }
+        addWhitePiece(Piece.createWhiteRook());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteQueen());
+        addWhitePiece(Piece.createWhiteKing());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteRook());
     }
 
     private void initializeBlackPieces() {
-        for (int i = 0; i < PIECES_COUNT; i++) {
-            addBlackPiece(Piece.createBlackRook());
-            addBlackPiece(Piece.createBlackKnight());
-            addBlackPiece(Piece.createBlackBishop());
-            addBlackPiece(Piece.createBlackQueen());
-            addBlackPiece(Piece.createBlackKing());
-        }
+        addBlackPiece(Piece.createBlackRook());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackQueen());
+        addBlackPiece(Piece.createBlackKing());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackRook());
     }
 
     public void addWhitePiece(Piece piece) {
@@ -77,11 +78,11 @@ public class Board {
         return getPiecesRepresentations(blackPawns);
     }
 
-    public String getWhitePiecesResult(){
+    public String getWhitePiecesResult() {
         return getPiecesRepresentations(whitePieces);
     }
 
-    public String getBlackPiecesResult(){
+    public String getBlackPiecesResult() {
         return getPiecesRepresentations(blackPieces);
     }
 
@@ -105,18 +106,6 @@ public class Board {
     }
 
     public String printBoard() {
-        StringBuilder result = new StringBuilder();
-        result.append(EMPTY)
-                .append(getWhitePawnsResult())
-                .append(NEW_LINE)
-                .append(EMPTY)
-                .append(EMPTY)
-                .append(EMPTY)
-                .append(EMPTY)
-                .append(getBlackPawnsResult())
-                .append(NEW_LINE)
-                .append(EMPTY);
-
-        return result.toString();
+        return "a";
     }
 }

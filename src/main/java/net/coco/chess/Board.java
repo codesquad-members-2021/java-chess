@@ -63,4 +63,34 @@ public class Board {
 
         ranks.get(point.getColumn()).movePieceToPoint(piece, point.getRow());
     }
+
+    public double calculateScore(String color) {
+        PieceValid.checkColorType(color);
+        double sum = getSum(color);
+        return sum;
+    }
+
+    private double getSum(String color) {
+        double sum = 0.0;
+        for (int column = 0; column < ranks.size(); column++) {
+            int pawnCount = 0;
+            List<Piece> pieces = getPieces(color, column);
+
+            for (Piece piece : pieces) {
+                pawnCount += piece.getPieceType() == PieceType.PAWN ? 1 : 0;
+                sum += piece.getScore();
+            }
+            sum -= pawnCount * 0.5;
+        }
+        return sum;
+    }
+
+    private List<Piece> getPieces(String color, int column) {
+        ArrayList<Piece> getPieces = new ArrayList<>();
+        for (int row = 0; row < ranks.size(); row++) {
+            Rank getRank = ranks.get(row);
+            getPieces.add(getRank.findPiece(color, column));
+        }
+        return getPieces;
+    }
 }

@@ -1,6 +1,6 @@
-package pieces;
+package piece;
 
-import pieces.attribute.*;
+import piece.attribute.*;
 
 public class King extends Piece {
     King(Color color) {

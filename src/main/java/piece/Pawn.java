@@ -1,6 +1,6 @@
-package pieces;
+package piece;
 
-import pieces.attribute.*;
+import piece.attribute.*;
 
 public class Pawn extends Piece {
     Pawn(Color color) {

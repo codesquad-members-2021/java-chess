@@ -1,6 +1,6 @@
-package pieces;
+package piece;
 
-import pieces.attribute.*;
+import piece.attribute.*;
 
 public abstract class Piece {
     private final Color color;

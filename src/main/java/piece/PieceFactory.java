@@ -1,7 +1,6 @@
-package pieces;
+package piece;
 
-import pieces.Piece.*;
-
+import piece.attribute.*;
 import java.util.*;
 import java.util.function.Function;
 

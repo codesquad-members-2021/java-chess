@@ -50,7 +50,7 @@ class PieceTest {
 
     boolean isWhite(Piece piece){
 
-        if(piece.getColor() == Piece.Color.WHITE){
+        if(piece.getColor().equals(Piece.Color.WHITE)){
             return true;
         }
         return false;
@@ -58,7 +58,7 @@ class PieceTest {
 
     boolean isBlack(Piece piece){
 
-        if(piece.getColor() == Piece.Color.BLACK){
+        if(piece.getColor().equals(Piece.Color.BLACK)){
             return true;
         }
         return false;

@@ -1,5 +1,6 @@
 package chess;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ChessMain {
@@ -22,6 +23,9 @@ public class ChessMain {
                     System.out.println("올바른 명령어를 입력해주세요 ");
                 }
             }
+        } catch (InputMismatchException e) {
+            System.out.println("문자만 입력하여주세요!");
+            e.printStackTrace();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

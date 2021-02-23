@@ -3,20 +3,34 @@ package chess.controller;
 import chess.domain.board.Board;
 import chess.domain.board.BoardFactory;
 import chess.view.BoardView;
-import chess.view.ScannerView;
 
-import static chess.controller.Command.*;
+import java.util.Scanner;
+
+import static chess.controller.Command.END;
+import static chess.controller.Command.START;
 
 public class ChessGame {
-    ScannerView scannerView;
+    private ChessGame() {}
 
-    public void start() {
+    public static void start() {
         printWelcome();
+        try (Scanner scanner = new Scanner(System.in)) {
+            play(scanner);
+        }
+    }
 
-        scannerView = new ScannerView();
-        Command command = getCommand();
+    private static void printWelcome() {
+        System.out.println("체스 게임을 시작합니다.");
+        System.out.println("게임 시작은 start, 종료는 end 명령을 입력하세요.");
+    }
+
+    private static void print(BoardView boardView) {
+        System.out.println(boardView.getBoardRepresentation());
+    }
+
+    private static void play(Scanner scanner) {
+        Command command = Command.getCommand(scanner);
         if (!command.equals(START)) {
-            scannerView.close();
             return;
         }
 
@@ -25,27 +39,7 @@ public class ChessGame {
 
         while (!command.equals(END)) {
             print(boardView);
-            command = getCommand();
-        }
-
-        scannerView.close();
-    }
-
-    private void printWelcome() {
-        System.out.println("체스 게임을 시작합니다.");
-        System.out.println("게임 시작은 start, 종료는 end 명령을 입력하세요.");
-    }
-
-    private void print(BoardView boardView) {
-        System.out.println(boardView.getBoardRepresentation());
-    }
-
-    private Command getCommand() {
-        try {
-            return Command.valueOf(scannerView.nextLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println("잘못 입력하셨습니다.");
-            return BAD;
+            command = Command.getCommand(scanner);
         }
     }
 }

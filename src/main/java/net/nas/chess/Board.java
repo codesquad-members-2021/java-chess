@@ -5,7 +5,9 @@ import net.nas.pieces.ColorOfChessPiece;
 import net.nas.pieces.NameOfChessPiece;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static net.nas.chess.ChessCoordinate.parseStringCoordinate;
@@ -205,5 +207,28 @@ public class Board {
             }
         }
         return totalPoint;
+    }
+
+    public List<ChessPiece> getPiecesOfColor(ColorOfChessPiece color, boolean isAsc) {
+        List<ChessPiece> pieceList = new ArrayList<>();
+        for (int fileIndex = 0; fileIndex < LENGTH_OF_BOARD; fileIndex++) {
+            for (int rankIndex = 0; rankIndex < LENGTH_OF_BOARD; rankIndex++) {
+                ChessPiece currentPiece = chessCells[rankIndex][fileIndex];
+                if (currentPiece.getColorOfChessPiece() != color) {
+                    continue;
+                }
+                NameOfChessPiece nameOfCurrentPiece = currentPiece.getNameOfChessPiece();
+                if (nameOfCurrentPiece == NameOfChessPiece.NO_PIECE) {
+                    continue;
+                }
+                pieceList.add(currentPiece);
+            }
+        }
+        if (isAsc) {
+            pieceList.sort(createBlackBishop().comparatorAsc);
+        } else {
+            pieceList.sort(createBlackBishop().comparatorDesc);
+        }
+        return pieceList;
     }
 }

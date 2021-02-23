@@ -8,6 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 import static net.nas.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -183,4 +186,53 @@ public class BoardTest {
         assertThat(board.calculatePoint(ColorOfChessPiece.WHITE)).isEqualTo(19.5f);
         assertThat(board.calculatePoint(ColorOfChessPiece.BLACK)).isEqualTo(20.0f);
     }
+
+    @Test
+    @DisplayName("지정된 색상에 해당하는 모든 체스말을 점수로 정렬하고 컬렉션에 담아 리턴할 수 있어야 합니다.")
+    void testGetPiecesOfColor() {
+        assertAll(
+                () -> tryGetPiecesOfColor(ColorOfChessPiece.WHITE, true),
+                () -> tryGetPiecesOfColor(ColorOfChessPiece.WHITE, false),
+                () -> tryGetPiecesOfColor(ColorOfChessPiece.BLACK, true),
+                () -> tryGetPiecesOfColor(ColorOfChessPiece.BLACK, false)
+        );
+    }
+
+    private List<Float> initTestGetPiecesOfColor(ColorOfChessPiece color, boolean isAsc) {
+        List<ChessPiece> whitePieceList = new ArrayList<>();
+        List<Float> expectedResult = new ArrayList<>();
+
+        for (NameOfChessPiece name : NameOfChessPiece.values()) {
+            if (name.equals(NameOfChessPiece.NO_PIECE)) {
+                continue;
+            }
+            whitePieceList.add(ChessPiece.createChessPiece(name, color));
+            expectedResult.add(name.getPoint());
+        }
+
+        board.add(whitePieceList.get(0), "a1");
+        board.add(whitePieceList.get(1), "b1");
+        board.add(whitePieceList.get(2), "c7");
+        board.add(whitePieceList.get(3), "d7");
+        board.add(whitePieceList.get(4), "e7");
+        board.add(whitePieceList.get(5), "f7");
+        if (isAsc) {
+            expectedResult.sort(Float::compare);
+        } else {
+            expectedResult.sort((Comparator.reverseOrder()));
+        }
+        return expectedResult;
+    }
+
+    private void tryGetPiecesOfColor(ColorOfChessPiece color, boolean isAsc) {
+        List<Float> expectedResult = initTestGetPiecesOfColor(color, isAsc);
+        List<ChessPiece> actualPieceList = board.getPiecesOfColor(color, isAsc);
+
+        for (int i = 0; i < NameOfChessPiece.values().length - 1; i++) {
+            float actual = actualPieceList.get(i).getNameOfChessPiece().getPoint();
+            float expected = expectedResult.get(i);
+            assertThat(actual).isEqualTo(expected);
+        }
+    }
+
 }

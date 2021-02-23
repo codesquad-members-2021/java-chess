@@ -1,5 +1,7 @@
 package net.nas.pieces;
 
+import java.util.Comparator;
+
 public class ChessPiece {
     private final NameOfChessPiece nameOfChessPiece;
     private final ColorOfChessPiece colorOfChessPiece;
@@ -8,7 +10,6 @@ public class ChessPiece {
         this.nameOfChessPiece = nameOfChessPiece;
         this.colorOfChessPiece = colorOfChessPiece;
     }
-
 
     public String getRepresentation() {
         return colorOfChessPiece.getRepresentationByColor(nameOfChessPiece);
@@ -33,6 +34,17 @@ public class ChessPiece {
     public boolean hasSameProperty(NameOfChessPiece name, ColorOfChessPiece color) {
         return name == nameOfChessPiece && color == colorOfChessPiece;
     }
+
+    public Comparator<ChessPiece> comparatorAsc = (current, next) -> {
+        float currentPoint = current.getNameOfChessPiece().getPoint();
+        float nextPoint = next.getNameOfChessPiece().getPoint();
+        return Float.compare(currentPoint, nextPoint);
+    };
+    public Comparator<ChessPiece> comparatorDesc = (current, next) -> {
+        float currentPoint = current.getNameOfChessPiece().getPoint();
+        float nextPoint = next.getNameOfChessPiece().getPoint();
+        return Float.compare(nextPoint, currentPoint);
+    };
 
     public boolean isBlank() {
         return colorOfChessPiece == ColorOfChessPiece.BLANK;

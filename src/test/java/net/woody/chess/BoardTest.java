@@ -23,23 +23,23 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("보드에 있는 폰을 정상적으로 찾을 수 있어야 한다.")
+    @DisplayName("보드에 있는 체스말들을 정상적으로 찾을 수 있어야 한다.")
     void findPawnOnTheBoard() {
         addThePieceProperly(Piece.createWhitePawn(), 2, 0);
         addThePieceProperly(Piece.createWhiteKing(), 2, 1);
     }
 
     @Test
-    @DisplayName("체스말이 존재하지 않는 위치에서, 폰을 찾으려고 시도하면 에러가 발생해야 한다.")
-    void findPawnNotOnTheBoard() {
+    @DisplayName("체스말이 존재하지 않는 위치에서, 체스말을 찾으려고 시도하면 에러가 발생해야 한다.")
+    void findPieceNotOnTheBoard() {
         assertThatThrownBy(() -> board.findPiece(4, 0))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class)
                 .hasMessageContaining("0 is out of range!");
     }
 
     @Test
-    @DisplayName("음수 인덱스로 폰을 찾으려고 할 때, 에러가 발생해야 한다.")
-    void findPawnWithNegativeIndex() {
+    @DisplayName("음수 인덱스로 체스말을 찾으려고 할 때, 에러가 발생해야 한다.")
+    void findPieceWithNegativeIndex() {
         assertThatThrownBy(() -> board.findPiece(-1, 0))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class)
                 .hasMessageContaining("-1 is out of range!");
@@ -70,11 +70,11 @@ class BoardTest {
         assertThat(expectedResult).isEqualTo(actualResult);
     }
 
-    private void addThePieceProperly(Piece newPiece, int rank, int file) {
-        int sizeBeforeAddThePiece = board.size();
+    private void addPieceProperly(Piece newPiece, int rank, int file) {
+        int sizeBefore = board.size();
         board.add(newPiece, rank);
-        assertThat(sizeBeforeAddThePiece + 1).isEqualTo(board.size());
-        assertThat(newPiece).isEqualTo(board.findPiece(rank, file));
+        assertThat(board.size()).isEqualTo(sizeBefore + 1);
+        assertThat(board.findPiece(rank, file)).isEqualTo(newPiece);
     }
 
 }

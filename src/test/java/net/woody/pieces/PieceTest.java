@@ -35,8 +35,8 @@ class PieceTest {
     }
 
     @Test
-    @DisplayName("흰색으로 생성된 체스말은 흰색이어야 하고, 검은색으로 생성했을 때는 검은색이어야 한다.")
-    void checkThePieceColor() {
+    @DisplayName("흰색으로 생성된 폰은 흰색이어야 하고, 검은색으로 생성했을 때는 검은색이어야 한다.")
+    void checkPieceColor() {
         assertAll(
                 () -> assertThat(Piece.createBlackPawn().isBlack()).isTrue(),
                 () -> assertThat(Piece.createWhitePawn().isWhite()).isTrue()

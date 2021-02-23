@@ -1,25 +1,31 @@
 package piece.attribute;
 
 public enum Type {
-    PAWN('p'),
-    KNIGHT('n'),
-    ROOK('r'),
-    BISHOP('b'),
-    QUEEN('q'),
-    KING('k'),
-    BLANK('.');
+    PAWN('p', 1.0),
+    ROOK('r', 5.0),
+    KNIGHT('n', 2.5),
+    BISHOP('b', 3.0),
+    QUEEN('q', 9.0),
+    KING('k', 0.0),
+    BLANK('.', 0.0);
 
     private final char representation;
+    private final double defaultPoint;
 
-    Type(final char representation) {
+    Type(final char representation, final double defaultPoint) {
         this.representation = representation;
+        this.defaultPoint = defaultPoint;
+    }
+
+    public double getDefaultPoint() {
+        return defaultPoint;
     }
 
     public char getWhiteRepresentation() {
-        return this.representation;
+        return representation;
     }
 
     public char getBlackRepresentation() {
-        return Character.toUpperCase(this.representation);
+        return Character.toUpperCase(representation);
     }
 }

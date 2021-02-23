@@ -34,19 +34,19 @@ public class Board {
         return count;
     }
 
-    public int countPieceByColorAndType(Color color, Type type){
+    public int countPieceByColorAndType(Color color, Type type) {
         int countPiece = 0;
-        for(Rank rank : files) {
+        for (Rank rank : files) {
             countPiece += rank.getCountPieceByColorAndType(color, type);
         }
 
         return countPiece;
     }
 
-    public List<Piece> findPiecesByColor(Color color){
+    public List<Piece> findPiecesByColor(Color color) {
         List<Piece> pieces = new ArrayList<>();
 
-        for(Rank rank : files) {
+        for (Rank rank : files) {
             pieces.addAll(rank.findPieceByColor(color));
         }
 
@@ -61,8 +61,8 @@ public class Board {
 
     private String getRank(Rank rank) {
         StringBuilder sb = new StringBuilder();
-        for(Piece piece : rank.getPieces()){
-            if(piece.isBlack()){
+        for (Piece piece : rank.getPieces()) {
+            if (piece.isBlack()) {
                 sb.append(piece.getType().getBlackRepresentation()).append(" ");
             } else {
                 sb.append(piece.getType().getWhiteRepresentation()).append(" ");
@@ -84,21 +84,21 @@ public class Board {
     }
 
     public void initializeAllEmpty() {
-        for(int i = 1; i <= BOARD_SIZE; i++){
+        for (int i = 1; i <= BOARD_SIZE; i++) {
             files.add(Rank.initializeBlank(i));
         }
     }
 
-    public void move(String position, Piece piece){
+    public void move(String position, Piece piece) {
         Position chessBoardIndex = new Position(position);
 
         files.get(chessBoardIndex.getFile()).move(chessBoardIndex.getRank(), piece);
     }
 
-    public double caculcatePoint(Color color) {
+    public double totalCalculatePoint(Color color) {
         List<Piece> pieces = findPiecesByColor(color);
         double point = 0.0;
-        for(Piece piece : pieces){
+        for (Piece piece : pieces) {
             point += piece.getPoint(pieces);
         }
 
@@ -110,9 +110,9 @@ public class Board {
 
         String fileIndex = "a b c d e f g h";
 
-        for(int i = BOARD_SIZE-1; i >= 0; i--){
+        for (int i = BOARD_SIZE - 1; i >= 0; i--) {
             boardRank.append(getRank(files.get(i)));
-            boardRank.append(" ").append(i+1);
+            boardRank.append(" ").append(i + 1);
             boardRank.append(StringUtils.getNewLine());
         }
 

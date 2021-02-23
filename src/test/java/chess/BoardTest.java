@@ -19,7 +19,7 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("초기화 했을 때 Board에 흑 폰 8개 백 폰 8개가 있는지 확인")
+    @DisplayName("초기화 했을 때 Board에 모든 기물이 제대로 올라가는지 확인")
     void initialize() {
         board.initialize();
         assertAll(

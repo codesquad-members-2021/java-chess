@@ -11,6 +11,7 @@ import java.util.List;
 public class Rank {
 
     private List<Piece> pieces = new ArrayList<>(Board.BOARD_SIZE);
+    private final int RANK_INDEX = 8;
 
     public List<Piece> getPieces() {
         return pieces;
@@ -55,14 +56,14 @@ public class Rank {
 
     public static Rank initializeWhitePieces(int fileIndex) {
         Rank rank = new Rank();
-        rank.addWhitePieces(Piece.createWhiteRook(new Position(8, fileIndex)));
-        rank.addWhitePieces(Piece.createWhiteKnight(new Position(7, fileIndex)));
-        rank.addWhitePieces(Piece.createWhiteBishop(new Position(6, fileIndex)));
-        rank.addWhitePieces(Piece.createWhiteQueen(new Position(5, fileIndex)));
-        rank.addWhitePieces(Piece.createWhiteKing(new Position(4, fileIndex)));
-        rank.addWhitePieces(Piece.createWhiteBishop(new Position(3, fileIndex)));
-        rank.addWhitePieces(Piece.createWhiteKnight(new Position(2, fileIndex)));
-        rank.addWhitePieces(Piece.createWhiteRook(new Position(1, fileIndex)));
+        rank.addWhitePieces(Piece.createWhiteRook(new Position(rank.RANK_INDEX, fileIndex)));
+        rank.addWhitePieces(Piece.createWhiteKnight(new Position(rank.RANK_INDEX - 1, fileIndex)));
+        rank.addWhitePieces(Piece.createWhiteBishop(new Position(rank.RANK_INDEX - 2, fileIndex)));
+        rank.addWhitePieces(Piece.createWhiteQueen(new Position(rank.RANK_INDEX - 3, fileIndex)));
+        rank.addWhitePieces(Piece.createWhiteKing(new Position(rank.RANK_INDEX - 4, fileIndex)));
+        rank.addWhitePieces(Piece.createWhiteBishop(new Position(rank.RANK_INDEX - 5, fileIndex)));
+        rank.addWhitePieces(Piece.createWhiteKnight(new Position(rank.RANK_INDEX - 6, fileIndex)));
+        rank.addWhitePieces(Piece.createWhiteRook(new Position(rank.RANK_INDEX - 7, fileIndex)));
 
         return rank;
     }
@@ -77,14 +78,14 @@ public class Rank {
 
     public static Rank initializeBlackPieces(int fileIndex) {
         Rank rank = new Rank();
-        rank.addBlackPieces(Piece.createBlackRook(new Position(8, fileIndex)));
-        rank.addBlackPieces(Piece.createBlackKnight(new Position(7, fileIndex)));
-        rank.addBlackPieces(Piece.createBlackBishop(new Position(6, fileIndex)));
-        rank.addBlackPieces(Piece.createBlackQueen(new Position(5, fileIndex)));
-        rank.addBlackPieces(Piece.createBlackKing(new Position(4, fileIndex)));
-        rank.addBlackPieces(Piece.createBlackBishop(new Position(3, fileIndex)));
-        rank.addBlackPieces(Piece.createBlackKnight(new Position(2, fileIndex)));
-        rank.addBlackPieces(Piece.createBlackRook(new Position(1, fileIndex)));
+        rank.addBlackPieces(Piece.createBlackRook(new Position(rank.RANK_INDEX, fileIndex)));
+        rank.addBlackPieces(Piece.createBlackKnight(new Position(rank.RANK_INDEX - 1, fileIndex)));
+        rank.addBlackPieces(Piece.createBlackBishop(new Position(rank.RANK_INDEX - 2, fileIndex)));
+        rank.addBlackPieces(Piece.createBlackQueen(new Position(rank.RANK_INDEX - 3, fileIndex)));
+        rank.addBlackPieces(Piece.createBlackKing(new Position(rank.RANK_INDEX - 4, fileIndex)));
+        rank.addBlackPieces(Piece.createBlackBishop(new Position(rank.RANK_INDEX - 5, fileIndex)));
+        rank.addBlackPieces(Piece.createBlackKnight(new Position(rank.RANK_INDEX - 6, fileIndex)));
+        rank.addBlackPieces(Piece.createBlackRook(new Position(rank.RANK_INDEX - 7, fileIndex)));
 
         return rank;
     }

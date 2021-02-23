@@ -2,7 +2,12 @@ package net.woody.chess;
 
 public enum Representation {
 
-    PAWN('p'), KNGINT('n'), ROOK('r'), BISHOP('b'), QUEEN('q'), KING('k');
+    PAWN('p'),
+    KNIGHT('n'),
+    ROOK('r'),
+    BISHOP('b'),
+    QUEEN('q'),
+    KING('k');
 
     private char representation;
 

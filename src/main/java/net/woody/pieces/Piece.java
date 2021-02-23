@@ -41,11 +41,11 @@ public class Piece {
     }
 
     public static Piece createBlackKnight() {
-        return new Piece(Color.BLACK, Representation.KNGINT.value());
+        return new Piece(Color.BLACK, Representation.KNIGHT.value());
     }
 
     public static Piece createWhiteKnight() {
-        return new Piece(Color.WHITE, Representation.KNGINT.value());
+        return new Piece(Color.WHITE, Representation.KNIGHT.value());
     }
 
     public static Piece createBlackRook() {

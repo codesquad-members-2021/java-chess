@@ -13,7 +13,7 @@ class PieceTest {
     void createBlackPieces() {
         assertAll(
                 () -> verifyBlackPiece(Piece.createBlackPawn(), Representation.PAWN),
-                () -> verifyBlackPiece(Piece.createBlackKnight(), Representation.KNGINT),
+                () -> verifyBlackPiece(Piece.createBlackKnight(), Representation.KNIGHT),
                 () -> verifyBlackPiece(Piece.createBlackRook(), Representation.ROOK),
                 () -> verifyBlackPiece(Piece.createBlackBishop(), Representation.BISHOP),
                 () -> verifyBlackPiece(Piece.createBlackQueen(), Representation.QUEEN),
@@ -26,7 +26,7 @@ class PieceTest {
     void createWhitePieces() {
         assertAll(
                 () -> verifyWhitePiece(Piece.createWhitePawn(), Representation.PAWN),
-                () -> verifyWhitePiece(Piece.createWhiteKnight(), Representation.KNGINT),
+                () -> verifyWhitePiece(Piece.createWhiteKnight(), Representation.KNIGHT),
                 () -> verifyWhitePiece(Piece.createWhiteRook(), Representation.ROOK),
                 () -> verifyWhitePiece(Piece.createWhiteBishop(), Representation.BISHOP),
                 () -> verifyWhitePiece(Piece.createWhiteQueen(), Representation.QUEEN),

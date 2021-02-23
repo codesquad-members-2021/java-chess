@@ -70,11 +70,11 @@ public class Board {
     }
 
     public String getWhitePawnsResult() {
-        return getPawnRepresentations(whitePawns);
+        return getPieceRepresentations(whitePawns);
     }
 
     public String getBlackPawnsResult() {
-        return getPawnRepresentations(blackPawns);
+        return getPieceRepresentations(blackPawns);
     }
 
     private String getPieceRepresentations(List<Piece> pieces) {

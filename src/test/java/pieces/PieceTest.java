@@ -29,13 +29,19 @@ class PieceTest {
         verifyPiece(Piece.createBlackRook(),Piece.BLACK_COLOR, Piece.BLACK_ROOK_REPRESENTATION);
     }
 
+    @Test
+    @DisplayName("흑비숍 백비숏이 제대로 생성되는지 확인")
+    void createBishopPiece(){
+        verifyPiece(Piece.createWhiteBishop(),Piece.WHITE_COLOR, Piece.WHITE_BISHOP_REPRESENTATION);
+        verifyPiece(Piece.createBlackBishop(),Piece.BLACK_COLOR, Piece.BLACK_BISHOP_REPRESENTATION);
+    }
+
+
 
     @Test
     @DisplayName("생성된 기물들의 색과 representation 이 올바른지 확인")
     void createPiece() {
 
-        verifyPiece(Piece.createWhiteBishop(),Piece.WHITE_COLOR, Piece.WHITE_BISHOP_REPRESENTATION);
-        verifyPiece(Piece.createBlackBishop(),Piece.BLACK_COLOR, Piece.BLACK_BISHOP_REPRESENTATION);
 
         verifyPiece(Piece.createWhiteQueen(),Piece.WHITE_COLOR, Piece.WHITE_QUEEN_REPRESENTATION);
         verifyPiece(Piece.createBlackQueen(),Piece.BLACK_COLOR, Piece.BLACK_QUEEN_REPRESENTATION);

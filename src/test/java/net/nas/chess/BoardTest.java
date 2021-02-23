@@ -33,7 +33,7 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("체스 보드에 폰을 추가하고, 찾을 수 있어야 합니다.")
+    @DisplayName("체스 보드에 체스말을 추가하고, 찾을 수 있어야 합니다.")
     void testAdditionAndFind() {
         ChessPiece whitePawn = ChessPiece.createWhitePawn();
         for (int i = 0; i < Board.LENGTH_OF_BOARD; i++) {
@@ -42,6 +42,19 @@ public class BoardTest {
                     () -> verifyAddition(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx),
                     () -> verifyFind(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx)
             );
+        }
+    }
+
+    @Test
+    @DisplayName("문자열 좌표를 이용해서 체스판에 말을 추가할 수 있어야 합니다")
+    void testAdditionWithStringCoordinate() {
+        for (int i = 0; i < Board.LENGTH_OF_BOARD; i++) {
+            for (int j = 0; j < Board.LENGTH_OF_BOARD; j++) {
+                ChessPiece testPiece = ChessPiece.createBlackKing();
+                String testCoordinate = String.format("%c%d", ('a' + j), (i + 1));
+                board.add(testPiece, testCoordinate);
+                assertThat(board.findPiece(i, j)).isEqualTo(testPiece);
+            }
         }
     }
 

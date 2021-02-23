@@ -133,6 +133,11 @@ public class Board {
         }
     }
 
+    public void add(ChessPiece piece, String strCoordinate) {
+        ChessCoordinate coordinate = parseStringCoordinate(strCoordinate);
+        add(piece, coordinate.rankIndex, coordinate.fileIndex);
+    }
+
     public ChessPiece findPiece(int rankIdx, int fileIdx) {
         if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
             throw new InvalidParameterException("index exceeded the bounds of the Board");

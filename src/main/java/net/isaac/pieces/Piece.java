@@ -7,7 +7,6 @@ public class Piece {
     public static final char ROOK_REPRESENTATION = 'r';
     public static final char BISHOP_REPRESENTATION = 'b';
     public static final char KNIGHT_REPRESENTATION = 'n';
-    public static final char UNKNOWN_REPRESENTATION = '?';
 
     private final Color color;
     private final char representation;

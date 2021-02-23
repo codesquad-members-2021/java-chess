@@ -12,8 +12,8 @@ public class Board {
     private final Map<Position, Piece> squares = new LinkedHashMap<>();
     private final int BOARD_SIZE = 8;
 
-    public void addPiece(char x, int y, Piece piece) {
-        squares.put(new Position(x, y), piece);
+    public void addPiece(char file, int rank, Piece piece) {
+        squares.put(new Position(file, rank), piece);
     }
 
     public void initialize() {
@@ -79,10 +79,17 @@ public class Board {
                 .count();
     }
 
-    public Piece findPiece(String location) {
-        char file = location.charAt(0);
-        int rank = Character.getNumericValue(location.charAt(1));
-        return squares.get(new Position(file, rank));
+    public Piece findPiece(Position position) {
+        return squares.get(position);
+    }
+
+    public void move(Position before, Position after) {
+        set(after, findPiece(before));
+        set(before, createPiece(Color.NO_COLOR, Type.BLANK));
+    }
+
+    private void set(Position position, Piece piece) {
+        squares.replace(position, piece);
     }
 }
 

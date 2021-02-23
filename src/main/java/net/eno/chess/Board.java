@@ -1,5 +1,7 @@
 package net.eno.chess;
 
+import net.eno.pieces.PieceType;
+
 import static net.eno.utils.StringUtils.appendNewLine;
 
 import java.security.InvalidParameterException;
@@ -20,11 +22,19 @@ public class Board {
     }
 
     public int pieceCount() {
-        int pieceCount = 0;
+        int count = 0;
         for (Rank rank : this.board) {
-            pieceCount += rank.pieceCount();
+            count += rank.pieceCount();
         }
-        return pieceCount;
+        return count;
+    }
+
+    public int targetPieceCount(PieceType pieceType) {
+        int count = 0;
+        for (Rank rank : this.board) {
+            count += rank.targetPieceCount(pieceType);
+        }
+        return count;
     }
 
     public void initialize() {
@@ -49,10 +59,11 @@ public class Board {
     }
 
     private int reverseOrder(String color) {
-        if (color.equals("white"))
+        if (color.equals("white")) {
             return 0;
-        if (color.equals("black"))
+        } else if (color.equals("black")) {
             return 7;
+        }
         throw new InvalidParameterException("Color error");
     }
 

@@ -25,14 +25,23 @@ public class Board {
     }
 
     private void initializeSpecialPieces(Piece.Color color, int row) {
-        add(Piece.createRook(color), row, 0);
-        add(Piece.createKnight(color), row, 1);
-        add(Piece.createBishop(color), row, 2);
-        add(Piece.createQueen(color), row, 3);
-        add(Piece.createKing(color), row, 4);
-        add(Piece.createBishop(color), row, 5);
-        add(Piece.createKnight(color), row, 6);
-        add(Piece.createRook(color), row, 7);
+        int rookColumn = 0;
+        add(Piece.createRook(color), row, rookColumn);
+        add(Piece.createRook(color), row, MAX_IDX - rookColumn);
+
+        int knightColumn = 1;
+        add(Piece.createKnight(color), row, knightColumn);
+        add(Piece.createKnight(color), row, MAX_IDX - knightColumn);
+
+        int bishopColumn = 2;
+        add(Piece.createBishop(color), row, bishopColumn);
+        add(Piece.createBishop(color), row, MAX_IDX - bishopColumn);
+
+        int QueenColumn = 3;
+        add(Piece.createQueen(color), row, QueenColumn);
+
+        int KingColumn = 4;
+        add(Piece.createKing(color), row, KingColumn);
     }
 
     private void initializePawns(Piece.Color color, int row) {

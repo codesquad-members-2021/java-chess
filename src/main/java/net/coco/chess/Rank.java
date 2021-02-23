@@ -91,4 +91,9 @@ public class Rank {
     public void movePieceToPoint(Piece piece,int row){
         pieces.set(row,piece);
     }
+
+    public Piece findPiece(String color, int column) {
+        Piece findPiece = pieces.get(column);
+        return findPiece.getColor().equals(color) ? findPiece : Piece.createBlank();
+    }
 }

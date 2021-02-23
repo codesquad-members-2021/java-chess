@@ -24,6 +24,16 @@ public class Rank {
         return count;
     }
 
+    public int targetPieceCount(PieceType pieceType) {
+        int count = 0;
+        for (Piece piece : this.rank) {
+            if (piece.getPieceType().equals(pieceType)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public static Rank createWhitePawns() {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {

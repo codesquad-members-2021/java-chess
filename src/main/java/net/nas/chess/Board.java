@@ -182,4 +182,28 @@ public class Board {
         return numberOfDesignatedPiece;
     }
 
+    public float calculatePoint(ColorOfChessPiece color) {
+        float totalPoint = 0;
+        for (int fileIndex = 0; fileIndex < LENGTH_OF_BOARD; fileIndex++) {
+            int numOfPawnInFile = 0;
+            for (int rankIndex = 0; rankIndex < LENGTH_OF_BOARD; rankIndex++) {
+                ChessPiece currentPiece = chessCells[rankIndex][fileIndex];
+                if (currentPiece.getColorOfChessPiece() != color) {
+                    continue;
+                }
+                NameOfChessPiece nameOfCurrentPiece = currentPiece.getNameOfChessPiece();
+                if (nameOfCurrentPiece == NameOfChessPiece.NO_PIECE) {
+                    continue;
+                }
+                if (nameOfCurrentPiece == NameOfChessPiece.PAWN) {
+                    numOfPawnInFile++;
+                }
+                totalPoint += nameOfCurrentPiece.getPoint();
+            }
+            if (numOfPawnInFile >= 2) {
+                totalPoint -= numOfPawnInFile * NameOfChessPiece.SCORE_OF_SPECIAL_PAWN;
+            }
+        }
+        return totalPoint;
+    }
 }

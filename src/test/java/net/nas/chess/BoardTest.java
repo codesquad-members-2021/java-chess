@@ -165,4 +165,22 @@ public class BoardTest {
         };
         board.initBoardByStringArray(testcase);
     }
+
+    @Test
+    @DisplayName("체스판의 상태를 점수로 표현할 수 있어야 합니다.")
+    void testCalculatePoint() {
+        String[] testcase = {
+                ".KR.....",
+                "P.PB....",
+                ".P..Q...",
+                "........",
+                ".....nq.",
+                ".....p.p",
+                ".....pp.",
+                "....rk.."
+        };
+        board.initBoardByStringArray(testcase);
+        assertThat(board.calculatePoint(ColorOfChessPiece.WHITE)).isEqualTo(19.5f);
+        assertThat(board.calculatePoint(ColorOfChessPiece.BLACK)).isEqualTo(20.0f);
+    }
 }

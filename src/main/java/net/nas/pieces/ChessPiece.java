@@ -14,6 +14,14 @@ public class ChessPiece {
         return colorOfChessPiece.getRepresentationByColor(nameOfChessPiece);
     }
 
+    public NameOfChessPiece getNameOfChessPiece() {
+        return nameOfChessPiece;
+    }
+
+    public ColorOfChessPiece getColorOfChessPiece() {
+        return colorOfChessPiece;
+    }
+
     public static ChessPiece createBlankPiece() {
         return createChessPiece(NameOfChessPiece.NO_PIECE, ColorOfChessPiece.BLANK);
     }

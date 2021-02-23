@@ -13,7 +13,7 @@ public class Piece {
         BISHOP('b'),
         QUEEN('q'),
         KING('k'),
-        NO_PIECE('x');
+        NO_PIECE('.');
 
         private final char representation;
 
@@ -31,11 +31,21 @@ public class Piece {
     }
 
     private final Color color;
-    private final Type representation;
+    private final Type type;
 
-    public Piece(Color color, Type representation) {
+    public char getRepresentation() {
+        return isWhite() ? this.type.getWhiteRepresentation()
+                : this.type.getBlackRepresentation();
+    }
+
+    public boolean verifyPiece(Color color, Type type) {
+        return this.color == color &&
+                this.type == type;
+    }
+
+    public Piece(Color color, Type type) {
         this.color = color;
-        this.representation = representation;
+        this.type = type;
     }
 
     private static Piece createWhite(Type type) {
@@ -103,7 +113,7 @@ public class Piece {
     }
 
     public Type getType() {
-        return representation;
+        return type;
     }
 
     public boolean isWhite() {
@@ -115,10 +125,10 @@ public class Piece {
     }
 
     public boolean isWhitePawn() {
-        return isWhite() && representation == Type.PAWN;
+        return isWhite() && type == Type.PAWN;
     }
 
     public boolean isBlackPawn() {
-        return isBlack() && representation == Type.PAWN;
+        return isBlack() && type == Type.PAWN;
     }
 }

@@ -68,8 +68,9 @@ public class Piece {
         return new Piece(WHITE_COLOR,WHITE_KING_REPRESENTATION);
     }
 
-
-
+    public static Piece createBlackKing(){
+        return new Piece(BLACK_COLOR,BLACK_KING_REPRESENTATION);
+    }
 
     public String getColor() {
         return this.color;

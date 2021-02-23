@@ -2,6 +2,7 @@ package net.eno.chess;
 
 import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
+import net.eno.pieces.Position;
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -68,10 +69,10 @@ public class BoardTest {
     @Test
     @DisplayName("체스판에 해당하는 좌표의 기물을 가져올 수 있어야 한다.")
     public void findPiece() {
-        assertThat(board.findPiece("a8")).isEqualTo(Piece.createPiece(PieceType.BLACK_ROOK));
-        assertThat(board.findPiece("h8")).isEqualTo(Piece.createPiece(PieceType.BLACK_ROOK));
-        assertThat(board.findPiece("a1")).isEqualTo(Piece.createPiece(PieceType.WHITE_ROOK));
-        assertThat(board.findPiece("h1")).isEqualTo(Piece.createPiece(PieceType.WHITE_ROOK));
+        assertThat(board.findPiece("a8")).isEqualTo(Piece.createPiece(PieceType.BLACK_ROOK, new Position("a8")));
+        assertThat(board.findPiece("h8")).isEqualTo(Piece.createPiece(PieceType.BLACK_ROOK, new Position("h8")));
+        assertThat(board.findPiece("a1")).isEqualTo(Piece.createPiece(PieceType.WHITE_ROOK, new Position("a1")));
+        assertThat(board.findPiece("h1")).isEqualTo(Piece.createPiece(PieceType.WHITE_ROOK, new Position("h1")));
     }
 
     @Test
@@ -80,7 +81,7 @@ public class BoardTest {
         board.initializeEmpty();
 
         String position = "b5";
-        Piece piece = Piece.createPiece(PieceType.BLACK_ROOK);
+        Piece piece = Piece.createPiece(PieceType.BLACK_ROOK, new Position(position));
         board.move(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);

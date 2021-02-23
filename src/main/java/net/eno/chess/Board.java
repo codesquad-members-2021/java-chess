@@ -2,6 +2,7 @@ package net.eno.chess;
 
 import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
+import net.eno.pieces.Position;
 
 import static net.eno.utils.StringUtils.appendNewLine;
 
@@ -39,51 +40,29 @@ public class Board {
     }
 
     public Piece findPiece(String location) {
-        int[] parseLocation = parseLocation(location);
-        if (parseLocation[0] == 0) {
-            return Piece.createPiece(PieceType.NO_PIECE);
-        }
-        Rank targetRank = this.board.get(8 - parseLocation[1]);
-        return targetRank.findPiece(parseLocation[0]);
+        Position position = new Position(location);
+        int file = position.getFile();
+        int rank = position.getRank();
+        Rank targetRank = this.board.get(rank);
+        return targetRank.findPiece(file);
     }
 
     public void move(String location, Piece piece) {
-        int[] parseLocation = parseLocation(location);
-        if (parseLocation[0] != 0) {
-            Rank targetRank = this.board.get(8 - parseLocation[1]);
-            targetRank.move(parseLocation[0], piece);
-        }
-    }
-
-    private int[] parseLocation(String location) {
-        int[] splitLocation = new int[2];
-
-        try {
-            int file = location.charAt(0);
-            int rank = Character.getNumericValue(location.charAt(1));
-            if (location.length() == 2 &&
-                97 <= file && file <= 104 &&
-                1 <= rank && rank <= 8) {
-                splitLocation[0] = file;
-                splitLocation[1] = rank;
-            } else {
-                System.out.println("location range error");
-            }
-        } catch (Exception e) {
-            System.out.println("location parsing error");
-        }
-
-        return splitLocation;
+        Position position = new Position(location);
+        int file = position.getFile();
+        int rank = position.getRank();
+        Rank targetRank = this.board.get(rank);
+        targetRank.move(file, piece);
     }
 
     public void initialize() {
         this.board = new ArrayList<>();
         addRank(Rank.createBlackPieces());
         addRank(Rank.createBlackPawns());
-        addRank(Rank.createBlankLine());
-        addRank(Rank.createBlankLine());
-        addRank(Rank.createBlankLine());
-        addRank(Rank.createBlankLine());
+        addRank(Rank.createBlankLine(6));
+        addRank(Rank.createBlankLine(5));
+        addRank(Rank.createBlankLine(4));
+        addRank(Rank.createBlankLine(3));
         addRank(Rank.createWhitePawns());
         addRank(Rank.createWhitePieces());
     }
@@ -91,7 +70,7 @@ public class Board {
     public void initializeEmpty() {
         this.board = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            addRank(Rank.createBlankLine());
+            addRank(Rank.createBlankLine(8 - i));
         }
     }
 

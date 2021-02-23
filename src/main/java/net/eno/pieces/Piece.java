@@ -1,15 +1,19 @@
 package net.eno.pieces;
 
+import java.util.Objects;
+
 public class Piece {
 
     private final PieceType pieceType;
+    private Position position;
 
-    private Piece(PieceType pieceType) {
+    private Piece(PieceType pieceType, Position position) {
         this.pieceType = pieceType;
+        this.position = position;
     }
 
-    public static Piece createPiece(PieceType pieceType) {
-        return new Piece(pieceType);
+    public static Piece createPiece(PieceType pieceType, Position position) {
+        return new Piece(pieceType, position);
     }
 
     public PieceType getPieceType() {
@@ -33,12 +37,16 @@ public class Piece {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Piece) {
-            Piece targetPiece = (Piece)obj;
-            return this.pieceType.getRepresentation() == (targetPiece.getRepresentation());
-        }
-        return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Piece piece = (Piece) o;
+        return pieceType == piece.pieceType && Objects.equals(position, piece.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pieceType, position);
     }
 
 }

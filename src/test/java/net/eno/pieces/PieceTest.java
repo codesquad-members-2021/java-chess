@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 public class PieceTest {
 
     @Test
-    @DisplayName("공백 말과 모든 피스의 흰색, 검은색 말이 생성되어야 한다.")
+    @DisplayName("공백 기물과 모든 피스의 흰색, 검은색 기물이 생성되어야 한다.")
     public void create() {
         for (PieceType pieceType : PieceType.values()) {
             verifyPiece(pieceType);
@@ -14,7 +14,7 @@ public class PieceTest {
     }
 
     private void verifyPiece(PieceType pieceType) {
-        Piece piece = Piece.createPiece(pieceType);
+        Piece piece = Piece.createPiece(pieceType, new Position("a1"));
         assertThat(piece.getPieceType()).isEqualTo((pieceType));
         assertThat(piece.getColor()).isEqualTo(pieceType.getColor());
         assertThat(piece.getRepresentation()).isEqualTo(pieceType.getRepresentation());

@@ -44,8 +44,8 @@ class PieceTest {
     }
 
     @Test
-    @DisplayName("생성된 기물들의 색과 representation 이 올바른지 확인")
-    void createPiece() {
+    @DisplayName("흑킹 백킹이 제대로 생성되는지 확인")
+    void createKingPiece() {
         verifyPiece(Piece.createWhiteKing(),Piece.WHITE_COLOR, Piece.WHITE_KING_REPRESENTATION);
         verifyPiece(Piece.createBlackKing(),Piece.BLACK_COLOR, Piece.BLACK_KING_REPRESENTATION);
     }

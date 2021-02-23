@@ -31,4 +31,8 @@ public class Rank {
                 .count();
         return pieceCount;
     }
+
+    public Piece getPieceOf(int file) {
+        return pieces.get(file);
+    }
 }

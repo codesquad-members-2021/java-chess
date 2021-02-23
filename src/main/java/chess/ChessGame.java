@@ -1,5 +1,7 @@
 package chess;
 
+import chess.pieces.Piece;
+
 import java.util.Scanner;
 
 public class ChessGame {
@@ -35,6 +37,16 @@ public class ChessGame {
 
     private void startGame() {
         showInitialBoard();
+        proceedGame();
+    }
+
+    private void proceedGame() {
+        String command = "";
+        while(!command.equals("end")) {
+            command = getCommand();
+            Piece piece = board.findPiece(command);
+            System.out.println("당신은 " + piece.getColor().name() + " " + piece.getType().name() + "을(를) 선택하였소.");
+        }
     }
 
     private void showInitialBoard() {
@@ -44,6 +56,8 @@ public class ChessGame {
     }
 
     private void printEndScreen() {
+        System.out.println();
+        System.out.println("-------------");
         System.out.println("다음에 만나요-⭐️");
     }
 }

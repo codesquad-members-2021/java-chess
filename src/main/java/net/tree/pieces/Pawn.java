@@ -2,8 +2,8 @@ package net.tree.pieces;
 
 public class Pawn {
 
-    String color;
-    char representation;
+    private String color;
+    private char representation;
 
     public static final char WHITE_REPRESENTATION = 'p';
     public static final char BLACK_REPRESENTATION = 'P';
@@ -15,10 +15,6 @@ public class Pawn {
     public Pawn() {
         this.color = WHITE_COLOR;
         this.representation = WHITE_REPRESENTATION;
-    }
-
-    public Pawn(String color) {
-        this.color = WHITE_COLOR;
     }
 
     public Pawn(String color, char representation) {

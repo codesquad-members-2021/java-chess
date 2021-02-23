@@ -10,6 +10,7 @@ import net.tree.pieces.Pawn;
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import org.junit.jupiter.api.BeforeEach;
 >>>>>>> kyu가 리뷰해준 내용 반영하였습니다.
@@ -61,11 +62,23 @@ import org.junit.jupiter.api.DisplayName;
 
 import static org.junit.jupiter.api.Assertions.*;
 >>>>>>> fix : mission3
+<<<<<<< HEAD
 >>>>>>> 50300b1... fix : mission3
+=======
+=======
+import org.junit.jupiter.api.*;
+
+import static org.assertj.core.api.Assertions.assertThat;
+>>>>>>> Dion이 리뷰해주신 내용 반영하다.
+>>>>>>> 4e4c335... Dion이 리뷰해주신 내용 반영하다.
 
 class BoardTest {
 
+<<<<<<< HEAD
     private Board board;
+=======
+class BoardTest {
+>>>>>>> 4e4c335... Dion이 리뷰해주신 내용 반영하다.
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -96,7 +109,6 @@ class BoardTest {
 =======
     Board board;
 
-    @DisplayName("new Board() 중복코드 줄이기 위해 사용.")
     @BeforeEach
     void makeNewBoard() {
         board = new Board();
@@ -104,6 +116,7 @@ class BoardTest {
 
     @DisplayName("하얀색, 검정색 pawn 만들기")
     @Test
+<<<<<<< HEAD
     public void create() {
 >>>>>>> kyu가 리뷰해준 내용 반영하였습니다.
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
@@ -112,17 +125,22 @@ class BoardTest {
 <<<<<<< HEAD
 =======
 >>>>>>> rebase mission3
+=======
+    void createWhitePawnAndBlackPawn() {
+        Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        board.addPawntopawnList(white);
+>>>>>>> Dion이 리뷰해주신 내용 반영하다.
         Assertions.assertAll(
-            () -> assertEquals(1, board.checkPawnSize()),
-            () -> assertEquals(white, board.findPawn(0))
+            () -> assertThat(board.checkPawnSize()).isEqualTo(1),
+            () -> assertThat(board.findPawn(0)).isEqualTo(white)
         );
 <<<<<<< HEAD
 
-        Pawn black = new Pawn(Pawn.BLACK_COLOR);
-        board.add(black);
+        Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+        board.addPawntopawnList(black);
         Assertions.assertAll(
-                () -> assertEquals(2, board.checkPawnSize()),
-                () -> assertEquals(black, board.findPawn(1))
+                () -> assertThat(board.checkPawnSize()).isEqualTo(2),
+                () -> assertThat(board.findPawn(1)).isEqualTo(black)
         );
 >>>>>>> 3c74074... feat : Do Mission2
     }
@@ -191,22 +209,24 @@ class BoardTest {
 =======
     @DisplayName("보드 초기화 및 그리기")
     @Test
-    public void initializeBoardAndPrint() {
+    void initializeBoardAndAppend() {
         board.initialize();
-        board.print();
+        board.appendBoardWithPawns();
     }
 
     @DisplayName("보드 초기화하기")
     @Test
-    public void initialize() {
+    void initializeBoard() {
         board.initialize();
-        assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
-        assertEquals("PPPPPPPP", board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
+        assertThat("pppppppp").isEqualTo(board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
+        assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
+
     }
 <<<<<<< HEAD
 >>>>>>> a101753... feat : Do Mission3
 =======
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 1f82d36... feat : Do Mission2
 =======
@@ -225,6 +245,20 @@ class BoardTest {
         board.add(black);
         assertEquals(2, board.checkPawnSize());
         assertEquals(black, board.findPawn(1));
+=======
+    @DisplayName("whitePawn과 blackPawn 1개씩으로 pawnList 확인해보기 ")
+    @Test
+    void checkPawnListWithWhitePawnAndBlackPawn() {
+        Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        board.addPawntopawnList(white);
+        assertThat(board.checkPawnSize()).isEqualTo(1);
+        assertThat(board.findPawn(0)).isEqualTo(white);
+
+        Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+        board.addPawntopawnList(black);
+        assertThat(board.checkPawnSize()).isEqualTo(2);
+        assertThat(board.findPawn(1)).isEqualTo(black);
+>>>>>>> 4e4c335... Dion이 리뷰해주신 내용 반영하다.
     }
 <<<<<<< HEAD
 >>>>>>> 8a78563... feat : Do Mission2

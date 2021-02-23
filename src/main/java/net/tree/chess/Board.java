@@ -21,6 +21,7 @@ public class Board {
     }
 =======
     List<Pawn> pawnList = new ArrayList<>();
+<<<<<<< HEAD
     final int BOARD_SIZE = 8;
 <<<<<<< HEAD
     String blankDot = "........\n";
@@ -114,6 +115,12 @@ public class Board {
     private String blankDot = "........\n";
 >>>>>>> kyu가 리뷰해준 내용 반영하였습니다.
     public void add(Pawn pawn) {
+=======
+    private final int BOARD_SIZE = 8;
+    private String blankDot = "........\n";
+
+    public void addPawntopawnList(Pawn pawn) {
+>>>>>>> Dion이 리뷰해주신 내용 반영하다.
         pawnList.add(pawn);
 >>>>>>> rebase mission3
     }
@@ -154,14 +161,17 @@ public class Board {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
     public List<Pawn> initialize() {
+=======
+    public void initialize() {
+>>>>>>> 4e4c335... Dion이 리뷰해주신 내용 반영하다.
         for(int i = 0 ; i < BOARD_SIZE ; i++) {
-            add(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            add(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            addPawntopawnList(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+            addPawntopawnList(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
         }
-        return pawnList;
     }
 
     public String getPawnsResult(char representation) {
@@ -175,7 +185,7 @@ public class Board {
         return sb.toString();
     }
 
-    public String saveStringBuilder() {
+    public String appendBoardWithPawns() {
         StringBuilder sb = new StringBuilder();
         sb.append(blankDot);
         sb.append(getPawnsResult(Pawn.BLACK_REPRESENTATION) + "\n");
@@ -189,6 +199,7 @@ public class Board {
         return sb.toString();
     }
 
+<<<<<<< HEAD
     public void print() {
         System.out.println(saveStringBuilder());
     }
@@ -202,6 +213,8 @@ public class Board {
 =======
 >>>>>>> e071e51... feat : Do Mission3
 =======
+=======
+>>>>>>> 4e4c335... Dion이 리뷰해주신 내용 반영하다.
 
 >>>>>>> a20eb16... kyu가 리뷰해준 내용 반영하였습니다.
 }

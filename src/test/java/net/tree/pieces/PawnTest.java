@@ -64,18 +64,23 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class PawnTest {
+
+ class PawnTest {
 
     @DisplayName("기본생성자로 생성한 pawn")
     @Test
+<<<<<<< HEAD
     public void create_기본생성자() {
 >>>>>>> fix : mission3
+=======
+    void createPawnByDefaultConstructor() {
+>>>>>>> Dion이 리뷰해주신 내용 반영하다.
         Pawn pawn = new Pawn();
         Assertions.assertAll(
-                () -> assertEquals(Pawn.WHITE_COLOR, pawn.getColor()),
-                () -> assertEquals(Pawn.WHITE_REPRESENTATION, pawn.getRepresentation())
+                () -> assertThat(pawn.getColor()).isEqualTo(Pawn.WHITE_COLOR),
+                () -> assertThat(pawn.getRepresentation()).isEqualTo(Pawn.WHITE_REPRESENTATION)
         );
     }
 <<<<<<< HEAD
@@ -93,7 +98,7 @@ public class PawnTest {
     @DisplayName("color, representation 매개변수로 받아서 생성한 pawn")
 >>>>>>> fix : mission3
     @Test
-    public void create() {
+    void createPawn() {
         verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
         verifyPawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
 <<<<<<< HEAD
@@ -133,8 +138,8 @@ public class PawnTest {
 =======
 
         Assertions.assertAll(
-            () -> assertEquals(color, pawn.getColor()),
-            () -> assertEquals(representation, pawn.getRepresentation())
+            () -> assertThat(pawn.getColor()).isEqualTo(color),
+            () -> assertThat(pawn.getRepresentation()).isEqualTo(representation)
         );
 
 >>>>>>> fix : mission3

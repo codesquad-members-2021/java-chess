@@ -65,5 +65,12 @@ public class Board {
         result.append(NEWLINE).append("a b c d e f g h ");
         return result.toString();
     }
+
+    public int getNumberOfPieces(Color color, Type type) {
+        return (int) squares.values()
+                .stream()
+                .filter(piece -> piece.getColor() == color && piece.getType() == type)
+                .count();
+    }
 }
 

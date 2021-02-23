@@ -13,7 +13,13 @@ public class Piece {
     }
 
     public char getRepresentation() {
-        return type.getRepresentation(color);
+        if (color == Color.WHITE) {
+            return type.getWhiteRepresentation();
+        }
+        if (color == Color.BLACK) {
+            return type.getBlackRepresentation();
+        }
+        return '.';
     }
 
     public Color getColor() {

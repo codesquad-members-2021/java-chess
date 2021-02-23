@@ -17,17 +17,6 @@ public enum Type {
         this.point = point;
     }
 
-    public char getRepresentation(Color color) {
-        char representation = '.';
-        if (color == Color.BLACK) {
-            representation = Character.toUpperCase(this.representation);
-        }
-        if (color == Color.WHITE) {
-            representation = Character.toLowerCase(this.representation);
-        }
-        return representation;
-    }
-
     public char getWhiteRepresentation() {
         return representation;
     }

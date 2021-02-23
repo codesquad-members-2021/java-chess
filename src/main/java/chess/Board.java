@@ -68,7 +68,17 @@ public class Board {
         return "........";
     }
 
-    String getBoard(){
+    public void printBoard(){
+
+        String board = getBoard();
+        System.out.println(board);
+    }
+
+    public int pieceCount() {
+        return 0;
+    }
+
+    public String getBoard() {
         StringBuilder sb = new StringBuilder();
 
         sb.append(getDotOnBoard()+"\n");
@@ -81,12 +91,6 @@ public class Board {
         sb.append(getDotOnBoard());
 
         return sb.toString();
-    }
-
-    public void printBoard(){
-
-        String board = getBoard();
-        System.out.println(board);
     }
 }
 

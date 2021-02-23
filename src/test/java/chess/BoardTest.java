@@ -26,6 +26,6 @@ class BoardTest {
                 blankArea + blankArea + blankArea + blankArea +
                 appendNewLine("pppppppp") +
                 appendNewLine("rnbqkbnr")
-        ).isEqualTo(board.showBoard());
+        ).isEqualTo(board.getBoard());
     }
 }

@@ -2,6 +2,7 @@ package chess;
 
 import chess.pieces.Color;
 import chess.pieces.Piece;
+import chess.pieces.Position;
 import chess.pieces.Type;
 import utils.StringUtils;
 
@@ -52,14 +53,10 @@ public class Board {
         return pieces;
     }
 
-    public Piece findPiece(String s) {
-        char rankIndex = s.charAt(0);
-        char fileIndex = s.charAt(1);
+    public Piece findPiece(String position) {
+        Position chessBoardIndex = new Position(position);
 
-        int rankIndexPos = rankIndex - 'a';
-        int fileIndexPos = Character.getNumericValue(fileIndex);
-
-        return files.get((fileIndexPos-1)).getPiece(rankIndexPos);
+        return files.get((chessBoardIndex.getFile())).getPiece(chessBoardIndex.getRank());
     }
 
     private String getRank(Rank rank) {
@@ -76,30 +73,26 @@ public class Board {
     }
 
     public void initialize() {
-        files.add(Rank.initializeWhitePieces());
-        files.add(Rank.initializeWhitePawns());
-        files.add(Rank.initializeBlank());
-        files.add(Rank.initializeBlank());
-        files.add(Rank.initializeBlank());
-        files.add(Rank.initializeBlank());
-        files.add(Rank.initializeBlackPawns());
-        files.add(Rank.initializeBlackPieces());
+        files.add(Rank.initializeWhitePieces(8));
+        files.add(Rank.initializeWhitePawns(7));
+        files.add(Rank.initializeBlank(6));
+        files.add(Rank.initializeBlank(5));
+        files.add(Rank.initializeBlank(4));
+        files.add(Rank.initializeBlank(3));
+        files.add(Rank.initializeBlackPawns(2));
+        files.add(Rank.initializeBlackPieces(1));
     }
 
-    public void initializeEmpty() {
-        for(int i = 0; i < BOARD_SIZE; i++){
-            files.add(Rank.initializeBlank());
+    public void initializeAllEmpty() {
+        for(int i = 1; i <= BOARD_SIZE; i++){
+            files.add(Rank.initializeBlank(i));
         }
     }
 
     public void move(String position, Piece piece){
-        char rankIndex = position.charAt(0);
-        char fileIndex = position.charAt(1);
+        Position chessBoardIndex = new Position(position);
 
-        int rankIndexPos = rankIndex - 'a';
-        int fileIndexPos = Character.getNumericValue(fileIndex);
-
-        files.get(fileIndexPos-1).move(rankIndexPos, piece);
+        files.get(chessBoardIndex.getFile()).move(chessBoardIndex.getRank(), piece);
     }
 
     public double caculcatePoint(Color color) {

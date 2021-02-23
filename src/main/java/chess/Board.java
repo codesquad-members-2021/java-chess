@@ -50,7 +50,7 @@ public class Board {
         StringBuilder sb = new StringBuilder();
 
         for(int i= 0; i < whitePawnSize(); i++){
-            sb.append(Piece.WHITE_REPRESENTATION);
+            sb.append(Piece.WHITE_PAWN_REPRESENTATION);
         }
         return sb.toString();
     }
@@ -59,7 +59,7 @@ public class Board {
         StringBuilder sb = new StringBuilder();
 
         for(int i= 0; i < blackPawnSize(); i++){
-            sb.append(Piece.BLACK_REPRESENTATION);
+            sb.append(Piece.BLACK_PAWN_REPRESENTATION);
         }
         return sb.toString();
     }

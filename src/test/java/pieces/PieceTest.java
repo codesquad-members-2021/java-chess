@@ -7,11 +7,11 @@ class PieceTest {
 
     @Test
     @DisplayName("폰의 색상을 가져오는 메소드와 이니셜을 가져오는 메소드가 잘 작동하는지 테스트")
-     void createPawn() {
-        verifyPawn(Piece.WHITE, Piece.WHITE_REPRESENTATION);
-        verifyPawn(Piece.BLACK, Piece.BLACK_REPRESENTATION);
+     void create_Piece() {
+        verifyPiece(Piece.createWhitePawn(), Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION);
+        verifyPiece(Piece.createBlackPawn(), Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
     }
-    void verifyPawn(final String color, final char representation){
+    void verifyPiece(final Piece piece, final String color, final char representation){
         Piece pawn = new Piece(color);
         assertThat(pawn.getColor()).isEqualTo(color);
         assertThat(pawn.getRepresentation()).isEqualTo(representation);
@@ -22,6 +22,6 @@ class PieceTest {
      void createBasicPawn(){
         Piece pawn = new Piece();
         assertThat(Piece.WHITE).isEqualTo(pawn.getColor());
-        assertThat(Piece.WHITE_REPRESENTATION).isEqualTo(pawn.getRepresentation());
+        assertThat(Piece.WHITE_PAWN_REPRESENTATION).isEqualTo(pawn.getRepresentation());
     }
 }

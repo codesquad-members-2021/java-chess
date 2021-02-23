@@ -3,14 +3,18 @@ package net.sky.chess;
 import static net.sky.utils.StringUtils.appendNewLine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import net.sky.pieces.Color;
 import net.sky.pieces.Piece;
 import net.sky.pieces.PieceMaker;
+import net.sky.pieces.Position;
 
 public class Board {
 
+    private Map<Position, Piece> piecePositions = new HashMap<>();
     private List<Rank> board = new ArrayList<>();
     private final int BOARD_SIZE = 8;
     private final PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
@@ -25,6 +29,17 @@ public class Board {
         initializeBlank();
         initializeWhitePawns();
         initializeWhitePieces();
+
+        initializePosition();
+    }
+
+    private void initializePosition() {
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            for (int y = 0; y < BOARD_SIZE; y++) {
+                Piece piece = board.get(x).getRank().get(y);
+                piecePositions.put(new Position(x, y), piece);
+            }
+        }
     }
 
     private void initializeWhitePawns() {
@@ -109,11 +124,8 @@ public class Board {
         return pieceCount;
     }
 
-    public Piece findPiece(String position) {
-        int x = Math.abs(Character.getNumericValue(position.charAt(1)) - BOARD_SIZE);
-        int y = position.charAt(0) - 'a';
-        Piece piece = board.get(x).getRank().get(y);
-        return piece;
+    public Piece findPiece(Position position) {
+        return piecePositions.get(position);
     }
 
 }

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import net.sky.pieces.Color;
 import net.sky.pieces.Piece;
 import net.sky.pieces.PieceMaker;
+import net.sky.pieces.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -77,10 +78,10 @@ class BoardTest {
     @DisplayName("주어진 기물의 위치 확인")
     void findPiece() {
         assertAll(
-            () -> assertThat(board.findPiece("a8")).isEqualTo(blackPieceMaker.createRook()),
-            () -> assertThat(board.findPiece("h8")).isEqualTo(blackPieceMaker.createRook()),
-            () -> assertThat(board.findPiece("a1")).isEqualTo(whitePieceMaker.createRook()),
-            () -> assertThat(board.findPiece("h1")).isEqualTo(whitePieceMaker.createRook())
+            () -> assertThat(board.findPiece(new Position("a8"))).isEqualTo(blackPieceMaker.createRook()),
+            () -> assertThat(board.findPiece(new Position("h8"))).isEqualTo(blackPieceMaker.createRook()),
+            () -> assertThat(board.findPiece(new Position("a1"))).isEqualTo(whitePieceMaker.createRook()),
+            () -> assertThat(board.findPiece(new Position("h1"))).isEqualTo(whitePieceMaker.createRook())
         );
     }
 }

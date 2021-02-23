@@ -4,16 +4,19 @@ import java.time.Period;
 import java.util.Objects;
 
 public class Piece {
-    public static final String WHITE = "white";
-    public static final String BLACK = "black";
-    public static final String NO_COLOR = "noColor";
 
-    private final String color;
+    public enum Color {
+        WHITE,
+        BLACK,
+        NO_COLOR
+    }
+
+    private final Color color;
     private final char representation;
     private final PieceType pieceType;
     private final double score;
 
-    private Piece(String color, PieceType pieceType) {
+    private Piece(Color color, PieceType pieceType) {
         this.color = color;
         this.representation = pieceType.getRepresentation(color);
         this.score = pieceType.getScore();
@@ -21,11 +24,11 @@ public class Piece {
     }
 
     private static Piece createWhite(PieceType pieceType) {
-        return new Piece(WHITE, pieceType);
+        return new Piece(Color.WHITE, pieceType);
     }
 
     private static Piece createBlack(PieceType pieceType) {
-        return new Piece(BLACK, pieceType);
+        return new Piece(Color.BLACK, pieceType);
     }
 
     public static Piece createWhitePawn() {
@@ -61,26 +64,26 @@ public class Piece {
     }
 
     public static Piece createBlank() {
-        return new Piece(NO_COLOR, PieceType.NO_PIECE);
+        return new Piece(Color.NO_COLOR, PieceType.NO_PIECE);
     }
 
     public static Piece createWhiteQueen() {
-        return new Piece(WHITE, PieceType.QUEEN);
+        return new Piece(Color.WHITE, PieceType.QUEEN);
     }
 
     public static Piece createBlackQueen() {
-        return new Piece(BLACK, PieceType.QUEEN);
+        return new Piece(Color.BLACK, PieceType.QUEEN);
     }
 
     public static Piece createWhiteKing() {
-        return new Piece(WHITE, PieceType.KING);
+        return new Piece(Color.WHITE, PieceType.KING);
     }
 
     public static Piece createBlackKing() {
-        return new Piece(BLACK, PieceType.KING);
+        return new Piece(Color.BLACK, PieceType.KING);
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
@@ -97,11 +100,11 @@ public class Piece {
     }
 
     public boolean isBlack() {
-        return color.equals(BLACK);
+        return color.equals(Color.BLACK);
     }
 
     public boolean isWhite() {
-        return color.equals(WHITE);
+        return color.equals(Color.WHITE);
     }
 
     @Override

@@ -1,8 +1,7 @@
 package net.coco.chess;
 
 import net.coco.pieces.Piece;
-import net.coco.pieces.PieceType;
-import net.coco.valid.PieceValid;
+import net.coco.pieces.Piece.Color;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -90,9 +89,9 @@ public class Rank {
         pieces.set(row, piece);
     }
 
-    public Piece findPieceByColumn(String color, int column) {
+    public Piece findPieceByColumn(Color color, int column) {
         Piece findPiece = pieces.get(column);
-        return findPiece.getColor().equals(color) ? findPiece : Piece.createBlank();
+        return findPiece.getColor() == color ? findPiece : Piece.createBlank();
     }
 
     public List<Piece> getWhitePieces() {

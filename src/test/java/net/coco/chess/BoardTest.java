@@ -2,6 +2,7 @@ package net.coco.chess;
 
 
 import net.coco.pieces.Piece;
+import net.coco.pieces.Piece.Color;
 import net.coco.pieces.PieceType;
 import net.coco.printer.PrintChess;
 import org.junit.jupiter.api.Assertions;
@@ -44,9 +45,9 @@ public class BoardTest {
     void getPiecesCount() {
         board.initializeWithPieces();
         Assertions.assertAll(
-                () -> assertThat(board.getPieceCount(Piece.WHITE, PieceType.PAWN)).isEqualTo(8),
-                () -> assertThat(board.getPieceCount(Piece.WHITE, PieceType.KING)).isEqualTo(1),
-                () -> assertThat(board.getPieceCount(Piece.NO_COLOR, PieceType.NO_PIECE)).isEqualTo(32)
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.PAWN)).isEqualTo(8),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.KING)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.NO_COLOR, PieceType.NO_PIECE)).isEqualTo(32)
         );
 
     }
@@ -94,7 +95,7 @@ public class BoardTest {
         board.move("g6", Piece.createBlackPawn());
         board.move("g5", Piece.createWhitePawn());
 
-        assertThat(board.calculateScore(Piece.BLACK)).isEqualTo(2.5);
+        assertThat(board.calculateScore(Color.BLACK)).isEqualTo(2.5);
 
     }
 

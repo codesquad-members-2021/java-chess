@@ -1,9 +1,9 @@
 package net.coco.chess;
 
 import net.coco.pieces.Piece;
+import net.coco.pieces.Piece.Color;
 import net.coco.pieces.PieceType;
 import net.coco.pieces.Point;
-import net.coco.valid.PieceValid;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,8 +34,7 @@ public class Board {
         }
     }
 
-    public int getPieceCount(String color, PieceType pieceType) {
-        PieceValid.checkColorType(color);
+    public int getPieceCount(Color color, PieceType pieceType) {
         int count = 0;
         for (Rank rank : ranks) {
             count += rank.findPieceCount(pieceType.getRepresentation(color));
@@ -65,13 +64,12 @@ public class Board {
         ranks.get(point.getColumn()).movePieceToPoint(piece, point.getRow());
     }
 
-    public double calculateScore(String color) {
-        PieceValid.checkColorType(color);
+    public double calculateScore(Color color) {
         double sum = getSum(color);
         return sum;
     }
 
-    private double getSum(String color) {
+    private double getSum(Color color) {
         double sum = 0.0;
         for (int column = 0; column < ranks.size(); column++) {
             int pawnCount = 0;
@@ -86,7 +84,7 @@ public class Board {
         return sum;
     }
 
-    private List<Piece> getPieces(String color, int column) {
+    private List<Piece> getPieces(Color color, int column) {
         ArrayList<Piece> getPieces = new ArrayList<>();
         for (int row = 0; row < ranks.size(); row++) {
             Rank getRank = ranks.get(row);

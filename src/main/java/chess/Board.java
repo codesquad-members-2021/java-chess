@@ -22,6 +22,16 @@ public class Board {
         }
     }
 
+    private void initializeWhitePieces(){
+        for(int i=0; i<PIECES_COUNT; i++){
+            addWhitePiece(Piece.createWhiteRook());
+            addWhitePiece(Piece.createWhiteKnight());
+            addWhitePiece(Piece.createWhiteBishop());
+            addWhitePiece(Piece.createWhiteQueen());
+            addWhitePiece(Piece.createWhiteKing());
+        }
+    }
+
     public void addWhitePiece(Piece piece){
         if(checkPieceColor(piece, Piece.WHITE_COLOR))
             whitePieces.add(piece);

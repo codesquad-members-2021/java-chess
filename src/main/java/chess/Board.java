@@ -73,14 +73,15 @@ public class Board {
     }
 
     public void initialize() {
-        files.add(Rank.initializeWhitePieces(8));
-        files.add(Rank.initializeWhitePawns(7));
-        files.add(Rank.initializeBlank(6));
-        files.add(Rank.initializeBlank(5));
-        files.add(Rank.initializeBlank(4));
-        files.add(Rank.initializeBlank(3));
-        files.add(Rank.initializeBlackPawns(2));
-        files.add(Rank.initializeBlackPieces(1));
+        final int FILE_INDEX = 8;
+        files.add(Rank.initializeWhitePieces(FILE_INDEX));
+        files.add(Rank.initializeWhitePawns(FILE_INDEX - 1));
+        files.add(Rank.initializeBlank(FILE_INDEX - 2));
+        files.add(Rank.initializeBlank(FILE_INDEX - 3));
+        files.add(Rank.initializeBlank(FILE_INDEX - 4));
+        files.add(Rank.initializeBlank(FILE_INDEX - 5));
+        files.add(Rank.initializeBlackPawns(FILE_INDEX - 6));
+        files.add(Rank.initializeBlackPieces(FILE_INDEX - 7));
     }
 
     public void initializeAllEmpty() {
@@ -93,6 +94,7 @@ public class Board {
         Position chessBoardIndex = new Position(position);
 
         files.get(chessBoardIndex.getFile()).move(chessBoardIndex.getRank(), piece);
+        piece.setPosition(chessBoardIndex);
     }
 
     public double totalCalculatePoint(Color color) {
@@ -108,16 +110,16 @@ public class Board {
     public String getChessBoard() {
         StringBuilder boardRank = new StringBuilder();
 
-        String fileIndex = "a b c d e f g h";
+        String rankIndex = "a b c d e f g h";
 
-        for (int i = BOARD_SIZE - 1; i >= 0; i--) {
-            boardRank.append(getRank(files.get(i)));
-            boardRank.append(" ").append(i + 1);
+        for (int fileIndex = BOARD_SIZE - 1; fileIndex >= 0; fileIndex--) {
+            boardRank.append(getRank(files.get(fileIndex)));
+            boardRank.append(" ").append(fileIndex + 1);
             boardRank.append(StringUtils.getNewLine());
         }
 
         boardRank.append(StringUtils.getNewLine());
-        boardRank.append(StringUtils.addNewLine(fileIndex));
+        boardRank.append(StringUtils.addNewLine(rankIndex));
         return boardRank.toString();
     }
 }

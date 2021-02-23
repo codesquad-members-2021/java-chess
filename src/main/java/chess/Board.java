@@ -17,29 +17,28 @@ public class Board {
     private List<Piece> blackPieces = new ArrayList<>();
 
     void addWhitePawn(Piece piece) {
-        if (piece.getColor() != Piece.Color.WHITE || piece.getType() != Piece.Type.PAWN) {
+        if (!piece.isWhite() || piece.getType() != Piece.Type.PAWN) {
             throw new InvalidParameterException("흰색의 pawn만 추가할 수 있습니다.");
         }
         whitePawns.add(piece);
     }
 
     void addBlackPawn(Piece piece) {
-        if (piece.getColor() != Piece.Color.BLACK || piece.getType() != Piece.Type.PAWN) {
+        if (!piece.isBlack() || piece.getType() != Piece.Type.PAWN) {
             throw new InvalidParameterException("검은색의 pawn만 추가할 수 있습니다");
         }
         blackPawns.add(piece);
     }
 
     void addWhitePiece(Piece piece) {
-        if (piece.getColor() != Piece.Color.WHITE){
+        if (!piece.isWhite()){
             throw new InvalidParameterException("흰색의 piece만 추가할 수 있습니다");
         }
-
         whitePieces.add(piece);
     }
 
     void addBlackPiece(Piece piece) {
-        if (piece.getColor() != Piece.Color.BLACK){
+        if (!piece.isBlack()){
             throw new InvalidParameterException("검은색의 piece만 추가할수 있습니다");
         }
         blackPieces.add(piece);
@@ -52,19 +51,19 @@ public class Board {
                 blackPieces.size();
     }
 
-    public String getWhitePiecesResult() {
+    private String getWhitePiecesResult() {
         return getPiecesResult(whitePieces);
     }
 
-    public String getBlackPiecesResult() {
+    private String getBlackPiecesResult() {
         return getPiecesResult(blackPieces);
     }
 
-    public String getWhitePawnsResult() {
+    private String getWhitePawnsResult() {
         return getPiecesResult(whitePawns);
     }
 
-    public String getBlackPawnsResult() {
+    private String getBlackPawnsResult() {
         return getPiecesResult(blackPawns);
     }
 

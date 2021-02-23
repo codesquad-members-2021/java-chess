@@ -47,7 +47,7 @@ public class Piece {
     }
 
     public char getRepresentation() {
-        return (this.color == Color.WHITE) ? this.type.getWhiteRepresentation() : this.type.getBlackRepresentation();
+        return (this.isWhite()) ? this.type.getWhiteRepresentation() : this.type.getBlackRepresentation();
     }
 
     public static Piece createWhitePawn() {

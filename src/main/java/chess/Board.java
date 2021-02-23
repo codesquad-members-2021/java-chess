@@ -27,6 +27,12 @@ public class Board {
         initPiecesExceptPawns(Color.WHITE, 1);
     }
 
+    public void initializeEmpty() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            initBlankSquares(i);
+        }
+    }
+
     private void initRank(Color color, int rank, Type type) {
         for (int i = 0; i < BOARD_SIZE; i++) {
             addPiece((char) (i + 'a'), rank, createPiece(color, type));

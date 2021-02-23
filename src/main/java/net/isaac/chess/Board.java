@@ -11,8 +11,6 @@ public class Board {
     private static final int MAX_IDX = MAX_SIZE - 1;
 
     private Piece[][] pieces = new Piece[MAX_SIZE][MAX_SIZE];
-    private List<Piece> whitePieces = new ArrayList<>();
-    private List<Piece> blackPieces = new ArrayList<>();
 
     public void initialize() {
         int pawnsRow = 1;
@@ -65,18 +63,6 @@ public class Board {
         return ret;
     }
 
-    public String getWhitePiecesResult() {
-        return this.whitePieces.stream().
-                map(x -> String.valueOf(x.getRepresentation())).
-                reduce("", (a, b) -> a + b);
-    }
-
-    public String getBlackPiecesResult() {
-        return this.blackPieces.stream().
-                map(x -> String.valueOf(x.getRepresentation())).
-                reduce("", (a, b) -> a + b);
-    }
-
     public void add(Piece piece, int rowIdx, int colIdx) {
         if (!isValid(rowIdx) || !isValid(colIdx)) {
             System.err.println("Board.add: 위치가 체스보드 범위를 벗어났습니다.");
@@ -84,15 +70,6 @@ public class Board {
         }
 
         pieces[rowIdx][colIdx] = piece;
-
-        switch (piece.getColor()) {
-            case BLACK:
-                blackPieces.add(piece);
-                break;
-            case WHITE:
-                whitePieces.add(piece);
-                break;
-        }
     }
 
     public Piece findPiece(int rowIdx, int colIdx) {
@@ -112,6 +89,14 @@ public class Board {
     }
 
     public int pieceCount() {
-        return whitePieces.size() + blackPieces.size();
+        int count = 0;
+        for (int row = 0; row < MAX_SIZE; row++) {
+            for (int column = 0; column < MAX_SIZE; column++) {
+                if (pieces[row][column] != null) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }

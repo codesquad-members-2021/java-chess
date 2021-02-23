@@ -16,12 +16,12 @@ class BoardTest {
     @BeforeEach
     void setup() {
         board = new Board();
-        board.initialize();
     }
 
     @Test
     @DisplayName("체스판이 제대로 초기화되었는지 검증한다")
     void verifyInitialize() {
+        board.initialize();
         String result = new StringBuilder()
                 .append("R N B Q K B N R   8").append(NEWLINE)
                 .append("P P P P P P P P   7").append(NEWLINE)
@@ -38,29 +38,32 @@ class BoardTest {
 
     @Test
     void verifyGetNumberOfPieces() {
+        board.initialize();
         assertThat(board.getNumberOfPieces(Color.WHITE, Type.PAWN)).isEqualTo(8);
         assertThat(board.getNumberOfPieces(Color.WHITE, Type.KING)).isEqualTo(1);
     }
 
     @Test
     void verifyFindPiece() {
-        assertAll(() -> assertThat(board.findPiece(new Position('a', 8)))
+        board.initialize();
+        assertAll(() -> assertThat(board.findPiece(new Position("a8")))
                         .isEqualTo(createPiece(Color.BLACK, Type.ROOK)),
-                () -> assertThat(board.findPiece(new Position('e', 1)))
+                () -> assertThat(board.findPiece(new Position("e1")))
                         .isEqualTo(createPiece(Color.WHITE, Type.KING)));
     }
 
     @Test
     void verifyMove() {
         board.initializeEmpty();
-        Position before = new Position('b', 6);
-        Position after = new Position('d', 3);
+        Position before = new Position("b6");
+        Position after = new Position("d3");
         Piece blackQueen = createPiece(Color.BLACK, Type.QUEEN);
 
-        board.addPiece(before.getFile(), before.getRank(), blackQueen);
+        board.addPiece(before, blackQueen);
         board.move(before, after);
 
         assertThat(board.findPiece(after)).isEqualTo(blackQueen);
     }
+
 }
 

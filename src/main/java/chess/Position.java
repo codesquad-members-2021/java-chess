@@ -11,6 +11,11 @@ public class Position {
         this.rank = rank;
     }
 
+    public Position(String position) {
+        this.file = position.charAt(0);
+        this.rank = Character.getNumericValue(position.charAt(1));
+    }
+
     public char getFile() {
         return file;
     }

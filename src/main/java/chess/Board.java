@@ -12,8 +12,8 @@ public class Board {
     private final Map<Position, Piece> squares = new LinkedHashMap<>();
     private final int BOARD_SIZE = 8;
 
-    public void addPiece(char file, int rank, Piece piece) {
-        squares.put(new Position(file, rank), piece);
+    public void addPiece(Position position, Piece piece) {
+        squares.put(position, piece);
     }
 
     public void initialize() {
@@ -35,7 +35,7 @@ public class Board {
 
     private void initRank(Color color, int rank, Type type) {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            addPiece((char) (i + 'a'), rank, createPiece(color, type));
+            addPiece(new Position((char) (i + 'a'), rank), createPiece(color, type));
         }
     }
 
@@ -48,14 +48,14 @@ public class Board {
     }
 
     private void initPiecesExceptPawns(Color color, int rank) {
-        addPiece('a', rank, createPiece(color, Type.ROOK));
-        addPiece('b', rank, createPiece(color, Type.KNIGHT));
-        addPiece('c', rank, createPiece(color, Type.BISHOP));
-        addPiece('d', rank, createPiece(color, Type.QUEEN));
-        addPiece('e', rank, createPiece(color, Type.KING));
-        addPiece('f', rank, createPiece(color, Type.BISHOP));
-        addPiece('g', rank, createPiece(color, Type.KNIGHT));
-        addPiece('h', rank, createPiece(color, Type.ROOK));
+        addPiece(new Position('a', rank), createPiece(color, Type.ROOK));
+        addPiece(new Position('b', rank), createPiece(color, Type.KNIGHT));
+        addPiece(new Position('c', rank), createPiece(color, Type.BISHOP));
+        addPiece(new Position('d', rank), createPiece(color, Type.QUEEN));
+        addPiece(new Position('e', rank), createPiece(color, Type.KING));
+        addPiece(new Position('f', rank), createPiece(color, Type.BISHOP));
+        addPiece(new Position('g', rank), createPiece(color, Type.KNIGHT));
+        addPiece(new Position('h', rank), createPiece(color, Type.ROOK));
     }
 
     public String getResultToPrint() {

@@ -25,10 +25,10 @@ class BoardTest {
     void printBoard() {
         board.initialize();
         String blankRank = ". . . . . . . .";
-        final int TOTAL_PIECES_COUNT = 32;
+        final int totalPiecesCount = 32;
 
         assertAll(
-                () -> assertThat(TOTAL_PIECES_COUNT).isEqualTo(board.totalPiecesCount()),
+                () -> assertThat(totalPiecesCount).isEqualTo(board.totalPiecesCount()),
                 () -> assertThat(StringUtils.addNewLine("R N B Q K B N R  8") +
                         StringUtils.addNewLine("P P P P P P P P  7") +
                         StringUtils.addNewLine(blankRank + "  6") +

@@ -93,4 +93,14 @@ public class Board {
         return result.toString();
     }
 
+    public int pieceCount(Piece piece) {
+        int pieceCount = 0;
+
+        for (Rank rank : board) {
+            pieceCount += rank.pieceCount(piece);
+        }
+
+        return pieceCount;
+    }
+
 }

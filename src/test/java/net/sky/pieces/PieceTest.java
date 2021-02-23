@@ -58,7 +58,7 @@ class PieceTest {
         verifyColor(piece, color);
     }
 
-    private void verifyColor(Piece piece, Color color) {
+    void verifyColor(Piece piece, Color color) {
         if (color == Color.NOCOLOR) {
             assertAll(
                 () -> assertThat(piece.isWhite(piece)).isFalse(),

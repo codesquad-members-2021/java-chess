@@ -2,7 +2,6 @@ package chess;
 
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
-import pieces.Piece;
 import static utils.StringUtils.appendNewLine;
 
 class BoardTest {
@@ -32,6 +31,6 @@ class BoardTest {
                 blankArea + blankArea + blankArea + blankArea +
                 appendNewLine("pppppppp") +
                 appendNewLine("rnbqkbnr")
-        ).isEqualTo(board.getBoard());
+        ).isEqualTo(board.bringBoard());
     }
 }

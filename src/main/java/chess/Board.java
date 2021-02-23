@@ -1,6 +1,7 @@
 package chess;
 
 import pieces.Piece;
+import utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +77,7 @@ public class Board {
     }
 
     public void printBoard(){
-
-        String board = getBoard();
+        String board = bringBoard();
         System.out.println(board);
     }
 
@@ -90,20 +90,19 @@ public class Board {
                 whitePieces.size() +
                 blackPawns.size() +
                 blackPieces.size();
-
     }
 
-    public String getBoard() {
+    public String bringBoard() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(bringWhitePawnsRepresentation()+"\n");
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(bringBlackPawnsRepresentation()+"\n");
-        sb.append(getDotOnBoard());
+        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(bringWhitePawnsRepresentation()));
+        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(bringBlackPawnsRepresentation()));
+        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
 
         return sb.toString();
     }

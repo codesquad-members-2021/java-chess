@@ -118,4 +118,11 @@ public class Board {
         int rankIndex = RANKS - rankPosition;
         return pieceRanks.get(rankIndex).get(filePosition);
     }
+
+    public void move(String position, Piece piece) {
+    }
+
+    public void initializeEmpty() {
+    }
+
 }

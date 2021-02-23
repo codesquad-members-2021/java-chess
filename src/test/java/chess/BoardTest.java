@@ -14,6 +14,7 @@ import static utils.StringUtils.*;
 class BoardTest {
 
     private Board board;
+    private final String BLANK_RANK = appendNewLine("........");
 
     @BeforeEach
     void testInit() {
@@ -24,11 +25,10 @@ class BoardTest {
     @Test
     @DisplayName("게임 보드 초기화")
     void initialize() {
-        String blankRank = appendNewLine("........");
         String initBoard =
                 appendNewLine("RNBQKBNR") +
                 appendNewLine("PPPPPPPP") +
-                blankRank + blankRank + blankRank + blankRank +
+                BLANK_RANK + BLANK_RANK + BLANK_RANK + BLANK_RANK +
                 appendNewLine("pppppppp") +
                 appendNewLine("rnbqkbnr");
 
@@ -73,6 +73,25 @@ class BoardTest {
         assertThat(board.findPiece("f1")).isEqualTo(Piece.createWhiteBishop());
         assertThat(board.findPiece("g1")).isEqualTo(Piece.createWhiteKnight());
         assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhiteRook());
+    }
+
+    @Test
+    @DisplayName("기물을 움직인 후 위치 조회")
+    void move() {
+        String movedBoard =
+                BLANK_RANK + BLANK_RANK + BLANK_RANK +
+                appendNewLine(".P......") +
+                BLANK_RANK + BLANK_RANK + BLANK_RANK + BLANK_RANK;
+
+        board.initializeEmpty();
+        String position = "b5";
+        Piece piece = Piece.createBlackPawn();
+        board.move(position, piece);
+
+        assertThat(piece).isEqualTo(board.findPiece(position));
+        assertThat(board.showBoard()).isEqualTo(movedBoard);
+
+        System.out.println(board.showBoard());
     }
 
 }

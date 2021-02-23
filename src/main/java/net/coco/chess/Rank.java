@@ -4,10 +4,8 @@ import net.coco.pieces.Piece;
 import net.coco.pieces.PieceType;
 import net.coco.valid.PieceValid;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Rank {
     private final List<Piece> pieces = new ArrayList<>();
@@ -88,12 +86,20 @@ public class Rank {
         return pieces.get(row);
     }
 
-    public void movePieceToPoint(Piece piece,int row){
-        pieces.set(row,piece);
+    public void movePieceToPoint(Piece piece, int row) {
+        pieces.set(row, piece);
     }
 
-    public Piece findPiece(String color, int column) {
+    public Piece findPieceByColumn(String color, int column) {
         Piece findPiece = pieces.get(column);
         return findPiece.getColor().equals(color) ? findPiece : Piece.createBlank();
+    }
+
+    public List<Piece> getWhitePieces() {
+        return pieces.stream().filter(Piece::isWhite).collect(Collectors.toList());
+    }
+
+    public List<Piece> getBlackPieces() {
+        return pieces.stream().filter(Piece::isBlack).collect(Collectors.toList());
     }
 }

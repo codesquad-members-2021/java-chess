@@ -54,10 +54,11 @@ public class Board {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < MAX_SIZE; i++) {
             for (int j = 0; j < MAX_SIZE; j++) {
-                if (pieces[i][j] == null)
+                if (pieces[i][j] == null) {
                     builder.append('.');
-                else
+                } else {
                     builder.append(pieces[i][j].getRepresentation());
+                }
             }
             builder.append(StringUtils.NEWLINE);
         }
@@ -95,8 +96,9 @@ public class Board {
     }
 
     public Piece findPiece(int rowIdx, int colIdx) {
-        if (!isValid(rowIdx) || !isValid(colIdx))
+        if (!isValid(rowIdx) || !isValid(colIdx)) {
             return null;
+        }
 
         return pieces[rowIdx][colIdx];
     }

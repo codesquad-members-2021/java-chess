@@ -19,6 +19,14 @@ public class Piece {
         Type(char representation) {
             this.representation = representation;
         }
+
+        public char getWhiteRepresentation() {
+            return representation;
+        }
+
+        public char getBlackRepresentation() {
+            return Character.toUpperCase(representation);
+        }
     }
 
     private final Color color;
@@ -34,7 +42,7 @@ public class Piece {
     public Type getType() { return type; }
 
     public char getRepresentation() {
-        return color == Color.WHITE ? type.representation : Character.toUpperCase(type.representation); }
+        return color == Color.WHITE ? type.getWhiteRepresentation() : type.getBlackRepresentation(); }
 
     public static Piece createWhitePawn() { return new Piece(Color.WHITE, Type.PAWN); }
     public static Piece createBlackPawn() { return new Piece(Color.BLACK, Type.PAWN); }

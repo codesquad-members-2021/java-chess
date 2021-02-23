@@ -9,14 +9,33 @@ public class Board {
 
     private List<Piece> whitePawnList  = new ArrayList<>();
     private List<Piece> blackPawnList  = new ArrayList<>();
+    private List<Piece> whiteRookList  = new ArrayList<>();
+    private List<Piece> blackRookList  = new ArrayList<>();
+    private List<Piece> whiteKnightList  = new ArrayList<>();
+    private List<Piece> blackKnightList  = new ArrayList<>();
+    private List<Piece> whiteBishopList  = new ArrayList<>();
+    private List<Piece> blackBishopList  = new ArrayList<>();
+    private List<Piece> whiteQueenList  = new ArrayList<>();
+    private List<Piece> blackQueenList  = new ArrayList<>();
+    private List<Piece> whiteKingList  = new ArrayList<>();
+    private List<Piece> blackKingList  = new ArrayList<>();
 
     public static final int PAWN_NUMBER = 8;
 
-    void whitePawnAdd(Piece whitePawn) {
+    public void AddPawn(Piece pawn){
+        if(pawn.getColor().equals("White")){
+            whitePawnAdd(pawn);
+            return;
+        }
+        blackPawnAdd(pawn);
+        return;
+    }
+
+    private void whitePawnAdd(Piece whitePawn) {
         whitePawnList.add(whitePawn);
     }
 
-    void blackPawnAdd(Piece blackPawn) {
+    private void blackPawnAdd(Piece blackPawn) {
         blackPawnList.add(blackPawn);
     }
 

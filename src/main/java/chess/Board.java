@@ -7,7 +7,6 @@ import static utils.StringUtils.appendNewLine;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Board {
     private static final int BOARD_SIZE = 8;
     private List<Piece> whitePawns = new ArrayList<>();
@@ -98,6 +97,16 @@ public class Board {
     }
 
     public String printBoard() {
-        return "a";
+        StringBuilder result = new StringBuilder();
+        String empty = appendNewLine("........");
+        result.append(appendNewLine(getBlackPiecesResult()))
+                .append(appendNewLine(getBlackPawnsResult()))
+                .append(empty)
+                .append(empty)
+                .append(empty)
+                .append(empty)
+                .append(appendNewLine(getWhitePawnsResult()))
+                .append(appendNewLine(getWhitePiecesResult()));
+        return result.toString();
     }
 }

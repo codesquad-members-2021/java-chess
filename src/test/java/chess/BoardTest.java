@@ -3,10 +3,10 @@ package chess;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pieces.Piece;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static utils.StringUtils.appendNewLine;
 
 
 class BoardTest {
@@ -34,14 +34,12 @@ class BoardTest {
     @DisplayName("초기화 했을때 Board출력이 제대로 되는지 확인")
     void print() {
         board.initialize();
+        String empty = appendNewLine("........");
         assertThat(board.printBoard()).isEqualTo(
-                "........\n" +
-                        "pppppppp\n" +
-                        "........\n" +
-                        "........\n" +
-                        "........\n" +
-                        "........\n" +
-                        "PPPPPPPP\n" +
-                        "........\n");
+                        appendNewLine("RNBQKBNR") +
+                        appendNewLine("PPPPPPPP") +
+                        empty + empty + empty + empty +
+                        appendNewLine("pppppppp") +
+                        appendNewLine("rnbqkbnr"));
     }
 }

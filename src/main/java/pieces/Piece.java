@@ -77,17 +77,10 @@ public class Piece {
     }
 
     public boolean isWhite(Piece piece){
-        if(piece.getColor().equals(Piece.Color.WHITE)){
-            return true;
-        }
-        return false;
+        return piece.getColor().equals(Piece.Color.WHITE);
     }
 
     public boolean isBlack(Piece piece){
-        if(piece.getColor().equals(Piece.Color.BLACK)){
-            return true;
-        }
-        return false;
+        return piece.getColor().equals(Piece.Color.BLACK);
     }
-
 }

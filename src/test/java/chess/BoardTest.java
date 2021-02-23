@@ -2,6 +2,7 @@ package chess;
 
 import chess.pieces.Color;
 import chess.pieces.Piece;
+import chess.pieces.Position;
 import chess.pieces.Type;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -61,10 +62,10 @@ class BoardTest {
 
     @Test
     public void move() {
-        board.initializeEmpty();
+        board.initializeAllEmpty();
 
         String position = "b5";
-        Piece piece = Piece.createBlackRook();
+        Piece piece = Piece.createBlackRook(new Position(position));
         board.move(position, piece);
 
         assertThat(piece).isEqualTo(board.findPiece(position));
@@ -72,18 +73,18 @@ class BoardTest {
     }
 
     @Test
-    public void caculcatePoint() throws Exception {
-        board.initializeEmpty();
+    public void caculcatePoint() {
+        board.initializeAllEmpty();
 
-        addPiece("b6", Piece.createBlackPawn());
-        addPiece("e6", Piece.createBlackQueen());
-        addPiece("b8", Piece.createBlackKing());
-        addPiece("c8", Piece.createBlackRook());
+        addPiece("b6", Piece.createBlackPawn(new Position("b6")));
+        addPiece("e6", Piece.createBlackQueen(new Position("e6")));
+        addPiece("b8", Piece.createBlackKing(new Position("b8")));
+        addPiece("c8", Piece.createBlackRook(new Position("c8")));
 
-        addPiece("f2", Piece.createWhitePawn());
-        addPiece("g2", Piece.createWhitePawn());
-        addPiece("e1", Piece.createWhiteRook());
-        addPiece("f1", Piece.createWhiteKing());
+        addPiece("f2", Piece.createWhitePawn(new Position("f2")));
+        addPiece("g2", Piece.createWhitePawn(new Position("g2")));
+        addPiece("e1", Piece.createWhiteRook(new Position("e1")));
+        addPiece("f1", Piece.createWhiteKing(new Position("f1")));
 
         assertThat(15.0).isEqualTo(board.caculcatePoint(Color.BLACK));
         assertThat(7.0).isEqualTo(board.caculcatePoint(Color.WHITE));

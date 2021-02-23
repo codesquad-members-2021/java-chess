@@ -59,8 +59,17 @@ public class Piece {
         return new Piece(Color.BLACK, Type.KING);
     }
 
+    public static Piece createBlank() {
+        return new Piece(Color.NO_COLOR, Type.NO_PIECE);
+    }
+
+
     public Color getColor() {
         return color;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     public char getRepresentation() {
@@ -70,7 +79,7 @@ public class Piece {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o instanceof Piece){
+        if (o instanceof Piece) {
             return false;
         }
         Piece piece = (Piece) o;

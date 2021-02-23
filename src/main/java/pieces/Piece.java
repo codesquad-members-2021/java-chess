@@ -32,6 +32,11 @@ public class Piece {
         return new Piece(BLACK_COLOR,BLACK_PAWN_REPRESENTATION);
     }
 
+    public static Piece createWhiteKnight(){
+        return new Piece(WHITE_COLOR,WHITE_KNIGHT_REPRESENTATION);
+    }
+
+
 
     public String getColor() {
         return this.color;

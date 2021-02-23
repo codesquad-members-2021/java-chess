@@ -1,18 +1,47 @@
 package chess.pieces;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PieceTest {
 
+    Position position;
+
+    @BeforeEach
+    void positionInit(){
+        int testPositionIndex = 1;
+        position = new Position(testPositionIndex, testPositionIndex);
+    }
+
+    @Test
+    void piecesPointSort() {
+        List<Piece> pieces = new ArrayList<>();
+
+        addPiece(pieces);
+
+        Collections.sort(pieces);
+        assertThat(pieces.toString()).isEqualTo("[Q, R, B, N, P, K]");
+
+    }
+
+    void addPiece(List<Piece> collection) {
+        collection.add(Piece.createBlackPawn(position));
+        collection.add(Piece.createBlackRook(position));
+        collection.add(Piece.createBlackKnight(position));
+        collection.add(Piece.createBlackBishop(position));
+        collection.add(Piece.createBlackQueen(position));
+        collection.add(Piece.createBlackKing(position));
+    }
+
     @Test
     @DisplayName("체스말이 정상적으로 생성되는지 확인한다.")
     public void createPieces() {
-        int testPositionIndex = 1;
-        Position position = new Position(testPositionIndex, testPositionIndex);
         Piece blank = Piece.createBlank(position);
 
         assertAll(

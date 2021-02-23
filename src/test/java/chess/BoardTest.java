@@ -65,5 +65,27 @@ class BoardTest {
         assertThat(board.findPiece(after)).isEqualTo(blackQueen);
     }
 
+    @Test
+    void verifyCalculatePoint() {
+        board.initializeEmpty();
+
+        addPiece("b6", createPiece(Color.BLACK, Type.PAWN));
+        addPiece("e6", createPiece(Color.BLACK, Type.QUEEN));
+        addPiece("b8", createPiece(Color.BLACK, Type.KING));
+        addPiece("c8", createPiece(Color.BLACK, Type.ROOK));
+
+        addPiece("f2", createPiece(Color.WHITE, Type.PAWN));
+        addPiece("g2", createPiece(Color.WHITE, Type.PAWN));
+        addPiece("e1", createPiece(Color.WHITE, Type.ROOK));
+        addPiece("f1", createPiece(Color.WHITE, Type.KING));
+
+        assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.0, within(0.01));
+        assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(7.0, within(0.01));
+    }
+
+    private void addPiece(String position, Piece piece) {
+        board.addPiece(new Position(position), piece);
+    }
+
 }
 

@@ -24,7 +24,8 @@ class BoardTest {
         board.initialize();
         assertAll(
                 () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
-                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP")
+                () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP"),
+                ()->assertThat(board.get)
         );
     }
 
@@ -46,10 +47,6 @@ class BoardTest {
     @Test
     @DisplayName("Board에 흰색 폰 한개와 흑색 폰 한개가 제대로 추가되는지 확인")
     void create() {
-        Piece white = new Piece(Piece.WHITE_COLOR, Piece.WHITE_PAWN_REPRESENTATION);
-        Piece black = new Piece(Piece.BLACK_COLOR, Piece.BLACK_PAWN_REPRESENTATION);
-        verifyAddWhitePawn(white, 1);
-        verifyAddBlackPawn(black, 2);
     }
 
     void verifyAddWhitePawn(Piece whitePawn, int size) {

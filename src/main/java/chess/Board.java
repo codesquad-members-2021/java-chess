@@ -1,22 +1,18 @@
 package chess;
 
 import pieces.Piece;
+import static utils.StringUtils.appendNewLine;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Board {
     private static final int BOARD_SIZE = 8;
-    private static final String NEW_LINE = "\n";
-    private static final String EMPTY = "........" + NEW_LINE;
     private List<Piece> whitePawns = new ArrayList<>();
     private List<Piece> blackPawns = new ArrayList<>();
 
     public void initialize() {
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            addWhitePawn(new Piece(Piece.WHITE_COLOR, Piece.WHITE_REPRESENTATION));
-            addBlackPawn(new Piece(Piece.BLACK_COLOR, Piece.BLACK_REPRESENTATION));
-        }
     }
 
     public void addWhitePawn(Piece pawn) {

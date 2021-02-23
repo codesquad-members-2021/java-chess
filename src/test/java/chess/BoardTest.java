@@ -16,12 +16,12 @@ class BoardTest {
     @BeforeEach
     void createBoard() {
         board = new Board();
+        board.initialize();
     }
 
     @Test
     @DisplayName("초기화 했을 때 Board에 모든 기물이 제대로 올라가는지 확인")
     void initialize() {
-        board.initialize();
         assertAll(
                 () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
                 () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP"),
@@ -33,7 +33,6 @@ class BoardTest {
     @Test
     @DisplayName("초기화 했을때 Board출력이 제대로 되는지 확인")
     void print() {
-        board.initialize();
         String empty = appendNewLine("........");
         assertThat(board.printBoard()).isEqualTo(
                         appendNewLine("RNBQKBNR") +
@@ -45,7 +44,6 @@ class BoardTest {
     @Test
     @DisplayName("초기화 하면 32개의 기물이 올라가는지 확인")
     void size(){
-        board.initialize();
         assertThat(board.size()).isEqualTo(32);
     }
 }

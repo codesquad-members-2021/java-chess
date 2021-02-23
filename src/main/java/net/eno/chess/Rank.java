@@ -34,6 +34,10 @@ public class Rank {
         return count;
     }
 
+    public Piece findPiece(int i) {
+        return this.rank.get(i - 97);
+    }
+
     public static Rank createWhitePawns() {
         Rank rank = new Rank();
         for (int i = 0; i < 8; i++) {

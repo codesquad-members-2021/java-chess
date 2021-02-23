@@ -63,7 +63,6 @@ public class Piece {
         return new Piece(Color.NO_COLOR, Type.NO_PIECE);
     }
 
-
     public Color getColor() {
         return color;
     }
@@ -74,6 +73,14 @@ public class Piece {
 
     public char getRepresentation() {
         return type.getRepresentaion(this.color);
+    }
+
+    public boolean isWhite() {
+        return this.color == Color.WHITE;
+    }
+
+    public boolean isBlack() {
+        return this.color == Color.BLACK;
     }
 
     @Override

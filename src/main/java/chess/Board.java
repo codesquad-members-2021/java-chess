@@ -72,5 +72,11 @@ public class Board {
                 .filter(piece -> piece.getColor() == color && piece.getType() == type)
                 .count();
     }
+
+    public Piece findPiece(String location) {
+        char file = location.charAt(0);
+        int rank = Character.getNumericValue(location.charAt(1));
+        return squares.get(new Position(file, rank));
+    }
 }
 

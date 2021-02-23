@@ -48,6 +48,10 @@ public class Piece {
         return new Piece(BLACK_COLOR,BLACK_ROOK_REPRESENTATION);
     }
 
+    public static Piece createWhiteBishop(){
+        return new Piece(WHITE_COLOR,WHITE_BISHOP_REPRESENTATION);
+    }
+
 
 
     public String getColor() {

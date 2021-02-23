@@ -35,11 +35,13 @@ public class Piece {
 
     public enum Color {
         BLACK,
-        WHITE
+        WHITE,
+        NOCOLOR,
     }
 
     public enum Type {
-        PAWN('p'), KING('k'), QUEEN('q'), ROOK('r'), BISHOP('b'), KNIGHT('n');
+        PAWN('p'), KING('k'), QUEEN('q'), ROOK('r'),
+        BISHOP('b'), KNIGHT('n'), BLANK('.');
         public final char representation;
 
         Type(char representation) {

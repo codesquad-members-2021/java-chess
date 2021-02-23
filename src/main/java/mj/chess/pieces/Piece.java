@@ -17,6 +17,17 @@ public class Piece {
         validateRepresentation(this.representation);
     }
 
+    private Piece(Type type) {
+
+        this.color = Color.WHITE;
+        this.type = type;
+        this.representation = type.getRepresentation(color);
+
+        validateColor(this.color);
+        validateType(this.type);
+        validateRepresentation(this.representation);
+    }
+
     private void validateColor(Color color) {
         boolean isValid = false;
 
@@ -132,6 +143,10 @@ public class Piece {
 
         public static Piece createBlackKing() {
             return new Piece(Color.BLACK, Type.KING);
+        }
+
+        public static Piece createBlack() {
+            return new Piece(Type.BLANK);
         }
     }
 }

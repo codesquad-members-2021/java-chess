@@ -1,5 +1,6 @@
 package chess.pieces;
 
+import org.assertj.core.util.diff.Delta;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,15 @@ public class PieceTest {
         verifyPiece(Piece.createWhiteBishop(), Piece.createBlackBishop(), Piece.Type.BISHOP);
         verifyPiece(Piece.createWhiteQueen(), Piece.createBlackQueen(), Piece.Type.QUEEN);
         verifyPiece(Piece.createWhiteKing(), Piece.createBlackKing(), Piece.Type.KING);
+    }
+
+    @DisplayName("빈 기물의 속성이 올바르게 지정되었는지 확인한다.")
+    @Test
+    void createBlank() {
+        Piece blank = Piece.createBlank();
+        assertThat(blank.isBlack()).isFalse();
+        assertThat(blank.isWhite()).isFalse();
+        assertThat(blank.getType()).isEqualTo(Piece.Type.NO_PIECE);
     }
 
     void verifyPiece(Piece whitePiece, Piece blackPiece, Piece.Type type) {

@@ -17,6 +17,11 @@ class BoardTest extends TestBaseOfBoardPackage {
     private Board board;
     private static final int MAX_SIZE = Board.RANK_SIZE * File.SIZE;
 
+    @BeforeEach
+    void setBoard() {
+        board = new Board();
+    }
+
     @Test
     void initializeWithSort() {
         board.initializeWithSort();
@@ -158,11 +163,6 @@ class BoardTest extends TestBaseOfBoardPackage {
                 () -> assertThat(board.findPiece("a8")).isEqualTo(white),
                 () -> assertThat(board.findPiece("b8")).isEqualTo(black)
         );
-    }
-
-    @BeforeEach
-    void setBoard() {
-        board = new Board();
     }
 
     @Test

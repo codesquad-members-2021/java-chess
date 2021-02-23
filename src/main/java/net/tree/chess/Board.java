@@ -9,7 +9,7 @@ public class Board {
 
     List<Pawn> pawnList = new ArrayList<>();
     final int BOARD_SIZE = 8;
-    String blankDot = "........\n";
+    private String blankDot = "........\n";
     public void add(Pawn pawn) {
         pawnList.add(pawn);
     }
@@ -60,4 +60,5 @@ public class Board {
     public void print() {
         System.out.println(saveStringBuilder());
     }
+
 }

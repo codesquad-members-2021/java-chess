@@ -1,6 +1,7 @@
 package net.tree.chess;
 
 import net.tree.pieces.Pawn;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -10,11 +11,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BoardTest {
 
+    Board board;
+
+    @DisplayName("new Board() 중복코드 줄이기 위해 사용.")
+    @BeforeEach
+    void makeNewBoard() {
+        board = new Board();
+    }
+
     @DisplayName("하얀색, 검정색 pawn 만들기")
     @Test
     public void create() {
-        Board board = new Board();
-
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
         board.add(white);
         Assertions.assertAll(
@@ -34,7 +41,6 @@ public class BoardTest {
     @DisplayName("보드 초기화 및 그리기")
     @Test
     public void initializeBoardAndPrint() {
-        Board board = new Board();
         board.initialize();
         board.print();
     }
@@ -42,7 +48,6 @@ public class BoardTest {
     @DisplayName("보드 초기화하기")
     @Test
     public void initialize() {
-        Board board = new Board();
         board.initialize();
         assertEquals("pppppppp", board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
         assertEquals("PPPPPPPP", board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
@@ -51,7 +56,6 @@ public class BoardTest {
     @DisplayName("pawnList 확인해보기 ")
     @Test
     public void checkPawnList() {
-        Board board = new Board();
         Pawn white = new Pawn(Pawn.WHITE_COLOR);
         board.add(white);
         assertEquals(1, board.checkPawnSize());
@@ -61,6 +65,7 @@ public class BoardTest {
         board.add(black);
         assertEquals(2, board.checkPawnSize());
         assertEquals(black, board.findPawn(1));
-
     }
+
 }
+

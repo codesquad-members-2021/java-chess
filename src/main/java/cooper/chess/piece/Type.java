@@ -6,7 +6,8 @@ public enum Type {
     ROOK('r'),
     BISHOP('b'),
     QUEEN('q'),
-    KING('k');
+    KING('k'),
+    NO_PIECE('.');;
 
     private final Character representation;
 
@@ -15,7 +16,15 @@ public enum Type {
     }
 
     public char getRepresentaion(Color color) {
-        return color == Color.WHITE ?
-                Character.toUpperCase(representation) : representation ;
+        if (color == Color.WHITE) {
+            return Character.toUpperCase(representation);
+        }
+
+        if (color == Color.BLACK) {
+            return representation;
+        }
+
+        return NO_PIECE.representation;
     }
+
 }

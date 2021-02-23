@@ -57,4 +57,18 @@ public class BoardTest {
 
         assertThat(board.findPiece("a4")).isEqualTo(Piece.createBlank());
     }
+
+    @Test
+    @DisplayName("기물을 특정한 위치에 추가할 수 있다.")
+    void put_piece_in_position() {
+        board.initializeEmpty();
+
+        String position = "b5";
+        Piece piece = Piece.createBlack(Piece.Type.ROOK);
+        board.putPieceIn(position, piece);
+
+        assertThat(board.findPiece(position)).isEqualTo(piece);
+        System.out.println(board.showBoard());
+    }
+
 }

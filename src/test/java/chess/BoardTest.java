@@ -24,9 +24,9 @@ class BoardTest {
                 .append(". . . . . . . .   5").append(NEWLINE)
                 .append(". . . . . . . .   4").append(NEWLINE)
                 .append(". . . . . . . .   3").append(NEWLINE)
-                .append("3 . . . . . . . . ").append(NEWLINE)
                 .append("p p p p p p p p   2").append(NEWLINE)
-                .append("r n b q k b n r   1").toString();
+                .append("r n b q k b n r   1").append(NEWLINE)
+                .append(NEWLINE).append("a b c d e f g h ").toString();
         assertThat(board.getResultToPrint())
                 .isEqualTo(result);
     }

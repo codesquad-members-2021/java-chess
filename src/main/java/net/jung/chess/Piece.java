@@ -57,10 +57,11 @@ public class Piece {
     public static Piece createWhiteKing() { return new Piece(Color.WHITE, Type.KING); }
     public static Piece createBlackKing() { return new Piece(Color.BLACK, Type.KING); }
 
+    public static Piece createBlank() { return new Piece(Color.NO_COLOR, Type.NO_PIECE);    }
+
     public boolean isWhite() {
         return color == Color.WHITE;
     }
-
     public boolean isBlack() {
         return color == Color.BLACK;
     }

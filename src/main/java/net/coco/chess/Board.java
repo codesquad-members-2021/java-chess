@@ -6,6 +6,7 @@ import net.coco.pieces.Point;
 import net.coco.valid.PieceValid;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,8 +90,27 @@ public class Board {
         ArrayList<Piece> getPieces = new ArrayList<>();
         for (int row = 0; row < ranks.size(); row++) {
             Rank getRank = ranks.get(row);
-            getPieces.add(getRank.findPiece(color, column));
+            getPieces.add(getRank.findPieceByColumn(color, column));
         }
         return getPieces;
     }
+
+    public List<Piece> getWhitePiecesSortByScore() {
+        List<Piece> getWhitePieces = new ArrayList<>();
+        for (Rank rank : ranks) {
+            getWhitePieces.addAll(rank.getWhitePieces());
+        }
+        Collections.sort(getWhitePieces, (o1, o2) -> (int) (o2.getScore() - o1.getScore()));
+        return getWhitePieces;
+    }
+
+    public List<Piece> getBlackPiecesSortByScore() {
+        List<Piece> getBlackPieces = new ArrayList<>();
+        for (Rank rank : ranks) {
+            getBlackPieces.addAll(rank.getBlackPieces());
+        }
+        Collections.sort(getBlackPieces, (o1, o2) -> (int) (o2.getScore() - o1.getScore()));
+        return getBlackPieces;
+    }
+
 }

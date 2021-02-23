@@ -2,7 +2,7 @@ package chess;
 
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
-import pieces.Pawn;
+import pieces.Piece;
 
 class BoardTest {
 
@@ -16,19 +16,19 @@ class BoardTest {
     @Test
     @DisplayName("폰 생성 횟수 체크 기능과 원하는 폰의 인덱스를 찾는 기능이 잘 되는지 테스트 한다.")
     void createPawn(){
-        Pawn white = new Pawn(Pawn.WHITE);
+        Piece white = new Piece(Piece.WHITE);
         addWhitePawnOnBoard(1, white);
-        Pawn black = new Pawn(Pawn.BLACK);
+        Piece black = new Piece(Piece.BLACK);
         addBlackPawnOnBoard(1, black);
     }
     
-    void addWhitePawnOnBoard(int index, Pawn whitePawnInstance) {
+    void addWhitePawnOnBoard(int index, Piece whitePawnInstance) {
         board.whitePawnAdd(whitePawnInstance);
         assertThat(index).isEqualTo(board.whitePawnSize());
         assertThat(whitePawnInstance).isEqualTo(board.findWhitePawn(index-1));
     }
 
-    void addBlackPawnOnBoard(int index, Pawn blackPawnInstance) {
+    void addBlackPawnOnBoard(int index, Piece blackPawnInstance) {
         board.blackPawnAdd(blackPawnInstance);
         assertThat(index).isEqualTo(board.blackPawnSize());
         assertThat(blackPawnInstance).isEqualTo(board.findBlackPawn(index-1));

@@ -1,55 +1,44 @@
 package pieces;
 
 import org.junit.jupiter.api.*;
-import pieces.Piece.Color;
-import pieces.Piece.Type;
+import pieces.Piece.*;
 
+import static pieces.PieceFactory.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PieceTest {
 
     @Test
-    @DisplayName("색상과 타입에 알맞게 말이 생성되어야 한다")
-    void createPiece() {
-        assertAll(() -> verifyPiece(Piece.createWhitePawn(), Piece.createBlackPawn(), Type.PAWN),
-                () -> verifyPiece(Piece.createWhiteKnight(), Piece.createBlackKnight(), Type.KNIGHT),
-                () -> verifyPiece(Piece.createWhiteRook(), Piece.createBlackRook(), Type.ROOK),
-                () -> verifyPiece(Piece.createWhiteBishop(), Piece.createBlackBishop(), Type.BISHOP),
-                () -> verifyPiece(Piece.createWhiteQueen(), Piece.createBlackQueen(), Type.QUEEN),
-                () -> verifyPiece(Piece.createWhiteKing(), Piece.createBlackKing(), Type.KING),
-                () -> assertThat(Piece.createBlank().isWhite()).isFalse(),
-                () -> assertThat(Piece.createBlank().isBlack()).isFalse());
-    }
-
-    private void verifyPiece(final Piece whitePiece, final Piece blackPiece, final Type type) {
-        assertAll(() -> assertThat(whitePiece.isWhite()).isTrue(),
-                () -> assertThat(whitePiece.getType()).isEqualTo(type),
-                () -> assertThat(blackPiece.isBlack()).isTrue(),
-                () -> assertThat(blackPiece.getType()).isEqualTo(type));
-    }
-
-    @Test
     @DisplayName("말이 흰색이면 true, 아니면 false를 반환해야 한다")
     void verifyIsWhite() {
-        Piece whitePawn = Piece.createWhitePawn();
-        Piece blackKnight = Piece.createBlackKnight();
-
-        assertAll(() -> assertThat(whitePawn.isWhite()).isTrue(),
-                () -> assertThat(whitePawn.getRepresentation()).isEqualTo('p'),
-                () -> assertThat(blackKnight.isWhite()).isFalse(),
-                () -> assertThat(blackKnight.getRepresentation()).isEqualTo('N'));
+        assertAll(() -> assertThat(createPiece(Color.WHITE, Type.PAWN).isWhite()).isTrue(),
+                () -> assertThat(createPiece(Color.BLACK, Type.KNIGHT).isWhite()).isFalse());
     }
 
     @Test
     @DisplayName("말이 검은색이면 true, 아니면 false를 반환해야 한다")
     void verifyIsBlack() {
-        Piece whiteQueen = Piece.createWhiteQueen();
-        Piece blackKing = Piece.createBlackKing();
-        assertAll(() -> assertThat(whiteQueen.isBlack()).isEqualTo(false),
-                () -> assertThat(whiteQueen.getRepresentation()).isEqualTo('q'),
-                () -> assertThat(blackKing.isBlack()).isEqualTo(true),
-                () -> assertThat(blackKing.getRepresentation()).isEqualTo('K'));
+        assertAll(() -> assertThat(createPiece(Color.BLACK, Type.KING).isBlack()).isTrue(),
+                () -> assertThat(createPiece(Color.WHITE, Type.QUEEN).isBlack()).isFalse());
+    }
+
+    @Test
+    @DisplayName("말이 흰색이면 소문자, 검은색이면 대문자를 반환해야 한다")
+    void verifyGetRepresentation() {
+        assertAll(() -> assertThat(createPiece(Color.BLACK, Type.PAWN).getRepresentation()).isEqualTo('P'),
+                () -> assertThat(createPiece(Color.WHITE, Type.PAWN).getRepresentation()).isEqualTo('p'),
+                () -> assertThat(createPiece(Color.BLACK, Type.KNIGHT).getRepresentation()).isEqualTo('N'),
+                () -> assertThat(createPiece(Color.WHITE, Type.KNIGHT).getRepresentation()).isEqualTo('n'),
+                () -> assertThat(createPiece(Color.BLACK, Type.ROOK).getRepresentation()).isEqualTo('R'),
+                () -> assertThat(createPiece(Color.WHITE, Type.ROOK).getRepresentation()).isEqualTo('r'),
+                () -> assertThat(createPiece(Color.BLACK, Type.BISHOP).getRepresentation()).isEqualTo('B'),
+                () -> assertThat(createPiece(Color.WHITE, Type.BISHOP).getRepresentation()).isEqualTo('b'),
+                () -> assertThat(createPiece(Color.BLACK, Type.QUEEN).getRepresentation()).isEqualTo('Q'),
+                () -> assertThat(createPiece(Color.WHITE, Type.QUEEN).getRepresentation()).isEqualTo('q'),
+                () -> assertThat(createPiece(Color.BLACK, Type.KING).getRepresentation()).isEqualTo('K'),
+                () -> assertThat(createPiece(Color.WHITE, Type.KING).getRepresentation()).isEqualTo('k'),
+                () -> assertThat(createPiece(Color.NO_COLOR, Type.BLANK).getRepresentation()).isEqualTo('.'));
     }
 }
 

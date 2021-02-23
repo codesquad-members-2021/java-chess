@@ -28,8 +28,8 @@ public class Board {
     }
 
     public void initializeEmpty() {
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            initBlankSquares(i);
+        for (Position position : squares.keySet()) {
+            set(position, createPiece(Color.NO_COLOR, Type.BLANK));
         }
     }
 
@@ -91,5 +91,47 @@ public class Board {
     private void set(Position position, Piece piece) {
         squares.replace(position, piece);
     }
+
+    public double calculatePoint(Color color) {
+        double point = 0;
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            List<Piece> pieces = getPiecesInFile((char) (i + 'a'));
+            point = getSum(pieces, color, point);
+        }
+        return point;
+    }
+
+    private double getSum(List<Piece> pieces, Color color, double point) {
+        for (Piece piece : pieces) {
+            if (piece.getColor() == color) {
+                if (piece.getType() == Type.PAWN) {
+                    point += getPawnPoint(pieces);
+                    continue;
+                }
+                point += piece.getPoint(piece.getType());
+            }
+        }
+        return point;
+    }
+
+    private List<Piece> getPiecesInFile(char file) {
+        List<Piece> pieces = new ArrayList<>();
+        for (int rank = 1; rank <= BOARD_SIZE; rank++) {
+            pieces.add(findPiece(new Position(file, rank)));
+        }
+        return pieces;
+    }
+
+    private double getPawnPoint(List<Piece> pieces) {
+        double pawnPoint = Type.PAWN.getDefaultPoint();
+        int pawnCount = 0;
+        for (Piece piece : pieces) {
+            if (piece.getType() == Type.PAWN) {
+                pawnCount++;
+            }
+        }
+        return pawnCount > 1 ? pawnPoint / 2 : pawnPoint;
+    }
+
 }
 

@@ -16,12 +16,12 @@ class BoardTest {
     @BeforeEach
     void setup() {
         board = new Board();
+        board.initialize();
     }
 
     @Test
     @DisplayName("체스판이 제대로 초기화되었는지 검증한다")
     void verifyInitialize() {
-        board.initialize();
         String result = new StringBuilder()
                 .append("R N B Q K B N R   8").append(NEWLINE)
                 .append("P P P P P P P P   7").append(NEWLINE)
@@ -38,14 +38,12 @@ class BoardTest {
 
     @Test
     void verifyGetNumberOfPieces() {
-        board.initialize();
-        assertThat(board.getNumberOfPieces(Color.WHITE, Type.PAWN)).isEqualTo(8);
-        assertThat(board.getNumberOfPieces(Color.WHITE, Type.KING)).isEqualTo(1);
+        assertAll(() -> assertThat(board.getNumberOfPieces(Color.WHITE, Type.PAWN)).isEqualTo(8),
+                () -> assertThat(board.getNumberOfPieces(Color.WHITE, Type.KING)).isEqualTo(1));
     }
 
     @Test
     void verifyFindPiece() {
-        board.initialize();
         assertAll(() -> assertThat(board.findPiece(new Position("a8")))
                         .isEqualTo(createPiece(Color.BLACK, Type.ROOK)),
                 () -> assertThat(board.findPiece(new Position("e1")))
@@ -68,19 +66,22 @@ class BoardTest {
     @Test
     void verifyCalculatePoint() {
         board.initializeEmpty();
-
         addPiece("b6", createPiece(Color.BLACK, Type.PAWN));
+        addPiece("b7", createPiece(Color.BLACK, Type.PAWN));
+        addPiece("b5", createPiece(Color.BLACK, Type.PAWN));
         addPiece("e6", createPiece(Color.BLACK, Type.QUEEN));
         addPiece("b8", createPiece(Color.BLACK, Type.KING));
         addPiece("c8", createPiece(Color.BLACK, Type.ROOK));
 
         addPiece("f2", createPiece(Color.WHITE, Type.PAWN));
+        addPiece("f3", createPiece(Color.WHITE, Type.PAWN));
         addPiece("g2", createPiece(Color.WHITE, Type.PAWN));
+        addPiece("h3", createPiece(Color.WHITE, Type.PAWN));
         addPiece("e1", createPiece(Color.WHITE, Type.ROOK));
         addPiece("f1", createPiece(Color.WHITE, Type.KING));
 
-        assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.0, within(0.01));
-        assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(7.0, within(0.01));
+        assertAll(() -> assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.5, within(0.01)),
+                () -> assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(8.0, within(0.01)));
     }
 
     private void addPiece(String position, Piece piece) {

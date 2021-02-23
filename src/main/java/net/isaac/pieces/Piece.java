@@ -12,28 +12,30 @@ public class Piece {
     private final Color color;
     private final char representation;
 
-    private Piece(Color color, char representation){
+    private Piece(Color color, char representation) {
         this.color = color;
         this.representation = representation;
     }
 
     //Board 출력을 위한 문자 반환
-    public char getRepresentation(){
-        if(color == Color.BLACK){
+    public char getRepresentation() {
+        if (color == Color.BLACK) {
             return Character.toUpperCase(representation);
         }
         return representation;
-    };
+    }
+
+    ;
 
     public Color getColor() {
         return color;
     }
 
-    public boolean isWhite(){
+    public boolean isWhite() {
         return this.color == Color.WHITE;
     }
 
-    public boolean isBlack(){
+    public boolean isBlack() {
         return this.color == Color.BLACK;
     }
 

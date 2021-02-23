@@ -8,8 +8,8 @@ import static org.assertj.core.api.Assertions.*;
 class StringUtilsTest {
     @Test
     @DisplayName("appendNewLine 테스트")
-    void appendNewLineTest(){
+    void appendNewLineTest() {
         String string = "New line should be appended";
-        assertThat(appendNewLine(string)).isEqualTo(string+System.lineSeparator());
+        assertThat(appendNewLine(string)).isEqualTo(string + System.lineSeparator());
     }
 }

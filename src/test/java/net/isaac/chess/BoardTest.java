@@ -13,7 +13,7 @@ class BoardTest {
     Board board;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         board = new Board();
     }
 
@@ -28,7 +28,7 @@ class BoardTest {
         );
     }
 
-    String getInitialBoardRepresentation(){
+    String getInitialBoardRepresentation() {
         String blankRank = appendNewLine("........");
 
         return appendNewLine("RNBQKBNR") +
@@ -47,10 +47,10 @@ class BoardTest {
         board.add(black, 0, 1);
 
         assertAll(
-                ()->assertThat(board.findPiece(0,0)).isEqualTo(white),
-                ()->assertThat(board.findPiece(0,1)).isEqualTo(black),
-                ()->assertThat(board.findPiece(0,2)).isEqualTo(null),
-                ()->assertThat(board.findPiece(10,10)).isEqualTo(null)
+                () -> assertThat(board.findPiece(0, 0)).isEqualTo(white),
+                () -> assertThat(board.findPiece(0, 1)).isEqualTo(black),
+                () -> assertThat(board.findPiece(0, 2)).isEqualTo(null),
+                () -> assertThat(board.findPiece(10, 10)).isEqualTo(null)
         );
     }
 }

@@ -17,6 +17,10 @@ public class Rank {
 
     }
 
+    public List<Piece> getPieceList() {
+        return pieceList;
+    }
+
     public void add(Piece piece){
         pieceList.add(piece);
     }

@@ -42,61 +42,33 @@ class PieceTest {
     @Test
     @DisplayName("모든 기물에 대해 흑백 상태 확인")
     void checkIsWhiteOrBlack() {
-        for (Type eachType : Type.values()) {
-            assertAll(
-                    () -> verifyIsBlack(eachType),
-                    () -> verifyIsWhite(eachType)
-            );
-        }
+        assertAll(
+                this::verifyIsBlack,
+                this::verifyIsWhite
+        );
+
     }
 
-    private void verifyIsWhite(Type type) {
-        switch (type) {
-            case PAWN:
-                assertThat(Piece.PieceMaker.createWhitePawn().isWhite()).isTrue();
-                break;
-            case KNIGHT:
-                assertThat(Piece.PieceMaker.createWhiteKnight().isWhite()).isTrue();
-                break;
-            case ROOK:
-                assertThat(Piece.PieceMaker.createWhiteRook().isWhite()).isTrue();
-                break;
-            case BISHOP:
-                assertThat(Piece.PieceMaker.createWhiteBishop().isWhite()).isTrue();
-                break;
-            case QUEEN:
-                assertThat(Piece.PieceMaker.createWhiteQueen().isWhite()).isTrue();
-                break;
-            case KING:
-                assertThat(Piece.PieceMaker.createWhiteKing().isWhite()).isTrue();
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + type);
-        }
+    private void verifyIsWhite() {
+        assertAll(
+                () -> assertThat(Piece.PieceMaker.createWhitePawn().isWhite()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createWhiteKnight().isWhite()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createWhiteRook().isWhite()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createWhiteBishop().isWhite()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createWhiteQueen().isWhite()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createWhiteKing().isWhite()).isTrue()
+        );
     }
 
-    private void verifyIsBlack(Type type) {
-        switch (type) {
-            case PAWN:
-                assertThat(Piece.PieceMaker.createBlackPawn().isBlack()).isTrue();
-                break;
-            case KNIGHT:
-                assertThat(Piece.PieceMaker.createBlackKnight().isBlack()).isTrue();
-                break;
-            case ROOK:
-                assertThat(Piece.PieceMaker.createBlackRook().isBlack()).isTrue();
-                break;
-            case BISHOP:
-                assertThat(Piece.PieceMaker.createBlackBishop().isBlack()).isTrue();
-                break;
-            case QUEEN:
-                assertThat(Piece.PieceMaker.createBlackQueen().isBlack()).isTrue();
-                break;
-            case KING:
-                assertThat(Piece.PieceMaker.createBlackKing().isBlack()).isTrue();
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + type);
-        }
+    private void verifyIsBlack() {
+        assertAll(
+                () -> assertThat(Piece.PieceMaker.createBlackPawn().isBlack()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createBlackKnight().isBlack()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createBlackRook().isBlack()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createBlackBishop().isBlack()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createBlackQueen().isBlack()).isTrue(),
+                () -> assertThat(Piece.PieceMaker.createBlackKing().isBlack()).isTrue()
+        );
     }
 }
+

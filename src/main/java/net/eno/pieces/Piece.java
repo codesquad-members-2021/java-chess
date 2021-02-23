@@ -32,4 +32,13 @@ public class Piece {
         return getColor().equals("black");
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Piece) {
+            Piece targetPiece = (Piece)obj;
+            return this.pieceType.getRepresentation() == (targetPiece.getRepresentation());
+        }
+        return false;
+    }
+
 }

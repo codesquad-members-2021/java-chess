@@ -4,24 +4,28 @@ import mj.chess.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.joining;
 import static mj.chess.utils.StringUtil.appendNewLine;
 
 public class Board {
-    private final List<Piece> firstRow = new ArrayList<>();
-    private final List<Piece> secondRow = new ArrayList<>();
-    private final List<Piece> thirdRow = new ArrayList<>();
-    private final List<Piece> forthRow = new ArrayList<>();
-    private final List<Piece> fifthRow = new ArrayList<>();
-    private final List<Piece> sixthRow = new ArrayList<>();
-    private final List<Piece> seventhRow = new ArrayList<>();
-    private final List<Piece> eighthRow = new ArrayList<>();
-
     private int numOfPieces = 0;
     private final int ROWS = 8;
 
+    private final int FIRST_ROW = 0;
+    private final int SECOND_ROW = 1;
+    private final int THIRD_ROW = 2;
+    private final int FORTH_ROW = 3;
+    private final int FIFTH_ROW = 4;
+    private final int SIXTH_ROW = 5;
+    private final int SEVENTH_ROW = 6;
+    private final int EIGHTH_ROW = 7;
+
+    private final List[] rows = new ArrayList[ROWS];
+
     public Board() {
+        initRows();
     }
 
     public void initialize() {
@@ -35,16 +39,15 @@ public class Board {
     }
 
     public String getLocationOfPieces() {
-        return new StringBuilder()
-                .append(appendNewLine(getStringFromRow(firstRow)))
-                .append(appendNewLine(getStringFromRow(secondRow)))
-                .append(appendNewLine(getStringFromRow(thirdRow)))
-                .append(appendNewLine(getStringFromRow(forthRow)))
-                .append(appendNewLine(getStringFromRow(fifthRow)))
-                .append(appendNewLine(getStringFromRow(sixthRow)))
-                .append(appendNewLine(getStringFromRow(seventhRow)))
-                .append(appendNewLine(getStringFromRow(eighthRow)))
-                .toString();
+        return IntStream.range(0, ROWS)
+                .mapToObj(row -> appendNewLine(getStringFromRow(rows[row])))
+                .collect(joining());
+    }
+
+    private void initRows() {
+        for (int row = 0; row < ROWS; row++) {
+            rows[row] = new ArrayList<Piece>();
+        }
     }
 
     private String getStringFromRow(List<Piece> row) {
@@ -60,8 +63,9 @@ public class Board {
 
     private void initBlackPawns() {
         Piece pawn = Piece.PieceMaker.createBlackPawn();
+
         for (int i = 0; i < ROWS; i++) {
-            secondRow.add(pawn);
+            rows[SECOND_ROW].add(pawn);
             numOfPieces++;
         }
     }
@@ -69,7 +73,7 @@ public class Board {
     private void initWhitePawns() {
         Piece pawn = Piece.PieceMaker.createWhitePawn();
         for (int i = 0; i < ROWS; i++) {
-            seventhRow.add(pawn);
+            rows[SEVENTH_ROW].add(pawn);
             numOfPieces++;
         }
     }
@@ -80,35 +84,34 @@ public class Board {
     }
 
     private void initBlackRoyalPieces() {
-        firstRow.add(Piece.PieceMaker.createBlackRook());
-        firstRow.add(Piece.PieceMaker.createBlackKnight());
-        firstRow.add(Piece.PieceMaker.createBlackBishop());
-        firstRow.add(Piece.PieceMaker.createBlackQueen());
-        firstRow.add(Piece.PieceMaker.createBlackKing());
-        firstRow.add(Piece.PieceMaker.createBlackBishop());
-        firstRow.add(Piece.PieceMaker.createBlackKnight());
-        firstRow.add(Piece.PieceMaker.createBlackRook());
+        rows[FIRST_ROW].add(Piece.PieceMaker.createBlackRook());
+        rows[FIRST_ROW].add(Piece.PieceMaker.createBlackKnight());
+        rows[FIRST_ROW].add(Piece.PieceMaker.createBlackBishop());
+        rows[FIRST_ROW].add(Piece.PieceMaker.createBlackQueen());
+        rows[FIRST_ROW].add(Piece.PieceMaker.createBlackKing());
+        rows[FIRST_ROW].add(Piece.PieceMaker.createBlackBishop());
+        rows[FIRST_ROW].add(Piece.PieceMaker.createBlackKnight());
+        rows[FIRST_ROW].add(Piece.PieceMaker.createBlackRook());
         numOfPieces += ROWS;
     }
 
     private void initWhiteRoyalPieces() {
-        eighthRow.add(Piece.PieceMaker.createWhiteRook());
-        eighthRow.add(Piece.PieceMaker.createWhiteKnight());
-        eighthRow.add(Piece.PieceMaker.createWhiteBishop());
-        eighthRow.add(Piece.PieceMaker.createWhiteQueen());
-        eighthRow.add(Piece.PieceMaker.createWhiteKing());
-        eighthRow.add(Piece.PieceMaker.createWhiteBishop());
-        eighthRow.add(Piece.PieceMaker.createWhiteKnight());
-        eighthRow.add(Piece.PieceMaker.createWhiteRook());
+        rows[EIGHTH_ROW].add(Piece.PieceMaker.createWhiteRook());
+        rows[EIGHTH_ROW].add(Piece.PieceMaker.createWhiteKnight());
+        rows[EIGHTH_ROW].add(Piece.PieceMaker.createWhiteBishop());
+        rows[EIGHTH_ROW].add(Piece.PieceMaker.createWhiteQueen());
+        rows[EIGHTH_ROW].add(Piece.PieceMaker.createWhiteKing());
+        rows[EIGHTH_ROW].add(Piece.PieceMaker.createWhiteBishop());
+        rows[EIGHTH_ROW].add(Piece.PieceMaker.createWhiteKnight());
+        rows[EIGHTH_ROW].add(Piece.PieceMaker.createWhiteRook());
         numOfPieces += ROWS;
     }
 
     private void initBlank() {
         for (int i = 0; i < ROWS; i++) {
-            thirdRow.add(Piece.PieceMaker.createBlack());
-            forthRow.add(Piece.PieceMaker.createBlack());
-            fifthRow.add(Piece.PieceMaker.createBlack());
-            sixthRow.add(Piece.PieceMaker.createBlack());
+            for (int row = THIRD_ROW; row < SEVENTH_ROW; row++) {
+                rows[row].add(Piece.PieceMaker.createBlack());
+            }
         }
     }
 }

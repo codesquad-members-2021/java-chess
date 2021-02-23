@@ -23,12 +23,33 @@ public class Board {
     public Board() {
     }
 
-    // TODO: 접근제어자를 무엇으로 할까? 현재로써는 본 메소드는 테스트 코드에만 사용되는데...
-    // 요구사항에서 본 메소드에 요구하는 접근제어 수준은 무엇일까?
-    void initialize() {
+    public void initialize() {
         initPawns();
         initRoyalPieces();
         initBlank();
+    }
+
+    public int countPieces() {
+        return numOfPieces;
+    }
+
+    public String getLocationOfPieces() {
+        return new StringBuilder()
+                .append(appendNewLine(getStringFromRow(firstRow)))
+                .append(appendNewLine(getStringFromRow(secondRow)))
+                .append(appendNewLine(getStringFromRow(thirdRow)))
+                .append(appendNewLine(getStringFromRow(forthRow)))
+                .append(appendNewLine(getStringFromRow(fifthRow)))
+                .append(appendNewLine(getStringFromRow(sixthRow)))
+                .append(appendNewLine(getStringFromRow(seventhRow)))
+                .append(appendNewLine(getStringFromRow(eighthRow)))
+                .toString();
+    }
+
+    private String getStringFromRow(List<Piece> row) {
+        return row.stream()
+                .map(Piece::getRepresentation)
+                .collect(joining());
     }
 
     private void initPawns() {
@@ -88,29 +109,5 @@ public class Board {
             fifthRow.add(Piece.PieceMaker.createBlack());
             sixthRow.add(Piece.PieceMaker.createBlack());
         }
-    }
-
-
-    int countPieces() {
-        return numOfPieces;
-    }
-
-    public String getLocationOfPieces() {
-        return new StringBuilder()
-                .append(appendNewLine(getStringFromRow(firstRow)))
-                .append(appendNewLine(getStringFromRow(secondRow)))
-                .append(appendNewLine(getStringFromRow(thirdRow)))
-                .append(appendNewLine(getStringFromRow(forthRow)))
-                .append(appendNewLine(getStringFromRow(fifthRow)))
-                .append(appendNewLine(getStringFromRow(sixthRow)))
-                .append(appendNewLine(getStringFromRow(seventhRow)))
-                .append(appendNewLine(getStringFromRow(eighthRow)))
-                .toString();
-    }
-
-    private String getStringFromRow(List<Piece> row) {
-        return row.stream()
-                .map(Piece::getRepresentation)
-                .collect(joining());
     }
 }

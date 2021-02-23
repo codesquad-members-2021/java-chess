@@ -28,6 +28,26 @@ public class Piece {
         validateRepresentation(this.representation);
     }
 
+    public Color getColor() {
+        return color;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public String getRepresentation() {
+        return representation;
+    }
+
+    public boolean isBlack() {
+        return this.color == Color.BLACK;
+    }
+
+    public boolean isWhite() {
+        return this.color == Color.WHITE;
+    }
+
     private void validateColor(Color color) {
         boolean isValid = false;
 
@@ -73,26 +93,6 @@ public class Piece {
         if (!isValid) {
             throw new IllegalArgumentException("Invalid representation");
         }
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public String getRepresentation() {
-        return representation;
-    }
-
-    public boolean isBlack() {
-        return this.color == Color.BLACK;
-    }
-
-    public boolean isWhite() {
-        return this.color == Color.WHITE;
     }
 
     public static class PieceMaker {

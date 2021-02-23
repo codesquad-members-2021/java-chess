@@ -11,6 +11,8 @@ public class Board {
     private static final int BOARD_SIZE = 8;
     private List<Piece> whitePawns = new ArrayList<>();
     private List<Piece> blackPawns = new ArrayList<>();
+    private List<Piece> whitePieces = new ArrayList<>();
+    private List<Piece> blackPieces = new ArrayList<>();
 
     public void initialize() {
     }

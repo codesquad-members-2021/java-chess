@@ -12,7 +12,7 @@ public class Piece {
         BISHOP('b'),
         QUEEN('q'),
         KING('k'),
-        NO_PIECE(' ');
+        NO_PIECE('*');
 
         private final char representation;
 

@@ -58,7 +58,10 @@ class PieceTest {
                 () -> assertThat(Piece.Type.PAWN.getWhiteRepresentation()).isEqualTo('p'),
                 () -> assertThat(Piece.Type.PAWN.getBlackRepresentation()).isEqualTo('P'),
                 () -> assertThat(Piece.Type.KNIGHT.getWhiteRepresentation()).isEqualTo('n'),
-                () -> assertThat(Piece.Type.KNIGHT.getBlackRepresentation()).isEqualTo('N')
+                () -> assertThat(Piece.Type.KNIGHT.getBlackRepresentation()).isEqualTo('N'),
+
+                () -> assertThat(Piece.Type.NO_PIECE.getWhiteRepresentation()).isEqualTo('*'),
+                () -> assertThat(Piece.Type.NO_PIECE.getBlackRepresentation()).isEqualTo('*')
         );
     }
 }

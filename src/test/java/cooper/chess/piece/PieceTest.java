@@ -3,39 +3,37 @@ package cooper.chess.piece;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PieceTest {
     @Test
-    @DisplayName("흰색 또는 검은색 기물이 각각 생성됨을 확인한다.")
-    public void create() {
+    @DisplayName("알맞은 색상과 타입의 기물이 생성됨을 확인한다.")
+    public void create_piece() {
         assertAll(
-                () -> verifyPiece(Piece.createWhitePawn(), Color.WHITE, 'P'),
-                () -> verifyPiece(Piece.createBlackPawn(), Color.BLACK, 'p'),
-
-                () -> verifyPiece(Piece.createWhiteKnight(), Color.WHITE, 'N'),
-                () -> verifyPiece(Piece.createBlackKnight(), Color.BLACK, 'n'),
-
-                () -> verifyPiece(Piece.createWhiteRook(), Color.WHITE, 'R'),
-                () -> verifyPiece(Piece.createBlackRook(), Color.BLACK, 'r'),
-
-                () -> verifyPiece(Piece.createWhiteBishop(), Color.WHITE, 'B'),
-                () -> verifyPiece(Piece.createBlackBishop(), Color.BLACK, 'b'),
-
-                () -> verifyPiece(Piece.createWhiteQueen(), Color.WHITE, 'Q'),
-                () -> verifyPiece(Piece.createBlackQueen(), Color.BLACK, 'q'),
-
-                () -> verifyPiece(Piece.createWhiteKing(), Color.WHITE, 'K'),
-                () -> verifyPiece(Piece.createBlackKing(), Color.BLACK, 'k')
+                () -> verifyPiece(Piece.createWhitePawn(), Piece.createBlackPawn(), Type.PAWN),
+                () -> verifyPiece(Piece.createWhiteKnight(), Piece.createBlackKnight(), Type.KNIGHT),
+                () -> verifyPiece(Piece.createWhiteRook(), Piece.createBlackRook(), Type.ROOK),
+                () -> verifyPiece(Piece.createWhiteBishop(), Piece.createBlackBishop(), Type.BISHOP),
+                () -> verifyPiece(Piece.createWhiteQueen(), Piece.createBlackQueen(), Type.QUEEN),
+                () -> verifyPiece(Piece.createWhiteKing(), Piece.createBlackKing(), Type.KING)
         );
     }
 
-    void verifyPiece(final Piece piece, final Color color, final char representation) {
+    void verifyPiece(final Piece whitePiece, final Piece blackPiece, final Type type) {
         assertAll(
-                () -> assertEquals(color, piece.getColor()),
-                () -> assertEquals(representation, piece.getRepresentation())
+                () -> assertTrue(whitePiece.isWhite()),
+                () -> assertEquals(type, whitePiece.getType()),
+
+                () -> assertTrue(blackPiece.isBlack()),
+                () -> assertEquals(type, blackPiece.getType())
         );
+    }
+
+    @Test
+    @DisplayName("blank가 제대로 생성되는지 확인한다.")
+    public void create_blank() {
+        assertEquals(Color.NO_COLOR,Piece.createBlank().getColor());
+        assertEquals(Type.NO_PIECE,Piece.createBlank().getType());
     }
 
     @Test

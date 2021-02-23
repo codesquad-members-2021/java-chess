@@ -40,6 +40,10 @@ public class Piece {
         return new Piece(BLACK_COLOR,BLACK_KNIGHT_REPRESENTATION);
     }
 
+    public static Piece createWhiteRook(){
+        return new Piece(WHITE_COLOR,WHITE_ROOK_REPRESENTATION);
+    }
+
 
 
     public String getColor() {

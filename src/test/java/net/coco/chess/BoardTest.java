@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static net.coco.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -76,23 +78,43 @@ public class BoardTest {
     void move() {
         board.initializeEmpty();
         Piece blackPawn = Piece.createBlackPawn();
-        board.move("a8",blackPawn);
+        board.move("a8", blackPawn);
 
         assertThat(board.getPieceFromPoint("a8")).isEqualTo(blackPawn);
     }
 
     @Test
-    void calculateScore(){
+    void calculateScore() {
         board.initializeEmpty();
-        board.move("a8",Piece.createBlackPawn());
-        board.move("a7",Piece.createBlackPawn());
-        board.move("a6",Piece.createBlackPawn());
-        board.move("g8",Piece.createBlackKing());
-        board.move("g7",Piece.createBlackPawn());
-        board.move("g6",Piece.createBlackPawn());
-        board.move("g5",Piece.createWhitePawn());
+        board.move("a8", Piece.createBlackPawn());
+        board.move("a7", Piece.createBlackPawn());
+        board.move("a6", Piece.createBlackPawn());
+        board.move("g8", Piece.createBlackKing());
+        board.move("g7", Piece.createBlackPawn());
+        board.move("g6", Piece.createBlackPawn());
+        board.move("g5", Piece.createWhitePawn());
 
         assertThat(board.calculateScore(Piece.BLACK)).isEqualTo(2.5);
+
+    }
+
+    @Test
+    void getWhitePiecesSortByScore() {
+        board.initializeWithPieces();
+        List<Piece> getWhitePiecesSortByScore = board.getWhitePiecesSortByScore();
+
+        Assertions.assertAll(
+                () -> assertThat(Piece.createWhiteQueen()).isEqualTo(getWhitePiecesSortByScore.get(0)),
+                () -> assertThat(Piece.createWhiteRook()).isEqualTo(getWhitePiecesSortByScore.get(1)),
+                () -> assertThat(Piece.createWhiteRook()).isEqualTo(getWhitePiecesSortByScore.get(2)),
+                () -> assertThat(Piece.createWhiteKnight()).isEqualTo(getWhitePiecesSortByScore.get(3)),
+                () -> assertThat(Piece.createWhiteBishop()).isEqualTo(getWhitePiecesSortByScore.get(4)),
+                () -> assertThat(Piece.createWhiteBishop()).isEqualTo(getWhitePiecesSortByScore.get(5)),
+                () -> assertThat(Piece.createWhiteKnight()).isEqualTo(getWhitePiecesSortByScore.get(6)),
+                () -> assertThat(Piece.createWhitePawn()).isEqualTo(getWhitePiecesSortByScore.get(7)),
+                () -> assertThat(Piece.createWhitePawn()).isEqualTo(getWhitePiecesSortByScore.get(8)),
+                () -> assertThat(Piece.createWhiteKing()).isEqualTo(getWhitePiecesSortByScore.get(15))
+                );
 
     }
 

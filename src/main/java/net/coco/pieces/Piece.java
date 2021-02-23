@@ -1,6 +1,7 @@
 package net.coco.pieces;
 
 import java.time.Period;
+import java.util.Objects;
 
 public class Piece {
     public static final String WHITE = "white";
@@ -101,5 +102,18 @@ public class Piece {
 
     public boolean isWhite() {
         return color.equals(WHITE);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Piece piece = (Piece) o;
+        return Double.compare(piece.score, score) == 0 && Objects.equals(color, piece.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, score);
     }
 }

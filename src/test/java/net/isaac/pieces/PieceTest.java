@@ -74,10 +74,10 @@ class PieceTest {
         Piece black = Piece.createPawn(Piece.Color.BLACK);
 
         assertAll(
-                () -> assertThat(white.isWhite()).isEqualTo(true),
-                () -> assertThat(white.isBlack()).isEqualTo(false),
-                () -> assertThat(black.isWhite()).isEqualTo(false),
-                () -> assertThat(black.isBlack()).isEqualTo(true)
+                () -> assertThat(white.isWhite()).isTrue(),
+                () -> assertThat(white.isBlack()).isFalse(),
+                () -> assertThat(black.isWhite()).isFalse(),
+                () -> assertThat(black.isBlack()).isTrue()
         );
     }
 }

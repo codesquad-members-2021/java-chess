@@ -25,7 +25,8 @@ class BoardTest {
         assertAll(
                 () -> assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp"),
                 () -> assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP"),
-                ()->assertThat(board.get)
+                () -> assertThat(board.getWhitePiecesResult()).isEqualTo("rnbqkbnr"),
+                () -> assertThat(board.getBlackPiecesResult()).isEqualTo("RNBQKBNR")
         );
     }
 
@@ -35,13 +36,13 @@ class BoardTest {
         board.initialize();
         assertThat(board.printBoard()).isEqualTo(
                 "........\n" +
-                "pppppppp\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "........\n" +
-                "PPPPPPPP\n" +
-                "........\n");
+                        "pppppppp\n" +
+                        "........\n" +
+                        "........\n" +
+                        "........\n" +
+                        "........\n" +
+                        "PPPPPPPP\n" +
+                        "........\n");
     }
 
     @Test

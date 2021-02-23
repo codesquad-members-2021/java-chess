@@ -9,12 +9,17 @@ import java.util.List;
 
 public class Board {
     private static final int BOARD_SIZE = 8;
+    private final int PIECES_COUNT = 2;
     private List<Piece> whitePawns = new ArrayList<>();
     private List<Piece> blackPawns = new ArrayList<>();
     private List<Piece> whitePieces = new ArrayList<>();
     private List<Piece> blackPieces = new ArrayList<>();
 
     public void initialize() {
+        for(int i=0; i<BOARD_SIZE; i++) {
+            addWhitePawn(Piece.createWhitePawn());
+            addBlackPawn(Piece.createBlackPawn());
+        }
     }
 
     public void addWhitePiece(Piece piece){

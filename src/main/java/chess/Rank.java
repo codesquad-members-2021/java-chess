@@ -48,7 +48,7 @@ public class Rank {
         pieces.set(position, piece);
     }
 
-    private void getAddErrorMessage(){
+    private void getAddErrorMessage() {
         System.out.println("알 수 없는 color의 piece입니다.");
         System.out.println("add에 실패하였습니다.");
     }
@@ -116,8 +116,8 @@ public class Rank {
     public int getCountPieceByColorAndType(Color color, Type type) {
         int countPiece = 0;
 
-        for (Piece piece : pieces){
-            if(piece.matchColorAndType(color,type)){
+        for (Piece piece : pieces) {
+            if (piece.matchColorAndType(color, type)) {
                 countPiece += 1;
             }
         }
@@ -128,8 +128,8 @@ public class Rank {
     public List<Piece> findPieceByColor(Color color) {
         List<Piece> pieceByColor = new ArrayList<>(Board.BOARD_SIZE);
 
-        for (Piece piece : pieces){
-            if(piece.matchColor(color)){
+        for (Piece piece : pieces) {
+            if (piece.matchColor(color)) {
                 pieceByColor.add(piece);
             }
         }

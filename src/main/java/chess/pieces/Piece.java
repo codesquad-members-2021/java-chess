@@ -17,7 +17,7 @@ public class Piece {
         return this.color;
     }
 
-    public Type getType(){
+    public Type getType() {
         return this.type;
     }
 
@@ -27,6 +27,20 @@ public class Piece {
 
     public int getFilePosition() {
         return this.position.getFile();
+    }
+
+    public double getPoint(List<Piece> pieces) {
+        if (getType() != Type.PAWN) {
+            return this.type.getDefaultPoint();
+        }
+
+        List<Position> positions = this.position.getFileNeighborPosition();
+        for (Position position : positions) {
+            if (pieces.contains(new Piece(this.color, this.type, position))) {
+                return this.type.getDefaultPoint() - 0.5;
+            }
+        }
+        return this.type.getDefaultPoint();
     }
 
     public boolean isWhite() {
@@ -42,11 +56,11 @@ public class Piece {
     }
 
     public boolean matchColorAndType(Color color, Type type) {
-        return getColor()==color && getType()==type;
+        return getColor() == color && getType() == type;
     }
 
     public boolean matchColor(Color color) {
-        return getColor()==color;
+        return getColor() == color;
     }
 
 
@@ -106,5 +120,7 @@ public class Piece {
         return createBlack(Type.KING, position);
     }
 
-    public static Piece createBlank(Position position) { return new Piece(Color.NO_COLOR, Type.BLANK, position); }
+    public static Piece createBlank(Position position) {
+        return new Piece(Color.NO_COLOR, Type.BLANK, position);
+    }
 }

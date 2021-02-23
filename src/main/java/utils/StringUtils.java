@@ -11,7 +11,7 @@ public class StringUtils {
         return text + NEWLINE;
     }
 
-    public static String getNewLine(){
+    public static String getNewLine() {
         return NEWLINE;
     }
 }

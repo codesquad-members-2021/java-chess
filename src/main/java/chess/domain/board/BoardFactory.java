@@ -6,11 +6,10 @@ import chess.domain.pieces.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static chess.domain.board.BoardConst.*;
+import static chess.domain.board.BoardConst.COLUMN_END;
+import static chess.domain.board.BoardConst.COLUMN_START;
 
 public class BoardFactory {
-    private static final int ROW_MEDIUM = (ROW_START + ROW_END) / 2;
-
     private static Map<Position, Piece> squares;
 
     private BoardFactory() {}

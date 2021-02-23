@@ -36,8 +36,8 @@ public class Board {
         whitePieces.add(Piece.createWhiteRookInstance());
         whitePieces.add(Piece.createWhiteKnightInstance());
         whitePieces.add(Piece.createWhiteBishopInstance());
-        whitePieces.add(Piece.createWhiteKingInstance());
         whitePieces.add(Piece.createWhiteQueenInstance());
+        whitePieces.add(Piece.createWhiteKingInstance());
         whitePieces.add(Piece.createWhiteBishopInstance());
         whitePieces.add(Piece.createWhiteKnightInstance());
         whitePieces.add(Piece.createWhiteRookInstance());
@@ -47,14 +47,14 @@ public class Board {
         blackPieces.add(Piece.createBlackRookInstance());
         blackPieces.add(Piece.createBlackKnightInstance());
         blackPieces.add(Piece.createBlackBishopInstance());
-        blackPieces.add(Piece.createBlackKingInstance());
         blackPieces.add(Piece.createBlackQueenInstance());
+        blackPieces.add(Piece.createBlackKingInstance());
         blackPieces.add(Piece.createBlackBishopInstance());
         blackPieces.add(Piece.createBlackKnightInstance());
         blackPieces.add(Piece.createBlackRookInstance());
     }
 
-    String bringWhitePawnsRepresentation() {
+    private String bringWhitePawnsRepresentation() {
         StringBuilder sb = new StringBuilder();
 
         for(int i = 0; i < whitePawns.size(); i++){
@@ -63,7 +63,7 @@ public class Board {
         return sb.toString();
     }
 
-    String bringBlackPawnsRepresentation() {
+    private String bringBlackPawnsRepresentation() {
         StringBuilder sb = new StringBuilder();
 
         for(int i= 0; i < blackPawns.size(); i++){
@@ -72,7 +72,25 @@ public class Board {
         return sb.toString();
     }
 
-    String getDotOnBoard(){
+    private String bringWhitePiecesRepresentation() {
+        StringBuilder sb = new StringBuilder();
+
+        for(Piece whiteUnit: whitePieces){
+            sb.append(whiteUnit.getRepresentation());
+        }
+        return sb.toString();
+    }
+
+    private String bringBlackPiecesRepresentation() {
+        StringBuilder sb = new StringBuilder();
+
+        for(Piece blackUnit: blackPieces){
+            sb.append(blackUnit.getRepresentation());
+        }
+        return sb.toString();
+    }
+
+    public String getDotOnBoard(){
         return "........";
     }
 
@@ -95,14 +113,14 @@ public class Board {
     public String bringBoard() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
-        sb.append(StringUtils.appendNewLine(bringWhitePawnsRepresentation()));
-        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
-        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
-        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
-        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(bringBlackPiecesRepresentation()));
         sb.append(StringUtils.appendNewLine(bringBlackPawnsRepresentation()));
         sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(bringWhitePawnsRepresentation()));
+        sb.append(StringUtils.appendNewLine(bringWhitePiecesRepresentation()));
 
         return sb.toString();
     }

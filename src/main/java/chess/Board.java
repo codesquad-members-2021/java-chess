@@ -54,13 +54,13 @@ public class Board {
 
     public String getResultToPrint() {
         StringBuilder result = new StringBuilder();
-        int count = BOARD_SIZE * BOARD_SIZE - 1;
+        int count = BOARD_SIZE * BOARD_SIZE;
         for (Piece piece : squares.values()) {
             result.append(piece.getRepresentation()).append(" ");
+            count--;
             if (count % BOARD_SIZE == 0) {
                 result.append("  ").append(count / BOARD_SIZE + 1).append(NEWLINE);
             }
-            count--;
         }
         result.append(NEWLINE).append("a b c d e f g h ");
         return result.toString();

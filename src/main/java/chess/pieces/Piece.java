@@ -5,7 +5,7 @@ import java.util.List;
 public class Piece {
     private final Color color;
     private final Type type;
-    private final Position position;
+    private Position position;
 
     private Piece(Color color, Type type, Position position) {
         this.color = color;
@@ -21,12 +21,12 @@ public class Piece {
         return this.type;
     }
 
-    public int getRankPosition() {
-        return this.position.getRank();
+    public Position getPosition() {
+        return this.position;
     }
 
-    public int getFilePosition() {
-        return this.position.getFile();
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public double getPoint(List<Piece> pieces) {
@@ -34,10 +34,11 @@ public class Piece {
             return this.type.getDefaultPoint();
         }
 
+        double halfPawnPoint = 0.5;
         List<Position> positions = this.position.getFileNeighborPosition();
         for (Position position : positions) {
             if (pieces.contains(new Piece(this.color, this.type, position))) {
-                return this.type.getDefaultPoint() - 0.5;
+                return this.type.getDefaultPoint() - halfPawnPoint;
             }
         }
         return this.type.getDefaultPoint();

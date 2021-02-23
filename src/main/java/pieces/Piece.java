@@ -20,15 +20,57 @@ public class Piece {
     private String color;
     private char representation;
 
-    public Piece(final String color, final String name) {
+    private Piece(final String color, final char representation) {
         this.color = color;
-        this.name = name;
+        this.representation = representation;
+    }
 
-        if(color.equals("white")){
-            this.representation = 'p';
-            return;
-        }
-        this.representation = 'P';
+    public Piece getWhitePawnInstance(){
+        return new Piece(WHITE, WHITE_PAWN_REPRESENTATION);
+    }
+
+    public Piece getBlackPawnInstance(){
+        return new Piece(BLACK, BLACK_PAWN_REPRESENTATION);
+    }
+
+    public Piece getWhiteKnightInstance(){
+        return new Piece(WHITE, WHITE_KNIGHT_REPRESENTATION);
+    }
+
+    public Piece getBlackKnightInstance(){
+        return new Piece(BLACK, BLACK_KNIGHT_REPRESENTATION);
+    }
+
+    public Piece getWhiteRookInstance(){
+        return new Piece(WHITE, WHITE_ROOK_REPRESENTATION);
+    }
+
+    public Piece getBlackRookInstance(){
+        return new Piece(BLACK, BLACK_ROOK_REPRESENTATION);
+    }
+
+    public Piece getWhiteBishopInstance(){
+        return new Piece(WHITE, WHITE_BISHOP_REPRESENTATION);
+    }
+
+    public Piece getBlackBishopInstance(){
+        return new Piece(BLACK, BLACK_BISHOP_REPRESENTATION);
+    }
+
+    public Piece getWhiteQueenInstance(){
+        return new Piece(WHITE, WHITE_QUEEN_REPRESENTATION);
+    }
+
+    public Piece getBlackQueenInstance(){
+        return new Piece(BLACK, BLACK_QUEEN_REPRESENTATION);
+    }
+
+    public Piece getWhiteKingInstance(){
+        return new Piece(WHITE, WHITE_KING_REPRESENTATION);
+    }
+
+    public Piece getBlackKingInstance(){
+        return new Piece(BLACK, BLACK_KING_REPRESENTATION);
     }
 
     public String getColor() {
@@ -39,7 +81,5 @@ public class Piece {
         return representation;
     }
 
-    private Piece getPieceInstance(final String color, final String name){
-        return new Piece(color, name);
-    }
+
 }

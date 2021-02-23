@@ -51,18 +51,18 @@ public class Board {
     }
 
     public String getRepresentation() {
-        StringBuilder builder = new StringBuilder();
+        String ret = "";
         for (int i = 0; i < MAX_SIZE; i++) {
             for (int j = 0; j < MAX_SIZE; j++) {
                 if (pieces[i][j] == null) {
-                    builder.append('.');
+                    ret += '.';
                 } else {
-                    builder.append(pieces[i][j].getRepresentation());
+                    ret += pieces[i][j].getRepresentation();
                 }
             }
-            builder.append(StringUtils.NEWLINE);
+            ret = StringUtils.appendNewLine(ret);
         }
-        return builder.toString();
+        return ret;
     }
 
     public String getWhitePiecesResult() {

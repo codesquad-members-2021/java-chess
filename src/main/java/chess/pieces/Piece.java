@@ -2,16 +2,16 @@ package chess.pieces;
 
 public class Piece {
     private final Color color;
-    private final PieceName name;
+    private final Type name;
     private final char representation;
 
-    private Piece(Color color, PieceName name) {
+    private Piece(Color color, Type name) {
         this.color = color;
         this.name = name;
         this.representation = createRepresentation(color, name);
     }
 
-    public char createRepresentation(Color color, PieceName name) {
+    public char createRepresentation(Color color, Type name) {
         if (color == Color.WHITE) {
             return name.getTempRepresentation();
         }
@@ -26,56 +26,56 @@ public class Piece {
         return this.representation;
     }
 
-    public PieceName getName() {
+    public Type getName() {
         return this.name;
     }
 
     public static Piece createWhitePawn() {
-        return new Piece(Color.WHITE, PieceName.PAWN);
+        return new Piece(Color.WHITE, Type.PAWN);
     }
 
     public static Piece createBlackPawn() {
-        return new Piece(Color.BLACK, PieceName.PAWN);
+        return new Piece(Color.BLACK, Type.PAWN);
     }
 
     public static Piece createWhiteKnight() {
-        return new Piece(Color.WHITE, PieceName.KNIGHT);
+        return new Piece(Color.WHITE, Type.KNIGHT);
     }
 
     public static Piece createBlackKnight() {
-        return new Piece(Color.BLACK, PieceName.KNIGHT);
+        return new Piece(Color.BLACK, Type.KNIGHT);
     }
 
     public static Piece createWhiteRook() {
-        return new Piece(Color.WHITE, PieceName.ROOK);
+        return new Piece(Color.WHITE, Type.ROOK);
     }
 
     public static Piece createBlackRook() {
-        return new Piece(Color.BLACK, PieceName.ROOK);
+        return new Piece(Color.BLACK, Type.ROOK);
     }
 
     public static Piece createWhiteBishop() {
-        return new Piece(Color.WHITE, PieceName.BISHOP);
+        return new Piece(Color.WHITE, Type.BISHOP);
     }
 
     public static Piece createBlackBishop() {
-        return new Piece(Color.BLACK, PieceName.BISHOP);
+        return new Piece(Color.BLACK, Type.BISHOP);
     }
 
     public static Piece createWhiteQueen() {
-        return new Piece(Color.WHITE, PieceName.QUEEN);
+        return new Piece(Color.WHITE, Type.QUEEN);
     }
 
     public static Piece createBlackQueen() {
-        return new Piece(Color.BLACK, PieceName.QUEEN);
+        return new Piece(Color.BLACK, Type.QUEEN);
     }
 
     public static Piece createWhiteKing() {
-        return new Piece(Color.WHITE, PieceName.KING);
+        return new Piece(Color.WHITE, Type.KING);
     }
 
     public static Piece createBlackKing() {
-        return new Piece(Color.BLACK, PieceName.KING);
+        return new Piece(Color.BLACK, Type.KING);
     }
 
     public boolean isBlack() {
@@ -84,6 +84,29 @@ public class Piece {
 
     public boolean isWhite() {
         return this.color == Color.WHITE;
+    }
+
+    public enum Color {
+        WHITE, BLACK;
+    }
+
+    public enum Type {
+        PAWN('p'),
+        KNIGHT('n'),
+        ROOK('r'),
+        BISHOP('b'),
+        QUEEN('q'),
+        KING('k');
+
+        private final char tempRepresentation;
+
+        Type(char representation) {
+            this.tempRepresentation = representation;
+        }
+
+        public char getTempRepresentation() {
+            return tempRepresentation;
+        }
     }
 }
 

@@ -55,7 +55,7 @@ public class Board implements Calculable {
 
     private List<Piece> getPiecesBy(Color color) {
         return files.stream()
-                .flatMap(File::getPieces)
+                .flatMap(file -> file.getPieces().stream())
                 .filter(file -> file.getColor() == color)
                 .sorted()
                 .collect(Collectors.toList());
@@ -131,7 +131,7 @@ public class Board implements Calculable {
     @Override
     public Map<CalculablePiece, Double> groupingByCalculablePiece(Color color) {
         return files.stream()
-                .flatMap(File::getCalculablePieces)
+                .flatMap(file -> file.getCalculablePieces().stream())
                 .filter(calculablePiece -> calculablePiece.getColor() == color)
                 .collect(Collectors.groupingBy(Function.identity(),
                         Collectors.summingDouble(CalculablePiece::getPoint)

@@ -4,10 +4,10 @@ package kr.codesquad.freddie.chess.board;
 import kr.codesquad.freddie.chess.piece.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class File {
     public static final int SIZE = 8;
@@ -74,13 +74,14 @@ public class File {
 
     }
 
-    public Stream<Piece> getPieces() {
-        return pieces.stream();
+    public List<Piece> getPieces() {
+        return Collections.unmodifiableList(pieces);
     }
 
-    public Stream<CalculablePiece> getCalculablePieces() {
+    public List<CalculablePiece> getCalculablePieces() {
         return IntStream.range(0, SIZE)
-                .mapToObj(i -> CalculablePiece.create(this.pieces.get(i), (char) (i + 'a')));
+                .mapToObj(i -> CalculablePiece.create(this.pieces.get(i), (char) (i + 'a')))
+                .collect(Collectors.toList());
     }
 
     public String getRepresentation() {

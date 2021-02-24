@@ -13,6 +13,12 @@ public class Board {
     private static final int BOARD_RANK = 8;
     private List<Rank> board = new ArrayList<>(BOARD_RANK);
 
+    public void initializeEmpty() {
+        for (int i = 0; i < BOARD_RANK; i++) {
+            board.add(initBlankRank(i + 1));
+        }
+    }
+
     public void initializeBoard() {
         // 랭크 번호 순서대로 board 리스트에 담기
         board.add(initWhitePieceRank());
@@ -78,33 +84,14 @@ public class Board {
 
     public String showBoard() {
         StringBuilder result = new StringBuilder();
-        String empty = appendNewLine(getBlankResult());
-        result.append(appendNewLine(getBlackPieceResult()))
-                .append(appendNewLine(getBlackPawnResult()))
-                .append(empty + empty + empty + empty)
-                .append(appendNewLine(getWhitePawnResult()))
-                .append(appendNewLine(getWhitePieceResult()));
+        for (int i = BOARD_RANK - 1; i >= 0; i--) {
+            result.append(appendNewLine(getRankResult(i)));
+        }
         return result.toString();
     }
 
-    private String getWhitePieceResult() {
-        return getPieceResult(board.get(0));
-    }
-
-    private String getWhitePawnResult() {
-        return getPieceResult(board.get(1));
-    }
-
-    private String getBlankResult() {
-        return getPieceResult(board.get(2));
-    }
-
-    private String getBlackPawnResult() {
-        return getPieceResult(board.get(6));
-    }
-
-    private String getBlackPieceResult() {
-        return getPieceResult(board.get(7));
+    private String getRankResult(int index) {
+        return getPieceResult(board.get(index));
     }
 
     private String getPieceResult(Rank rank) {
@@ -123,8 +110,23 @@ public class Board {
     }
 
     public Piece findPiece(String position) {
-        int x = position.charAt(0) - 'a';
-        int y = position.charAt(1) - '0' - 1;
+        int x = getX(position);
+        int y = getY(position);
         return board.get(y).getPieceList().get(x);
+    }
+
+    public void setPiece(String position, Piece piece) {
+        int x = getX(position);
+        int y = getY(position);
+        board.get(y).remove(x);
+        board.get(y).setPiece(x, piece);
+    }
+
+    private int getX(String position){
+        return position.charAt(0) - 'a';
+    }
+
+    private int getY(String position){
+        return position.charAt(1) - '0' - 1;
     }
 }

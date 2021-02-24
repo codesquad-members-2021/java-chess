@@ -4,7 +4,6 @@ import chess.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class Rank {
     private List<Piece> pieceList = new ArrayList<>(8);
@@ -14,16 +13,20 @@ public class Rank {
         this.rankNum = rankNum;
     }
 
-    public void setPieceList() {
-
-    }
-
     public List<Piece> getPieceList() {
         return pieceList;
     }
 
     public void add(Piece piece) {
         pieceList.add(piece);
+    }
+
+    public void setPiece(int index, Piece piece) {
+        pieceList.add(index,piece);
+    }
+
+    public void remove(int index) {
+        pieceList.remove(index);
     }
 
     public long count(Piece.Color color, Piece.Type type) {

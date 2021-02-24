@@ -140,7 +140,6 @@ public class Piece {
             return representation;
         }
 
-
     }
 }
 

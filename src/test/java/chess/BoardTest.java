@@ -1,19 +1,19 @@
 
 package chess;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static utils.StringUtils.*;
 
 class BoardTest {
 
-    private Board board;
+    public static Board board;
 
-    @BeforeEach
-    void setup() {
+    @BeforeAll
+    static void setup() {
         board = new Board();
         board.initialize();
     }
@@ -29,12 +29,12 @@ class BoardTest {
                 appendNewLine(NEWLINE)+
                 appendNewLine("PPPPPPPP")+
                 appendNewLine(NEWLINE)+
-                blankRank +appendNewLine(NEWLINE)+
-                blankRank +appendNewLine(NEWLINE)+
-                blankRank +appendNewLine(NEWLINE)+
-                blankRank +appendNewLine(NEWLINE)+
+                blankRank + appendNewLine(NEWLINE) +
+                blankRank + appendNewLine(NEWLINE) +
+                blankRank + appendNewLine(NEWLINE) +
+                blankRank + appendNewLine(NEWLINE) +
                 appendNewLine("pppppppp") +
-                appendNewLine(NEWLINE)+
+                appendNewLine(NEWLINE) +
                 appendNewLine("rnbqkbnr")).isEqualTo(board.showBoard());
 
     }

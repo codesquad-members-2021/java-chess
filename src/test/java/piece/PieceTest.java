@@ -3,13 +3,12 @@ package piece;
 import pieces.Color;
 import pieces.Piece;
 import org.junit.jupiter.api.*;
-import pieces.Representation;
-
 import static org.assertj.core.api.Assertions.assertThat;
+
 class PieceTest {
 
     @Test
-    @DisplayName("create Piece test")
+    @DisplayName("생성된 기물의")
     void create() {
         verifyPawn(Piece.createWhitePawn(), Piece.createWhitePawn().getColor(), Piece.createWhitePawn().getRepresentation());
         verifyPawn(Piece.createBlackPawn(), Piece.createBlackPawn().getColor(), Piece.createBlackPawn().getRepresentation());
@@ -52,14 +51,11 @@ class PieceTest {
     }
 
     boolean isWhite(Piece piece){
-
         return piece.getColor().equals(Color.WHITE);
     }
 
     boolean isBlack(Piece piece){
-
         return piece.getColor().equals(Color.BLACK);
-
     }
 
 }

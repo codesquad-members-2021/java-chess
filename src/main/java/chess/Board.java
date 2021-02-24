@@ -27,9 +27,8 @@ public class Board {
     public Piece findPiece(Color color, int index){
         if(color == Color.WHITE){
             return whitePieceList.get(index);
-        }else {
-            return blackPieceList.get(index);
         }
+        return blackPieceList.get(index);
     }
 
     public int pieceCount() {

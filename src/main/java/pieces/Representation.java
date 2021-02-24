@@ -12,4 +12,5 @@ public enum Representation {
     public char value() {
         return representation;
     }
+
 }

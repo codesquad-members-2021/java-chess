@@ -5,11 +5,20 @@ import static net.jung.chess.Piece.*;
 
 public class Rank {
     private ArrayList<Piece> pieceList = new ArrayList<>();
-    private Rank() {};
-    private static final int MAX_RANK_NUMBER =8;
+    public static final int MAX_PIECES_IN_RANK =8;
 
     public int size() {
-        return pieceList.size();
+        int size =0;
+        for(Piece piece : pieceList) {
+            if( isPiece(piece) ){
+                size++;
+            }
+        }
+        return size;
+    }
+
+    public boolean isPiece(Piece piece) {
+        return piece.getType() != Type.NO_PIECE;
     }
 
     public void addWhitePiece(Piece piece) {
@@ -26,7 +35,7 @@ public class Rank {
 
     public static Rank initializeWhitePawnRank() {
         Rank whitePawnRank = new Rank();
-        for(int i =0; i< MAX_RANK_NUMBER; i++) {
+        for(int i = 0; i< MAX_PIECES_IN_RANK; i++) {
             whitePawnRank.addWhitePiece(createWhitePawn());
         }
         return whitePawnRank;
@@ -34,7 +43,7 @@ public class Rank {
 
     public static Rank initializeBlackPawnRank() {
         Rank blackPawnRank = new Rank();
-        for(int i =0; i< MAX_RANK_NUMBER; i++) {
+        for(int i = 0; i< MAX_PIECES_IN_RANK; i++) {
             blackPawnRank.addBlackPiece(createBlackPawn());
         }
         return blackPawnRank;
@@ -74,7 +83,7 @@ public class Rank {
     public static Rank initializeBlankRank() {
         Rank blankRank = new Rank();
 
-        for(int i =0; i<MAX_RANK_NUMBER; i++){
+        for(int i = 0; i< MAX_PIECES_IN_RANK; i++){
             blankRank.pieceList.add(createBlank());
         }
         return blankRank;
@@ -89,5 +98,6 @@ public class Rank {
         for(int i =0; i< rank.size(); i++ ) {
             strBuilder.append(rank.getPiece(i).getRepresentation());
         }
+        return strBuilder.toString();
     }
 }

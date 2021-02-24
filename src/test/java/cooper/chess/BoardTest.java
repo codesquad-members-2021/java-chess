@@ -71,4 +71,15 @@ class BoardTest {
     void verifyPieceCount(final Color color, final Type type, final int count) {
         assertEquals(board.getPieceCount(color, type), count);
     }
+
+    @Test
+    @DisplayName("원하는 위치의 기물을 확인한다.")
+    public void findPieceTest() {
+        assertAll(
+                () -> assertEquals(Piece.createWhiteRook(), board.findPiece("a8")),
+                () -> assertEquals(Piece.createWhiteRook(), board.findPiece("h8")),
+                () -> assertEquals(Piece.createBlackRook(), board.findPiece("a1")),
+                () -> assertEquals(Piece.createBlackRook(), board.findPiece("h1"))
+        );
+    }
 }

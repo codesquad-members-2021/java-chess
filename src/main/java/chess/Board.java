@@ -21,6 +21,12 @@ public class Board {
         return count;
     }
 
+    public void initializeEmpty() {
+        for (int i = 0; i < 8; i++) {
+            board.add(Rank.initializeBlankLine(i));
+        }
+    }
+
     public void initialize() {
         board.add(Rank.initializeWhitePieces(0));
         board.add(Rank.initializeWhitePawns(1));
@@ -46,5 +52,11 @@ public class Board {
         Position p = new Position(position);
         Rank rank = board.get(p.getYPos());
         return rank.findPiece(p.getXPos());
+    }
+
+    public void move(String positionStr, Piece piece) {
+        Position position = new Position(positionStr);
+        Rank rank = board.get(position.getYPos());
+        rank.move(position.getXPos(), piece);
     }
 }

@@ -47,6 +47,18 @@ public class BoardTest {
                 () -> assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhiteRook(new Position(0, 0))),
                 () -> assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhiteRook(new Position(7, 0)))
         );
-
     }
+
+    @Test
+    public void move() {
+        board.initializeEmpty();
+
+        String position = "b5";
+        Piece piece = Piece.createBlackRook(new Position(0, 7));
+        board.move(position, piece);
+
+        assertThat(board.findPiece(position)).isEqualTo(piece);
+        System.out.println(board);
+    }
+
 }

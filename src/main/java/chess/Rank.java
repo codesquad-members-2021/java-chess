@@ -23,6 +23,10 @@ class Rank {
         return pieces;
     }
 
+    public void move(int xPos, Piece piece) {
+        pieces.set(xPos, piece);
+    }
+
     int countPieces(Color color, Type type) {
         int countPiece = 0;
         for (Piece piece : pieces) {

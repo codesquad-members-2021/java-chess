@@ -2,7 +2,7 @@ package net.eno.pieces;
 
 import java.util.Objects;
 
-public class Piece {
+public class Piece implements Comparable<Piece> {
 
     private final Color color;
     private final PieceType pieceType;
@@ -51,5 +51,10 @@ public class Piece {
     @Override
     public int hashCode() {
         return Objects.hash(color, pieceType);
+    }
+
+    @Override
+    public int compareTo(Piece piece) {
+        return (int)(this.getPoint() - piece.getPoint());
     }
 }

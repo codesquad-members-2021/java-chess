@@ -70,7 +70,7 @@ public class BoardTest {
         Piece findPiece = board.getPieceFromPoint("a8");
         Piece makeBlackRook = Piece.createBlackRook();
         Assertions.assertAll(
-                () -> assertThat(findPiece.getRepresentation()).isEqualTo(makeBlackRook.getRepresentation()),
+                () -> assertThat(findPiece.getPieceType()).isEqualTo(makeBlackRook.getPieceType()),
                 () -> assertThat(findPiece.getColor()).isEqualTo(makeBlackRook.getColor())
         );
     }

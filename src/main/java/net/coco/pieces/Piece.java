@@ -12,13 +12,11 @@ public class Piece {
     }
 
     private final Color color;
-    private final char representation;
     private final PieceType pieceType;
     private final double score;
 
     private Piece(Color color, PieceType pieceType) {
         this.color = color;
-        this.representation = pieceType.getRepresentation(color);
         this.score = pieceType.getScore();
         this.pieceType = pieceType;
     }
@@ -89,10 +87,6 @@ public class Piece {
 
     public double getScore() {
         return score;
-    }
-
-    public char getRepresentation() {
-        return representation;
     }
 
     public PieceType getPieceType() {

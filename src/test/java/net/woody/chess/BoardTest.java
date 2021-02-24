@@ -29,12 +29,10 @@ class BoardTest {
         assertAll(
                 () -> {
                     Piece shouldBeBlackRook = board.findPiece(0, 0);
-                    assertThat(shouldBeBlackRook.isBlack()).isTrue();
-                    assertThat(shouldBeBlackRook.getRepresentation()).isEqualTo('R');
+                    assertThat(shouldBeBlackRook).isEqualTo(Piece.createBlackRook());
                 }, () -> {
                     Piece shouldBeWhitePawn = board.findPiece(6, 0);
-                    assertThat(shouldBeWhitePawn.isWhite()).isTrue();
-                    assertThat(shouldBeWhitePawn.getRepresentation()).isEqualTo('p');
+                    assertThat(shouldBeWhitePawn).isEqualTo(Piece.createWhitePawn());
                 });
     }
 

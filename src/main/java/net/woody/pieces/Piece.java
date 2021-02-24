@@ -2,6 +2,8 @@ package net.woody.pieces;
 
 import net.woody.chess.Representation;
 
+import java.util.Objects;
+
 public class Piece {
     public static final int BLACK_PIECES_RANK = 0;
     public static final int BLACK_PAWN_RANK = 1;
@@ -78,5 +80,18 @@ public class Piece {
 
     public static Piece createWhiteKing() {
         return new Piece(Color.WHITE, Representation.KING.value());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Piece piece = (Piece) o;
+        return representation == piece.representation && color == piece.color;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, representation);
     }
 }

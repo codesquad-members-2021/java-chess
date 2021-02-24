@@ -8,7 +8,7 @@ public class PieceTest {
 
     @Test
     @DisplayName("흰색, 검은색 폰 생성")
-    void createWhitePawn() {
+    void createPawn() {
         verifyPiece(Piece.createWhitePawn(), Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION);
         verifyPiece(Piece.createBlackPawn(), Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
     }

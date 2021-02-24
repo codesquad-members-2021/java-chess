@@ -15,7 +15,7 @@ public class Piece {
     private final String color;
     private final String name;
 
-    private Piece(String color, String representation, String name) {
+    private Piece(String name, String color, String representation) {
         this.color = color;
         this.representation = representation;
         this.name = name;
@@ -30,10 +30,10 @@ public class Piece {
     }
 
     public static Piece createWhitePawn() {
-        return new Piece(WHITE, WHITE_PAWN_REPRESENTATION, PAWN);
+        return new Piece(PAWN, WHITE, WHITE_PAWN_REPRESENTATION);
     }
 
     public static Piece createBlackPawn() {
-        return new Piece(BLACK, BLACK_PAWN_REPRESENTATION, PAWN);
+        return new Piece(PAWN, BLACK, BLACK_PAWN_REPRESENTATION);
     }
 }

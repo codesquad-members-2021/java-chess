@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static chess.pieces.Piece.Color.BLACK;
+import static chess.pieces.Piece.Color.WHITE;
 import static chess.pieces.Piece.Type.*;
 import static chess.utils.StringUtils.appendNewLine;
 
@@ -150,19 +151,11 @@ public class Board {
         return chessBoard.toString();
     }
 
-    private String getRankResult(final Rank rank) {
-        StringBuilder piecesRepresentations = new StringBuilder();
-        char representation = ' ';
-        for (int i = 0; i < rank.pieces().size(); i++) {
-            Piece piece = rank.pieces().get(i);
-            if (piece.getColor() == BLACK) {
-                representation = piece.getType().getBlackRepresentation();
-            } else {
-                representation = piece.getType().getWhiteRepresentation();
-            }
-            piecesRepresentations.append(representation);
-        }
-        return piecesRepresentations.toString();
+    private String getRankResult(Rank rank) {
+        StringBuilder rankResult = new StringBuilder();
+        rank.pieces().forEach(piece ->
+                rankResult.append(piece.getType().getRepresentationWith(piece.getColor())));
+        return rankResult.toString();
     }
 
     public double calculatePoint(Piece.Color color) {
@@ -178,8 +171,8 @@ public class Board {
     }
 
     /**
-     *  2개 이상 pawn이 중첩될 경우 각 pawn을 0.5점으로 계산해야되는데,
-     *  현재 로직은 2개 이상이어도 무조건 1을 반환한다.
+     * 2개 이상 pawn이 중첩될 경우 각 pawn을 0.5점으로 계산해야되는데,
+     * 현재 로직은 2개 이상이어도 무조건 1을 반환한다.
      */
     private double getDoublePawn(List<Integer> filesOfPawnsInAboveRank, List<Integer> filesOfPawns) {
         if (filesOfPawnsInAboveRank.size() == 0) return 0;

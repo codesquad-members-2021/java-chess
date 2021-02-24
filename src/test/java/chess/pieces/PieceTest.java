@@ -2,6 +2,8 @@ package chess.pieces;
 
 import org.junit.jupiter.api.*;
 
+import static chess.pieces.Piece.Color.BLACK;
+import static chess.pieces.Piece.Color.WHITE;
 import static chess.pieces.Piece.Type.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -37,19 +39,19 @@ public class PieceTest {
     @Test
     @DisplayName("각 기물 별로 enum에 알맞는 변수 값을 갖고 있는지 확인한다.")
     void get_representation_per_piece() {
-        assertThat(PAWN.getWhiteRepresentation()).isEqualTo('p');
-        assertThat(KNIGHT.getWhiteRepresentation()).isEqualTo('n');
-        assertThat(ROOK.getWhiteRepresentation()).isEqualTo('r');
-        assertThat(BISHOP.getWhiteRepresentation()).isEqualTo('b');
-        assertThat(QUEEN.getWhiteRepresentation()).isEqualTo('q');
-        assertThat(KING.getWhiteRepresentation()).isEqualTo('k');
+        assertThat(PAWN.getRepresentationWith(WHITE)).isEqualTo('p');
+        assertThat(KNIGHT.getRepresentationWith(WHITE)).isEqualTo('n');
+        assertThat(ROOK.getRepresentationWith(WHITE)).isEqualTo('r');
+        assertThat(BISHOP.getRepresentationWith(WHITE)).isEqualTo('b');
+        assertThat(QUEEN.getRepresentationWith(WHITE)).isEqualTo('q');
+        assertThat(KING.getRepresentationWith(WHITE)).isEqualTo('k');
 
-        assertThat(PAWN.getBlackRepresentation()).isEqualTo('P');
-        assertThat(KNIGHT.getBlackRepresentation()).isEqualTo('N');
-        assertThat(ROOK.getBlackRepresentation()).isEqualTo('R');
-        assertThat(BISHOP.getBlackRepresentation()).isEqualTo('B');
-        assertThat(QUEEN.getBlackRepresentation()).isEqualTo('Q');
-        assertThat(KING.getBlackRepresentation()).isEqualTo('K');
+        assertThat(PAWN.getRepresentationWith(BLACK)).isEqualTo('P');
+        assertThat(KNIGHT.getRepresentationWith(BLACK)).isEqualTo('N');
+        assertThat(ROOK.getRepresentationWith(BLACK)).isEqualTo('R');
+        assertThat(BISHOP.getRepresentationWith(BLACK)).isEqualTo('B');
+        assertThat(QUEEN.getRepresentationWith(BLACK)).isEqualTo('Q');
+        assertThat(KING.getRepresentationWith(BLACK)).isEqualTo('K');
     }
 
 }

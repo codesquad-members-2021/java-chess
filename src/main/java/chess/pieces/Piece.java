@@ -91,16 +91,11 @@ public class Piece implements Comparable<Piece> {
             return defaultPoint;
         }
 
-        public char getRepresentation() {
+        public char getRepresentationWith(Color color) {
+            if (color == Color.BLACK) {
+                return Character.toUpperCase(representation);
+            }
             return representation;
-        }
-
-        public char getWhiteRepresentation() {
-            return representation;
-        }
-
-        public char getBlackRepresentation() {
-            return Character.toUpperCase(representation);
         }
     }
 }

@@ -123,4 +123,32 @@ class BoardTest {
 
         System.out.println(board.showBoard());
     }
+
+    @Test
+    @DisplayName("체스게임 점수 계산 확인")
+    void calculatePoint() {
+        board.initializeEmpty();
+
+        addPiece(new Position("b6"), blackPieceMaker.createPawn());
+        addPiece(new Position("e6"), blackPieceMaker.createQueen());
+        addPiece(new Position("b8"), blackPieceMaker.createKing());
+        addPiece(new Position("c8"), blackPieceMaker.createRook());
+        addPiece(new Position("f7"), blackPieceMaker.createPawn());
+
+        addPiece(new Position("f2"), whitePieceMaker.createPawn());
+        addPiece(new Position("f3"), whitePieceMaker.createPawn());
+        addPiece(new Position("e1"), whitePieceMaker.createRook());
+        addPiece(new Position("f1"), whitePieceMaker.createKing());
+
+        board.print();
+
+        assertAll(
+            () -> assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(16.0),
+            () -> assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(6.0)
+        );
+    }
+
+    private void addPiece(Position position, Piece piece) {
+        board.move(position, piece);
+    }
 }

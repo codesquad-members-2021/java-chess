@@ -1,6 +1,7 @@
 package net.sky.chess;
 
 import java.util.Scanner;
+import net.sky.pieces.Color;
 
 public class ChessGame {
 

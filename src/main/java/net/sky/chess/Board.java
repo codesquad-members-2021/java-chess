@@ -2,53 +2,62 @@ package net.sky.chess;
 
 import static net.sky.utils.StringUtils.appendNewLine;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import net.sky.pieces.Color;
 import net.sky.pieces.Piece;
 import net.sky.pieces.PieceMaker;
+import net.sky.pieces.PieceType;
 import net.sky.pieces.Position;
 
 public class Board {
 
-    private Map<Position, Piece> piecePositions = new HashMap<>();
-    private List<Rank> board = new ArrayList<>();
     private final int BOARD_SIZE = 8;
+    private Map<Position, Piece> piecePositions = new LinkedHashMap<>();
     private final PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
     private final PieceMaker blackPieceMaker = new PieceMaker(Color.BLACK);
-    private final RankMaker whiteRankMaker = new RankMaker(whitePieceMaker);
-    private final RankMaker blackRankMaker = new RankMaker(blackPieceMaker);
 
     public void initialize() {
-        board.add(blackRankMaker.createPieceRank());
-        board.add(blackRankMaker.createPawnRank());
-        board.add(RankMaker.createBlankRank());
-        board.add(RankMaker.createBlankRank());
-        board.add(RankMaker.createBlankRank());
-        board.add(RankMaker.createBlankRank());
-        board.add(whiteRankMaker.createPawnRank());
-        board.add(whiteRankMaker.createPieceRank());
-
-        initializePosition();
+        int x = 0;
+        initializePieces(x++, blackPieceMaker);
+        initializePawns(x++, blackPieceMaker);
+        initializeBlanks(x++);
+        initializeBlanks(x++);
+        initializeBlanks(x++);
+        initializeBlanks(x++);
+        initializePawns(x++, whitePieceMaker);
+        initializePieces(x++, whitePieceMaker);
     }
 
     public void initializeEmpty() {
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            board.add(RankMaker.createBlankRank());
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            initializeBlanks(x);
         }
 
-        initializePosition();
     }
 
-    private void initializePosition() {
-        for (int x = 0; x < BOARD_SIZE; x++) {
-            for (int y = 0; y < BOARD_SIZE; y++) {
-                Piece piece = board.get(x).getRank().get(y);
-                piecePositions.put(new Position(x, y), piece);
-            }
+    private void initializePieces(int x, PieceMaker pieceMaker) {
+        int y = 0;
+        piecePositions.put(new Position(x, y++), pieceMaker.createRook());
+        piecePositions.put(new Position(x, y++), pieceMaker.createKnight());
+        piecePositions.put(new Position(x, y++), pieceMaker.createBishop());
+        piecePositions.put(new Position(x, y++), pieceMaker.createQueen());
+        piecePositions.put(new Position(x, y++), pieceMaker.createKing());
+        piecePositions.put(new Position(x, y++), pieceMaker.createBishop());
+        piecePositions.put(new Position(x, y++), pieceMaker.createKnight());
+        piecePositions.put(new Position(x, y++), pieceMaker.createRook());
+    }
+
+    private void initializePawns(int x, PieceMaker pieceMaker) {
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            piecePositions.put(new Position(x, y), pieceMaker.createPawn());
+        }
+    }
+
+    private void initializeBlanks(int x) {
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            piecePositions.put(new Position(x, y), PieceMaker.createBlank());
         }
     }
 
@@ -59,31 +68,27 @@ public class Board {
     public String showBoard() {
         StringBuilder result = new StringBuilder();
         int initRank = 8;
-
-        for (Rank rank : board) {
-            result.append(getPiecesResult(rank))
-                .append(appendNewLine(" " + initRank--));
+        int idx = 0;
+        for (Piece piece : piecePositions.values()) {
+            idx++;
+            result.append(piece.getRepresentation());
+            if (idx % BOARD_SIZE == 0) {
+                result.append(appendNewLine(" " + initRank--));
+            }
         }
-
         result.append(appendNewLine(""));
         result.append(appendNewLine("abcdefgh"));
 
         return result.toString();
     }
 
-    private String getPiecesResult(Rank rank) {
-        StringBuilder result = new StringBuilder();
-        for (Piece piece : rank.getRank()) {
-            result.append(piece.getRepresentation());
-        }
-        return result.toString();
-    }
-
     public int pieceCount(Piece piece) {
         int pieceCount = 0;
 
-        for (Rank rank : board) {
-            pieceCount += rank.pieceCount(piece);
+        for (Piece p : piecePositions.values()) {
+            if (p.equals(piece)) {
+                pieceCount += 1;
+            }
         }
 
         return pieceCount;
@@ -95,9 +100,35 @@ public class Board {
 
     public void move(Position position, Piece piece) {
         piecePositions.put(position, piece);
-        int x = position.getX();
-        int y = position.getY();
-        board.get(x).getRank().set(y, piece);
     }
 
+    public double calculatePoint(Color color) {
+        double point = 0;
+
+        for (Piece piece : piecePositions.values()) {
+            if (color == piece.getColor()) {
+                point += piece.getPieceType().getPoint();
+            }
+
+        }
+
+        for (int x = 0; x < BOARD_SIZE; x++) {
+            point -= (countPawnNum(x, color) / 2);
+        }
+
+        return point;
+    }
+
+    private double countPawnNum(int x, Color color) {
+        double pawnNum = 0;
+
+        for (int y = 0; y < BOARD_SIZE; y++) {
+            Position position = new Position(y, x);
+            Piece piece = piecePositions.get(position);
+            if (piece.getPieceType() == PieceType.PAWN && color == piece.getColor()) {
+                pawnNum += 1;
+            }
+        }
+        return pawnNum > 1 ? pawnNum : 0;
+    }
 }

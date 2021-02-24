@@ -34,6 +34,10 @@ public class Piece {
         return piece.getColor() == Color.BLACK;
     }
 
+    public double getPoint() {
+        return pieceType.getPoint();
+    }
+
     private char classifyRepresentation() {
         char initRepresentation = pieceType.getRepresentation();
         return color == Color.BLACK ? Character.toUpperCase(initRepresentation)
@@ -57,4 +61,5 @@ public class Piece {
     public int hashCode() {
         return Objects.hash(color, pieceType, representation);
     }
+
 }

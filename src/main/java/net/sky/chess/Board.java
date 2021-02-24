@@ -68,11 +68,12 @@ public class Board {
     public String showBoard() {
         StringBuilder result = new StringBuilder();
         int initRank = 8;
-        int idx = 0;
+        int resultSize = 0;
+
         for (Piece piece : piecePositions.values()) {
-            idx++;
+            resultSize++;
             result.append(piece.getRepresentation());
-            if (idx % BOARD_SIZE == 0) {
+            if (resultSize % BOARD_SIZE == 0) {
                 result.append(appendNewLine(" " + initRank--));
             }
         }
@@ -107,24 +108,24 @@ public class Board {
 
         for (Piece piece : piecePositions.values()) {
             if (color == piece.getColor()) {
-                point += piece.getPieceType().getPoint();
+                point += piece.getPoint();
             }
-
         }
 
-        for (int x = 0; x < BOARD_SIZE; x++) {
-            point -= (countPawnNum(x, color) / 2);
+        for (int file = 0; file < BOARD_SIZE; file++) {
+            point -= (filePawnNum(file, color) / 2);
         }
 
         return point;
     }
 
-    private double countPawnNum(int x, Color color) {
+    private double filePawnNum(int file, Color color) {
         double pawnNum = 0;
 
-        for (int y = 0; y < BOARD_SIZE; y++) {
-            Position position = new Position(y, x);
+        for (int rank = 0; rank < BOARD_SIZE; rank++) {
+            Position position = new Position(rank, file);
             Piece piece = piecePositions.get(position);
+
             if (piece.getPieceType() == PieceType.PAWN && color == piece.getColor()) {
                 pawnNum += 1;
             }

@@ -2,6 +2,7 @@ package net.Dong;
 
 import net.Dong.chess.Board;
 import net.Dong.chess.Pawn;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,12 +12,15 @@ import net.Dong.chess.Pawn.*;
 
 
 class BoardTest {
+    private Board board;
 
+    @BeforeEach
+    public void setup() {
+        board = new Board();
+    }
 
     @Test
-    @DisplayName("pawn create test")
     void BoardPawnCreate() {
-        Board board = new Board();
 
         Pawn white = new Pawn(Color.WHITE);
         board.addWhitePawn(white);
@@ -33,7 +37,6 @@ class BoardTest {
     @Test
     @DisplayName("board initialize test")
     void boardInitialize() {
-        Board board = new Board();
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");

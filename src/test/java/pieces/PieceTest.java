@@ -50,7 +50,7 @@ class PieceTest {
         verifyPiece(Piece.createBlackKing(), Color.BLACK, 'K');
     }
 
-    void verifyPiece(final Piece piece, final Color color, final char representation) {
+    void verifyPiece(Piece piece, Color color, char representation) {
         assertAll(
                 () -> assertThat(piece.getColor()).isEqualTo(color),
                 () -> assertThat(piece.getRepresentation()).isEqualTo(representation)
@@ -61,8 +61,8 @@ class PieceTest {
     @DisplayName("생성된 기물이 폰이 맞는지 확인")
     void checkPawn() {
         assertAll(
-                () ->assertThat(Piece.createBlackPawn().isPawn()).isTrue(),
-                () ->assertThat(Piece.createWhiteBishop().isPawn()).isFalse()
+                () -> assertThat(Piece.createBlackPawn().isPawn()).isTrue(),
+                () -> assertThat(Piece.createWhiteBishop().isPawn()).isFalse()
         );
     }
 

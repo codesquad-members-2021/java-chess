@@ -12,11 +12,11 @@ public class Main {
         ){
             while (true) {
                 Board board = new Board();
-                board.initialize();
                 String inputMessage = sc.next();
                 switch (inputMessage) {
                     case  "start" :
                         System.out.println("====게임을 시작합니다.====\n");
+                        board.initialize();
                         System.out.println(board.showBoard());
                         break;
                     case "exit" :

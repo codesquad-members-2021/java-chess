@@ -38,19 +38,6 @@ public class Piece {
         return this.color == Color.BLACK;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Piece piece = (Piece) o;
-        return color == piece.color && type == piece.type;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(color, type);
-    }
-
     private static Piece createWhite(Type type) {
         return new Piece(Color.WHITE, type);
     }
@@ -109,6 +96,19 @@ public class Piece {
 
     public static Piece createBlackKing() {
         return createBlack(Type.KING);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Piece piece = (Piece) o;
+        return color == piece.color && type == piece.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, type);
     }
 
 }

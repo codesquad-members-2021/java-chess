@@ -20,6 +20,51 @@ public class Board {
         initializeEmpty();
     }
 
+    public void initialize() {
+        initializeEmpty();
+        initializeRank1();
+        initializeRank2();
+        initializeRank7();
+        initializeRank8();
+    }
+
+    public void initializeEmpty() {
+        Arrays.fill(squares, Piece.createBlank());
+    }
+
+    private void initializeRank1() {
+        int rankBaseIndex = 7 * FILES;
+        squares[rankBaseIndex    ] = Piece.createWhiteRook();
+        squares[rankBaseIndex + 1] = Piece.createWhiteKnight();
+        squares[rankBaseIndex + 2] = Piece.createWhiteBishop();
+        squares[rankBaseIndex + 3] = Piece.createWhiteQueen();
+        squares[rankBaseIndex + 4] = Piece.createWhiteKing();
+        squares[rankBaseIndex + 5] = Piece.createWhiteBishop();
+        squares[rankBaseIndex + 6] = Piece.createWhiteKnight();
+        squares[rankBaseIndex + 7] = Piece.createWhiteRook();
+    }
+
+    private void initializeRank2() {
+        int rankBaseIndex = 6 * FILES;
+        Arrays.fill(squares, rankBaseIndex, rankBaseIndex + FILES, Piece.createWhitePawn());
+    }
+
+    private void initializeRank7() {
+        int rankBaseIndex = FILES;
+        Arrays.fill(squares, rankBaseIndex, rankBaseIndex + FILES, Piece.createBlackPawn());
+    }
+
+    private void initializeRank8() {
+        squares[0] = Piece.createBlackRook();
+        squares[1] = Piece.createBlackKnight();
+        squares[2] = Piece.createBlackBishop();
+        squares[3] = Piece.createBlackQueen();
+        squares[4] = Piece.createBlackKing();
+        squares[5] = Piece.createBlackBishop();
+        squares[6] = Piece.createBlackKnight();
+        squares[7] = Piece.createBlackRook();
+    }
+
     public String showBoard() {
         StringBuilder squares = new StringBuilder();
         int lineSeparatorCount = 0;
@@ -67,24 +112,29 @@ public class Board {
 
     public double calculatePoint(Color color) {
         double resultPoint = 0;
-
         for (int j = 0; j < FILES; j++) {
-            int pawnCount = 0;
-            for (int i = 0; i < RANKS; i++) {
-                Piece piece = getByIndex(i, j);
-                Type type = piece.getType();
-                if (piece.getColor() == color) {
-                    resultPoint += type.getPoint();
-                    if (type == Type.PAWN) {
-                        pawnCount++;
-                    }
-                }
-            }
-            if (pawnCount >= 2) {
-                resultPoint -= pawnCount * 0.5;
-            }
+            resultPoint += calculateFilePoint(j, color);
         }
         return resultPoint;
+    }
+
+    private double calculateFilePoint(int file, Color color) {
+        int pawnCount = 0;
+        double filePoint = 0;
+        for (int i = 0; i < RANKS; i++) {
+            Piece piece = getByIndex(i, file);
+            Type type = piece.getType();
+            if (piece.getColor() == color) {
+                filePoint += type.getPoint();
+            }
+            if (piece.getColor() == color && type == Type.PAWN) {
+                pawnCount++;
+            }
+        }
+        if (pawnCount >= 2) {
+            filePoint -= pawnCount * 0.5;
+        }
+        return filePoint;
     }
 
     private Piece getByIndex(int rank, int file) {
@@ -93,51 +143,6 @@ public class Board {
 
     private void setByIndex(int rank, int file, Piece piece) {
         squares[rank * FILES + file] = piece;
-    }
-
-    public void initializeEmpty() {
-        Arrays.fill(squares, Piece.createBlank());
-    }
-
-    public void initialize() {
-        initializeEmpty();
-        initializeRank1();
-        initializeRank2();
-        initializeRank7();
-        initializeRank8();
-    }
-
-    private void initializeRank8() {
-        squares[0] = Piece.createBlackRook();
-        squares[1] = Piece.createBlackKnight();
-        squares[2] = Piece.createBlackBishop();
-        squares[3] = Piece.createBlackQueen();
-        squares[4] = Piece.createBlackKing();
-        squares[5] = Piece.createBlackBishop();
-        squares[6] = Piece.createBlackKnight();
-        squares[7] = Piece.createBlackRook();
-    }
-
-    private void initializeRank7() {
-        int rankBaseIndex = FILES;
-        Arrays.fill(squares, rankBaseIndex, rankBaseIndex + FILES, Piece.createBlackPawn());
-    }
-
-    private void initializeRank2() {
-        int rankBaseIndex = 6 * FILES;
-        Arrays.fill(squares, rankBaseIndex, rankBaseIndex + FILES, Piece.createWhitePawn());
-    }
-
-    private void initializeRank1() {
-        int rankBaseIndex = 7 * FILES;
-        squares[rankBaseIndex    ] = Piece.createWhiteRook();
-        squares[rankBaseIndex + 1] = Piece.createWhiteKnight();
-        squares[rankBaseIndex + 2] = Piece.createWhiteBishop();
-        squares[rankBaseIndex + 3] = Piece.createWhiteQueen();
-        squares[rankBaseIndex + 4] = Piece.createWhiteKing();
-        squares[rankBaseIndex + 5] = Piece.createWhiteBishop();
-        squares[rankBaseIndex + 6] = Piece.createWhiteKnight();
-        squares[rankBaseIndex + 7] = Piece.createWhiteRook();
     }
 
     private class PositionParser {

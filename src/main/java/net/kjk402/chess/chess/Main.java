@@ -17,7 +17,7 @@ public class Main {
                 command = sc.nextLine();
                 if (command.equals("start")) {
                     Board board = new Board();
-                    board.initialize();
+                    board.initalize();
                     System.out.println(board.showBoard());
                     continue;
                 }

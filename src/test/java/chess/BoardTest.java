@@ -33,11 +33,11 @@ class BoardTest {
     @Test
     void count() {
         board.initializeBoard();
-        assertThat(board.countPiece(Piece.createWhitePawn()))
+        assertThat(board.countPiece(Piece.Color.WHITE, Piece.Type.PAWN))
                 .isEqualTo(8);
-        assertThat(board.countPiece(Piece.createBlackRook()))
+        assertThat(board.countPiece(Piece.Color.BLACK, Piece.Type.ROOK))
                 .isEqualTo(2);
-        assertThat(board.countPiece(Piece.createBlank()))
+        assertThat(board.countPiece(Piece.Color.NOCOLOR, Piece.Type.NO_PIECE))
                 .isEqualTo(32);
     }
 

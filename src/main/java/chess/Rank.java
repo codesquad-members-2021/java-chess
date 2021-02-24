@@ -29,8 +29,9 @@ public class Rank {
         pieceList.remove(index);
     }
 
-    public long count(Piece piece) {
-        return pieceList.stream().filter(x -> x.equals(piece))
+    public long count(Piece.Color color, Piece.Type type) {
+        return pieceList.stream().filter(x -> x.getColor() == color)
+                .filter(x -> x.getType() == type)
                 .count();
     }
 }

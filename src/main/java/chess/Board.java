@@ -2,7 +2,6 @@ package chess;
 
 import chess.pieces.Piece;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -106,8 +105,8 @@ public class Board {
         return result.toString();
     }
 
-    public int countPiece(Piece piece) {
-        Optional<Long> result = board.stream().map(x -> x.count(piece))
+    public int countPiece(Piece.Color color, Piece.Type type) {
+        Optional<Long> result = board.stream().map(x -> x.count(color, type))
                 .reduce((a, b) -> a + b);
         return result.get().intValue();
     }
@@ -134,33 +133,13 @@ public class Board {
     }
 
     public double calculatePoint(Piece.Color color) {
-        if (color.equals(Piece.Color.WHITE)) {
-            return calculateWhitePoint();
-        }
-        return calculateBlackPoint();
-    }
+        double pawn = countPiece(color, Piece.Type.PAWN);
+        double knight = countPiece(color, Piece.Type.KNIGHT);
+        double rook = countPiece(color, Piece.Type.ROOK);
+        double bishop = countPiece(color, Piece.Type.BISHOP);
+        double queen = countPiece(color, Piece.Type.QUEEN);
 
-    private double calculateWhitePoint() {
-        double pawn = countPiece(Piece.createWhitePawn());
-        double knight = countPiece(Piece.createWhiteKnight());
-        double rook = countPiece(Piece.createWhiteRook());
-        double bishop = countPiece(Piece.createWhiteBishop());
-        double queen = countPiece(Piece.createWhiteQueen());
-
-        if (isSameFileWhite()) {
-            pawn = pawn * 0.5;
-        }
-        return getSum(pawn, knight, rook, bishop, queen);
-    }
-
-    private double calculateBlackPoint() {
-        double pawn = countPiece(Piece.createBlackPawn());
-        double knight = countPiece(Piece.createBlackKnight());
-        double rook = countPiece(Piece.createBlackRook());
-        double bishop = countPiece(Piece.createBlackBishop());
-        double queen = countPiece(Piece.createBlackQueen());
-
-        if (isSameFileBlack()) {
+        if (isSameFile(color)) {
             pawn = pawn * 0.5;
         }
         return getSum(pawn, knight, rook, bishop, queen);
@@ -174,8 +153,9 @@ public class Board {
                 queen * Piece.Type.QUEEN.getDefaultPoint();
     }
 
-    private boolean isSameFileWhite() {
-        String[] positions = findPosition(Piece.createWhitePawn());
+    private boolean isSameFile(Piece.Color color) {
+        Piece piece = color == Piece.Color.WHITE ? Piece.createWhitePawn() : Piece.createBlackPawn();
+        String[] positions = getPosition(piece);
         long deletedPositionsLength = Arrays.stream(positions)
                 .map(x -> x.charAt(0))
                 .distinct()
@@ -186,20 +166,8 @@ public class Board {
         return false;
     }
 
-    private boolean isSameFileBlack() {
-        String[] positions = findPosition(Piece.createBlackPawn());
-        long deletedPositionsLength = Arrays.stream(positions)
-                .map(x -> x.charAt(0))
-                .distinct()
-                .count();
-        if (deletedPositionsLength != positions.length) {
-            return true;
-        }
-        return false;
-    }
-
-    public String[] findPosition(Piece piece) {
-        String[] positionArr = new String[countPiece(piece)];
+    public String[] getPosition(Piece piece) {
+        String[] positionArr = new String[countPiece(piece.getColor(), piece.getType())];
 
         int index = 0;
         for (int i = 0; i < BOARD_RANK; i++) {

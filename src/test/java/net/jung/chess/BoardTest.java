@@ -15,7 +15,7 @@ class BoardTest {
     @BeforeEach
     void setUp() {
         board = new Board();
-
+        board.initialize();
     }
 
 
@@ -24,7 +24,7 @@ class BoardTest {
     void initializeAddsEveryPiece() {
         int maxNumOfPieces = 32;
         String BLANK_RANK = appendNewLine("********");
-        board.initialize();
+
         assertAll(
                 () -> assertThat(board.boardPieceSize()).isEqualTo(maxNumOfPieces),
                 () -> assertThat(board.boardLayoutToString()).isEqualTo(
@@ -36,6 +36,29 @@ class BoardTest {
                     +BLANK_RANK
                     +appendNewLine("pppppppp")
                     +appendNewLine("rnbqkbnr"))
+        );
+    }
+
+    @Test
+    @DisplayName("certainPieceSize는 보드 위의 특정 색/타입의 피스 개수를 리턴한다")
+    void checkCertainPieceSize () {
+        int pawnSize = 8;
+        int nonRoyalSize = 2;
+        int royalSize = 1;
+        assertAll (
+                () -> assertThat(board.certainPieceSize(Piece.Color.WHITE, Piece.Type.PAWN)).isEqualTo(pawnSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.BLACK, Piece.Type.PAWN)).isEqualTo(pawnSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.WHITE, Piece.Type.ROOK)).isEqualTo(nonRoyalSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.BLACK, Piece.Type.ROOK)).isEqualTo(nonRoyalSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.WHITE, Piece.Type.KNIGHT)).isEqualTo(nonRoyalSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.BLACK, Piece.Type.KNIGHT)).isEqualTo(nonRoyalSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.WHITE, Piece.Type.BISHOP)).isEqualTo(nonRoyalSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.BLACK, Piece.Type.BISHOP)).isEqualTo(nonRoyalSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.WHITE, Piece.Type.QUEEN)).isEqualTo(royalSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.BLACK, Piece.Type.QUEEN)).isEqualTo(royalSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.WHITE, Piece.Type.KING)).isEqualTo(royalSize),
+                () -> assertThat(board.certainPieceSize(Piece.Color.BLACK, Piece.Type.KING)).isEqualTo(royalSize)
+
         );
     }
 }

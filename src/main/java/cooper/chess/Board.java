@@ -43,8 +43,17 @@ public class Board {
     public Piece findPiece(String position) {
         int yPos = getYPos(position);
         int xPos = getXPos(position);
-        System.out.println(yPos + " " + xPos);
         return pieceGroup.findPiece(yPos, xPos);
+    }
+
+    public void initializeEmpty() {
+        pieceGroup.initializeEmpty();
+    }
+
+    public void move(String position, Piece piece) {
+        int yPos = getYPos(position);
+        int xPos = getXPos(position);
+        pieceGroup.move(yPos, xPos, piece);
     }
 
     private int getXPos(String position) {

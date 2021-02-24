@@ -85,6 +85,20 @@ public class PieceGroup {
     }
 
     public Piece findPiece(int yPos, int xPos) {
-        return pieceList.get(8 * yPos + xPos);
+        return pieceList.get(getListIndex(yPos, xPos));
+    }
+
+    public void initializeEmpty() {
+        for (int index = 0; index < pieceList.size(); index++) {
+            pieceList.set(index, Piece.createBlank());
+        }
+    }
+
+    public void move(int yPos, int xPos, Piece piece) {
+        pieceList.set(getListIndex(yPos, xPos), piece);
+    }
+
+    private int getListIndex(int yPos, int xPos) {
+        return (8 * yPos) + xPos;
     }
 }

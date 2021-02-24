@@ -99,7 +99,7 @@ public class Board {
         for (Rank rank : ranks) {
             getWhitePieces.addAll(rank.getWhitePieces());
         }
-        Collections.sort(getWhitePieces, (o1, o2) -> (int) (o2.getScore() - o1.getScore()));
+        Collections.sort(getWhitePieces, (piece1, piece2) -> (int) (piece2.getScore() - piece1.getScore()));
         return getWhitePieces;
     }
 
@@ -108,7 +108,7 @@ public class Board {
         for (Rank rank : ranks) {
             getBlackPieces.addAll(rank.getBlackPieces());
         }
-        Collections.sort(getBlackPieces, (o1, o2) -> (int) (o2.getScore() - o1.getScore()));
+        Collections.sort(getBlackPieces, (piece1, piece2) -> (int) (piece2.getScore() - piece1.getScore()));
         return getBlackPieces;
     }
 

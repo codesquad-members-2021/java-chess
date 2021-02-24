@@ -1,92 +1,125 @@
 package chess;
 
-import pieces.Color;
-import pieces.Pawn;
+import pieces.Piece;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static utils.StringUtils.appendNewLine;
+
 public class Board {
-    private List<Pawn> whitePawns = new ArrayList<>();
-    private List<Pawn> blackPawns = new ArrayList<>();
     private static final int BOARD_FILE = 8;
 
-    public int size() {
-        return whitePawns.size() + blackPawns.size();
+    private List<Piece> whitePieces = new ArrayList<>();
+    private List<Piece> whitePawns = new ArrayList<>();
+    private List<Piece> blackPawns = new ArrayList<>();
+    private List<Piece> blackPieces = new ArrayList<>();
+
+    void addWhitePawn(Piece piece) {
+        if (!piece.isWhite() || piece.getType() != Piece.Type.PAWN) {
+            throw new IllegalArgumentException("흰색의 pawn만 추가할 수 있습니다.");
+        }
+        whitePawns.add(piece);
     }
 
-    public Pawn findWhitePawn(int index) {
-        return whitePawns.get(index);
+    void addBlackPawn(Piece piece) {
+        if (!piece.isBlack() || piece.getType() != Piece.Type.PAWN) {
+            throw new IllegalArgumentException("검은색의 pawn만 추가할 수 있습니다");
+        }
+        blackPawns.add(piece);
     }
 
-    public Pawn findBlackPawn(int index) {
-        return blackPawns.get(index);
+    void addWhitePiece(Piece piece) {
+        if (!piece.isWhite()){
+            throw new IllegalArgumentException("흰색의 piece만 추가할 수 있습니다");
+        }
+        whitePieces.add(piece);
     }
 
-    public String getWhitePawnsResult() {
-        return getPawnsResult(whitePawns);
+    void addBlackPiece(Piece piece) {
+        if (!piece.isBlack()){
+            throw new IllegalArgumentException("검은색의 piece만 추가할수 있습니다");
+        }
+        blackPieces.add(piece);
     }
 
-    public String getBlackPawnsResult() {
-        return getPawnsResult(blackPawns);
+    public int pieceCount() {
+        return whitePieces.size() +
+                whitePawns.size() +
+                blackPawns.size() +
+                blackPieces.size();
     }
 
-    private String getPawnsResult(List<Pawn> pawns) {
+    private String getWhitePiecesResult() {
+        return getPiecesResult(whitePieces);
+    }
+
+    private String getBlackPiecesResult() {
+        return getPiecesResult(blackPieces);
+    }
+
+    private String getWhitePawnsResult() {
+        return getPiecesResult(whitePawns);
+    }
+
+    private String getBlackPawnsResult() {
+        return getPiecesResult(blackPawns);
+    }
+
+    private String getPiecesResult(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
-        for (char representation : getRepresentations(pawns)) {
+        for (char representation : getRepresentations(pieces)) {
             sb.append(representation);
         }
         return sb.toString();
     }
 
-    private char[] getRepresentations(List<Pawn> pawns) {
-        char[] representations = new char[pawns.size()];
-        for (int i = 0; i < pawns.size(); i++) {
-            representations[i] = pawns.get(i).getRepresentation();
+    private char[] getRepresentations(List<Piece> pieces) {
+        char[] representations = new char[pieces.size()];
+        for (int i = 0; i < pieces.size(); i++) {
+            representations[i] = pieces.get(i).getRepresentation();
         }
         return representations;
     }
 
-    public void addWhitePawn(Pawn pawn) {
-        if (pawn.getColor() != Color.WHITE) {
-            throw new InvalidParameterException("pawn의 색을 확인해 주세요");
-        }
-        whitePawns.add(pawn);
-    }
-
-    public void addBlackPawn(Pawn pawn) {
-        if (pawn.getColor() != Color.BLACK) {
-            throw new InvalidParameterException("pawn의 색을 확인해 주세요");
-        }
-        blackPawns.add(pawn);
-    }
-
     public void initialize() {
+        addWhitePiece(Piece.createWhiteRook());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteQueen());
+        addWhitePiece(Piece.createWhiteKing());
+        addWhitePiece(Piece.createWhiteBishop());
+        addWhitePiece(Piece.createWhiteKnight());
+        addWhitePiece(Piece.createWhiteRook());
+
         for (int i = 0; i < BOARD_FILE; i++) {
-            addWhitePawn(new Pawn(Color.WHITE));
-            addBlackPawn(new Pawn(Color.BLACK));
+            addWhitePawn(Piece.createWhitePawn());
+            addBlackPawn(Piece.createBlackPawn());
         }
+
+        addBlackPiece(Piece.createBlackRook());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackQueen());
+        addBlackPiece(Piece.createBlackKing());
+        addBlackPiece(Piece.createBlackBishop());
+        addBlackPiece(Piece.createBlackKnight());
+        addBlackPiece(Piece.createBlackRook());
     }
 
-    public String print() {
+    public String showBoard() {
         StringBuilder result = new StringBuilder();
-        String emptyLine = "........";
-        result.append(emptyLine)
-                .append("\n")
-                .append(getWhitePawnsResult())
-                .append("\n")
-                .append(emptyLine)
-                .append("\n")
-                .append(emptyLine)
-                .append("\n")
-                .append(emptyLine)
-                .append("\n")
-                .append(emptyLine)
-                .append("\n")
-                .append(getBlackPawnsResult())
-                .append("\n")
-                .append(emptyLine);
+        String blankRank = "........";
+        result.append(appendNewLine(getBlackPiecesResult()))
+                .append(appendNewLine(getBlackPawnsResult()))
+                .append(appendNewLine(blankRank))
+                .append(appendNewLine(blankRank))
+                .append(appendNewLine(blankRank))
+                .append(appendNewLine(blankRank))
+                .append(appendNewLine(getWhitePawnsResult()))
+                .append(appendNewLine(getWhitePiecesResult()));
         return result.toString();
     }
+
+
 }

@@ -3,13 +3,13 @@ package cooper.chess;
 import cooper.chess.piece.Color;
 import cooper.chess.piece.Piece;
 import cooper.chess.piece.Type;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static cooper.chess.utils.StringUtils.NEW_LINE;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BoardTest {
     private Board board;
@@ -81,5 +81,18 @@ class BoardTest {
                 () -> assertEquals(Piece.createBlackRook(), board.findPiece("a1")),
                 () -> assertEquals(Piece.createBlackRook(), board.findPiece("h1"))
         );
+    }
+
+    @Test
+    @DisplayName("임의의 기물을 체스판 위에 추가")
+    public  void move() {
+        board.initializeEmpty();
+
+        String position = "b5";
+        Piece piece = Piece.createBlackRook();
+        board.move(position, piece);
+        board.move("a8", piece);
+
+        assertEquals(piece, board.findPiece(position));
     }
 }

@@ -1,6 +1,9 @@
 package net.woody.utils;
 
-public class CommandUtil {
+public class CommandUtils {
+
+    private CommandUtils() {
+    }
 
     public static void printMenu() {
         System.out.println("< Command Menu >");
@@ -10,7 +13,7 @@ public class CommandUtil {
         System.out.print("> ");
     }
 
-    public static boolean readCommand(String command) {
+    public static boolean isGameContinued(String command) {
         switch (command.toLowerCase()) {
             case "start":
                 return true;

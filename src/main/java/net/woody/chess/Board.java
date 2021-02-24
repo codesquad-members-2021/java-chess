@@ -1,31 +1,26 @@
 package net.woody.chess;
 
-import net.woody.pieces.Color;
-import net.woody.pieces.Pawn;
+import static net.woody.utils.StringUtils.appendNewLine;
+
+import net.woody.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
 
     private final List<Rank> board = new ArrayList<>(BOARD_LENGTH);
-    private int size = 0;
 
     public Board() {
-        IntStream.range(0, BOARD_LENGTH).forEach(i -> board.add(new Rank()));
+        for (int i = 0; i < BOARD_LENGTH; i++) {
+            board.add(new Rank());
+        }
     }
 
-    public void add(Pawn pawn) {
-        int rank = getPawnRank(pawn);
-        getRank(rank).add(pawn);
-        size++;
-    }
-
-    private int getPawnRank(Pawn newPawn) {
-        return (newPawn.getColor() == Color.WHITE) ? Pawn.WHITE_PAWN_RANK : Pawn.BLACK_PAWN_RANK;
+    public void add(Piece piece, int rank) {
+        getRank(rank).add(piece);
     }
 
     public Rank getRank(int rank) {
@@ -35,37 +30,71 @@ public class Board {
         return board.get(rank);
     }
 
-    public Pawn findPawn(int rank, int file) {
+    public Piece findPiece(int rank, int file) {
         return getRank(rank).find(file);
     }
 
     public void initialize() {
-        Rank blackPawns = getRank(Pawn.BLACK_PAWN_RANK);
-        Rank whitePawns = getRank(Pawn.WHITE_PAWN_RANK);
-
-        IntStream.range(0, BOARD_LENGTH).forEach(i -> {
-            blackPawns.add(new Pawn(Color.BLACK.toString()));
-            whitePawns.add(new Pawn());
-            size += 2;
-        });
+        initBlackPieces();
+        initBlackPawns();
+        initWhitePawns();
+        initWhitePieces();
     }
 
-    public String getWhitePawnsResult() {
-        return getRank(Pawn.WHITE_PAWN_RANK).toString();
+    private void initBlackPieces() {
+        Rank blackPieces = getRank(Piece.BLACK_PIECES_RANK);
+
+        blackPieces.add(Piece.createBlackRook());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackQueen());
+        blackPieces.add(Piece.createBlackKing());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackRook());
     }
 
-    public String getBlackPawnsResult() {
-        return getRank(Pawn.BLACK_PAWN_RANK).toString();
+    private void initBlackPawns() {
+        Rank blackPawns = getRank(Piece.BLACK_PAWN_RANK);
+
+        for (int i = 0; i < BOARD_LENGTH; i++) {
+            blackPawns.add(Piece.createBlackPawn());
+        }
+    }
+
+    private void initWhitePieces() {
+        Rank whitePieces = getRank(Piece.WHITE_PIECES_RANK);
+
+        whitePieces.add(Piece.createWhiteRook());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteQueen());
+        whitePieces.add(Piece.createWhiteKing());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteRook());
+    }
+
+    private void initWhitePawns() {
+        Rank whitePawns = getRank(Piece.WHITE_PAWN_RANK);
+
+        for (int i = 0; i < BOARD_LENGTH; i++) {
+            whitePawns.add(Piece.createWhitePawn());
+        }
     }
 
     public int size() {
-        return size;
+        int numOfPieces = 0;
+        for (Rank rank : board) {
+            numOfPieces += rank.size();
+        }
+        return numOfPieces;
     }
 
-    public String print() {
+    public String showBoard() {
         StringBuilder sb = new StringBuilder();
         for (Rank rank : board) {
-            sb.append(rank.toString()).append('\n');
+            sb.append(appendNewLine(rank.toString()));
         }
         return sb.toString();
     }

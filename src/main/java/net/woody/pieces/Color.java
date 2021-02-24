@@ -7,10 +7,10 @@ public enum Color {
     WHITE(piece -> Character.toLowerCase(piece)),
     BLACK(piece -> Character.toUpperCase(piece));
 
-    private Function<Character, Character> represent;
+    private Function<Character, Character> representation;
 
-    Color(Function<Character, Character> represent) {
-        this.represent = represent;
+    Color(Function<Character, Character> representation) {
+        this.representation = representation;
     }
 
     public static Color value(String color) {
@@ -25,8 +25,8 @@ public enum Color {
 
     }
 
-    public Character representation(char pieceFirstLetter) {
-        return represent.apply(pieceFirstLetter);
+    public Character getRepresentation(char pieceFirstLetter) {
+        return representation.apply(pieceFirstLetter);
     }
 
     @Override

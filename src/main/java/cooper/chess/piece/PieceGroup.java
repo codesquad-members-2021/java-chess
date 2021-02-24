@@ -3,6 +3,7 @@ package cooper.chess.piece;
 import cooper.chess.Board;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PieceGroup {
     private static int WHITE_PIECE_SIZE;
@@ -113,5 +114,11 @@ public class PieceGroup {
 
     public double calculatePoint(Color color) {
         return pointCalculator.calculate(color);
+    }
+
+    public List<Piece> getListBy(Color color) {
+        return pieceList.stream()
+                .filter(piece -> piece.getColor() == color)
+                .collect(Collectors.toList());
     }
 }

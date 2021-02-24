@@ -59,4 +59,16 @@ public class Board {
     public double calculatePoint(Color color) {
         return pieceGroup.calculatePoint(color);
     }
+
+    public List<Piece> sortByTypePoint(Color color) {
+        List<Piece> list = pieceGroup.getListBy(color);
+        list.sort(Comparator.comparingDouble(piece -> piece.getType().getDefaultPoint()));
+        return list;
+    }
+
+    public List<Piece> sortByTypePointReverse(Color color) {
+        List<Piece> list = pieceGroup.getListBy(color);
+        list.sort(Comparator.comparingDouble(piece -> - piece.getType().getDefaultPoint()));
+        return list;
+    }
 }

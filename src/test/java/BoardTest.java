@@ -1,7 +1,7 @@
 import net.sanhee.chess.Board;
 import net.sanhee.pieces.Piece;
 import net.sanhee.pieces.PieceFactory;
-import net.sanhee.pieces.UnitColor;
+import net.sanhee.pieces.property.UnitColor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,9 @@
 package net.sanhee.pieces;
 
 
+import net.sanhee.pieces.property.UnitColor;
+import net.sanhee.pieces.property.UnitType;
+
 abstract public class Piece {
 
     private final UnitColor color;

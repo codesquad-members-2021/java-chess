@@ -1,5 +1,7 @@
 package net.sanhee.pieces;
 
+import net.sanhee.pieces.property.UnitColor;
+
 public class PieceFactory {
     public static Piece createBishop(UnitColor unitColor) { //m 정적 팩토리 메서드
         return new Bishop(unitColor);

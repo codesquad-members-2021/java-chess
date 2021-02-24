@@ -3,7 +3,7 @@ package net.sanhee.chess;
 import net.sanhee.pieces.Pawn;
 import net.sanhee.pieces.Piece;
 import net.sanhee.pieces.PieceFactory;
-import net.sanhee.pieces.UnitColor;
+import net.sanhee.pieces.property.UnitColor;
 
 import java.util.ArrayList;
 import java.util.List;

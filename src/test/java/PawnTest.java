@@ -1,6 +1,6 @@
 import net.sanhee.pieces.Piece;
 import net.sanhee.pieces.PieceFactory;
-import net.sanhee.pieces.UnitColor;
+import net.sanhee.pieces.property.UnitColor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

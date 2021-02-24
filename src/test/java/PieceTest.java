@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PawnTest {
+class PieceTest {
 
     @Test
     @DisplayName("흰색 폰(소문자 p)이(가) 생성되어야 한다.")
@@ -28,4 +28,21 @@ class PawnTest {
         assertThat(pawn.getRepresentation()).isEqualTo(representation);
     }
 
+    @Test
+    @DisplayName("블랙 색상 테스트")
+    void checkBlack() {
+        Piece pawn = PieceFactory.createPawn(UnitColor.BLACK);
+        Piece king = PieceFactory.createKing(UnitColor.BLACK);
+        assertThat(pawn.isBlack()).isEqualTo(true);
+        assertThat(king.isBlack()).isEqualTo(true);
+    }
+
+    @Test
+    @DisplayName("화이트 색상 테스트")
+    void checkWhite() {
+        Piece pawn = PieceFactory.createPawn(UnitColor.WHITE);
+        Piece king = PieceFactory.createKing(UnitColor.WHITE);
+        assertThat(pawn.isWhite()).isEqualTo(true);
+        assertThat(king.isWhite()).isEqualTo(true);
+    }
 }

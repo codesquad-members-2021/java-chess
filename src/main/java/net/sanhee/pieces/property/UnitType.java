@@ -25,6 +25,9 @@ public enum UnitType {
             case WHITE:
                 mark = Character.toLowerCase(UnitType.valueOf(unitClassName.toUpperCase()).unitRepresentation);
                 break;
+            case NONE:
+                mark = UnitType.valueOf(unitClassName.toUpperCase()).unitRepresentation;
+                break;
         }
         return mark;
     }

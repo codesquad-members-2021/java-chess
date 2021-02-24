@@ -1,6 +1,7 @@
 package kr.codesquad.freddie.chess;
 
 import kr.codesquad.freddie.chess.board.Board;
+import kr.codesquad.freddie.chess.command.Command;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,9 +15,11 @@ public class Main {
             for (String command = br.readLine();
                  !command.equals("end");
                  command = br.readLine()) {
-                if (command.equals("start")) {
-                    board.initialize();
+                try {
+                    Command.create(command).execute(board);
                     System.out.println(board.getRepresentation());
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
                 }
             }
         }

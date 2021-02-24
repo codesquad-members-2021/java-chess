@@ -2,7 +2,6 @@ package net.honux.chess;
 
 import net.honux.chess.pieces.Piece;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,17 +17,11 @@ public class Board {
 
 
     public void addWhitePawn(Piece pawn) {
-        if (!pawn.getColor().equals(Piece.WHITE_COLOR)) {
-            throw new InvalidParameterException("The color of this pawn must be white.");
-        }
         pieceCount++;
         whitePawns.add(pawn);
     }
 
     public void addBlackPawn(Piece pawn) {
-        if (!pawn.getColor().equals(Piece.BLACK_COLOR)) {
-            throw new InvalidParameterException("The color of this pawn must be black.");
-        }
         pieceCount++;
         blackPawns.add(pawn);
     }
@@ -47,7 +40,7 @@ public class Board {
     public int pieceCount() {
         return pieceCount;
     }
-    
+
     public void initialize() {
         int boardSize = 8;
         addWhitePiece(Piece.createWhiteRook());

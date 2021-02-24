@@ -1,26 +1,21 @@
 package net.honux.chess;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Board board = new Board();
-        board.initialize();
+        try (Scanner sc = new Scanner(System.in)) {
+            String game;
 
-        Scanner sc = new Scanner(System.in);
-        String game = sc.nextLine();
+            Board board = new Board();
+            board.initialize();
 
-        if (game.equals("start")) {
-            while (true) {
-                board.print();
-                String move = sc.nextLine();
-                if (move.equals("end")) {
-                    System.exit(0);
-                }
+            while (!(game = sc.nextLine()).equals("end")) {
+                if (game.equals("start"))
+                    System.out.println(board.showBoard());
             }
-        }
-        if (game.equals("end")) {
             System.exit(0);
         }
     }

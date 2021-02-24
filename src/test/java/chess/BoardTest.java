@@ -5,6 +5,9 @@ import piece.Piece;
 import piece.attribute.Color;
 import piece.attribute.Type;
 
+import java.util.Collections;
+import java.util.List;
+
 import static util.StringUtil.*;
 import static piece.PieceFactory.*;
 import static org.assertj.core.api.Assertions.*;
@@ -16,11 +19,10 @@ class BoardTest {
     @BeforeEach
     void setup() {
         board = new Board();
-        board.initialize();
     }
 
     @Test
-    @DisplayName("체스판이 제대로 초기화되었는지 검증한다")
+    @DisplayName("초기화된 체스판을 출력 양식에 맞춰 반환")
     void verifyInitialize() {
         String result = new StringBuilder()
                 .append("R N B Q K B N R   8").append(NEWLINE)
@@ -37,12 +39,14 @@ class BoardTest {
     }
 
     @Test
+    @DisplayName("색상과 타입이 일치하는 말의 수를 반환")
     void verifyGetNumberOfPieces() {
         assertAll(() -> assertThat(board.getNumberOfPieces(Color.WHITE, Type.PAWN)).isEqualTo(8),
                 () -> assertThat(board.getNumberOfPieces(Color.WHITE, Type.KING)).isEqualTo(1));
     }
 
     @Test
+    @DisplayName("지정한 위치에 맞는 말을 반환")
     void verifyFindPiece() {
         assertAll(() -> assertThat(board.findPiece(new Position("a8")))
                         .isEqualTo(createPiece(Color.BLACK, Type.ROOK)),
@@ -51,6 +55,7 @@ class BoardTest {
     }
 
     @Test
+    @DisplayName("말을 지정한 위치로 이동")
     void verifyMove() {
         board.initializeEmpty();
         Position before = new Position("b6");
@@ -64,6 +69,7 @@ class BoardTest {
     }
 
     @Test
+    @DisplayName("남아있는 흰색과 검은색 말의 총점을 각각 반환")
     void verifyCalculatePoint() {
         board.initializeEmpty();
         addPiece("b6", createPiece(Color.BLACK, Type.PAWN));
@@ -88,5 +94,19 @@ class BoardTest {
         board.addPiece(new Position(position), piece);
     }
 
+    @Test
+    @DisplayName("기물의 점수가 높은 순으로 정렬된 리스트를 반환")
+    void verifyGetPiecesSortedByPoint() {
+        List<Piece> whitePieces = board.getPiecesSortedByPoint(Color.WHITE);
+        assertThat(whitePieces.toString()).isEqualTo("[q, r, r, n, b, b, n, p, p, p, p, p, p, p, p, k]");
+    }
+
+    @Test
+    @DisplayName("역순으로도 정렬해보라는 요구사항 테스트")
+    void verifyReversedOrder() {
+        List<Piece> blackPieces = board.getPiecesSortedByPoint(Color.BLACK);
+        blackPieces.sort(Collections.reverseOrder());
+        assertThat(blackPieces.toString()).isEqualTo("[K, P, P, P, P, P, P, P, P, N, B, B, N, R, R, Q]");
+    }
 }
 

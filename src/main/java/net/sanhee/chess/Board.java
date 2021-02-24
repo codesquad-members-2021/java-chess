@@ -90,32 +90,6 @@ public class Board {
         }
     }
 
-    public String print() {
-        String defaultUnitRep = "........";
-
-        StringBuilder displayBoard = new StringBuilder();
-        List<String[]> boardList = new ArrayList<>();
-
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(getBlackPawnsResult().split(""));
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(getWhitePawnsResult().split(""));
-        boardList.add(defaultUnitRep.split(""));
-
-
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                displayBoard.append(boardList.get(row)[col]);
-            }
-            displayBoard.append("\n");
-        }
-
-        return displayBoard.toString();
-    }
-
     public int pieceCount() {
         int count = 0;
         for (Piece piece : pieces) {

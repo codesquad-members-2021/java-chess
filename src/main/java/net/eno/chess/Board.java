@@ -51,6 +51,19 @@ public class Board {
         targetRank.move(positionObj.getFileIndex(), piece);
     }
 
+    public double calculatePoint(Color color) {
+        double result = 0;
+        for (int rank = 8; rank > 0; rank--) {
+            for (char file = 'a'; file < 'i'; file++) {
+                Piece piece = findPiece(String.valueOf(file) + rank);
+                if (piece.getColor().equals(color)) {
+                    result += piece.getPieceType().getDefaultPoint();
+                }
+            }
+        }
+        return result;
+    }
+
     public void initialize() {
         this.board = new ArrayList<>();
         addRank(Rank.createMultiplePieceRank(8, Color.BLACK));

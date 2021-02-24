@@ -71,7 +71,7 @@ public class Board {
     private String getPawnsResult(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
         for (Piece aPiece : pieces) {
-            sb.append(aPiece.getRepresentation());
+            sb.append(aPiece.getSymbol());
         }
         return sb.toString();
     }

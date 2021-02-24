@@ -10,17 +10,17 @@ import java.util.List;
 
 public class Board {
 
-    private final List<Piece> pieces = new ArrayList<Piece>();
+    private final List<Piece> pieces = new ArrayList<>();
 
-    public void add(Piece pawn) {
-        pieces.add(pawn);
+    public void add(Piece piece) {
+        pieces.add(piece);
     }
 
     public int size() {
         return pieces.size();
     }
 
-    public Piece findPawn(int idx) {
+    public Piece findPiece(int idx) {
         return pieces.get(idx);
     }
 

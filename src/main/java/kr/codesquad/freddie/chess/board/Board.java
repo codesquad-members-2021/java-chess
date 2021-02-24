@@ -4,7 +4,6 @@ import kr.codesquad.freddie.chess.piece.CalculablePiece;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
-import kr.codesquad.freddie.chess.utils.Calculable;
 import kr.codesquad.freddie.chess.utils.PositionConverter;
 import kr.codesquad.freddie.chess.utils.RankIndexConverter;
 
@@ -12,7 +11,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class Board implements Calculable {
+public class Board {
     // 체스에서 row를 rank라고 한다.
     public static final int RANK_SIZE = 8;
     private List<File> files = new ArrayList<>();
@@ -128,7 +127,6 @@ public class Board implements Calculable {
                 .sum();
     }
 
-    @Override
     public Map<CalculablePiece, Double> groupingByCalculablePiece(Color color) {
         return files.stream()
                 .flatMap(file -> file.getCalculablePieces().stream())

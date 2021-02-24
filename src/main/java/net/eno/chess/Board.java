@@ -7,6 +7,7 @@ import net.eno.pieces.Position;
 
 import static net.eno.utils.StringUtils.appendNewLine;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -75,6 +76,19 @@ public class Board {
             }
         }
         return count > 1 ? count : 0;
+    }
+
+    public List<Piece> sortByPiecePoint(Color color, boolean isAscending) {
+        List<Piece> pieceList = new ArrayList<>();
+        for (Rank rank : this.board) {
+            pieceList.addAll(rank.getPieceListByColor(color));
+        }
+        if (isAscending) {
+            Collections.sort(pieceList);
+        } else {
+            pieceList.sort(Collections.reverseOrder());
+        }
+        return pieceList;
     }
 
     public void initialize() {

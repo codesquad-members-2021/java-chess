@@ -11,13 +11,13 @@ public class Main {
             Scanner sc = new Scanner(System.in);
         ){
             while (true) {
+                Board board = new Board();
+                board.initialize();
                 String inputMessage = sc.next();
                 switch (inputMessage) {
                     case  "start" :
                         System.out.println("====게임을 시작합니다.====\n");
-                        Board board = new Board();
-                        board.initialize();
-                        board.print();
+                        System.out.println(board.showBoard());
                         break;
                     case "exit" :
                         System.out.println("====게임을 종료합니다.====\n");

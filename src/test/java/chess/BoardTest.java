@@ -5,6 +5,9 @@ import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
 
+import static chess.pieces.Piece.Color.BLACK;
+import static chess.pieces.Piece.Color.WHITE;
+import static chess.pieces.Piece.Type.*;
 import static chess.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,13 +40,13 @@ public class BoardTest {
     void count_piece_with_color_and_type() {
         board.initialize();
 
-        assertThat(board.pieceCountOf(Piece.Color.BLACK, Piece.Type.BISHOP)).isEqualTo(2);
-        assertThat(board.pieceCountOf(Piece.Color.BLACK, Piece.Type.QUEEN)).isEqualTo(1);
-        assertThat(board.pieceCountOf(Piece.Color.BLACK, Piece.Type.PAWN)).isEqualTo(8);
+        assertThat(board.pieceCountOf(BLACK, BISHOP)).isEqualTo(2);
+        assertThat(board.pieceCountOf(BLACK, QUEEN)).isEqualTo(1);
+        assertThat(board.pieceCountOf(BLACK, PAWN)).isEqualTo(8);
 
-        assertThat(board.pieceCountOf(Piece.Color.WHITE, Piece.Type.KNIGHT)).isEqualTo(2);
-        assertThat(board.pieceCountOf(Piece.Color.WHITE, Piece.Type.KING)).isEqualTo(1);
-        assertThat(board.pieceCountOf(Piece.Color.WHITE, Piece.Type.PAWN)).isEqualTo(8);
+        assertThat(board.pieceCountOf(WHITE, KNIGHT)).isEqualTo(2);
+        assertThat(board.pieceCountOf(WHITE, KING)).isEqualTo(1);
+        assertThat(board.pieceCountOf(WHITE, PAWN)).isEqualTo(8);
     }
 
     @Test
@@ -51,11 +54,11 @@ public class BoardTest {
     void find_piece() {
         board.initialize();
 
-        assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlack(Piece.Type.ROOK));
-        assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlack(Piece.Type.ROOK));
+        assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlack(ROOK));
+        assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlack(ROOK));
 
-        assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhite(Piece.Type.ROOK));
-        assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhite(Piece.Type.ROOK));
+        assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhite(ROOK));
+        assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhite(ROOK));
 
         assertThat(board.findPiece("a4")).isEqualTo(Piece.createBlank());
     }
@@ -66,7 +69,7 @@ public class BoardTest {
         board.initializeEmpty();
 
         String position = "b5";
-        Piece piece = Piece.createBlack(Piece.Type.ROOK);
+        Piece piece = Piece.createBlack(ROOK);
         board.putPieceIn(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
@@ -78,20 +81,20 @@ public class BoardTest {
     void calculate_score() {
         board.initializeEmpty();
 
-        board.putPieceIn("b6", Piece.createBlack(Piece.Type.PAWN));  // 1.0
-        board.putPieceIn("e6", Piece.createBlack(Piece.Type.QUEEN)); // 9.0
-        board.putPieceIn("b8", Piece.createBlack(Piece.Type.KING));
-        board.putPieceIn("c8", Piece.createBlack(Piece.Type.ROOK));  // 5.0
+        board.putPieceIn("b6", Piece.createBlack(PAWN));  // 1.0
+        board.putPieceIn("e6", Piece.createBlack(QUEEN)); // 9.0
+        board.putPieceIn("b8", Piece.createBlack(KING));
+        board.putPieceIn("c8", Piece.createBlack(ROOK));  // 5.0
 
-        board.putPieceIn("f2", Piece.createWhite(Piece.Type.PAWN));  // 1.0
-        board.putPieceIn("g2", Piece.createWhite(Piece.Type.PAWN));  // 1.0
-        board.putPieceIn("e1", Piece.createWhite(Piece.Type.ROOK));  // 5.0
-        board.putPieceIn("f1", Piece.createWhite(Piece.Type.KING));
+        board.putPieceIn("f2", Piece.createWhite(PAWN));  // 1.0
+        board.putPieceIn("g2", Piece.createWhite(PAWN));  // 1.0
+        board.putPieceIn("e1", Piece.createWhite(ROOK));  // 5.0
+        board.putPieceIn("f1", Piece.createWhite(KING));
 
         System.out.println(board.showBoard());
 
-        assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(15.0);
-        assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(7.0);
+        assertThat(board.calculatePoint(BLACK)).isEqualTo(15.0);
+        assertThat(board.calculatePoint(WHITE)).isEqualTo(7.0);
     }
 
     @Test
@@ -99,19 +102,19 @@ public class BoardTest {
     void calculate_pawn_duplicate_score() {
         board.initializeEmpty();
 
-        board.putPieceIn("a7", Piece.createBlack(Piece.Type.PAWN));  // 0.5
-        board.putPieceIn("a8", Piece.createBlack(Piece.Type.PAWN));  // 0.5
+        board.putPieceIn("a7", Piece.createBlack(PAWN));  // 0.5
+        board.putPieceIn("a8", Piece.createBlack(PAWN));  // 0.5
 
-        board.putPieceIn("b1", Piece.createWhite(Piece.Type.PAWN));  // 0.5
-        board.putPieceIn("b2", Piece.createWhite(Piece.Type.PAWN));  // 0.5
-        board.putPieceIn("d2", Piece.createWhite(Piece.Type.PAWN));  // 0.5
-        board.putPieceIn("d3", Piece.createWhite(Piece.Type.PAWN));  // 0.5
-        board.putPieceIn("d4", Piece.createWhite(Piece.Type.PAWN));  // 0.5
+        board.putPieceIn("b1", Piece.createWhite(PAWN));  // 0.5
+        board.putPieceIn("b2", Piece.createWhite(PAWN));  // 0.5
+        board.putPieceIn("d2", Piece.createWhite(PAWN));  // 0.5
+        board.putPieceIn("d3", Piece.createWhite(PAWN));  // 0.5
+        board.putPieceIn("d4", Piece.createWhite(PAWN));  // 0.5
 
         System.out.println(board.showBoard());
 
-        assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(2.5);
-        assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(1.0);
+        assertThat(board.calculatePoint(WHITE)).isEqualTo(2.5);
+        assertThat(board.calculatePoint(BLACK)).isEqualTo(1.0);
     }
 
     @Test
@@ -119,28 +122,27 @@ public class BoardTest {
     void sort_remains_in_score_order() {
         board.initializeEmpty();
 
-        board.putPieceIn("a1", Piece.createWhite(Piece.Type.PAWN));
-        board.putPieceIn("a3", Piece.createWhite(Piece.Type.PAWN));
-        board.putPieceIn("b2", Piece.createWhite(Piece.Type.ROOK));
-        board.putPieceIn("c3", Piece.createWhite(Piece.Type.KNIGHT));
-        board.putPieceIn("d4", Piece.createWhite(Piece.Type.BISHOP));
-        board.putPieceIn("e5", Piece.createWhite(Piece.Type.QUEEN));
-        board.putPieceIn("f6", Piece.createWhite(Piece.Type.KING));
+        board.putPieceIn("a1", Piece.createWhite(PAWN));
+        board.putPieceIn("a3", Piece.createWhite(PAWN));
+        board.putPieceIn("b2", Piece.createWhite(ROOK));
+        board.putPieceIn("c3", Piece.createWhite(KNIGHT));
+        board.putPieceIn("d4", Piece.createWhite(BISHOP));
+        board.putPieceIn("e5", Piece.createWhite(QUEEN));
+        board.putPieceIn("f6", Piece.createWhite(KING));
 
-        board.putPieceIn("g7", Piece.createBlack(Piece.Type.QUEEN));
-        board.putPieceIn("h8", Piece.createBlack(Piece.Type.ROOK));
+        board.putPieceIn("g7", Piece.createBlack(QUEEN));
+        board.putPieceIn("h8", Piece.createBlack(ROOK));
 
         System.out.println(board.showBoard());
 
         System.out.println();
-        System.out.println("BLACK : " + board.getRemainedPiecesInOrder(Piece.Color.BLACK));
-        System.out.println("WHITE : " + board.getRemainedPiecesInOrder(Piece.Color.WHITE));
+        System.out.println("BLACK : " + board.getRemainedPiecesInOrder(BLACK));
+        System.out.println("WHITE : " + board.getRemainedPiecesInOrder(WHITE));
 
-        assertThat(board.getRemainedPiecesInOrder(Piece.Color.BLACK)).isEqualTo(
-                Arrays.asList(Piece.Type.QUEEN, Piece.Type.ROOK));
-        assertThat(board.getRemainedPiecesInOrder(Piece.Color.WHITE)).isEqualTo(
-                Arrays.asList(Piece.Type.QUEEN, Piece.Type.ROOK, Piece.Type.BISHOP
-                        , Piece.Type.KNIGHT, Piece.Type.PAWN, Piece.Type.PAWN, Piece.Type.KING));
+        assertThat(board.getRemainedPiecesInOrder(BLACK)).isEqualTo(
+                Arrays.asList(QUEEN, ROOK));
+        assertThat(board.getRemainedPiecesInOrder(WHITE)).isEqualTo(
+                Arrays.asList(QUEEN, ROOK, BISHOP, KNIGHT, PAWN, PAWN, KING));
         // todo : 적절한 테스트 메서드를 찾아보자.
     }
 }

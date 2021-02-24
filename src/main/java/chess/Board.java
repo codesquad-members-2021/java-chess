@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static chess.pieces.Piece.Color.BLACK;
+import static chess.pieces.Piece.Type.*;
 import static chess.utils.StringUtils.appendNewLine;
 
 public class Board {
@@ -30,10 +32,10 @@ public class Board {
     }
 
     public int pieceCount() {
-        return board.get(Board.RANK1).size()
-                + board.get(Board.RANK2).size()
-                + board.get(Board.RANK7).size()
-                + board.get(Board.RANK8).size();
+        return board.get(RANK1).size()
+                + board.get(RANK2).size()
+                + board.get(RANK7).size()
+                + board.get(RANK8).size();
     }
 
     public int pieceCountOf(Piece.Color color, Piece.Type type) {
@@ -85,48 +87,48 @@ public class Board {
 
     private void addBlackPieces() {
         board.get(RANK8).addAll(Arrays.asList(
-                Piece.createBlack(Piece.Type.ROOK)
-                , Piece.createBlack(Piece.Type.KNIGHT)
-                , Piece.createBlack(Piece.Type.BISHOP)
-                , Piece.createBlack(Piece.Type.QUEEN)
-                , Piece.createBlack(Piece.Type.KING)
-                , Piece.createBlack(Piece.Type.BISHOP)
-                , Piece.createBlack(Piece.Type.KNIGHT)
-                , Piece.createBlack(Piece.Type.ROOK))
+                Piece.createBlack(ROOK)
+                , Piece.createBlack(KNIGHT)
+                , Piece.createBlack(BISHOP)
+                , Piece.createBlack(QUEEN)
+                , Piece.createBlack(KING)
+                , Piece.createBlack(BISHOP)
+                , Piece.createBlack(KNIGHT)
+                , Piece.createBlack(ROOK))
         );
     }
 
     private void addBlackPawns() {
-        for (int i = 0; i < Board.MAX_RANK; i++) {
-            board.get(Board.RANK7).add(Piece.createBlack(Piece.Type.PAWN));
+        for (int i = 0; i < MAX_RANK; i++) {
+            board.get(RANK7).add(Piece.createBlack(PAWN));
         }
     }
 
     private void addBlank() {
-        for (int i = 0; i < Board.MAX_RANK; i++) {
-            board.get(Board.RANK6).add(Piece.createBlank());
-            board.get(Board.RANK5).add(Piece.createBlank());
-            board.get(Board.RANK4).add(Piece.createBlank());
-            board.get(Board.RANK3).add(Piece.createBlank());
+        for (int i = 0; i < MAX_RANK; i++) {
+            board.get(RANK6).add(Piece.createBlank());
+            board.get(RANK5).add(Piece.createBlank());
+            board.get(RANK4).add(Piece.createBlank());
+            board.get(RANK3).add(Piece.createBlank());
         }
     }
 
     private void addWhitePawns() {
-        for (int i = 0; i < Board.MAX_RANK; i++) {
-            board.get(Board.RANK2).add(Piece.createWhite(Piece.Type.PAWN));
+        for (int i = 0; i < MAX_RANK; i++) {
+            board.get(RANK2).add(Piece.createWhite(PAWN));
         }
     }
 
     private void addWhitePieces() {
-        board.get(Board.RANK1).addAll(Arrays.asList(
-                Piece.createWhite(Piece.Type.ROOK)
-                , Piece.createWhite(Piece.Type.KNIGHT)
-                , Piece.createWhite(Piece.Type.BISHOP)
-                , Piece.createWhite(Piece.Type.QUEEN)
-                , Piece.createWhite(Piece.Type.KING)
-                , Piece.createWhite(Piece.Type.BISHOP)
-                , Piece.createWhite(Piece.Type.KNIGHT)
-                , Piece.createWhite(Piece.Type.ROOK))
+        board.get(RANK1).addAll(Arrays.asList(
+                Piece.createWhite(ROOK)
+                , Piece.createWhite(KNIGHT)
+                , Piece.createWhite(BISHOP)
+                , Piece.createWhite(QUEEN)
+                , Piece.createWhite(KING)
+                , Piece.createWhite(BISHOP)
+                , Piece.createWhite(KNIGHT)
+                , Piece.createWhite(ROOK))
         );
     }
 
@@ -134,14 +136,14 @@ public class Board {
     public String showBoard() {
         StringBuilder chessBoard = new StringBuilder();
 
-        chessBoard.append(appendNewLine(getRankResult(board.get(Board.RANK8)) + "  8 (rank 8)"))
-                .append(appendNewLine(getRankResult(board.get(Board.RANK7)) + "  7"))
-                .append(appendNewLine(getRankResult(board.get(Board.RANK6)) + "  6"))
-                .append(appendNewLine(getRankResult(board.get(Board.RANK5)) + "  5"))
-                .append(appendNewLine(getRankResult(board.get(Board.RANK4)) + "  4"))
-                .append(appendNewLine(getRankResult(board.get(Board.RANK3)) + "  3"))
-                .append(appendNewLine(getRankResult(board.get(Board.RANK2)) + "  2"))
-                .append(appendNewLine(getRankResult(board.get(Board.RANK1)) + "  1 (rank 1)"))
+        chessBoard.append(appendNewLine(getRankResult(board.get(RANK8)) + "  8 (rank 8)"))
+                .append(appendNewLine(getRankResult(board.get(RANK7)) + "  7"))
+                .append(appendNewLine(getRankResult(board.get(RANK6)) + "  6"))
+                .append(appendNewLine(getRankResult(board.get(RANK5)) + "  5"))
+                .append(appendNewLine(getRankResult(board.get(RANK4)) + "  4"))
+                .append(appendNewLine(getRankResult(board.get(RANK3)) + "  3"))
+                .append(appendNewLine(getRankResult(board.get(RANK2)) + "  2"))
+                .append(appendNewLine(getRankResult(board.get(RANK1)) + "  1 (rank 1)"))
                 .append(appendNewLine(" "))
                 .append("abcdefgh");
 
@@ -153,7 +155,7 @@ public class Board {
         char representation = ' ';
         for (int i = 0; i < rank.pieces().size(); i++) {
             Piece piece = rank.pieces().get(i);
-            if (piece.getColor() == Piece.Color.BLACK) {
+            if (piece.getColor() == BLACK) {
                 representation = piece.getType().getBlackRepresentation();
             } else {
                 representation = piece.getType().getWhiteRepresentation();

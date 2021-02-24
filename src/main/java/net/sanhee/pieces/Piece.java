@@ -27,4 +27,12 @@ public class Piece {
         return this.getColor().equals(color);
     }
 
+    public boolean isBlack() {
+        return this.getColor() == UnitColor.BLACK;
+    }
+
+    public boolean isWhite() {
+        return this.getColor() == UnitColor.WHITE;
+    }
+
 }

@@ -3,26 +3,27 @@ package cooper.chess.piece;
 import java.util.*;
 
 public class PieceGroup {
-    public static final int PIECE_LIST_MAX = 16;
+    private static int WHITE_PIECE_SIZE;
+    private static int BLACK_PIECE_SIZE;
 
-    private final Map<Color, List<Piece>> pieceListMap;
+    private final List<Piece> pieceList;
 
     public PieceGroup() {
-        this.pieceListMap = new HashMap<>();
-        this.pieceListMap.put(Color.WHITE, new ArrayList<>());
-        this.pieceListMap.put(Color.BLACK, new ArrayList<>());
-
+        this.pieceList = new ArrayList<>();
         initialize();
     }
 
     private void initialize() {
         initWhitePiece();
+        setWhiteSize();
+
+        initBlank();
+
         initBlackPiece();
+        setBlackSize();
     }
 
     private void initWhitePiece() {
-        List<Piece> pieceList = getPieceList(Color.WHITE);
-
         pieceList.add(Piece.createWhiteRook());
         pieceList.add(Piece.createWhiteKnight());
         pieceList.add(Piece.createWhiteBishop());
@@ -32,15 +33,21 @@ public class PieceGroup {
         pieceList.add(Piece.createWhiteKnight());
         pieceList.add(Piece.createWhiteRook());
 
-        for (int pawnCount = 0; pawnCount < PIECE_LIST_MAX / 2; pawnCount++) {
+        for (int pawnCount = 0; pawnCount < 8; pawnCount++) {
             pieceList.add(Piece.createWhitePawn());
         }
     }
 
-    private void initBlackPiece() {
-        List<Piece> pieceList = getPieceList(Color.BLACK);
+    private void initBlank() {
+        final int blank_max = 32;
 
-        for (int pawnCount = 0; pawnCount < PIECE_LIST_MAX / 2; pawnCount++) {
+        for (int blankCnt = 0; blankCnt < blank_max; blankCnt++) {
+            pieceList.add(Piece.createBlank());
+        }
+    }
+
+    private void initBlackPiece() {
+        for (int pawnCount = 0; pawnCount < 8; pawnCount++) {
             pieceList.add(Piece.createBlackPawn());
         }
 
@@ -54,36 +61,19 @@ public class PieceGroup {
         pieceList.add(Piece.createBlackRook());
     }
 
-    public List<Piece> getPieceList(Color color) {
-        return pieceListMap.get(color);
+    private void setWhiteSize() {
+        WHITE_PIECE_SIZE = 16;
+    }
+
+    private void setBlackSize() {
+        BLACK_PIECE_SIZE = 16;
+    }
+
+    public List<Piece> getPieceList() {
+        return pieceList;
     }
 
     public int size() {
-        return pieceListMap.get(Color.BLACK).size() +
-                pieceListMap.get(Color.WHITE).size();
-    }
-
-    public void add(Piece piece) {
-        List<Piece> pieceList = getPieceList(piece.getColor());
-
-        if (pieceList.size() >= PIECE_LIST_MAX) {
-            return;
-        }
-
-        pieceList.add(piece);
-    }
-
-    public Piece findPawn(int index, Color color) {
-        List<Piece> pieceList = getPieceList(color);
-
-        if (pieceList.size() == 0) {
-            throw new IllegalArgumentException("size가 0입니다.");
-        }
-
-        if ((0 > index) || (index >= pieceList.size())) {
-            throw new IllegalArgumentException("범위를 벗어나는 인덱스 입니다.");
-        }
-
-        return pieceList.get(index);
+        return WHITE_PIECE_SIZE + BLACK_PIECE_SIZE;
     }
 }

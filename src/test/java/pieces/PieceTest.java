@@ -10,16 +10,17 @@ public class PieceTest {
     @Test
     @DisplayName("Verify create correct pieces")
     void create_piece() {
+        Position position = new Position(1, 1);
         assertAll(
-                () -> verifyPiece(Piece.createWhitePawn(), Piece.createBlackPawn(), Piece.Type.PAWN),
-                () -> verifyPiece(Piece.createWhiteKnight(), Piece.createBlackKnight(), Piece.Type.KNIGHT),
-                () -> verifyPiece(Piece.createWhiteRook(), Piece.createBlackRook(), Piece.Type.ROOK),
-                () -> verifyPiece(Piece.createWhiteBishop(), Piece.createBlackBishop(), Piece.Type.BISHOP),
-                () -> verifyPiece(Piece.createWhiteQueen(), Piece.createBlackQueen(), Piece.Type.QUEEN),
-                () -> verifyPiece(Piece.createWhiteKing(), Piece.createBlackKing(), Piece.Type.KING)
+                () -> verifyPiece(Piece.createWhitePawn(position), Piece.createBlackPawn(position), Piece.Type.PAWN),
+                () -> verifyPiece(Piece.createWhiteKnight(position), Piece.createBlackKnight(position), Piece.Type.KNIGHT),
+                () -> verifyPiece(Piece.createWhiteRook(position), Piece.createBlackRook(position), Piece.Type.ROOK),
+                () -> verifyPiece(Piece.createWhiteBishop(position), Piece.createBlackBishop(position), Piece.Type.BISHOP),
+                () -> verifyPiece(Piece.createWhiteQueen(position), Piece.createBlackQueen(position), Piece.Type.QUEEN),
+                () -> verifyPiece(Piece.createWhiteKing(position), Piece.createBlackKing(position), Piece.Type.KING)
         );
 
-        Piece blank = Piece.createBlank();
+        Piece blank = Piece.createBlank(position);
         assertThat(blank.isWhite()).isFalse();
         assertThat(blank.isBlack()).isFalse();
         assertThat(blank.getType()).isEqualTo(Piece.Type.NO_PIECE);
@@ -36,15 +37,22 @@ public class PieceTest {
     @Test
     @DisplayName("Verify isWhite and isBlack")
     void verifyColor() {
-        assertThat(Piece.createWhitePawn().isWhite()).isTrue();
-        assertThat(Piece.createBlackPawn().isBlack()).isTrue();
+        Position position = new Position(1, 1);
+        Piece whitePawn = Piece.createWhitePawn(position);
+        assertThat(whitePawn.isWhite()).isTrue();
+        assertThat(whitePawn.getRepresentation()).isEqualTo('p');
+
+        Piece blackPawn = Piece.createBlackPawn(position);
+        assertThat(blackPawn.isBlack()).isTrue();
+        assertThat(blackPawn.getRepresentation()).isEqualTo('P');
     }
 
     @Test
     @DisplayName("Verify isWhitePawn and isBlackPawn")
     void verifyPawn() {
-        Piece whitePawn = Piece.createWhitePawn();
-        Piece blackPawn = Piece.createBlackPawn();
+        Position position = new Position(1, 1);
+        Piece whitePawn = Piece.createWhitePawn(position);
+        Piece blackPawn = Piece.createBlackPawn(position);
         assertThat(whitePawn.isWhitePawn()).isTrue();
         assertThat(blackPawn.isBlackPawn()).isTrue();
     }

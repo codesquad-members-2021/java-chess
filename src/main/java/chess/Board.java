@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+import pieces.Piece;
 import pieces.Piece.Color;
 import pieces.Piece.Type;
+import pieces.Position;
 
 public class Board {
 
@@ -20,14 +22,14 @@ public class Board {
     }
 
     public void initialize() {
-        board.add(Rank.initializeWhitePieces());
-        board.add(Rank.initializeWhitePawns());
-        board.add(Rank.initializeBlankLine());
-        board.add(Rank.initializeBlankLine());
-        board.add(Rank.initializeBlankLine());
-        board.add(Rank.initializeBlankLine());
-        board.add(Rank.initializeBlackPawns());
-        board.add(Rank.initializeBlackPieces());
+        board.add(Rank.initializeWhitePieces(0));
+        board.add(Rank.initializeWhitePawns(1));
+        board.add(Rank.initializeBlankLine(2));
+        board.add(Rank.initializeBlankLine(3));
+        board.add(Rank.initializeBlankLine(4));
+        board.add(Rank.initializeBlankLine(5));
+        board.add(Rank.initializeBlackPawns(6));
+        board.add(Rank.initializeBlackPieces(7));
     }
 
     @Override
@@ -40,4 +42,9 @@ public class Board {
         return sb.toString();
     }
 
+    public Piece findPiece(String position) {
+        Position p = new Position(position);
+        Rank rank = board.get(p.getYPos());
+        return rank.findPiece(p.getXPos());
+    }
 }

@@ -2,10 +2,13 @@ package chess;
 
 import org.junit.jupiter.api.*;
 
+import pieces.Piece;
 import pieces.Piece.Color;
 import pieces.Piece.Type;
+import pieces.Position;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static utils.StringUtils.appendNewLine;
 
 public class BoardTest {
@@ -31,6 +34,19 @@ public class BoardTest {
                         appendNewLine("pppppppp") +
                         appendNewLine("rnbqkbnr")
                 );
+
+    }
+
+    @Test
+    @DisplayName("Verify Piece by findPiece is exact position")
+    public void findPiece() {
+        board.initialize();
+        assertAll(
+                () -> assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlackRook(new Position(0, 7))),
+                () -> assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlackRook(new Position(7, 7))),
+                () -> assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhiteRook(new Position(0, 0))),
+                () -> assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhiteRook(new Position(7, 0)))
+        );
 
     }
 }

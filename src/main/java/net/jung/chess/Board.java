@@ -7,9 +7,11 @@ import static net.jung.chess.utils.StringUtils.appendNewLine;
 
 public class Board {
     private List<Rank> rankList = new ArrayList<Rank>();
+    public static final int RANKS_ON_BOARD = 8;
 
     public int boardPieceSize() {
         int boardPieceSize = 0;
+
         for (Rank rank : rankList) {
             boardPieceSize += rank.rankPieceSize();
         }
@@ -57,6 +59,12 @@ public class Board {
             rank.resetRank();
         }
     }
+
+    public Rank getRank(int rankNum) {
+        return rankList.get(RANKS_ON_BOARD-rankNum);
+    }
+
+
 
 
 }

@@ -116,7 +116,13 @@ public class Board {
     }
 
     public int pieceCount() {
-        return 0;
+        int count = 0;
+        for (Piece piece : pieces) {
+            if (piece.isColor(UnitColor.NONE)) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public String showBoard() {

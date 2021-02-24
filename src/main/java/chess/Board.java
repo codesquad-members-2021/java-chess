@@ -15,22 +15,17 @@ public class Board {
     private final List<Rank> files = new ArrayList<>(BOARD_SIZE);
 
     public int totalPiecesCount() {
+        return countAllPiecesByColor(Color.WHITE) + countAllPiecesByColor(Color.BLACK);
+    }
+
+    public int countAllPiecesByColor(Color color){
         int count = 0;
-
-        count += countPieceByColorAndType(Color.WHITE, Type.PAWN);
-        count += countPieceByColorAndType(Color.WHITE, Type.ROOK);
-        count += countPieceByColorAndType(Color.WHITE, Type.KNIGHT);
-        count += countPieceByColorAndType(Color.WHITE, Type.BISHOP);
-        count += countPieceByColorAndType(Color.WHITE, Type.QUEEN);
-        count += countPieceByColorAndType(Color.WHITE, Type.KING);
-
-        count += countPieceByColorAndType(Color.BLACK, Type.PAWN);
-        count += countPieceByColorAndType(Color.BLACK, Type.ROOK);
-        count += countPieceByColorAndType(Color.BLACK, Type.KNIGHT);
-        count += countPieceByColorAndType(Color.BLACK, Type.BISHOP);
-        count += countPieceByColorAndType(Color.BLACK, Type.QUEEN);
-        count += countPieceByColorAndType(Color.BLACK, Type.KING);
-
+        count += countPieceByColorAndType(color, Type.PAWN);
+        count += countPieceByColorAndType(color, Type.ROOK);
+        count += countPieceByColorAndType(color, Type.KNIGHT);
+        count += countPieceByColorAndType(color, Type.BISHOP);
+        count += countPieceByColorAndType(color, Type.QUEEN);
+        count += countPieceByColorAndType(color, Type.KING);
         return count;
     }
 

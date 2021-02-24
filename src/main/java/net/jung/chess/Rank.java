@@ -17,6 +17,7 @@ public class Rank {
         return size;
     }
 
+
     public boolean isPiece(Piece piece) {
         return piece.getType() != Type.NO_PIECE;
     }
@@ -99,5 +100,9 @@ public class Rank {
             strBuilder.append(getPiece(i).getRepresentation());
         }
         return strBuilder.toString();
+    }
+
+    public void resetRank() {
+        pieceList.clear();
     }
 }

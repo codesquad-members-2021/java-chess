@@ -5,6 +5,7 @@ import chess.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static chess.utils.StringUtils.appendNewLine;
 
@@ -89,11 +90,12 @@ public class Board {
     private String getWhitePieceResult() {
         return getPieceResult(board.get(0));
     }
+
     private String getWhitePawnResult() {
         return getPieceResult(board.get(1));
     }
 
-    private String getBlankResult(){
+    private String getBlankResult() {
         return getPieceResult(board.get(2));
     }
 
@@ -112,5 +114,11 @@ public class Board {
             result.append(piece.getRepresentation());
         }
         return result.toString();
+    }
+
+    public long countPiece(Piece.Color color, Piece.Type type) {
+        Optional<Long> result = board.stream().map(x -> x.count(color, type))
+                .reduce((a, b) -> a + b);
+        return result.get();
     }
 }

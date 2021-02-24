@@ -30,7 +30,7 @@ public class Board {
         return whitePawn.size();
     }
 
-    public int blackPawnSize() {
+    private int blackPawnSize() {
         return blackPawn.size();
     }
 

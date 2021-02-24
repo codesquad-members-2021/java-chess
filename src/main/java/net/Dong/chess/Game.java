@@ -20,14 +20,14 @@ public class Game {
         try (Scanner scanner = new Scanner(System.in)) {
             while (true) {
                 System.out.print(PROMPT);
-                String cmd = scanner.nextLine();
-                if (cmd.equals("start")) {
+                String command = scanner.nextLine();
+                if (command.equals("start")) {
                     Board board = new Board();
                     board.initialize();
                     System.out.println(board.print());
                 }
 
-                if (cmd.equals("end")) {
+                if (command.equals("end")) {
                     break;
                 }
             }

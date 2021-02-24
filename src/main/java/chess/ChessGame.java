@@ -9,10 +9,10 @@ public class ChessGame {
     public static void main(String[] args) {
         System.out.println("시작: start, 종료: end");
         try (Scanner sc = new Scanner(System.in)) {
-
+            String command = "";
             while (!gameOver) {
                 System.out.print("> ");
-                String command = sc.nextLine().toLowerCase(Locale.ROOT);
+                command = sc.nextLine().toLowerCase(Locale.ROOT);
                 if (command.equals("start")) {
                     start();
                     continue;

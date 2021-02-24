@@ -5,6 +5,7 @@ import net.honux.chess.pieces.Piece;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static utils.StringUtils.appendNewLine;
 
@@ -28,10 +29,12 @@ class BoardTest {
     @DisplayName("보드 초기화가 잘 이루어지는지 확인 예)흰색 ->pppppppp 검은색->PPPPPPPP")
     void initialize() {
         board.initialize();
-        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
-        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
-        assertThat(board.getWhitePiecesResult()).isEqualTo("rnbqkbnr");
-        assertThat(board.getBlackPiecesResult()).isEqualTo("RNBQKBNR");
+        assertAll(
+                () -> assertEquals("pppppppp",board.getWhitePawnsResult()),
+                () -> assertEquals("PPPPPPPP",board.getBlackPawnsResult()),
+                () -> assertEquals("rnbqkbnr",board.getWhitePiecesResult()),
+                () -> assertEquals("RNBQKBNR",board.getBlackPiecesResult())
+        );
     }
 
     @Test

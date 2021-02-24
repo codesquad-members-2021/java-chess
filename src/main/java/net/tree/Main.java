@@ -8,11 +8,11 @@ public class Main {
     public static void main(String[] args) {
         try(Scanner sc = new Scanner(System.in)) {
             Board board = new Board();
-            board.initialize();
             while (true) {
                 String inputMessage = sc.next();
                 switch (inputMessage) {
                     case  "start" :
+                        board.initialize();
                         System.out.println("====게임을 시작합니다.====\n");
                         System.out.println(board.appendBoardWithPawns());
                         break;

@@ -16,8 +16,8 @@ public class Piece {
     public static final char WHITE_KING_REPRESENTATION = 'k';
     public static final char BLACK_KING_REPRESENTATION = 'K';
 
-    private String color;
-    private char representation;
+    private final String color;
+    private final char representation;
 
     private Piece(String color, char representation) {
         this.color = color;

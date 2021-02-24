@@ -10,19 +10,18 @@ import java.util.List;
 
 public class Board {
 
-    private final List<Piece> pawns = new ArrayList<Piece>();
-    private final String defaultUnitRep = "........";
+    private final List<Piece> pieces = new ArrayList<Piece>();
 
     public void add(Piece pawn) {
-        pawns.add(pawn);
+        pieces.add(pawn);
     }
 
     public int size() {
-        return pawns.size();
+        return pieces.size();
     }
 
     public Piece findPawn(int idx) {
-        return pawns.get(idx);
+        return pieces.get(idx);
     }
 
     public String getWhitePawnsResult() {
@@ -35,7 +34,7 @@ public class Board {
 
     public String appendPawnRep(UnitColor color) {
         StringBuilder pawnLine = new StringBuilder();
-        for (Piece pawn : pawns) {
+        for (Piece pawn : pieces) {
             if (pawn.isColor(color)) {
                 pawnLine.append(pawn.getRepresentation());
             }
@@ -50,11 +49,12 @@ public class Board {
 
     private void arrayPawnInit(UnitColor unitColor) {
         for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
-            pawns.add(PieceFactory.createPawn(unitColor));
+            pieces.add(PieceFactory.createPawn(unitColor));
         }
     }
 
     public String print() {
+        String defaultUnitRep = "........";
 
         StringBuilder displayBoard = new StringBuilder();
         List<String[]> boardList = new ArrayList<>();
@@ -77,5 +77,13 @@ public class Board {
         }
 
         return displayBoard.toString();
+    }
+
+    public int pieceCount() {
+        return 0;
+    }
+
+    public String showBoard() {
+        return "";
     }
 }

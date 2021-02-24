@@ -11,16 +11,35 @@ import static org.assertj.core.api.Assertions.assertThat;
 class BoardTest {
 
     private int totalPawnCnt;
+    private Board board;
 
     @BeforeEach
-    void boardTestInit() {
+    void setup() {
+        board = new Board();
         totalPawnCnt = 0;
+    }
+
+    @Test
+    @DisplayName("[체스판 상태 테스트] 1.기물 총 개수 32개? 2.모든 기물 올바른 위치에 생성?")
+    public void create() throws Exception {
+        board.initialize();
+        String blankRank = appendNewLine("........");
+
+        assertThat(board.pieceCount()).isEqualTo(32);
+        assertThat(board.showBoard())
+                .isEqualTo(appendNewLine("RNBQKBNR") +
+                        appendNewLine("PPPPPPPP") +
+                        blankRank +
+                        blankRank +
+                        blankRank +
+                        blankRank +
+                        appendNewLine("pppppppp") +
+                        appendNewLine("rnbqkbnr"));
     }
 
     @Test
     @DisplayName("[테스트] 체스 판에 Pawn 추가 및 유효성 검사")
     void createPawn() {
-        Board board = new Board();
         Piece whitePawn = spawnPawn(board, UnitColor.WHITE);
         Piece blackPawn = spawnPawn(board, UnitColor.BLACK);
 
@@ -51,7 +70,6 @@ class BoardTest {
     @Test
     @DisplayName("[테스트] 생성된 흰색/검은색 Pawn 열의 결과 검증 후 체스판 결과 출력")
     void initialize() {
-        Board board = new Board();
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");

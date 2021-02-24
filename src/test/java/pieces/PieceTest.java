@@ -5,20 +5,15 @@ import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class PieceTest {
+
     @Test
-    @DisplayName("흰색 폰 생성")
+    @DisplayName("흰색, 검은색 폰 생성")
     void createWhitePawn() {
-        verifyPawn(Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION, Piece.PAWN);
+        verifyPiece(Piece.createWhitePawn(), Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION);
+        verifyPiece(Piece.createBlackPawn(), Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
     }
 
-    @Test
-    @DisplayName("검은색 폰 생성")
-    void createBlackPawn() {
-        verifyPawn(Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION, Piece.BLACK);
-    }
-
-    private void verifyPawn(final String color, final String representation, final String name){
-        Piece piece = new Piece(color, representation, name);
+    private void verifyPiece(final Piece piece, final String color, final String representation){
         assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
     }

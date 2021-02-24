@@ -8,12 +8,12 @@ import static utils.StringUtils.appendNewLine;
 
 public class Board {
     private static int PAWN_NUM = 8;
-    private List<Piece> whitePieces = new ArrayList<>(PAWN_NUM);
-    private List<Piece> blackPieces = new ArrayList<>(PAWN_NUM);
+    private List<Piece> whitePawns = new ArrayList<>(PAWN_NUM);
+    private List<Piece> blackPawns = new ArrayList<>(PAWN_NUM);
 
     boolean addWhitePawn(Piece piece) {
         if (piece.getColor().equals(Piece.WHITE)) {
-            whitePieces.add(piece);
+            whitePawns.add(piece);
             return true;
         }
         return false;
@@ -21,26 +21,26 @@ public class Board {
 
     boolean addBlackPawn(Piece piece) {
         if (piece.getColor().equals(Piece.BLACK)) {
-            blackPieces.add(piece);
+            blackPawns.add(piece);
             return true;
         }
         return false;
     }
 
     public int getWhitePawnsSize() {
-        return whitePieces.size();
+        return whitePawns.size();
     }
 
     public int getBlackPawnsSize() {
-        return blackPieces.size();
+        return blackPawns.size();
     }
 
     public String getWhitePawnsResult() {
-        return getPawnsResult(whitePieces);
+        return getPawnsResult(whitePawns);
     }
 
     public String getBlackPawnsResult() {
-        return getPawnsResult(blackPieces);
+        return getPawnsResult(blackPawns);
     }
 
     private String getPawnsResult(List<Piece> pieces) {
@@ -52,19 +52,19 @@ public class Board {
     }
 
     public Piece findWhitePawn(int index) {
-        return whitePieces.get(index);
+        return whitePawns.get(index);
     }
 
     public Piece findBlackPawn(int index) {
-        return blackPieces.get(index);
+        return blackPawns.get(index);
     }
 
     void initialize() {
-        Piece whitePiece = new Piece();
-        Piece blackPiece = new Piece(Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
+        Piece whitePawn = Piece.createWhitePawn();
+        Piece blackPawn = Piece.createBlackPawn();
         for (int i = 0; i < PAWN_NUM; i++) {
-            addWhitePawn(whitePiece);
-            addBlackPawn(blackPiece);
+            addWhitePawn(whitePawn);
+            addBlackPawn(blackPawn);
         }
     }
 

@@ -29,11 +29,11 @@ public class Piece {
         return representation;
     }
 
-    public Piece createWhitePawn() {
+    public static Piece createWhitePawn() {
         return new Piece(WHITE, WHITE_PAWN_REPRESENTATION, PAWN);
     }
 
-    public Piece createBlackPawn() {
+    public static Piece createBlackPawn() {
         return new Piece(BLACK, BLACK_PAWN_REPRESENTATION, PAWN);
     }
 }

@@ -26,7 +26,7 @@ public class Game {
             if (cmd.equals("start")) {
                 Board board = new Board();
                 board.initialize();
-                board.print();
+                System.out.println(board.print());
             }
 
             if (cmd.equals("end")) {

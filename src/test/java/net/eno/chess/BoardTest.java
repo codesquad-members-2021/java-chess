@@ -4,6 +4,9 @@ import net.eno.pieces.Color;
 import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
 import org.junit.jupiter.api.*;
+
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.*;
 
 import static net.eno.utils.StringUtils.appendNewLine;
@@ -101,6 +104,19 @@ public class BoardTest {
 
     private void addPiece(String position, Piece piece) {
         board.move(position, piece);
+    }
+
+    @Test
+    @DisplayName("체스판 위에 기물들이 점수별로 정렬되어야 한다.")
+    public void sortByPoint() {
+        List<Piece> pieceList = board.sortByPiecePoint(Color.WHITE, true);
+        showPieceList(pieceList);
+    }
+
+    private void showPieceList(List<Piece> pieceList) {
+        for (Piece piece : pieceList) {
+            System.out.println(piece.getColor() + " " + piece.getPieceType() + " " + piece.getPoint());
+        }
     }
 
 }

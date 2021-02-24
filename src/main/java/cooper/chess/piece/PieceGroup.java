@@ -9,10 +9,12 @@ public class PieceGroup {
     private static int BLACK_PIECE_SIZE;
 
     private final List<Piece> pieceList;
+    private PointCalculator pointCalculator;
 
     public PieceGroup() {
         this.pieceList = new ArrayList<>();
         initialize();
+        this.pointCalculator = new PointCalculator(pieceList);
     }
 
     private void initialize() {
@@ -107,5 +109,9 @@ public class PieceGroup {
     public void move(Position before, Position after) {
         pieceList.set(getListIndex(after), findPiece(before));
         pieceList.set(getListIndex(before), Piece.createBlank());
+    }
+
+    public double calculatePoint(Color color) {
+        return pointCalculator.calculate(color);
     }
 }

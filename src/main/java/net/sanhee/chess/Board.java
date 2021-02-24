@@ -4,6 +4,7 @@ import net.sanhee.pieces.Pawn;
 import net.sanhee.pieces.Piece;
 import net.sanhee.pieces.PieceFactory;
 import net.sanhee.pieces.property.UnitColor;
+import net.sanhee.pieces.property.UnitType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,8 @@ public class Board {
     public String appendPawnRep(UnitColor color) {
         StringBuilder pawnLine = new StringBuilder();
         for (Piece pawn : pieces) {
-            if (pawn.isColor(color)) {
+            boolean classCheck = pawn.getClass().getSimpleName().equalsIgnoreCase(UnitType.PAWN.name());
+            if (pawn.isColor(color) && classCheck) {
                 pawnLine.append(pawn.getRepresentation());
             }
         }

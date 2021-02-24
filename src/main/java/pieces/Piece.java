@@ -67,11 +67,11 @@ public class Piece {
     }
 
     public boolean isWhite() {
-        return getColor() == Color.WHITE;
+        return color == Color.WHITE;
     }
 
     public boolean isBlack() {
-        return getColor() == Color.BLACK;
+        return color == Color.BLACK;
     }
 
     public boolean isPawn() {

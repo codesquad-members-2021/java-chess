@@ -93,4 +93,11 @@ public class Board {
         return piecePositions.get(position);
     }
 
+    public void move(Position position, Piece piece) {
+        piecePositions.put(position, piece);
+        int x = position.getX();
+        int y = position.getY();
+        board.get(x).getRank().set(y, piece);
+    }
+
 }

@@ -23,18 +23,18 @@ public class Board {
         this.board.add(rank);
     }
 
-    public int pieceCount() {
+    public int countPiece() {
         int count = 0;
         for (Rank rank : this.board) {
-            count += rank.pieceCount();
+            count += rank.countPiece();
         }
         return count;
     }
 
-    public int targetPieceCount(Color color, PieceType pieceType) {
+    public int countTargetPiece(Color color, PieceType pieceType) {
         int count = 0;
         for (Rank rank : this.board) {
-            count += rank.targetPieceCount(color, pieceType);
+            count += rank.countTargetPiece(color, pieceType);
         }
         return count;
     }
@@ -53,60 +53,54 @@ public class Board {
 
     public double calculatePoint(Color color) {
         double point = 0;
-        for (int rank = 8; rank > 0; rank--) {
-            for (char file = 'a'; file < 'i'; file++) {
-                Piece piece = findPiece(String.valueOf(file) + rank);
-                if (piece.getColor().equals(color)) {
-                    point += piece.getPieceType().getDefaultPoint();
-                }
-            }
+        for (Rank rank : this.board) {
+            point += rank.calculateRankPoint(color);
         }
-        double pawnNumber = findSameLinePawn(color);
+
+        double pawnNumber = 0;
+        for (char file = 'a'; file <= 'h'; file++) {
+            pawnNumber += countSameFilePawn(file, color);
+        }
+
         return point - (pawnNumber / 2);
     }
 
-    private int findSameLinePawn(Color color) {
-        int samePawn = 0;
-        for (char file = 'a'; file < 'i'; file++) {
-            int pawnNumber = 0;
-            for (int rank = 8; rank > 0; rank--) {
-                Piece piece = findPiece(String.valueOf(file) + rank);
-                if (piece.getColor().equals(color) &&
-                    piece.getRepresentation(color) == PieceType.PAWN.getRepresentation(color)) {
-                    pawnNumber++;
-                }
-            }
-            if (pawnNumber > 1) {
-                samePawn += pawnNumber;
+    private int countSameFilePawn(char file, Color color) {
+        int count = 0;
+        for (int rank  = 1; rank <= 8; rank++) {
+            Piece piece = findPiece(String.valueOf(file) + rank);
+            if (piece.getColor().equals(color) &&
+                piece.getRepresentation(color) == PieceType.PAWN.getRepresentation(color)) {
+                count++;
             }
         }
-        return samePawn;
+        return count > 1 ? count : 0;
     }
 
     public void initialize() {
         this.board = new ArrayList<>();
-        addRank(Rank.createMultiplePieceRank(8, Color.BLACK));
-        addRank(Rank.createOnePieceRank(7, Color.BLACK, PieceType.PAWN));
-        addRank(Rank.createOnePieceRank(6, Color.NOCOLOR, PieceType.NO_PIECE));
-        addRank(Rank.createOnePieceRank(5, Color.NOCOLOR, PieceType.NO_PIECE));
-        addRank(Rank.createOnePieceRank(4, Color.NOCOLOR, PieceType.NO_PIECE));
-        addRank(Rank.createOnePieceRank(3, Color.NOCOLOR, PieceType.NO_PIECE));
-        addRank(Rank.createOnePieceRank(2, Color.WHITE, PieceType.PAWN));
-        addRank(Rank.createMultiplePieceRank(1, Color.WHITE));
+        addRank(Rank.createMultiplePieceRank(Color.BLACK));
+        addRank(Rank.createOnePieceRank(Color.BLACK, PieceType.PAWN));
+        addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(Color.WHITE, PieceType.PAWN));
+        addRank(Rank.createMultiplePieceRank(Color.WHITE));
     }
 
     public void initializeEmpty() {
         this.board = new ArrayList<>();
-        for (int rankNumber = 8; rankNumber > 0; rankNumber--) {
-            addRank(Rank.createOnePieceRank(rankNumber, Color.NOCOLOR, PieceType.NO_PIECE));
+        for (int rank = 0; rank < 8; rank++) {
+            addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
         }
     }
 
     public String showBoard(Color color) {
         StringBuilder result = new StringBuilder();
         int reverseRank = color.equals(Color.BLACK) ? 7 : 0;
-        for (int rankNumber = 0; rankNumber < this.board.size(); rankNumber++) {
-            Rank rank = board.get(Math.abs(rankNumber - reverseRank));
+        for (int rankNum = 0; rankNum < this.board.size(); rankNum++) {
+            Rank rank = board.get(Math.abs(rankNum - reverseRank));
             result.append(appendNewLine(rank.showRank(color)));
         }
         return result.toString();

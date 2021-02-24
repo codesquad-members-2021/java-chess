@@ -156,16 +156,7 @@ public class Board {
         for (int i = 0; i < LENGTH_OF_BOARD; i++) {
             char currChar = strRank.charAt(i);
             NameOfChessPiece nameOfCurrPiece = NameOfChessPiece.getNameByRepresentation(String.valueOf(currChar));
-            ColorOfChessPiece colorOfCurrPiece;
-            if (currChar == '.') {
-                colorOfCurrPiece = ColorOfChessPiece.BLANK;
-            } else if (Character.isUpperCase(currChar)) {
-                colorOfCurrPiece = ColorOfChessPiece.BLACK;
-            } else if (Character.isLowerCase(currChar)) {
-                colorOfCurrPiece = ColorOfChessPiece.WHITE;
-            } else {
-                throw new InvalidParameterException("Invalid color detected! currChar : " + currChar);
-            }
+            ColorOfChessPiece colorOfCurrPiece = ColorOfChessPiece.getColorByRepresentation(currChar);
             add(createChessPiece(nameOfCurrPiece, colorOfCurrPiece), rankIndex, i);
         }
     }

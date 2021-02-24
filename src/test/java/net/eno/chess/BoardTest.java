@@ -90,12 +90,12 @@ public class BoardTest {
         addPiece("c8", Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position("c8")));
 
         addPiece("f2", Piece.createPiece(Color.WHITE, PieceType.PAWN, new Position("f2")));
-        addPiece("g2", Piece.createPiece(Color.WHITE, PieceType.PAWN, new Position("g2")));
+        addPiece("f3", Piece.createPiece(Color.WHITE, PieceType.PAWN, new Position("f3")));
         addPiece("e1", Piece.createPiece(Color.WHITE, PieceType.ROOK, new Position("e1")));
         addPiece("f1", Piece.createPiece(Color.WHITE, PieceType.KING, new Position("f1")));
 
         assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(15.0);
-        assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
+        assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(6.0);
 
         System.out.println(board.showBoard(Color.WHITE));
     }

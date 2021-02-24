@@ -21,14 +21,18 @@ public class Piece {
     public final static String BLACK_QUEEN_REPRESENTATION = "Q";
     public final static String WHITE_KING_REPRESENTATION = "k";
     public final static String BLACK_KING_REPRESENTATION = "K";
-    private final String representation;
-    private final String color;
     private final String name;
+    private final String color;
+    private final String representation;
 
     private Piece(String name, String color, String representation) {
         this.color = color;
         this.representation = representation;
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getColor() {

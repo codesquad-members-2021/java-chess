@@ -7,12 +7,14 @@ import pieces.Piece;
 import static utils.StringUtils.appendNewLine;
 
 public class Board {
-    private static int PAWN_NUM = 8;
-    private List<Piece> whitePawns = new ArrayList<>(PAWN_NUM);
-    private List<Piece> blackPawns = new ArrayList<>(PAWN_NUM);
+    private static int MAX_NUM = 8;
+    private List<Piece> whitePawns = new ArrayList<>(MAX_NUM);
+    private List<Piece> whiteButNotPawns = new ArrayList<>(MAX_NUM);
+    private List<Piece> blackPawns = new ArrayList<>(MAX_NUM);
+    private List<Piece> blackButNotPawns = new ArrayList<>(MAX_NUM);
 
     boolean addWhitePawn(Piece piece) {
-        if (piece.getColor().equals(Piece.WHITE)) {
+        if (piece.getName().equals(Piece.PAWN) && piece.getColor().equals(Piece.WHITE)) {
             whitePawns.add(piece);
             return true;
         }
@@ -20,8 +22,23 @@ public class Board {
     }
 
     boolean addBlackPawn(Piece piece) {
-        if (piece.getColor().equals(Piece.BLACK)) {
+        if (piece.getName().equals(Piece.PAWN) && piece.getColor().equals(Piece.BLACK)) {
             blackPawns.add(piece);
+            return true;
+        }
+        return false;
+    }
+    boolean addWhiteButNotPawn(Piece piece) {
+        if (!piece.getName().equals(Piece.PAWN) && piece.getColor().equals(Piece.WHITE)) {
+            whiteButNotPawns.add(piece);
+            return true;
+        }
+        return false;
+    }
+
+    boolean addBlackButNotPawn(Piece piece) {
+        if (!piece.getName().equals(Piece.PAWN) && piece.getColor().equals(Piece.BLACK)) {
+            blackButNotPawns.add(piece);
             return true;
         }
         return false;
@@ -62,13 +79,39 @@ public class Board {
     void initialize() {
         Piece whitePawn = Piece.createWhitePawn();
         Piece blackPawn = Piece.createBlackPawn();
-        for (int i = 0; i < PAWN_NUM; i++) {
+        Piece whiteRook = Piece.createWhiteRook();
+        Piece blackRook = Piece.createBlackRook();
+        Piece whiteKnight = Piece.createWhiteKnight();
+        Piece blackKnight = Piece.createBlackKnight();
+        Piece whiteBishop = Piece.createWhiteBishop();
+        Piece blackBishop = Piece.createBlackBishop();
+        Piece whiteQueen = Piece.createWhiteQueen();
+        Piece blackQueen = Piece.createBlackQueen();
+        Piece whiteKing = Piece.createWhiteKing();
+        Piece blackKing = Piece.createBlackKing();
+        for (int i = 0; i < MAX_NUM; i++) {
             addWhitePawn(whitePawn);
             addBlackPawn(blackPawn);
         }
+        addWhiteButNotPawn(whiteRook); // whites
+        addWhiteButNotPawn(whiteKnight);
+        addWhiteButNotPawn(whiteBishop);
+        addWhiteButNotPawn(whiteQueen);
+        addWhiteButNotPawn(whiteKing);
+        addWhiteButNotPawn(whiteBishop);
+        addWhiteButNotPawn(whiteKnight);
+        addWhiteButNotPawn(whiteRook);
+        addBlackButNotPawn(blackRook); // blacks
+        addBlackButNotPawn(blackKnight);
+        addBlackButNotPawn(blackBishop);
+        addBlackButNotPawn(blackQueen);
+        addBlackButNotPawn(blackKing);
+        addBlackButNotPawn(blackBishop);
+        addBlackButNotPawn(blackKnight);
+        addBlackButNotPawn(blackRook);
     }
 
-    void print() {
+    void showBoard() {
         StringBuilder sb = new StringBuilder();
         sb.append(appendNewLine(getBlankLine()));
         sb.append(appendNewLine(getBlackPawnsResult()));
@@ -83,5 +126,10 @@ public class Board {
 
     private String getBlankLine() {
         return "........";
+    }
+
+    public int pieceCount() {
+        return whitePawns.size() + blackPawns.size()
+                + whiteButNotPawns.size() + blackButNotPawns.size();
     }
 }

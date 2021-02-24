@@ -39,7 +39,7 @@ public class ChessStarter {
     void start() {
         Board board = new Board();
         board.initialize();
-        board.print();
+        board.showBoard();
     }
 
 }

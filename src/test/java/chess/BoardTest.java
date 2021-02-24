@@ -51,7 +51,7 @@ class BoardTest {
     @DisplayName("체스판 출력")
     void print () {
         board.initialize();
-        board.print();
+        board.showBoard();
     }
 
     @Test

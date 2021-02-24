@@ -4,20 +4,19 @@ import java.util.Scanner;
 
 public class Game {
     private static final String PROMPT = "J-chess>> ";
-    private static final String[] HELP = {
-            " Command  |  description",
-            "-----------------------------",
-            " start   :  Java chess start",
-            " end     :  Java chess Terminate",
-            "-----------------------------"
-    };
+    private static final String HELP =
+            " Command  |  description\r\n" +
+            "-----------------------------\r\n"+
+            " start   :  Java chess start\r\n" +
+            " end     :  Java chess Terminate\r\n" +
+            "-----------------------------";
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("==== Java chess started ===");
-        for (String str : HELP) {
-            System.out.println(str);
-        }
+        System.out.println(HELP);
+
 
 
         while (true) {

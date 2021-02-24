@@ -6,7 +6,7 @@ import java.util.*;
 import static cooper.chess.utils.StringUtils.*;
 
 public class Board {
-    private static final int BOARD_SIZE = 8;
+    public static final int BOARD_SIZE = 8;
 
     private final PieceGroup pieceGroup;
 
@@ -40,28 +40,19 @@ public class Board {
         return pieceGroup.getPieceCount(color, type);
     }
 
-    public Piece findPiece(String position) {
-        int yPos = getYPos(position);
-        int xPos = getXPos(position);
-        return pieceGroup.findPiece(yPos, xPos);
+    public Piece findPiece(Position position) {
+        return pieceGroup.findPiece(position);
     }
 
     public void initializeEmpty() {
         pieceGroup.initializeEmpty();
     }
 
-    public void move(String position, Piece piece) {
-        int yPos = getYPos(position);
-        int xPos = getXPos(position);
-        pieceGroup.move(yPos, xPos, piece);
+    public void addPiece(Position position, Piece piece) {
+        pieceGroup.addPiece(position, piece);
     }
 
-    private int getXPos(String position) {
-        return position.charAt(0) - 'a';
-    }
-
-    private int getYPos(String position) {
-        return BOARD_SIZE
-                - Character.getNumericValue(position.charAt(1));
+    public void move(Position before, Position after) {
+        pieceGroup.move(before, after);
     }
 }

@@ -1,5 +1,7 @@
 package cooper.chess.piece;
 
+import cooper.chess.Board;
+
 import java.util.*;
 
 public class PieceGroup {
@@ -84,8 +86,8 @@ public class PieceGroup {
                 .count();
     }
 
-    public Piece findPiece(int yPos, int xPos) {
-        return pieceList.get(getListIndex(yPos, xPos));
+    public Piece findPiece(Position position) {
+        return pieceList.get(getListIndex(position));
     }
 
     public void initializeEmpty() {
@@ -94,11 +96,16 @@ public class PieceGroup {
         }
     }
 
-    public void move(int yPos, int xPos, Piece piece) {
-        pieceList.set(getListIndex(yPos, xPos), piece);
+    public void addPiece(Position position, Piece piece) {
+        pieceList.set(getListIndex(position), piece);
     }
 
-    private int getListIndex(int yPos, int xPos) {
-        return (8 * yPos) + xPos;
+    private int getListIndex(Position position) {
+        return (Board.BOARD_SIZE * position.getyPos()) + position.getxPos();
+    }
+
+    public void move(Position before, Position after) {
+        pieceList.set(getListIndex(after), findPiece(before));
+        pieceList.set(getListIndex(before), Piece.createBlank());
     }
 }

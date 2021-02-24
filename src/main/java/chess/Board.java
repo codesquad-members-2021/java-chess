@@ -23,10 +23,6 @@ public class Board {
         blackPawns.add(blackPawn);
     }
 
-    public String getDotOnBoard() {
-        return "........";
-    }
-
     public int pieceCount() {
         return sizeOfPieces();
     }
@@ -41,14 +37,15 @@ public class Board {
     }
 
     public String bringBoard() {
+        String dots = "........";
         StringBuilder sb = new StringBuilder();
 
         sb.append(StringUtils.appendNewLine(bringBlackPiecesRepresentation()));
         sb.append(StringUtils.appendNewLine(bringBlackPawnsRepresentation()));
-        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
-        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
-        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
-        sb.append(StringUtils.appendNewLine(getDotOnBoard()));
+        sb.append(StringUtils.appendNewLine(dots));
+        sb.append(StringUtils.appendNewLine(dots));
+        sb.append(StringUtils.appendNewLine(dots));
+        sb.append(StringUtils.appendNewLine(dots));
         sb.append(StringUtils.appendNewLine(bringWhitePawnsRepresentation()));
         sb.append(StringUtils.appendNewLine(bringWhitePiecesRepresentation()));
 

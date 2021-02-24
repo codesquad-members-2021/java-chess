@@ -1,17 +1,18 @@
 package net.woody.chess;
 
-public enum Representation {
+public enum Type {
 
     PAWN('p'),
     KNIGHT('n'),
     ROOK('r'),
     BISHOP('b'),
     QUEEN('q'),
-    KING('k');
+    KING('k'),
+    NO_PIECE('.');
 
     private char representation;
 
-    Representation(char representation) {
+    Type(char representation) {
         this.representation = representation;
     }
 

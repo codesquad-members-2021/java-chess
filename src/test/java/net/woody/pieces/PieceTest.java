@@ -12,12 +12,12 @@ class PieceTest {
     @DisplayName("검은색 체스말들이 정상적으로 생성되어야 한다")
     void createBlackPieces() {
         assertAll(
-                () -> verifyBlackPiece(Piece.createBlackPawn(), Representation.PAWN),
-                () -> verifyBlackPiece(Piece.createBlackKnight(), Representation.KNIGHT),
-                () -> verifyBlackPiece(Piece.createBlackRook(), Representation.ROOK),
-                () -> verifyBlackPiece(Piece.createBlackBishop(), Representation.BISHOP),
-                () -> verifyBlackPiece(Piece.createBlackQueen(), Representation.QUEEN),
-                () -> verifyBlackPiece(Piece.createBlackKing(), Representation.KING)
+                () -> verifyBlackPiece(Piece.createBlackPawn(), Type.PAWN),
+                () -> verifyBlackPiece(Piece.createBlackKnight(), Type.KNIGHT),
+                () -> verifyBlackPiece(Piece.createBlackRook(), Type.ROOK),
+                () -> verifyBlackPiece(Piece.createBlackBishop(), Type.BISHOP),
+                () -> verifyBlackPiece(Piece.createBlackQueen(), Type.QUEEN),
+                () -> verifyBlackPiece(Piece.createBlackKing(), Type.KING)
         );
     }
 
@@ -25,12 +25,12 @@ class PieceTest {
     @DisplayName("흰색 체스말들이 정상적으로 생성되어야 한다")
     void createWhitePieces() {
         assertAll(
-                () -> verifyWhitePiece(Piece.createWhitePawn(), Representation.PAWN),
-                () -> verifyWhitePiece(Piece.createWhiteKnight(), Representation.KNIGHT),
-                () -> verifyWhitePiece(Piece.createWhiteRook(), Representation.ROOK),
-                () -> verifyWhitePiece(Piece.createWhiteBishop(), Representation.BISHOP),
-                () -> verifyWhitePiece(Piece.createWhiteQueen(), Representation.QUEEN),
-                () -> verifyWhitePiece(Piece.createWhiteKing(), Representation.KING)
+                () -> verifyWhitePiece(Piece.createWhitePawn(), Type.PAWN),
+                () -> verifyWhitePiece(Piece.createWhiteKnight(), Type.KNIGHT),
+                () -> verifyWhitePiece(Piece.createWhiteRook(), Type.ROOK),
+                () -> verifyWhitePiece(Piece.createWhiteBishop(), Type.BISHOP),
+                () -> verifyWhitePiece(Piece.createWhiteQueen(), Type.QUEEN),
+                () -> verifyWhitePiece(Piece.createWhiteKing(), Type.KING)
         );
     }
 
@@ -43,12 +43,12 @@ class PieceTest {
         );
     }
 
-    private void verifyBlackPiece(final Piece piece, final Representation representation) {
-        verifyPiece(piece, Color.BLACK, Character.toUpperCase(representation.value()));
+    private void verifyBlackPiece(final Piece piece, final Type type) {
+        verifyPiece(piece, Color.BLACK, Character.toUpperCase(type.value()));
     }
 
-    private void verifyWhitePiece(final Piece piece, final Representation representation) {
-        verifyPiece(piece, Color.WHITE, Character.toLowerCase(representation.value()));
+    private void verifyWhitePiece(final Piece piece, final Type type) {
+        verifyPiece(piece, Color.WHITE, Character.toLowerCase(type.value()));
     }
 
     private void verifyPiece(final Piece piece, final Color color, final char representation) {

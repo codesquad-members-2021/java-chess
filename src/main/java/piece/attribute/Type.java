@@ -29,3 +29,4 @@ public enum Type {
         return Character.toUpperCase(representation);
     }
 }
+

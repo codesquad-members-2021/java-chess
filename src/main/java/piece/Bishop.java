@@ -7,3 +7,4 @@ public class Bishop extends Piece {
         super(color, Type.BISHOP);
     }
 }
+

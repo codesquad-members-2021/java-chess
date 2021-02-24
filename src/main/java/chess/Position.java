@@ -29,3 +29,4 @@ public class Position {
         return Objects.hash(file, rank);
     }
 }
+

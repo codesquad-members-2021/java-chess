@@ -7,3 +7,4 @@ public class Knight extends Piece {
         super(color, Type.KNIGHT);
     }
 }
+

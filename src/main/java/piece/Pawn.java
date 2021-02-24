@@ -7,3 +7,4 @@ public class Pawn extends Piece {
         super(color, Type.PAWN);
     }
 }
+

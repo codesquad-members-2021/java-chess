@@ -7,3 +7,4 @@ public class Blank extends Piece {
         super(color, Type.BLANK);
     }
 }
+

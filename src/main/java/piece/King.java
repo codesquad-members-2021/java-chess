@@ -7,3 +7,4 @@ public class King extends Piece {
         super(color, Type.KING);
     }
 }
+

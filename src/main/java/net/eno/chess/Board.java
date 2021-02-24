@@ -52,16 +52,35 @@ public class Board {
     }
 
     public double calculatePoint(Color color) {
-        double result = 0;
+        double point = 0;
         for (int rank = 8; rank > 0; rank--) {
             for (char file = 'a'; file < 'i'; file++) {
                 Piece piece = findPiece(String.valueOf(file) + rank);
                 if (piece.getColor().equals(color)) {
-                    result += piece.getPieceType().getDefaultPoint();
+                    point += piece.getPieceType().getDefaultPoint();
                 }
             }
         }
-        return result;
+        double pawnNumber = findSameLinePawn(color);
+        return point - (pawnNumber / 2);
+    }
+
+    private int findSameLinePawn(Color color) {
+        int samePawn = 0;
+        for (char file = 'a'; file < 'i'; file++) {
+            int pawnNumber = 0;
+            for (int rank = 8; rank > 0; rank--) {
+                Piece piece = findPiece(String.valueOf(file) + rank);
+                if (piece.getColor().equals(color) &&
+                    piece.getRepresentation(color) == PieceType.PAWN.getRepresentation(color)) {
+                    pawnNumber++;
+                }
+            }
+            if (pawnNumber > 1) {
+                samePawn += pawnNumber;
+            }
+        }
+        return samePawn;
     }
 
     public void initialize() {

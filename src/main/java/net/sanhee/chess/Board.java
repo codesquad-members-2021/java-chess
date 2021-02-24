@@ -1,8 +1,6 @@
 package net.sanhee.chess;
 
-import net.sanhee.pieces.Pawn;
-import net.sanhee.pieces.Piece;
-import net.sanhee.pieces.PieceFactory;
+import net.sanhee.pieces.*;
 import net.sanhee.pieces.property.UnitColor;
 import net.sanhee.pieces.property.UnitType;
 
@@ -45,13 +43,49 @@ public class Board {
     }
 
     public void initialize() {
-        arrayPawnInit(UnitColor.WHITE);
-        arrayPawnInit(UnitColor.BLACK);
+        blackRoyalLineInit();
+        pawnLineInit(UnitColor.BLACK);
+        noneLineInit();
+        noneLineInit();
+        noneLineInit();
+        noneLineInit();
+        pawnLineInit(UnitColor.WHITE);
+        whiteRoyalUnitInit();
     }
 
-    private void arrayPawnInit(UnitColor unitColor) {
+    private void blackRoyalLineInit() {
+        // Rook-Knight-Bishop-Queen-King-Bishop-Knight-Rook
+        add(new Rook(UnitColor.BLACK));
+        add(new Knight(UnitColor.BLACK));
+        add(new Bishop(UnitColor.BLACK));
+        add(new Queen(UnitColor.BLACK));
+        add(new King(UnitColor.BLACK));
+        add(new Bishop(UnitColor.BLACK));
+        add(new Knight(UnitColor.BLACK));
+        add(new Rook(UnitColor.BLACK));
+    }
+
+    private void whiteRoyalUnitInit() {
+        // Rook-Knight-Bishop-Queen-King-Bishop-Knight-Rook
+        add(new Rook(UnitColor.WHITE));
+        add(new Knight(UnitColor.WHITE));
+        add(new Bishop(UnitColor.WHITE));
+        add(new Queen(UnitColor.WHITE));
+        add(new King(UnitColor.WHITE));
+        add(new Bishop(UnitColor.WHITE));
+        add(new Knight(UnitColor.WHITE));
+        add(new Rook(UnitColor.WHITE));
+    }
+
+    private void pawnLineInit(UnitColor unitColor) {
         for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
             pieces.add(PieceFactory.createPawn(unitColor));
+        }
+    }
+
+    private void noneLineInit() {
+        for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
+            pieces.add(PieceFactory.createNone(UnitColor.NONE));
         }
     }
 

@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static cooper.chess.utils.StringUtils.NEW_LINE;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -86,7 +89,7 @@ class BoardTest {
 
     @Test
     @DisplayName("임의의 기물을 체스판 위에 추가")
-    public  void move() {
+    public void move() {
         board.initializeEmpty();
 
         Position prevPosition = new Position("b5");
@@ -97,5 +100,28 @@ class BoardTest {
         board.move(prevPosition, afterPosition);
 
         assertEquals(piece, board.findPiece(afterPosition));
+    }
+
+    @Test
+    @DisplayName("색상의 체스판 점수 결과를 얻는다.")
+    public void calculatePointTest() {
+        board.initializeEmpty();
+
+        assertAll(
+                () -> board.addPiece(new Position("b6"), Piece.createBlackPawn()),
+                () -> board.addPiece(new Position("e6"), Piece.createBlackQueen()),
+                () -> board.addPiece(new Position("b8"), Piece.createBlackKing()),
+                () -> board.addPiece(new Position("c8"), Piece.createBlackRook()),
+                () -> board.addPiece(new Position("f2"), Piece.createWhitePawn()),
+                () -> board.addPiece(new Position("g2"), Piece.createWhitePawn()),
+                () -> board.addPiece(new Position("g6"), Piece.createWhitePawn()),
+                () -> board.addPiece(new Position("e1"), Piece.createWhiteRook()),
+                () -> board.addPiece(new Position("f1"), Piece.createWhiteKing())
+        );
+
+        assertEquals(15.0, board.calculatePoint(Color.BLACK), 0.01);
+        assertEquals(7.5, board.calculatePoint(Color.WHITE), 0.01);
+
+        System.out.println(board.showBoard());
     }
 }

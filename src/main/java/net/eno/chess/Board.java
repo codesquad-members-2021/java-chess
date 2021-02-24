@@ -7,7 +7,6 @@ import net.eno.pieces.Position;
 
 import static net.eno.utils.StringUtils.appendNewLine;
 
-import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -40,47 +39,43 @@ public class Board {
         return count;
     }
 
-    public Piece findPiece(String location) {
-        Position position = new Position(location);
-        int file = position.getFile();
-        int rank = position.getRank();
-        Rank targetRank = this.board.get(rank);
-        return targetRank.findPiece(file);
+    public Piece findPiece(String position) {
+        Position positionObj = new Position(position);
+        Rank targetRank = this.board.get(positionObj.getRankIndex());
+        return targetRank.findPiece(positionObj.getFileIndex());
     }
 
-    public void move(String location, Piece piece) {
-        Position position = new Position(location);
-        int file = position.getFile();
-        int rank = position.getRank();
-        Rank targetRank = this.board.get(rank);
-        targetRank.move(file, piece);
+    public void move(String position, Piece piece) {
+        Position positionObj = new Position(position);
+        Rank targetRank = this.board.get(positionObj.getRankIndex());
+        targetRank.move(positionObj.getFileIndex(), piece);
     }
 
     public void initialize() {
         this.board = new ArrayList<>();
-        addRank(Rank.createBlackPieces());
-        addRank(Rank.createBlackPawns());
-        addRank(Rank.createBlankLine(6));
-        addRank(Rank.createBlankLine(5));
-        addRank(Rank.createBlankLine(4));
-        addRank(Rank.createBlankLine(3));
-        addRank(Rank.createWhitePawns());
-        addRank(Rank.createWhitePieces());
+        addRank(Rank.createMultiplePieceRank(8, Color.BLACK));
+        addRank(Rank.createOnePieceRank(7, Color.BLACK, PieceType.PAWN));
+        addRank(Rank.createOnePieceRank(6, Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(5, Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(4, Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(3, Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(2, Color.WHITE, PieceType.PAWN));
+        addRank(Rank.createMultiplePieceRank(1, Color.WHITE));
     }
 
     public void initializeEmpty() {
         this.board = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            addRank(Rank.createBlankLine(8 - i));
+        for (int rankNumber = 8; rankNumber > 0; rankNumber--) {
+            addRank(Rank.createOnePieceRank(rankNumber, Color.NOCOLOR, PieceType.NO_PIECE));
         }
     }
 
     public String showBoard(Color color) {
         StringBuilder result = new StringBuilder();
-        int num = color.equals(Color.BLACK) ? 7 : 0;
-        for (int i = 0; i < this.board.size(); i++) {
-            Rank rank = board.get(Math.abs(i - num));
-            result.append(appendNewLine(rank.getPiecesResult(num)));
+        int reverseRank = color.equals(Color.BLACK) ? 7 : 0;
+        for (int rankNumber = 0; rankNumber < this.board.size(); rankNumber++) {
+            Rank rank = board.get(Math.abs(rankNumber - reverseRank));
+            result.append(appendNewLine(rank.showRank(color)));
         }
         return result.toString();
     }

@@ -8,27 +8,19 @@ public class PieceTest {
     @Test
     @DisplayName("흰색 폰 생성")
     void createWhitePawn() {
-        verifyPawn(Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION);
+        verifyPawn(Piece.WHITE, Piece.WHITE_PAWN_REPRESENTATION, Piece.PAWN);
     }
 
     @Test
     @DisplayName("검은색 폰 생성")
     void createBlackPawn() {
-        verifyPawn(Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
+        verifyPawn(Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION, Piece.BLACK);
     }
 
-    private void verifyPawn(final String color, final String representation){
-        Piece piece = new Piece(color, representation);
+    private void verifyPawn(final String color, final String representation, final String name){
+        Piece piece = new Piece(color, representation, name);
         assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
-    }
-
-    @Test
-    @DisplayName("기본생성자로 폰 생성")
-    public void createDefaultConstructor() {
-        Piece piece = new Piece();
-        assertThat(piece.getColor()).isEqualTo(Piece.WHITE);
-        assertThat(piece.getRepresentation()).isEqualTo(Piece.WHITE_PAWN_REPRESENTATION);
     }
 
 }

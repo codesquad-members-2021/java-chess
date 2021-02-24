@@ -28,4 +28,12 @@ public class Piece {
     public String getRepresentation() {
         return representation;
     }
+
+    public Piece createWhitePawn() {
+        return new Piece(WHITE, WHITE_PAWN_REPRESENTATION, PAWN);
+    }
+
+    public Piece createBlackPawn() {
+        return new Piece(BLACK, BLACK_PAWN_REPRESENTATION, PAWN);
+    }
 }

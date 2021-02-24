@@ -79,4 +79,15 @@ public class Rank {
         }
         return blankRank;
     }
+
+    public Piece getPiece(int index) {
+        return pieceList.get(index);
+    }
+
+    public String getRankRepresentation(Rank rank) {
+        StringBuilder strBuilder = new StringBuilder();
+        for(int i =0; i< rank.size(); i++ ) {
+            strBuilder.append(rank.getPiece(i).getRepresentation());
+        }
+    }
 }

@@ -6,8 +6,6 @@ import java.util.List;
 import static net.jung.chess.utils.StringUtils.appendNewLine;
 
 public class Board {
-    public static final String BLANK_RANK = appendNewLine("********");
-
     private List<Rank> rankList = new ArrayList<Rank>();
 
     public int boardPieceSize() {
@@ -34,15 +32,10 @@ public class Board {
 
 
     public String boardLayoutToString() {
-
         StringBuilder boardLayout = new StringBuilder();
-        boardLayout
-                .append(appendNewLine(getBlackPiecesRepresentation()))
-                .append(BLANK_RANK)
-                .append(BLANK_RANK)
-                .append(BLANK_RANK)
-                .append(BLANK_RANK)
-                .append(appendNewLine(getWhitePiecesRepresentation()));
+            for(Rank rank : rankList){
+                boardLayout.append(appendNewLine(rank.getRankRepresentation()));
+            }
         return boardLayout.toString();
     }
 

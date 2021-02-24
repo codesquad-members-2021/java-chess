@@ -23,16 +23,17 @@ class BoardTest {
     @DisplayName("initialize()는 32개 모든 말을 체스판 위에 올린다.")
     void initializeAddsEveryPiece() {
         int maxNumOfPieces = 32;
+        String BLANK_RANK = appendNewLine("********");
         board.initialize();
         assertAll(
                 () -> assertThat(board.boardPieceSize()).isEqualTo(maxNumOfPieces),
                 () -> assertThat(board.boardLayoutToString()).isEqualTo(
                     appendNewLine("RNBQKBNR")
                     +appendNewLine("PPPPPPPP")
-                    +board.BLANK_RANK
-                    +board.BLANK_RANK
-                    +board.BLANK_RANK
-                    +board.BLANK_RANK
+                    +BLANK_RANK
+                    +BLANK_RANK
+                    +BLANK_RANK
+                    +BLANK_RANK
                     +appendNewLine("pppppppp")
                     +appendNewLine("rnbqkbnr"))
         );

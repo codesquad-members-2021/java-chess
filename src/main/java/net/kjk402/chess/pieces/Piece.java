@@ -31,7 +31,7 @@ public class Piece {
         }
     }
 
-    private final Position position;
+    private Position position;
 
     private final Color color;
 
@@ -56,7 +56,7 @@ public class Piece {
     }
 
     public Position getPosition() {
-        return position;
+        return this.position;
     }
 
     public static Piece createWhitePawn(Position position) {

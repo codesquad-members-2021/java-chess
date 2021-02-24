@@ -1,8 +1,8 @@
 package net.kjk402.chess.pieces;
 
 public class Position {
-    private final int file;
-    private final int rank;
+    private int file;
+    private int rank;
 
     public Position(int file, int rank) {
         this.file = file;
@@ -12,6 +12,14 @@ public class Position {
     public Position(String position) {
         this.file = position.charAt(0) - 'a';
         this.rank = Character.getNumericValue(position.charAt(1)) - 1;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public int getFile() {
+        return file;
     }
 
 }

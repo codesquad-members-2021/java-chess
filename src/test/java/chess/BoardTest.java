@@ -5,8 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pieces.Piece;
 
-import java.security.InvalidParameterException;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static utils.StringUtils.appendNewLine;
@@ -39,16 +37,16 @@ class BoardTest {
     @DisplayName("잘못된 색의 pawn을 추가하거나 pawn아닌 다른 pawn을 추가할 수 없다")
     void addWrongPawn() {
         Piece blackPawn = Piece.createBlackPawn();
-        assertThatExceptionOfType(InvalidParameterException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> board.addWhitePawn(blackPawn));
         Piece whiteRook = Piece.createWhiteRook();
-        assertThatExceptionOfType(InvalidParameterException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> board.addWhitePawn(whiteRook));
         Piece whitePawn = Piece.createWhitePawn();
-        assertThatExceptionOfType(InvalidParameterException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> board.addBlackPawn(whitePawn));
         Piece blackRook = Piece.createBlackRook();
-        assertThatExceptionOfType(InvalidParameterException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(()->board.addBlackPawn(blackRook));
     }
 
@@ -56,10 +54,10 @@ class BoardTest {
     @DisplayName("잘못된 색의 piece를 추가할 수 없다")
     void addWrongPiece() {
         Piece blackPiece = Piece.createBlackRook();
-        assertThatExceptionOfType(InvalidParameterException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> board.addWhitePiece(blackPiece));
         Piece whitePiece = Piece.createWhiteRook();
-        assertThatExceptionOfType(InvalidParameterException.class)
+        assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> board.addBlackPiece(whitePiece));
     }
 }

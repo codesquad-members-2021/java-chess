@@ -2,7 +2,6 @@ package chess;
 
 import pieces.Piece;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,28 +17,28 @@ public class Board {
 
     void addWhitePawn(Piece piece) {
         if (!piece.isWhite() || piece.getType() != Piece.Type.PAWN) {
-            throw new InvalidParameterException("흰색의 pawn만 추가할 수 있습니다.");
+            throw new IllegalArgumentException("흰색의 pawn만 추가할 수 있습니다.");
         }
         whitePawns.add(piece);
     }
 
     void addBlackPawn(Piece piece) {
         if (!piece.isBlack() || piece.getType() != Piece.Type.PAWN) {
-            throw new InvalidParameterException("검은색의 pawn만 추가할 수 있습니다");
+            throw new IllegalArgumentException("검은색의 pawn만 추가할 수 있습니다");
         }
         blackPawns.add(piece);
     }
 
     void addWhitePiece(Piece piece) {
         if (!piece.isWhite()){
-            throw new InvalidParameterException("흰색의 piece만 추가할 수 있습니다");
+            throw new IllegalArgumentException("흰색의 piece만 추가할 수 있습니다");
         }
         whitePieces.add(piece);
     }
 
     void addBlackPiece(Piece piece) {
         if (!piece.isBlack()){
-            throw new InvalidParameterException("검은색의 piece만 추가할수 있습니다");
+            throw new IllegalArgumentException("검은색의 piece만 추가할수 있습니다");
         }
         blackPieces.add(piece);
     }

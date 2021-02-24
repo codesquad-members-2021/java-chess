@@ -99,10 +99,10 @@ public class Piece {
     }
 
     public boolean isBlack() {
-        return this.color == Color.BLACK;
+        return Color.BLACK == this.color;
     }
 
     public boolean isWhite() {
-        return this.color == Color.WHITE;
+        return Color.WHITE == this.color;
     }
 }

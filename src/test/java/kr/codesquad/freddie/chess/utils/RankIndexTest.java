@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class RankIndexTest {
     @Test
-    void create_outOfRange() {
+    void createOutOfRange() {
         assertThatThrownBy(() -> new RankIndex(0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("올바른 rankIndex가 아닙니다. rankIndex : 0");

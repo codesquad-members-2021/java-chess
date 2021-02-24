@@ -67,7 +67,7 @@ class PieceTest {
     }
 
     @Test
-    void isBlack_not_a_black() {
+    void isBlackNotABlack() {
         assertAll(
                 () -> assertThat(new Piece(Color.WHITE, Kind.PAWN).isBlack()).isFalse(),
                 () -> assertThat(new Piece(Color.WHITE, Kind.KNIGHT).isBlack()).isFalse(),
@@ -92,7 +92,7 @@ class PieceTest {
     }
 
     @Test
-    void isWhite_not_a_white() {
+    void isWhiteNotAWhite() {
         assertAll(
                 () -> assertThat(new Piece(Color.BLACK, Kind.PAWN).isWhite()).isFalse(),
                 () -> assertThat(new Piece(Color.BLACK, Kind.KNIGHT).isWhite()).isFalse(),

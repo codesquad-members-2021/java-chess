@@ -34,7 +34,7 @@ class FileTest extends BoardTestBase {
 
     @Test
     @DisplayName("8개 초과하여 추가하는 경우")
-    void add_moreThan_8() {
+    void addMoreThan8() {
         for (int i = 0; i < File.SIZE; i++) {
             file.add(new Piece(Color.WHITE, Kind.PAWN));
         }
@@ -89,7 +89,7 @@ class FileTest extends BoardTestBase {
     }
 
     @Test
-    void getPieceNumberBy_fillWithBlackPawn() {
+    void getPieceNumberByFillWithBlackPawn() {
         file.fillWithPawn(Color.BLACK);
         assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(8);
         assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(0);
@@ -102,7 +102,7 @@ class FileTest extends BoardTestBase {
     }
 
     @Test
-    void getPieceNumberBy_fillWithBlackRoyal() {
+    void getPieceNumberByFillWithBlackRoyal() {
         file.fillWithRoyal(Color.BLACK);
         assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(2);
         assertThat(file.getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(2);
@@ -122,7 +122,7 @@ class FileTest extends BoardTestBase {
     }
 
     @Test
-    void getPieceNumberBy_fillWithWhitePawn() {
+    void getPieceNumberByFillWithWhitePawn() {
         file.fillWithPawn(Color.WHITE);
         assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(8);
         assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(0);
@@ -135,7 +135,7 @@ class FileTest extends BoardTestBase {
     }
 
     @Test
-    void getPieceNumberBy_fillWithWhiteRoyal() {
+    void getPieceNumberByFillWithWhiteRoyal() {
         file.fillWithRoyal(Color.WHITE);
         assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(2);
         assertThat(file.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(2);
@@ -155,7 +155,7 @@ class FileTest extends BoardTestBase {
     }
 
     @Test
-    void getPieceNumberBy_fillWithBlank() {
+    void getPieceNumberByFillWithBlank() {
         file.fillWithBlank();
 
         assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(8);
@@ -185,19 +185,19 @@ class FileTest extends BoardTestBase {
     }
 
     @Test
-    void fillWith_black() {
+    void fillWithBlack() {
         file.fillWithPawn(Color.BLACK);
         checkFillWith(Color.BLACK);
     }
 
     @Test
-    void fillWith_white() {
+    void fillWithWhite() {
         file.fillWithPawn(Color.WHITE);
         checkFillWith(Color.WHITE);
     }
 
     @Test
-    void fillWith_blank() {
+    void fillWithBlank() {
         file.fillWithBlank();
         checkFillWith(Color.NOCOLOR);
     }
@@ -209,31 +209,31 @@ class FileTest extends BoardTestBase {
     }
 
     @Test
-    void getRepresentation_fillWithBlackPawn() {
+    void getRepresentationFillWithBlackPawn() {
         file.fillWithPawn(Color.BLACK);
         assertThat(file.getRepresentation()).isEqualTo("PPPPPPPP");
     }
 
     @Test
-    void getRepresentation_fillWithWhitePawn() {
+    void getRepresentationFillWithWhitePawn() {
         file.fillWithPawn(Color.WHITE);
         assertThat(file.getRepresentation()).isEqualTo("pppppppp");
     }
 
     @Test
-    void getRepresentation_fillWithBlackRoyal() {
+    void getRepresentationFillWithBlackRoyal() {
         file.fillWithRoyal(Color.BLACK);
         assertThat(file.getRepresentation()).isEqualTo("RNBQKBNR");
     }
 
     @Test
-    void getRepresentation_fillWithWhiteRoyal() {
+    void getRepresentationFillWithWhiteRoyal() {
         file.fillWithRoyal(Color.WHITE);
         assertThat(file.getRepresentation()).isEqualTo("rnbqkbnr");
     }
 
     @Test
-    void getRepresentation_fillWithBlank() {
+    void getRepresentationFillWithBlank() {
         file.fillWithBlank();
         assertThat(file.getRepresentation()).isEqualTo("........");
     }

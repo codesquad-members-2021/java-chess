@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PositionTest {
     @Test
-    void create_outOfRange() {
+    void createOutOfRange() {
         assertThatThrownBy(()-> Position.of("01"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("올바른 fileIndex가 아닙니다. fileIndex : 0");

@@ -102,6 +102,34 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
+    void moveKng() {
+        for (int i = 0; i < MAX_SIZE; i++) {
+            board.add(Piece.createBlank());
+        }
+
+        board.set("b3", blackPieceFactory.createKing());
+        board.set("b4", whitePieceFactory.createPawn());
+
+        board.move("b3", "b4");
+        assertThat(board.findPiece("b3")).isEqualTo(Piece.createBlank());
+        assertThat(board.findPiece("b4")).isEqualTo(blackPieceFactory.createKing());
+    }
+
+    @Test
+    void moveKingToSameColor() {
+        for (int i = 0; i < MAX_SIZE; i++) {
+            board.add(Piece.createBlank());
+        }
+
+        board.set("b3", blackPieceFactory.createKing());
+        board.set("b4", whitePieceFactory.createPawn());
+
+        board.move("b3", "b4");
+        assertThat(board.findPiece("b3")).isEqualTo(Piece.createBlank());
+        assertThat(board.findPiece("b4")).isEqualTo(blackPieceFactory.createKing());
+    }
+
+    @Test
     @DisplayName("1개 부터 64개까지 넣으면서 사이즈 일치하는지 확인")
     void add() {
         for (int i = 0; i <= MAX_SIZE; i++) {
@@ -119,7 +147,7 @@ class BoardTest extends BoardTestBase {
 
     @Test
     @DisplayName("8개가 넘어가면 다음 줄로 넘어가기 때문에 에러가 발생하면 안된다.")
-    void add_fillRank() {
+    void addFillRank() {
         int size = File.SIZE + 1;
         for (int i = 1; i <= size; i++) {
             board.add(new Piece(Color.WHITE, Kind.PAWN));
@@ -129,7 +157,7 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
-    void add_outOfRange() {
+    void addOutOfRange() {
         for (int i = 0; i < MAX_SIZE; i++) {
             board.add(new Piece(Color.WHITE, Kind.PAWN));
         }
@@ -141,7 +169,7 @@ class BoardTest extends BoardTestBase {
 
     @Test
     @DisplayName("하나만 추가하여 탐색")
-    void findPiece_one() {
+    void findPieceOne() {
         Piece white = new Piece(Color.WHITE, Kind.PAWN);
         board.add(white);
         assertAll(
@@ -152,7 +180,7 @@ class BoardTest extends BoardTestBase {
 
     @Test
     @DisplayName("하나 이상 추가하여 탐색")
-    void findPiece_moreThanOne() {
+    void findPieceMoreThanOne() {
         Piece white = new Piece(Color.WHITE, Kind.PAWN);
         board.add(white);
         Piece black = new Piece(Color.BLACK, Kind.PAWN);
@@ -166,7 +194,7 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
-    void getRepresentation_init_board() {
+    void getRepresentationInitBoard() {
         String representation = board.initialize().getRepresentation();
 
         String expected = new StringBuilder()
@@ -184,7 +212,7 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
-    void getRepresentation_not_init_board() {
+    void getRepresentationNotInitBoard() {
         String representation = board.getRepresentation();
 
         String expected = new StringBuilder()
@@ -203,7 +231,7 @@ class BoardTest extends BoardTestBase {
 
     @Test
     @DisplayName("set으로 넣은 뒤 getRepresentation과 getNumberOf로 확인")
-    void verify_set_with_getRepresentation_and_getNumberOf() {
+    void verifySetWithGetRepresentationAndGetNumberOf() {
         for (int i = 0; i < MAX_SIZE; i++) {
             board.add(Piece.createBlank());
         }

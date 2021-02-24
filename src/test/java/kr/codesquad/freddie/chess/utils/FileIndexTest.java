@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.*;
 
 class FileIndexTest {
     @Test
-    void create_outOfRange() {
+    void createOutOfRange() {
         assertThatThrownBy(() -> new FileIndex((char) ('a' - 1)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("올바른 fileIndex가 아닙니다. fileIndex : `");

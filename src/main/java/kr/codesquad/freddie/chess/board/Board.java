@@ -58,6 +58,11 @@ public class Board {
                 .collect(Collectors.toList());
     }
 
+    public void move(String source, String destination) {
+        set(destination, findPiece(source));
+        set(source, Piece.createBlank());
+    }
+
     public void add(Piece piece) {
         files.stream()
                 .filter(File::isAddable)

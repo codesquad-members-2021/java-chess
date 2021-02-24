@@ -15,14 +15,6 @@ public class ChessPiece {
         return colorOfChessPiece.getRepresentationByColor(nameOfChessPiece);
     }
 
-    public NameOfChessPiece getNameOfChessPiece() {
-        return nameOfChessPiece;
-    }
-
-    public ColorOfChessPiece getColorOfChessPiece() {
-        return colorOfChessPiece;
-    }
-
     public static ChessPiece createBlankPiece() {
         return createChessPiece(NameOfChessPiece.NO_PIECE, ColorOfChessPiece.BLANK);
     }
@@ -36,15 +28,27 @@ public class ChessPiece {
     }
 
     public Comparator<ChessPiece> comparatorAsc = (current, next) -> {
-        float currentPoint = current.getNameOfChessPiece().getPoint();
-        float nextPoint = next.getNameOfChessPiece().getPoint();
+        float currentPoint = current.getPoint();
+        float nextPoint = next.getPoint();
         return Float.compare(currentPoint, nextPoint);
     };
     public Comparator<ChessPiece> comparatorDesc = (current, next) -> {
-        float currentPoint = current.getNameOfChessPiece().getPoint();
-        float nextPoint = next.getNameOfChessPiece().getPoint();
+        float currentPoint = current.getPoint();
+        float nextPoint = next.getPoint();
         return Float.compare(nextPoint, currentPoint);
     };
+
+    public boolean isNotSameColor(ColorOfChessPiece color) {
+        return color != colorOfChessPiece;
+    }
+
+    public boolean isSameName(NameOfChessPiece name) {
+        return name == nameOfChessPiece;
+    }
+
+    public float getPoint() {
+        return nameOfChessPiece.getPoint();
+    }
 
     public boolean isBlank() {
         return colorOfChessPiece == ColorOfChessPiece.BLANK;

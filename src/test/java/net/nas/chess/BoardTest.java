@@ -229,7 +229,7 @@ public class BoardTest {
         List<ChessPiece> actualPieceList = board.getPiecesOfColor(color, isAsc);
 
         for (int i = 0; i < NameOfChessPiece.values().length - 1; i++) {
-            float actual = actualPieceList.get(i).getNameOfChessPiece().getPoint();
+            float actual = actualPieceList.get(i).getPoint();
             float expected = expectedResult.get(i);
             assertThat(actual).isEqualTo(expected);
         }

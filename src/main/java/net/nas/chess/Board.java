@@ -180,17 +180,16 @@ public class Board {
             int numOfPawnInFile = 0;
             for (int rankIndex = 0; rankIndex < LENGTH_OF_BOARD; rankIndex++) {
                 ChessPiece currentPiece = chessCells[rankIndex][fileIndex];
-                if (currentPiece.getColorOfChessPiece() != color) {
+                if (currentPiece.isNotSameColor(color)) {
                     continue;
                 }
-                NameOfChessPiece nameOfCurrentPiece = currentPiece.getNameOfChessPiece();
-                if (nameOfCurrentPiece == NameOfChessPiece.NO_PIECE) {
+                if (currentPiece.isBlank()) {
                     continue;
                 }
-                if (nameOfCurrentPiece == NameOfChessPiece.PAWN) {
+                if (currentPiece.isSameName(NameOfChessPiece.PAWN)) {
                     numOfPawnInFile++;
                 }
-                totalPoint += nameOfCurrentPiece.getPoint();
+                totalPoint += currentPiece.getPoint();
             }
             if (numOfPawnInFile >= 2) {
                 totalPoint -= numOfPawnInFile * NameOfChessPiece.SCORE_OF_SPECIAL_PAWN;
@@ -204,11 +203,10 @@ public class Board {
         for (int fileIndex = 0; fileIndex < LENGTH_OF_BOARD; fileIndex++) {
             for (int rankIndex = 0; rankIndex < LENGTH_OF_BOARD; rankIndex++) {
                 ChessPiece currentPiece = chessCells[rankIndex][fileIndex];
-                if (currentPiece.getColorOfChessPiece() != color) {
+                if (currentPiece.isNotSameColor(color)) {
                     continue;
                 }
-                NameOfChessPiece nameOfCurrentPiece = currentPiece.getNameOfChessPiece();
-                if (nameOfCurrentPiece == NameOfChessPiece.NO_PIECE) {
+                if (currentPiece.isBlank()) {
                     continue;
                 }
                 pieceList.add(currentPiece);

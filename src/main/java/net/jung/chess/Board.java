@@ -16,6 +16,19 @@ public class Board {
         return boardPieceSize ;
     }
 
+    public int certainPieceSize(Piece.Color color, Piece.Type type) {
+        int size = 0;
+        for( Rank rank : rankList ) {
+            for(int i =0; i< Rank.MAX_PIECES_IN_RANK; i++) {
+                boolean isColorType = (rank.getPiece(i).getType() == type)
+                                    && (rank.getPiece(i).getColor() == color);
+                size += isColorType ? 1 : 0 ;
+            }
+        }
+        return size;
+    }
+
+
     public void initialize() {
         rankList.add(Rank.initializeBlackPieceRank());
         rankList.add(Rank.initializeBlackPawnRank());

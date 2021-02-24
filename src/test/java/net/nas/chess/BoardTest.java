@@ -40,10 +40,10 @@ public class BoardTest {
     void testAdditionAndFind() {
         ChessPiece whitePawn = ChessPiece.createWhitePawn();
         for (int i = 0; i < Board.LENGTH_OF_BOARD; i++) {
-            final int fileIdx = i;
+            final int fileIndex = i;
             assertAll(
-                    () -> verifyAddition(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx),
-                    () -> verifyFind(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIdx)
+                    () -> verifyAddition(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIndex),
+                    () -> verifyFind(whitePawn, Board.RANK_OF_WHITE_PAWNS, fileIndex)
             );
         }
     }
@@ -61,14 +61,14 @@ public class BoardTest {
         }
     }
 
-    private void verifyAddition(ChessPiece chessPiece, int rankIdx, int fileIdx) {
+    private void verifyAddition(ChessPiece chessPiece, int rankIndex, int fileIndex) {
         int prevSize = board.size();
-        board.add(chessPiece, rankIdx, fileIdx);
+        board.add(chessPiece, rankIndex, fileIndex);
         assertThat(board.size()).isEqualTo(prevSize + 1);
     }
 
-    private void verifyFind(ChessPiece chessPiece, int rankIdx, int fileIdx) {
-        assertThat(board.findPiece(rankIdx, fileIdx)).isEqualTo(chessPiece);
+    private void verifyFind(ChessPiece chessPiece, int rankIndex, int fileIndex) {
+        assertThat(board.findPiece(rankIndex, fileIndex)).isEqualTo(chessPiece);
     }
 
     @Test
@@ -79,8 +79,8 @@ public class BoardTest {
             testFindThrowException(tc, tc, InvalidParameterException.class);
     }
 
-    private void testFindThrowException(int rankIdx, int fileIdx, Class<?> exceptionClass) {
-        assertThatThrownBy(() -> board.findPiece(rankIdx, fileIdx))
+    private void testFindThrowException(int rankIndex, int fileIndex, Class<?> exceptionClass) {
+        assertThatThrownBy(() -> board.findPiece(rankIndex, fileIndex))
                 .isInstanceOf(exceptionClass);
     }
 

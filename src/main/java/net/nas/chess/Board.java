@@ -92,8 +92,8 @@ public class Board {
         return sb.toString();
     }
 
-    private String getRepresentationOfRank(int rankIdx) {
-        return Arrays.stream(chessCells[rankIdx])
+    private String getRepresentationOfRank(int rankIndex) {
+        return Arrays.stream(chessCells[rankIndex])
                 .map(ChessPiece::getRepresentation)
                 .collect(Collectors.joining());
     }
@@ -106,14 +106,14 @@ public class Board {
         return getRepresentationOfRank(RANK_OF_BLACK_PAWNS);
     }
 
-    public void add(ChessPiece piece, int rankIdx, int fileIdx) {
+    public void add(ChessPiece piece, int rankIndex, int fileIndex) {
         if (piece == null) {
             throw new InvalidParameterException("Null value cannot be added in Board");
         }
-        if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx)) {
-            throw new InvalidParameterException("index exceeded the bounds of the Board. rankIndex : " + rankIdx + " fileIndex : " + fileIdx);
+        if (isInvalidIndex(rankIndex) || isInvalidIndex(fileIndex)) {
+            throw new InvalidParameterException("index exceeded the bounds of the Board. rankIndex : " + rankIndex + " fileIndex : " + fileIndex);
         }
-        chessCells[rankIdx][fileIdx] = piece;
+        chessCells[rankIndex][fileIndex] = piece;
         if (!piece.isBlank()) {
             numberOfPieces++;
         }
@@ -124,10 +124,10 @@ public class Board {
         add(piece, coordinate.rankIndex, coordinate.fileIndex);
     }
 
-    public ChessPiece findPiece(int rankIdx, int fileIdx) {
-        if (isInvalidIdx(rankIdx) || isInvalidIdx(fileIdx))
+    public ChessPiece findPiece(int rankIndex, int fileIndex) {
+        if (isInvalidIndex(rankIndex) || isInvalidIndex(fileIndex))
             throw new InvalidParameterException("index exceeded the bounds of the Board");
-        return chessCells[rankIdx][fileIdx];
+        return chessCells[rankIndex][fileIndex];
     }
 
     public ChessPiece findPiece(String strCoordinate) {
@@ -135,8 +135,8 @@ public class Board {
         return chessCells[coordinate.rankIndex][coordinate.fileIndex];
     }
 
-    private boolean isInvalidIdx(int idx) {
-        return 0 > idx || idx >= LENGTH_OF_BOARD;
+    private boolean isInvalidIndex(int index) {
+        return 0 > index || index >= LENGTH_OF_BOARD;
     }
 
     public int size() {

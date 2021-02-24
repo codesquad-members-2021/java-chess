@@ -65,7 +65,7 @@ class BoardTest {
     }
 
     void pawnLocationCheck(Board board, Piece pawn, int idx) {
-        assertThat(board.findPawn(idx)).isEqualTo(pawn);
+        assertThat(board.findPiece(idx)).isEqualTo(pawn);
     }
 
     @Test

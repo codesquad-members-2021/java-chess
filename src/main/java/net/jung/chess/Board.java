@@ -44,6 +44,12 @@ public class Board {
         rankList.add(Rank.initializeWhitePieceRank());
     }
 
+    public void initializeEmptyBoard() {
+        for(int i =0; i< RANKS_ON_BOARD; i++) {
+            rankList.add(Rank.initializeBlankRank());
+        }
+    }
+
 
 
     public String boardLayoutToString() {

@@ -9,29 +9,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PieceTest {
 
     @Test
-    @DisplayName("검은색 체스말들이 정상적으로 생성되어야 한다")
-    void createBlackPieces() {
+    @DisplayName("흰색과 검은색 체스말들이 정상적으로 생성되어야 한다")
+    void createPieces() {
         assertAll(
-                () -> verifyBlackPiece(Piece.createBlackPawn(), Type.PAWN),
-                () -> verifyBlackPiece(Piece.createBlackKnight(), Type.KNIGHT),
-                () -> verifyBlackPiece(Piece.createBlackRook(), Type.ROOK),
-                () -> verifyBlackPiece(Piece.createBlackBishop(), Type.BISHOP),
-                () -> verifyBlackPiece(Piece.createBlackQueen(), Type.QUEEN),
-                () -> verifyBlackPiece(Piece.createBlackKing(), Type.KING)
+                () -> verifyPieces(Piece.createWhitePawn(), Piece.createBlackPawn(), Type.PAWN),
+                () -> verifyPieces(Piece.createWhiteKnight(), Piece.createBlackKnight(), Type.KNIGHT),
+                () -> verifyPieces(Piece.createWhiteRook(), Piece.createBlackRook(), Type.ROOK),
+                () -> verifyPieces(Piece.createWhiteBishop(), Piece.createBlackBishop(), Type.BISHOP),
+                () -> verifyPieces(Piece.createWhiteQueen(), Piece.createBlackQueen(), Type.QUEEN),
+                () -> verifyPieces(Piece.createWhiteKing(), Piece.createBlackKing(), Type.KING)
         );
     }
 
     @Test
-    @DisplayName("흰색 체스말들이 정상적으로 생성되어야 한다")
-    void createWhitePieces() {
-        assertAll(
-                () -> verifyWhitePiece(Piece.createWhitePawn(), Type.PAWN),
-                () -> verifyWhitePiece(Piece.createWhiteKnight(), Type.KNIGHT),
-                () -> verifyWhitePiece(Piece.createWhiteRook(), Type.ROOK),
-                () -> verifyWhitePiece(Piece.createWhiteBishop(), Type.BISHOP),
-                () -> verifyWhitePiece(Piece.createWhiteQueen(), Type.QUEEN),
-                () -> verifyWhitePiece(Piece.createWhiteKing(), Type.KING)
-        );
+    @DisplayName("빈 공간을 나타내는 Piece는 색상을 가지고 있지 않고 어떤 타입에도 속해서는 안된다")
+    void createBlank() {
+        Piece blank = Piece.createBlank();
+        assertThat(blank.isWhite()).isFalse();
+        assertThat(blank.isBlack()).isFalse();
+        assertThat(blank.getType()).isEqualTo(Type.NO_PIECE);
     }
 
     @Test
@@ -43,17 +39,12 @@ class PieceTest {
         );
     }
 
-    private void verifyBlackPiece(final Piece piece, final Type type) {
-        verifyPiece(piece, Color.BLACK, type.getBlackRepresentation());
-    }
+    private void verifyPieces(final Piece whitePiece, final Piece blackPiece, final Type type) {
+        assertThat(whitePiece.isWhite()).isTrue();
+        assertThat(whitePiece.getType()).isEqualTo(type);
 
-    private void verifyWhitePiece(final Piece piece, final Type type) {
-        verifyPiece(piece, Color.WHITE, type.getWhiteRepresentation());
-    }
-
-    private void verifyPiece(final Piece piece, final Color color, final char representation) {
-        assertThat(piece.getColor()).isEqualTo(color);
-        assertThat(piece.getRepresentation()).isEqualTo(representation);
+        assertThat(blackPiece.isBlack()).isTrue();
+        assertThat(blackPiece.getType()).isEqualTo(type);
     }
 
 }

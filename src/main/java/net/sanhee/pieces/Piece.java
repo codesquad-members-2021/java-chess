@@ -1,12 +1,11 @@
 package net.sanhee.pieces;
 
 
-public class Piece {
+abstract public class Piece {
     public static final int MAX_SPAWN_NUMBER = 8;
-    public static final char BLACK_REPRESENTATION = 'P';
-    public static final char WHITE_REPRESENTATION = 'p';
 
     private final UnitColor color;
+    private final char representation;
 
     public Piece() {
         this(UnitColor.WHITE);
@@ -14,6 +13,7 @@ public class Piece {
 
     public Piece(UnitColor color) {
         this.color = color;
+        this.representation = UnitType.getMark(this.color, this.getClass().getSimpleName());
     }
 
     public UnitColor getColor() {
@@ -21,20 +21,11 @@ public class Piece {
     }
 
     public char getRepresentation() {
-        return this.getShape();
+        return representation;
     }
 
     public boolean isColor(UnitColor color) {
         return this.getColor().equals(color);
     }
 
-    public char getShape() {
-        switch (this.color) {
-            case BLACK:
-                return BLACK_REPRESENTATION;
-            case WHITE:
-            default:
-                return WHITE_REPRESENTATION;
-        }
-    }
 }

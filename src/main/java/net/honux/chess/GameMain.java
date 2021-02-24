@@ -23,8 +23,6 @@ public class GameMain {
                     System.out.println(board.showBoard());
                 }
             }
-        } catch (Exception e) {
-            System.out.println(e);
         }
     }
 }

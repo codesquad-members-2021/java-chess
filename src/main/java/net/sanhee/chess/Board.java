@@ -1,6 +1,6 @@
 package net.sanhee.chess;
 
-import net.sanhee.pieces.Pawn;
+import net.sanhee.pieces.Piece;
 import net.sanhee.pieces.UnitColor;
 
 import java.util.ArrayList;
@@ -8,10 +8,10 @@ import java.util.List;
 
 public class Board {
 
-    private final List<Pawn> pawns = new ArrayList<Pawn>();
+    private final List<Piece> pawns = new ArrayList<Piece>();
     private final String defaultUnitRep = "........";
 
-    public void add(Pawn pawn) {
+    public void add(Piece pawn) {
         pawns.add(pawn);
     }
 
@@ -19,7 +19,7 @@ public class Board {
         return pawns.size();
     }
 
-    public Pawn findPawn(int idx) {
+    public Piece findPawn(int idx) {
         return pawns.get(idx);
     }
 
@@ -33,7 +33,7 @@ public class Board {
 
     public String appendPawnRep(UnitColor color) {
         StringBuilder pawnLine = new StringBuilder();
-        for (Pawn pawn : pawns) {
+        for (Piece pawn : pawns) {
             if (pawn.isColor(color)) {
                 pawnLine.append(pawn.getRepresentation());
             }
@@ -47,8 +47,8 @@ public class Board {
     }
 
     private void arrayPawnInit(UnitColor color) {
-        for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
-            pawns.add(new Pawn(color));
+        for (int i = 0; i < Piece.MAX_SPAWN_NUMBER; i++) {
+            pawns.add(new Piece(color));
         }
     }
 

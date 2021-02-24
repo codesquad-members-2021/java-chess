@@ -11,13 +11,13 @@ public class Position {
         setPosition(position);
     }
 
-    private void setPosition(String location) {
+    private void setPosition(String position) {
         try {
-            char file = location.charAt(0);
-            int rank = Character.getNumericValue(location.charAt(1));
-            if (location.length() == 2 &&
-                    97 <= file && file <= 104 &&
-                    1 <= rank && rank <= 8) {
+            char file = position.charAt(0);
+            int rank = Character.getNumericValue(position.charAt(1));
+            if (position.length() == 2 &&
+                97 <= file && file <= 104 &&
+                1 <= rank && rank <= 8) {
                 this.file = file;
                 this.rank = rank;
             } else {
@@ -28,18 +28,18 @@ public class Position {
         }
     }
 
-    public int getFile() {
+    public int getFileIndex() {
         return this.file - 'a';
     }
 
-    public int getRank() {
+    public int getRankIndex() {
         return 8 - this.rank;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || this.getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Position position = (Position) o;
         return file == position.file && rank == position.rank;
     }

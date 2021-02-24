@@ -76,4 +76,11 @@ public class PieceGroup {
     public int size() {
         return WHITE_PIECE_SIZE + BLACK_PIECE_SIZE;
     }
+
+    public int getPieceCount(Color color, Type type) {
+        return (int)pieceList.stream()
+                .filter(piece -> piece.getColor() == color)
+                .filter(piece -> piece.getType() == type)
+                .count();
+    }
 }

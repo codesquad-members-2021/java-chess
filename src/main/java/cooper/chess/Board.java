@@ -35,4 +35,8 @@ public class Board {
 
         return sb.toString();
     }
+
+    public int getPieceCount(Color color, Type type) {
+        return pieceGroup.getPieceCount(color, type);
+    }
 }

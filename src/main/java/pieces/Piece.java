@@ -4,10 +4,20 @@ public class Piece {
 
     private final Color color;
     private final Type type;
+    private final char representation;
 
     private Piece(Color color, Type type) {
         this.color = color;
         this.type = type;
+        this.representation = classifyRepresentation();
+    }
+
+    private char classifyRepresentation(){
+        char representation = getRepresentation();
+        if(isBlack())
+            return Character.toUpperCase(representation);
+
+        return representation;
     }
 
     public static Piece createWhitePawn() {

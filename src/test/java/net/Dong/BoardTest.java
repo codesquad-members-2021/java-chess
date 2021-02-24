@@ -35,10 +35,27 @@ class BoardTest {
 
 
     @Test
-    @DisplayName("board initialize test")
+    @DisplayName("board initialize Test")
     void boardInitialize() {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+    }
+
+
+    @Test
+    @DisplayName("Board Status Test")
+    void boardStatusTest() {
+        String initBoard =
+                "........" + System.lineSeparator() +
+                "PPPPPPPP" + System.lineSeparator() +
+                "........" + System.lineSeparator() +
+                "........" + System.lineSeparator() +
+                "........" + System.lineSeparator() +
+                "........" + System.lineSeparator() +
+                "pppppppp" + System.lineSeparator() +
+                "........"+ System.lineSeparator() ;
+        board.initialize();
+        assertThat(initBoard).isEqualTo(board.print());
     }
 }

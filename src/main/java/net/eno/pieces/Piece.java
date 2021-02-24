@@ -55,6 +55,7 @@ public class Piece implements Comparable<Piece> {
 
     @Override
     public int compareTo(Piece piece) {
-        return (int)(this.getPoint() - piece.getPoint());
+        return (int)(Math.floor(this.getPoint() - piece.getPoint()));
     }
+
 }

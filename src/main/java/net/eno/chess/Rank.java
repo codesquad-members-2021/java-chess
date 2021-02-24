@@ -78,6 +78,16 @@ public class Rank {
         return point;
     }
 
+    public List<Piece> getPieceListByColor(Color color) {
+        List<Piece> pieceList = new ArrayList<>();
+        for (Piece piece : this.rank) {
+            if (piece.getColor().equals(color)) {
+                pieceList.add(piece);
+            }
+        }
+        return pieceList;
+    }
+
     public String showRank(Color color) {
         StringBuilder result = new StringBuilder();
         int reverseFIle = color.equals(Color.BLACK) ? 7 : 0;

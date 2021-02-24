@@ -1,6 +1,7 @@
 package piece;
 
 import piece.attribute.*;
+
 import java.util.*;
 import java.util.function.Function;
 

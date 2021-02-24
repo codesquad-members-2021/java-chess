@@ -20,7 +20,7 @@ public class Board {
         squares.put(position, piece);
     }
 
-    public void initialize() {
+    private void initialize() {
         initPiecesExceptPawns(Color.BLACK, 8);
         initPawns(Color.BLACK, 7);
         initBlankSquares(6);
@@ -31,7 +31,7 @@ public class Board {
         initPiecesExceptPawns(Color.WHITE, 1);
     }
 
-    public void initializeEmpty() {
+    void initializeEmpty() {
         for (Position position : squares.keySet()) {
             set(position, createPiece(Color.NO_COLOR, Type.BLANK));
         }

@@ -16,14 +16,6 @@ public class Position {
         this.rank = Character.getNumericValue(position.charAt(1));
     }
 
-    public char getFile() {
-        return file;
-    }
-
-    public int getRank() {
-        return rank;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Position) {

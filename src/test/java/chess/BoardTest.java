@@ -2,11 +2,9 @@ package chess;
 
 import org.junit.jupiter.api.*;
 import piece.Piece;
-import piece.attribute.Color;
-import piece.attribute.Type;
+import piece.attribute.*;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static util.StringUtil.*;
 import static piece.PieceFactory.*;

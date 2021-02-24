@@ -2,7 +2,6 @@ package piece;
 
 import piece.attribute.*;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public abstract class Piece implements Comparable<Piece> {

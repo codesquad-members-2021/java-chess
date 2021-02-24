@@ -5,3 +5,4 @@ public enum Color {
     BLACK,
     NO_COLOR
 }
+

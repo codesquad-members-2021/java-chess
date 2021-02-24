@@ -1,8 +1,7 @@
 package piece;
 
 import org.junit.jupiter.api.*;
-import piece.attribute.Color;
-import piece.attribute.Type;
+import piece.attribute.*;
 
 import static piece.PieceFactory.*;
 import static org.assertj.core.api.Assertions.*;

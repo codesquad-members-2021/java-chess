@@ -6,10 +6,6 @@ abstract public class Piece {
     private final UnitColor color;
     private final char representation;
 
-    public Piece() {
-        this(UnitColor.WHITE);
-    }
-
     public Piece(UnitColor color) {
         this.color = color;
         this.representation = UnitType.getMark(this.color, this.getClass().getSimpleName());

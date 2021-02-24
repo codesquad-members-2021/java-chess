@@ -19,8 +19,8 @@ public class Board {
         }
     }
 
-    public void add(Piece piece, int rank) {
-        getRank(rank).add(piece);
+    public void add(Piece piece, int rank, int file) {
+        getRank(rank).add(file, piece);
     }
 
     public Rank getRank(int rank) {
@@ -44,42 +44,42 @@ public class Board {
     private void initBlackPieces() {
         Rank blackPieces = getRank(Piece.BLACK_PIECES_RANK);
 
-        blackPieces.add(Piece.createBlackRook());
-        blackPieces.add(Piece.createBlackKnight());
-        blackPieces.add(Piece.createBlackBishop());
-        blackPieces.add(Piece.createBlackQueen());
-        blackPieces.add(Piece.createBlackKing());
-        blackPieces.add(Piece.createBlackBishop());
-        blackPieces.add(Piece.createBlackKnight());
-        blackPieces.add(Piece.createBlackRook());
+        blackPieces.add(0, Piece.createBlackRook());
+        blackPieces.add(1, Piece.createBlackKnight());
+        blackPieces.add(2, Piece.createBlackBishop());
+        blackPieces.add(3, Piece.createBlackQueen());
+        blackPieces.add(4, Piece.createBlackKing());
+        blackPieces.add(5, Piece.createBlackBishop());
+        blackPieces.add(6, Piece.createBlackKnight());
+        blackPieces.add(7, Piece.createBlackRook());
     }
 
     private void initBlackPawns() {
         Rank blackPawns = getRank(Piece.BLACK_PAWN_RANK);
 
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            blackPawns.add(Piece.createBlackPawn());
+            blackPawns.add(i, Piece.createBlackPawn());
         }
     }
 
     private void initWhitePieces() {
         Rank whitePieces = getRank(Piece.WHITE_PIECES_RANK);
 
-        whitePieces.add(Piece.createWhiteRook());
-        whitePieces.add(Piece.createWhiteKnight());
-        whitePieces.add(Piece.createWhiteBishop());
-        whitePieces.add(Piece.createWhiteQueen());
-        whitePieces.add(Piece.createWhiteKing());
-        whitePieces.add(Piece.createWhiteBishop());
-        whitePieces.add(Piece.createWhiteKnight());
-        whitePieces.add(Piece.createWhiteRook());
+        whitePieces.add(0, Piece.createWhiteRook());
+        whitePieces.add(1, Piece.createWhiteKnight());
+        whitePieces.add(2, Piece.createWhiteBishop());
+        whitePieces.add(3, Piece.createWhiteQueen());
+        whitePieces.add(4, Piece.createWhiteKing());
+        whitePieces.add(5, Piece.createWhiteBishop());
+        whitePieces.add(6, Piece.createWhiteKnight());
+        whitePieces.add(7, Piece.createWhiteRook());
     }
 
     private void initWhitePawns() {
         Rank whitePawns = getRank(Piece.WHITE_PAWN_RANK);
 
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            whitePawns.add(Piece.createWhitePawn());
+            whitePawns.add(i, Piece.createWhitePawn());
         }
     }
 

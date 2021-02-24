@@ -10,8 +10,18 @@ public class Rank {
 
     private final List<Piece> pieces = new ArrayList<>(BOARD_LENGTH);
 
-    public void add(Piece piece) {
-        pieces.add(piece);
+    public Rank() {
+        initialize();
+    }
+
+    private void initialize() {
+        for (int i = 0; i < BOARD_LENGTH; i++) {
+            pieces.add(Piece.createBlank());
+        }
+    }
+
+    public void add(int file, Piece piece) {
+        pieces.set(file, piece);
     }
 
     public Piece find(int file) {

@@ -30,6 +30,11 @@ class PieceTest {
     }
 
     @Test
+    void createBlank() {
+        assertThat(Piece.createBlank()).isEqualTo(new Piece(Color.NOCOLOR, Kind.EMPTY));
+    }
+
+    @Test
     @DisplayName("검정은 대문자 하양은 소문자 반환")
     void getRepresentation() {
         assertAll(
@@ -44,7 +49,8 @@ class PieceTest {
                 () -> assertThat(new Piece(Color.BLACK, Kind.QUEEN).getRepresentation()).isEqualTo("Q"),
                 () -> assertThat(new Piece(Color.WHITE, Kind.QUEEN).getRepresentation()).isEqualTo("q"),
                 () -> assertThat(new Piece(Color.BLACK, Kind.KING).getRepresentation()).isEqualTo("K"),
-                () -> assertThat(new Piece(Color.WHITE, Kind.KING).getRepresentation()).isEqualTo("k")
+                () -> assertThat(new Piece(Color.WHITE, Kind.KING).getRepresentation()).isEqualTo("k"),
+                () -> assertThat(new Piece(Color.NOCOLOR, Kind.EMPTY).getRepresentation()).isEqualTo(".")
         );
     }
 
@@ -61,14 +67,15 @@ class PieceTest {
     }
 
     @Test
-    void isBlack_not_a_black() {
+    void isBlackNotABlack() {
         assertAll(
                 () -> assertThat(new Piece(Color.WHITE, Kind.PAWN).isBlack()).isFalse(),
                 () -> assertThat(new Piece(Color.WHITE, Kind.KNIGHT).isBlack()).isFalse(),
                 () -> assertThat(new Piece(Color.WHITE, Kind.ROOK).isBlack()).isFalse(),
                 () -> assertThat(new Piece(Color.WHITE, Kind.BISHOP).isBlack()).isFalse(),
                 () -> assertThat(new Piece(Color.WHITE, Kind.QUEEN).isBlack()).isFalse(),
-                () -> assertThat(new Piece(Color.WHITE, Kind.KING).isBlack()).isFalse()
+                () -> assertThat(new Piece(Color.WHITE, Kind.KING).isBlack()).isFalse(),
+                () -> assertThat(new Piece(Color.NOCOLOR, Kind.EMPTY).isBlack()).isFalse()
         );
     }
 
@@ -85,14 +92,15 @@ class PieceTest {
     }
 
     @Test
-    void isWhite_not_a_white() {
+    void isWhiteNotAWhite() {
         assertAll(
                 () -> assertThat(new Piece(Color.BLACK, Kind.PAWN).isWhite()).isFalse(),
                 () -> assertThat(new Piece(Color.BLACK, Kind.KNIGHT).isWhite()).isFalse(),
                 () -> assertThat(new Piece(Color.BLACK, Kind.ROOK).isWhite()).isFalse(),
                 () -> assertThat(new Piece(Color.BLACK, Kind.BISHOP).isWhite()).isFalse(),
                 () -> assertThat(new Piece(Color.BLACK, Kind.QUEEN).isWhite()).isFalse(),
-                () -> assertThat(new Piece(Color.BLACK, Kind.KING).isWhite()).isFalse()
+                () -> assertThat(new Piece(Color.BLACK, Kind.KING).isWhite()).isFalse(),
+                () -> assertThat(new Piece(Color.NOCOLOR, Kind.EMPTY).isWhite()).isFalse()
         );
     }
 }

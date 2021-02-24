@@ -1,13 +1,13 @@
 package kr.codesquad.freddie.chess.board;
 
-import kr.codesquad.freddie.chess.piece.Color;
-import kr.codesquad.freddie.chess.piece.Kind;
-import kr.codesquad.freddie.chess.piece.Piece;
-import kr.codesquad.freddie.chess.piece.PieceFactory;
+
+import kr.codesquad.freddie.chess.piece.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class File {
     public static final int SIZE = 8;
@@ -23,25 +23,23 @@ public class File {
         return this;
     }
 
-    /**
-     * 체스판의 file은 column으로, 좌측부터 a에서 시작하여 h까지의 알파벳 인덱스로 매겨진다.
-     * 첫 번째 칸 a는 array의 인덱스로 생각했을 때 0과 같고, h는 7과 같다.
-     * 예를 들어 가장 좌측의 기물을 가져오려면 get('a') 와 같이 사용할 수 있다.
-     *
-     * @param fileIndex a~h 사이의 char
-     * @return 해당 칸에 존재하는 기물
-     * @see Board#findPiece(char, int)
-     */
-    public Piece get(char fileIndex) {
-        return pieces.get(fileIndex - 'a');
-    }
-
     public Piece get(int index) {
         return pieces.get(index);
     }
 
+    public Piece set(int index, Piece piece) {
+        return pieces.set(index, piece);
+    }
+
     public int size() {
         return pieces.size();
+    }
+
+    public int getNumberOf(Color color, Kind kind) {
+        long numberOfPieces = pieces.stream()
+                .filter(piece -> piece.getColor() == color && piece.getKind() == kind)
+                .count();
+        return Long.valueOf(numberOfPieces).intValue();
     }
 
     public boolean isAddable() {
@@ -49,8 +47,16 @@ public class File {
     }
 
     public void fillWithPawn(Color color) {
+        fillWith(new Piece(color, Kind.PAWN));
+    }
+
+    public void fillWithBlank() {
+        fillWith(Piece.createBlank());
+    }
+
+    private void fillWith(Piece piece) {
         while (isAddable()) {
-            pieces.add(new Piece(color, Kind.PAWN));
+            add(piece);
         }
     }
 
@@ -66,6 +72,16 @@ public class File {
                 .add(pieceFactory.createKnight())
                 .add(pieceFactory.createRook());
 
+    }
+
+    public List<Piece> getPieces() {
+        return Collections.unmodifiableList(pieces);
+    }
+
+    public List<CalculablePiece> getCalculablePieces() {
+        return IntStream.range(0, SIZE)
+                .mapToObj(i -> CalculablePiece.create(this.pieces.get(i), (char) (i + 'a')))
+                .collect(Collectors.toList());
     }
 
     public String getRepresentation() {

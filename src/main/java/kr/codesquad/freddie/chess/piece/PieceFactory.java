@@ -7,6 +7,10 @@ public class PieceFactory {
         this.color = color;
     }
 
+    public static Piece createBlank() {
+        return Piece.createBlank();
+    }
+
     public Piece createPawn() {
         return new Piece(color, Kind.PAWN);
     }

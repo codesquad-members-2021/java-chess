@@ -3,6 +3,7 @@ package kr.codesquad.freddie.chess.board;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
+import kr.codesquad.freddie.chess.piece.PieceFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-class FileTest {
+class FileTest extends BoardTestBase {
     private File file;
 
     @BeforeEach
@@ -33,7 +34,7 @@ class FileTest {
 
     @Test
     @DisplayName("8개 초과하여 추가하는 경우")
-    void add_moreThan_8() {
+    void addMoreThan8() {
         for (int i = 0; i < File.SIZE; i++) {
             file.add(new Piece(Color.WHITE, Kind.PAWN));
         }
@@ -51,28 +52,125 @@ class FileTest {
         file.add(pieceB);
 
         assertAll(
-                () -> assertThat(file.get('a')).isEqualTo(pieceA).isEqualTo(file.get(0)),
-                () -> assertThat(file.get('b')).isEqualTo(pieceB).isEqualTo(file.get(1))
+                () -> assertThat(file.get(0)).isEqualTo(pieceA).isEqualTo(file.get(0)),
+                () -> assertThat(file.get(1)).isEqualTo(pieceB).isEqualTo(file.get(1))
         );
     }
 
     @Test
-    @DisplayName("a~h를 벗어나도록 get을 하는 경우")
-    void get_outOfRange() {
-        for (int i = 0; i < File.SIZE; i++) {
-            file.add(new Piece(Color.WHITE, Kind.PAWN));
-        }
+    void set() {
+        file.fillWithBlank();
+
+        assertThat(file.set(0, blackPieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
+        assertThat(file.set(7, whitePieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
+        assertThat(file.get(0)).isEqualTo(blackPieceFactory.createQueen());
+        assertThat(file.get(7)).isEqualTo(whitePieceFactory.createQueen());
+        assertThat(file.getRepresentation()).isEqualTo("Q......q");
+    }
+
+    @Test
+    void getPieceNumberBy() {
+
+        file.add(blackPieceFactory.createRook());
+        file.add(PieceFactory.createBlank());
+        file.add(PieceFactory.createBlank());
+        file.add(PieceFactory.createBlank());
+        file.add(blackPieceFactory.createKing());
+        file.add(whitePieceFactory.createQueen());
+        file.add(PieceFactory.createBlank());
+        file.add(blackPieceFactory.createRook());
 
         assertAll(
-                () -> assertThatThrownBy(() -> file.get('i'))
-                        .isInstanceOf(IndexOutOfBoundsException.class),
-                () -> assertThatThrownBy(() -> file.get((char) 96))
-                        .isInstanceOf(ArrayIndexOutOfBoundsException.class),
-                () -> assertThatThrownBy(() -> file.get('0'))
-                        .isInstanceOf(ArrayIndexOutOfBoundsException.class),
-                () -> assertThatThrownBy(() -> file.get((char) 0))
-                        .isInstanceOf(ArrayIndexOutOfBoundsException.class)
+                () -> assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(2),
+                () -> assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1),
+                () -> assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(1),
+                () -> assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(4)
         );
+    }
+
+    @Test
+    void getPieceNumberByFillWithBlackPawn() {
+        file.fillWithPawn(Color.BLACK);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(8);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(0);
+    }
+
+    @Test
+    void getPieceNumberByFillWithBlackRoyal() {
+        file.fillWithRoyal(Color.BLACK);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(1);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(0);
+
+        assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(0);
+
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(0);
+    }
+
+    @Test
+    void getPieceNumberByFillWithWhitePawn() {
+        file.fillWithPawn(Color.WHITE);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(8);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(0);
+    }
+
+    @Test
+    void getPieceNumberByFillWithWhiteRoyal() {
+        file.fillWithRoyal(Color.WHITE);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.BISHOP)).isEqualTo(2);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(1);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(1);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(0);
+
+        assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(0);
+
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(0);
+    }
+
+    @Test
+    void getPieceNumberByFillWithBlank() {
+        file.fillWithBlank();
+
+        assertThat(file.getNumberOf(Color.NOCOLOR, Kind.EMPTY)).isEqualTo(8);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.BISHOP)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(0);
+        assertThat(file.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(0);
     }
 
     @Test
@@ -87,15 +185,21 @@ class FileTest {
     }
 
     @Test
-    void fillWith_black() {
+    void fillWithBlack() {
         file.fillWithPawn(Color.BLACK);
         checkFillWith(Color.BLACK);
     }
 
     @Test
-    void fillWith_white() {
+    void fillWithWhite() {
         file.fillWithPawn(Color.WHITE);
         checkFillWith(Color.WHITE);
+    }
+
+    @Test
+    void fillWithBlank() {
+        file.fillWithBlank();
+        checkFillWith(Color.NOCOLOR);
     }
 
     private void checkFillWith(Color expected) {
@@ -105,26 +209,32 @@ class FileTest {
     }
 
     @Test
-    void getRepresentation_fillWithBlackPawn() {
+    void getRepresentationFillWithBlackPawn() {
         file.fillWithPawn(Color.BLACK);
         assertThat(file.getRepresentation()).isEqualTo("PPPPPPPP");
     }
 
     @Test
-    void getRepresentation_fillWithWhitePawn() {
+    void getRepresentationFillWithWhitePawn() {
         file.fillWithPawn(Color.WHITE);
         assertThat(file.getRepresentation()).isEqualTo("pppppppp");
     }
 
     @Test
-    void getRepresentation_fillWithBlackRoyal() {
+    void getRepresentationFillWithBlackRoyal() {
         file.fillWithRoyal(Color.BLACK);
         assertThat(file.getRepresentation()).isEqualTo("RNBQKBNR");
     }
 
     @Test
-    void getRepresentation_fillWithWhiteRoyal() {
+    void getRepresentationFillWithWhiteRoyal() {
         file.fillWithRoyal(Color.WHITE);
         assertThat(file.getRepresentation()).isEqualTo("rnbqkbnr");
+    }
+
+    @Test
+    void getRepresentationFillWithBlank() {
+        file.fillWithBlank();
+        assertThat(file.getRepresentation()).isEqualTo("........");
     }
 }

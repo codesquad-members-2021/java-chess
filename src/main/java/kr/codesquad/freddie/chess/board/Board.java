@@ -1,10 +1,12 @@
 package kr.codesquad.freddie.chess.board;
 
+import kr.codesquad.freddie.chess.piece.CalculablePiece;
 import kr.codesquad.freddie.chess.piece.Color;
+import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Board {
@@ -18,6 +20,33 @@ public class Board {
         }
     }
 
+    public Board initialize() {
+        initializePieceBy(Color.BLACK);
+        initializeEmptyPiece();
+        initializePieceBy(Color.WHITE);
+        return this;
+    }
+
+    private void initializePieceBy(Color color) {
+        int royalIndex = new RankIndex(color.royalInitializationRank()).getRankIndexForList();
+        int pawnIndex = new RankIndex(color.pawnInitializationRank()).getRankIndexForList();
+
+        files.get(royalIndex).fillWithRoyal(color);
+        files.get(pawnIndex).fillWithPawn(color);
+    }
+
+    private void initializeEmptyPiece() {
+        files.get(new RankIndex(3).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndex(4).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndex(5).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndex(6).getRankIndexForList()).fillWithBlank();
+    }
+
+    public void move(String source, String destination) {
+        set(destination, findPiece(source));
+        set(source, Piece.createBlank());
+    }
+
     public void add(Piece piece) {
         files.stream()
                 .filter(File::isAddable)
@@ -26,16 +55,10 @@ public class Board {
                 .add(piece);
     }
 
-    public int pieceCount() {
-        return files.stream()
-                .mapToInt(File::size)
-                .sum();
-    }
-
     /**
      * 체스판은 아래와 같이 8*8칸으로 구성되는데, coulmn은 file row는 rank라고 한다.
      * 각 칸은 h1, d6와 같이 file + rank로 명명한다.
-     * 만약 h1에 있는 체스말을 찾고 싶으면 findPiece(h, 1) 과 같이 사용할 수 있다.
+     * 만약 h1에 있는 체스말을 찾고 싶으면 <code>findPiece("h1")</code> 과 같이 사용할 수 있다.
      *
      * <p>
      * <code>
@@ -52,31 +75,35 @@ public class Board {
      * ╚══╧══╧══╧══╧══╧══╧══╧══╝╯
      * </code>
      *
-     * @param fileIndex a~h 사이의 char
-     * @param rankIndex 1~8 사이의 int
+     * @param position a~h 사이의 알파벳과 1~8 사이의 숫자 조합
      * @return 해당 칸에 존재하는 기물
      * @see <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      */
-    public Piece findPiece(char fileIndex, int rankIndex) {
-        return files.get(convertRankIndexToListIndex(rankIndex)).get(fileIndex);
+    public Piece findPiece(String position) {
+        Position positionConverter = Position.of(position);
+        return files.get(positionConverter.getRankIndexForList())
+                .get(positionConverter.getFileIndexForList());
     }
 
-    public Board initialize() {
-        initializeBy(Color.BLACK);
-        initializeBy(Color.WHITE);
-        return this;
+    public Piece set(String position, Piece piece) {
+        Position positionConverter = Position.of(position);
+
+        return files.get(positionConverter.getRankIndexForList())
+                .set(positionConverter.getFileIndexForList(), piece);
     }
 
-    private void initializeBy(Color color) {
-        int royalIndex = convertRankIndexToListIndex(color.royalInitializationRank());
-        int pawnIndex = convertRankIndexToListIndex(color.pawnInitializationRank());
-
-        files.get(royalIndex).fillWithRoyal(color);
-        files.get(pawnIndex).fillWithPawn(color);
+    public int pieceCount() {
+        return files.stream()
+                .mapToInt(File::size)
+                .sum();
     }
 
-    private int convertRankIndexToListIndex(int rankIndex) {
-        return RANK_SIZE - rankIndex;
+    public List<Piece> getPiecesBy(Color color) {
+        return files.stream()
+                .flatMap(file -> file.getPieces().stream())
+                .filter(file -> file.getColor() == color)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public String getRepresentation() {
@@ -85,10 +112,25 @@ public class Board {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
+    public int getNumberOf(Color color, Kind kind) {
+        return files.stream()
+                .mapToInt(file -> file.getNumberOf(color, kind))
+                .sum();
+    }
+
+    public Map<CalculablePiece, Double> groupingByCalculablePiece(Color color) {
+        return files.stream()
+                .flatMap(file -> file.getCalculablePieces().stream())
+                .filter(calculablePiece -> calculablePiece.getColor() == color)
+                .collect(Collectors.groupingBy(Function.identity(),
+                        Collectors.summingDouble(CalculablePiece::getPoint)
+                ));
+    }
+
     @Override
     public String toString() {
-        return "Board{" + System.lineSeparator() +
-                "files=" + System.lineSeparator() + files +
+        return "Board{" +
+                "files=" + files +
                 '}';
     }
 }

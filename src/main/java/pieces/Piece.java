@@ -13,7 +13,7 @@ public class Piece {
     }
 
     private char classifyRepresentation(){
-        char representation = getRepresentation();
+        char representation = type.getRepresentation();
         if(isBlack())
             return Character.toUpperCase(representation);
 

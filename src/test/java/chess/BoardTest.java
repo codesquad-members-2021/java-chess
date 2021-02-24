@@ -43,9 +43,13 @@ class BoardTest {
     @DisplayName("해당 위치의 기물이 올바르게 반환되는지 확인한다.")
     @Test
     void findPiece() {
-        assertThat(board.findPiece("a8").getColor())
-                .isEqualTo(Piece.createBlackRook().getColor());
-        assertThat(board.findPiece("a8").getType())
-                .isEqualTo(Piece.createBlackRook().getType());
+        assertThat(board.findPiece("a8"))
+                .isEqualTo(Piece.createBlackRook());
+        assertThat(board.findPiece("h8"))
+                .isEqualTo(Piece.createBlackRook());
+        assertThat(board.findPiece("a1"))
+                .isEqualTo(Piece.createWhiteRook());
+        assertThat(board.findPiece("h1"))
+                .isEqualTo(Piece.createWhiteRook());
     }
 }

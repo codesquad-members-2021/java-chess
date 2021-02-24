@@ -15,7 +15,7 @@ public class PieceTest {
     }
 
     private void verifyPiece(Color color, PieceType pieceType) {
-        Piece piece = Piece.createPiece(color, pieceType, new Position("a1"));
+        Piece piece = Piece.createPiece(color, pieceType);
         assertThat(piece.getPieceType()).isEqualTo((pieceType));
         assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getRepresentation(color)).isEqualTo(pieceType.getRepresentation(color));

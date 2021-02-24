@@ -3,7 +3,6 @@ package net.eno.chess;
 import net.eno.pieces.Color;
 import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
-import net.eno.pieces.Position;
 import org.junit.jupiter.api.*;
 import static org.assertj.core.api.Assertions.*;
 
@@ -22,19 +21,19 @@ public class BoardTest {
     @Test
     @DisplayName("초기화 된 보드의 기물의 개수가 32개여야 한다.")
     public void size() {
-        assertThat(board.pieceCount()).isEqualTo(32);
+        assertThat(board.countPiece()).isEqualTo(32);
     }
 
     @Test
     @DisplayName("타입 별 기물의 개수가 일치해야 한다.")
     public void count() {
-        assertThat(board.targetPieceCount(Color.WHITE, PieceType.PAWN)).isEqualTo(8);
-        assertThat(board.targetPieceCount(Color.BLACK, PieceType.ROOK)).isEqualTo(2);
-        assertThat(board.targetPieceCount(Color.WHITE, PieceType.KNIGHT)).isEqualTo(2);
-        assertThat(board.targetPieceCount(Color.BLACK, PieceType.BISHOP)).isEqualTo(2);
-        assertThat(board.targetPieceCount(Color.WHITE, PieceType.QUEEN)).isEqualTo(1);
-        assertThat(board.targetPieceCount(Color.BLACK, PieceType.KING)).isEqualTo(1);
-        assertThat(board.targetPieceCount(Color.NOCOLOR, PieceType.NO_PIECE)).isEqualTo(32);
+        assertThat(board.countTargetPiece(Color.WHITE, PieceType.PAWN)).isEqualTo(8);
+        assertThat(board.countTargetPiece(Color.BLACK, PieceType.ROOK)).isEqualTo(2);
+        assertThat(board.countTargetPiece(Color.WHITE, PieceType.KNIGHT)).isEqualTo(2);
+        assertThat(board.countTargetPiece(Color.BLACK, PieceType.BISHOP)).isEqualTo(2);
+        assertThat(board.countTargetPiece(Color.WHITE, PieceType.QUEEN)).isEqualTo(1);
+        assertThat(board.countTargetPiece(Color.BLACK, PieceType.KING)).isEqualTo(1);
+        assertThat(board.countTargetPiece(Color.NOCOLOR, PieceType.NO_PIECE)).isEqualTo(32);
     }
 
     @Test
@@ -60,10 +59,10 @@ public class BoardTest {
     @Test
     @DisplayName("체스판에 해당하는 좌표의 기물을 가져올 수 있어야 한다.")
     public void findPiece() {
-        assertThat(board.findPiece("a8")).isEqualTo(Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position("a8")));
-        assertThat(board.findPiece("h8")).isEqualTo(Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position("h8")));
-        assertThat(board.findPiece("a1")).isEqualTo(Piece.createPiece(Color.WHITE, PieceType.ROOK, new Position("a1")));
-        assertThat(board.findPiece("h1")).isEqualTo(Piece.createPiece(Color.WHITE, PieceType.ROOK, new Position("h1")));
+        assertThat(board.findPiece("a8")).isEqualTo(Piece.createPiece(Color.BLACK, PieceType.ROOK));
+        assertThat(board.findPiece("h8")).isEqualTo(Piece.createPiece(Color.BLACK, PieceType.ROOK));
+        assertThat(board.findPiece("a1")).isEqualTo(Piece.createPiece(Color.WHITE, PieceType.ROOK));
+        assertThat(board.findPiece("h1")).isEqualTo(Piece.createPiece(Color.WHITE, PieceType.ROOK));
     }
 
     @Test
@@ -72,7 +71,7 @@ public class BoardTest {
         board.initializeEmpty();
 
         String position = "b5";
-        Piece piece = Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position(position));
+        Piece piece = Piece.createPiece(Color.BLACK, PieceType.ROOK);
         board.move(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
@@ -84,15 +83,15 @@ public class BoardTest {
     public void calculatePoint()  {
         board.initializeEmpty();
 
-        addPiece("b6", Piece.createPiece(Color.BLACK, PieceType.PAWN, new Position("b6")));
-        addPiece("e6", Piece.createPiece(Color.BLACK, PieceType.QUEEN, new Position("e6")));
-        addPiece("b8", Piece.createPiece(Color.BLACK, PieceType.KING, new Position("b8")));
-        addPiece("c8", Piece.createPiece(Color.BLACK, PieceType.ROOK, new Position("c8")));
+        addPiece("b6", Piece.createPiece(Color.BLACK, PieceType.PAWN));
+        addPiece("e6", Piece.createPiece(Color.BLACK, PieceType.QUEEN));
+        addPiece("b8", Piece.createPiece(Color.BLACK, PieceType.KING));
+        addPiece("c8", Piece.createPiece(Color.BLACK, PieceType.ROOK));
 
-        addPiece("f2", Piece.createPiece(Color.WHITE, PieceType.PAWN, new Position("f2")));
-        addPiece("f3", Piece.createPiece(Color.WHITE, PieceType.PAWN, new Position("f3")));
-        addPiece("e1", Piece.createPiece(Color.WHITE, PieceType.ROOK, new Position("e1")));
-        addPiece("f1", Piece.createPiece(Color.WHITE, PieceType.KING, new Position("f1")));
+        addPiece("f2", Piece.createPiece(Color.WHITE, PieceType.PAWN));
+        addPiece("f3", Piece.createPiece(Color.WHITE, PieceType.PAWN));
+        addPiece("e1", Piece.createPiece(Color.WHITE, PieceType.ROOK));
+        addPiece("f1", Piece.createPiece(Color.WHITE, PieceType.KING));
 
         assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(15.0);
         assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(6.0);

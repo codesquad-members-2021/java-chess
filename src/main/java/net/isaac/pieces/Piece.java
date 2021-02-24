@@ -12,9 +12,9 @@ public class Piece {
     //Board 출력을 위한 문자 반환
     public char getRepresentation() {
         if (color == Color.BLACK) {
-            return Character.toUpperCase(type.representation);
+            return type.getBlackRepresentation();
         }
-        return type.representation;
+        return type.getWhiteRepresentation();
     }
 
     public Color getColor() {
@@ -42,10 +42,18 @@ public class Piece {
     public enum Type {
         PAWN('p'), KING('k'), QUEEN('q'), ROOK('r'),
         BISHOP('b'), KNIGHT('n'), BLANK('.');
-        public final char representation;
+        private final char representation;
 
         Type(char representation) {
             this.representation = representation;
+        }
+
+        public char getWhiteRepresentation() {
+            return representation;
+        }
+
+        public char getBlackRepresentation() {
+            return Character.toUpperCase(representation);
         }
     }
 }

@@ -3,9 +3,6 @@ package net.isaac.chess;
 import net.isaac.pieces.Piece;
 import net.isaac.utils.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Board {
     private static final int MAX_SIZE = 8;
     private static final int MAX_IDX = MAX_SIZE - 1;

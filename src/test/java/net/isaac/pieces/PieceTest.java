@@ -57,9 +57,9 @@ class PieceTest {
     void verifyPiece(final Piece white, final Piece black, final Piece.Type type) {
         assertAll(
                 () -> assertThat(white.getColor()).isEqualTo(Piece.Color.WHITE),
-                () -> assertThat(white.getRepresentation()).isEqualTo(type.representation),
+                () -> assertThat(white.getRepresentation()).isEqualTo(type.getWhiteRepresentation()),
                 () -> assertThat(black.getColor()).isEqualTo(Piece.Color.BLACK),
-                () -> assertThat(black.getRepresentation()).isEqualTo(Character.toUpperCase(type.representation))
+                () -> assertThat(black.getRepresentation()).isEqualTo(Character.toUpperCase(type.getBlackRepresentation()))
         );
     }
 

@@ -15,11 +15,11 @@ public class Board {
 
     public static final int PAWN_NUMBER = 8;
 
-    private void addWhitePawn(Piece whitePawn) {
+    public void addWhitePawn(Piece whitePawn) {
         whitePawns.add(whitePawn);
     }
 
-    private void addBlackPawn(Piece blackPawn) {
+    public void addBlackPawn(Piece blackPawn) {
         blackPawns.add(blackPawn);
     }
 

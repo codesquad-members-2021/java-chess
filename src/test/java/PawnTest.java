@@ -1,4 +1,5 @@
 import net.sanhee.pieces.Piece;
+import net.sanhee.pieces.PieceFactory;
 import net.sanhee.pieces.UnitColor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,28 +9,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 class PawnTest {
 
     @Test
-    @DisplayName("흰색 폰(p)이 생성되어야 한다.")
+    @DisplayName("흰색 폰(소문자 p)이(가) 생성되어야 한다.")
     void createWhitePawn() {
-        verifyPawn(UnitColor.WHITE, Piece.WHITE_REPRESENTATION);
+        Piece pawn = PieceFactory.createPawn(UnitColor.WHITE);
+        verifyPawn(pawn.getRepresentation(), UnitColor.WHITE);
     }
 
     @Test
-    @DisplayName("검은색 폰(P)이 생성되어야 한다.")
+    @DisplayName("검은색 폰(대문자 P)이(가) 생성되어야 한다.")
     void createBlackPawn() {
-        verifyPawn(UnitColor.BLACK, Piece.BLACK_REPRESENTATION);
+        Piece pawn = PieceFactory.createPawn(UnitColor.BLACK);
+        verifyPawn(pawn.getRepresentation(), UnitColor.BLACK);
     }
 
-    @Test
-    @DisplayName("색이 없는 Pawn을 생성할 경우, 흰색 폰(p)을 지정한다.")
-    void createDefaultPawn() {
-        Piece pawn = new Piece();
-        assertThat(pawn.getColor()).isEqualTo(UnitColor.WHITE);
-        assertThat(pawn.getRepresentation()).isEqualTo(Piece.WHITE_REPRESENTATION);
-    }
-
-    void verifyPawn(final UnitColor color, final char representation) {
-        Piece pawn = new Piece(color);
-        assertThat(pawn.getColor()).isEqualTo(color);
+    void verifyPawn(final char representation, final UnitColor expectColor) {
+        Piece pawn = PieceFactory.createPawn(expectColor);
+        assertThat(pawn.getColor()).isEqualTo(expectColor);
         assertThat(pawn.getRepresentation()).isEqualTo(representation);
     }
 

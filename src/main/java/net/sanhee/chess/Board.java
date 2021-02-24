@@ -1,6 +1,9 @@
 package net.sanhee.chess;
 
-import net.sanhee.pieces.*;
+import net.sanhee.pieces.Pawn;
+import net.sanhee.pieces.Piece;
+import net.sanhee.pieces.PieceFactory;
+import net.sanhee.pieces.UnitColor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +50,7 @@ public class Board {
 
     private void arrayPawnInit(UnitColor unitColor) {
         for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
-            pawns.add(new PieceFactory().create(UnitType.PAWN, unitColor));
+            pawns.add(PieceFactory.createPawn(unitColor));
         }
     }
 

@@ -1,5 +1,6 @@
 import net.sanhee.chess.Board;
 import net.sanhee.pieces.Piece;
+import net.sanhee.pieces.PieceFactory;
 import net.sanhee.pieces.UnitColor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -31,8 +32,8 @@ class BoardTest {
         pawnLocationCheck(board, blackPawn, 1);
     }
 
-    Piece spawnPawn(Board board, UnitColor color) {
-        Piece pawn = new Piece(color);
+    Piece spawnPawn(Board board, UnitColor unitColor) {
+        Piece pawn = PieceFactory.createPawn(unitColor);
         board.add(pawn);
         totalPawnCnt++;
 

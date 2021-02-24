@@ -73,4 +73,18 @@ class BoardTest {
                 () -> assertThat(board.getRank(1).getRankRepresentation()).isEqualTo("rnbqkbnr")
         );
     }
+
+    @Test
+    @DisplayName("findPiece메서드는 주어진 위치의 piece를 리턴한다.")
+    void checkFindPiece() {
+        assertAll (
+                () -> assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlackRook()),
+                () -> assertThat(board.findPiece("e7")).isEqualTo(Piece.createBlackPawn()),
+                () -> assertThat(board.findPiece("f8")).isEqualTo(Piece.createBlackBishop()),
+
+                () -> assertThat(board.findPiece("f2")).isEqualTo(Piece.createWhitePawn()),
+                () -> assertThat(board.findPiece("d1")).isEqualTo(Piece.createWhiteQueen()),
+                () -> assertThat(board.findPiece("g1")).isEqualTo(Piece.createWhiteKnight())
+        );
+    }
 }

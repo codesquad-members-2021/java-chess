@@ -58,34 +58,6 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
-    void moveKng() {
-        for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(Piece.createBlank());
-        }
-
-        board.set("b3", blackPieceFactory.createKing());
-        board.set("b4", whitePieceFactory.createPawn());
-
-        board.move("b3", "b4");
-        assertThat(board.findPiece("b3")).isEqualTo(Piece.createBlank());
-        assertThat(board.findPiece("b4")).isEqualTo(blackPieceFactory.createKing());
-    }
-
-    @Test
-    void moveKingToSameColor() {
-        for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(Piece.createBlank());
-        }
-
-        board.set("b3", blackPieceFactory.createKing());
-        board.set("b4", whitePieceFactory.createPawn());
-
-        board.move("b3", "b4");
-        assertThat(board.findPiece("b3")).isEqualTo(Piece.createBlank());
-        assertThat(board.findPiece("b4")).isEqualTo(blackPieceFactory.createKing());
-    }
-
-    @Test
     @DisplayName("1개 부터 64개까지 넣으면서 사이즈 일치하는지 확인")
     void add() {
         for (int i = 0; i <= MAX_SIZE; i++) {
@@ -188,6 +160,57 @@ class BoardTest extends BoardTestBase {
                 whitePieceFactory.createPawn(),
                 whitePieceFactory.createKing()
         ));
+    }
+
+    @Test
+    void moveKing() {
+        initBoardWithBlank();
+        checkMoveKing("b3", "b4");
+        checkMoveKing("b3", "b2");
+        checkMoveKing("b3", "c3");
+        checkMoveKing("b3", "a3");
+        checkMoveKing("b3", "c4");
+        checkMoveKing("b3", "a4");
+        checkMoveKing("b3", "c2");
+        checkMoveKing("b3", "a2");
+    }
+
+    private void checkMoveKing(String source, String target) {
+        board.set(source, blackPieceFactory.createKing());
+        board.set(target, whitePieceFactory.createPawn());
+        board.move(source, target);
+
+        assertThat(board.findPiece(source)).isEqualTo(Piece.createBlank());
+        assertThat(board.findPiece(target)).isEqualTo(blackPieceFactory.createKing());
+    }
+
+    @Test
+    void moveKingToWrongTarget() {
+        initBoardWithBlank();
+        checkMoveKingToWrongTarget("b3", "b5");
+        checkMoveKingToWrongTarget("b3", "b1");
+        checkMoveKingToWrongTarget("b3", "d3");
+        checkMoveKingToWrongTarget("c3", "a3");
+    }
+
+    private void checkMoveKingToWrongTarget(String source, String target) {
+        board.set(source, blackPieceFactory.createKing());
+        assertThatThrownBy(()->board.move(source, target))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void moveToSameColor() {
+        initBoardWithBlank();
+        board.set("b3", blackPieceFactory.createKing());
+        board.set("b4", blackPieceFactory.createPawn());
+
+        assertThatThrownBy(() -> board.move("b3", "b4"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이동 위치의 기물이 같은 색상입니다. source : Piece{color=BLACK, kind=KING}, target : Piece{color=BLACK, kind=PAWN}");
+        assertThatThrownBy(() -> board.move("b3", "b3"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("이동 위치의 기물이 같은 색상입니다. source : Piece{color=BLACK, kind=KING}, target : Piece{color=BLACK, kind=KING}");
     }
 
     @Test
@@ -296,5 +319,11 @@ class BoardTest extends BoardTestBase {
         assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createBishop(), 'f'))).isEqualTo(Kind.BISHOP.point());
         assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createKnight(), 'g'))).isEqualTo(Kind.KNIGHT.point());
         assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createRook(), 'h'))).isEqualTo(Kind.ROOK.point());
+    }
+
+    private void initBoardWithBlank() {
+        for (int i = 0; i < MAX_SIZE; i++) {
+            board.add(Piece.createBlank());
+        }
     }
 }

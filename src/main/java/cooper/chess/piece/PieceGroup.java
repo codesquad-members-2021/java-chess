@@ -83,4 +83,8 @@ public class PieceGroup {
                 .filter(piece -> piece.getType() == type)
                 .count();
     }
+
+    public Piece findPiece(int yPos, int xPos) {
+        return pieceList.get(8 * yPos + xPos);
+    }
 }

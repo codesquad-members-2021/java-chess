@@ -12,6 +12,10 @@ public class Board {
     private final Map<Position, Piece> squares = new LinkedHashMap<>();
     private final int BOARD_SIZE = 8;
 
+    Board() {
+        initialize();
+    }
+
     public void addPiece(Position position, Piece piece) {
         squares.put(position, piece);
     }
@@ -108,7 +112,7 @@ public class Board {
                     point += getPawnPoint(pieces);
                     continue;
                 }
-                point += piece.getPoint(piece.getType());
+                point += piece.getPoint();
             }
         }
         return point;
@@ -133,5 +137,15 @@ public class Board {
         return pawnCount > 1 ? pawnPoint / 2 : pawnPoint;
     }
 
+    public List<Piece> getPiecesSortedByPoint(Color color) {
+        List<Piece> pieces = new ArrayList<>();
+        for (Piece piece : squares.values()) {
+            if (piece.getColor() == color) {
+                pieces.add(piece);
+            }
+        }
+        Collections.sort(pieces);
+        return pieces;
+    }
 }
 

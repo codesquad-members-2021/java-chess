@@ -39,4 +39,23 @@ public class Rank {
     public void set(int index, Piece piece) {
         pieces.set(index, piece);
     }
+
+    public double calculatePoint(Piece.Color color) {
+        double point = pieces.stream()
+                .filter(piece -> piece.getColor() == color)
+                .mapToDouble(piece -> piece.getType().getDefaultPoint())
+                .sum();
+        return point;
+    }
+
+    public List<Integer> getFilesOfPawns(Piece.Color color) {
+        List<Integer> filesOfPawns = new ArrayList<>();
+        for (int i = 0; i < pieces.size(); i++) {
+            Piece piece = pieces.get(i);
+            if (piece.getType() == Piece.Type.PAWN && piece.getColor() == color) {
+                filesOfPawns.add(i);
+            }
+        }
+        return filesOfPawns;
+    }
 }

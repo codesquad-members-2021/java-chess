@@ -28,7 +28,7 @@ public class Board {
         }
     }
 
-    public int pieceCount() { // 전체 기물의 개수를 반환한다.
+    public int pieceCount() {
         return board.get(Board.RANK1).size()
                 + board.get(Board.RANK2).size()
                 + board.get(Board.RANK7).size()
@@ -60,7 +60,6 @@ public class Board {
         board.get(rank).set(file, piece);
     }
 
-    /* 체스판을 초기화한다. */
     public void initialize() {
         addBlackPieces();
         addBlackPawns();
@@ -161,5 +160,43 @@ public class Board {
             piecesRepresentations.append(representation);
         }
         return piecesRepresentations.toString();
+    }
+
+    public double calculatePoint(Piece.Color color) {
+        double point = 0;
+        List<Integer> filesOfPawnsInAboveRank = new ArrayList<>();
+        for (Rank rank : board) {
+            point += rank.calculatePoint(color);
+            double doublePawn = getDoublePawn(filesOfPawnsInAboveRank, rank.getFilesOfPawns(color));
+            point -= doublePawn;
+            filesOfPawnsInAboveRank = rank.getFilesOfPawns(color);
+        }
+        return point;
+    }
+
+    /**
+     *  2개 이상 pawn이 중첩될 경우 각 pawn을 0.5점으로 계산해야되는데,
+     *  현재 로직은 2개 이상이어도 무조건 1을 반환한다.
+     */
+    private double getDoublePawn(List<Integer> filesOfPawnsInAboveRank, List<Integer> filesOfPawns) {
+        if (filesOfPawnsInAboveRank.size() == 0) return 0;
+        if (filesOfPawns.size() == 0) return 0;
+
+        double doublePawn = 0;
+
+        if (filesOfPawnsInAboveRank.size() > filesOfPawns.size()) {
+            for (int i = 0; i < filesOfPawns.size(); i++) {
+                if (filesOfPawnsInAboveRank.contains(filesOfPawns.get(i))) {
+                    doublePawn += 1;
+                }
+            }
+        } else {
+            for (int i = 0; i < filesOfPawnsInAboveRank.size(); i++) {
+                if (filesOfPawns.contains(filesOfPawnsInAboveRank.get(i))) {
+                    doublePawn += 1;
+                }
+            }
+        }
+        return doublePawn;
     }
 }

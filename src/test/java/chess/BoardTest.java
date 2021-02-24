@@ -76,19 +76,39 @@ public class BoardTest {
     void calculate_score() {
         board.initializeEmpty();
 
-        board.putPieceIn("b6", Piece.createBlack(Piece.Type.PAWN));  // 1
-        board.putPieceIn("e6", Piece.createBlack(Piece.Type.QUEEN)); // 9
+        board.putPieceIn("b6", Piece.createBlack(Piece.Type.PAWN));  // 1.0
+        board.putPieceIn("e6", Piece.createBlack(Piece.Type.QUEEN)); // 9.0
         board.putPieceIn("b8", Piece.createBlack(Piece.Type.KING));
-        board.putPieceIn("c8", Piece.createBlack(Piece.Type.ROOK));  // 5
+        board.putPieceIn("c8", Piece.createBlack(Piece.Type.ROOK));  // 5.0
 
-        board.putPieceIn("f2", Piece.createWhite(Piece.Type.PAWN));  // 1
-        board.putPieceIn("g2", Piece.createWhite(Piece.Type.PAWN));  // 1
-        board.putPieceIn("e1", Piece.createWhite(Piece.Type.ROOK));  // 5
+        board.putPieceIn("f2", Piece.createWhite(Piece.Type.PAWN));  // 1.0
+        board.putPieceIn("g2", Piece.createWhite(Piece.Type.PAWN));  // 1.0
+        board.putPieceIn("e1", Piece.createWhite(Piece.Type.ROOK));  // 5.0
         board.putPieceIn("f1", Piece.createWhite(Piece.Type.KING));
+
+        System.out.println(board.showBoard());
 
         assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(15.0);
         assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(7.0);
+    }
+
+    @Test
+    @DisplayName("두개의 pawn이 세로로 있는 경우 0.5이 된다.")
+    void calculate_pawn_duplicate_score() {
+        board.initializeEmpty();
+
+        board.putPieceIn("a7", Piece.createBlack(Piece.Type.PAWN));  // 0.5
+        board.putPieceIn("a8", Piece.createBlack(Piece.Type.PAWN));  // 0.5
+
+        board.putPieceIn("b1", Piece.createWhite(Piece.Type.PAWN));  // 0.5
+        board.putPieceIn("b2", Piece.createWhite(Piece.Type.PAWN));  // 0.5
+        board.putPieceIn("d2", Piece.createWhite(Piece.Type.PAWN));  // 0.5
+        board.putPieceIn("d3", Piece.createWhite(Piece.Type.PAWN));  // 0.5
+        board.putPieceIn("d4", Piece.createWhite(Piece.Type.PAWN));  // 0.5
 
         System.out.println(board.showBoard());
+
+        assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(2.5);
+        assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(1.0);
     }
 }

@@ -6,7 +6,7 @@ public class StringUtils {
     private StringUtils() {
     }
 
-    static String appendNewLine(String str) {
+    public static String appendNewLine(String str) {
         return str + NEWLINE;
     }
 }

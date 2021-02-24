@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pieces.Pawn;
+import static utils.StringUtils.appendNewLine;
 
 public class Board {
     private static int PAWN_NUM = 8;
@@ -69,21 +70,14 @@ public class Board {
 
     void print() {
         StringBuilder sb = new StringBuilder();
-        sb.append(getBlankLine());
-        sb.append('\n');
-        sb.append(getBlackPawnsResult());
-        sb.append('\n');
-        sb.append(getBlankLine());
-        sb.append('\n');
-        sb.append(getBlankLine());
-        sb.append('\n');
-        sb.append(getBlankLine());
-        sb.append('\n');
-        sb.append(getBlankLine());
-        sb.append('\n');
-        sb.append(getWhitePawnsResult());
-        sb.append('\n');
-        sb.append(getBlankLine());
+        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getBlackPawnsResult()));
+        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getWhitePawnsResult()));
+        sb.append(appendNewLine(getBlankLine()));
         System.out.println(sb.toString());
     }
 

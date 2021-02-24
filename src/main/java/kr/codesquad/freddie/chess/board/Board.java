@@ -93,13 +93,13 @@ public class Board {
      * @see <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      */
     public Piece findPiece(String position) {
-        PositionConverter positionConverter = PositionConverter.createBy(position);
+        PositionConverter positionConverter = PositionConverter.of(position);
         return files.get(positionConverter.getRankIndexForList())
                 .get(positionConverter.getFileIndexForList());
     }
 
     public Piece set(String position, Piece piece) {
-        PositionConverter positionConverter = PositionConverter.createBy(position);
+        PositionConverter positionConverter = PositionConverter.of(position);
 
         return files.get(positionConverter.getRankIndexForList())
                 .set(positionConverter.getFileIndexForList(), piece);

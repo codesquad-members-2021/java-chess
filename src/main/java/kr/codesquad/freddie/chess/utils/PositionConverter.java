@@ -9,7 +9,7 @@ public class PositionConverter {
         this.rankIndexConverter = rankIndexConverter;
     }
 
-    public static PositionConverter createBy(String position) {
+    public static PositionConverter of(String position) {
         char fileIndex = position.charAt(0);
         int rankIndex = Character.getNumericValue(position.charAt(1));
         return new PositionConverter(new FileIndexConverter(fileIndex), new RankIndexConverter(rankIndex));

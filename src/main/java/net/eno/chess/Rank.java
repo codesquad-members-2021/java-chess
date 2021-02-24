@@ -3,7 +3,6 @@ package net.eno.chess;
 import net.eno.pieces.Color;
 import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
-import net.eno.pieces.Position;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,25 +15,24 @@ public class Rank {
         rank = new ArrayList<>();
     }
 
-    public static Rank createOnePieceRank(int rankNumber, Color color, PieceType pieceType) {
+    public static Rank createOnePieceRank(Color color, PieceType pieceType) {
         Rank rank = new Rank();
-        for (int i = 0; i < 8; i++) {
-            String position = String.valueOf((char)('a' + i)) + rankNumber;
-            rank.addPiece(Piece.createPiece(color, pieceType, new Position(position)));
+        for (int file = 0; file < 8; file++) {
+            rank.addPiece(Piece.createPiece(color, pieceType));
         }
         return rank;
     }
 
-    public static Rank createMultiplePieceRank(int rankNumber, Color color) {
+    public static Rank createMultiplePieceRank(Color color) {
         Rank rank = new Rank();
-        rank.addPiece(Piece.createPiece(color, PieceType.ROOK, new Position("a" + rankNumber)));
-        rank.addPiece(Piece.createPiece(color, PieceType.KNIGHT, new Position("b" + rankNumber)));
-        rank.addPiece(Piece.createPiece(color, PieceType.BISHOP, new Position("c" + rankNumber)));
-        rank.addPiece(Piece.createPiece(color, PieceType.QUEEN, new Position("d" + rankNumber)));
-        rank.addPiece(Piece.createPiece(color, PieceType.KING, new Position("e" + rankNumber)));
-        rank.addPiece(Piece.createPiece(color, PieceType.BISHOP, new Position("f" + rankNumber)));
-        rank.addPiece(Piece.createPiece(color, PieceType.KNIGHT, new Position("g" + rankNumber)));
-        rank.addPiece(Piece.createPiece(color, PieceType.ROOK, new Position("h" + rankNumber)));
+        rank.addPiece(Piece.createPiece(color, PieceType.ROOK));
+        rank.addPiece(Piece.createPiece(color, PieceType.KNIGHT));
+        rank.addPiece(Piece.createPiece(color, PieceType.BISHOP));
+        rank.addPiece(Piece.createPiece(color, PieceType.QUEEN));
+        rank.addPiece(Piece.createPiece(color, PieceType.KING));
+        rank.addPiece(Piece.createPiece(color, PieceType.BISHOP));
+        rank.addPiece(Piece.createPiece(color, PieceType.KNIGHT));
+        rank.addPiece(Piece.createPiece(color, PieceType.ROOK));
         return rank;
     }
 
@@ -42,7 +40,7 @@ public class Rank {
         rank.add(piece);
     }
 
-    public int pieceCount() {
+    public int countPiece() {
         int count = 0;
         for (Piece piece : this.rank) {
             if (piece.getRepresentation(Color.WHITE) != '.') {
@@ -52,7 +50,7 @@ public class Rank {
         return count;
     }
 
-    public int targetPieceCount(Color color, PieceType pieceType) {
+    public int countTargetPiece(Color color, PieceType pieceType) {
         int count = 0;
         for (Piece piece : this.rank) {
             if (piece.getColor().equals(color) && piece.getPieceType().equals(pieceType)) {
@@ -70,11 +68,21 @@ public class Rank {
         this.rank.set(fileIndex, piece);
     }
 
+    public double calculateRankPoint(Color color) {
+        double point = 0;
+        for (Piece piece : this.rank) {
+            if (piece.getColor().equals(color)) {
+                point += piece.getPoint();
+            }
+        }
+        return point;
+    }
+
     public String showRank(Color color) {
         StringBuilder result = new StringBuilder();
-        int reverseRank = color.equals(Color.BLACK) ? 7 : 0;
-        for (int rankNumber = 0; rankNumber < this.rank.size(); rankNumber++) {
-            Piece piece = rank.get(Math.abs(rankNumber - reverseRank));
+        int reverseFIle = color.equals(Color.BLACK) ? 7 : 0;
+        for (int file = 0; file < this.rank.size(); file++) {
+            Piece piece = rank.get(Math.abs(file - reverseFIle));
             result.append(piece.getRepresentation(piece.getColor()));
         }
         return result.toString();

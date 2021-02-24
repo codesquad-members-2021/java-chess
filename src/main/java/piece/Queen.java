@@ -7,3 +7,4 @@ public class Queen extends Piece {
         super(color, Type.QUEEN);
     }
 }
+

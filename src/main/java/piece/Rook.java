@@ -7,3 +7,4 @@ public class Rook extends Piece{
         super(color, Type.ROOK);
     }
 }
+

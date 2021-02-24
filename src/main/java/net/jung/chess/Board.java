@@ -67,28 +67,13 @@ public class Board {
     }
 
     public Rank getRank(int rankNum) {
-        if( 1>rankNum || rankNum >8 ){
-            throw new IllegalArgumentException("Rank는 1~8까지 있습니다.");
-        }
         return rankList.get(RANKS_ON_BOARD-rankNum);
     }
 
     public Piece findPiece(String location) {
-         char[] position = location.toCharArray();
-         if(position.length == 2 && isValidFile(position[0]) && isValidRank(position[1])){
-             int fileAlphabet = position[0] - 'a';
-             int rankNum = position[1]-'0';
-             return getRank(rankNum).getPiece(fileAlphabet);
-         }
-         throw new IllegalArgumentException("입력한 값을 확인해주세요. \"a1\"~\"h8\"까지 가능합니다.");
-    }
+         Position position = Position.at(location);
+         return getRank(position.getRankIndex()).getPiece(position.getFileIndex());
 
-    public boolean isValidRank(char rankNum) {
-        return (rankNum >= '1' && rankNum <= '8' );
-    }
-
-    public boolean isValidFile(char fileAlphabet) {
-        return (fileAlphabet >= 'a' && fileAlphabet <= 'h');
     }
 
 

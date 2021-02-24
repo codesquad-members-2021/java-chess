@@ -9,14 +9,14 @@ public class Position {
             rankIndex = position.toCharArray()[1]-'0';
     }
 
-    public static Position at(String position) throws IllegalArgumentException {
-        char[] positionChar = position.toCharArray();
-        if( !(position.length()==2
+    public static Position at(String location) throws IllegalArgumentException {
+        char[] positionChar = location.toCharArray();
+        if( !(location.length()==2
                 && isValidFile(positionChar[0])
                 && isValidRank(positionChar[1]))) {
             throw new IllegalArgumentException ("a1~h8 범위의 위치를 입력해주세요.");
         }
-        return new Position(position);
+        return new Position(location);
     }
 
     private static boolean isValidFile(char fileAlphabet) {

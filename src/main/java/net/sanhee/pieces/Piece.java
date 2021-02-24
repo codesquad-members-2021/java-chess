@@ -2,7 +2,6 @@ package net.sanhee.pieces;
 
 
 abstract public class Piece {
-    public static final int MAX_SPAWN_NUMBER = 8;
 
     private final UnitColor color;
     private final char representation;

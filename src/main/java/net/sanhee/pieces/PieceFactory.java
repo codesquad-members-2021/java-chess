@@ -1,31 +1,32 @@
 package net.sanhee.pieces;
 
 public class PieceFactory {
-    public static Piece create(UnitType unitType, UnitColor unitColor) { //m 정적 팩토리 메서드
-        Piece piece = null;
-        switch (unitType) {
-            case KNIGHT: //m switch 문에서 열거형 타입 생략
-                piece = new Knight(unitColor);
-                break;
-            case BISHOP:
-                piece = new Bishop(unitColor);
-                break;
-            case QUEEN:
-                piece = new Queen(unitColor);
-                break;
-            case KING:
-                piece = new King(unitColor);
-                break;
-            case ROOK:
-                piece = new Rook(unitColor);
-                break;
-            case PAWN:
-                piece = new Pawn(unitColor);
-                break;
-            case NONE:
-                piece = new None(unitColor);
-                break;
-        }
-        return piece;
+    public static Piece createBishop(UnitColor unitColor) { //m 정적 팩토리 메서드
+        return new Bishop(unitColor);
     }
+
+    public static Piece createKing(UnitColor unitColor) {
+        return new King(unitColor);
+    }
+
+    public static Piece createKnight(UnitColor unitColor) {
+        return new Knight(unitColor);
+    }
+
+    public static Piece createNone(UnitColor unitColor) {
+        return new None(unitColor);
+    }
+
+    public static Piece createPawn(UnitColor unitColor) {
+        return new Pawn(unitColor);
+    }
+
+    public static Piece createQueen(UnitColor unitColor) {
+        return new Queen(unitColor);
+    }
+
+    public static Piece createRook(UnitColor unitColor) {
+        return new Rook(unitColor);
+    }
+
 }

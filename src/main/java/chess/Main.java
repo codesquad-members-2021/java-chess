@@ -3,7 +3,9 @@ package chess;
 import chess.controller.ChessGame;
 
 public class Main {
+    private Main() {}
+
     public static void main(String[] args) {
-        new ChessGame().start();
+        ChessGame.start();
     }
 }

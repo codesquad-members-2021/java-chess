@@ -1,7 +1,7 @@
 package chess.domain.pieces;
 
 public abstract class Piece {
-    private final String representation;
+    private final char representation;
     private final Color color;
 
     Piece(Color color) {
@@ -9,18 +9,10 @@ public abstract class Piece {
         representation = color.generateRepresentation(getIcon());
     }
 
-    public Color getColor() {
-        return color;
-    }
-
-    abstract String getIcon();
-
-    public String getRepresentation() {
-        return representation;
-    }
+    abstract char getIcon();
 
     @Override
     public String toString() {
-        return getRepresentation();
+        return String.valueOf(representation);
     }
 }

@@ -1,40 +1,34 @@
 package chess.domain.board;
 
 import chess.domain.board.position.Position;
-import chess.domain.pieces.Color;
-import chess.domain.pieces.EmptyPiece;
-import chess.domain.pieces.Pawn;
-import chess.domain.pieces.Piece;
+import chess.domain.pieces.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static chess.domain.board.BoardConst.*;
+import static chess.domain.board.BoardConst.COLUMN_END;
+import static chess.domain.board.BoardConst.COLUMN_START;
 
 public class BoardFactory {
-    private static final int ROW_MEDIUM = (ROW_START + ROW_END) / 2;
-
     private static Map<Position, Piece> squares;
 
     private BoardFactory() {}
 
     public static Board create() {
         squares = new HashMap<>();
-        for (int rowId = ROW_START; rowId <= ROW_END; rowId++) {
-            addConditionalRow(rowId);
-        }
+
+        addWhiteRoyalRow(1);
+        addWhitePawnRow(2);
+        addEmptyRow(3);
+        addEmptyRow(4);
+        addEmptyRow(5);
+        addEmptyRow(6);
+        addBlackPawnRow(7);
+        addBlackRoyalRow(8);
+
         return new Board(squares);
     }
 
-    private static void addConditionalRow(int rowId) {
-        if (rowId == 1 || rowId == 8) {
-            addRoyalRow(rowId);
-        } else if (rowId == 2 || rowId == 7) {
-            addPawnRow(rowId);
-        } else {
-            addEmptyRow(rowId);
-        }
-    }
 
     private static void addRow(int rowId, Piece piece) {
         for (char columnId = COLUMN_START; columnId <= COLUMN_END; columnId++) {
@@ -43,20 +37,36 @@ public class BoardFactory {
     }
 
     private static void addEmptyRow(int rowId) {
-        addRow(rowId, EmptyPiece.getInstance());
+        addRow(rowId, NoPiece.getInstance());
     }
 
-    private static void addPawnRow(int rowId) {
-        Color color = getColor(rowId);
-        addRow(rowId, Pawn.of(color));
+    private static void addWhitePawnRow(int rowId) {
+        addRow(rowId, Pawn.ofWhite());
     }
 
-    // TODO: 다음 미션에서 고급 말들이 추가되도록 구현해야한다.
-    private static void addRoyalRow(int rowId) {
-        addEmptyRow(rowId);
+    private static void addBlackPawnRow(int rowId) {
+        addRow(rowId, Pawn.ofBlack());
     }
 
-    private static Color getColor(int rowId) {
-        return rowId < ROW_MEDIUM ? Color.WHITE : Color.BLACK;
+    private static void addWhiteRoyalRow(int rowId) {
+        squares.put(Position.of('a', rowId), Rook.ofWhite());
+        squares.put(Position.of('b', rowId), Knight.ofWhite());
+        squares.put(Position.of('c', rowId), Bishop.ofWhite());
+        squares.put(Position.of('d', rowId), Queen.ofWhite());
+        squares.put(Position.of('e', rowId), King.ofWhite());
+        squares.put(Position.of('f', rowId), Bishop.ofWhite());
+        squares.put(Position.of('g', rowId), Knight.ofWhite());
+        squares.put(Position.of('h', rowId), Rook.ofWhite());
+    }
+
+    private static void addBlackRoyalRow(int rowId) {
+        squares.put(Position.of('a', rowId), Rook.ofBlack());
+        squares.put(Position.of('b', rowId), Knight.ofBlack());
+        squares.put(Position.of('c', rowId), Bishop.ofBlack());
+        squares.put(Position.of('d', rowId), Queen.ofBlack());
+        squares.put(Position.of('e', rowId), King.ofBlack());
+        squares.put(Position.of('f', rowId), Bishop.ofBlack());
+        squares.put(Position.of('g', rowId), Knight.ofBlack());
+        squares.put(Position.of('h', rowId), Rook.ofBlack());
     }
 }

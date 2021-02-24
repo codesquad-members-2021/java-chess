@@ -7,33 +7,16 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class PawnTest {
     @Test
-    @DisplayName("흰색 폰이 생성되어야 한다")
-    void create_white() {
-        verifyPawn(Color.WHITE);
-    }
-
-    @Test
-    @DisplayName("까만 폰이 생성되어야 한다")
-    void create_black() {
-        verifyPawn(Color.BLACK);
-    }
-
-    private void verifyPawn(Color color) {
-        assertThat(Pawn.of(color).getColor())
-                .isEqualTo(color);
-    }
-
-    @Test
-    @DisplayName("흰색 폰의 representation 은 소문자여야 한다.")
+    @DisplayName("흰색 Pawn 의 representation 은 p여야 한다.")
     void getRepresentation_white() {
-        assertThat(Pawn.of(Color.WHITE).getRepresentation())
+        assertThat(Pawn.ofWhite().toString())
                 .isEqualTo("p");
     }
 
     @Test
-    @DisplayName("까만 폰의 representation 은 대문자여야 한다.")
+    @DisplayName("까만 Pawn 의 representation 은 P여야 한다.")
     void getRepresentation_black() {
-        assertThat(Pawn.of(Color.BLACK).getRepresentation())
+        assertThat(Pawn.ofBlack().toString())
                 .isEqualTo("P");
     }
 } 

@@ -2,6 +2,7 @@ package net.coco.chess;
 
 import net.coco.pieces.Piece;
 import net.coco.pieces.Piece.Color;
+import net.coco.pieces.PieceType;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -11,7 +12,9 @@ public class Rank {
 
     public List<Piece> getPieces() {
         return Collections.unmodifiableList(pieces);
+        //piece 변경가능
     }
+
 
     public static Rank initBlackPieces() {
         Rank rank = new Rank();
@@ -68,14 +71,14 @@ public class Rank {
         return this;
     }
 
-    public int findPieceCount(char representation) {
+    public int findPieceCount(PieceType pieceType) {
         return (int) pieces.stream()
-                .filter(piece -> piece.getRepresentation() == representation)
+                .filter(piece -> piece.getPieceType() == pieceType)
                 .count();
     }
 
-    public Piece findPieceFromPoint(int row) {
-        return pieces.get(row);
+    public Piece findPieceFromPoint(int column) {
+        return pieces.get(column);
     }
 
     public void movePieceToPoint(Piece piece, int row) {

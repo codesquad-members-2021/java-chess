@@ -37,7 +37,7 @@ public class Board {
     public int getPieceCount(Color color, PieceType pieceType) {
         int count = 0;
         for (Rank rank : ranks) {
-            count += rank.findPieceCount(pieceType.getRepresentation(color));
+            count += rank.findPieceCount(pieceType);
         }
         return count;
     }

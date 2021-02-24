@@ -33,7 +33,6 @@ public class Board {
     public static final char END_OF_FILE = 'h';
 
     private final ChessPiece[][] chessCells;
-    private int numberOfPieces = 0;
 
     public Board() {
         chessCells = new ChessPiece[LENGTH_OF_BOARD][LENGTH_OF_BOARD];
@@ -113,9 +112,6 @@ public class Board {
             throw new InvalidParameterException("index exceeded the bounds of the Board. rankIndex : " + rankIndex + " fileIndex : " + fileIndex);
         }
         chessCells[rankIndex][fileIndex] = piece;
-        if (!piece.isBlank()) {
-            numberOfPieces++;
-        }
     }
 
     public void add(ChessPiece piece, String strCoordinate) {
@@ -139,6 +135,15 @@ public class Board {
     }
 
     public int size() {
+        int numberOfPieces = 0;
+        for (int rankIndex = 0; rankIndex < LENGTH_OF_BOARD; rankIndex++) {
+            for (int fileIndex = 0; fileIndex < LENGTH_OF_BOARD; fileIndex++) {
+                ChessPiece currentPiece = chessCells[rankIndex][fileIndex];
+                if (!currentPiece.isBlank()) {
+                    numberOfPieces++;
+                }
+            }
+        }
         return numberOfPieces;
     }
 

@@ -20,7 +20,7 @@ class BoardTest {
 
     @Test
     @DisplayName("Board의 초기 기물 배치 확인")
-    void create() throws Exception {
+    void create() {
         assertThat(board.pieceCount()).isEqualTo(32);
 
         String blankRank = appendNewLine("********");

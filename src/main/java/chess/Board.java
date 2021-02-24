@@ -1,5 +1,6 @@
 package chess;
 
+import pieces.Color;
 import pieces.Piece;
 import static utils.StringUtils.*;
 import java.util.ArrayList;
@@ -14,17 +15,17 @@ public class Board {
 
     private String startLine = "********";
 
-    private final int PAWN_COUNT = 8;
+    private final int pawnCount = 8;
 
-    public Piece findPawn(Piece.Color color, int index) {
-        if (color == Piece.Color.WHITE) {
+    public Piece findPawn(Color color, int index) {
+        if (color == Color.WHITE) {
             return whitePawnList.get(index);
         }
         return blackPawnList.get(index);
     }
 
-    public Piece findPiece(Piece.Color color, int index){
-        if(color == Piece.Color.WHITE){
+    public Piece findPiece(Color color, int index){
+        if(color == Color.WHITE){
             return whitePieceList.get(index);
         }else {
             return blackPieceList.get(index);
@@ -37,7 +38,7 @@ public class Board {
     }
 
     public void addPawn(Piece pawn) {
-        if (pawn.getColor() == Piece.Color.WHITE) {
+        if (pawn.getColor() == Color.WHITE) {
             whitePawnList.add(pawn);
             return;
         }
@@ -45,7 +46,7 @@ public class Board {
     }
 
     public void addPiece(Piece piece) {
-        if (piece.getColor() == Piece.Color.WHITE) {
+        if (piece.getColor() == Color.WHITE) {
             whitePieceList.add(piece);
             return;
         }
@@ -54,7 +55,7 @@ public class Board {
 
     public void initialize(){
 
-        for(int i = 0; i < PAWN_COUNT; i++){
+        for(int i = 0; i < pawnCount; i++){
             addPawn(Piece.createWhitePawn());
             addPawn(Piece.createBlackPawn());
         }

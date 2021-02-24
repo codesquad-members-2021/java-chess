@@ -1,7 +1,10 @@
 package piece;
 
+import pieces.Color;
 import pieces.Piece;
 import org.junit.jupiter.api.*;
+import pieces.Representation;
+
 import static org.assertj.core.api.Assertions.assertThat;
 class PieceTest {
 
@@ -28,7 +31,7 @@ class PieceTest {
 
     }
 
-    void verifyPawn(Piece piece, Piece.Color color, Piece.PieceRepresentation representation){
+    void verifyPawn(Piece piece, Color color, char representation){
         assertThat(color).isEqualTo(piece.getColor());
         assertThat(representation).isEqualTo(piece.getRepresentation());
     }
@@ -50,18 +53,13 @@ class PieceTest {
 
     boolean isWhite(Piece piece){
 
-        if(piece.getColor().equals(Piece.Color.WHITE)){
-            return true;
-        }
-        return false;
+        return piece.getColor().equals(Color.WHITE);
     }
 
     boolean isBlack(Piece piece){
 
-        if(piece.getColor().equals(Piece.Color.BLACK)){
-            return true;
-        }
-        return false;
+        return piece.getColor().equals(Color.BLACK);
+
     }
 
 }

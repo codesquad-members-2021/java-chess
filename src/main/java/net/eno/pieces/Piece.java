@@ -33,17 +33,17 @@ public class Piece implements Comparable<Piece> {
     }
 
     public boolean isWhite() {
-        return getColor().equals(Color.WHITE);
+        return getColor() == Color.WHITE;
     }
 
     public boolean isBlack() {
-        return getColor().equals(Color.BLACK);
+        return getColor() == Color.BLACK;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Piece)) return false;
         Piece piece = (Piece) o;
         return color == piece.color && pieceType == piece.pieceType;
     }
@@ -55,7 +55,7 @@ public class Piece implements Comparable<Piece> {
 
     @Override
     public int compareTo(Piece piece) {
-        return (int)(Math.floor(this.getPoint() - piece.getPoint()));
+        return (int)(Math.floor(getPoint() - piece.getPoint()));
     }
 
 }

@@ -40,20 +40,10 @@ public class Rank {
         rank.add(piece);
     }
 
-    public int countPiece() {
-        int count = 0;
-        for (Piece piece : this.rank) {
-            if (piece.getRepresentation(Color.WHITE) != '.') {
-                count++;
-            }
-        }
-        return count;
-    }
-
     public int countTargetPiece(Color color, PieceType pieceType) {
         int count = 0;
         for (Piece piece : this.rank) {
-            if (piece.getColor().equals(color) && piece.getPieceType().equals(pieceType)) {
+            if (piece.getColor() == color && piece.getPieceType() == pieceType) {
                 count++;
             }
         }
@@ -71,7 +61,7 @@ public class Rank {
     public double calculateRankPoint(Color color) {
         double point = 0;
         for (Piece piece : this.rank) {
-            if (piece.getColor().equals(color)) {
+            if (piece.getColor() == color) {
                 point += piece.getPoint();
             }
         }
@@ -81,7 +71,7 @@ public class Rank {
     public List<Piece> getPieceListByColor(Color color) {
         List<Piece> pieceList = new ArrayList<>();
         for (Piece piece : this.rank) {
-            if (piece.getColor().equals(color)) {
+            if (piece.getColor() == color) {
                 pieceList.add(piece);
             }
         }
@@ -90,7 +80,7 @@ public class Rank {
 
     public String showRank(Color color) {
         StringBuilder result = new StringBuilder();
-        int reverseFIle = color.equals(Color.BLACK) ? 7 : 0;
+        int reverseFIle = color == Color.BLACK ? 7 : 0;
         for (int file = 0; file < this.rank.size(); file++) {
             Piece piece = rank.get(Math.abs(file - reverseFIle));
             result.append(piece.getRepresentation(piece.getColor()));

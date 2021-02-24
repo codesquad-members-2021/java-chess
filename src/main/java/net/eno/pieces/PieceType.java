@@ -19,11 +19,9 @@ public enum PieceType {
     }
 
     public char getRepresentation(Color color) {
-        if (color.equals(Color.BLACK)) {
-            return Character.toUpperCase(this.representation);
-        } else {
-            return this.representation;
-        }
+        return color == Color.BLACK ?
+                Character.toUpperCase(this.representation) :
+                this.representation;
     }
 
     public double getDefaultPoint() {

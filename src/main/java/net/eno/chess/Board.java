@@ -24,14 +24,6 @@ public class Board {
         this.board.add(rank);
     }
 
-    public int countPiece() {
-        int count = 0;
-        for (Rank rank : this.board) {
-            count += rank.countPiece();
-        }
-        return count;
-    }
-
     public int countTargetPiece(Color color, PieceType pieceType) {
         int count = 0;
         for (Rank rank : this.board) {
@@ -68,10 +60,10 @@ public class Board {
 
     private int countSameFilePawn(char file, Color color) {
         int count = 0;
-        for (int rank  = 1; rank <= 8; rank++) {
+        for (int rank = 1; rank <= 8; rank++) {
             Piece piece = findPiece(String.valueOf(file) + rank);
-            if (piece.getColor().equals(color) &&
-                piece.getRepresentation(color) == PieceType.PAWN.getRepresentation(color)) {
+            if (piece.getColor() == color &&
+                    piece.getPieceType() == PieceType.PAWN) {
                 count++;
             }
         }
@@ -112,7 +104,7 @@ public class Board {
 
     public String showBoard(Color color) {
         StringBuilder result = new StringBuilder();
-        int reverseRank = color.equals(Color.BLACK) ? 7 : 0;
+        int reverseRank = color == Color.BLACK ? 7 : 0;
         for (int rankNum = 0; rankNum < this.board.size(); rankNum++) {
             Rank rank = board.get(Math.abs(rankNum - reverseRank));
             result.append(appendNewLine(rank.showRank(color)));

@@ -39,4 +39,20 @@ public class Board {
     public int getPieceCount(Color color, Type type) {
         return pieceGroup.getPieceCount(color, type);
     }
+
+    public Piece findPiece(String position) {
+        int yPos = getYPos(position);
+        int xPos = getXPos(position);
+        System.out.println(yPos + " " + xPos);
+        return pieceGroup.findPiece(yPos, xPos);
+    }
+
+    private int getXPos(String position) {
+        return position.charAt(0) - 'a';
+    }
+
+    private int getYPos(String position) {
+        return BOARD_SIZE
+                - Character.getNumericValue(position.charAt(1));
+    }
 }

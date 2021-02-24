@@ -44,11 +44,11 @@ class PieceTest {
     }
 
     private void verifyBlackPiece(final Piece piece, final Type type) {
-        verifyPiece(piece, Color.BLACK, Character.toUpperCase(type.value()));
+        verifyPiece(piece, Color.BLACK, type.getBlackRepresentation());
     }
 
     private void verifyWhitePiece(final Piece piece, final Type type) {
-        verifyPiece(piece, Color.WHITE, Character.toLowerCase(type.value()));
+        verifyPiece(piece, Color.WHITE, type.getWhiteRepresentation());
     }
 
     private void verifyPiece(final Piece piece, final Color color, final char representation) {

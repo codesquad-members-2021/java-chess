@@ -16,7 +16,11 @@ public enum Type {
         this.representation = representation;
     }
 
-    public char value() {
+    public char getBlackRepresentation() {
+        return Character.toUpperCase(representation);
+    }
+
+    public char getWhiteRepresentation() {
         return representation;
     }
 

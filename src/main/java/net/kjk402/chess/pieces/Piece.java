@@ -1,5 +1,7 @@
 package net.kjk402.chess.pieces;
 
+import java.util.Objects;
+
 public class Piece {
     public enum Color {
         WHITE, BLACK, NOCOLOR;
@@ -31,7 +33,7 @@ public class Piece {
 
     private final Color color;
 
-    private Type type;
+    private final Type type;
 
     public Piece(Color color, Type type) {
         this.color = color;
@@ -49,14 +51,6 @@ public class Piece {
 
     public Type getType() {
         return type;
-    }
-
-    private static Piece createWhite(Type type) {
-        return new Piece(Color.WHITE, type);
-    }
-
-    private static Piece createBlack(Type type) {
-        return new Piece(Color.BLACK, type);
     }
 
     public static Piece createWhitePawn() {
@@ -120,7 +114,28 @@ public class Piece {
     }
 
     public boolean isPawn() {
-        return getRepresentation() == 'p' || getRepresentation() == 'P';
+        return getRepresentation() == Type.PAWN.getBlackRepresentation() || getRepresentation() == Type.PAWN.getWhiteRepresentation();
+    }
+
+    private static Piece createWhite(Type type) {
+        return new Piece(Color.WHITE, type);
+    }
+
+    private static Piece createBlack(Type type) {
+        return new Piece(Color.BLACK, type);
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object ==null || getClass() != object.getClass()) return false;
+        Piece piece = (Piece) object;
+        return type == piece.type && color ==piece.getColor();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, type);
     }
 
 }

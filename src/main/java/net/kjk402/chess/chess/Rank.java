@@ -1,17 +1,21 @@
 package net.kjk402.chess.pieces;
 
+import ch.qos.logback.core.BasicStatusManager;
+
 import java.util.ArrayList;
 import java.util.List;
+import static net.kjk402.chess.utils.StringUtils.appendNewLine;
 
 public class Rank {
     private static final int BOARD_SIZE = 8;
-    private List<Piece> pieceList = new ArrayList<>();
+    private static List<Piece> pieceList = new ArrayList<>();
 
-    private void addPiece(Piece piece) {
+    private static void addPiece(Piece piece) {
         pieceList.add(piece);
     }
 
-    private void setWhitePieces() {
+    public static Rank setWhitePieces() {
+        Rank rank = new Rank();
         addPiece(Piece.createWhiteRook());
         addPiece(Piece.createWhiteKnight());
         addPiece(Piece.createWhiteBishop());
@@ -20,9 +24,11 @@ public class Rank {
         addPiece(Piece.createWhiteBishop());
         addPiece(Piece.createWhiteKnight());
         addPiece(Piece.createWhiteRook());
+        return rank;
     }
 
-    private void setBlackPieces() {
+    public static Rank setBlackPieces() {
+        Rank rank = new Rank();
         addPiece(Piece.createBlackRook());
         addPiece(Piece.createBlackKnight());
         addPiece(Piece.createBlackBishop());
@@ -31,24 +37,31 @@ public class Rank {
         addPiece(Piece.createBlackBishop());
         addPiece(Piece.createBlackKnight());
         addPiece(Piece.createBlackRook());
+        return rank;
     }
 
-    private void setWhitePawns() {
+    public static Rank setWhitePawns() {
+        Rank rank = new Rank();
         for(int i =0; i< BOARD_SIZE; i++) {
             addPiece(Piece.createWhitePawn());
         }
+        return rank;
     }
 
-    private void setBlackPawns() {
+    public static Rank setBlackPawns() {
+        Rank rank = new Rank();
         for(int i =0; i< BOARD_SIZE; i++) {
             addPiece(Piece.createBlackPawn());
         }
+        return rank;
     }
 
-    private void setBlackLine() {
+    public static Rank setBlackLine() {
+        Rank rank = new Rank();
         for(int i =0; i< BOARD_SIZE; i++) {
             addPiece(Piece.createBlank());
         }
+        return rank;
     }
 
     private String getPiecesResult(List<Piece> pieces) {

@@ -61,7 +61,7 @@ public class Board {
 
     void initialize() {
         Piece whitePiece = new Piece();
-        Piece blackPiece = new Piece(Piece.BLACK, Piece.BLACK_REPRESENTATION);
+        Piece blackPiece = new Piece(Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
         for (int i = 0; i < PAWN_NUM; i++) {
             addWhitePawn(whitePiece);
             addBlackPawn(blackPiece);

@@ -26,7 +26,7 @@ class BoardTest {
     @Test
     @DisplayName("체스판에 검은색 폰을 추가 후 갯수와 목록을 확인한다.")
     void putBlackPawn() {
-        Piece black = new Piece(Piece.BLACK, Piece.BLACK_REPRESENTATION);
+        Piece black = new Piece(Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
         board.addBlackPawn(black);
         assertThat(board.getBlackPawnsSize()).isEqualTo(1);
         assertThat(board.findBlackPawn(0)).isEqualTo(black);
@@ -57,7 +57,7 @@ class BoardTest {
     @Test
     @DisplayName("addWhitePawn()에 검은색 Pawn 추가")
     void addBlackToWhiteAdder() {
-        Piece blackPiece = new Piece(Piece.BLACK, Piece.BLACK_REPRESENTATION);
+        Piece blackPiece = new Piece(Piece.BLACK, Piece.BLACK_PAWN_REPRESENTATION);
         boolean result = board.addWhitePawn(blackPiece);
         assertThat(result).isEqualTo(false);
     }

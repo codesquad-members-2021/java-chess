@@ -3,18 +3,22 @@ package pieces;
 public class Piece {
     public final static String WHITE = "white";
     public final static String BLACK = "black";
-    public final static String WHITE_REPRESENTATION = "p";
-    public final static String BLACK_REPRESENTATION = "P";
+    public final static String PAWN = "pawn";
+    public final static String KNIGHT = "knight";
+    public final static String ROOK = "rook";
+    public final static String BISHOP = "bishop";
+    public final static String QUEEN = "queen";
+    public final static String KING = "king";
+    public final static String WHITE_PAWN_REPRESENTATION = "p";
+    public final static String BLACK_PAWN_REPRESENTATION = "P";
     private final String representation;
     private final String color;
+    private final String name;
 
-    public Piece() {
-        this(WHITE, WHITE_REPRESENTATION);
-    }
-
-    public Piece(String color, String representation) {
+    private Piece(String color, String representation, String name) {
         this.color = color;
         this.representation = representation;
+        this.name = name;
     }
 
     public String getColor() {

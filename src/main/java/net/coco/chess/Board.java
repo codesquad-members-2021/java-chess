@@ -54,7 +54,7 @@ public class Board {
 
     private String getPiecesToString(List<Piece> pieces) {
         return pieces.stream()
-                .map(piece -> String.valueOf(piece.getRepresentation()))
+                .map(piece -> String.valueOf(piece.getPieceType().getRepresentation(piece.getColor())))
                 .collect(Collectors.joining());
     }
 

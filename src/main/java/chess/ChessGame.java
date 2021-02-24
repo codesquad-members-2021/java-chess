@@ -5,19 +5,22 @@ import java.util.Scanner;
 
 public class ChessGame {
     private static boolean gameOver = false;
+    private static final String START = "start";
+    private static final String END = "end";
+    private static final String PROMPT = "> ";
 
     public static void main(String[] args) {
         System.out.println("시작: start, 종료: end");
         try (Scanner sc = new Scanner(System.in)) {
             String command = "";
             while (!gameOver) {
-                System.out.print("> ");
+                System.out.print(PROMPT);
                 command = sc.nextLine().toLowerCase(Locale.ROOT);
-                if (command.equals("start")) {
+                if (command.equals(START)) {
                     start();
                     continue;
                 }
-                if (command.equals("end")) {
+                if (command.equals(END)) {
                     end();
                     continue;
                 }

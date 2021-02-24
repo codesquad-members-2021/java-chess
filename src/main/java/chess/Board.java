@@ -121,4 +121,10 @@ public class Board {
                 .reduce((a, b) -> a + b);
         return result.get();
     }
+
+    public Piece findPiece(String position) {
+        int x = position.charAt(0) - 'a';
+        int y = position.charAt(1) - '0' - 1;
+        return board.get(y).getPieceList().get(x);
+    }
 }

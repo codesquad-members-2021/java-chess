@@ -31,6 +31,14 @@ public class Piece {
         this.name = name;
     }
 
+    boolean isWhite() {
+        return color == Piece.WHITE;
+    }
+
+    boolean isBlack() {
+        return color == Piece.BLACK;
+    }
+
     public String getName() {
         return name;
     }

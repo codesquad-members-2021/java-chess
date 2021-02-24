@@ -48,10 +48,20 @@ public class PieceTest {
         verifyPiece(Piece.createBlackKing(), Piece.BLACK, Piece.BLACK_KING_REPRESENTATION);
     }
 
-
     private void verifyPiece(final Piece piece, final String color, final String representation){
         assertThat(piece.getColor()).isEqualTo(color);
         assertThat(piece.getRepresentation()).isEqualTo(representation);
+    }
+
+    @Test
+    @DisplayName("흰색, 검은색 말 구분")
+    void isBlackOrWhite() {
+        Piece whitePiece = Piece.createWhitePawn();
+        Piece blackPiece = Piece.createBlackPawn();
+        assertThat(whitePiece.isWhite()).isEqualTo(true);
+        assertThat(blackPiece.isBlack()).isEqualTo(true);
+        assertThat(whitePiece.isBlack()).isEqualTo(false);
+        assertThat(blackPiece.isWhite()).isEqualTo(false);
     }
 
 }

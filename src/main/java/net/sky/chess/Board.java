@@ -11,56 +11,59 @@ import java.util.Map;
 import net.sky.pieces.Color;
 import net.sky.pieces.Piece;
 import net.sky.pieces.PieceMaker;
-import net.sky.pieces.PieceType;
 import net.sky.pieces.Position;
 
 public class Board {
 
-    private final int BOARD_SIZE = 8;
+    private final int START_RANK = 8;
+    private final int END_RANK = 1;
+    private final char START_FILE = 'a';
+    private final char END_FILE = 'h';
     private Map<Position, Piece> piecePositions = new LinkedHashMap<>();
     private final PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
     private final PieceMaker blackPieceMaker = new PieceMaker(Color.BLACK);
 
     public void initialize() {
-        int x = 0;
-        initializePieces(x++, blackPieceMaker);
-        initializePawns(x++, blackPieceMaker);
-        initializeBlanks(x++);
-        initializeBlanks(x++);
-        initializeBlanks(x++);
-        initializeBlanks(x++);
-        initializePawns(x++, whitePieceMaker);
-        initializePieces(x++, whitePieceMaker);
+        int rank = START_RANK;
+        initializePieces(rank--, blackPieceMaker);
+        initializePawns(rank--, blackPieceMaker);
+        initializeBlanks(rank--);
+        initializeBlanks(rank--);
+        initializeBlanks(rank--);
+        initializeBlanks(rank--);
+        initializePawns(rank--, whitePieceMaker);
+        initializePieces(rank, whitePieceMaker);
     }
 
     public void initializeEmpty() {
-        for (int x = 0; x < BOARD_SIZE; x++) {
-            initializeBlanks(x);
+        for (int rank = START_RANK; rank >= END_RANK; rank--) {
+            initializeBlanks(rank);
         }
 
     }
 
-    private void initializePieces(int x, PieceMaker pieceMaker) {
-        int y = 0;
-        piecePositions.put(new Position(x, y++), pieceMaker.createRook());
-        piecePositions.put(new Position(x, y++), pieceMaker.createKnight());
-        piecePositions.put(new Position(x, y++), pieceMaker.createBishop());
-        piecePositions.put(new Position(x, y++), pieceMaker.createQueen());
-        piecePositions.put(new Position(x, y++), pieceMaker.createKing());
-        piecePositions.put(new Position(x, y++), pieceMaker.createBishop());
-        piecePositions.put(new Position(x, y++), pieceMaker.createKnight());
-        piecePositions.put(new Position(x, y++), pieceMaker.createRook());
+    private void initializePieces(int rank, PieceMaker pieceMaker) {
+        char file = START_FILE;
+
+        piecePositions.put(new Position(rank, file++), pieceMaker.createRook());
+        piecePositions.put(new Position(rank, file++), pieceMaker.createKnight());
+        piecePositions.put(new Position(rank, file++), pieceMaker.createBishop());
+        piecePositions.put(new Position(rank, file++), pieceMaker.createQueen());
+        piecePositions.put(new Position(rank, file++), pieceMaker.createKing());
+        piecePositions.put(new Position(rank, file++), pieceMaker.createBishop());
+        piecePositions.put(new Position(rank, file++), pieceMaker.createKnight());
+        piecePositions.put(new Position(rank, file), pieceMaker.createRook());
     }
 
-    private void initializePawns(int x, PieceMaker pieceMaker) {
-        for (int y = 0; y < BOARD_SIZE; y++) {
-            piecePositions.put(new Position(x, y), pieceMaker.createPawn());
+    private void initializePawns(int rank, PieceMaker pieceMaker) {
+        for (char file = START_FILE; file <= END_FILE; file++) {
+            piecePositions.put(new Position(rank, file), pieceMaker.createPawn());
         }
     }
 
-    private void initializeBlanks(int x) {
-        for (int y = 0; y < BOARD_SIZE; y++) {
-            piecePositions.put(new Position(x, y), PieceMaker.createBlank());
+    private void initializeBlanks(int rank) {
+        for (char file = START_FILE; file <= END_FILE; file++) {
+            piecePositions.put(new Position(rank, file), PieceMaker.createBlank());
         }
     }
 
@@ -70,13 +73,14 @@ public class Board {
 
     public String showBoard() {
         StringBuilder result = new StringBuilder();
-        int initRank = 8;
+        final int FILE_SIZE = 8;
+        int initRank = START_RANK;
         int resultSize = 0;
 
         for (Piece piece : piecePositions.values()) {
             resultSize++;
             result.append(piece.getRepresentation());
-            if (resultSize % BOARD_SIZE == 0) {
+            if (resultSize % FILE_SIZE == 0) {
                 result.append(appendNewLine(" " + initRank--));
             }
         }
@@ -109,31 +113,30 @@ public class Board {
     public double calculatePoint(Color color) {
         double point = 0;
 
-        for (Piece piece : piecePositions.values()) {
+        for (Position position : piecePositions.keySet()) {
+            Piece piece = piecePositions.get(position);
+            char file = position.getFile();
+            List<Piece> fileList = getFile(file, color);
             if (color == piece.getColor()) {
-                point += piece.getPoint();
+                point += piece.getPoint(fileList);
             }
-        }
-
-        for (int file = 0; file < BOARD_SIZE; file++) {
-            point -= (filePawnNum(file, color) / 2);
         }
 
         return point;
     }
 
-    private double filePawnNum(int file, Color color) {
-        double pawnNum = 0;
+    private List<Piece> getFile(char file, Color color) {
+        List<Piece> fileList = new ArrayList<>();
 
-        for (int rank = 0; rank < BOARD_SIZE; rank++) {
+        for (int rank = START_RANK; rank >= END_RANK; rank--) {
             Position position = new Position(rank, file);
             Piece piece = piecePositions.get(position);
-
-            if (piece.getPieceType() == PieceType.PAWN && color == piece.getColor()) {
-                pawnNum += 1;
+            if (color == piece.getColor()) {
+                fileList.add(piece);
             }
         }
-        return pawnNum > 1 ? pawnNum : 0;
+
+        return fileList;
     }
 
     public String sortByScore(Color color) {
@@ -145,7 +148,8 @@ public class Board {
             }
         }
 
-        Collections.sort(pieces, (o1, o2) -> Double.compare(o2.getPoint(), o1.getPoint()));
+        Collections.sort(pieces,
+            (piece1, piece2) -> Double.compare(piece2.getDefaultPoint(), piece1.getDefaultPoint()));
 
         for (Piece piece : pieces) {
             result.append(piece);
@@ -153,4 +157,5 @@ public class Board {
 
         return result.toString();
     }
+
 }

@@ -4,19 +4,21 @@ import java.util.Objects;
 
 public class Position {
 
-    private final int x;
-    private final int y;
-    private final int[] xMapping = {7, 6, 5, 4, 3, 2, 1, 0};
+    private final int rank;
+    private final char file;
 
     public Position(String position) {
-        int xIndex = Character.getNumericValue(position.charAt(1)) - 1;
-        this.x = xMapping[xIndex];
-        this.y = position.charAt(0) - 'a';
+        this.rank = Character.getNumericValue(position.charAt(1));
+        this.file = position.charAt(0);
     }
 
-    public Position(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Position(int rank, char file) {
+        this.rank = rank;
+        this.file = file;
+    }
+
+    public char getFile() {
+        return file;
     }
 
     @Override
@@ -28,12 +30,11 @@ public class Position {
             return false;
         }
         Position position = (Position) o;
-        return x == position.x && y == position.y;
+        return rank == position.rank && file == position.file;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(rank, file);
     }
-
 }

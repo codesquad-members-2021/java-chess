@@ -1,8 +1,10 @@
 package net.sky.pieces;
 
+
+import java.util.List;
 import java.util.Objects;
 
-public class Piece{
+public class Piece {
 
     private final Color color;
     private final PieceType pieceType;
@@ -34,8 +36,25 @@ public class Piece{
         return piece.getColor() == Color.BLACK;
     }
 
-    public double getPoint() {
+    public double getDefaultPoint() {
         return pieceType.getPoint();
+    }
+
+    public double getPoint(List<Piece> fileList) {
+        double defaultPoint = pieceType.getPoint();
+
+        if (pieceType != PieceType.PAWN) {
+            return defaultPoint;
+        }
+
+        int count = 0;
+        for (Piece piece : fileList) {
+            if (piece.getPieceType() == PieceType.PAWN) {
+                count += 1;
+            }
+        }
+
+        return count > 1 ? defaultPoint / 2 : defaultPoint;
     }
 
     private char classifyRepresentation() {
@@ -64,7 +83,6 @@ public class Piece{
 
     @Override
     public String toString() {
-        return getRepresentation()+"";
+        return getRepresentation() + "";
     }
-
 }

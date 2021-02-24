@@ -134,6 +134,8 @@ class BoardTest {
         addPiece(new Position("b8"), blackPieceMaker.createKing());
         addPiece(new Position("c8"), blackPieceMaker.createRook());
         addPiece(new Position("f7"), blackPieceMaker.createPawn());
+        addPiece(new Position("f6"), blackPieceMaker.createPawn());
+        addPiece(new Position("f8"), blackPieceMaker.createPawn());
 
         addPiece(new Position("f2"), whitePieceMaker.createPawn());
         addPiece(new Position("f3"), whitePieceMaker.createPawn());
@@ -143,7 +145,7 @@ class BoardTest {
         board.print();
 
         assertAll(
-            () -> assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(16.0),
+            () -> assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(16.5),
             () -> assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(6.0)
         );
     }
@@ -166,6 +168,5 @@ class BoardTest {
             () -> assertThat(board.sortByScore(Color.WHITE)).isEqualTo("qrrbbnnpppppppppk")
         );
     }
-
 
 }

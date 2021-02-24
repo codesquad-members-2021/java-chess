@@ -21,7 +21,7 @@ class BoardTest {
 
     @Test
     @DisplayName("[체스판 상태 테스트] 1.기물 총 개수 32개? 2.모든 기물 올바른 위치에 생성?")
-    public void create() throws Exception {
+    void create() {
         board.initialize();
         String blankRank = appendNewLine("........");
 

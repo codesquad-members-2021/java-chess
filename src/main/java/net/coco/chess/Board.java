@@ -62,25 +62,26 @@ public class Board {
         Point point = new Point(pointStr);
 
         ranks.get(point.getColumn()).movePieceToPoint(piece, point.getRow());
+        //todo : piece가 있던 위치도 blank로 변경해야함
     }
 
     public double calculateScore(Color color) {
-        double sum = getSum(color);
+        double sum = 0.0;
+        for (int column = 0; column < ranks.size(); column++) {
+            List<Piece> pieces = getPieces(color, column);
+            sum += calculateColumnScore(pieces);
+        }
         return sum;
     }
 
-    private double getSum(Color color) {
+    private double calculateColumnScore(List<Piece> pieces) {
+        int pawnCount = 0;
         double sum = 0.0;
-        for (int column = 0; column < ranks.size(); column++) {
-            int pawnCount = 0;
-            List<Piece> pieces = getPieces(color, column);
-
-            for (Piece piece : pieces) {
-                pawnCount += piece.getPieceType() == PieceType.PAWN ? 1 : 0;
-                sum += piece.getScore();
-            }
-            sum -= pawnCount * 0.5;
+        for (Piece piece : pieces) {
+            pawnCount += piece.getPieceType() == PieceType.PAWN ? 1 : 0;
+            sum += piece.getScore();
         }
+        sum -= pawnCount > 1 ? pawnCount * 0.5 : 0;
         return sum;
     }
 

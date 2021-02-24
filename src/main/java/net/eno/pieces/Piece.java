@@ -6,16 +6,14 @@ public class Piece {
 
     private final Color color;
     private final PieceType pieceType;
-    private Position position;
 
-    private Piece(Color color, PieceType pieceType, Position position) {
+    private Piece(Color color, PieceType pieceType) {
         this.color = color;
         this.pieceType = pieceType;
-        this.position = position;
     }
 
-    public static Piece createPiece(Color color, PieceType pieceType, Position position) {
-        return new Piece(color, pieceType, position);
+    public static Piece createPiece(Color color, PieceType pieceType) {
+        return new Piece(color, pieceType);
     }
 
     public PieceType getPieceType() {
@@ -28,6 +26,10 @@ public class Piece {
 
     public char getRepresentation(Color color) {
         return this.pieceType.getRepresentation(color);
+    }
+
+    public double getPoint() {
+        return this.pieceType.getDefaultPoint();
     }
 
     public boolean isWhite() {
@@ -43,13 +45,11 @@ public class Piece {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
-        return this.color == piece.color &&
-                this.pieceType == piece.pieceType &&
-                Objects.equals(this.position, piece.position);
+        return color == piece.color && pieceType == piece.pieceType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(color, pieceType, position);
+        return Objects.hash(color, pieceType);
     }
 }

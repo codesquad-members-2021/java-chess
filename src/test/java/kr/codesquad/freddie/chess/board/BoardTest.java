@@ -13,7 +13,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BoardTest extends TestBaseOfBoardPackage {
+class BoardTest extends BoardTestBase {
     private Board board;
     private static final int MAX_SIZE = Board.RANK_SIZE * File.SIZE;
 

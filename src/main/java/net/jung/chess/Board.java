@@ -6,106 +6,32 @@ import java.util.List;
 import static net.jung.chess.utils.StringUtils.appendNewLine;
 
 public class Board {
-    private List<Piece> blackPieceList = new ArrayList();
-    private List<Piece> whitePieceList = new ArrayList();
     public static final String BLANK_RANK = appendNewLine("********");
 
-    public void addWhitePiece(Piece piece) {
-        if (piece.isWhite()) {
-            whitePieceList.add(piece);
+    private List<Rank> rankList = new ArrayList<Rank>();
+
+    public int boardPieceSize() {
+        int boardPieceSize = 0;
+        for (Rank rank : rankList) {
+            boardPieceSize += rank.rankPieceSize();
         }
-    }
-
-    public void addBlackPiece(Piece piece) {
-        if (piece.isBlack()) {
-            blackPieceList.add(piece);
-        }
-    }
-
-
-    public int size() {
-        return whitePieceListSize() + blackPieceListSize();
-    }
-
-    public int whitePieceListSize() {
-        return whitePieceList.size();
-    }
-
-    public int blackPieceListSize() {
-        return blackPieceList.size();
-    }
-
-    public Piece findWhitePiece(int index) {
-        return whitePieceList.get(index);
-    }
-
-    public Piece findBlackPiece(int index) {
-        return blackPieceList.get(index);
+        return boardPieceSize ;
     }
 
     public void initialize() {
-        initializeBlackPieces();
-        initializePawns(Piece.Color.BLACK);
+        rankList.add(Rank.initializeBlackPieceRank());
+        rankList.add(Rank.initializeBlackPawnRank());
 
-        initializePawns(Piece.Color.WHITE);
-        initializeWhitePieces();
-    }
+        rankList.add(Rank.initializeBlankRank());
+        rankList.add(Rank.initializeBlankRank());
+        rankList.add(Rank.initializeBlankRank());
+        rankList.add(Rank.initializeBlankRank());
 
-    public void initializePawns(Piece.Color color) {
-        int maxPawnsSize = 8;
-        if(color == Piece.Color.WHITE) {
-            for (int i = 0; i < maxPawnsSize; i++) {
-            addWhitePiece(Piece.createWhitePawn());
-            }
-        return;
-        }
-
-        for(int j = 0; j < maxPawnsSize; j++) {
-            addBlackPiece(Piece.createBlackPawn());
-        }
-    }
-
-    public void initializeBlackPieces(){
-        addBlackPiece(Piece.createBlackRook());
-        addBlackPiece(Piece.createBlackKnight());
-        addBlackPiece(Piece.createBlackBishop());
-        addBlackPiece(Piece.createBlackQueen());
-        addBlackPiece(Piece.createBlackKing());
-        addBlackPiece(Piece.createBlackBishop());
-        addBlackPiece(Piece.createBlackKnight());
-        addBlackPiece(Piece.createBlackRook());
-    }
-
-    public void initializeWhitePieces(){
-        addWhitePiece(Piece.createWhiteRook());
-        addWhitePiece(Piece.createWhiteKnight());
-        addWhitePiece(Piece.createWhiteBishop());
-        addWhitePiece(Piece.createWhiteQueen());
-        addWhitePiece(Piece.createWhiteKing());
-        addWhitePiece(Piece.createWhiteBishop());
-        addWhitePiece(Piece.createWhiteKnight());
-        addWhitePiece(Piece.createWhiteRook());
+        rankList.add(Rank.initializeWhitePawnRank());
+        rankList.add(Rank.initializeWhitePieceRank());
     }
 
 
-    public String getWhitePiecesRepresentation() {
-        return getPiecesRepresentation(whitePieceList);
-    }
-
-    public String getBlackPiecesRepresentation() {
-        return getPiecesRepresentation(blackPieceList);
-    }
-
-    public String getPiecesRepresentation(List<Piece> pieceList) {
-        StringBuilder piecesRepresentation = new StringBuilder();
-        for (int i = 0; i < pieceList.size(); i++) {
-            piecesRepresentation.append(pieceList.get(i).getRepresentation());
-            if(i==7) {
-                piecesRepresentation.append(System.getProperty("line.separator"));
-            }
-        }
-        return piecesRepresentation.toString();
-    }
 
     public String boardLayoutToString() {
 
@@ -121,8 +47,9 @@ public class Board {
     }
 
     public void reset() {
-        whitePieceList.clear();
-        blackPieceList.clear();
+        for( Rank rank : rankList ) {
+            rank.resetRank();
+        }
     }
 
 

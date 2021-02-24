@@ -12,7 +12,7 @@ import java.util.List;
 public class Board {
     public static final int BOARD_SIZE = 8;
 
-    private final List<Rank> files = new ArrayList<>(BOARD_SIZE);
+    private final List<Rank> ranks = new ArrayList<>(BOARD_SIZE);
 
     public int totalPiecesCount() {
         return countAllPiecesByColor(Color.WHITE) + countAllPiecesByColor(Color.BLACK);
@@ -31,7 +31,7 @@ public class Board {
 
     public int countPieceByColorAndType(Color color, Type type) {
         int countPiece = 0;
-        for (Rank rank : files) {
+        for (Rank rank : ranks) {
             countPiece += rank.getCountPieceByColorAndType(color, type);
         }
 
@@ -41,7 +41,7 @@ public class Board {
     public List<Piece> findPiecesByColor(Color color) {
         List<Piece> pieces = new ArrayList<>();
 
-        for (Rank rank : files) {
+        for (Rank rank : ranks) {
             pieces.addAll(rank.findPieceByColor(color));
         }
 
@@ -51,7 +51,7 @@ public class Board {
     public Piece findPiece(String position) {
         Position chessBoardIndex = new Position(position);
 
-        return files.get((chessBoardIndex.getFile())).getPiece(chessBoardIndex.getRank());
+        return ranks.get((chessBoardIndex.getFile())).getPiece(chessBoardIndex.getRank());
     }
 
     private String getRank(Rank rank) {
@@ -69,26 +69,26 @@ public class Board {
 
     public void initialize() {
         final int FILE_INDEX = 8;
-        files.add(Rank.initializeWhitePieces(FILE_INDEX));
-        files.add(Rank.initializeWhitePawns(FILE_INDEX - 1));
-        files.add(Rank.initializeBlank(FILE_INDEX - 2));
-        files.add(Rank.initializeBlank(FILE_INDEX - 3));
-        files.add(Rank.initializeBlank(FILE_INDEX - 4));
-        files.add(Rank.initializeBlank(FILE_INDEX - 5));
-        files.add(Rank.initializeBlackPawns(FILE_INDEX - 6));
-        files.add(Rank.initializeBlackPieces(FILE_INDEX - 7));
+        ranks.add(Rank.initializeWhitePieces(FILE_INDEX));
+        ranks.add(Rank.initializeWhitePawns(FILE_INDEX - 1));
+        ranks.add(Rank.initializeBlank(FILE_INDEX - 2));
+        ranks.add(Rank.initializeBlank(FILE_INDEX - 3));
+        ranks.add(Rank.initializeBlank(FILE_INDEX - 4));
+        ranks.add(Rank.initializeBlank(FILE_INDEX - 5));
+        ranks.add(Rank.initializeBlackPawns(FILE_INDEX - 6));
+        ranks.add(Rank.initializeBlackPieces(FILE_INDEX - 7));
     }
 
     public void initializeAllEmpty() {
         for (int i = 1; i <= BOARD_SIZE; i++) {
-            files.add(Rank.initializeBlank(i));
+            ranks.add(Rank.initializeBlank(i));
         }
     }
 
     public void move(String position, Piece piece) {
         Position chessBoardIndex = new Position(position);
 
-        files.get(chessBoardIndex.getFile()).move(chessBoardIndex.getRank(), piece);
+        ranks.get(chessBoardIndex.getFile()).move(chessBoardIndex.getRank(), piece);
         piece.setPosition(chessBoardIndex);
     }
 
@@ -108,7 +108,7 @@ public class Board {
         String rankIndex = "a b c d e f g h";
 
         for (int fileIndex = BOARD_SIZE - 1; fileIndex >= 0; fileIndex--) {
-            boardRank.append(getRank(files.get(fileIndex)));
+            boardRank.append(getRank(ranks.get(fileIndex)));
             boardRank.append(" ").append(fileIndex + 1);
             boardRank.append(StringUtils.getNewLine());
         }

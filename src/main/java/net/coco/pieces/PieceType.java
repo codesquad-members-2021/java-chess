@@ -17,18 +17,18 @@ public enum PieceType {
         this.score = score;
     }
 
+    public char getRepresentation(Piece.Color color) {
+        if (color == Piece.Color.WHITE)
+            return getWhiteRepresentation();
+        return getBlackRepresentation();
+    }
+
     private char getWhiteRepresentation() {
         return representation;
     }
 
     private char getBlackRepresentation() {
         return Character.toUpperCase(representation);
-    }
-
-    public char getRepresentation(Piece.Color color) {
-        if (color == Piece.Color.WHITE)
-            return getWhiteRepresentation();
-        return getBlackRepresentation();
     }
 
     public double getScore() {

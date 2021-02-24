@@ -79,12 +79,26 @@ class BoardTest {
     void checkFindPiece() {
         assertAll (
                 () -> assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlackRook()),
-                () -> assertThat(board.findPiece("e7")).isEqualTo(Piece.createBlackPawn()),
+                () -> assertThat(board.findPiece("b8")).isEqualTo(Piece.createBlackKnight()),
+                () -> assertThat(board.findPiece("c8")).isEqualTo(Piece.createBlackBishop()),
+                () -> assertThat(board.findPiece("d8")).isEqualTo(Piece.createBlackQueen()),
+                () -> assertThat(board.findPiece("e8")).isEqualTo(Piece.createBlackKing()),
                 () -> assertThat(board.findPiece("f8")).isEqualTo(Piece.createBlackBishop()),
+                () -> assertThat(board.findPiece("g8")).isEqualTo(Piece.createBlackKnight()),
+                () -> assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlackRook()),
+
+                () -> assertThat(board.findPiece("e7")).isEqualTo(Piece.createBlackPawn()),
 
                 () -> assertThat(board.findPiece("f2")).isEqualTo(Piece.createWhitePawn()),
+
+                () -> assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhiteRook()),
+                () -> assertThat(board.findPiece("b1")).isEqualTo(Piece.createWhiteKnight()),
+                () -> assertThat(board.findPiece("c1")).isEqualTo(Piece.createWhiteBishop()),
                 () -> assertThat(board.findPiece("d1")).isEqualTo(Piece.createWhiteQueen()),
-                () -> assertThat(board.findPiece("g1")).isEqualTo(Piece.createWhiteKnight())
+                () -> assertThat(board.findPiece("e1")).isEqualTo(Piece.createWhiteKing()),
+                () -> assertThat(board.findPiece("f1")).isEqualTo(Piece.createWhiteBishop()),
+                () -> assertThat(board.findPiece("g1")).isEqualTo(Piece.createWhiteKnight()),
+                () -> assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhiteRook())
         );
     }
 }

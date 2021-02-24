@@ -1,6 +1,6 @@
 package pieces;
 
-public class Pawn {
+public class Piece {
     public final static String WHITE = "white";
     public final static String BLACK = "black";
     public final static String WHITE_REPRESENTATION = "p";
@@ -8,11 +8,11 @@ public class Pawn {
     private final String representation;
     private final String color;
 
-    public Pawn() {
+    public Piece() {
         this(WHITE, WHITE_REPRESENTATION);
     }
 
-    public Pawn(String color, String representation) {
+    public Piece(String color, String representation) {
         this.color = color;
         this.representation = representation;
     }

@@ -2,10 +2,9 @@ package chess;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
-import pieces.Pawn;
+import pieces.Piece;
 
 class BoardTest {
     Board board;
@@ -18,7 +17,7 @@ class BoardTest {
     @Test
     @DisplayName("체스판에 흰색 폰을 추가 후 갯수와 목록을 확인한다.")
     void putWhitePawn() {
-        Pawn white = new Pawn();
+        Piece white = new Piece();
         board.addWhitePawn(white);
         assertThat(board.getWhitePawnsSize()).isEqualTo(1);
         assertThat(board.findWhitePawn(0)).isEqualTo(white);
@@ -27,7 +26,7 @@ class BoardTest {
     @Test
     @DisplayName("체스판에 검은색 폰을 추가 후 갯수와 목록을 확인한다.")
     void putBlackPawn() {
-        Pawn black = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
+        Piece black = new Piece(Piece.BLACK, Piece.BLACK_REPRESENTATION);
         board.addBlackPawn(black);
         assertThat(board.getBlackPawnsSize()).isEqualTo(1);
         assertThat(board.findBlackPawn(0)).isEqualTo(black);
@@ -58,8 +57,8 @@ class BoardTest {
     @Test
     @DisplayName("addWhitePawn()에 검은색 Pawn 추가")
     void addBlackToWhiteAdder() {
-        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
-        boolean result = board.addWhitePawn(blackPawn);
+        Piece blackPiece = new Piece(Piece.BLACK, Piece.BLACK_REPRESENTATION);
+        boolean result = board.addWhitePawn(blackPiece);
         assertThat(result).isEqualTo(false);
     }
 }

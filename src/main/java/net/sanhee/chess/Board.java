@@ -3,6 +3,7 @@ package net.sanhee.chess;
 import net.sanhee.pieces.*;
 import net.sanhee.pieces.property.UnitColor;
 import net.sanhee.pieces.property.UnitType;
+import net.sanhee.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,6 +127,18 @@ public class Board {
     }
 
     public String showBoard() {
-        return "";
+        StringBuilder boardString = new StringBuilder();
+        final int LINE_OF_PIECE = 8;
+        int count = 1;
+        for (int col = 0; col < pieces.size(); col++) {
+            if (count == LINE_OF_PIECE) {
+                boardString.append(findPiece(col).getRepresentation()).append(StringUtils.NEWLINE);
+                count = 1;
+            } else {
+                boardString.append(findPiece(col).getRepresentation());
+                count++;
+            }
+        }
+        return boardString.toString();
     }
 }

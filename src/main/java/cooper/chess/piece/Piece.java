@@ -95,7 +95,7 @@ public class Piece {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o instanceof Piece) {
+        if (!(o instanceof Piece)) {
             return false;
         }
         Piece piece = (Piece) o;

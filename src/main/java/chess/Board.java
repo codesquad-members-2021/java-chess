@@ -107,13 +107,12 @@ public class Board {
 
     private double getSum(List<Piece> pieces, Color color, double point) {
         for (Piece piece : pieces) {
-            if (piece.getColor() == color) {
-                if (piece.getType() == Type.PAWN) {
-                    point += getPawnPoint(pieces);
-                    continue;
-                }
-                point += piece.getPoint();
+            if (!(piece.getColor() == color)) continue;
+            if (piece.getType() == Type.PAWN) {
+                point += getPawnPoint(pieces);
+                continue;
             }
+            point += piece.getPoint();
         }
         return point;
     }

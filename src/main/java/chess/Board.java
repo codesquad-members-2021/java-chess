@@ -7,8 +7,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static chess.pieces.Piece.Color.BLACK;
-import static chess.pieces.Piece.Color.WHITE;
 import static chess.pieces.Piece.Type.*;
 import static chess.utils.StringUtils.appendNewLine;
 
@@ -49,19 +47,14 @@ public class Board {
     }
 
     public Piece findPiece(String position) {
-        String[] pos = position.split("");
-        int file = pos[0].charAt(0) - 'a';
-        int rank = Integer.valueOf(pos[1]) - 1;
-
-        Piece target = board.get(rank).getPieceOf(file);
+        Position pos = new Position(position);
+        Piece target = board.get(pos.rank()).getPieceOf(pos.file());
         return target;
     }
 
     public void putPieceIn(String position, Piece piece) {
-        String[] pos = position.split("");
-        int file = pos[0].charAt(0) - 'a';
-        int rank = Integer.valueOf(pos[1]) - 1;
-        board.get(rank).set(file, piece);
+        Position pos = new Position(position);
+        board.get(pos.rank()).set(pos.file(), piece);
     }
 
     public void initialize() {

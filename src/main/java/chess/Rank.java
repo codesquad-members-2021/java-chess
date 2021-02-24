@@ -7,6 +7,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static chess.pieces.Piece.Type.PAWN;
+
 public class Rank {
     private List<Piece> pieces = new ArrayList<>();
 
@@ -53,8 +55,8 @@ public class Rank {
         List<Integer> filesOfPawns = new ArrayList<>();
         for (int i = 0; i < pieces.size(); i++) {
             Piece piece = pieces.get(i);
-            if (piece.getType() == Piece.Type.PAWN && piece.getColor() == color) {
-                filesOfPawns.add(i);
+            if (piece.getType() == PAWN && piece.getColor() == color) {  // piece가 원하는 color의 pawn이면
+                filesOfPawns.add(i);                                     // 해당 piece의 file(index)을 리스트에 추가한다
             }
         }
         return filesOfPawns;

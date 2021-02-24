@@ -79,4 +79,13 @@ class PieceTest {
                 () -> assertThat(blank.isBlack()).isFalse()
         );
     }
+
+    @Test
+    @DisplayName("오버라이드된 equals메서드는 Color와 Type이 일치하면 true를 반환한다.")
+    void checkOverriddenEquals () {
+        assertAll(
+                () -> assertThat(Piece.createWhitePawn()).isEqualTo(Piece.createWhitePawn()),
+                () -> assertThat(Piece.createWhiteKing()).isEqualTo(Piece.createWhiteKing())
+        );
+    }
 }

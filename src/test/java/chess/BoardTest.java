@@ -14,12 +14,12 @@ class BoardTest {
     @BeforeEach
     void setUP() {
         board = new Board();
+        board.initializeBoard();
     }
 
     @DisplayName("보드의 초기화와 출력이 올바르게 되는지 확인한다.")
     @Test
     void check() {
-        board.initializeBoard();
         String blankRank = appendNewLine("........");
         assertThat(board.showBoard())
                 .isEqualTo(appendNewLine("RNBQKBNR") +
@@ -32,12 +32,20 @@ class BoardTest {
     @DisplayName("기물의 개수를 올바르게 반환하는지 확인한다.")
     @Test
     void count() {
-        board.initializeBoard();
         assertThat(board.countPiece(Piece.Color.WHITE, Piece.Type.PAWN))
                 .isEqualTo(8);
         assertThat(board.countPiece(Piece.Color.BLACK, Piece.Type.ROOK))
                 .isEqualTo(2);
         assertThat(board.countPiece(Piece.Color.NOCOLOR, Piece.Type.NO_PIECE))
                 .isEqualTo(32);
+    }
+
+    @DisplayName("해당 위치의 기물이 올바르게 반환되는지 확인한다.")
+    @Test
+    void findPiece() {
+        assertThat(board.findPiece("a8").getColor())
+                .isEqualTo(Piece.createBlackRook().getColor());
+        assertThat(board.findPiece("a8").getType())
+                .isEqualTo(Piece.createBlackRook().getType());
     }
 }

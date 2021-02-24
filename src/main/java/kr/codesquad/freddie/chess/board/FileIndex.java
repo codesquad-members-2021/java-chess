@@ -1,9 +1,9 @@
-package kr.codesquad.freddie.chess.utils;
+package kr.codesquad.freddie.chess.board;
 
-public class FileIndexConverter {
+public class FileIndex {
     private char fileIndex;
 
-    public FileIndexConverter(char fileIndex) {
+    public FileIndex(char fileIndex) {
         if (fileIndex < 'a' || 'h' < fileIndex) {
             throw new IllegalArgumentException("올바른 fileIndex가 아닙니다. fileIndex : " + fileIndex);
         }

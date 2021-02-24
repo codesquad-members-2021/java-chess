@@ -4,8 +4,6 @@ import kr.codesquad.freddie.chess.piece.CalculablePiece;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
-import kr.codesquad.freddie.chess.utils.PositionConverter;
-import kr.codesquad.freddie.chess.utils.RankIndexConverter;
 
 import java.util.*;
 import java.util.function.Function;
@@ -31,18 +29,18 @@ public class Board {
     }
 
     private void initializePieceBy(Color color) {
-        int royalIndex = new RankIndexConverter(color.royalInitializationRank()).getRankIndexForList();
-        int pawnIndex = new RankIndexConverter(color.pawnInitializationRank()).getRankIndexForList();
+        int royalIndex = new RankIndex(color.royalInitializationRank()).getRankIndexForList();
+        int pawnIndex = new RankIndex(color.pawnInitializationRank()).getRankIndexForList();
 
         files.get(royalIndex).fillWithRoyal(color);
         files.get(pawnIndex).fillWithPawn(color);
     }
 
     private void initializeEmptyPiece() {
-        files.get(new RankIndexConverter(3).getRankIndexForList()).fillWithBlank();
-        files.get(new RankIndexConverter(4).getRankIndexForList()).fillWithBlank();
-        files.get(new RankIndexConverter(5).getRankIndexForList()).fillWithBlank();
-        files.get(new RankIndexConverter(6).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndex(3).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndex(4).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndex(5).getRankIndexForList()).fillWithBlank();
+        files.get(new RankIndex(6).getRankIndexForList()).fillWithBlank();
     }
 
     public Board initializeWithSort() {
@@ -93,13 +91,13 @@ public class Board {
      * @see <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      */
     public Piece findPiece(String position) {
-        PositionConverter positionConverter = PositionConverter.of(position);
+        Position positionConverter = Position.of(position);
         return files.get(positionConverter.getRankIndexForList())
                 .get(positionConverter.getFileIndexForList());
     }
 
     public Piece set(String position, Piece piece) {
-        PositionConverter positionConverter = PositionConverter.of(position);
+        Position positionConverter = Position.of(position);
 
         return files.get(positionConverter.getRankIndexForList())
                 .set(positionConverter.getFileIndexForList(), piece);

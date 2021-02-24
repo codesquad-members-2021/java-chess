@@ -2,6 +2,7 @@ package cooper.chess;
 
 import cooper.chess.piece.Color;
 import cooper.chess.piece.Piece;
+import cooper.chess.piece.Position;
 import cooper.chess.piece.Type;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -76,10 +77,10 @@ class BoardTest {
     @DisplayName("원하는 위치의 기물을 확인한다.")
     public void findPieceTest() {
         assertAll(
-                () -> assertEquals(Piece.createWhiteRook(), board.findPiece("a8")),
-                () -> assertEquals(Piece.createWhiteRook(), board.findPiece("h8")),
-                () -> assertEquals(Piece.createBlackRook(), board.findPiece("a1")),
-                () -> assertEquals(Piece.createBlackRook(), board.findPiece("h1"))
+                () -> assertEquals(Piece.createWhiteRook(), board.findPiece(new Position("a8"))),
+                () -> assertEquals(Piece.createWhiteRook(), board.findPiece(new Position("h8"))),
+                () -> assertEquals(Piece.createBlackRook(), board.findPiece(new Position("a1"))),
+                () -> assertEquals(Piece.createBlackRook(), board.findPiece(new Position("h1")))
         );
     }
 
@@ -88,11 +89,13 @@ class BoardTest {
     public  void move() {
         board.initializeEmpty();
 
-        String position = "b5";
-        Piece piece = Piece.createBlackRook();
-        board.move(position, piece);
-        board.move("a8", piece);
+        Position prevPosition = new Position("b5");
+        Position afterPosition = new Position("a1");
 
-        assertEquals(piece, board.findPiece(position));
+        Piece piece = Piece.createBlackRook();
+        board.addPiece(prevPosition, piece);
+        board.move(prevPosition, afterPosition);
+
+        assertEquals(piece, board.findPiece(afterPosition));
     }
 }

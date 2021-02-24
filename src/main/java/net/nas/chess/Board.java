@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static net.nas.chess.ChessCoordinate.parseStringCoordinate;
 import static net.nas.pieces.ChessPiece.*;
 import static net.nas.utils.StringUtils.appendNewLine;
 
@@ -120,7 +119,7 @@ public class Board {
     }
 
     public void add(ChessPiece piece, String strCoordinate) {
-        ChessCoordinate coordinate = parseStringCoordinate(strCoordinate);
+        ChessCoordinate coordinate = ChessCoordinate.parseStringCoordinate(strCoordinate);
         add(piece, coordinate.rankIndex, coordinate.fileIndex);
     }
 
@@ -131,7 +130,7 @@ public class Board {
     }
 
     public ChessPiece findPiece(String strCoordinate) {
-        ChessCoordinate coordinate = parseStringCoordinate(strCoordinate);
+        ChessCoordinate coordinate = ChessCoordinate.parseStringCoordinate(strCoordinate);
         return chessCells[coordinate.rankIndex][coordinate.fileIndex];
     }
 

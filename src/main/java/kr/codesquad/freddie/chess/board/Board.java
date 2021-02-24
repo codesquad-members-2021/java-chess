@@ -13,7 +13,6 @@ public class Board {
     // 체스에서 row를 rank라고 한다.
     public static final int RANK_SIZE = 8;
     private List<File> files = new ArrayList<>();
-    private Map<Color, List<Piece>> blackAndWhitePieces = new HashMap<>();
 
     public Board() {
         for (int i = 0; i < RANK_SIZE; i++) {
@@ -41,21 +40,6 @@ public class Board {
         files.get(new RankIndex(4).getRankIndexForList()).fillWithBlank();
         files.get(new RankIndex(5).getRankIndexForList()).fillWithBlank();
         files.get(new RankIndex(6).getRankIndexForList()).fillWithBlank();
-    }
-
-    public Board initializeWithSort() {
-        initialize();
-        blackAndWhitePieces.put(Color.BLACK, getPiecesBy(Color.BLACK));
-        blackAndWhitePieces.put(Color.WHITE, getPiecesBy(Color.WHITE));
-        return this;
-    }
-
-    private List<Piece> getPiecesBy(Color color) {
-        return files.stream()
-                .flatMap(file -> file.getPieces().stream())
-                .filter(file -> file.getColor() == color)
-                .sorted()
-                .collect(Collectors.toList());
     }
 
     public void move(String source, String destination) {
@@ -114,8 +98,12 @@ public class Board {
                 .sum();
     }
 
-    public Map<Color, List<Piece>> getBlackAndWhitePieces() {
-        return Collections.unmodifiableMap(blackAndWhitePieces);
+    public List<Piece> getPiecesBy(Color color) {
+        return files.stream()
+                .flatMap(file -> file.getPieces().stream())
+                .filter(file -> file.getColor() == color)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     public String getRepresentation() {
@@ -143,7 +131,6 @@ public class Board {
     public String toString() {
         return "Board{" +
                 "files=" + files +
-                ", blackAndWhitePieces=" + blackAndWhitePieces +
                 '}';
     }
 }

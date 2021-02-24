@@ -22,48 +22,6 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
-    void initializeWithSort() {
-        board.initializeWithSort();
-        Map<Color, List<Piece>> blackAndWhitePieces = board.getBlackAndWhitePieces();
-        assertThat(blackAndWhitePieces.get(Color.BLACK)).isEqualTo(Arrays.asList(
-                blackPieceFactory.createQueen(),
-                blackPieceFactory.createRook(),
-                blackPieceFactory.createRook(),
-                blackPieceFactory.createBishop(),
-                blackPieceFactory.createBishop(),
-                blackPieceFactory.createKnight(),
-                blackPieceFactory.createKnight(),
-                blackPieceFactory.createPawn(),
-                blackPieceFactory.createPawn(),
-                blackPieceFactory.createPawn(),
-                blackPieceFactory.createPawn(),
-                blackPieceFactory.createPawn(),
-                blackPieceFactory.createPawn(),
-                blackPieceFactory.createPawn(),
-                blackPieceFactory.createPawn(),
-                blackPieceFactory.createKing()
-        ));
-        assertThat(blackAndWhitePieces.get(Color.WHITE)).isEqualTo(Arrays.asList(
-                whitePieceFactory.createQueen(),
-                whitePieceFactory.createRook(),
-                whitePieceFactory.createRook(),
-                whitePieceFactory.createBishop(),
-                whitePieceFactory.createBishop(),
-                whitePieceFactory.createKnight(),
-                whitePieceFactory.createKnight(),
-                whitePieceFactory.createPawn(),
-                whitePieceFactory.createPawn(),
-                whitePieceFactory.createPawn(),
-                whitePieceFactory.createPawn(),
-                whitePieceFactory.createPawn(),
-                whitePieceFactory.createPawn(),
-                whitePieceFactory.createPawn(),
-                whitePieceFactory.createPawn(),
-                whitePieceFactory.createKing()
-        ));
-    }
-
-    @Test
     void initialize() {
         board.initialize();
         checkInitializeRoyal(Color.BLACK);
@@ -190,6 +148,47 @@ class BoardTest extends BoardTestBase {
                 () -> assertThat(board.findPiece("a8")).isEqualTo(white),
                 () -> assertThat(board.findPiece("b8")).isEqualTo(black)
         );
+    }
+
+    @Test
+    void getPiecesBy() {
+        board.initialize();
+        assertThat(board.getPiecesBy(Color.BLACK)).isEqualTo(Arrays.asList(
+                blackPieceFactory.createQueen(),
+                blackPieceFactory.createRook(),
+                blackPieceFactory.createRook(),
+                blackPieceFactory.createBishop(),
+                blackPieceFactory.createBishop(),
+                blackPieceFactory.createKnight(),
+                blackPieceFactory.createKnight(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createPawn(),
+                blackPieceFactory.createKing()
+        ));
+        assertThat(board.getPiecesBy(Color.WHITE)).isEqualTo(Arrays.asList(
+                whitePieceFactory.createQueen(),
+                whitePieceFactory.createRook(),
+                whitePieceFactory.createRook(),
+                whitePieceFactory.createBishop(),
+                whitePieceFactory.createBishop(),
+                whitePieceFactory.createKnight(),
+                whitePieceFactory.createKnight(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createPawn(),
+                whitePieceFactory.createKing()
+        ));
     }
 
     @Test

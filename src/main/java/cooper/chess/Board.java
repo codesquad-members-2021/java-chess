@@ -14,44 +14,23 @@ public class Board {
         this.pieceGroup = new PieceGroup();
     }
 
-    public void add(Piece piece) {
-        pieceGroup.add(piece);
-    }
-
     public int pieceCount() {
         return pieceGroup.size();
     }
 
-    public Piece findPawn(int index, Color color) {
-        return pieceGroup.findPawn(index, color);
-    }
-
     public String showBoard() {
         StringBuilder sb = new StringBuilder();
-        final String BLANK = "........";
+        List<Piece> pieceList = pieceGroup.getPieceList();
 
-        sb.append(appendNewLine(getPawnsResult(Color.WHITE)));
-        sb.append(appendNewLine(BLANK));
-        sb.append(appendNewLine(BLANK));
-        sb.append(appendNewLine(BLANK));
-        sb.append(appendNewLine(BLANK));
-        sb.append(appendNewLine(getPawnsResult(Color.BLACK)));
+        int pieceCount = 0;
+        while(pieceCount < BOARD_SIZE * BOARD_SIZE) {
+            sb.append(pieceList.get(pieceCount).getRepresentation());
 
-        return sb.toString();
-    }
+            if (pieceCount % BOARD_SIZE == BOARD_SIZE - 1) {
+                sb.append(NEW_LINE);
+            }
 
-    private String getPawnsResult(Color color) {
-        StringBuilder sb = new StringBuilder();
-        List<Piece> pieceList = pieceGroup.getPieceList(color);
-
-        for (int col = 0; col < BOARD_SIZE; col++) {
-            sb.append(pieceList.get(col).getRepresentation());
-        }
-
-        sb.append(NEW_LINE);
-
-        for (int col = BOARD_SIZE; col < PieceGroup.PIECE_LIST_MAX; col++) {
-            sb.append(pieceList.get(col).getRepresentation());
+            pieceCount++;
         }
 
         return sb.toString();

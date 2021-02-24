@@ -41,23 +41,6 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("index 외에 값을 입력이 예외를 발생시킨다.")
-    public void testOutOfBoardSize() {
-        Piece white = Piece.createWhitePawn();
-        board.add(white);
-
-        Piece black = Piece.createBlackPawn();
-        board.add(black);
-
-        assertAll(
-                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(-1, Color.WHITE)),
-                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(17, Color.WHITE)),
-                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(-1, Color.BLACK)),
-                () -> assertThrows(IllegalArgumentException.class, () -> board.findPawn(17, Color.BLACK))
-        );
-    }
-
-    @Test
     @DisplayName("board의 상태를 확인한다.")
     public void getBoardStatusTest() {
         System.out.println(board.showBoard());

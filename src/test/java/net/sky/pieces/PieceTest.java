@@ -48,7 +48,7 @@ class PieceTest {
         verifyPiece(blank, Color.NOCOLOR, '.', PieceType.NO_PIECE);
     }
 
-    void verifyPiece(final Piece piece, final Color color, final char representation,
+    private void verifyPiece(final Piece piece, final Color color, final char representation,
         final PieceType pieceType) {
         assertAll(
             () -> assertThat(piece.getColor()).isEqualTo(color),
@@ -58,7 +58,7 @@ class PieceTest {
         verifyColor(piece, color);
     }
 
-    void verifyColor(Piece piece, Color color) {
+    private void verifyColor(Piece piece, Color color) {
         if (color == Color.NOCOLOR) {
             assertAll(
                 () -> assertThat(piece.isWhite(piece)).isFalse(),

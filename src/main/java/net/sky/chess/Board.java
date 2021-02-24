@@ -2,7 +2,10 @@ package net.sky.chess;
 
 import static net.sky.utils.StringUtils.appendNewLine;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import net.sky.pieces.Color;
@@ -131,5 +134,23 @@ public class Board {
             }
         }
         return pawnNum > 1 ? pawnNum : 0;
+    }
+
+    public String sortByScore(Color color) {
+        StringBuilder result = new StringBuilder();
+        List<Piece> pieces = new ArrayList<>();
+        for (Piece piece : piecePositions.values()) {
+            if (piece.getColor() == color) {
+                pieces.add(piece);
+            }
+        }
+
+        Collections.sort(pieces, (o1, o2) -> Double.compare(o2.getPoint(), o1.getPoint()));
+
+        for (Piece piece : pieces) {
+            result.append(piece);
+        }
+
+        return result.toString();
     }
 }

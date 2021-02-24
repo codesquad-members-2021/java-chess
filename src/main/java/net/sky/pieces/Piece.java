@@ -2,7 +2,7 @@ package net.sky.pieces;
 
 import java.util.Objects;
 
-public class Piece {
+public class Piece{
 
     private final Color color;
     private final PieceType pieceType;
@@ -60,6 +60,11 @@ public class Piece {
     @Override
     public int hashCode() {
         return Objects.hash(color, pieceType, representation);
+    }
+
+    @Override
+    public String toString() {
+        return getRepresentation()+"";
     }
 
 }

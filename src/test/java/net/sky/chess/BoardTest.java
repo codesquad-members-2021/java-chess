@@ -151,4 +151,21 @@ class BoardTest {
     private void addPiece(Position position, Piece piece) {
         board.move(position, piece);
     }
+
+    @Test
+    @DisplayName("색깔별 기물의 점수가 높은 순으로 정렬되는지 확인")
+    void sortByScore() {
+        board.initialize();
+
+        board.move(new Position("a3"), whitePieceMaker.createPawn());
+        board.move(new Position("a6"), blackPieceMaker.createPawn());
+        board.print();
+
+        assertAll(
+            () -> assertThat(board.sortByScore(Color.BLACK)).isEqualTo("QRRBBNNPPPPPPPPPK"),
+            () -> assertThat(board.sortByScore(Color.WHITE)).isEqualTo("qrrbbnnpppppppppk")
+        );
+    }
+
+
 }

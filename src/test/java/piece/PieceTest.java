@@ -10,21 +10,21 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class PieceTest {
 
     @Test
-    @DisplayName("말이 흰색이면 true, 아니면 false를 반환해야 한다")
+    @DisplayName("말이 흰색이면 true, 아니면 false를 반환")
     void verifyIsWhite() {
         assertAll(() -> assertThat(createPiece(Color.WHITE, Type.PAWN).isWhite()).isTrue(),
                 () -> assertThat(createPiece(Color.BLACK, Type.KNIGHT).isWhite()).isFalse());
     }
 
     @Test
-    @DisplayName("말이 검은색이면 true, 아니면 false를 반환해야 한다")
+    @DisplayName("말이 검은색이면 true, 아니면 false를 반환")
     void verifyIsBlack() {
         assertAll(() -> assertThat(createPiece(Color.BLACK, Type.KING).isBlack()).isTrue(),
                 () -> assertThat(createPiece(Color.WHITE, Type.QUEEN).isBlack()).isFalse());
     }
 
     @Test
-    @DisplayName("말이 흰색이면 소문자, 검은색이면 대문자를 반환해야 한다")
+    @DisplayName("말이 흰색이면 소문자, 검은색이면 대문자를 반환")
     void verifyGetRepresentation() {
         assertAll(() -> assertThat(createPiece(Color.BLACK, Type.PAWN).getRepresentation()).isEqualTo('P'),
                 () -> assertThat(createPiece(Color.WHITE, Type.PAWN).getRepresentation()).isEqualTo('p'),

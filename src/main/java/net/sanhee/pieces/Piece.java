@@ -4,7 +4,7 @@ package net.sanhee.pieces;
 import net.sanhee.pieces.property.UnitColor;
 import net.sanhee.pieces.property.UnitType;
 
-abstract public class Piece {
+public class Piece {
 
     private final UnitColor color;
     private final char representation;

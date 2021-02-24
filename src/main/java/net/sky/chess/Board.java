@@ -19,16 +19,26 @@ public class Board {
     private final int BOARD_SIZE = 8;
     private final PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
     private final PieceMaker blackPieceMaker = new PieceMaker(Color.BLACK);
+    private final RankMaker whiteRankMaker = new RankMaker(whitePieceMaker);
+    private final RankMaker blackRankMaker = new RankMaker(blackPieceMaker);
 
     public void initialize() {
-        initializeBlackPieces();
-        initializeBlackPawns();
-        initializeBlank();
-        initializeBlank();
-        initializeBlank();
-        initializeBlank();
-        initializeWhitePawns();
-        initializeWhitePieces();
+        board.add(blackRankMaker.createPieceRank());
+        board.add(blackRankMaker.createPawnRank());
+        board.add(RankMaker.createBlankRank());
+        board.add(RankMaker.createBlankRank());
+        board.add(RankMaker.createBlankRank());
+        board.add(RankMaker.createBlankRank());
+        board.add(whiteRankMaker.createPawnRank());
+        board.add(whiteRankMaker.createPieceRank());
+
+        initializePosition();
+    }
+
+    public void initializeEmpty() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            board.add(RankMaker.createBlankRank());
+        }
 
         initializePosition();
     }
@@ -40,59 +50,6 @@ public class Board {
                 piecePositions.put(new Position(x, y), piece);
             }
         }
-    }
-
-    private void initializeWhitePawns() {
-        initializePawns(whitePieceMaker);
-    }
-
-    private void initializeBlackPawns() {
-        initializePawns(blackPieceMaker);
-    }
-
-    private void initializePawns(PieceMaker pieceMaker) {
-        Rank rank = new Rank();
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            rank.add(pieceMaker.createPawn());
-        }
-        board.add(rank);
-    }
-
-    private void initializeWhitePieces() {
-        initializePieces(whitePieceMaker);
-    }
-
-    private void initializeBlackPieces() {
-        initializePieces(blackPieceMaker);
-    }
-
-    private void initializePieces(PieceMaker pieceMaker) {
-        Rank rank = new Rank();
-        rank.add(pieceMaker.createRook());
-        rank.add(pieceMaker.createKnight());
-        rank.add(pieceMaker.createBishop());
-        rank.add(pieceMaker.createQueen());
-        rank.add(pieceMaker.createKing());
-        rank.add(pieceMaker.createBishop());
-        rank.add(pieceMaker.createKnight());
-        rank.add(pieceMaker.createRook());
-        board.add(rank);
-    }
-
-    private void initializeBlank() {
-        Rank rank = new Rank();
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            rank.add(PieceMaker.createBlank());
-        }
-        board.add(rank);
-    }
-
-    private String getPiecesResult(Rank rank) {
-        StringBuilder result = new StringBuilder();
-        for (Piece piece : rank.getRank()) {
-            result.append(piece.getRepresentation());
-        }
-        return result.toString();
     }
 
     public void print() {
@@ -111,6 +68,14 @@ public class Board {
         result.append(appendNewLine(""));
         result.append(appendNewLine("abcdefgh"));
 
+        return result.toString();
+    }
+
+    private String getPiecesResult(Rank rank) {
+        StringBuilder result = new StringBuilder();
+        for (Piece piece : rank.getRank()) {
+            result.append(piece.getRepresentation());
+        }
         return result.toString();
     }
 

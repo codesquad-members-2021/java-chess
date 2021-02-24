@@ -21,7 +21,6 @@ class BoardTest {
     @BeforeEach
     void setup() {
         board = new Board();
-        board.initialize();
         whitePieceMaker = new PieceMaker(Color.WHITE);
         blackPieceMaker = new PieceMaker(Color.BLACK);
     }
@@ -29,18 +28,26 @@ class BoardTest {
     @Test
     @DisplayName("체스판 초기화 확인")
     void create() {
-        String blankRank = appendNewLine("........");
+        board.initialize();
+        String blankRank = "........ ";
 
-        assertThat(board.showBoard()).isEqualTo(appendNewLine("RNBQKBNR")
-            + appendNewLine("PPPPPPPP")
-            + blankRank + blankRank + blankRank + blankRank
-            + appendNewLine("pppppppp")
-            + appendNewLine("rnbqkbnr"));
+        assertThat(board.showBoard()).isEqualTo(appendNewLine("RNBQKBNR 8")
+            + appendNewLine("PPPPPPPP 7")
+            + blankRank + appendNewLine("6")
+            + blankRank + appendNewLine("5")
+            + blankRank + appendNewLine("4")
+            + blankRank + appendNewLine("3")
+            + appendNewLine("pppppppp 2")
+            + appendNewLine("rnbqkbnr 1")
+            + appendNewLine("")
+            + appendNewLine("abcdefgh"));
     }
 
     @Test
     @DisplayName("기물의 개수 반환 테스트")
     void pieceCount() {
+        board.initialize();
+
         Piece whitePawn = whitePieceMaker.createPawn();
         Piece whiteRook = whitePieceMaker.createRook();
         Piece whiteKnight = whitePieceMaker.createKnight();
@@ -77,11 +84,43 @@ class BoardTest {
     @Test
     @DisplayName("주어진 기물의 위치 확인")
     void findPiece() {
+        board.initialize();
+
         assertAll(
-            () -> assertThat(board.findPiece(new Position("a8"))).isEqualTo(blackPieceMaker.createRook()),
-            () -> assertThat(board.findPiece(new Position("h8"))).isEqualTo(blackPieceMaker.createRook()),
-            () -> assertThat(board.findPiece(new Position("a1"))).isEqualTo(whitePieceMaker.createRook()),
-            () -> assertThat(board.findPiece(new Position("h1"))).isEqualTo(whitePieceMaker.createRook())
+            () -> assertThat(board.findPiece(new Position("a8")))
+                .isEqualTo(blackPieceMaker.createRook()),
+            () -> assertThat(board.findPiece(new Position("h8")))
+                .isEqualTo(blackPieceMaker.createRook()),
+            () -> assertThat(board.findPiece(new Position("a1")))
+                .isEqualTo(whitePieceMaker.createRook()),
+            () -> assertThat(board.findPiece(new Position("h1")))
+                .isEqualTo(whitePieceMaker.createRook())
         );
+    }
+
+    @Test
+    @DisplayName("기물의 위치 이동 확인")
+    void movePiece() {
+        board.initializeEmpty();
+
+        Position position1 = new Position("b5");
+        Piece blackRook = blackPieceMaker.createRook();
+        board.move(position1, blackRook);
+
+        Position position2 = new Position("b6");
+        Piece blackKing = blackPieceMaker.createKing();
+        board.move(position2, blackKing);
+
+        Position position3 = new Position("e3");
+        Piece whiteKing = whitePieceMaker.createKing();
+        board.move(position3, whiteKing);
+
+        assertAll(
+            () -> assertThat(board.findPiece(position1)).isEqualTo(blackRook),
+            () -> assertThat(board.findPiece(position2)).isEqualTo(blackKing),
+            () -> assertThat(board.findPiece(position3)).isEqualTo(whiteKing)
+        );
+
+        System.out.println(board.showBoard());
     }
 }

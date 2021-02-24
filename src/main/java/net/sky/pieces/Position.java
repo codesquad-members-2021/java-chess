@@ -6,15 +6,25 @@ public class Position {
 
     private final int x;
     private final int y;
+    private final int[] xMapping = {7, 6, 5, 4, 3, 2, 1, 0};
 
     public Position(String position) {
-        this.x = position.charAt(0) - 'a';
-        this.y = position.charAt(1) - 1;
+        int xIndex = Character.getNumericValue(position.charAt(1)) - 1;
+        this.x = xMapping[xIndex];
+        this.y = position.charAt(0) - 'a';
     }
 
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     @Override
@@ -33,4 +43,5 @@ public class Position {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
 }

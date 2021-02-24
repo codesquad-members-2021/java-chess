@@ -13,7 +13,6 @@ public class Board {
     private final Piece[] squares;
     private final int RANKS = 8;
     private final int FILES = 8;
-    private final PositionParser positionParser = new PositionParser();
 
     public Board() {
         squares = new Piece[RANKS * FILES];
@@ -33,36 +32,47 @@ public class Board {
     }
 
     private void initializeRank1() {
-        int rankBaseIndex = 7 * FILES;
-        squares[rankBaseIndex    ] = Piece.createWhiteRook();
-        squares[rankBaseIndex + 1] = Piece.createWhiteKnight();
-        squares[rankBaseIndex + 2] = Piece.createWhiteBishop();
-        squares[rankBaseIndex + 3] = Piece.createWhiteQueen();
-        squares[rankBaseIndex + 4] = Piece.createWhiteKing();
-        squares[rankBaseIndex + 5] = Piece.createWhiteBishop();
-        squares[rankBaseIndex + 6] = Piece.createWhiteKnight();
-        squares[rankBaseIndex + 7] = Piece.createWhiteRook();
+        set(File.A, Rank.ONE, Piece.createWhiteRook());
+        set(File.B, Rank.ONE, Piece.createWhiteKnight());
+        set(File.C, Rank.ONE, Piece.createWhiteBishop());
+        set(File.D, Rank.ONE, Piece.createWhiteQueen());
+        set(File.E, Rank.ONE, Piece.createWhiteKing());
+        set(File.F, Rank.ONE, Piece.createWhiteBishop());
+        set(File.G, Rank.ONE, Piece.createWhiteKnight());
+        set(File.H, Rank.ONE, Piece.createWhiteRook());
     }
 
     private void initializeRank2() {
-        int rankBaseIndex = 6 * FILES;
-        Arrays.fill(squares, rankBaseIndex, rankBaseIndex + FILES, Piece.createWhitePawn());
+        set(File.A, Rank.TWO, Piece.createWhitePawn());
+        set(File.B, Rank.TWO, Piece.createWhitePawn());
+        set(File.C, Rank.TWO, Piece.createWhitePawn());
+        set(File.D, Rank.TWO, Piece.createWhitePawn());
+        set(File.E, Rank.TWO, Piece.createWhitePawn());
+        set(File.F, Rank.TWO, Piece.createWhitePawn());
+        set(File.G, Rank.TWO, Piece.createWhitePawn());
+        set(File.H, Rank.TWO, Piece.createWhitePawn());
     }
 
     private void initializeRank7() {
-        int rankBaseIndex = FILES;
-        Arrays.fill(squares, rankBaseIndex, rankBaseIndex + FILES, Piece.createBlackPawn());
+        set(File.A, Rank.SEVEN, Piece.createBlackPawn());
+        set(File.B, Rank.SEVEN, Piece.createBlackPawn());
+        set(File.C, Rank.SEVEN, Piece.createBlackPawn());
+        set(File.D, Rank.SEVEN, Piece.createBlackPawn());
+        set(File.E, Rank.SEVEN, Piece.createBlackPawn());
+        set(File.F, Rank.SEVEN, Piece.createBlackPawn());
+        set(File.G, Rank.SEVEN, Piece.createBlackPawn());
+        set(File.H, Rank.SEVEN, Piece.createBlackPawn());
     }
 
     private void initializeRank8() {
-        squares[0] = Piece.createBlackRook();
-        squares[1] = Piece.createBlackKnight();
-        squares[2] = Piece.createBlackBishop();
-        squares[3] = Piece.createBlackQueen();
-        squares[4] = Piece.createBlackKing();
-        squares[5] = Piece.createBlackBishop();
-        squares[6] = Piece.createBlackKnight();
-        squares[7] = Piece.createBlackRook();
+        set(File.A, Rank.EIGHT, Piece.createBlackRook());
+        set(File.B, Rank.EIGHT, Piece.createBlackKnight());
+        set(File.C, Rank.EIGHT, Piece.createBlackBishop());
+        set(File.D, Rank.EIGHT, Piece.createBlackQueen());
+        set(File.E, Rank.EIGHT, Piece.createBlackKing());
+        set(File.F, Rank.EIGHT, Piece.createBlackBishop());
+        set(File.G, Rank.EIGHT, Piece.createBlackKnight());
+        set(File.H, Rank.EIGHT, Piece.createBlackRook());
     }
 
     public String showBoard() {
@@ -99,30 +109,27 @@ public class Board {
     }
 
     public Piece findPiece(String position) {
-        int rankIndex = positionParser.parseRankIndex(position);
-        int fileIndex = positionParser.parseFileIndex(position);
-        return squares[rankIndex * FILES + fileIndex];
+        return squares[calculateIndexByString(position)];
     }
 
     public void move(String position, Piece piece) {
-        int rankIndex = positionParser.parseRankIndex(position);
-        int fileIndex = positionParser.parseFileIndex(position);
-        setByIndex(rankIndex, fileIndex, piece);
+        squares[calculateIndexByString(position)] = piece;
     }
 
     public double calculatePoint(Color color) {
         double resultPoint = 0;
-        for (int j = 0; j < FILES; j++) {
-            resultPoint += calculateFilePoint(j, color);
+        for (File file : File.values()) {
+            resultPoint += calculateFilePoint(file, color);
         }
         return resultPoint;
     }
 
-    private double calculateFilePoint(int file, Color color) {
+    private double calculateFilePoint(File file, Color color) {
         int pawnCount = 0;
         double filePoint = 0;
-        for (int i = 0; i < RANKS; i++) {
-            Piece piece = getByIndex(i, file);
+
+        for (Rank rank : Rank.values()) {
+            Piece piece = get(file, rank);
             Type type = piece.getType();
             if (piece.getColor() == color) {
                 filePoint += type.getPoint();
@@ -134,27 +141,37 @@ public class Board {
         if (pawnCount >= 2) {
             filePoint -= pawnCount * 0.5;
         }
+
         return filePoint;
     }
 
-    private Piece getByIndex(int rank, int file) {
-        return squares[rank * FILES + file];
+    private int calculateIndex(File file, Rank rank) {
+        return rank.getIndex() * FILES + file.getIndex();
     }
 
-    private void setByIndex(int rank, int file, Piece piece) {
-        squares[rank * FILES + file] = piece;
+    private int calculateIndexByString(String position) {
+        Rank rank = parseRank(position);
+        File file = parseFile(position);
+        return calculateIndex(file, rank);
     }
 
-    private class PositionParser {
-        private int parseRankIndex(String position) {
-            char rank = position.charAt(1);
-            int rankPosition = Character.getNumericValue(rank);
-            return RANKS - rankPosition;
-        }
-        private int parseFileIndex(String position) {
-            char file = position.charAt(0);
-            return file - 'a';
-        }
+    private Piece get(File file, Rank rank) {
+        return squares[calculateIndex(file, rank)];
+    }
+
+    private void set(File file, Rank rank, Piece piece) {
+        squares[calculateIndex(file, rank)] = piece;
+    }
+
+    private Rank parseRank(String position) {
+        char rank = position.charAt(1);
+        int rankPosition = Character.getNumericValue(rank);
+        return Rank.getByInt(rankPosition);
+    }
+
+    private File parseFile(String position) {
+        char file = Character.toUpperCase(position.charAt(0));
+        return File.valueOf(Character.toString(file));
     }
 
 }

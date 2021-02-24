@@ -38,64 +38,75 @@ public class Piece {
         return new Piece(Color.NOCOLOR, Type.NO_PIECE);
     }
 
+    private static Piece createBlack(Type type) {
+        return new Piece(Color.BLACK, type);
+    }
+
+    private static Piece createWhite(Type type) {
+        return new Piece(Color.WHITE, type);
+    }
+
+
     public static Piece createBlackPawn() {
-        return new Piece(Color.BLACK, Type.PAWN);
+        return createBlack(Type.PAWN);
     }
 
     public static Piece createWhitePawn() {
-        return new Piece(Color.WHITE, Type.PAWN);
+        return createWhite(Type.PAWN);
     }
 
     public static Piece createBlackKnight() {
-        return new Piece(Color.BLACK, Type.KNIGHT);
+        return createBlack(Type.KNIGHT);
     }
 
     public static Piece createWhiteKnight() {
-        return new Piece(Color.WHITE, Type.KNIGHT);
+        return createWhite(Type.KNIGHT);
     }
 
     public static Piece createBlackRook() {
-        return new Piece(Color.BLACK, Type.ROOK);
+        return createBlack(Type.ROOK);
     }
 
     public static Piece createWhiteRook() {
-        return new Piece(Color.WHITE, Type.ROOK);
+        return createWhite(Type.ROOK);
     }
 
     public static Piece createBlackBishop() {
-        return new Piece(Color.BLACK, Type.BISHOP);
+        return createBlack(Type.BISHOP);
     }
 
     public static Piece createWhiteBishop() {
-        return new Piece(Color.WHITE, Type.BISHOP);
+        return createWhite(Type.BISHOP);
     }
 
     public static Piece createBlackQueen() {
-        return new Piece(Color.BLACK, Type.QUEEN);
+        return createBlack(Type.QUEEN);
     }
 
     public static Piece createWhiteQueen() {
-        return new Piece(Color.WHITE, Type.QUEEN);
+        return createWhite(Type.QUEEN);
     }
 
     public static Piece createBlackKing() {
-        return new Piece(Color.BLACK, Type.KING);
+        return createBlack(Type.KING);
     }
 
     public static Piece createWhiteKing() {
-        return new Piece(Color.WHITE, Type.KING);
+        return createWhite(Type.KING);
     }
+
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
-        return representation == piece.representation && color == piece.color;
+        return type == piece.type && color == piece.color;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(color, representation);
+        return Objects.hash(color, type);
     }
 }

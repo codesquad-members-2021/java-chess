@@ -69,13 +69,17 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("[테스트] 생성된 흰색/검은색 Pawn 열의 결과 검증 후 체스판 결과 출력")
+    @DisplayName("[테스트] 생성된 흰색/검은색 Pawn 열의 결과 검증")
     void initialize() {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
-
-        System.out.println(board.print());
     }
 
+    @Test
+    @DisplayName("체스판 결과 출력")
+    public void print() {
+        board.initialize();
+        System.out.println(board.showBoard());
+    }
 }

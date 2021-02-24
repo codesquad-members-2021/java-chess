@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class BoardTest {
 
     private Board board;
+    private String BLANK_RANK = appendNewLine("********");
 
     @BeforeEach
     void setUp() {
@@ -23,7 +24,7 @@ class BoardTest {
     @DisplayName("initialize()는 32개 모든 말을 체스판 위에 올린다.")
     void initializeAddsEveryPiece() {
         int maxNumOfPieces = 32;
-        String BLANK_RANK = appendNewLine("********");
+
 
         assertAll(
                 () -> assertThat(board.boardPieceSize()).isEqualTo(maxNumOfPieces),
@@ -86,7 +87,6 @@ class BoardTest {
                 () -> assertThat(board.findPiece("f8")).isEqualTo(Piece.createBlackBishop()),
                 () -> assertThat(board.findPiece("g8")).isEqualTo(Piece.createBlackKnight()),
                 () -> assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlackRook()),
-
                 () -> assertThat(board.findPiece("e7")).isEqualTo(Piece.createBlackPawn()),
 
                 () -> assertThat(board.findPiece("f2")).isEqualTo(Piece.createWhitePawn()),
@@ -99,6 +99,26 @@ class BoardTest {
                 () -> assertThat(board.findPiece("f1")).isEqualTo(Piece.createWhiteBishop()),
                 () -> assertThat(board.findPiece("g1")).isEqualTo(Piece.createWhiteKnight()),
                 () -> assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhiteRook())
+        );
+    }
+
+    @Test
+    @DisplayName("initializeEmptyBoard는 보드에 NO_PIECE만 있다.")
+    void checkInitializeEmptyBoard() {
+        Board emptyBoard = new Board();
+        emptyBoard.initializeEmptyBoard();
+
+        assertAll(
+                () -> assertThat(emptyBoard.boardLayoutToString()).isEqualTo(
+                                BLANK_RANK
+                                +BLANK_RANK
+                                +BLANK_RANK
+                                +BLANK_RANK
+                                +BLANK_RANK
+                                +BLANK_RANK
+                                +BLANK_RANK
+                                +BLANK_RANK),
+                () -> assertThat(emptyBoard.boardPieceSize()).isEqualTo(0)
         );
     }
 }

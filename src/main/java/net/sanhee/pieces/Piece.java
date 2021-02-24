@@ -8,6 +8,7 @@ abstract public class Piece {
 
     public Piece(UnitColor color) {
         this.color = color;
+        //m 생성자 매게변수를 줄이기 위해, 호출한 클래스의 이름을 활용하였습니다.
         this.representation = UnitType.getMark(this.color, this.getClass().getSimpleName());
     }
 

@@ -60,6 +60,14 @@ public class Board {
         return getPawnsResult(blackPawns);
     }
 
+    public String getWhiteButNotPawnsResult() {
+        return getPawnsResult(whiteButNotPawns);
+    }
+
+    public String getBlackButNotPawnsResult() {
+        return getPawnsResult(blackButNotPawns);
+    }
+
     private String getPawnsResult(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
         for (Piece aPiece : pieces) {
@@ -111,17 +119,18 @@ public class Board {
         addBlackButNotPawn(blackRook);
     }
 
-    void showBoard() {
+    String showBoard() {
         StringBuilder sb = new StringBuilder();
-        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getBlackButNotPawnsResult()));
         sb.append(appendNewLine(getBlackPawnsResult()));
         sb.append(appendNewLine(getBlankLine()));
         sb.append(appendNewLine(getBlankLine()));
         sb.append(appendNewLine(getBlankLine()));
         sb.append(appendNewLine(getBlankLine()));
         sb.append(appendNewLine(getWhitePawnsResult()));
-        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(getWhiteButNotPawnsResult()));
         System.out.println(sb.toString());
+        return sb.toString();
     }
 
     private String getBlankLine() {

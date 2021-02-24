@@ -6,8 +6,10 @@ import static org.assertj.core.api.Assertions.*;
 
 import pieces.Piece;
 
+import static utils.StringUtils.appendNewLine;
+
 class BoardTest {
-    Board board;
+    private Board board;
 
     @BeforeEach
     void setBoard() {
@@ -48,10 +50,18 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("체스판 출력")
-    void print () {
+    @DisplayName("체스판 전체 상태 테스트")
+    void print() {
         board.initialize();
-        board.showBoard();
+        assertThat(32).isEqualTo(board.pieceCount());
+        String blankRank = appendNewLine("........");
+        assertThat(board.showBoard()).isEqualTo(
+            appendNewLine("RNBQKBNR") +
+            appendNewLine("PPPPPPPP") +
+            blankRank + blankRank + blankRank + blankRank +
+            appendNewLine("pppppppp") +
+            appendNewLine("rnbqkbnr")
+        );
     }
 
     @Test

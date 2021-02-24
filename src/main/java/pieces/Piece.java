@@ -6,14 +6,6 @@ public class Piece {
 
     private char representation;
 
-//    public enum Color {
-//        WHITE, BLACK
-//    }
-
-//    public enum PieceRepresentation{
-//        P, p, N, n, R, r, B, b, Q, q, K, k
-//    }
-
     private Piece(Color color, char Representation) {
         this.color = color;
         this.representation = Representation;

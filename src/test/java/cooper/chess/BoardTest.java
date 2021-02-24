@@ -124,4 +124,50 @@ class BoardTest {
 
         System.out.println(board.showBoard());
     }
+
+    @Test
+    @DisplayName("점수를 오름차순으로 정렬된 리스트를 확인한다.")
+    public void sortByTypePointTest() {
+        List<Piece> sortedList = board.sortByTypePoint(Color.BLACK);
+        List<Piece> list = new ArrayList<>();
+
+        list.add(Piece.createBlackKing());
+
+        for (int i = 0; i < 8; i++) {
+            list.add(Piece.createBlackPawn());
+        }
+
+        list.add(Piece.createBlackKnight());
+        list.add(Piece.createBlackKnight());
+        list.add(Piece.createBlackBishop());
+        list.add(Piece.createBlackBishop());
+        list.add(Piece.createBlackRook());
+        list.add(Piece.createBlackRook());
+        list.add(Piece.createBlackQueen());
+
+        assertEquals(sortedList, list);
+    }
+
+    @Test
+    @DisplayName("점수 내림차순으로 정렬된 리스트를 확인한다.")
+    public void sortByTypePointReverse() {
+        List<Piece> sortedList = board.sortByTypePointReverse(Color.BLACK);
+        List<Piece> list = new ArrayList<>();
+
+        list.add(Piece.createBlackQueen());
+        list.add(Piece.createBlackRook());
+        list.add(Piece.createBlackRook());
+        list.add(Piece.createBlackBishop());
+        list.add(Piece.createBlackBishop());
+        list.add(Piece.createBlackKnight());
+        list.add(Piece.createBlackKnight());
+
+        for (int i = 0; i < 8; i++) {
+            list.add(Piece.createBlackPawn());
+        }
+
+        list.add(Piece.createBlackKing());
+
+        assertEquals(sortedList, list);
+    }
 }

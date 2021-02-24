@@ -29,7 +29,7 @@ public class Piece implements Comparable<Piece> {
         this.position = position;
     }
 
-    public double getPoint() {
+    public double getDefaultPoint() {
         return this.getType().getDefaultPoint();
     }
 
@@ -55,7 +55,7 @@ public class Piece implements Comparable<Piece> {
 
     @Override
     public int compareTo(Piece o) {
-        return Double.compare(getPoint(), o.getPoint()) * -1;
+        return Double.compare(getDefaultPoint(), o.getDefaultPoint()) * -1;
     }
 
     public boolean isWhite() {

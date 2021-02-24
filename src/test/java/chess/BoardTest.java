@@ -64,7 +64,7 @@ class BoardTest {
 
     @Test
     public void move() {
-        board.initializeAllEmpty();
+        board.initializeEmpty();
 
         String position = "b5";
         Piece piece = Piece.createBlackRook(new Position(position));
@@ -75,8 +75,8 @@ class BoardTest {
     }
 
     @Test
-    public void caculcatePoint() {
-        board.initializeAllEmpty();
+    public void calculatePoint() {
+        board.initializeEmpty();
 
         addPiece("b6", Piece.createBlackPawn(new Position("b6")));
         addPiece("e6", Piece.createBlackQueen(new Position("e6")));
@@ -89,8 +89,8 @@ class BoardTest {
         addPiece("f1", Piece.createWhiteKing(new Position("f1")));
 
         assertAll(
-                () -> assertThat(15.0).isEqualTo(board.totalCalculatePoint(Color.BLACK)),
-                () -> assertThat(7.0).isEqualTo(board.totalCalculatePoint(Color.WHITE))
+                () -> assertThat(15.0).isEqualTo(board.calculatePointByColor(Color.BLACK)),
+                () -> assertThat(7.0).isEqualTo(board.calculatePointByColor(Color.WHITE))
         );
 
 

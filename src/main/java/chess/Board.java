@@ -15,24 +15,24 @@ public class Board {
     private final List<Rank> ranks = new ArrayList<>(BOARD_SIZE);
 
     public int totalPiecesCount() {
-        return countAllPiecesByColor(Color.WHITE) + countAllPiecesByColor(Color.BLACK);
+        return countingAllPiecesByColor(Color.WHITE) + countingAllPiecesByColor(Color.BLACK);
     }
 
-    public int countAllPiecesByColor(Color color){
+    public int countingAllPiecesByColor(Color color){
         int count = 0;
-        count += countPieceByColorAndType(color, Type.PAWN);
-        count += countPieceByColorAndType(color, Type.ROOK);
-        count += countPieceByColorAndType(color, Type.KNIGHT);
-        count += countPieceByColorAndType(color, Type.BISHOP);
-        count += countPieceByColorAndType(color, Type.QUEEN);
-        count += countPieceByColorAndType(color, Type.KING);
+        count += countPiecesByColorAndType(color, Type.PAWN);
+        count += countPiecesByColorAndType(color, Type.ROOK);
+        count += countPiecesByColorAndType(color, Type.KNIGHT);
+        count += countPiecesByColorAndType(color, Type.BISHOP);
+        count += countPiecesByColorAndType(color, Type.QUEEN);
+        count += countPiecesByColorAndType(color, Type.KING);
         return count;
     }
 
-    public int countPieceByColorAndType(Color color, Type type) {
+    public int countPiecesByColorAndType(Color color, Type type) {
         int countPiece = 0;
         for (Rank rank : ranks) {
-            countPiece += rank.getCountPieceByColorAndType(color, type);
+            countPiece += rank.getCountPiecesByColorAndType(color, type);
         }
 
         return countPiece;
@@ -56,7 +56,7 @@ public class Board {
 
     private String getRank(Rank rank) {
         StringBuilder sb = new StringBuilder();
-        for (Piece piece : rank.getPieces()) {
+        for (Piece piece : rank.getRank()) {
             if (piece.isBlack()) {
                 sb.append(piece.getType().getBlackRepresentation()).append(" ");
             } else {
@@ -79,7 +79,7 @@ public class Board {
         ranks.add(Rank.initializeBlackPieces(FILE_INDEX - 7));
     }
 
-    public void initializeAllEmpty() {
+    public void initializeEmpty() {
         for (int i = 1; i <= BOARD_SIZE; i++) {
             ranks.add(Rank.initializeBlank(i));
         }
@@ -92,7 +92,7 @@ public class Board {
         piece.setPosition(chessBoardIndex);
     }
 
-    public double totalCalculatePoint(Color color) {
+    public double calculatePointByColor(Color color) {
         List<Piece> pieces = findPiecesByColor(color);
         double point = 0.0;
         for (Piece piece : pieces) {

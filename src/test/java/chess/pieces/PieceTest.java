@@ -20,7 +20,7 @@ class PieceTest {
     }
 
     @Test
-    void piecesPointSort() {
+    void piecesSortByPoint() {
         List<Piece> pieces = new ArrayList<>();
 
         addPiece(pieces);

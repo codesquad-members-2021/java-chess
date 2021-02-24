@@ -4,6 +4,7 @@ import chess.pieces.Piece;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,8 @@ import static chess.utils.StringUtils.appendNewLine;
 
 public class Board {
     private static final int BOARD_RANK = 8;
+    private static final int BOARD_FILE = 8;
+
     private List<Rank> board = new ArrayList<>(BOARD_RANK);
 
     public void initializeEmpty() {
@@ -103,10 +106,10 @@ public class Board {
         return result.toString();
     }
 
-    public long countPiece(Piece.Color color, Piece.Type type) {
-        Optional<Long> result = board.stream().map(x -> x.count(color, type))
+    public int countPiece(Piece piece) {
+        Optional<Long> result = board.stream().map(x -> x.count(piece))
                 .reduce((a, b) -> a + b);
-        return result.get();
+        return result.get().intValue();
     }
 
     public Piece findPiece(String position) {
@@ -122,11 +125,94 @@ public class Board {
         board.get(y).setPiece(x, piece);
     }
 
-    private int getX(String position){
+    private int getX(String position) {
         return position.charAt(0) - 'a';
     }
 
-    private int getY(String position){
+    private int getY(String position) {
         return position.charAt(1) - '0' - 1;
+    }
+
+    public double calculatePoint(Piece.Color color) {
+        if (color.equals(Piece.Color.WHITE)) {
+            return calculateWhitePoint();
+        }
+        return calculateBlackPoint();
+    }
+
+    private double calculateWhitePoint() {
+        double pawn = countPiece(Piece.createWhitePawn());
+        double knight = countPiece(Piece.createWhiteKnight());
+        double rook = countPiece(Piece.createWhiteRook());
+        double bishop = countPiece(Piece.createWhiteBishop());
+        double queen = countPiece(Piece.createWhiteQueen());
+
+        if (isSameFileWhite()) {
+            pawn = pawn * 0.5;
+        }
+        return getSum(pawn, knight, rook, bishop, queen);
+    }
+
+    private double calculateBlackPoint() {
+        double pawn = countPiece(Piece.createBlackPawn());
+        double knight = countPiece(Piece.createBlackKnight());
+        double rook = countPiece(Piece.createBlackRook());
+        double bishop = countPiece(Piece.createBlackBishop());
+        double queen = countPiece(Piece.createBlackQueen());
+
+        if (isSameFileBlack()) {
+            pawn = pawn * 0.5;
+        }
+        return getSum(pawn, knight, rook, bishop, queen);
+    }
+
+    private double getSum(double pawn, double knight, double rook, double bishop, double queen) {
+        return pawn * Piece.Type.PAWN.getDefaultPoint() +
+                knight * Piece.Type.KNIGHT.getDefaultPoint() +
+                rook * Piece.Type.ROOK.getDefaultPoint() +
+                bishop * Piece.Type.BISHOP.getDefaultPoint() +
+                queen * Piece.Type.QUEEN.getDefaultPoint();
+    }
+
+    private boolean isSameFileWhite() {
+        String[] positions = findPosition(Piece.createWhitePawn());
+        long deletedPositionsLength = Arrays.stream(positions)
+                .map(x -> x.charAt(0))
+                .distinct()
+                .count();
+        if (deletedPositionsLength != positions.length) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isSameFileBlack() {
+        String[] positions = findPosition(Piece.createBlackPawn());
+        long deletedPositionsLength = Arrays.stream(positions)
+                .map(x -> x.charAt(0))
+                .distinct()
+                .count();
+        if (deletedPositionsLength != positions.length) {
+            return true;
+        }
+        return false;
+    }
+
+    public String[] findPosition(Piece piece) {
+        String[] positionArr = new String[countPiece(piece)];
+
+        int index = 0;
+        for (int i = 0; i < BOARD_RANK; i++) {
+            for (int j = 0; j < BOARD_FILE; j++) {
+                char x = (char) ('a' + i);
+                char y = (char) ('1' + j);
+                String position = x + "" + y;
+                if (piece.equals(findPiece(position))) {
+                    positionArr[index] = position;
+                    index++;
+                }
+            }
+        }
+        return positionArr;
     }
 }

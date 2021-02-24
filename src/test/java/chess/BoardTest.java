@@ -33,11 +33,11 @@ class BoardTest {
     @Test
     void count() {
         board.initializeBoard();
-        assertThat(board.countPiece(Piece.Color.WHITE, Piece.Type.PAWN))
+        assertThat(board.countPiece(Piece.createWhitePawn()))
                 .isEqualTo(8);
-        assertThat(board.countPiece(Piece.Color.BLACK, Piece.Type.ROOK))
+        assertThat(board.countPiece(Piece.createBlackRook()))
                 .isEqualTo(2);
-        assertThat(board.countPiece(Piece.Color.NOCOLOR, Piece.Type.NO_PIECE))
+        assertThat(board.countPiece(Piece.createBlank()))
                 .isEqualTo(32);
     }
 
@@ -65,6 +65,27 @@ class BoardTest {
         board.setPiece(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
+        System.out.println(board.showBoard());
+    }
+
+    @DisplayName("기물의 색깔별로 점수가 올바르게 계산되는지 확인한다.")
+    @Test
+    void calculatePoint(){
+        board.initializeEmpty();
+
+        board.setPiece("b6", Piece.createBlackPawn());
+        board.setPiece("e6", Piece.createBlackQueen());
+        board.setPiece("b8", Piece.createBlackKing());
+        board.setPiece("c8", Piece.createBlackRook());
+
+        board.setPiece("f2", Piece.createWhitePawn());
+        board.setPiece("g2", Piece.createWhitePawn());
+        board.setPiece("e1", Piece.createWhiteRook());
+        board.setPiece("f1", Piece.createWhiteKing());
+
+        assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(15.0);
+        assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(7.0);
+
         System.out.println(board.showBoard());
     }
 }

@@ -61,4 +61,16 @@ class BoardTest {
 
         );
     }
+
+    @Test
+    @DisplayName("8번 rank를 호출하면 rankList의 0번째 rank가 리턴되고, 6번 rank호출하면 2번쨰 rank가 호출된다.")
+    void checkGetRank() {
+        assertAll(
+                () -> assertThat(board.getRank(8).getRankRepresentation()).isEqualTo("RNBQKBNR"),
+                () -> assertThat(board.getRank(7).getRankRepresentation()).isEqualTo("PPPPPPPP"),
+                () -> assertThat(board.getRank(6).getRankRepresentation()).isEqualTo("********"),
+                () -> assertThat(board.getRank(2).getRankRepresentation()).isEqualTo("pppppppp"),
+                () -> assertThat(board.getRank(1).getRankRepresentation()).isEqualTo("rnbqkbnr")
+        );
+    }
 }

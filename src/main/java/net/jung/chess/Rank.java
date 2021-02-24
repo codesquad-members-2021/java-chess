@@ -7,7 +7,7 @@ public class Rank {
     private ArrayList<Piece> pieceList = new ArrayList<>();
     public static final int MAX_PIECES_IN_RANK =8;
 
-    public int size() {
+    public int rankPieceSize() {
         int size =0;
         for(Piece piece : pieceList) {
             if( isPiece(piece) ){
@@ -93,10 +93,10 @@ public class Rank {
         return pieceList.get(index);
     }
 
-    public String getRankRepresentation(Rank rank) {
+    public String getRankRepresentation() {
         StringBuilder strBuilder = new StringBuilder();
-        for(int i =0; i< rank.size(); i++ ) {
-            strBuilder.append(rank.getPiece(i).getRepresentation());
+        for(int i =0; i< pieceList.size(); i++ ) {
+            strBuilder.append(getPiece(i).getRepresentation());
         }
         return strBuilder.toString();
     }

@@ -22,7 +22,7 @@ public class Board {
     private final int SEVENTH_ROW = 6;
     private final int EIGHTH_ROW = 7;
 
-    private final List[] rows = new ArrayList[ROWS];
+    private final List<List<Piece>> rows = new ArrayList();
 
     public Board() {
         initRows();

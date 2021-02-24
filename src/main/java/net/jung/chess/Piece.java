@@ -69,5 +69,19 @@ public class Piece {
         return color == Color.BLACK;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj != null & obj instanceof Piece) {
+            Piece pieceObj = (Piece)obj;
+            boolean compareColor = (color == pieceObj.color);
+            boolean compareType = (type == pieceObj.type);
+            return compareColor && compareType ;
+        }
+        return false;
+    }
 
+    @Override
+    public int hashCode() {
+        return color.hashCode()+type.hashCode();
+    }
 }

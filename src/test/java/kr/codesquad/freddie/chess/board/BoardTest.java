@@ -26,7 +26,7 @@ class BoardTest extends BoardTestBase {
     void initializeWithSort() {
         board.initializeWithSort();
         Map<Color, List<Piece>> blackAndWhitePieces = board.getBlackAndWhitePieces();
-        assertThat(blackAndWhitePieces.get(Color.BLACK)).isEqualTo(new ArrayList<>(Arrays.asList(
+        assertThat(blackAndWhitePieces.get(Color.BLACK)).isEqualTo(Arrays.asList(
                 blackPieceFactory.createQueen(),
                 blackPieceFactory.createRook(),
                 blackPieceFactory.createRook(),
@@ -43,8 +43,8 @@ class BoardTest extends BoardTestBase {
                 blackPieceFactory.createPawn(),
                 blackPieceFactory.createPawn(),
                 blackPieceFactory.createKing()
-        )));
-        assertThat(blackAndWhitePieces.get(Color.WHITE)).isEqualTo(new ArrayList<>(Arrays.asList(
+        ));
+        assertThat(blackAndWhitePieces.get(Color.WHITE)).isEqualTo(Arrays.asList(
                 whitePieceFactory.createQueen(),
                 whitePieceFactory.createRook(),
                 whitePieceFactory.createRook(),
@@ -61,7 +61,7 @@ class BoardTest extends BoardTestBase {
                 whitePieceFactory.createPawn(),
                 whitePieceFactory.createPawn(),
                 whitePieceFactory.createKing()
-        )));
+        ));
     }
 
     @Test

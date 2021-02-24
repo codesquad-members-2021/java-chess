@@ -5,6 +5,7 @@ import chess.pieces.Piece;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Rank {
     private List<Piece> pieces = new ArrayList<>();
@@ -57,5 +58,12 @@ public class Rank {
             }
         }
         return filesOfPawns;
+    }
+
+    public List<Piece> getPiecesOf(Piece.Color color) {
+        List<Piece> piecesOfColor = pieces.stream()
+                .filter(piece -> piece.getColor() == color)
+                .collect(Collectors.toList());
+        return piecesOfColor;
     }
 }

@@ -4,6 +4,7 @@ import chess.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static chess.utils.StringUtils.appendNewLine;
@@ -23,7 +24,7 @@ public class Board {
     List<Rank> board = new ArrayList<>();
 
     Board() {
-        for (int i = 0; i < MAX_FILE; i++) {
+        for (int i = 0; i < MAX_RANK; i++) {
             board.add(new Rank());
         }
     }
@@ -198,5 +199,14 @@ public class Board {
             }
         }
         return doublePawn;
+    }
+
+    public List<Piece> getRemainedPiecesInOrder(Piece.Color color) {
+        List<Piece> remainedBlackPieces = new ArrayList<>();
+        for (Rank rank : board) {
+            remainedBlackPieces.addAll(rank.getPiecesOf(color));
+        }
+        Collections.sort(remainedBlackPieces);
+        return remainedBlackPieces;
     }
 }

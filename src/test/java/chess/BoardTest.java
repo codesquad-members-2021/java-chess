@@ -3,6 +3,8 @@ package chess;
 import chess.pieces.Piece;
 import org.junit.jupiter.api.*;
 
+import java.util.Arrays;
+
 import static chess.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -110,5 +112,35 @@ public class BoardTest {
 
         assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(2.5);
         assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(1.0);
+    }
+
+    @Test
+    @DisplayName("각 색에 해당하는 기물들을 점수가 높은 순서에서 낮은 순으로 정렬한다.")
+    void sort_remains_in_score_order() {
+        board.initializeEmpty();
+
+        board.putPieceIn("a1", Piece.createWhite(Piece.Type.PAWN));
+        board.putPieceIn("a3", Piece.createWhite(Piece.Type.PAWN));
+        board.putPieceIn("b2", Piece.createWhite(Piece.Type.ROOK));
+        board.putPieceIn("c3", Piece.createWhite(Piece.Type.KNIGHT));
+        board.putPieceIn("d4", Piece.createWhite(Piece.Type.BISHOP));
+        board.putPieceIn("e5", Piece.createWhite(Piece.Type.QUEEN));
+        board.putPieceIn("f6", Piece.createWhite(Piece.Type.KING));
+
+        board.putPieceIn("g7", Piece.createBlack(Piece.Type.QUEEN));
+        board.putPieceIn("h8", Piece.createBlack(Piece.Type.ROOK));
+
+        System.out.println(board.showBoard());
+
+        System.out.println();
+        System.out.println("BLACK : " + board.getRemainedPiecesInOrder(Piece.Color.BLACK));
+        System.out.println("WHITE : " + board.getRemainedPiecesInOrder(Piece.Color.WHITE));
+
+        assertThat(board.getRemainedPiecesInOrder(Piece.Color.BLACK)).isEqualTo(
+                Arrays.asList(Piece.Type.QUEEN, Piece.Type.ROOK));
+        assertThat(board.getRemainedPiecesInOrder(Piece.Color.WHITE)).isEqualTo(
+                Arrays.asList(Piece.Type.QUEEN, Piece.Type.ROOK, Piece.Type.BISHOP
+                        , Piece.Type.KNIGHT, Piece.Type.PAWN, Piece.Type.PAWN, Piece.Type.KING));
+        // todo : 적절한 테스트 메서드를 찾아보자.
     }
 }

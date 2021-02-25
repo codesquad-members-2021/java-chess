@@ -3,6 +3,9 @@ package chess;
 import chess.pieces.Piece;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static chess.utils.StringUtils.appendNewLine;
 
@@ -145,12 +148,12 @@ public class Board {
     public double getSameFileNum(double pawnNum, Piece.Color color) {
         Piece piece =
                 color == Piece.Color.WHITE ? Piece.createWhitePawn() : Piece.createBlackPawn();
-        String[] positions = getPosition(piece);
+        String[] positions = getPawnPosition(piece);
         Set<String> deletedSamePositions = new HashSet<>(Arrays.asList(positions));
         return (pawnNum - deletedSamePositions.size()) * 2;
     }
 
-    private String[] getPosition(Piece pawn) {
+    private String[] getPawnPosition(Piece pawn) {
         String[] positionArr = new String[countPiece(pawn.getColor(), pawn.getType())];
         int index = 0;
         for (int i = 0; i < BOARD_RANK; i++) {
@@ -174,5 +177,15 @@ public class Board {
                 rook * Piece.Type.ROOK.getDefaultPoint() +
                 bishop * Piece.Type.BISHOP.getDefaultPoint() +
                 queen * Piece.Type.QUEEN.getDefaultPoint();
+    }
+
+    public List<Piece.Type> sortPiece(Piece.Color color) {
+        return board.stream()
+                .map(x -> x.getPieceList())
+                .flatMap(List::stream)
+                .filter(s -> s.getColor() == color)
+                .map(x -> x.getType())
+                .sorted(Comparator.comparing(Piece.Type::getDefaultPoint).reversed())
+                .collect(Collectors.toList());
     }
 }

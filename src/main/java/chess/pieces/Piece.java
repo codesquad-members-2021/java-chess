@@ -119,12 +119,12 @@ public class Piece {
 
     public enum Type {
         PAWN('p', 1),
-        KNIGHT('n',2.5),
-        ROOK('r',5),
-        BISHOP('b',3),
-        QUEEN('q',9),
-        KING('k',0),
-        NO_PIECE('.',0);
+        KNIGHT('n', 2.5),
+        ROOK('r', 5),
+        BISHOP('b', 3),
+        QUEEN('q', 9),
+        KING('k', 0),
+        NO_PIECE('.', 0);
 
         private final char representation;
         private final double defaultPoint;

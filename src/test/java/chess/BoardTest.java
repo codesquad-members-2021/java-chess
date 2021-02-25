@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static chess.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -83,10 +85,32 @@ class BoardTest {
         board.setPiece("e1", Piece.createWhiteRook());
         board.setPiece("f1", Piece.createWhiteKing());
         board.setPiece("f3", Piece.createWhitePawn());
-        
+
         assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(15.0);
         assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(7.0);
 
         System.out.println(board.showBoard());
+    }
+
+    @Test
+    void sortPiece() {
+        board.initializeEmpty();
+
+        board.setPiece("b6", Piece.createBlackPawn());
+        board.setPiece("e6", Piece.createBlackQueen());
+        board.setPiece("b8", Piece.createBlackKing());
+        board.setPiece("c8", Piece.createBlackRook());
+
+        board.setPiece("f2", Piece.createWhitePawn());
+        board.setPiece("g2", Piece.createWhitePawn());
+        board.setPiece("e1", Piece.createWhiteRook());
+        board.setPiece("f1", Piece.createWhiteKing());
+        board.setPiece("f3", Piece.createWhitePawn());
+
+        List<Piece.Type> whitePiece = board.sortPiece(Piece.Color.WHITE);
+        List<Piece.Type> blackPiece = board.sortPiece(Piece.Color.BLACK);
+
+        assertThat(whitePiece.toString()).isEqualTo("[ROOK, PAWN, PAWN, PAWN, KING]");
+        assertThat(blackPiece.toString()).isEqualTo("[QUEEN, ROOK, PAWN, KING]");
     }
 }

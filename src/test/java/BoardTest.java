@@ -27,7 +27,7 @@ class BoardTest {
         String blankRank = appendNewLine("........");
 
         assertThat(board.pieceCount()).isEqualTo(32);
-        assertThat(board.showBoard())
+        assertThat(board.showBoard(0, 1).toString())
                 .isEqualTo(appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         blankRank +
@@ -80,6 +80,6 @@ class BoardTest {
     @DisplayName("체스판 결과 출력")
     public void print() {
         board.initialize();
-        System.out.println(board.showBoard());
+        System.out.println(board.showBoard(0, 1).toString());
     }
 }

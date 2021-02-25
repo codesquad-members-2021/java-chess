@@ -99,19 +99,19 @@ public class Board {
         return count;
     }
 
-    public String showBoard() {
-        StringBuilder boardString = new StringBuilder();
+    public StringBuilder showBoard(int index, int count) {
+        final StringBuilder boardString = new StringBuilder();
         final int LINE_OF_PIECE = 8;
-        int count = 1;
-        for (int col = 0; col < pieces.size(); col++) {
-            if (count == LINE_OF_PIECE) {
-                boardString.append(findPiece(col).getRepresentation()).append(StringUtils.NEWLINE);
-                count = 1;
-            } else {
-                boardString.append(findPiece(col).getRepresentation());
-                count++;
-            }
+
+        if (index == 63) {
+            return boardString.append(findPiece(index).getRepresentation()).append(StringUtils.NEWLINE);
         }
-        return boardString.toString();
+
+        if (count == LINE_OF_PIECE) {
+            count = 0;
+            return boardString.append(findPiece(index).getRepresentation()).append(StringUtils.NEWLINE).append(showBoard(index + 1, count + 1));
+        }
+        return boardString.append(findPiece(index).getRepresentation()).append(showBoard(index + 1, count + 1));
     }
+
 }

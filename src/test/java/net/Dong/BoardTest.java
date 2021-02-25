@@ -23,21 +23,19 @@ class BoardTest {
     void createPawnTest() {
         Pawn white = new Pawn(Color.WHITE);
         Pawn black = new Pawn(Color.BLACK);
-        addWhitePawnToBoard(board,white,1,0);
-        addBlackPawnToBoard(board,black,2,0);
-        addWhitePawnToBoard(board,white,3,1);
-        addBlackPawnToBoard(board,black,4,1);
-        addWhitePawnToBoard(board,white,5,2);
-        addBlackPawnToBoard(board,black,6,2);
+        addWhitePawnToBoard(board,white,0);
+        addBlackPawnToBoard(board,black,0);
+        addWhitePawnToBoard(board,white,1);
+        addBlackPawnToBoard(board,black,1);
+        addWhitePawnToBoard(board,white,2);
+        addBlackPawnToBoard(board,black,2);
     }
-    void addWhitePawnToBoard(Board board, Pawn pawn, int sizeOfAllPawns, int indexOfPawn) {
+    void addWhitePawnToBoard(Board board, Pawn pawn, int indexOfPawn) {
         board.addWhitePawn(pawn);
-        assertThat(board.size()).isEqualTo(sizeOfAllPawns);
         assertThat(board.findWhitePawn(indexOfPawn)).isEqualTo(pawn);
     }
-    void addBlackPawnToBoard(Board board, Pawn pawn, int sizeOfAllPawns, int indexOfPawn) {
+    void addBlackPawnToBoard(Board board, Pawn pawn, int indexOfPawn) {
         board.addBlackPawn(pawn);
-        assertThat(board.size()).isEqualTo(sizeOfAllPawns);
         assertThat(board.findBlackPawn(indexOfPawn)).isEqualTo(pawn);
     }
 

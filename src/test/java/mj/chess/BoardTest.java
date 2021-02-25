@@ -1,11 +1,10 @@
 package mj.chess;
 
-import mj.chess.pieces.Color;
-import mj.chess.pieces.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static mj.chess.utils.StringUtil.appendNewLine;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -18,43 +17,31 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("Board class에 Pawn class 추가 및 인덱스로 탐색")
+    @DisplayName("체스판 생성에 따라 모든 기물의 개수 및 초기 출력상태 확인")
     void createBoard() {
-        Pawn[] testPawns = {
-                new Pawn(Color.BLACK),
-                new Pawn(Color.WHITE)
-        };
-
-        for (int i = 0; i < testPawns.length; i++) {
-            final int index = i;
-            assertAll(
-                    () -> verifyAddition(testPawns[index], index),
-                    () -> verifySearchByIndex(testPawns[index], index)
-            );
-        }
-    }
-
-    private void verifyAddition(Pawn pawn, int index) {
-        int size = index + 1;
-        board.add(pawn);
-        assertThat(board.size()).isEqualTo(size);
-    }
-
-    private void verifySearchByIndex(Pawn pawn, int index) {
-        assertThat(pawn).isEqualTo(board.findPawn(index));
-    }
-
-    @Test
-    @DisplayName("initialize 메소드 호출에 따라 각 폰의 표현문자 정상출력")
-    void checkRepresentationOfInitialize() {
+        final int numOfAllPieces = 32;
         board.initialize();
+
         assertAll(
-                () -> verifyRepresentationOfPawns(Color.WHITE, "pppppppp"),
-                () -> verifyRepresentationOfPawns(Color.BLACK, "PPPPPPPP")
+                () -> verifyCounting(board, numOfAllPieces),
+                () -> verifyRepresentationOfPieces(board)
         );
     }
 
-    private void verifyRepresentationOfPawns(Color color, String representationOfExpected) {
-        assertThat(board.getRowOfPawns(color)).isEqualTo(representationOfExpected);
+    private void verifyCounting(Board board, int maxNum) {
+        assertThat(board.countPieces()).isEqualTo(maxNum);
+    }
+
+    private void verifyRepresentationOfPieces(Board board) {
+        String blankRank = appendNewLine("........");
+        String initialLocationOfPieces = new StringBuilder()
+                .append(appendNewLine("RNBQKBNR"))
+                .append(appendNewLine("PPPPPPPP"))
+                .append(blankRank).append(blankRank).append(blankRank).append(blankRank)
+                .append(appendNewLine("pppppppp"))
+                .append(appendNewLine("rnbqkbnr"))
+                .toString();
+
+        assertThat(board.getLocationOfPieces()).isEqualTo(initialLocationOfPieces);
     }
 }

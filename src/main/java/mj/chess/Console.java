@@ -9,31 +9,34 @@ public class Console {
     }
 
     private void runConsole() {
-        Scanner scanner = new Scanner(System.in);
+        Board board = new Board();
         String command;
 
-        while (true) {
-            System.out.print("> ");
-            command = scanner.nextLine();
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.print("> ");
+                command = scanner.nextLine();
 
-            if (command.equalsIgnoreCase("START")) {
-                startGame();
-            } else if (command.equalsIgnoreCase("END")) {
-                endGame();
-                break;
-            } else System.out.println("Invalid Input");
-        };
-
-        scanner.close();
+                if (command.equalsIgnoreCase("START")) {
+                    startGame(board);
+                } else if (command.equalsIgnoreCase("END")) {
+                    endGame();
+                    break;
+                } else System.out.println("Invalid Input");
+            }
+        }
     }
 
-    private void startGame() {
-        Board board = new Board();
+    private void startGame(Board board) {
         board.initialize();
-        board.print();
+        printLocationOfPieces(board);
     }
 
     private void endGame() {
         System.out.print("Game Over");
+    }
+
+    private void printLocationOfPieces(Board board) {
+        System.out.println(board.getLocationOfPieces());
     }
 }

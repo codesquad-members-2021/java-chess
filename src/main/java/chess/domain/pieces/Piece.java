@@ -24,11 +24,8 @@ public abstract class Piece implements Comparable<Piece> {
 
     @Override
     public int compareTo(Piece piece) {
-        double compared = getScore() - piece.getScore();
-        return compared == 0
-                ? 0
-                : compared > 0
-                ? 1
-                : -1;
+        return (int) (2 *
+                (getScore() - piece.getScore())
+        );
     }
 }

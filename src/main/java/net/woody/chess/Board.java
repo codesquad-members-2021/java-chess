@@ -6,17 +6,17 @@ import net.woody.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
 
-    private final List<Rank> board = new ArrayList<>(BOARD_LENGTH);
+    private final List<Rank> board;
 
-    public Board() {
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            board.add(new Rank());
-        }
+    private Board(List<Rank> board) {
+        this.board = board;
     }
 
     public void add(Piece piece, int rank, int file) {
@@ -34,54 +34,29 @@ public class Board {
         return getRank(rank).find(file);
     }
 
-    public void initialize() {
-        initBlackPieces();
-        initBlackPawns();
-        initWhitePawns();
-        initWhitePieces();
+    public static Board createInitBoard() {
+        return new Board(initialize());
     }
 
-    // TODO : Rank에 팩토리 메소드 구현으로 좀 더 간단하게
-    private void initBlackPieces() {
-        Rank blackPieces = getRank(Piece.BLACK_PIECES_RANK);
-
-        blackPieces.add(0, Piece.createBlackRook());
-        blackPieces.add(1, Piece.createBlackKnight());
-        blackPieces.add(2, Piece.createBlackBishop());
-        blackPieces.add(3, Piece.createBlackQueen());
-        blackPieces.add(4, Piece.createBlackKing());
-        blackPieces.add(5, Piece.createBlackBishop());
-        blackPieces.add(6, Piece.createBlackKnight());
-        blackPieces.add(7, Piece.createBlackRook());
-    }
-
-    private void initBlackPawns() {
-        Rank blackPawns = getRank(Piece.BLACK_PAWN_RANK);
-
+    public static Board createBlankBoard() {
+        List<Rank> board = new ArrayList<>(BOARD_LENGTH);
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            blackPawns.add(i, Piece.createBlackPawn());
+            board.add(i, Rank.createBlankRank());
         }
+        return new Board(board);
     }
 
-    private void initWhitePieces() {
-        Rank whitePieces = getRank(Piece.WHITE_PIECES_RANK);
-
-        whitePieces.add(0, Piece.createWhiteRook());
-        whitePieces.add(1, Piece.createWhiteKnight());
-        whitePieces.add(2, Piece.createWhiteBishop());
-        whitePieces.add(3, Piece.createWhiteQueen());
-        whitePieces.add(4, Piece.createWhiteKing());
-        whitePieces.add(5, Piece.createWhiteBishop());
-        whitePieces.add(6, Piece.createWhiteKnight());
-        whitePieces.add(7, Piece.createWhiteRook());
-    }
-
-    private void initWhitePawns() {
-        Rank whitePawns = getRank(Piece.WHITE_PAWN_RANK);
-
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            whitePawns.add(i, Piece.createWhitePawn());
-        }
+    private static List<Rank> initialize() {
+        return Stream.of(
+                Rank.createBlackPieceRank(),
+                Rank.createBlackPawnRank(),
+                Rank.createBlankRank(),
+                Rank.createBlankRank(),
+                Rank.createBlankRank(),
+                Rank.createBlankRank(),
+                Rank.createWhitePawnRank(),
+                Rank.createWhitePieceRank()
+        ).collect(Collectors.toCollection(ArrayList::new));
     }
 
     // TODO : 더 효율적인 방식 고려
@@ -92,7 +67,6 @@ public class Board {
         }
         return numOfPieces;
     }
-
 
     // TODO : 네이밍 수정 혹은 toString 오버라이드
     public String showBoard() {

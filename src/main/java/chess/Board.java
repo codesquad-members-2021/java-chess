@@ -38,10 +38,10 @@ public class Board {
                 + board.get(RANK8).size();
     }
 
-    public int pieceCountOf(Piece.Color color, Piece.Type type) {
+    public int pieceCountOf(Color color, Type type) {
         int pieceCount = 0;
-        for (int i = 0; i < MAX_FILE; i++) {
-            pieceCount += board.get(i).pieceCountOf(color, type);
+        for (int rank = 0; rank < MAX_RANK; rank++) {
+            pieceCount += board.get(rank).pieceCountOf(color, type);
 
         }
         return pieceCount;
@@ -67,8 +67,8 @@ public class Board {
     }
 
     public void initializeEmpty() {
-        for (int i = 0; i < MAX_RANK; i++) {
-            board.set(i, getBlankRank());
+        for (int rank = 0; rank < MAX_RANK; rank++) {
+            board.set(rank, getBlankRank());
         }
     }
 
@@ -94,13 +94,13 @@ public class Board {
     }
 
     private void addBlackPawns() {
-        for (int i = 0; i < MAX_RANK; i++) {
+        for (int i = 0; i < MAX_FILE; i++) {
             board.get(RANK7).add(Piece.createBlack(PAWN));
         }
     }
 
     private void addBlank() {
-        for (int i = 0; i < MAX_RANK; i++) {
+        for (int i = 0; i < MAX_FILE; i++) {
             board.get(RANK6).add(Piece.createBlank());
             board.get(RANK5).add(Piece.createBlank());
             board.get(RANK4).add(Piece.createBlank());
@@ -109,7 +109,7 @@ public class Board {
     }
 
     private void addWhitePawns() {
-        for (int i = 0; i < MAX_RANK; i++) {
+        for (int i = 0; i < MAX_FILE; i++) {
             board.get(RANK2).add(Piece.createWhite(PAWN));
         }
     }
@@ -153,9 +153,40 @@ public class Board {
     }
 
     public double calculateScoreOf(Color color) {
-        double score = board.stream()
-                .mapToDouble(rank -> rank.getScoreOf(color))
-                .sum();
+        double score = 0.0;
+
+        for (int rank = 0; rank < MAX_RANK; rank++) {
+            int doublePawn = 0;
+            Rank targetRank = board.get(rank);
+            double targetRankScore = targetRank.getScoreOf(color);
+            score += targetRankScore;
+
+            if (rank == RANK1) {
+                continue;
+            }
+
+            Rank beforeRank = board.get(rank - 1);
+            List<Integer> targetRankFilesOfPawns = targetRank.getFilesOfPawns(color);
+            List<Integer> beforeRankFilesOfPawns = beforeRank.getFilesOfPawns(color);
+
+            for (int targetRankIndex = 0; targetRankIndex < targetRankFilesOfPawns.size(); targetRankIndex++) {
+                for (int beforeRankIndex = 0; beforeRankIndex < beforeRankFilesOfPawns.size(); beforeRankIndex++) {
+                    if (targetRankFilesOfPawns.get(targetRankIndex) == beforeRankFilesOfPawns.get(beforeRankIndex)) {
+                        doublePawn++;
+                        break;
+                    }
+                }
+            }
+            if (rank == RANK2 && doublePawn > 0) {
+                score -= (doublePawn * 0.5);
+            }
+            if (rank == RANK8 && doublePawn > 0) {
+                score -= (doublePawn * 0.5);
+                break;
+            }
+            score -= (doublePawn * 0.5);
+
+        }
         return score;
     }
 

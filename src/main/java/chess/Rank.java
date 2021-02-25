@@ -28,7 +28,7 @@ public class Rank {
         pieces.addAll(piece);
     }
 
-    public long pieceCountOf(Piece.Color color, Piece.Type type) {
+    public long pieceCountOf(Color color, Type type) {
         long pieceCount = pieces.stream()
                 .filter(piece -> piece.getColor() == color && piece.getType() == type)
                 .count();
@@ -43,7 +43,7 @@ public class Rank {
         pieces.set(index, piece);
     }
 
-    public List<Piece> getPiecesOf(Piece.Color color) {
+    public List<Piece> getPiecesOf(Color color) {
         List<Piece> piecesOfColor = pieces.stream()
                 .filter(piece -> piece.getColor() == color)
                 .collect(Collectors.toList());

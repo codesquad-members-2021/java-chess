@@ -42,18 +42,6 @@ public class Piece {
         return color.equals(Piece.BLACK);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public char getSymbol() {
-        return symbol;
-    }
-
     public static Piece createWhitePawn() {
         return new Piece(PAWN, WHITE, WHITE_PAWN_SYMBOL);
     }
@@ -100,5 +88,17 @@ public class Piece {
 
     public static Piece createBlackKing() {
         return new Piece(KING, BLACK, BLACK_KING_SYMBOL);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public char getSymbol() {
+        return symbol;
     }
 }

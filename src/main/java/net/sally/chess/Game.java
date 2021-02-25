@@ -20,7 +20,7 @@ public class Game {
                 case START:
                     Board board = new Board();
                     board.initialize();
-                    board.print();
+                    System.out.println(board.showBoard());
                     break;
 
                 case END:

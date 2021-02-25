@@ -1,57 +1,33 @@
 package net.sally.chess;
 
 import org.junit.jupiter.api.*;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
-import net.sally.pieces.Pawn;
+import static net.sally.util.StringUtils.appendNewLine;
+import static org.assertj.core.api.Assertions.*;
+
+import net.sally.pieces.Piece;
 
 public class BoardTest {
 
     private Board board;
-    private Pawn whitePawn, blackPawn;
 
     @BeforeEach
     void setUp() {
         board = new Board();
-        whitePawn = new Pawn(Pawn.WHITE, Pawn.WHITE_REPRESENTATION);
-        blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
     }
 
     @Test
-    @DisplayName("폰이 보드에 정상적으로 등록")
+    @DisplayName("말들이 정상적으로 등록, 보드가 정상적으로 출력")
     void create() {
-        verifyWhitePawns(board, whitePawn, 0);
-        verifyBlackPawns(board, blackPawn, 0);
-    }
-
-    private void verifyWhitePawns(Board board, Pawn pawn, int size) {
-        board.addWhitePawn(pawn);
-        assertAll(
-                () -> assertThat(board.getWhitePawnSize()).isEqualTo(size + 1),
-                () -> assertThat(board.findWhitePawn(size)).isEqualTo(pawn)
-        );
-    }
-
-    private void verifyBlackPawns(Board board, Pawn pawn, int size) {
-        board.addBlackPawn(pawn);
-        assertAll(
-                () -> assertThat(board.getBlackPawnsSize()).isEqualTo(size + 1),
-                () -> assertThat(board.findBlackPawn(size)).isEqualTo(pawn)
-        );
-    }
-
-    @Test
-    @DisplayName("보드가 정상적으로 출력")
-    void printer() {
         board.initialize();
-        board.print();
-    }
+        assertThat(board.pieceCount()).isEqualTo(32);
+        String blankRank = appendNewLine("........");
 
-    @Test
-    void initialize() {
-        board.initialize();
-        assertThat("pppppppp").isEqualTo(board.getWhitePawnsResult());
-        assertThat("PPPPPPPP").isEqualTo(board.getBlackPawnsResult());
+        assertThat(board.showBoard()).isEqualTo(
+                appendNewLine("RNBQKBNR") + appendNewLine("PPPPPPPP")
+                + blankRank + blankRank + blankRank + blankRank
+                + appendNewLine("pppppppp")
+                + appendNewLine("rnbqkbnr")
+        );
     }
 }

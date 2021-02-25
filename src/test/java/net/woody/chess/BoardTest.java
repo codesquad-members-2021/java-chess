@@ -13,8 +13,7 @@ class BoardTest {
 
     @BeforeEach
     void setup() {
-        this.board = new Board();
-        board.initialize();
+        this.board = Board.createInitBoard();
     }
 
     @Test

@@ -24,7 +24,13 @@ public enum Kind {
     ROOK("r", 5.0) {
         @Override
         public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+            int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
+            int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
+            if (!(fileDistance == 0 || rankDistance == 0)) {
+                String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
+                throw new IllegalArgumentException(message);
+            }
         }
     },
     BISHOP("b", 3.0) {

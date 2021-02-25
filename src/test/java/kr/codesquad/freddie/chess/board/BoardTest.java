@@ -228,6 +228,41 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
+    void moveRook() {
+        initBoardWithBlank();
+        checkMove("d4", "d5", blackPieceFactory.createRook());
+        checkMove("d4", "d6", blackPieceFactory.createRook());
+        checkMove("d4", "d3", blackPieceFactory.createRook());
+        checkMove("d4", "d2", blackPieceFactory.createRook());
+        checkMove("d4", "c4", blackPieceFactory.createRook());
+        checkMove("d4", "b4", blackPieceFactory.createRook());
+        checkMove("d4", "e4", blackPieceFactory.createRook());
+        checkMove("d4", "f4", blackPieceFactory.createRook());
+    }
+
+    @Test
+    void moveRookToWrongTarget() {
+        initBoardWithBlank();
+        checkMoveToWrongTarget("d4", "e5", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "f6", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "e3", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "f2", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "c5", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "b6", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "c3", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "b2", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "c6", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "b5", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "b3", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "c2", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "e2", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "f3", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "f5", blackPieceFactory.createRook());
+        checkMoveToWrongTarget("d4", "e6", blackPieceFactory.createRook());
+    }
+
+
+    @Test
     void moveBishop() {
         initBoardWithBlank();
         checkMove("d4", "e5", blackPieceFactory.createBishop());

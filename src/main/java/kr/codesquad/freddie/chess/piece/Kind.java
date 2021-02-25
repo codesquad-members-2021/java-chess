@@ -30,6 +30,13 @@ public enum Kind {
     BISHOP("b", 3.0) {
         @Override
         public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+            int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
+            int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
+
+            if (fileDistance == 0 || rankDistance / fileDistance != 1) {
+                String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
+                throw new IllegalArgumentException(message);
+            }
         }
     },
     QUEEN("q", 9.0) {

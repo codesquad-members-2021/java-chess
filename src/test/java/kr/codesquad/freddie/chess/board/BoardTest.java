@@ -260,6 +260,55 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
+    void moveBishop() {
+        initBoardWithBlank();
+        checkMoveBishop("d4", "e5");
+        checkMoveBishop("d4", "f6");
+        checkMoveBishop("d4", "e3");
+        checkMoveBishop("d4", "f2");
+        checkMoveBishop("d4", "c5");
+        checkMoveBishop("d4", "b6");
+        checkMoveBishop("d4", "c3");
+        checkMoveBishop("d4", "b2");
+    }
+
+    private void checkMoveBishop(String source, String target) {
+        board.set(source, blackPieceFactory.createBishop());
+        board.set(target, whitePieceFactory.createPawn());
+        board.move(source, target);
+
+        assertThat(board.findPiece(source)).isEqualTo(Piece.createBlank());
+        assertThat(board.findPiece(target)).isEqualTo(blackPieceFactory.createBishop());
+    }
+
+    @Test
+    void moveBishopToWrongTarget() {
+        initBoardWithBlank();
+        checkMoveBishopToWrongTarget("d4", "d5");
+        checkMoveBishopToWrongTarget("d4", "d6");
+        checkMoveBishopToWrongTarget("d4", "d3");
+        checkMoveBishopToWrongTarget("d4", "d2");
+        checkMoveBishopToWrongTarget("d4", "c4");
+        checkMoveBishopToWrongTarget("d4", "b4");
+        checkMoveBishopToWrongTarget("d4", "e4");
+        checkMoveBishopToWrongTarget("d4", "f4");
+        checkMoveBishopToWrongTarget("d4", "c6");
+        checkMoveBishopToWrongTarget("d4", "b5");
+        checkMoveBishopToWrongTarget("d4", "b3");
+        checkMoveBishopToWrongTarget("d4", "c2");
+        checkMoveBishopToWrongTarget("d4", "e2");
+        checkMoveBishopToWrongTarget("d4", "f3");
+        checkMoveBishopToWrongTarget("d4", "f5");
+        checkMoveBishopToWrongTarget("d4", "e6");
+    }
+
+    private void checkMoveBishopToWrongTarget(String source, String target) {
+        board.set(source, blackPieceFactory.createBishop());
+        assertThatThrownBy(()->board.move(source, target))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void moveToSameColor() {
         initBoardWithBlank();
         board.set("b3", blackPieceFactory.createKing());

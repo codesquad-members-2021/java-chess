@@ -128,8 +128,12 @@ class BoardTest {
 =======
     void createWhitePawnAndBlackPawn() {
         Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+<<<<<<< HEAD
         board.addPawntopawnList(white);
 >>>>>>> Dion이 리뷰해주신 내용 반영하다.
+=======
+        board.addPawnToPawnList(white);
+>>>>>>> Dion의 두번째 리뷰 내용 반영
         Assertions.assertAll(
             () -> assertThat(board.checkPawnSize()).isEqualTo(1),
             () -> assertThat(board.findPawn(0)).isEqualTo(white)
@@ -137,7 +141,7 @@ class BoardTest {
 <<<<<<< HEAD
 
         Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
-        board.addPawntopawnList(black);
+        board.addPawnToPawnList(black);
         Assertions.assertAll(
                 () -> assertThat(board.checkPawnSize()).isEqualTo(2),
                 () -> assertThat(board.findPawn(1)).isEqualTo(black)
@@ -205,13 +209,29 @@ class BoardTest {
 =======
 >>>>>>> feat : Do Mission2
 
+<<<<<<< HEAD
 
 =======
     @DisplayName("보드 초기화 및 그리기")
+=======
+    @DisplayName("보드 초기화 및 초기화되었는지 확인하기")
+>>>>>>> a47c16e... Dion의 두번째 리뷰 내용 반영
     @Test
-    void initializeBoardAndAppend() {
+    void checkInitializeBoard() {
         board.initialize();
-        board.appendBoardWithPawns();
+        StringBuilder initializedBoard = new StringBuilder();
+        initializedBoard
+                .append("........\n")
+                .append("PPPPPPPP\n")
+                .append("........\n")
+                .append("........\n")
+                .append("........\n")
+                .append("........\n")
+                .append("pppppppp\n")
+                .append("........\n");
+
+        assertThat(board.getPawnsRepresentation()).isEqualTo(initializedBoard.toString());
+
     }
 
     @DisplayName("보드 초기화하기")
@@ -239,6 +259,7 @@ class BoardTest {
         assertEquals(white, board.findPawn(0));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 5913482... rebase mission3
 =======
         Pawn black = new Pawn(Pawn.BLACK_COLOR);
@@ -265,5 +286,7 @@ class BoardTest {
 =======
 
 >>>>>>> a20eb16... kyu가 리뷰해준 내용 반영하였습니다.
+=======
+>>>>>>> a47c16e... Dion의 두번째 리뷰 내용 반영
 }
 

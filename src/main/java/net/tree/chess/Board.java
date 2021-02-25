@@ -117,10 +117,14 @@ public class Board {
     public void add(Pawn pawn) {
 =======
     private final int BOARD_SIZE = 8;
-    private String blankDot = "........\n";
+    private String line = "........\n";
 
+<<<<<<< HEAD
     public void addPawntopawnList(Pawn pawn) {
 >>>>>>> Dion이 리뷰해주신 내용 반영하다.
+=======
+    public void addPawnToPawnList(Pawn pawn) {
+>>>>>>> Dion의 두번째 리뷰 내용 반영
         pawnList.add(pawn);
 >>>>>>> rebase mission3
     }
@@ -169,8 +173,8 @@ public class Board {
     public void initialize() {
 >>>>>>> 4e4c335... Dion이 리뷰해주신 내용 반영하다.
         for(int i = 0 ; i < BOARD_SIZE ; i++) {
-            addPawntopawnList(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            addPawntopawnList(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            addPawnToPawnList(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
+            addPawnToPawnList(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
         }
     }
 
@@ -185,18 +189,18 @@ public class Board {
         return sb.toString();
     }
 
-    public String appendBoardWithPawns() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(blankDot);
-        sb.append(getPawnsResult(Pawn.BLACK_REPRESENTATION) + "\n");
-        sb.append(blankDot);
-        sb.append(blankDot);
-        sb.append(blankDot);
-        sb.append(blankDot);
-        sb.append(getPawnsResult(Pawn.WHITE_REPRESENTATION) + "\n");
-        sb.append(blankDot);
+    public String getPawnsRepresentation() {
+        StringBuilder pawnsRepresentation = new StringBuilder();
+        pawnsRepresentation.append(line);
+        pawnsRepresentation.append(getPawnsResult(Pawn.BLACK_REPRESENTATION) + "\n");
+        pawnsRepresentation.append(line);
+        pawnsRepresentation.append(line);
+        pawnsRepresentation.append(line);
+        pawnsRepresentation.append(line);
+        pawnsRepresentation.append(getPawnsResult(Pawn.WHITE_REPRESENTATION) + "\n");
+        pawnsRepresentation.append(line);
 
-        return sb.toString();
+        return pawnsRepresentation.toString();
     }
 
 <<<<<<< HEAD

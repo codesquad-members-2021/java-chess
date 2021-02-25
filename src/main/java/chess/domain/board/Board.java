@@ -23,4 +23,8 @@ public class Board {
                 .filter(piece::equals)
                 .count();
     }
+
+    public void put(Position position, Piece piece) {
+        squares.put(position, piece);
+    }
 }

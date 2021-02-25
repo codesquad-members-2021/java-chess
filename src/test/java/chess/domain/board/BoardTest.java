@@ -2,12 +2,14 @@ package chess.domain.board;
 
 import chess.domain.board.position.Position;
 import chess.domain.pieces.Pawn;
+import chess.domain.pieces.Queen;
 import chess.domain.pieces.Rook;
 import chess.view.BoardView;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static chess.utils.StringUtils.NEWLINE;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -48,5 +50,25 @@ class BoardTest {
                 () -> assertThat(board.getPiece(Position.of("h1")))
                         .isEqualTo(Rook.ofWhite())
         );
+    }
+
+    @Test
+    @DisplayName("기물을 체스판 위에 추가")
+    void put() {
+        board.put(Position.of("b5"), Rook.ofBlack());
+        board.put(Position.of("f5"), Queen.ofWhite());
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("  a b c d e f g h ").append(NEWLINE);
+        sb.append("8 R N B Q K B N R ").append(NEWLINE);
+        sb.append("7 P P P P P P P P ").append(NEWLINE);
+        sb.append("6 . . . . . . . . ").append(NEWLINE);
+        sb.append("5 . R . . . q . . ").append(NEWLINE);
+        sb.append("4 . . . . . . . . ").append(NEWLINE);
+        sb.append("3 . . . . . . . . ").append(NEWLINE);
+        sb.append("2 p p p p p p p p ").append(NEWLINE);
+        sb.append("1 r n b q k b n r ").append(NEWLINE);
+        assertThat(boardView.getBoardRepresentation())
+                .isEqualTo(sb.toString());
     }
 }

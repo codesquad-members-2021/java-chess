@@ -296,6 +296,41 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
+    void moveQueen() {
+        initBoardWithBlank();
+        checkMove("d4", "d5", blackPieceFactory.createQueen());
+        checkMove("d4", "d6", blackPieceFactory.createQueen());
+        checkMove("d4", "d3", blackPieceFactory.createQueen());
+        checkMove("d4", "d2", blackPieceFactory.createQueen());
+        checkMove("d4", "c4", blackPieceFactory.createQueen());
+        checkMove("d4", "b4", blackPieceFactory.createQueen());
+        checkMove("d4", "e4", blackPieceFactory.createQueen());
+        checkMove("d4", "f4", blackPieceFactory.createQueen());
+
+        checkMove("d4", "e5", blackPieceFactory.createQueen());
+        checkMove("d4", "f6", blackPieceFactory.createQueen());
+        checkMove("d4", "e3", blackPieceFactory.createQueen());
+        checkMove("d4", "f2", blackPieceFactory.createQueen());
+        checkMove("d4", "c5", blackPieceFactory.createQueen());
+        checkMove("d4", "b6", blackPieceFactory.createQueen());
+        checkMove("d4", "c3", blackPieceFactory.createQueen());
+        checkMove("d4", "b2", blackPieceFactory.createQueen());
+    }
+
+    @Test
+    void moveQueenToWrongTarget() {
+        initBoardWithBlank();
+        checkMoveToWrongTarget("d4", "c6", blackPieceFactory.createQueen());
+        checkMoveToWrongTarget("d4", "b5", blackPieceFactory.createQueen());
+        checkMoveToWrongTarget("d4", "b3", blackPieceFactory.createQueen());
+        checkMoveToWrongTarget("d4", "c2", blackPieceFactory.createQueen());
+        checkMoveToWrongTarget("d4", "e2", blackPieceFactory.createQueen());
+        checkMoveToWrongTarget("d4", "f3", blackPieceFactory.createQueen());
+        checkMoveToWrongTarget("d4", "f5", blackPieceFactory.createQueen());
+        checkMoveToWrongTarget("d4", "e6", blackPieceFactory.createQueen());
+    }
+
+    @Test
     void moveEmptyPiece() {
         initBoardWithBlank();
         assertThatThrownBy(() -> board.move("a1", "a2"))

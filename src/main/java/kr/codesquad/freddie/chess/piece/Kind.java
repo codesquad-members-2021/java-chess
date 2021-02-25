@@ -48,7 +48,13 @@ public enum Kind {
     QUEEN("q", 9.0) {
         @Override
         public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+            int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
+            int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
+            if (!(fileDistance == 0 || rankDistance == 0) && (fileDistance != 0 && rankDistance / fileDistance != 1)) {
+                String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
+                throw new IllegalArgumentException(message);
+            }
         }
     },
     KING("k", 0.0) {

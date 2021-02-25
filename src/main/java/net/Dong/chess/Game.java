@@ -2,13 +2,14 @@ package net.Dong.chess;
 
 import java.util.Scanner;
 
+import static net.Dong.chess.Board.NEW_LINE;
 public class Game {
     private static final String PROMPT = "J-chess>> ";
     private static final String HELP =
-            " Command  |  description\r\n" +
-            "-----------------------------\r\n" +
-            " start   :  Java chess start\r\n" +
-            " end     :  Java chess Terminate\r\n" +
+            " Command  |  description" + NEW_LINE +
+            "-----------------------------" + NEW_LINE +
+            " start   :  Java chess start" + NEW_LINE +
+            " end     :  Java chess Terminate" + NEW_LINE +
             "-----------------------------";
 
 
@@ -25,7 +26,7 @@ public class Game {
                 if (command.equals("start")) {
                     Board board = new Board();
                     board.initialize();
-                    System.out.println(board.print());
+                    System.out.println(board.LayoutToString());
                 }
 
                 if (command.equals("end")) {

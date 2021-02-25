@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BoardTest {
     private Board board;
+    private Position position;
 
     @BeforeEach
     void init() {
@@ -80,7 +84,8 @@ class BoardTest {
     }
 
     @Test
-     void calculatePoint() {
+    @DisplayName("같은 색상을 가진 기물들의 점수를 합산하여 값이 맞는 지 확인한다.")
+    void calculatePoint() {
         board.initializeEmpty();
 
         addPiece("b6", Piece.createBlackPawn(new Position("b6")));
@@ -102,6 +107,31 @@ class BoardTest {
 
     private void addPiece(String position, Piece piece) {
         board.move(position, piece);
+    }
+
+    @Test
+    @DisplayName("기물의 색상 별로 점수가 높은 순으로 정렬한다.")
+    void piecesSortByPoint() {
+        List<Piece> pieces = new ArrayList<>();
+        setPiece(pieces);
+        assertAll(
+                () -> assertThat(board.piecesSort(pieces, Piece.Color.BLACK)).isEqualTo("QRBP"),
+                () -> assertThat(board.piecesSort(pieces, Piece.Color.WHITE)).isEqualTo("rrbppk")
+        );
+    }
+
+    void setPiece(List<Piece> list) {
+        list.add(Piece.createBlackPawn(position));
+        list.add(Piece.createBlackRook(position));
+        list.add(Piece.createBlackBishop(position));
+        list.add(Piece.createBlackQueen(position));
+
+        list.add(Piece.createWhiteRook(position));
+        list.add(Piece.createWhitePawn(position));
+        list.add(Piece.createWhiteBishop(position));
+        list.add(Piece.createWhitePawn(position));
+        list.add(Piece.createWhiteKing(position));
+        list.add(Piece.createWhiteRook(position));
     }
 
 }

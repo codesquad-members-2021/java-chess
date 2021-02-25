@@ -34,10 +34,9 @@ public class Board {
 
     public String appendPawnRep(UnitColor color) {
         StringBuilder pawnLine = new StringBuilder();
-        for (Piece pawn : pieces) {
-            boolean classCheck = pawn.getClass().getSimpleName().equalsIgnoreCase(UnitType.PAWN.name());
-            if (pawn.isColor(color) && classCheck) {
-                pawnLine.append(pawn.getRepresentation());
+        for (Piece piece : pieces) {
+            if (piece.isYou(color, UnitType.PAWN)) {
+                pawnLine.append(piece.getRepresentation());
             }
         }
         return pawnLine.toString();

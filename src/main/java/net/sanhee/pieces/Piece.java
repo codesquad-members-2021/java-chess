@@ -35,4 +35,9 @@ public class Piece {
         return this.getColor() == UnitColor.WHITE;
     }
 
+    public boolean isYou(UnitColor unitColor, UnitType unitType) {
+        boolean classCheck = this.getClass().getSimpleName().equalsIgnoreCase(unitType.name());
+        return isColor(unitColor) && classCheck;
+    }
+
 }

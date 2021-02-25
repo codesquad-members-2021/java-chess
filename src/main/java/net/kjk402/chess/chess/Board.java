@@ -75,4 +75,23 @@ public class Board {
         rank.addPiece(piece);
     }
 
+
+    public double getSum(Rank rank, Color color) {
+        double sum = 0.0;
+        for (Piece piece : rank.getPieceList()) {
+            if (piece.getColor() == color) {
+                sum += piece.getType().getDefaultPoint();
+            }
+        }
+        return sum;
+    }
+
+    public double caculcatePoint(Color color) {
+        double pointSum = 0.0;
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            pointSum += getSum(rankList.get(i), color);
+        }
+        return pointSum;
+    }
+
 }

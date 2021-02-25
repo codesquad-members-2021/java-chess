@@ -25,8 +25,8 @@ public class Board {
 
     public void initialize() {
         for (int i = 0; i < PAWN_NUMBER; i++) {
-            addWhitePawn(Piece.createWhitePawnInstance());
-            addBlackPawn(Piece.createBlackPawnInstance());
+            addWhitePawn(Piece.createWhitePawn());
+            addBlackPawn(Piece.createBlackPawn());
         }
         addWhitePieces();
         addBlackPieces();
@@ -54,32 +54,27 @@ public class Board {
                 blackPawns.size() +
                 blackPieces.size();
     }
-    
-    public void printBoard() {
-
-        System.out.println(bringBoard());
-    }
 
     private void addWhitePieces() {
-        whitePieces.add(Piece.createWhiteRookInstance());
-        whitePieces.add(Piece.createWhiteKnightInstance());
-        whitePieces.add(Piece.createWhiteBishopInstance());
-        whitePieces.add(Piece.createWhiteQueenInstance());
-        whitePieces.add(Piece.createWhiteKingInstance());
-        whitePieces.add(Piece.createWhiteBishopInstance());
-        whitePieces.add(Piece.createWhiteKnightInstance());
-        whitePieces.add(Piece.createWhiteRookInstance());
+        whitePieces.add(Piece.createWhiteRook());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteQueen());
+        whitePieces.add(Piece.createWhiteKing());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteRook());
     }
 
     private void addBlackPieces() {
-        blackPieces.add(Piece.createBlackRookInstance());
-        blackPieces.add(Piece.createBlackKnightInstance());
-        blackPieces.add(Piece.createBlackBishopInstance());
-        blackPieces.add(Piece.createBlackQueenInstance());
-        blackPieces.add(Piece.createBlackKingInstance());
-        blackPieces.add(Piece.createBlackBishopInstance());
-        blackPieces.add(Piece.createBlackKnightInstance());
-        blackPieces.add(Piece.createBlackRookInstance());
+        blackPieces.add(Piece.createBlackRook());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackQueen());
+        blackPieces.add(Piece.createBlackKing());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackRook());
     }
 
     private String bringWhitePawnsRepresentation() {

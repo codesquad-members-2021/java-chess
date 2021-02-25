@@ -15,8 +15,7 @@ public class ChessMain {
                 String command = scanner.nextLine();
                 if (command.equals("start")) {
                     board.initialize();
-                    board.printBoard();
-
+                    System.out.println(board.bringBoard());
                 } else if (command.equals("end")) {
                     break;
                 } else {

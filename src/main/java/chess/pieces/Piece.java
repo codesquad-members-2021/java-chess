@@ -48,16 +48,6 @@ public class Piece implements Comparable<Piece> {
         return this.type.getDefaultPoint();
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(getRepresentation());
-    }
-
-    @Override
-    public int compareTo(Piece o) {
-        return Double.compare(getDefaultPoint(), o.getDefaultPoint()) * -1;
-    }
-
     public boolean isWhite() {
         return getColor() == Color.WHITE;
     }
@@ -138,4 +128,15 @@ public class Piece implements Comparable<Piece> {
     public static Piece createBlank(Position position) {
         return new Piece(Color.NO_COLOR, Type.BLANK, position);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(getRepresentation());
+    }
+
+    @Override
+    public int compareTo(Piece o) {
+        return Double.compare(getDefaultPoint(), o.getDefaultPoint()) * -1;
+    }
+
 }

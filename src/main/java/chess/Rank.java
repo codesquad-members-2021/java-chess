@@ -47,8 +47,9 @@ public class Rank {
         getAddErrorMessage();
     }
 
-    public void move(int position, Piece piece) {
-        pieces.set(position, piece);
+    public void move(int rankIndex, Piece piece, Position position) {
+        pieces.set(rankIndex, piece);
+        piece.setPosition(position);
     }
 
     private void getAddErrorMessage() {

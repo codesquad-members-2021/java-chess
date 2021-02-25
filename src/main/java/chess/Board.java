@@ -85,10 +85,9 @@ public class Board {
     }
 
     public void move(String position, Piece piece) {
-        Position chessBoardIndex = new Position(position);
+        Position positionNumber = new Position(position);
 
-        ranks.get(chessBoardIndex.getFile()).move(chessBoardIndex.getRank(), piece);
-        piece.setPosition(chessBoardIndex);
+        ranks.get(positionNumber.getFile()).move(positionNumber.getRank(), piece, positionNumber);
     }
 
     public double calculatePointByColor(Color color) {

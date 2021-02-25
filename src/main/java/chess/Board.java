@@ -2,10 +2,7 @@ package chess;
 
 import chess.pieces.Piece;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static chess.utils.StringUtils.appendNewLine;
 
@@ -138,11 +135,36 @@ public class Board {
         double rook = countPiece(color, Piece.Type.ROOK);
         double bishop = countPiece(color, Piece.Type.BISHOP);
         double queen = countPiece(color, Piece.Type.QUEEN);
-        double sameFilePawn = 0;
 
-        sameFilePawn = getSameFileNum(pawn, color);
+        double sameFilePawn = getSameFileNum(pawn, color);
         pawn = pawn - sameFilePawn;
+
         return getSum(pawn, sameFilePawn, knight, rook, bishop, queen);
+    }
+
+    public double getSameFileNum(double pawnNum, Piece.Color color) {
+        Piece piece =
+                color == Piece.Color.WHITE ? Piece.createWhitePawn() : Piece.createBlackPawn();
+        String[] positions = getPosition(piece);
+        Set<String> deletedSamePositions = new HashSet<>(Arrays.asList(positions));
+        return (pawnNum - deletedSamePositions.size()) * 2;
+    }
+
+    private String[] getPosition(Piece pawn) {
+        String[] positionArr = new String[countPiece(pawn.getColor(), pawn.getType())];
+        int index = 0;
+        for (int i = 0; i < BOARD_RANK; i++) {
+            for (int j = 0; j < BOARD_FILE; j++) {
+                char x = (char) ('a' + i);
+                char y = (char) ('1' + j);
+                String position = x + "" + y;
+                if (pawn.equals(findPiece(position))) {
+                    positionArr[index] = x + "";
+                    index++;
+                }
+            }
+        }
+        return positionArr;
     }
 
     private double getSum(double pawn, double sameFilePawn, double knight, double rook, double bishop, double queen) {
@@ -152,34 +174,5 @@ public class Board {
                 rook * Piece.Type.ROOK.getDefaultPoint() +
                 bishop * Piece.Type.BISHOP.getDefaultPoint() +
                 queen * Piece.Type.QUEEN.getDefaultPoint();
-    }
-
-    public double getSameFileNum(double pawnNum, Piece.Color color) {
-        Piece piece =
-                color == Piece.Color.WHITE ? Piece.createWhitePawn() : Piece.createBlackPawn();
-        String[] positions = getPosition(piece);
-        long deletedPositionNum = Arrays.stream(positions)
-                .map(x -> x.charAt(0))
-                .distinct()
-                .count();
-        return (pawnNum - deletedPositionNum) * 2;
-    }
-
-    private String[] getPosition(Piece piece) {
-        String[] positionArr = new String[countPiece(piece.getColor(), piece.getType())];
-
-        int index = 0;
-        for (int i = 0; i < BOARD_RANK; i++) {
-            for (int j = 0; j < BOARD_FILE; j++) {
-                char x = (char) ('a' + i);
-                char y = (char) ('1' + j);
-                String position = x + "" + y;
-                if (piece.equals(findPiece(position))) {
-                    positionArr[index] = position;
-                    index++;
-                }
-            }
-        }
-        return positionArr;
     }
 }

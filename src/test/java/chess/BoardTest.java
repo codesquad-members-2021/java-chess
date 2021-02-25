@@ -129,27 +129,26 @@ public class BoardTest {
     void sort_remains_in_score_order() {
         board.initializeEmpty();
 
-        board.move(Piece.createWhite(PAWN, new Position("a1")));
         board.move(Piece.createWhite(PAWN, new Position("a3")));
-        board.move(Piece.createWhite(ROOK, new Position("b2")));
-        board.move(Piece.createWhite(KNIGHT, new Position("c3")));
-        board.move(Piece.createWhite(BISHOP, new Position("d4")));
         board.move(Piece.createWhite(QUEEN, new Position("e5")));
-        board.move(Piece.createWhite(KING, new Position("f6")));
+        board.move(Piece.createWhite(BISHOP, new Position("f6")));
 
-        board.move(Piece.createBlack(QUEEN, new Position("g7")));
         board.move(Piece.createBlack(ROOK, new Position("h8")));
+        board.move(Piece.createBlack(QUEEN, new Position("g7")));
+        board.move(Piece.createBlack(KNIGHT, new Position("a1")));
 
         System.out.println(board.showBoard());
 
-        System.out.println();
-        System.out.println("BLACK : " + board.getRemainedPiecesInOrder(BLACK));
-        System.out.println("WHITE : " + board.getRemainedPiecesInOrder(WHITE));
+        assertThat(board.getRemainedPiecesInOrder(WHITE))
+                .isEqualTo(Arrays.asList(
+                        Piece.createWhite(QUEEN, new Position("e5"))
+                        , Piece.createWhite(BISHOP, new Position("f6"))
+                        , Piece.createWhite(PAWN, new Position("a3"))));
 
-        assertThat(board.getRemainedPiecesInOrder(BLACK)).isEqualTo(
-                Arrays.asList(QUEEN, ROOK));
-        assertThat(board.getRemainedPiecesInOrder(WHITE)).isEqualTo(
-                Arrays.asList(QUEEN, ROOK, BISHOP, KNIGHT, PAWN, PAWN, KING));
-        // todo : 더 적절한 테스트 메서드를 찾아보자.
+        assertThat(board.getRemainedPiecesInOrder(BLACK))
+                .isEqualTo(Arrays.asList(
+                        Piece.createBlack(QUEEN, new Position("g7"))
+                        , Piece.createBlack(ROOK, new Position("h8"))
+                        , Piece.createBlack(KNIGHT, new Position("a1"))));
     }
 }

@@ -1,5 +1,8 @@
 package net.sanhee.pieces.property;
 
 public enum UnitColor {
-    BLACK, WHITE, NONE;
+    BLACK,
+    WHITE,
+    NONE;
+
 }

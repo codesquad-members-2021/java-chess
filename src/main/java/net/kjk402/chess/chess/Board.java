@@ -5,12 +5,9 @@ import net.kjk402.chess.pieces.Piece;
 import net.kjk402.chess.pieces.Piece.*;
 import net.kjk402.chess.pieces.Position;
 
-import static net.kjk402.chess.utils.StringUtils.NEWLINE;
 import static net.kjk402.chess.utils.StringUtils.appendNewLine;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
 
 public class Board {
     public static final int BOARD_SIZE = 8;
@@ -37,22 +34,6 @@ public class Board {
         }
     }
 
-    public int countSamePiece(Color color, Type type) {
-        int count = 0;
-        for (Rank rank : rankList) {
-            count += rank.countPiece(color, type);
-        }
-        return count;
-    }
-
-    private String getRank(Rank rank) {
-        StringBuilder sb = new StringBuilder();
-        for (Piece piece : rank.getPieceList()) {
-            sb.append(piece.getRepresentation());
-        }
-        return sb.toString();
-    }
-
     public String showBoard() {
         StringBuilder boardOutput = new StringBuilder();
         String rankIndex = "abcdefgh";
@@ -75,8 +56,15 @@ public class Board {
         rank.addPiece(piece);
     }
 
+    public double caculcatePoint(Color color) {
+        double pointSum = 0.0;
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            pointSum += getPoint(rankList.get(i), color);
+        }
+        return pointSum;
+    }
 
-    public double getSum(Rank rank, Color color) {
+    private double getPoint(Rank rank, Color color) {
         double sum = 0.0;
         for (Piece piece : rank.getPieceList()) {
             if (piece.getColor() == color) {
@@ -86,12 +74,12 @@ public class Board {
         return sum;
     }
 
-    public double caculcatePoint(Color color) {
-        double pointSum = 0.0;
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            pointSum += getSum(rankList.get(i), color);
+    private String getRank(Rank rank) {
+        StringBuilder sb = new StringBuilder();
+        for (Piece piece : rank.getPieceList()) {
+            sb.append(piece.getRepresentation());
         }
-        return pointSum;
+        return sb.toString();
     }
 
 }

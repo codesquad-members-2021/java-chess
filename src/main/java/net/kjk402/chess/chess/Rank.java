@@ -72,24 +72,6 @@ public class Rank {
         return rank;
     }
 
-    public int countPiece(Color color, Type type) {
-        int count = 0;
-        for (Piece piece : pieceList) {
-            if (piece.getColor() == color && piece.getType() == type) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    private String getPiecesResult(List<Piece> pieces) {
-        StringBuilder sb = new StringBuilder();
-        for (Piece piece : pieces) {
-            sb.append(piece.getRepresentation());
-        }
-        return sb.toString();
-    }
-
     public void move(int position, Piece piece) {
         pieceList.set(position, piece);
     }

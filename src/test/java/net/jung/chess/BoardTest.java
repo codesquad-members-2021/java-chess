@@ -121,4 +121,19 @@ class BoardTest {
                 () -> assertThat(emptyBoard.boardPieceSize()).isEqualTo(0)
         );
     }
+
+    @Test
+    @DisplayName("addOnePiece는 특정 자리에 (기존에 있던 것이 아닌) 새로만들어진 piece를 추가한다.")
+    void checkAddNewPiece() {
+        Board emptyBoard = new Board();
+        emptyBoard.initializeEmptyBoard();
+
+        emptyBoard.addOnePiece("d3", Piece.createBlackRook());
+        emptyBoard.addOnePiece("d7", Piece.createWhiteKing());
+
+        assertAll(
+                () -> assertThat(emptyBoard.findPiece("d3")).isEqualTo(Piece.createBlackRook()),
+                () -> assertThat(emptyBoard.findPiece("d7")).isEqualTo(Piece.createWhiteKing())
+        );
+    }
 }

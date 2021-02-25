@@ -83,16 +83,11 @@ public class Piece {
     }
 
     public boolean isWhite() {
-        if (this.color.equals("white")) {
-            return true;
-        }
-        return false;
+        return this.color.equals("white");
     }
 
     public boolean isBlack() {
-        if (this.color.equals("black")) {
-            return true;
-        }
-        return false;
+        return this.color.equals("black");
+
     }
 }

@@ -20,7 +20,8 @@ public abstract class Piece implements Comparable<Piece> {
     abstract List<Direction> movableDirections();
 
     public boolean isMovable(Position after) {
-        return movableDirections().contains(direction(after)) && isInValidMoveRange(after) && after.isValid();
+        return movableDirections().contains(direction(after))
+                && isInValidMoveRange(after) && after.isValid();
     }
 
     boolean isInValidMoveRange(Position after) {
@@ -31,7 +32,7 @@ public abstract class Piece implements Comparable<Piece> {
     public void setPosition(Position after) {
         this.position = after;
     }
-    
+
     public Position getPosition() {
         return position;
     }
@@ -78,6 +79,14 @@ public abstract class Piece implements Comparable<Piece> {
             return Direction.NORTHWEST;
         }
         return Direction.SAME;
+    }
+
+    public boolean isSameColor(Piece piece) {
+        if (isWhite() && piece.isWhite()) {
+            return true;
+        }
+
+        return isBlack() && piece.isBlack();
     }
 
     public Color getColor() {

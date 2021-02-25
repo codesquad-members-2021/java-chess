@@ -7,11 +7,11 @@ import pieces.Piece;
 import static utils.StringUtils.appendNewLine;
 
 public class Board {
-    private static int MAX_NUM = 8;
-    private List<Piece> whitePawns = new ArrayList<>(MAX_NUM);
-    private List<Piece> whiteOthers = new ArrayList<>(MAX_NUM);
-    private List<Piece> blackPawns = new ArrayList<>(MAX_NUM);
-    private List<Piece> blackOthers = new ArrayList<>(MAX_NUM);
+    private static int BOARD_SIZE = 8;
+    private List<Piece> whitePawns = new ArrayList<>(BOARD_SIZE);
+    private List<Piece> whiteOthers = new ArrayList<>(BOARD_SIZE);
+    private List<Piece> blackPawns = new ArrayList<>(BOARD_SIZE);
+    private List<Piece> blackOthers = new ArrayList<>(BOARD_SIZE);
 
     boolean addWhitePawn(Piece piece) {
         if (piece.getName().equals(Piece.PAWN) && piece.getColor().equals(Piece.WHITE)) {
@@ -85,7 +85,7 @@ public class Board {
     }
 
     void initialize() {
-        for (int i = 0; i < MAX_NUM; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             addWhitePawn(Piece.createWhitePawn());
             addBlackPawn(Piece.createBlackPawn());
         }

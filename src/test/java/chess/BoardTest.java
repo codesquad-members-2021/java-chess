@@ -18,7 +18,7 @@ class BoardTest {
 
     @Test
     @DisplayName("체스판에 흰색 폰을 추가 후 갯수와 목록을 확인한다.")
-    void putWhitePawn() {
+    void addWhitePawn() {
         Piece whitePawn = Piece.createWhitePawn();
         board.addWhitePawn(whitePawn);
         assertThat(board.getWhitePawnsSize()).isEqualTo(1);
@@ -27,18 +27,11 @@ class BoardTest {
 
     @Test
     @DisplayName("체스판에 검은색 폰을 추가 후 갯수와 목록을 확인한다.")
-    void putBlackPawn() {
+    void addBlackPawn() {
         Piece blackPawn = Piece.createBlackPawn();
         board.addBlackPawn(blackPawn);
         assertThat(board.getBlackPawnsSize()).isEqualTo(1);
         assertThat(board.findBlackPawn(0)).isEqualTo(blackPawn);
-    }
-
-    @Test
-    @DisplayName("폰 이외의 객체를 추가하면 컴파일 에러가 발생한다")
-    void putOther() {
-        int num7 = new Integer(7);
-        //board.add(num7);
     }
 
     @Test

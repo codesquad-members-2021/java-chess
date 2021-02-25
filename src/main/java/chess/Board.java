@@ -18,14 +18,13 @@ public class Board {
         return countingAllPiecesByColor(Color.WHITE) + countingAllPiecesByColor(Color.BLACK);
     }
 
-    public int countingAllPiecesByColor(Color color){
+    public int countingAllPiecesByColor(Color color) {
         int count = 0;
-        count += countPiecesByColorAndType(color, Type.PAWN);
-        count += countPiecesByColorAndType(color, Type.ROOK);
-        count += countPiecesByColorAndType(color, Type.KNIGHT);
-        count += countPiecesByColorAndType(color, Type.BISHOP);
-        count += countPiecesByColorAndType(color, Type.QUEEN);
-        count += countPiecesByColorAndType(color, Type.KING);
+
+        for (Type type : Type.values()) {
+            count += countPiecesByColorAndType(color, type);
+        }
+
         return count;
     }
 
@@ -49,9 +48,9 @@ public class Board {
     }
 
     public Piece findPiece(String position) {
-        Position chessBoardIndex = new Position(position);
+        Position positionNumber = new Position(position);
 
-        return ranks.get((chessBoardIndex.getFile())).getPiece(chessBoardIndex.getRank());
+        return ranks.get(positionNumber.getFile()).getPiece(positionNumber.getRank());
     }
 
     private String getRank(Rank rank) {

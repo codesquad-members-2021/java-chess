@@ -27,11 +27,6 @@ public class Main {
                 if (command.equals("help")) {
                     System.out.println(help);
                 }
-                if (command.equals("test")){
-                    Board board = new Board();
-                    board.initialize();
-                    //System.out.println(board.getLine());
-                }
             }
         }
     }

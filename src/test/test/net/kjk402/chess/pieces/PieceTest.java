@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 class PieceTest {
     private Position position;
+
     @Test
     @DisplayName("모든 말을 색상별로 생성하여 확인한다.")
     void create_allPieces() {
@@ -32,6 +33,7 @@ class PieceTest {
                 () -> assertThat(piece.getRepresentation()).isEqualTo(representation)
         );
     }
+
     @Test
     public void getRepresentationPerPiece() throws Exception {
         assertThat(Piece.Type.PAWN.getWhiteRepresentation()).isEqualTo(Piece.Type.PAWN.getWhiteRepresentation());

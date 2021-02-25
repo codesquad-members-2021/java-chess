@@ -66,7 +66,7 @@ public enum Kind {
     EMPTY(".", 0.0) {
         @Override
         public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
-
+            throw new IllegalStateException("빈 칸은 움직일 수 없습니다.");
         }
     };
 

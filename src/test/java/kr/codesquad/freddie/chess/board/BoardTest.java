@@ -261,7 +261,6 @@ class BoardTest extends BoardTestBase {
         checkMoveToWrongTarget("d4", "e6", blackPieceFactory.createRook());
     }
 
-
     @Test
     void moveBishop() {
         initBoardWithBlank();
@@ -294,6 +293,14 @@ class BoardTest extends BoardTestBase {
         checkMoveToWrongTarget("d4", "f3", blackPieceFactory.createBishop());
         checkMoveToWrongTarget("d4", "f5", blackPieceFactory.createBishop());
         checkMoveToWrongTarget("d4", "e6", blackPieceFactory.createBishop());
+    }
+
+    @Test
+    void moveEmptyPiece() {
+        initBoardWithBlank();
+        assertThatThrownBy(() -> board.move("a1", "a2"))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("빈 칸은 움직일 수 없습니다.");
     }
 
     private void checkMove(String source, String target, Piece piece) {

@@ -77,7 +77,7 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("현재 남아 있는 기물에 따라 점수를 계산한다.")
+    @DisplayName("현재 남아 있는 기물에 따라 점수를 계산한다.(pawn 중첩은 변영하지 않는다.)")
     void calculate_score() {
         board.initializeEmpty();
 
@@ -93,8 +93,8 @@ public class BoardTest {
 
         System.out.println(board.showBoard());
 
-        assertThat(board.calculatePoint(BLACK)).isEqualTo(15.0);
-        assertThat(board.calculatePoint(WHITE)).isEqualTo(7.0);
+        assertThat(board.calculateScoreOf(BLACK)).isEqualTo(15.0);
+        assertThat(board.calculateScoreOf(WHITE)).isEqualTo(7.0);
     }
 
     @Test
@@ -113,8 +113,8 @@ public class BoardTest {
 
         System.out.println(board.showBoard());
 
-        assertThat(board.calculatePoint(WHITE)).isEqualTo(2.5);
-        assertThat(board.calculatePoint(BLACK)).isEqualTo(1.0);
+        assertThat(board.calculateScoreOf(WHITE)).isEqualTo(2.5);
+        assertThat(board.calculateScoreOf(BLACK)).isEqualTo(1.0);
     }
 
     @Test

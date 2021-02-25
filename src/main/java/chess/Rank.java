@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static chess.pieces.Piece.Type.PAWN;
+import static chess.pieces.Piece.*;
 
 public class Rank {
     private List<Piece> pieces = new ArrayList<>();
@@ -43,29 +43,26 @@ public class Rank {
         pieces.set(index, piece);
     }
 
-    public double calculatePoint(Piece.Color color) {
-        double point = pieces.stream()
-                .filter(piece -> piece.getColor() == color)
-                .mapToDouble(piece -> piece.getType().getDefaultPoint())
-                .sum();
-        return point;
-    }
-
-    public List<Integer> getFilesOfPawns(Piece.Color color) {
-        List<Integer> filesOfPawns = new ArrayList<>();
-        for (int i = 0; i < pieces.size(); i++) {
-            Piece piece = pieces.get(i);
-            if (piece.getType() == PAWN && piece.getColor() == color) {  // piece가 원하는 color의 pawn이면
-                filesOfPawns.add(i);                                     // 해당 piece의 file(index)을 리스트에 추가한다
-            }
-        }
-        return filesOfPawns;
-    }
-
     public List<Piece> getPiecesOf(Piece.Color color) {
         List<Piece> piecesOfColor = pieces.stream()
                 .filter(piece -> piece.getColor() == color)
                 .collect(Collectors.toList());
         return piecesOfColor;
+    }
+
+    public double getScoreOf(Color color) {
+        double score = pieces.stream()
+                .filter(piece -> piece.getColor() == color)
+                .mapToDouble(piece -> piece.getType().getDefaultPoint())
+                .sum();
+        return score;
+    }
+
+    public List<Integer> getFilesOfPawns(Color color) {
+        List<Integer> filesOfPawns = pieces.stream()
+                .filter(piece -> piece.getColor() == color)
+                .map(piece -> pieces.indexOf(piece))
+                .collect(Collectors.toList());
+        return filesOfPawns;
     }
 }

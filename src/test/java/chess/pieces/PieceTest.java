@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import static chess.pieces.Piece.Color.BLACK;
 import static chess.pieces.Piece.Color.WHITE;
 import static chess.pieces.Piece.Type.*;
+import static chess.pieces.Piece.*;
 import static org.assertj.core.api.Assertions.*;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
@@ -27,7 +28,7 @@ public class PieceTest {
     }
 
     private void verifyPiece(final Piece whitePiece
-            , final Piece blackPiece, Piece.Type type) {
+            , final Piece blackPiece, Type type) {
 
         assertThat(whitePiece.isWhite()).isTrue();
         assertThat(whitePiece.getType()).isEqualTo(type);

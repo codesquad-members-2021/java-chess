@@ -14,7 +14,7 @@ public class Main {
                     case  "start" :
                         board.initialize();
                         System.out.println("====게임을 시작합니다.====\n");
-                        System.out.println(board.appendBoardWithPawns());
+                        System.out.println(board.getPawnsRepresentation());
                         break;
                     case "exit" :
                         System.out.println("====게임을 종료합니다.====\n");

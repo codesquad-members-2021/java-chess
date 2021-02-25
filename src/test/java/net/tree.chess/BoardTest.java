@@ -19,14 +19,14 @@ class BoardTest {
     @Test
     void createWhitePawnAndBlackPawn() {
         Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
-        board.addPawntopawnList(white);
+        board.addPawnToPawnList(white);
         Assertions.assertAll(
             () -> assertThat(board.checkPawnSize()).isEqualTo(1),
             () -> assertThat(board.findPawn(0)).isEqualTo(white)
         );
 
         Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
-        board.addPawntopawnList(black);
+        board.addPawnToPawnList(black);
         Assertions.assertAll(
                 () -> assertThat(board.checkPawnSize()).isEqualTo(2),
                 () -> assertThat(board.findPawn(1)).isEqualTo(black)
@@ -34,11 +34,23 @@ class BoardTest {
     }
 
 
-    @DisplayName("보드 초기화 및 그리기")
+    @DisplayName("보드 초기화 및 초기화되었는지 확인하기")
     @Test
-    void initializeBoardAndAppend() {
+    void checkInitializeBoard() {
         board.initialize();
-        board.appendBoardWithPawns();
+        StringBuilder initializedBoard = new StringBuilder();
+        initializedBoard
+                .append("........\n")
+                .append("PPPPPPPP\n")
+                .append("........\n")
+                .append("........\n")
+                .append("........\n")
+                .append("........\n")
+                .append("pppppppp\n")
+                .append("........\n");
+
+        assertThat(board.getPawnsRepresentation()).isEqualTo(initializedBoard.toString());
+
     }
 
     @DisplayName("보드 초기화하기")
@@ -48,20 +60,6 @@ class BoardTest {
         assertThat("pppppppp").isEqualTo(board.getPawnsResult(Pawn.WHITE_REPRESENTATION));
         assertThat("PPPPPPPP").isEqualTo(board.getPawnsResult(Pawn.BLACK_REPRESENTATION));
 
-    }
-
-    @DisplayName("whitePawn과 blackPawn 1개씩으로 pawnList 확인해보기 ")
-    @Test
-    void checkPawnList() {
-        Pawn white = new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
-        board.addPawntopawnList(white);
-        assertThat(board.checkPawnSize()).isEqualTo(1);
-        assertThat(board.findPawn(0)).isEqualTo(white);
-
-        Pawn black = new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
-        board.addPawntopawnList(black);
-        assertThat(board.checkPawnSize()).isEqualTo(2);
-        assertThat(board.findPawn(1)).isEqualTo(black);
     }
 
 }

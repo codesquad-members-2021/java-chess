@@ -20,7 +20,7 @@ class BoardTest {
     }
 
     @Test
-    void CreatePawnTest() {
+    void createPawnTest() {
         Pawn white = new Pawn(Color.WHITE);
         Pawn black = new Pawn(Color.BLACK);
         addWhitePawnToBoard(board,white,1,0);

@@ -1,5 +1,6 @@
 package chess.pieces;
 
+import chess.Position;
 import org.junit.jupiter.api.*;
 
 import static chess.pieces.Piece.Color.BLACK;
@@ -14,14 +15,14 @@ public class PieceTest {
     @Test
     @DisplayName("팩토리 메소드를 통해 각 기물은 알맞는 타입과 색상을 가져야한다.")
     void create_pieces() {
-        verifyPiece(Piece.createWhite(PAWN)  , Piece.createBlack(PAWN), PAWN);
-        verifyPiece(Piece.createWhite(KNIGHT), Piece.createBlack(KNIGHT), KNIGHT);
-        verifyPiece(Piece.createWhite(ROOK)  , Piece.createBlack(ROOK), ROOK);
-        verifyPiece(Piece.createWhite(BISHOP), Piece.createBlack(BISHOP), BISHOP);
-        verifyPiece(Piece.createWhite(QUEEN) , Piece.createBlack(QUEEN), QUEEN);
-        verifyPiece(Piece.createWhite(KING)  , Piece.createBlack(KING), KING);
+        verifyPiece(Piece.createWhite(PAWN, new Position("a1"))  , Piece.createBlack(PAWN, new Position("a1")), PAWN);
+        verifyPiece(Piece.createWhite(KNIGHT, new Position("a1")), Piece.createBlack(KNIGHT, new Position("a1")), KNIGHT);
+        verifyPiece(Piece.createWhite(ROOK, new Position("a1"))  , Piece.createBlack(ROOK, new Position("a1")), ROOK);
+        verifyPiece(Piece.createWhite(BISHOP, new Position("a1")), Piece.createBlack(BISHOP, new Position("a1")), BISHOP);
+        verifyPiece(Piece.createWhite(QUEEN, new Position("a1")) , Piece.createBlack(QUEEN, new Position("a1")), QUEEN);
+        verifyPiece(Piece.createWhite(KING, new Position("a1"))  , Piece.createBlack(KING, new Position("a1")), KING);
 
-        Piece blank = Piece.createBlank();
+        Piece blank = Piece.createBlank(new Position("a1"));
         assertThat(blank.isWhite()).isFalse();
         assertThat(blank.isBlack()).isFalse();
         assertThat(blank.getType()).isEqualTo(NO_PIECE);

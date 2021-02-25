@@ -54,13 +54,13 @@ public class BoardTest {
     void find_piece() {
         board.initialize();
 
-        assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlack(ROOK));
-        assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlack(ROOK));
+        assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlack(ROOK, new Position("a8")));
+        assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlack(ROOK, new Position("h8")));
 
-        assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhite(ROOK));
-        assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhite(ROOK));
+        assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhite(ROOK, new Position("a1")));
+        assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhite(ROOK, new Position("h1")));
 
-        assertThat(board.findPiece("a4")).isEqualTo(Piece.createBlank());
+        assertThat(board.findPiece("a4")).isEqualTo(Piece.createBlank(new Position("a4")));
     }
 
     @Test
@@ -69,8 +69,8 @@ public class BoardTest {
         board.initializeEmpty();
 
         String position = "b5";
-        Piece piece = Piece.createBlack(ROOK);
-        board.putPieceIn(position, piece);
+        Piece piece = Piece.createBlack(ROOK, new Position(position));
+        board.move(piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
         System.out.println(board.showBoard());
@@ -81,20 +81,20 @@ public class BoardTest {
     void calculate_score() {
         board.initializeEmpty();
 
-        board.putPieceIn("b6", Piece.createBlack(PAWN));  // 1.0
-        board.putPieceIn("e6", Piece.createBlack(QUEEN)); // 9.0
-        board.putPieceIn("b8", Piece.createBlack(KING));
-        board.putPieceIn("c8", Piece.createBlack(ROOK));  // 5.0
+        board.move(Piece.createBlack(PAWN, new Position("b6")));  // 1.0
+        board.move(Piece.createBlack(QUEEN, new Position("e6"))); // 9.0
+        board.move(Piece.createBlack(KING, new Position("b8")));
+        board.move(Piece.createBlack(ROOK, new Position("c8")));  // 5.0
 
-        board.putPieceIn("f2", Piece.createWhite(PAWN));  // 1.0
-        board.putPieceIn("g2", Piece.createWhite(PAWN));  // 1.0
-        board.putPieceIn("e1", Piece.createWhite(ROOK));  // 5.0
-        board.putPieceIn("f1", Piece.createWhite(KING));
+        board.move(Piece.createWhite(PAWN, new Position("f2")));  // 1.0
+        board.move(Piece.createWhite(PAWN, new Position("g2")));  // 1.0
+        board.move(Piece.createWhite(ROOK, new Position("e1")));  // 5.0
+        board.move(Piece.createWhite(KING, new Position("f1")));
 
         System.out.println(board.showBoard());
 
-        assertThat(board.calculateScoreOf(BLACK)).isEqualTo(15.0);
         assertThat(board.calculateScoreOf(WHITE)).isEqualTo(7.0);
+        assertThat(board.calculateScoreOf(BLACK)).isEqualTo(15.0);
     }
 
     @Test
@@ -102,23 +102,26 @@ public class BoardTest {
     void calculate_pawn_duplicate_score() {
         board.initializeEmpty();
 
-        board.putPieceIn("a7", Piece.createBlack(PAWN));  // 0.5
-        board.putPieceIn("a8", Piece.createBlack(PAWN));  // 0.5
-        board.putPieceIn("c8", Piece.createBlack(KING));
-        board.putPieceIn("a6", Piece.createBlack(QUEEN)); // 9.0
-        board.putPieceIn("a4", Piece.createBlack(PAWN));  // 0.5
-        board.putPieceIn("a5", Piece.createBlack(PAWN));  // 0.5
+        board.move(Piece.createBlack(PAWN, new Position("a8")));  // 0.5
+        board.move(Piece.createBlack(PAWN, new Position("a7")));  // 0.5
+        board.move(Piece.createBlack(PAWN, new Position("b8")));  // 0.5
+        board.move(Piece.createBlack(PAWN, new Position("b7")));  // 0.5
+        board.move(Piece.createBlack(KING, new Position("c8")));
+        board.move(Piece.createBlack(QUEEN, new Position("a6"))); // 9.0
+        board.move(Piece.createBlack(PAWN, new Position("a4")));  // 0.5
+        board.move(Piece.createBlack(PAWN, new Position("a5")));  // 0.5
 
-        board.putPieceIn("b1", Piece.createWhite(PAWN));  // 0.5
-        board.putPieceIn("b2", Piece.createWhite(PAWN));  // 0.5
-        board.putPieceIn("d2", Piece.createWhite(PAWN));  // 0.5
-        board.putPieceIn("d3", Piece.createWhite(PAWN));  // 0.5
-        board.putPieceIn("d4", Piece.createWhite(PAWN));  // 0.5
+        board.move(Piece.createWhite(PAWN, new Position("b1")));  // 0.5
+        board.move(Piece.createWhite(PAWN, new Position("b2")));  // 0.5
+        board.move(Piece.createWhite(PAWN, new Position("b3")));  // 0.5
+        board.move(Piece.createWhite(PAWN, new Position("d2")));  // 0.5
+        board.move(Piece.createWhite(PAWN, new Position("d3")));  // 0.5
+        board.move(Piece.createWhite(PAWN, new Position("d4")));  // 0.5
 
         System.out.println(board.showBoard());
 
-        assertThat(board.calculateScoreOf(WHITE)).isEqualTo(2.5);
-        assertThat(board.calculateScoreOf(BLACK)).isEqualTo(11.0);
+        assertThat(board.calculateScoreOf(BLACK)).isEqualTo(12.0);
+        assertThat(board.calculateScoreOf(WHITE)).isEqualTo(3.0);
     }
 
     @Test
@@ -126,16 +129,16 @@ public class BoardTest {
     void sort_remains_in_score_order() {
         board.initializeEmpty();
 
-        board.putPieceIn("a1", Piece.createWhite(PAWN));
-        board.putPieceIn("a3", Piece.createWhite(PAWN));
-        board.putPieceIn("b2", Piece.createWhite(ROOK));
-        board.putPieceIn("c3", Piece.createWhite(KNIGHT));
-        board.putPieceIn("d4", Piece.createWhite(BISHOP));
-        board.putPieceIn("e5", Piece.createWhite(QUEEN));
-        board.putPieceIn("f6", Piece.createWhite(KING));
+        board.move(Piece.createWhite(PAWN, new Position("a1")));
+        board.move(Piece.createWhite(PAWN, new Position("a3")));
+        board.move(Piece.createWhite(ROOK, new Position("b2")));
+        board.move(Piece.createWhite(KNIGHT, new Position("c3")));
+        board.move(Piece.createWhite(BISHOP, new Position("d4")));
+        board.move(Piece.createWhite(QUEEN, new Position("e5")));
+        board.move(Piece.createWhite(KING, new Position("f6")));
 
-        board.putPieceIn("g7", Piece.createBlack(QUEEN));
-        board.putPieceIn("h8", Piece.createBlack(ROOK));
+        board.move(Piece.createBlack(QUEEN, new Position("g7")));
+        board.move(Piece.createBlack(ROOK, new Position("h8")));
 
         System.out.println(board.showBoard());
 
@@ -147,6 +150,6 @@ public class BoardTest {
                 Arrays.asList(QUEEN, ROOK));
         assertThat(board.getRemainedPiecesInOrder(WHITE)).isEqualTo(
                 Arrays.asList(QUEEN, ROOK, BISHOP, KNIGHT, PAWN, PAWN, KING));
-        // todo : 적절한 테스트 메서드를 찾아보자.
+        // todo : 더 적절한 테스트 메서드를 찾아보자.
     }
 }

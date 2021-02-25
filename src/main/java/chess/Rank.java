@@ -49,20 +49,4 @@ public class Rank {
                 .collect(Collectors.toList());
         return piecesOfColor;
     }
-
-    public double getScoreOf(Color color) {
-        double score = pieces.stream()
-                .filter(piece -> piece.getColor() == color)
-                .mapToDouble(piece -> piece.getType().getDefaultPoint())
-                .sum();
-        return score;
-    }
-
-    public List<Integer> getFilesOfPawns(Color color) {
-        List<Integer> filesOfPawns = pieces.stream()
-                .filter(piece -> piece.getColor() == color)
-                .map(piece -> pieces.indexOf(piece))
-                .collect(Collectors.toList());
-        return filesOfPawns;
-    }
 }

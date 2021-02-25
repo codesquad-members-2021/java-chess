@@ -14,14 +14,23 @@ import static chess.utils.StringUtils.appendNewLine;
 public class Board {
     public static final int MAX_RANK = 8;
     public static final int MAX_FILE = 8;
-    public static final int RANK1 = 0;
-    public static final int RANK2 = 1;
-    public static final int RANK3 = 2;
-    public static final int RANK4 = 3;
-    public static final int RANK5 = 4;
-    public static final int RANK6 = 5;
-    public static final int RANK7 = 6;
-    public static final int RANK8 = 7;
+    public static final int RANK_1 = 0;
+    public static final int RANK_2 = 1;
+    public static final int RANK_3 = 2;
+    public static final int RANK_4 = 3;
+    public static final int RANK_5 = 4;
+    public static final int RANK_6 = 5;
+    public static final int RANK_7 = 6;
+    public static final int RANK_8 = 7;
+    public static final int FILE_A = 0;
+    public static final int FILE_B = 1;
+    public static final int FILE_C = 2;
+    public static final int FILE_D = 3;
+    public static final int FILE_E = 4;
+    public static final int FILE_F = 5;
+    public static final int FILE_G = 6;
+    public static final int FILE_H = 7;
+
 
     List<Rank> board = new ArrayList<>();
 
@@ -32,10 +41,10 @@ public class Board {
     }
 
     public int pieceCount() {
-        return board.get(RANK1).size()
-                + board.get(RANK2).size()
-                + board.get(RANK7).size()
-                + board.get(RANK8).size();
+        return board.get(RANK_1).size()
+                + board.get(RANK_2).size()
+                + board.get(RANK_7).size()
+                + board.get(RANK_8).size();
     }
 
     public int pieceCountOf(Color color, Type type) {
@@ -53,9 +62,9 @@ public class Board {
         return target;
     }
 
-    public void putPieceIn(String position, Piece piece) {
-        Position pos = new Position(position);
-        board.get(pos.rank()).set(pos.file(), piece);
+    public void move(Piece piece) {
+        Position position = piece.getPosition();
+        board.get(position.rank()).set(position.file(), piece);
     }
 
     public void initialize() {
@@ -67,63 +76,63 @@ public class Board {
     }
 
     public void initializeEmpty() {
-        for (int rank = 0; rank < MAX_RANK; rank++) {
-            board.set(rank, getBlankRank());
+        for (int rank = RANK_1; rank < MAX_RANK; rank++) {
+            board.set(rank, getBlankRank(rank));
         }
     }
 
-    private Rank getBlankRank() {
-        Rank rank = new Rank();
-        for (int i = 0; i < MAX_FILE; i++) {
-            rank.add(Piece.createBlank());
+    private Rank getBlankRank(int rank) {
+        Rank blankRank = new Rank();
+        for (int file = FILE_A; file < MAX_FILE; file++) {
+            blankRank.add(Piece.createBlank(new Position(file, rank)));
         }
-        return rank;
+        return blankRank;
     }
 
     private void addBlackPieces() {
-        board.get(RANK8).addAll(Arrays.asList(
-                Piece.createBlack(ROOK)
-                , Piece.createBlack(KNIGHT)
-                , Piece.createBlack(BISHOP)
-                , Piece.createBlack(QUEEN)
-                , Piece.createBlack(KING)
-                , Piece.createBlack(BISHOP)
-                , Piece.createBlack(KNIGHT)
-                , Piece.createBlack(ROOK))
+        board.get(RANK_8).addAll(Arrays.asList(
+                Piece.createBlack(ROOK, new Position(FILE_A, RANK_8))
+                , Piece.createBlack(KNIGHT, new Position(FILE_B, RANK_8))
+                , Piece.createBlack(BISHOP, new Position(FILE_C, RANK_8))
+                , Piece.createBlack(QUEEN, new Position(FILE_D, RANK_8))
+                , Piece.createBlack(KING, new Position(FILE_E, RANK_8))
+                , Piece.createBlack(BISHOP, new Position(FILE_F, RANK_8))
+                , Piece.createBlack(KNIGHT, new Position(FILE_G, RANK_8))
+                , Piece.createBlack(ROOK, new Position(FILE_H, RANK_8)))
         );
     }
 
     private void addBlackPawns() {
-        for (int i = 0; i < MAX_FILE; i++) {
-            board.get(RANK7).add(Piece.createBlack(PAWN));
+        for (int file = FILE_A; file < MAX_FILE; file++) {
+            board.get(RANK_7).add(Piece.createBlack(PAWN, new Position(file, RANK_7)));
         }
     }
 
     private void addBlank() {
-        for (int i = 0; i < MAX_FILE; i++) {
-            board.get(RANK6).add(Piece.createBlank());
-            board.get(RANK5).add(Piece.createBlank());
-            board.get(RANK4).add(Piece.createBlank());
-            board.get(RANK3).add(Piece.createBlank());
+        for (int file = FILE_A; file < MAX_FILE; file++) {
+            board.get(RANK_6).add(Piece.createBlank(new Position(file, RANK_6)));
+            board.get(RANK_5).add(Piece.createBlank(new Position(file, RANK_5)));
+            board.get(RANK_4).add(Piece.createBlank(new Position(file, RANK_4)));
+            board.get(RANK_3).add(Piece.createBlank(new Position(file, RANK_3)));
         }
     }
 
     private void addWhitePawns() {
-        for (int i = 0; i < MAX_FILE; i++) {
-            board.get(RANK2).add(Piece.createWhite(PAWN));
+        for (int file = FILE_A; file < MAX_FILE; file++) {
+            board.get(RANK_2).add(Piece.createWhite(PAWN, new Position(file, RANK_2)));
         }
     }
 
     private void addWhitePieces() {
-        board.get(RANK1).addAll(Arrays.asList(
-                Piece.createWhite(ROOK)
-                , Piece.createWhite(KNIGHT)
-                , Piece.createWhite(BISHOP)
-                , Piece.createWhite(QUEEN)
-                , Piece.createWhite(KING)
-                , Piece.createWhite(BISHOP)
-                , Piece.createWhite(KNIGHT)
-                , Piece.createWhite(ROOK))
+        board.get(RANK_1).addAll(Arrays.asList(
+                Piece.createWhite(ROOK, new Position(FILE_A, RANK_1))
+                , Piece.createWhite(KNIGHT, new Position(FILE_B, RANK_1))
+                , Piece.createWhite(BISHOP, new Position(FILE_C, RANK_1))
+                , Piece.createWhite(QUEEN, new Position(FILE_D, RANK_1))
+                , Piece.createWhite(KING, new Position(FILE_E, RANK_1))
+                , Piece.createWhite(BISHOP, new Position(FILE_F, RANK_1))
+                , Piece.createWhite(KNIGHT, new Position(FILE_G, RANK_1))
+                , Piece.createWhite(ROOK, new Position(FILE_H, RANK_1)))
         );
     }
 
@@ -131,14 +140,14 @@ public class Board {
     public String showBoard() {
         StringBuilder chessBoard = new StringBuilder();
 
-        chessBoard.append(appendNewLine(getRankResult(board.get(RANK8)) + "  8 (rank 8)"))
-                .append(appendNewLine(getRankResult(board.get(RANK7)) + "  7"))
-                .append(appendNewLine(getRankResult(board.get(RANK6)) + "  6"))
-                .append(appendNewLine(getRankResult(board.get(RANK5)) + "  5"))
-                .append(appendNewLine(getRankResult(board.get(RANK4)) + "  4"))
-                .append(appendNewLine(getRankResult(board.get(RANK3)) + "  3"))
-                .append(appendNewLine(getRankResult(board.get(RANK2)) + "  2"))
-                .append(appendNewLine(getRankResult(board.get(RANK1)) + "  1 (rank 1)"))
+        chessBoard.append(appendNewLine(getRankResult(board.get(RANK_8)) + "  8 (rank 8)"))
+                .append(appendNewLine(getRankResult(board.get(RANK_7)) + "  7"))
+                .append(appendNewLine(getRankResult(board.get(RANK_6)) + "  6"))
+                .append(appendNewLine(getRankResult(board.get(RANK_5)) + "  5"))
+                .append(appendNewLine(getRankResult(board.get(RANK_4)) + "  4"))
+                .append(appendNewLine(getRankResult(board.get(RANK_3)) + "  3"))
+                .append(appendNewLine(getRankResult(board.get(RANK_2)) + "  2"))
+                .append(appendNewLine(getRankResult(board.get(RANK_1)) + "  1 (rank 1)"))
                 .append(appendNewLine(" "))
                 .append("abcdefgh");
 
@@ -153,40 +162,10 @@ public class Board {
     }
 
     public double calculateScoreOf(Color color) {
-        double score = 0.0;
-
-        for (int rank = 0; rank < MAX_RANK; rank++) {
-            int doublePawn = 0;
-            Rank targetRank = board.get(rank);
-            double targetRankScore = targetRank.getScoreOf(color);
-            score += targetRankScore;
-
-            if (rank == RANK1) {
-                continue;
-            }
-
-            Rank beforeRank = board.get(rank - 1);
-            List<Integer> targetRankFilesOfPawns = targetRank.getFilesOfPawns(color);
-            List<Integer> beforeRankFilesOfPawns = beforeRank.getFilesOfPawns(color);
-
-            for (int targetRankIndex = 0; targetRankIndex < targetRankFilesOfPawns.size(); targetRankIndex++) {
-                for (int beforeRankIndex = 0; beforeRankIndex < beforeRankFilesOfPawns.size(); beforeRankIndex++) {
-                    if (targetRankFilesOfPawns.get(targetRankIndex) == beforeRankFilesOfPawns.get(beforeRankIndex)) {
-                        doublePawn++;
-                        break;
-                    }
-                }
-            }
-            if (rank == RANK2 && doublePawn > 0) {
-                score -= (doublePawn * 0.5);
-            }
-            if (rank == RANK8 && doublePawn > 0) {
-                score -= (doublePawn * 0.5);
-                break;
-            }
-            score -= (doublePawn * 0.5);
-
-        }
+        List<Piece> remainedPieces = getRemainedPiecesInOrder(color);
+        double score = remainedPieces.stream()
+                .mapToDouble(piece -> piece.getPoint(remainedPieces))
+                .sum();
         return score;
     }
 
@@ -197,4 +176,5 @@ public class Board {
                 .collect(Collectors.toList());
         return remainedPiecesOfColor;
     }
+
 }

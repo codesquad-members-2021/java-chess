@@ -27,7 +27,7 @@ public enum Kind {
             int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
             int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
-            if (!(fileDistance == 0 || rankDistance == 0)) {
+            if (gradientOf(fileDistance, rankDistance) != 0) {
                 String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
                 throw new IllegalArgumentException(message);
             }
@@ -39,7 +39,7 @@ public enum Kind {
             int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
             int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
-            if (fileDistance == 0 || rankDistance / fileDistance != 1) {
+            if (gradientOf(fileDistance, rankDistance) != 1) {
                 String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
                 throw new IllegalArgumentException(message);
             }
@@ -51,7 +51,9 @@ public enum Kind {
             int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
             int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
-            if (!(fileDistance == 0 || rankDistance == 0) && (fileDistance != 0 && rankDistance / fileDistance != 1)) {
+            double gradient = gradientOf(fileDistance, rankDistance);
+
+            if (!(gradient == 0 || gradient == 1)) {
                 String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
                 throw new IllegalArgumentException(message);
             }
@@ -96,5 +98,12 @@ public enum Kind {
 
     protected int distanceOf(int a, int b) {
         return Math.abs(a - b);
+    }
+
+    protected double gradientOf(int fileDistance, int rankDistance) {
+        if (fileDistance == 0) {
+            return 0;
+        }
+        return Integer.valueOf(rankDistance).doubleValue() / Integer.valueOf(fileDistance).doubleValue();
     }
 }

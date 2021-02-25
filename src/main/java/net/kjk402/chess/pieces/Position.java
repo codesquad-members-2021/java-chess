@@ -22,10 +22,4 @@ public class Position {
         return file;
     }
 
-    public static void main(String[] args) {
-        Position pe = new Position("c8");
-        System.out.println(pe.getFile());
-        System.out.println(pe.getRank());
-    }
-
 }

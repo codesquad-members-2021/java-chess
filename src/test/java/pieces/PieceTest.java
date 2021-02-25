@@ -3,6 +3,7 @@ package pieces;
 import org.junit.jupiter.api.*;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PieceTest {
 
@@ -36,9 +37,11 @@ class PieceTest {
     @Test
     @DisplayName("흰색인지 검정색인지 구분해주는 테스트")
     void isWhiteAndBlack() {
-        assertThat(Piece.createWhitePawn().isWhite()).isEqualTo(true);
-        assertThat(Piece.createWhitePawn().isBlack()).isEqualTo(false);
-        assertThat(Piece.createBlackPawn().isWhite()).isEqualTo(false);
-        assertThat(Piece.createBlackPawn().isBlack()).isEqualTo(true);
+        assertAll(
+                () -> assertThat(Piece.createWhitePawn().isWhite()).isTrue(),
+                () -> assertThat(Piece.createWhitePawn().isBlack()).isFalse(),
+                () -> assertThat(Piece.createBlackPawn().isWhite()).isFalse(),
+                () -> assertThat(Piece.createBlackPawn().isBlack()).isTrue()
+        );
     }
 }

@@ -8,7 +8,7 @@ import static utils.StringUtils.appendNewLine;
 class BoardTest {
 
     private Board board;
-
+    private static final int totalUnitNumber = 32;
     @BeforeEach
     void createBoard() {
         board = new Board();
@@ -18,7 +18,7 @@ class BoardTest {
     @DisplayName("piece의 갯수를 정확히 세는지 테스트")
     void showPieceNum() {
         board.initialize();
-        assertThat(board.sizeOfPieces()).isEqualTo(32);
+        assertThat(board.sizeOfPieces()).isEqualTo(totalUnitNumber);
     }
 
     @Test

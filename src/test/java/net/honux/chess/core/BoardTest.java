@@ -4,10 +4,7 @@ import net.honux.chess.attribute.Color;
 import net.honux.chess.attribute.Type;
 import net.honux.chess.entity.pieces.Piece;
 import net.honux.chess.util.StringUtilsTest;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.Optional;
 
@@ -126,10 +123,11 @@ class BoardTest {
     @Test
     @DisplayName("같은 랭크에 같은색의 폰이 있을때 점수가 차감되어 계산되는지 확인한다.")
     void checkPointOfTeam() {
-        board.initializeEmpty();
-        board.move("b5", Piece.createBlackPawn());
-        board.move("b1", Piece.createBlackPawn());
-        board.move("b2", Piece.createBlackPawn());
-        assertThat(board.blackTeamPoint()).isEqualTo(1.5);
+        Board board1 = new Board();
+        board1.initializeEmpty();
+        board1.move("b5", Piece.createBlackPawn());
+        board1.move("b1", Piece.createBlackPawn());
+        board1.move("b2", Piece.createBlackPawn());
+        assertThat(board1.blackTeamPoint()).isEqualTo(1.5);
     }
 }

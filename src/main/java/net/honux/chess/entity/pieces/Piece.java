@@ -69,6 +69,14 @@ public class Piece implements Comparable<Piece> {
         return new Piece(Color.NOCOLOR, Type.NO_PIECE.getRepresentation(Color.NOCOLOR), Type.NO_PIECE.getPoint());
     }
 
+    private static Piece createWhite(Type type) {
+        return new Piece(Color.WHITE, type.getRepresentation(Color.WHITE), type.getPoint());
+    }
+
+    private static Piece createBlack(Type type) {
+        return new Piece(Color.BLACK, type.getRepresentation(Color.BLACK), type.getPoint());
+    }
+
     public Color getColor() {
         return color;
     }
@@ -85,12 +93,12 @@ public class Piece implements Comparable<Piece> {
         return this.color == Color.WHITE;
     }
 
-    private static Piece createWhite(Type type) {
-        return new Piece(Color.WHITE, type.getRepresentation(Color.WHITE), type.getPoint());
+    public boolean isMatchingColor(Color color) {
+        return this.color == color;
     }
 
-    private static Piece createBlack(Type type) {
-        return new Piece(Color.BLACK, type.getRepresentation(Color.BLACK), type.getPoint());
+    public boolean isMatchingRepresentation(Color color, Type type) {
+        return this.representation == type.getRepresentation(color);
     }
 
     @Override
@@ -113,12 +121,11 @@ public class Piece implements Comparable<Piece> {
 
     @Override
     public int compareTo(Piece o) {
-        if(this.point > o.point){
-            return 1;
-        }
-        if(this.point == o.point) {
-            return 0;
-        }
-        return -1;
+        return Double.compare(this.point, o.point);
     }
+
+    public double getPoint() {
+        return point;
+    }
+
 }

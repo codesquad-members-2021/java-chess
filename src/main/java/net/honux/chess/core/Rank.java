@@ -155,30 +155,26 @@ public class Rank {
     }
 
     public int countOfTeamPieces(Color color) {
-        if(color == Color.BLACK) {
+        if (color == Color.BLACK) {
             return countOfBlackPieces();
         }
         return countOfWhitePieces();
     }
 
     public int countOfBlackPieces() {
-        return (int) pieceList.stream().filter(piece -> Character.isUpperCase(piece.getRepresentation())).count();
+        return (int) pieceList.stream().filter(Piece::isBlack).count();
     }
 
     public int countOfWhitePieces() {
-        return (int) pieceList.stream().filter(piece -> Character.isLowerCase(piece.getRepresentation())).count();
+        return (int) pieceList.stream().filter(Piece::isWhite).count();
     }
 
-    public int countOfPiece(Color color, Type type) {
-        return (int) pieceList.stream().filter(piece -> piece.getRepresentation() == type.getRepresentation(color)).count();
+    public int countOfPieces(Color color, Type type) {
+        return (int) pieceList.stream().filter(piece -> piece.isMatchingRepresentation(color, type)).count();
     }
 
     public int getPointsOfType(Color color) {
-        int point = 0;
-        for (Type type : Type.values()) {
-            point += pieceList.stream().filter(piece -> piece.getRepresentation() == type.getRepresentation(color)).count() * type.getPoint();
-        }
-        return point;
+        return (int) pieceList.stream().filter(piece -> piece.isMatchingColor(color)).mapToDouble(Piece::getPoint).sum();
     }
 
     private void validateSize() {

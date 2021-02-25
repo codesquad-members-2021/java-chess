@@ -8,7 +8,7 @@ public class Position {
     }
 
     public static int getRank(String position) {
-        return position.charAt(0) - 'a';
+        return Character.toLowerCase(position.charAt(0)) - 'a';
     }
 
     public static int getIndex(String position) {

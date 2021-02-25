@@ -23,10 +23,6 @@ public class Board {
         blackPawns.add(blackPawn);
     }
 
-    public int pieceCount() {
-        return sizeOfPieces();
-    }
-
     public void initialize() {
         for (int i = 0; i < PAWN_NUMBER; i++) {
             addWhitePawn(Piece.createWhitePawnInstance());
@@ -52,6 +48,13 @@ public class Board {
         return sb.toString();
     }
 
+    public int sizeOfPieces() {
+        return whitePawns.size() +
+                whitePieces.size() +
+                blackPawns.size() +
+                blackPieces.size();
+    }
+    
     public void printBoard() {
 
         System.out.println(bringBoard());
@@ -113,12 +116,5 @@ public class Board {
             sb.append(blackUnit.getRepresentation());
         }
         return sb.toString();
-    }
-
-    private int sizeOfPieces() {
-        return whitePawns.size() +
-                whitePieces.size() +
-                blackPawns.size() +
-                blackPieces.size();
     }
 }

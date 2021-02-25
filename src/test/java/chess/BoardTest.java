@@ -18,7 +18,7 @@ class BoardTest {
     @DisplayName("piece의 갯수를 정확히 세는지 테스트")
     void showPieceNum() {
         board.initialize();
-        assertThat(board.pieceCount()).isEqualTo(32);
+        assertThat(board.sizeOfPieces()).isEqualTo(32);
     }
 
     @Test

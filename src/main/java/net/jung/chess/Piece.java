@@ -69,6 +69,10 @@ public class Piece {
         return color == Color.BLACK;
     }
 
+    public boolean isPiece() {
+        return getType() != Type.NO_PIECE;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if(obj != null & obj instanceof Piece) {

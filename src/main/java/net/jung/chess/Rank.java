@@ -10,16 +10,14 @@ public class Rank {
     public int rankPieceSize() {
         int size =0;
         for(Piece piece : pieceList) {
-            if( isPiece(piece) ){
+            if( piece.isPiece() ){
                 size++;
             }
         }
         return size;
     }
 
-    public boolean isPiece(Piece piece) {
-        return piece.getType() != Type.NO_PIECE;
-    }
+
 
     public void addWhitePiece(Piece piece) {
         if(piece.isWhite()){

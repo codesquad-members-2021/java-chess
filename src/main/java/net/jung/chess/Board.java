@@ -78,4 +78,12 @@ public class Board {
         Position position = Position.at(destination);
         getRank(position.getRankIndex()).replacePiece(position.getFileIndex(), piece);
     }
+
+
+    public void movePiece(String from, String to) {
+        Position startPosition = Position.at(from);
+        Position endPosition = Position.at(to);
+
+//        if(findPiece(from).isPiece())
+    }
 }

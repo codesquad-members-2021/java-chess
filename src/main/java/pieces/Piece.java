@@ -35,11 +35,11 @@ public class Piece {
     }
 
     boolean isWhite() {
-        return color == Piece.WHITE;
+        return color.equals(Piece.WHITE);
     }
 
     boolean isBlack() {
-        return color == Piece.BLACK;
+        return color.equals(Piece.BLACK);
     }
 
     public String getName() {

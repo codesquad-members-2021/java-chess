@@ -32,4 +32,5 @@ public class ChessGame {
     }
 
     private enum COMMAND {START, END}
+
 }

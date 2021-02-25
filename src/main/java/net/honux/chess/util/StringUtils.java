@@ -7,11 +7,12 @@ public class StringUtils {
     private StringUtils() {
     }
 
-    public static void appendNewLine(StringBuilder sb, String s) {
+    public static void appendNewLine(StringBuilder sb, char s) {
         sb.append(s).append(NEWLINE);
     }
 
     public static String convertString(StringBuilder sb) {
         return sb.toString();
     }
+
 }

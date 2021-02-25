@@ -2,7 +2,7 @@ package net.kjk402.chess.pieces;
 
 import java.util.Objects;
 
-public class Piece {
+public class Piece implements Comparable<Piece> {
     public enum Color {
         WHITE, BLACK, NOCOLOR;
     }
@@ -148,6 +148,16 @@ public class Piece {
     @Override
     public int hashCode() {
         return Objects.hash(color, type);
+    }
+
+    @Override
+    public int compareTo(Piece piece) {
+        if (this.getType().getDefaultPoint() > piece.getType().getDefaultPoint()) {
+            return -1;
+        } else if (this.getType().getDefaultPoint() < piece.getType().getDefaultPoint()) {
+            return 1;
+        }
+        return 0;
     }
 
 }

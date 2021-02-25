@@ -8,14 +8,12 @@ import net.kjk402.chess.pieces.Position;
 import static net.kjk402.chess.utils.StringUtils.appendNewLine;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Board {
     public static final int BOARD_SIZE = 8;
     private final ArrayList<Rank> rankList = new ArrayList<>();
-
-    public int PiecesCount() {
-        return rankList.size();
-    }
 
     public void initialize() {
         rankList.add(Rank.setWhitePieces(0));
@@ -62,6 +60,17 @@ public class Board {
             pointSum += getPoint(rankList.get(i), color);
         }
         return pointSum;
+    }
+
+    public String piecesSort(List<Piece> list, Color color) {
+        Collections.sort(list);
+        StringBuilder sortedPieces = new StringBuilder();
+        for (Piece piece : list) {
+            if (piece.getColor() == color) {
+                sortedPieces.append(piece.getRepresentation());
+            }
+        }
+        return sortedPieces.toString();
     }
 
     private double getPoint(Rank rank, Color color) {

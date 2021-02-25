@@ -54,4 +54,29 @@ class BoardTest {
         );
     }
 
+    @Test
+    @DisplayName("임의의 기물을 체스판 위 특정 위치에 배치")
+    void move() {
+        board.initializeEmpty();
+        String b5 = "b5";
+        Piece blackRook = Piece.createBlackRook(new Position(b5));
+        board.move(b5, blackRook);
+
+        String b6 = "b6";
+        Piece blackKing = Piece.createBlackKing(new Position(b6));
+        board.move(b6, blackKing);
+
+        String e3 = "e3";
+        Piece whiteKing = Piece.createWhiteKing(new Position(e3));
+        board.move(e3, whiteKing);
+
+        assertAll(
+                () -> assertThat(blackRook).isEqualTo(board.findPiece(b5)),
+                () -> assertThat(blackKing).isEqualTo(board.findPiece(b6)),
+                () -> assertThat(whiteKing).isEqualTo(board.findPiece(e3))
+        );
+
+        System.out.println(board.showBoard());
+    }
+
 }

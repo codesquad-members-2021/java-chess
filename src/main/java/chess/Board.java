@@ -36,14 +36,14 @@ public class Board {
         String dots = "........";
         StringBuilder sb = new StringBuilder();
 
-        sb.append(StringUtils.appendNewLine(bringBlackPiecesRepresentation()));
-        sb.append(StringUtils.appendNewLine(bringBlackPawnsRepresentation()));
+        sb.append(StringUtils.appendNewLine(bringUnitRepresentation(blackPieces)));
+        sb.append(StringUtils.appendNewLine(bringUnitRepresentation(blackPawns)));
         sb.append(StringUtils.appendNewLine(dots));
         sb.append(StringUtils.appendNewLine(dots));
         sb.append(StringUtils.appendNewLine(dots));
         sb.append(StringUtils.appendNewLine(dots));
-        sb.append(StringUtils.appendNewLine(bringWhitePawnsRepresentation()));
-        sb.append(StringUtils.appendNewLine(bringWhitePiecesRepresentation()));
+        sb.append(StringUtils.appendNewLine(bringUnitRepresentation(whitePawns)));
+        sb.append(StringUtils.appendNewLine(bringUnitRepresentation(whitePieces)));
 
         return sb.toString();
     }
@@ -77,38 +77,11 @@ public class Board {
         blackPieces.add(Piece.createBlackRook());
     }
 
-    private String bringWhitePawnsRepresentation() {
+    private String bringUnitRepresentation(List<Piece> unitList ){
         StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < whitePawns.size(); i++) {
-            sb.append(Piece.WHITE_PAWN_REPRESENTATION);
-        }
-        return sb.toString();
-    }
-
-    private String bringBlackPawnsRepresentation() {
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < blackPawns.size(); i++) {
-            sb.append(Piece.BLACK_PAWN_REPRESENTATION);
-        }
-        return sb.toString();
-    }
-
-    private String bringWhitePiecesRepresentation() {
-        StringBuilder sb = new StringBuilder();
-
-        for (Piece whiteUnit : whitePieces) {
-            sb.append(whiteUnit.getRepresentation());
-        }
-        return sb.toString();
-    }
-
-    private String bringBlackPiecesRepresentation() {
-        StringBuilder sb = new StringBuilder();
-
-        for (Piece blackUnit : blackPieces) {
-            sb.append(blackUnit.getRepresentation());
+        for(Piece unit: unitList){
+            sb.append(unit.getRepresentation());
         }
         return sb.toString();
     }

@@ -45,9 +45,8 @@ class BoardTest {
 
 
     @Test
-    @DisplayName("board initialize Test")
     void boardInitializeTest() {
-        String initBoard =
+        String expectedString =
                 "........" + System.lineSeparator() +
                         "PPPPPPPP" + System.lineSeparator() +
                         "........" + System.lineSeparator() +
@@ -60,7 +59,7 @@ class BoardTest {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
-        assertThat(initBoard).isEqualTo(board.LayoutToString());
+        assertThat(board.LayoutToString()).isEqualTo(expectedString);
     }
 
 }

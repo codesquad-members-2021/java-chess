@@ -1,37 +1,65 @@
 package net.nas.pieces;
 
-public class ChessPiece {
-    private final NameOfChessPiece name;
-    private final ColorOfChessPiece color;
+import java.util.Comparator;
 
-    private ChessPiece(NameOfChessPiece name, ColorOfChessPiece color) {
-        this.name = name;
-        this.color = color;
+public class ChessPiece {
+    private final NameOfChessPiece nameOfChessPiece;
+    private final ColorOfChessPiece colorOfChessPiece;
+
+    private ChessPiece(NameOfChessPiece nameOfChessPiece, ColorOfChessPiece colorOfChessPiece) {
+        this.nameOfChessPiece = nameOfChessPiece;
+        this.colorOfChessPiece = colorOfChessPiece;
     }
 
-
     public String getRepresentation() {
-        return color.getRepresentationByColor(name.getRepresentation());
+        return colorOfChessPiece.getRepresentationByColor(nameOfChessPiece);
     }
 
     public static ChessPiece createBlankPiece() {
-        return createChessPiece(NameOfChessPiece.PAWN, ColorOfChessPiece.BLANK);
+        return createChessPiece(NameOfChessPiece.NO_PIECE, ColorOfChessPiece.BLANK);
     }
 
     public static ChessPiece createChessPiece(NameOfChessPiece name, ColorOfChessPiece color) {
         return new ChessPiece(name, color);
     }
 
+    public boolean hasSameProperty(NameOfChessPiece name, ColorOfChessPiece color) {
+        return name == nameOfChessPiece && color == colorOfChessPiece;
+    }
+
+    public Comparator<ChessPiece> comparatorAsc = (current, next) -> {
+        float currentPoint = current.getPoint();
+        float nextPoint = next.getPoint();
+        return Float.compare(currentPoint, nextPoint);
+    };
+    public Comparator<ChessPiece> comparatorDesc = (current, next) -> {
+        float currentPoint = current.getPoint();
+        float nextPoint = next.getPoint();
+        return Float.compare(nextPoint, currentPoint);
+    };
+
+    public boolean isNotSameColor(ColorOfChessPiece color) {
+        return color != colorOfChessPiece;
+    }
+
+    public boolean isSameName(NameOfChessPiece name) {
+        return name == nameOfChessPiece;
+    }
+
+    public float getPoint() {
+        return nameOfChessPiece.getPoint();
+    }
+
     public boolean isBlank() {
-        return color == ColorOfChessPiece.BLANK;
+        return colorOfChessPiece == ColorOfChessPiece.BLANK;
     }
 
     public boolean isBlack() {
-        return color == ColorOfChessPiece.BLACK;
+        return colorOfChessPiece == ColorOfChessPiece.BLACK;
     }
 
     public boolean isWhite() {
-        return color == ColorOfChessPiece.WHITE;
+        return colorOfChessPiece == ColorOfChessPiece.WHITE;
     }
 
     public static ChessPiece createWhitePawn() {

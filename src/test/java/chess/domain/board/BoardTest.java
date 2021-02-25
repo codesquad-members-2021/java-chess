@@ -1,6 +1,7 @@
 package chess.domain.board;
 
 import chess.domain.board.position.Position;
+import chess.domain.pieces.Color;
 import chess.domain.pieces.Pawn;
 import chess.domain.pieces.Queen;
 import chess.domain.pieces.Rook;
@@ -70,5 +71,31 @@ class BoardTest {
         sb.append("1 r n b q k b n r ").append(NEWLINE);
         assertThat(boardView.getBoardRepresentation())
                 .isEqualTo(sb.toString());
+    }
+
+    @Test
+    @DisplayName("체스 프로그램 점수 계산하기")
+    void getScore() {
+        Board board = DummyBoardFactory.create();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("  a b c d e f g h ").append(NEWLINE);
+        sb.append("8 . K R . . . . . ").append(NEWLINE);
+        sb.append("7 P . P B . . . . ").append(NEWLINE);
+        sb.append("6 . P . . Q . . . ").append(NEWLINE);
+        sb.append("5 . . . . . . . . ").append(NEWLINE);
+        sb.append("4 . . . . . n q . ").append(NEWLINE);
+        sb.append("3 . . . . . p . p ").append(NEWLINE);
+        sb.append("2 . . . . . p p . ").append(NEWLINE);
+        sb.append("1 . . . . r k . . ").append(NEWLINE);
+
+        assertAll(
+                () -> assertThat(new BoardView(board).getBoardRepresentation())
+                        .isEqualTo(sb.toString()),
+                () -> assertThat(board.getScore(Color.BLACK))
+                        .isEqualTo(20.0),
+                () -> assertThat(board.getScore(Color.WHITE))
+                        .isEqualTo(19.5)
+        );
     }
 }

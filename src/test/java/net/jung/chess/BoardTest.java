@@ -128,12 +128,23 @@ class BoardTest {
         Board emptyBoard = new Board();
         emptyBoard.initializeEmptyBoard();
 
-        emptyBoard.addOnePiece("d3", Piece.createBlackRook());
-        emptyBoard.addOnePiece("d7", Piece.createWhiteKing());
+        emptyBoard.addNewPiece("d3", Piece.createBlackRook());
+        emptyBoard.addNewPiece("d7", Piece.createWhiteKing());
 
         assertAll(
                 () -> assertThat(emptyBoard.findPiece("d3")).isEqualTo(Piece.createBlackRook()),
                 () -> assertThat(emptyBoard.findPiece("d7")).isEqualTo(Piece.createWhiteKing())
         );
+    }
+
+    @Test
+    @DisplayName("movePiece는 특정지점에서 piece가 발견되면 다른 지점으로 옮긴다.")
+    void checkMovePiece() {
+        board.movePiece("a8", "c4");
+
+        assertAll(
+                () -> assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlank()),
+                () -> assertThat(board.findPiece("c4")).isEqualTo(Piece.createBlackRook())
+                );
     }
 }

@@ -40,7 +40,7 @@ class BoardTest {
         board.initialize();
         assertThat(32).isEqualTo(board.pieceCount());
         String blankRank = appendNewLine("........");
-        assertThat(board.showBoard()).isEqualTo(
+        assertThat(board.makeBoard()).isEqualTo(
             appendNewLine("RNBQKBNR") +
             appendNewLine("PPPPPPPP") +
             blankRank + blankRank + blankRank + blankRank +

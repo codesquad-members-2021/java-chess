@@ -40,7 +40,7 @@ public class ChessStarter {
     void start() {
         Board board = new Board();
         board.initialize();
-        board.showBoard();
+        System.out.println(board.makeBoard());
     }
 
 }

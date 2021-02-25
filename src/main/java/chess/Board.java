@@ -68,7 +68,7 @@ public class Board {
         addBlackOther(Piece.createBlackRook());
     }
 
-    public String showBoard() {
+    public String makeBoard() {
         StringBuilder sb = new StringBuilder();
         sb.append(appendNewLine(getBlackOthersResult()));
         sb.append(appendNewLine(getBlackPawnsResult()));
@@ -78,7 +78,6 @@ public class Board {
         sb.append(appendNewLine(getBlankLine()));
         sb.append(appendNewLine(getWhitePawnsResult()));
         sb.append(appendNewLine(getWhiteOthersResult()));
-        System.out.println(sb.toString());
         return sb.toString();
     }
 

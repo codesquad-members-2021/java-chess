@@ -13,7 +13,7 @@ public class Board {
     private List<Piece> whitePieces = new ArrayList<>();
     private List<Piece> blackPieces = new ArrayList<>();
 
-    public static final int PAWN_NUMBER = 8;
+    private static final int PAWN_NUMBER = 8;
 
     public void addWhitePawn(Piece whitePawn) {
         whitePawns.add(whitePawn);

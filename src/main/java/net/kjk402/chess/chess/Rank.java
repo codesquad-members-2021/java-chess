@@ -50,7 +50,7 @@ public class Rank {
 
     public static Rank setWhitePawns(int index) {
         Rank rank = new Rank();
-        for(int i =0; i< Board.BOARD_SIZE; i++) {
+        for (int i = 0; i < Board.BOARD_SIZE; i++) {
             rank.addPiece(Piece.createWhitePawn(new Position(i, index)));
         }
         return rank;
@@ -58,7 +58,7 @@ public class Rank {
 
     public static Rank setBlackPawns(int index) {
         Rank rank = new Rank();
-        for(int i =0; i< Board.BOARD_SIZE; i++) {
+        for (int i = 0; i < Board.BOARD_SIZE; i++) {
             rank.addPiece(Piece.createBlackPawn(new Position(i, index)));
         }
         return rank;
@@ -66,10 +66,20 @@ public class Rank {
 
     public static Rank setBlackLine(int index) {
         Rank rank = new Rank();
-        for(int i =0; i< Board.BOARD_SIZE; i++) {
+        for (int i = 0; i < Board.BOARD_SIZE; i++) {
             rank.addPiece(Piece.createBlank(new Position(i, index)));
         }
         return rank;
+    }
+
+    public int countPiece(Color color, Type type) {
+        int count = 0;
+        for (Piece piece : pieceList) {
+            if (piece.getColor() == color && piece.getType() == type) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public void move(int position, Piece piece) {

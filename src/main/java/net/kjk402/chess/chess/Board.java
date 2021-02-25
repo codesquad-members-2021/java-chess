@@ -32,6 +32,14 @@ public class Board {
         }
     }
 
+    public int countSamePiece(Color color, Type type) {
+        int count = 0;
+        for (Rank rank : rankList) {
+            count += rank.countPiece(color, type);
+        }
+        return count;
+    }
+
     public String showBoard() {
         StringBuilder boardOutput = new StringBuilder();
         String rankIndex = "abcdefgh";

@@ -13,7 +13,6 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 
-
 class BoardTest {
     private Board board;
     private Position position;
@@ -21,6 +20,16 @@ class BoardTest {
     @BeforeEach
     void init() {
         board = new Board();
+    }
+
+    @Test
+    @DisplayName("체스판에서 색상과 종류가 같은 기물의 개수를 반환한다.")
+    void countSamePieces() {
+        board.initialize();
+        assertAll(
+                () -> assertThat(board.countSamePiece(Piece.Color.BLACK, Piece.Type.PAWN)).isEqualTo(8),
+                () -> assertThat(board.countSamePiece(Piece.Color.WHITE, Piece.Type.KNIGHT)).isEqualTo(2)
+        );
     }
 
     @Test

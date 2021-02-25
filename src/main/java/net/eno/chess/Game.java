@@ -5,7 +5,6 @@ import net.eno.pieces.Color;
 import java.util.Scanner;
 
 public class Game {
-
     public static void main(String[] args) {
         System.out.println("> start를 입력하시면 체스 게임이 시작됩니다.");
         Scanner sc = new Scanner(System.in);

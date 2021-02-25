@@ -1,87 +1,104 @@
 package net.eno.chess;
 
-import net.eno.pieces.Piece;
 import net.eno.pieces.Color;
+import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
+import net.eno.pieces.Position;
+
+import static net.eno.utils.StringUtils.NEWLINE;
 import static net.eno.utils.StringUtils.appendNewLine;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class Board {
 
-    private final List<List<Piece>> board;
+    private List<Rank> board;
 
     public Board() {
         this.board = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            this.board.add(new ArrayList<>());
-        }
     }
 
-    public void addPiece(int rank, Piece piece) {
-        this.board.get(rank).add(piece);
+    private void addRank(Rank rank) {
+        this.board.add(rank);
     }
 
-    public int pieceCount() {
-        int pieceCount = 0;
-        for (List<Piece> rank : this.board) {
-            pieceCount += rank.size();
+    public int countTargetPiece(Color color, PieceType pieceType) {
+        return this.board.stream()
+                .mapToInt(rank -> rank.countTargetPiece(color, pieceType))
+                .sum();
+    }
+
+    public Piece findPiece(String position) {
+        Position positionObj = new Position(position);
+        Rank targetRank = this.board.get(positionObj.getRankIndex());
+        return targetRank.findPiece(positionObj.getFileIndex());
+    }
+
+    public void move(String position, Piece piece) {
+        Position positionObj = new Position(position);
+        Rank targetRank = this.board.get(positionObj.getRankIndex());
+        targetRank.move(positionObj.getFileIndex(), piece);
+    }
+
+    public double calculatePoint(Color color) {
+        double point = this.board.stream()
+                .mapToDouble(rank -> rank.calculateRankPoint(color))
+                .sum();
+        double pawnNumber = IntStream.rangeClosed('a', 'h')
+                .mapToDouble(file -> countSameFilePawn((char)file, color))
+                .sum();
+        return point - (pawnNumber / 2);
+    }
+
+    private int countSameFilePawn(char file, Color color) {
+        int count = (int)IntStream.rangeClosed(1, 8)
+                .mapToObj(rank -> findPiece(String.valueOf(file) + rank))
+                .filter(piece -> piece.getColor() == color && piece.getPieceType() == PieceType.PAWN)
+                .count();
+        return count > 1 ? count : 0;
+    }
+
+    public List<Piece> sortByPiecePoint(Color color, boolean isAscending) {
+        List<Piece> pieceList = this.board.stream()
+                .map(rank -> rank.getPieceListByColor(color))
+                .flatMap(List::stream)
+                .sorted()
+                .collect(Collectors.toList());
+        if (!isAscending) {
+            Collections.reverse(pieceList);
         }
-        return pieceCount;
+        return pieceList;
     }
 
     public void initialize() {
-        List<PieceType> arrangePieceList = arrangePiece();
-        for (int i = 0; i < 8; i++) {
-            addPiece(0 , Piece.createPiece(Color.BLACK, arrangePieceList.get(i)));
-            addPiece(1, Piece.createPiece(Color.BLACK, PieceType.PAWN));
-            addPiece(2, Piece.createPiece(Color.WHITE, PieceType.PAWN));
-            addPiece(3, Piece.createPiece(Color.WHITE, arrangePieceList.get(i)));
-        }
+        this.board = new ArrayList<>();
+        addRank(Rank.createMultiplePieceRank(Color.BLACK));
+        addRank(Rank.createOnePieceRank(Color.BLACK, PieceType.PAWN));
+        addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
+        addRank(Rank.createOnePieceRank(Color.WHITE, PieceType.PAWN));
+        addRank(Rank.createMultiplePieceRank(Color.WHITE));
     }
 
-    private List<PieceType> arrangePiece() {
-        List<PieceType> arrangePieceList = new ArrayList<>();
-        arrangePieceList.add(PieceType.ROOK);
-        arrangePieceList.add(PieceType.KNIGHT);
-        arrangePieceList.add(PieceType.BISHOP);
-        arrangePieceList.add(PieceType.QUEEN);
-        arrangePieceList.add(PieceType.KING);
-        arrangePieceList.add(PieceType.BISHOP);
-        arrangePieceList.add(PieceType.KNIGHT);
-        arrangePieceList.add(PieceType.ROOK);
-        return arrangePieceList;
+    public void initializeEmpty() {
+        this.board = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {
+            addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
+        }
     }
 
     public String showBoard(Color color) {
-        StringBuilder result = new StringBuilder();
-        int num = color.equals(Color.WHITE) ? 0 : 3;
-
-        result.append(appendNewLine(getPiecesResult(color, num)));
-        result.append(appendNewLine(getPiecesResult(color, Math.abs(1 - num))));
-        result.append(appendNewLine("........"));
-        result.append(appendNewLine("........"));
-        result.append(appendNewLine("........"));
-        result.append(appendNewLine("........"));
-        result.append(appendNewLine(getPiecesResult(color, Math.abs(2 - num))));
-        result.append(appendNewLine(getPiecesResult(color, Math.abs(3 - num))));
-        return result.toString();
-    }
-
-    private String getPiecesResult(Color color, int rank) {
-        StringBuilder result = new StringBuilder();
-        int num = color.equals(Color.WHITE) ? 0 : this.board.get(rank).size() - 1;
-
-        for (int i = 0; i < this.board.get(rank).size(); i++) {
-            result.append(findPiece(rank, Math.abs(i - num)).getRepresentation());
-        }
-        return result.toString();
-    }
-
-    private Piece findPiece(int rank, int file) {
-        return this.board.get(rank).get(file);
+        String result = this.board.stream()
+                .map(rank -> appendNewLine(rank.showRank()))
+                .collect(Collectors.joining());
+        return color != Color.BLACK ? result : new StringBuilder(result).reverse().substring(1) + NEWLINE;
     }
 
 }

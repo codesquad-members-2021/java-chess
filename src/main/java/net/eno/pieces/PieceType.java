@@ -2,23 +2,30 @@ package net.eno.pieces;
 
 public enum PieceType {
 
-    PAWN('p', 'P'),
-    KNIGHT('n', 'N'),
-    ROOK('r', 'R'),
-    BISHOP('b', 'B'),
-    QUEEN('q', 'Q'),
-    KING('k', 'K');
+    PAWN('p', 1.0),
+    ROOK('r', 5.0),
+    KNIGHT('n', 2.5),
+    BISHOP('b', 3.0),
+    QUEEN('q', 9.0),
+    KING('k', 0.0),
+    NO_PIECE('.', 0.0);
 
-    private final char white;
-    private final char black;
+    private final char representation;
+    private final double defaultPoint;
 
-    PieceType(char white, char black) {
-        this.white = white;
-        this.black = black;
+    PieceType(char representation, double defaultPoint) {
+        this.representation = representation;
+        this.defaultPoint = defaultPoint;
     }
 
     public char getRepresentation(Color color) {
-        return color.toString().equals("WHITE") ? this.white : this.black;
+        return color == Color.BLACK ?
+                Character.toUpperCase(this.representation) :
+                this.representation;
+    }
+
+    public double getDefaultPoint() {
+        return defaultPoint;
     }
 
 }

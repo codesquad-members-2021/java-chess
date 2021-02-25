@@ -1,6 +1,8 @@
 package net.eno.pieces;
 
-public class Piece {
+import java.util.Objects;
+
+public class Piece implements Comparable<Piece> {
 
     private final Color color;
     private final PieceType pieceType;
@@ -14,20 +16,46 @@ public class Piece {
         return new Piece(color, pieceType);
     }
 
-    public String getColor() {
-        return this.color.toString();
+    public PieceType getPieceType() {
+        return this.pieceType;
     }
 
-    public char getRepresentation() {
-        return this.pieceType.getRepresentation(this.color);
+    public Color getColor() {
+        return this.color;
+    }
+
+    public char getRepresentation(Color color) {
+        return this.pieceType.getRepresentation(color);
+    }
+
+    public double getPoint() {
+        return this.pieceType.getDefaultPoint();
     }
 
     public boolean isWhite() {
-        return this.color.equals(Color.WHITE);
+        return getColor() == Color.WHITE;
     }
 
     public boolean isBlack() {
-        return this.color.equals(Color.BLACK);
+        return getColor() == Color.BLACK;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Piece)) return false;
+        Piece piece = (Piece) o;
+        return color == piece.color && pieceType == piece.pieceType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, pieceType);
+    }
+
+    @Override
+    public int compareTo(Piece piece) {
+        return (int)(Math.floor(getPoint() - piece.getPoint()));
     }
 
 }

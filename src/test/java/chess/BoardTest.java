@@ -31,18 +31,6 @@ class BoardTest {
                         appendNewLine("rnbqkbnr"));
     }
 
-    @DisplayName("기물의 개수를 올바르게 반환하는지 확인한다.")
-    @Test
-    void count() {
-        board.initializeBoard();
-        assertThat(board.countPiece(Piece.Color.WHITE, Piece.Type.PAWN))
-                .isEqualTo(8);
-        assertThat(board.countPiece(Piece.Color.BLACK, Piece.Type.ROOK))
-                .isEqualTo(2);
-        assertThat(board.countPiece(Piece.Color.NOCOLOR, Piece.Type.NO_PIECE))
-                .isEqualTo(32);
-    }
-
     @DisplayName("해당 위치의 기물이 올바르게 반환되는지 확인한다.")
     @Test
     void findPiece() {
@@ -73,18 +61,7 @@ class BoardTest {
     @DisplayName("기물의 색깔별로 점수가 올바르게 계산되는지 확인한다.")
     @Test
     void calculatePoint() {
-        board.initializeEmpty();
-
-        board.setPiece("b6", Piece.createBlackPawn());
-        board.setPiece("e6", Piece.createBlackQueen());
-        board.setPiece("b8", Piece.createBlackKing());
-        board.setPiece("c8", Piece.createBlackRook());
-
-        board.setPiece("f2", Piece.createWhitePawn());
-        board.setPiece("g2", Piece.createWhitePawn());
-        board.setPiece("e1", Piece.createWhiteRook());
-        board.setPiece("f1", Piece.createWhiteKing());
-        board.setPiece("f3", Piece.createWhitePawn());
+        getBoardWithSeveralPiece();
 
         assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(15.0);
         assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(7.0);
@@ -92,8 +69,18 @@ class BoardTest {
         System.out.println(board.showBoard());
     }
 
+    @DisplayName("남아있는 기물을 점수별로 정렬한 리스트를 올바르게 얻는지 확인한다.")
     @Test
     void sortPiece() {
+        getBoardWithSeveralPiece();
+        List<Piece.Type> whitePiece = board.sortPiece(Piece.Color.WHITE);
+        List<Piece.Type> blackPiece = board.sortPiece(Piece.Color.BLACK);
+
+        assertThat(whitePiece.toString()).isEqualTo("[ROOK, PAWN, PAWN, PAWN, KING]");
+        assertThat(blackPiece.toString()).isEqualTo("[QUEEN, ROOK, PAWN, KING]");
+    }
+
+    void getBoardWithSeveralPiece(){
         board.initializeEmpty();
 
         board.setPiece("b6", Piece.createBlackPawn());
@@ -106,11 +93,5 @@ class BoardTest {
         board.setPiece("e1", Piece.createWhiteRook());
         board.setPiece("f1", Piece.createWhiteKing());
         board.setPiece("f3", Piece.createWhitePawn());
-
-        List<Piece.Type> whitePiece = board.sortPiece(Piece.Color.WHITE);
-        List<Piece.Type> blackPiece = board.sortPiece(Piece.Color.BLACK);
-
-        assertThat(whitePiece.toString()).isEqualTo("[ROOK, PAWN, PAWN, PAWN, KING]");
-        assertThat(blackPiece.toString()).isEqualTo("[QUEEN, ROOK, PAWN, KING]");
     }
 }

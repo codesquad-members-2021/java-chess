@@ -1,87 +1,33 @@
 package chess;
 
 import chess.pieces.Piece;
+import chess.pieces.Piece.*;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static chess.utils.StringUtils.appendNewLine;
 
 public class Board {
-    private static final int BOARD_RANK = 8;
-    private static final int BOARD_FILE = 8;
-
+    public static final int BOARD_RANK = 8;
+    public static final int BOARD_FILE = 8;
     private List<Rank> board = new ArrayList<>(BOARD_RANK);
 
     public void initializeEmpty() {
         for (int i = 0; i < BOARD_RANK; i++) {
-            board.add(initBlankRank(i + 1));
+            board.add(Rank.initBlankRank());
         }
     }
 
     public void initializeBoard() {
         // 랭크 번호 순서대로 board 리스트에 담기
-        board.add(initWhitePieceRank());
-        board.add(initWhitePawnRank());
+        board.add(Rank.initWhitePieceRank());
+        board.add(Rank.initWhitePawnRank());
         for (int i = 0; i < 4; i++) {
-            board.add(initBlankRank(i + 3));
+            board.add(Rank.initBlankRank());
         }
-        board.add(initBlackPawnRank());
-        board.add(initBlackPieceRank());
-    }
-
-    private Rank initWhitePieceRank() {
-        Rank rank = new Rank(1);
-        rank.add(Piece.createWhiteRook());
-        rank.add(Piece.createWhiteKnight());
-        rank.add(Piece.createWhiteBishop());
-        rank.add(Piece.createWhiteQueen());
-        rank.add(Piece.createWhiteKing());
-        rank.add(Piece.createWhiteBishop());
-        rank.add(Piece.createWhiteKnight());
-        rank.add(Piece.createWhiteRook());
-
-        return rank;
-    }
-
-    private Rank initWhitePawnRank() {
-        Rank rank = new Rank(2);
-        for (int i = 0; i < BOARD_RANK; i++) {
-            rank.add(Piece.createWhitePawn());
-        }
-        return rank;
-    }
-
-    private Rank initBlankRank(int rankCount) {
-        Rank rank = new Rank(rankCount);
-        for (int i = 0; i < BOARD_RANK; i++) {
-            rank.add(Piece.createBlank());
-        }
-        return rank;
-    }
-
-    private Rank initBlackPawnRank() {
-        Rank rank = new Rank(7);
-        for (int i = 0; i < BOARD_RANK; i++) {
-            rank.add(Piece.createBlackPawn());
-        }
-        return rank;
-    }
-
-    private Rank initBlackPieceRank() {
-        Rank rank = new Rank(8);
-        rank.add(Piece.createBlackRook());
-        rank.add(Piece.createBlackKnight());
-        rank.add(Piece.createBlackBishop());
-        rank.add(Piece.createBlackQueen());
-        rank.add(Piece.createBlackKing());
-        rank.add(Piece.createBlackBishop());
-        rank.add(Piece.createBlackKnight());
-        rank.add(Piece.createBlackRook());
-
-        return rank;
+        board.add(Rank.initBlackPawnRank());
+        board.add(Rank.initBlackPieceRank());
     }
 
     public String showBoard() {
@@ -105,12 +51,6 @@ public class Board {
         return result.toString();
     }
 
-    public int countPiece(Piece.Color color, Piece.Type type) {
-        Optional<Long> result = board.stream().map(x -> x.count(color, type))
-                .reduce((a, b) -> a + b);
-        return result.get().intValue();
-    }
-
     public Piece findPiece(String position) {
         int x = getX(position);
         int y = getY(position);
@@ -132,12 +72,12 @@ public class Board {
         return position.charAt(1) - '0' - 1;
     }
 
-    public double calculatePoint(Piece.Color color) {
-        double pawn = countPiece(color, Piece.Type.PAWN);
-        double knight = countPiece(color, Piece.Type.KNIGHT);
-        double rook = countPiece(color, Piece.Type.ROOK);
-        double bishop = countPiece(color, Piece.Type.BISHOP);
-        double queen = countPiece(color, Piece.Type.QUEEN);
+    public double calculatePoint(Color color) {
+        double pawn = countPiece(color, Type.PAWN);
+        double knight = countPiece(color, Type.KNIGHT);
+        double rook = countPiece(color, Type.ROOK);
+        double bishop = countPiece(color, Type.BISHOP);
+        double queen = countPiece(color, Type.QUEEN);
 
         double sameFilePawn = getSameFileNum(pawn, color);
         pawn = pawn - sameFilePawn;
@@ -145,10 +85,17 @@ public class Board {
         return getSum(pawn, sameFilePawn, knight, rook, bishop, queen);
     }
 
-    public double getSameFileNum(double pawnNum, Piece.Color color) {
-        Piece piece =
-                color == Piece.Color.WHITE ? Piece.createWhitePawn() : Piece.createBlackPawn();
-        String[] positions = getPawnPosition(piece);
+    private int countPiece(Color color, Type type) {
+        Optional<Long> result = board.stream()
+                .map(x -> x.count(color, type))
+                .reduce((a, b) -> a + b);
+        return result.get().intValue();
+    }
+
+    private double getSameFileNum(double pawnNum, Color color) {
+        Piece pawn =
+                color == Color.WHITE ? Piece.createWhitePawn() : Piece.createBlackPawn();
+        String[] positions = getPawnPosition(pawn);
         Set<String> deletedSamePositions = new HashSet<>(Arrays.asList(positions));
         return (pawnNum - deletedSamePositions.size()) * 2;
     }
@@ -171,8 +118,8 @@ public class Board {
     }
 
     private double getSum(double pawn, double sameFilePawn, double knight, double rook, double bishop, double queen) {
-        return pawn * Piece.Type.PAWN.getDefaultPoint() +
-                sameFilePawn * Piece.Type.PAWN.getDefaultPoint() * 0.5 +
+        return pawn * Type.PAWN.getDefaultPoint() +
+                sameFilePawn * Type.PAWN.getDefaultPoint() * 0.5 +
                 knight * Piece.Type.KNIGHT.getDefaultPoint() +
                 rook * Piece.Type.ROOK.getDefaultPoint() +
                 bishop * Piece.Type.BISHOP.getDefaultPoint() +

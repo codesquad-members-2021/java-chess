@@ -1,6 +1,5 @@
 package chess.pieces;
 
-import org.assertj.core.util.diff.Delta;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -15,16 +15,14 @@ public class Board {
         for (Rank rank : rankList) {
             boardPieceSize += rank.rankPieceSize();
         }
-        return boardPieceSize ;
+        return boardPieceSize;
     }
 
-    public int certainPieceSize(Piece.Color color, Piece.Type type) {
+    public int certainPieceSize(Piece.Color color, Piece.Type type) {   // 메서드 분리해서 반복문 여러개 제거
         int size = 0;
-        for( Rank rank : rankList ) {
-            for(int i =0; i< Rank.MAX_PIECES_IN_RANK; i++) {
-                boolean isColorType = (rank.getPiece(i).getType() == type)
-                                    && (rank.getPiece(i).getColor() == color);
-                size += isColorType ? 1 : 0 ;
+        for (Rank rank : rankList) {
+            for (int i = 0; i < Rank.MAX_PIECES_IN_RANK; i++) {
+                size += rank.getPiece(i).isColorType(color, type) ? 1 : 0;
             }
         }
         return size;
@@ -45,50 +43,90 @@ public class Board {
     }
 
     public void initializeEmptyBoard() {
-        for(int i =0; i< RANKS_ON_BOARD; i++) {
+        for (int i = 0; i < RANKS_ON_BOARD; i++) {
             rankList.add(Rank.initializeBlankRank());
         }
     }
 
     public String boardLayoutToString() {
         StringBuilder boardLayout = new StringBuilder();
-            for(Rank rank : rankList){
-                boardLayout.append(appendNewLine(rank.getRankRepresentation()));
-            }
+        for (Rank rank : rankList) {
+            boardLayout.append(appendNewLine(rank.getRankRepresentation()));
+        }
         return boardLayout.toString();
     }
 
     public void reset() {
-        for( Rank rank : rankList ) {
+        for (Rank rank : rankList) {
             rank.resetRank();
         }
     }
 
     public Rank getRank(int rankNum) {
-        return rankList.get(RANKS_ON_BOARD-rankNum);
+        return rankList.get(RANKS_ON_BOARD - rankNum);
     }
 
-    public Piece findPiece(String location) {
-         Position position = Position.at(location);
-         return getRank(position.getRankIndex()).getPiece(position.getFileIndex());
+    public Piece findPiece(Position position) {
+        return getRank(position.getRankIndex()).getPiece(position.getFileIndex());
 
     }
 
-    public void addNewPiece(String destination, Piece piece) {
-        Position position = Position.at(destination);
-        getRank(position.getRankIndex()).replacePiece(position.getFileIndex(), piece);
+    public void addNewPiece(Position destination, Piece piece) {
+        getRank(destination.getRankIndex()).replacePiece(destination.getFileIndex(), piece);
     }
 
 
-    public void movePiece(String from, String to) {
-        Position startPosition = Position.at(from);
-        Position endPosition = Position.at(to);
+    public void movePiece(Position startPosition, Position endPosition) {
+        Piece foundPiece = findPiece(startPosition);
 
-        Piece foundPiece = findPiece(from);
-
-        if(foundPiece.isPiece()) {
+        if (foundPiece.isPiece()) {
             getRank(startPosition.getRankIndex()).replacePiece(startPosition.getFileIndex(), Piece.createBlank());
             getRank(endPosition.getRankIndex()).replacePiece(endPosition.getFileIndex(), foundPiece);
         }
     }
+
+    public double calculatePoints(Piece.Color color) {
+        double points = 0;
+
+        List<Piece> colorPieceList = getPieceListByColor(color);
+        for(int i =0; i<colorPieceList.size(); i++) {
+            points += colorPieceList.get(i).getDefaultPoint();
+        }
+
+        points -= pawnSizeInFile(color) * 0.5;
+        return points;
+    }
+
+    public List<Piece> getPieceListByColor(Piece.Color color) {
+        List<Piece> colorPieceList = new ArrayList<>();
+
+        for (Rank rank : rankList) {
+            for (int i = 0; i < Rank.MAX_PIECES_IN_RANK; i++) {
+                Piece piece = rank.getPiece(i);
+                if (piece.getColor() == color) {
+                    colorPieceList.add(piece);
+                }
+            }
+        }
+        return colorPieceList;
+    }
+
+    public int pawnSizeInFile(Piece.Color color) {
+        int[] pawnsInFile = new int[8];
+        int excessPawnsInFile = 0;
+
+        for (Rank rank : rankList) {
+            for (int i = 0; i < Rank.MAX_PIECES_IN_RANK; i++) {
+               Piece piece = rank.getPiece(i);
+               pawnsInFile[i] += piece.isColorType(color, Piece.Type.PAWN) ? 1 : 0;
+            }
+        }
+
+        for (int pawnSize : pawnsInFile) {
+            excessPawnsInFile += pawnSize > 1 ? pawnSize : 0 ;
+        }
+
+        return excessPawnsInFile;
+    }
+
 }

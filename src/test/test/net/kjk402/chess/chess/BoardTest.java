@@ -1,7 +1,5 @@
 package net.kjk402.chess.chess;
 
-import static net.kjk402.chess.utils.StringUtils.appendNewLine;
-
 import net.kjk402.chess.pieces.Piece;
 import net.kjk402.chess.pieces.Position;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +11,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 
 class BoardTest {

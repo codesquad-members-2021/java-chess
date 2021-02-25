@@ -33,10 +33,7 @@ public class Game {
                     break;
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
         System.out.println("==== Java chess ended ===");
     }
 }

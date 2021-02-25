@@ -138,35 +138,34 @@ public class Board {
         double rook = countPiece(color, Piece.Type.ROOK);
         double bishop = countPiece(color, Piece.Type.BISHOP);
         double queen = countPiece(color, Piece.Type.QUEEN);
+        double sameFilePawn = 0;
 
-        if (isSameFile(color)) {
-            pawn = pawn * 0.5;
-        }
-        return getSum(pawn, knight, rook, bishop, queen);
+        sameFilePawn = getSameFileNum(pawn, color);
+        pawn = pawn - sameFilePawn;
+        return getSum(pawn, sameFilePawn, knight, rook, bishop, queen);
     }
 
-    private double getSum(double pawn, double knight, double rook, double bishop, double queen) {
+    private double getSum(double pawn, double sameFilePawn, double knight, double rook, double bishop, double queen) {
         return pawn * Piece.Type.PAWN.getDefaultPoint() +
+                sameFilePawn * Piece.Type.PAWN.getDefaultPoint() * 0.5 +
                 knight * Piece.Type.KNIGHT.getDefaultPoint() +
                 rook * Piece.Type.ROOK.getDefaultPoint() +
                 bishop * Piece.Type.BISHOP.getDefaultPoint() +
                 queen * Piece.Type.QUEEN.getDefaultPoint();
     }
 
-    private boolean isSameFile(Piece.Color color) {
-        Piece piece = color == Piece.Color.WHITE ? Piece.createWhitePawn() : Piece.createBlackPawn();
+    public double getSameFileNum(double pawnNum, Piece.Color color) {
+        Piece piece =
+                color == Piece.Color.WHITE ? Piece.createWhitePawn() : Piece.createBlackPawn();
         String[] positions = getPosition(piece);
-        long deletedPositionsLength = Arrays.stream(positions)
+        long deletedPositionNum = Arrays.stream(positions)
                 .map(x -> x.charAt(0))
                 .distinct()
                 .count();
-        if (deletedPositionsLength != positions.length) {
-            return true;
-        }
-        return false;
+        return (pawnNum - deletedPositionNum) * 2;
     }
 
-    public String[] getPosition(Piece piece) {
+    private String[] getPosition(Piece piece) {
         String[] positionArr = new String[countPiece(piece.getColor(), piece.getType())];
 
         int index = 0;

@@ -70,7 +70,7 @@ class BoardTest {
 
     @DisplayName("기물의 색깔별로 점수가 올바르게 계산되는지 확인한다.")
     @Test
-    void calculatePoint(){
+    void calculatePoint() {
         board.initializeEmpty();
 
         board.setPiece("b6", Piece.createBlackPawn());
@@ -82,7 +82,8 @@ class BoardTest {
         board.setPiece("g2", Piece.createWhitePawn());
         board.setPiece("e1", Piece.createWhiteRook());
         board.setPiece("f1", Piece.createWhiteKing());
-
+        board.setPiece("f3", Piece.createWhitePawn());
+        
         assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(15.0);
         assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(7.0);
 

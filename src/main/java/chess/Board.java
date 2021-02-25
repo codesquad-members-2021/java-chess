@@ -2,6 +2,7 @@ package chess;
 
 import chess.pieces.Color;
 import chess.pieces.Piece;
+import chess.pieces.Position;
 import chess.pieces.Type;
 import utils.StringUtils;
 
@@ -11,110 +12,107 @@ import java.util.List;
 public class Board {
     public static final int BOARD_SIZE = 8;
 
-    private final List<Piece> whitePieces = new ArrayList<>();
-    private final List<Piece> blackPieces = new ArrayList<>();
-
-    public void addWhitePieces(Piece piece) {
-        if (piece.isWhite()) {
-            whitePieces.add(piece);
-            return;
-        }
-        getAddErrorMessage();
-    }
-
-    public void addBlackPieces(Piece piece) {
-        if (piece.isBlack()) {
-            blackPieces.add(piece);
-            return;
-        }
-        getAddErrorMessage();
-    }
-
-    private void getAddErrorMessage(){
-        System.out.println("알 수 없는 color의 piece입니다.");
-        System.out.println("add에 실패하였습니다.");
-    }
+    private final List<Rank> ranks = new ArrayList<>(BOARD_SIZE);
 
     public int totalPiecesCount() {
-        return whitePieces.size() + blackPieces.size();
+        return countingAllPiecesByColor(Color.WHITE) + countingAllPiecesByColor(Color.BLACK);
     }
 
-    private void appendChessPieceToSort(StringBuilder stringBuilder, Piece piece){
-        stringBuilder.append(piece.getRepresentation());
-        if (stringBuilder.length() == BOARD_SIZE) {
-            stringBuilder.append(StringUtils.getNewLine());
+    public int countingAllPiecesByColor(Color color) {
+        int count = 0;
+
+        for (Type type : Type.values()) {
+            count += countPiecesByColorAndType(color, type);
         }
+
+        return count;
     }
 
-    private String getPiecesSort(Color color) {
+    public int countPiecesByColorAndType(Color color, Type type) {
+        int countPiece = 0;
+        for (Rank rank : ranks) {
+            countPiece += rank.getCountPiecesByColorAndType(color, type);
+        }
+
+        return countPiece;
+    }
+
+    public List<Piece> findPiecesByColor(Color color) {
+        List<Piece> pieces = new ArrayList<>();
+
+        for (Rank rank : ranks) {
+            pieces.addAll(rank.findPieceByColor(color));
+        }
+
+        return pieces;
+    }
+
+    public Piece findPiece(String position) {
+        Position positionNumber = new Position(position);
+
+        return ranks.get(positionNumber.getFile()).getPiece(positionNumber.getRank());
+    }
+
+    private String getRank(Rank rank) {
         StringBuilder sb = new StringBuilder();
-        switch (color) {
-            case WHITE:
-                for (Piece piece : whitePieces) {
-                    appendChessPieceToSort(sb, piece);
-                }
-                return sb.toString();
+        for (Piece piece : rank.getRank()) {
+            if (piece.isBlack()) {
+                sb.append(piece.getType().getBlackRepresentation()).append(" ");
+            } else {
+                sb.append(piece.getType().getWhiteRepresentation()).append(" ");
+            }
 
-            case BLACK:
-                for (Piece piece : blackPieces) {
-                    appendChessPieceToSort(sb, piece);
-                }
-                return sb.toString();
-
-            default:
-                return "";
         }
+        return sb.toString();
     }
 
     public void initialize() {
-        initializeBlackPieces();
-        initializeWhitePieces();
+        final int FILE_INDEX = 8;
+        ranks.add(Rank.initializeWhitePieces(FILE_INDEX));
+        ranks.add(Rank.initializeWhitePawns(FILE_INDEX - 1));
+        ranks.add(Rank.initializeBlank(FILE_INDEX - 2));
+        ranks.add(Rank.initializeBlank(FILE_INDEX - 3));
+        ranks.add(Rank.initializeBlank(FILE_INDEX - 4));
+        ranks.add(Rank.initializeBlank(FILE_INDEX - 5));
+        ranks.add(Rank.initializeBlackPawns(FILE_INDEX - 6));
+        ranks.add(Rank.initializeBlackPieces(FILE_INDEX - 7));
     }
 
-    private void initializeWhitePieces() {
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            addWhitePieces(Piece.createWhitePawn());
+    public void initializeEmpty() {
+        for (int i = 1; i <= BOARD_SIZE; i++) {
+            ranks.add(Rank.initializeBlank(i));
         }
-
-        addWhitePieces(Piece.createWhiteRook());
-        addWhitePieces(Piece.createWhiteKnight());
-        addWhitePieces(Piece.createWhiteBishop());
-        addWhitePieces(Piece.createWhiteQueen());
-        addWhitePieces(Piece.createWhiteKing());
-        addWhitePieces(Piece.createWhiteBishop());
-        addWhitePieces(Piece.createWhiteKnight());
-        addWhitePieces(Piece.createWhiteRook());
     }
 
-    private void initializeBlackPieces() {
+    public void move(String position, Piece piece) {
+        Position positionNumber = new Position(position);
 
-        addBlackPieces(Piece.createBlackRook());
-        addBlackPieces(Piece.createBlackKnight());
-        addBlackPieces(Piece.createBlackBishop());
-        addBlackPieces(Piece.createBlackQueen());
-        addBlackPieces(Piece.createBlackKing());
-        addBlackPieces(Piece.createBlackBishop());
-        addBlackPieces(Piece.createBlackKnight());
-        addBlackPieces(Piece.createBlackRook());
+        ranks.get(positionNumber.getFile()).move(positionNumber.getRank(), piece, positionNumber);
+    }
 
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            addBlackPieces(Piece.createBlackPawn());
+    public double calculatePointByColor(Color color) {
+        List<Piece> pieces = findPiecesByColor(color);
+        double point = 0.0;
+        for (Piece piece : pieces) {
+            point += piece.getPoint(pieces);
         }
+
+        return point;
     }
 
     public String getChessBoard() {
         StringBuilder boardRank = new StringBuilder();
-        String blank = "........";
 
-        boardRank.append(StringUtils.addNewLine(getPiecesSort(Color.BLACK)));
+        String rankIndex = "a b c d e f g h";
 
-        boardRank.append(StringUtils.addNewLine(blank));
-        boardRank.append(StringUtils.addNewLine(blank));
-        boardRank.append(StringUtils.addNewLine(blank));
-        boardRank.append(StringUtils.addNewLine(blank));
+        for (int fileIndex = BOARD_SIZE - 1; fileIndex >= 0; fileIndex--) {
+            boardRank.append(getRank(ranks.get(fileIndex)));
+            boardRank.append(" ").append(fileIndex + 1);
+            boardRank.append(StringUtils.getNewLine());
+        }
 
-        boardRank.append(StringUtils.addNewLine(getPiecesSort(Color.WHITE)));
-
+        boardRank.append(StringUtils.getNewLine());
+        boardRank.append(StringUtils.addNewLine(rankIndex));
         return boardRank.toString();
     }
 }

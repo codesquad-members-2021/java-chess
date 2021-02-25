@@ -1,33 +1,73 @@
 package chess.pieces;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 class PieceTest {
 
+    Position position;
+
+    @BeforeEach
+    void positionInit() {
+        int testPositionIndex = 1;
+        position = new Position(testPositionIndex, testPositionIndex);
+    }
+
+    @Test
+    void piecesSortByPoint() {
+        List<Piece> pieces = new ArrayList<>();
+
+        addPiece(pieces);
+
+        Collections.sort(pieces);
+        assertThat(pieces.toString()).isEqualTo("[Q, R, B, N, P, K]");
+
+    }
+
+    void addPiece(List<Piece> collection) {
+        collection.add(Piece.createBlackPawn(position));
+        collection.add(Piece.createBlackRook(position));
+        collection.add(Piece.createBlackKnight(position));
+        collection.add(Piece.createBlackBishop(position));
+        collection.add(Piece.createBlackQueen(position));
+        collection.add(Piece.createBlackKing(position));
+    }
+
     @Test
     @DisplayName("체스말이 정상적으로 생성되는지 확인한다.")
     public void createPieces() {
-        verifyWhitePiece(Piece.createWhitePawn(), Type.PAWN);
-        verifyBlackPiece(Piece.createBlackPawn(), Type.PAWN);
+        Piece blank = Piece.createBlank(position);
 
-        verifyWhitePiece(Piece.createWhiteRook(), Type.ROOK);
-        verifyBlackPiece(Piece.createBlackRook(), Type.ROOK);
+        assertAll(
+                () -> verifyWhitePiece(Piece.createWhitePawn(position), Type.PAWN),
+                () -> verifyBlackPiece(Piece.createBlackPawn(position), Type.PAWN),
 
-        verifyWhitePiece(Piece.createWhiteKnight(), Type.KNIGHT);
-        verifyBlackPiece(Piece.createBlackKnight(), Type.KNIGHT);
+                () -> verifyWhitePiece(Piece.createWhiteRook(position), Type.ROOK),
+                () -> verifyBlackPiece(Piece.createBlackRook(position), Type.ROOK),
 
-        verifyWhitePiece(Piece.createWhiteBishop(), Type.BISHOP);
-        verifyBlackPiece(Piece.createBlackBishop(), Type.BISHOP);
+                () -> verifyWhitePiece(Piece.createWhiteKnight(position), Type.KNIGHT),
+                () -> verifyBlackPiece(Piece.createBlackKnight(position), Type.KNIGHT),
 
-        verifyWhitePiece(Piece.createWhiteQueen(), Type.QUEEN);
-        verifyBlackPiece(Piece.createBlackQueen(), Type.QUEEN);
+                () -> verifyWhitePiece(Piece.createWhiteBishop(position), Type.BISHOP),
+                () -> verifyBlackPiece(Piece.createBlackBishop(position), Type.BISHOP),
 
-        verifyWhitePiece(Piece.createWhiteKing(), Type.KING);
-        verifyBlackPiece(Piece.createBlackKing(), Type.KING);
+                () -> verifyWhitePiece(Piece.createWhiteQueen(position), Type.QUEEN),
+                () -> verifyBlackPiece(Piece.createBlackQueen(position), Type.QUEEN),
+
+                () -> verifyWhitePiece(Piece.createWhiteKing(position), Type.KING),
+                () -> verifyBlackPiece(Piece.createBlackKing(position), Type.KING),
+
+                () -> assertThat(blank.isWhite()).isEqualTo(false),
+                () -> assertThat(blank.isBlack()).isEqualTo(false),
+                () -> assertThat(blank.getColor()).isEqualTo(Color.NO_COLOR),
+                () -> assertThat(blank.getRepresentation()).isEqualTo(Type.BLANK.getWhiteRepresentation())
+        );
     }
 
     private void verifyWhitePiece(Piece piece, Type type) {

@@ -23,10 +23,8 @@ public class Game {
                 System.out.println("bye");
                 over = false;
                 sc.close();
-            } else {
-                System.out.println("invalid cmd");
             }
-
+            System.out.println("invalid cmd");
         }
 
 

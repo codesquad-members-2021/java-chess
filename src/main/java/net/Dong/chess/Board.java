@@ -10,8 +10,8 @@ public class Board {
     private List<Pawn> blackPawn = new ArrayList<>();
 
 
-    private static final String EMPTYLINE = "........";
-    private static final String NEWLINE = System.getProperty("line.separator");
+    public static final String EMPTY_LINE = "........";
+    public static final String NEW_LINE = System.getProperty("line.separator");
 
 
     public void addWhitePawn(Pawn pawn) {
@@ -75,16 +75,16 @@ public class Board {
         return sb.toString();
     }
 
-    public String print() {
+    public String LayoutToString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(EMPTYLINE).append(NEWLINE);
-        sb.append(getBlackPawnsResult()).append(NEWLINE);
-        sb.append(EMPTYLINE).append(NEWLINE);
-        sb.append(EMPTYLINE).append(NEWLINE);
-        sb.append(EMPTYLINE).append(NEWLINE);
-        sb.append(EMPTYLINE).append(NEWLINE);
-        sb.append(getWhitePawnsResult()).append(NEWLINE);
-        sb.append(EMPTYLINE).append(NEWLINE);
+        sb.append(EMPTY_LINE).append(NEW_LINE);
+        sb.append(getBlackPawnsResult()).append(NEW_LINE);
+        sb.append(EMPTY_LINE).append(NEW_LINE);
+        sb.append(EMPTY_LINE).append(NEW_LINE);
+        sb.append(EMPTY_LINE).append(NEW_LINE);
+        sb.append(EMPTY_LINE).append(NEW_LINE);
+        sb.append(getWhitePawnsResult()).append(NEW_LINE);
+        sb.append(EMPTY_LINE).append(NEW_LINE);
         return sb.toString();
     }
 }

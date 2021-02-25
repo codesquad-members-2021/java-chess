@@ -5,11 +5,14 @@ import net.eno.pieces.Piece;
 import net.eno.pieces.PieceType;
 import net.eno.pieces.Position;
 
+import static net.eno.utils.StringUtils.NEWLINE;
 import static net.eno.utils.StringUtils.appendNewLine;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class Board {
@@ -25,11 +28,9 @@ public class Board {
     }
 
     public int countTargetPiece(Color color, PieceType pieceType) {
-        int count = 0;
-        for (Rank rank : this.board) {
-            count += rank.countTargetPiece(color, pieceType);
-        }
-        return count;
+        return this.board.stream()
+                .mapToInt(rank -> rank.countTargetPiece(color, pieceType))
+                .sum();
     }
 
     public Piece findPiece(String position) {
@@ -45,40 +46,31 @@ public class Board {
     }
 
     public double calculatePoint(Color color) {
-        double point = 0;
-        for (Rank rank : this.board) {
-            point += rank.calculateRankPoint(color);
-        }
-
-        double pawnNumber = 0;
-        for (char file = 'a'; file <= 'h'; file++) {
-            pawnNumber += countSameFilePawn(file, color);
-        }
-
+        double point = this.board.stream()
+                .mapToDouble(rank -> rank.calculateRankPoint(color))
+                .sum();
+        double pawnNumber = IntStream.rangeClosed('a', 'h')
+                .mapToDouble(file -> countSameFilePawn((char)file, color))
+                .sum();
         return point - (pawnNumber / 2);
     }
 
     private int countSameFilePawn(char file, Color color) {
-        int count = 0;
-        for (int rank = 1; rank <= 8; rank++) {
-            Piece piece = findPiece(String.valueOf(file) + rank);
-            if (piece.getColor() == color &&
-                    piece.getPieceType() == PieceType.PAWN) {
-                count++;
-            }
-        }
+        int count = (int)IntStream.rangeClosed(1, 8)
+                .mapToObj(rank -> findPiece(String.valueOf(file) + rank))
+                .filter(piece -> piece.getColor() == color && piece.getPieceType() == PieceType.PAWN)
+                .count();
         return count > 1 ? count : 0;
     }
 
     public List<Piece> sortByPiecePoint(Color color, boolean isAscending) {
-        List<Piece> pieceList = new ArrayList<>();
-        for (Rank rank : this.board) {
-            pieceList.addAll(rank.getPieceListByColor(color));
-        }
-        if (isAscending) {
-            Collections.sort(pieceList);
-        } else {
-            pieceList.sort(Collections.reverseOrder());
+        List<Piece> pieceList = this.board.stream()
+                .map(rank -> rank.getPieceListByColor(color))
+                .flatMap(List::stream)
+                .sorted()
+                .collect(Collectors.toList());
+        if (!isAscending) {
+            Collections.reverse(pieceList);
         }
         return pieceList;
     }
@@ -97,19 +89,16 @@ public class Board {
 
     public void initializeEmpty() {
         this.board = new ArrayList<>();
-        for (int rank = 0; rank < 8; rank++) {
+        for (int i = 0; i < 8; i++) {
             addRank(Rank.createOnePieceRank(Color.NOCOLOR, PieceType.NO_PIECE));
         }
     }
 
     public String showBoard(Color color) {
-        StringBuilder result = new StringBuilder();
-        int reverseRank = color == Color.BLACK ? 7 : 0;
-        for (int rankNum = 0; rankNum < this.board.size(); rankNum++) {
-            Rank rank = board.get(Math.abs(rankNum - reverseRank));
-            result.append(appendNewLine(rank.showRank(color)));
-        }
-        return result.toString();
+        String result = this.board.stream()
+                .map(rank -> appendNewLine(rank.showRank()))
+                .collect(Collectors.joining());
+        return color != Color.BLACK ? result : new StringBuilder(result).reverse().substring(1) + NEWLINE;
     }
 
 }

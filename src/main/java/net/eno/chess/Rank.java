@@ -6,6 +6,7 @@ import net.eno.pieces.PieceType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Rank {
 
@@ -17,7 +18,7 @@ public class Rank {
 
     public static Rank createOnePieceRank(Color color, PieceType pieceType) {
         Rank rank = new Rank();
-        for (int file = 0; file < 8; file++) {
+        for (int i = 0; i < 8; i++) {
             rank.addPiece(Piece.createPiece(color, pieceType));
         }
         return rank;
@@ -41,13 +42,9 @@ public class Rank {
     }
 
     public int countTargetPiece(Color color, PieceType pieceType) {
-        int count = 0;
-        for (Piece piece : this.rank) {
-            if (piece.getColor() == color && piece.getPieceType() == pieceType) {
-                count++;
-            }
-        }
-        return count;
+        return (int)this.rank.stream()
+                .filter(piece -> piece.getColor() == color && piece.getPieceType() == pieceType)
+                .count();
     }
 
     public Piece findPiece(int fileIndex) {
@@ -59,33 +56,22 @@ public class Rank {
     }
 
     public double calculateRankPoint(Color color) {
-        double point = 0;
-        for (Piece piece : this.rank) {
-            if (piece.getColor() == color) {
-                point += piece.getPoint();
-            }
-        }
-        return point;
+        return this.rank.stream()
+                .filter(piece -> piece.getColor() == color)
+                .mapToDouble(Piece::getPoint)
+                .sum();
     }
 
     public List<Piece> getPieceListByColor(Color color) {
-        List<Piece> pieceList = new ArrayList<>();
-        for (Piece piece : this.rank) {
-            if (piece.getColor() == color) {
-                pieceList.add(piece);
-            }
-        }
-        return pieceList;
+        return this.rank.stream()
+                .filter(piece -> piece.getColor() == color)
+                .collect(Collectors.toList());
     }
 
-    public String showRank(Color color) {
-        StringBuilder result = new StringBuilder();
-        int reverseFIle = color == Color.BLACK ? 7 : 0;
-        for (int file = 0; file < this.rank.size(); file++) {
-            Piece piece = rank.get(Math.abs(file - reverseFIle));
-            result.append(piece.getRepresentation(piece.getColor()));
-        }
-        return result.toString();
+    public String showRank() {
+        return this.rank.stream()
+                .map(piece -> String.valueOf(piece.getRepresentation(piece.getColor())))
+                .collect(Collectors.joining());
     }
 
 }

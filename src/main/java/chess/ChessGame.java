@@ -1,6 +1,7 @@
 package chess;
 
 import piece.attribute.Color;
+import piece.attribute.Direction;
 
 public class ChessGame {
     private final Board board = new Board();

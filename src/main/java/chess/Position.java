@@ -1,5 +1,7 @@
 package chess;
 
+import piece.attribute.Direction;
+
 import java.util.Objects;
 
 public class Position {
@@ -14,6 +16,18 @@ public class Position {
     public Position(String position) {
         this.file = position.charAt(0);
         this.rank = Character.getNumericValue(position.charAt(1));
+    }
+
+    public int x() {
+        return file - 'a' + 1;
+    }
+
+    public int y() {
+        return rank;
+    }
+
+    public boolean isValid() {
+        return x() >= 1 && x() <= 8 && y() >= 1 && y() <= 8;
     }
 
     @Override

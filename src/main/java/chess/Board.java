@@ -1,5 +1,6 @@
 package chess;
 
+import piece.Blank;
 import piece.Piece;
 import piece.attribute.*;
 
@@ -16,8 +17,11 @@ public class Board {
         return squares;
     }
 
-    public void addPiece(Position position, Piece piece) {
-        squares.put(position, piece);
+    Board() {
+
+    }
+    public void addPiece(Piece piece) {
+        squares.put(piece.getPosition(), piece);
     }
 
     void initialize() {
@@ -34,13 +38,13 @@ public class Board {
 
     void initializeEmpty() {
         for (Position position : squares.keySet()) {
-            set(position, createPiece(Color.NO_COLOR, Type.BLANK));
+            set(position, createPiece(Color.NO_COLOR, Type.BLANK, position));
         }
     }
 
     private void initRank(Color color, int rank, Type type) {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            addPiece(new Position((char) (i + 'a'), rank), createPiece(color, type));
+            addPiece(createPiece(color, type, new Position((char) (i + 'a'), rank)));
         }
     }
 
@@ -53,14 +57,14 @@ public class Board {
     }
 
     private void initPiecesExceptPawns(Color color, int rank) {
-        addPiece(new Position('a', rank), createPiece(color, Type.ROOK));
-        addPiece(new Position('b', rank), createPiece(color, Type.KNIGHT));
-        addPiece(new Position('c', rank), createPiece(color, Type.BISHOP));
-        addPiece(new Position('d', rank), createPiece(color, Type.QUEEN));
-        addPiece(new Position('e', rank), createPiece(color, Type.KING));
-        addPiece(new Position('f', rank), createPiece(color, Type.BISHOP));
-        addPiece(new Position('g', rank), createPiece(color, Type.KNIGHT));
-        addPiece(new Position('h', rank), createPiece(color, Type.ROOK));
+        addPiece(createPiece(color, Type.ROOK, new Position('a', rank)));
+        addPiece(createPiece(color, Type.KNIGHT, new Position('b', rank)));
+        addPiece(createPiece(color, Type.BISHOP, new Position('c', rank)));
+        addPiece(createPiece(color, Type.QUEEN, new Position('d', rank)));
+        addPiece(createPiece(color, Type.KING, new Position('e', rank)));
+        addPiece(createPiece(color, Type.BISHOP, new Position('f', rank)));
+        addPiece(createPiece(color, Type.KNIGHT, new Position('g', rank)));
+        addPiece(createPiece(color, Type.ROOK, new Position('h', rank)));
     }
 
 
@@ -77,12 +81,18 @@ public class Board {
     }
 
     public void move(Position before, Position after) {
-        set(after, findPiece(before));
-        set(before, createPiece(Color.NO_COLOR, Type.BLANK));
+        Piece piece = findPiece(before);
+        if (piece.isMovable(after)) {
+            set(after, piece);
+            set(before, new Blank(Color.NO_COLOR, before));
+        } else {
+            System.err.println(piece.direction(after) +" 은 " +piece.getType().name() + "이(가) 이동할 수 없는 방향입니다.");
+        }
     }
 
     private void set(Position position, Piece piece) {
         squares.replace(position, piece);
+        piece.setPosition(position);
     }
 
     public double calculatePoint(Color color) {

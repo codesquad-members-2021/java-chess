@@ -184,6 +184,7 @@ class BoardTest extends BoardTestBase {
         assertThat(board.findPiece(target)).isEqualTo(blackPieceFactory.createKing());
     }
 
+
     @Test
     void moveKingToWrongTarget() {
         initBoardWithBlank();
@@ -195,6 +196,65 @@ class BoardTest extends BoardTestBase {
 
     private void checkMoveKingToWrongTarget(String source, String target) {
         board.set(source, blackPieceFactory.createKing());
+        assertThatThrownBy(()->board.move(source, target))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void moveKnight() {
+        initBoardWithBlank();
+        checkMoveKnight("d4", "c6");
+        checkMoveKnight("d4", "b5");
+        checkMoveKnight("d4", "b3");
+        checkMoveKnight("d4", "c2");
+        checkMoveKnight("d4", "e2");
+        checkMoveKnight("d4", "f3");
+        checkMoveKnight("d4", "f5");
+        checkMoveKnight("d4", "e6");
+    }
+
+    private void checkMoveKnight(String source, String target) {
+        board.set(source, blackPieceFactory.createKnight());
+        board.set(target, whitePieceFactory.createPawn());
+        board.move(source, target);
+
+        assertThat(board.findPiece(source)).isEqualTo(Piece.createBlank());
+        assertThat(board.findPiece(target)).isEqualTo(blackPieceFactory.createKnight());
+    }
+
+    @Test
+    void moveKnightToWrongTarget() {
+        initBoardWithBlank();
+        checkMoveKnightToWrongTarget("d4", "a4");
+        checkMoveKnightToWrongTarget("d4", "b4");
+        checkMoveKnightToWrongTarget("d4", "c4");
+        checkMoveKnightToWrongTarget("d4", "e4");
+        checkMoveKnightToWrongTarget("d4", "f4");
+        checkMoveKnightToWrongTarget("d4", "g4");
+        checkMoveKnightToWrongTarget("d4", "h4");
+        checkMoveKnightToWrongTarget("d4", "d1");
+        checkMoveKnightToWrongTarget("d4", "d2");
+        checkMoveKnightToWrongTarget("d4", "d3");
+        checkMoveKnightToWrongTarget("d4", "d5");
+        checkMoveKnightToWrongTarget("d4", "d6");
+        checkMoveKnightToWrongTarget("d4", "d7");
+        checkMoveKnightToWrongTarget("d4", "c7");
+        checkMoveKnightToWrongTarget("d4", "a5");
+        checkMoveKnightToWrongTarget("d4", "a3");
+        checkMoveKnightToWrongTarget("d4", "c1");
+        checkMoveKnightToWrongTarget("d4", "e1");
+        checkMoveKnightToWrongTarget("d4", "g3");
+        checkMoveKnightToWrongTarget("d4", "g5");
+        checkMoveKnightToWrongTarget("d4", "e7");
+        checkMoveKnightToWrongTarget("d4", "b6");
+        checkMoveKnightToWrongTarget("d4", "b2");
+        checkMoveKnightToWrongTarget("d4", "f2");
+        checkMoveKnightToWrongTarget("d4", "f6");
+
+    }
+
+    private void checkMoveKnightToWrongTarget(String source, String target) {
+        board.set(source, blackPieceFactory.createKnight());
         assertThatThrownBy(()->board.move(source, target))
                 .isInstanceOf(IllegalArgumentException.class);
     }

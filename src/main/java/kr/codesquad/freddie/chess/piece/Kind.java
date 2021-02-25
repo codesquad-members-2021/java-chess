@@ -12,6 +12,13 @@ public enum Kind {
     KNIGHT("n", 2.5) {
         @Override
         public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+            int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
+            int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
+
+            if (fileDistance + rankDistance != 3 || Math.abs(fileDistance - rankDistance) != 1) {
+                String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
+                throw new IllegalArgumentException(message);
+            }
         }
     },
     ROOK("r", 5.0) {

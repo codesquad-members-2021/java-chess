@@ -11,7 +11,7 @@ public class Position {
 
     public Position(String position) {
         this.rank = position.charAt(0) - 'a';
-        this.file = Character.getNumericValue(position.charAt(1))-1;
+        this.file = Character.getNumericValue(position.charAt(1)) - 1;
     }
 
     public int getRank() {

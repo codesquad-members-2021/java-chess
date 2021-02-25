@@ -3,6 +3,7 @@ package net.kjk402.chess.pieces;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ class PieceTest {
         verifyPiece(Piece.createBlackKnight(position), Piece.Color.BLACK, Piece.Type.KNIGHT);
         verifyPiece(Piece.createWhiteBishop(position), Piece.Color.WHITE, Piece.Type.BISHOP);
         verifyPiece(Piece.createBlackBishop(position), Piece.Color.BLACK, Piece.Type.BISHOP);
-        verifyPiece(Piece.createWhiteQueen(position),Piece.Color.WHITE, Piece.Type.QUEEN);
+        verifyPiece(Piece.createWhiteQueen(position), Piece.Color.WHITE, Piece.Type.QUEEN);
         verifyPiece(Piece.createBlackQueen(position), Piece.Color.BLACK, Piece.Type.QUEEN);
         verifyPiece(Piece.createWhiteKing(position), Piece.Color.WHITE, Piece.Type.KING);
         verifyPiece(Piece.createBlackKing(position), Piece.Color.BLACK, Piece.Type.KING);

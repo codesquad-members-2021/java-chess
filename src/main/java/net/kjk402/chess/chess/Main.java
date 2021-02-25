@@ -1,6 +1,7 @@
 package net.kjk402.chess.chess;
 
 import static net.kjk402.chess.utils.StringUtils.appendNewLine;
+
 import java.util.Scanner;
 
 public class Main {

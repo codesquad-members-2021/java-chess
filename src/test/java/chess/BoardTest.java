@@ -18,7 +18,7 @@ class BoardTest {
     @DisplayName("piece의 갯수를 정확히 세는지 테스트")
     void showPieceNum() {
         board.initialize();
-        assertThat(32).isEqualTo(board.pieceCount());
+        assertThat(board.pieceCount()).isEqualTo(32);
     }
 
     @Test
@@ -26,12 +26,12 @@ class BoardTest {
     void showTotalBoard() {
         board.initialize();
         String blankArea = appendNewLine("........");
-        assertThat(
-                appendNewLine("RNBQKBNR") +
+        assertThat(board.bringBoard()).isEqualTo(
+                        appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         blankArea + blankArea + blankArea + blankArea +
                         appendNewLine("pppppppp") +
                         appendNewLine("rnbqkbnr")
-        ).isEqualTo(board.bringBoard());
+        );
     }
 }

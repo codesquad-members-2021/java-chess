@@ -37,7 +37,7 @@ public class Piece {
 
     private final Type type;
 
-    public Piece(Color color, Type type, Position position) {
+    private Piece(Color color, Type type, Position position) {
         this.color = color;
         this.type = type;
         this.position = position;

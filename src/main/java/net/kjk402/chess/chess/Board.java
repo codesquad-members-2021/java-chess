@@ -31,6 +31,12 @@ public class Board {
         rankList.add(Rank.setBlackPieces(7));
     }
 
+    public void initializeEmpty() {
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            rankList.add(Rank.setBlackLine(i));
+        }
+    }
+
     public int countSamePiece(Color color, Type type) {
         int count = 0;
         for (Rank rank : rankList) {
@@ -58,8 +64,15 @@ public class Board {
     }
 
     public Piece findPiece(String position) {
-        Position temp = new Position(position);
-        return rankList.get((temp.getFile())).getPiece(temp.getRank());
+        Position tempPosition = new Position(position);
+        return rankList.get((tempPosition.getFile())).getPiece(tempPosition.getRank());
+    }
+
+    public void move(String position, Piece piece) {
+        Position tempPosition = new Position(position);
+        rankList.get(tempPosition.getFile()).move(tempPosition.getRank(), piece);
+        Rank rank = new Rank();
+        rank.addPiece(piece);
     }
 
 }

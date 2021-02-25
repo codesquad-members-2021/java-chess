@@ -17,7 +17,7 @@ public class Main {
                 command = sc.nextLine();
                 if (command.equals("start")) {
                     Board board = new Board();
-                    board.initalize();
+                    board.initialize();
                     System.out.println(board.showBoard());
                     continue;
                 }
@@ -26,6 +26,11 @@ public class Main {
                 }
                 if (command.equals("help")) {
                     System.out.println(help);
+                }
+                if (command.equals("test")){
+                    Board board = new Board();
+                    board.initialize();
+                    //System.out.println(board.getLine());
                 }
             }
         }

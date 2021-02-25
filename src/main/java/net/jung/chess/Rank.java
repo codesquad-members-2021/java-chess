@@ -17,7 +17,6 @@ public class Rank {
         return size;
     }
 
-
     public boolean isPiece(Piece piece) {
         return piece.getType() != Type.NO_PIECE;
     }
@@ -104,5 +103,9 @@ public class Rank {
 
     public void resetRank() {
         pieceList.clear();
+    }
+
+    public void replacePiece (int fileIndex, Piece piece){
+        pieceList.set(fileIndex, piece);
     }
 }

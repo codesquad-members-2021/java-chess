@@ -70,12 +70,13 @@ public class Board {
 
     public String makeBoard() {
         StringBuilder sb = new StringBuilder();
+        String blankRank = "........";
         sb.append(appendNewLine(getBlackOthersResult()));
         sb.append(appendNewLine(getBlackPawnsResult()));
-        sb.append(appendNewLine(getBlankLine()));
-        sb.append(appendNewLine(getBlankLine()));
-        sb.append(appendNewLine(getBlankLine()));
-        sb.append(appendNewLine(getBlankLine()));
+        sb.append(appendNewLine(blankRank));
+        sb.append(appendNewLine(blankRank));
+        sb.append(appendNewLine(blankRank));
+        sb.append(appendNewLine(blankRank));
         sb.append(appendNewLine(getWhitePawnsResult()));
         sb.append(appendNewLine(getWhiteOthersResult()));
         return sb.toString();
@@ -115,9 +116,5 @@ public class Board {
             sb.append(aPiece.getSymbol());
         }
         return sb.toString();
-    }
-
-    private String getBlankLine() {
-        return "........";
     }
 }

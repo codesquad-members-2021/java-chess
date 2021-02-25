@@ -120,19 +120,19 @@ public class Board {
     private double getSum(double pawn, double sameFilePawn, double knight, double rook, double bishop, double queen) {
         return pawn * Type.PAWN.getDefaultPoint() +
                 sameFilePawn * Type.PAWN.getDefaultPoint() * 0.5 +
-                knight * Piece.Type.KNIGHT.getDefaultPoint() +
-                rook * Piece.Type.ROOK.getDefaultPoint() +
-                bishop * Piece.Type.BISHOP.getDefaultPoint() +
-                queen * Piece.Type.QUEEN.getDefaultPoint();
+                knight * Type.KNIGHT.getDefaultPoint() +
+                rook * Type.ROOK.getDefaultPoint() +
+                bishop * Type.BISHOP.getDefaultPoint() +
+                queen * Type.QUEEN.getDefaultPoint();
     }
 
-    public List<Piece.Type> sortPiece(Piece.Color color) {
+    public List<Type> sortPiece(Color color) {
         return board.stream()
                 .map(x -> x.getPieceList())
                 .flatMap(List::stream)
                 .filter(s -> s.getColor() == color)
                 .map(x -> x.getType())
-                .sorted(Comparator.comparing(Piece.Type::getDefaultPoint).reversed())
+                .sorted(Comparator.comparing(Type::getDefaultPoint).reversed())
                 .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package chess;
 
 import chess.pieces.Piece;
+import chess.pieces.Piece.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,8 +64,8 @@ class BoardTest {
     void calculatePoint() {
         getBoardWithSeveralPiece();
 
-        assertThat(board.calculatePoint(Piece.Color.BLACK)).isEqualTo(15.0);
-        assertThat(board.calculatePoint(Piece.Color.WHITE)).isEqualTo(7.0);
+        assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(15.0);
+        assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
 
         System.out.println(board.showBoard());
     }
@@ -73,8 +74,8 @@ class BoardTest {
     @Test
     void sortPiece() {
         getBoardWithSeveralPiece();
-        List<Piece.Type> whitePiece = board.sortPiece(Piece.Color.WHITE);
-        List<Piece.Type> blackPiece = board.sortPiece(Piece.Color.BLACK);
+        List<Type> whitePiece = board.sortPiece(Color.WHITE);
+        List<Type> blackPiece = board.sortPiece(Color.BLACK);
 
         assertThat(whitePiece.toString()).isEqualTo("[ROOK, PAWN, PAWN, PAWN, KING]");
         assertThat(blackPiece.toString()).isEqualTo("[QUEEN, ROOK, PAWN, KING]");

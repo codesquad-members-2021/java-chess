@@ -91,14 +91,7 @@ public class Board {
         Piece sourcePiece = findPiece(source);
         Piece targetPiece = findPiece(target);
 
-        Position sourcePosition = Position.of(source);
-        Position targetPosition = Position.of(target);
-
-        if (1 < Math.abs(sourcePosition.getFileIndex() - targetPosition.getFileIndex()) ||
-                1 < Math.abs(sourcePosition.getRankIndex() - targetPosition.getRankIndex())) {
-            String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePiece + ", target : " + targetPiece;
-            throw new IllegalArgumentException(message);
-        }
+        sourcePiece.verifyMovePosition(Position.of(source), Position.of(target));
 
         if (sourcePiece.getColor() == targetPiece.getColor()) {
             String message = "이동 위치의 기물이 같은 색상입니다. source : " + sourcePiece + ", target : " + targetPiece;

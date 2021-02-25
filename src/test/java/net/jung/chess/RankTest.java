@@ -50,4 +50,18 @@ class RankTest {
                 () -> assertThat(blankRank.getRankRepresentation()).isEqualTo("********")
         );
     }
+
+    @Test
+    @DisplayName("replace메서드는 index와 Piece를 매개변수로 받아 위치의 piece를 바꾼다.")
+    void checkReplace(){
+        whitePieceRank.replacePiece(0, Piece.createBlackBishop());
+        whitePieceRank.replacePiece(1, Piece.createBlackPawn());
+        blankRank.replacePiece(3, Piece.createWhiteKing());
+
+        assertAll(
+                () -> assertThat(whitePieceRank.getPiece(0)).isEqualTo(Piece.createBlackBishop()),
+                () -> assertThat(whitePieceRank.getPiece(1)).isEqualTo(Piece.createBlackPawn()),
+                () -> assertThat(blankRank.getPiece(3)).isEqualTo(Piece.createWhiteKing())
+        );
+    }
 }

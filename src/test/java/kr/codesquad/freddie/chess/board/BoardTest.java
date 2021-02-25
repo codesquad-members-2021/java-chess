@@ -163,28 +163,6 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
-    void moveKing() {
-        initBoardWithBlank();
-        checkMove("b3", "b4", blackPieceFactory.createKing());
-        checkMove("b3", "b2", blackPieceFactory.createKing());
-        checkMove("b3", "c3", blackPieceFactory.createKing());
-        checkMove("b3", "a3", blackPieceFactory.createKing());
-        checkMove("b3", "c4", blackPieceFactory.createKing());
-        checkMove("b3", "a4", blackPieceFactory.createKing());
-        checkMove("b3", "c2", blackPieceFactory.createKing());
-        checkMove("b3", "a2", blackPieceFactory.createKing());
-    }
-
-    @Test
-    void moveKingToWrongTarget() {
-        initBoardWithBlank();
-        checkMoveToWrongTarget("b3", "b5", blackPieceFactory.createKing());
-        checkMoveToWrongTarget("b3", "b1", blackPieceFactory.createKing());
-        checkMoveToWrongTarget("b3", "d3", blackPieceFactory.createKing());
-        checkMoveToWrongTarget("c3", "a3", blackPieceFactory.createKing());
-    }
-
-    @Test
     void moveKnight() {
         initBoardWithBlank();
         checkMove("d4", "c6", blackPieceFactory.createKnight());
@@ -328,6 +306,28 @@ class BoardTest extends BoardTestBase {
         checkMoveToWrongTarget("d4", "f3", blackPieceFactory.createQueen());
         checkMoveToWrongTarget("d4", "f5", blackPieceFactory.createQueen());
         checkMoveToWrongTarget("d4", "e6", blackPieceFactory.createQueen());
+    }
+
+    @Test
+    void moveKing() {
+        initBoardWithBlank();
+        checkMove("b3", "b4", blackPieceFactory.createKing());
+        checkMove("b3", "b2", blackPieceFactory.createKing());
+        checkMove("b3", "c3", blackPieceFactory.createKing());
+        checkMove("b3", "a3", blackPieceFactory.createKing());
+        checkMove("b3", "c4", blackPieceFactory.createKing());
+        checkMove("b3", "a4", blackPieceFactory.createKing());
+        checkMove("b3", "c2", blackPieceFactory.createKing());
+        checkMove("b3", "a2", blackPieceFactory.createKing());
+    }
+
+    @Test
+    void moveKingToWrongTarget() {
+        initBoardWithBlank();
+        checkMoveToWrongTarget("b3", "b5", blackPieceFactory.createKing());
+        checkMoveToWrongTarget("b3", "b1", blackPieceFactory.createKing());
+        checkMoveToWrongTarget("b3", "d3", blackPieceFactory.createKing());
+        checkMoveToWrongTarget("c3", "a3", blackPieceFactory.createKing());
     }
 
     @Test

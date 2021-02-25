@@ -7,13 +7,13 @@ public class ChessGame {
         return board;
     }
 
+    public void initialize() {
+        board.initialize();
+    }
+
     public void move(String before, String after) {
         board.move(new Position(before), new Position(after));
     }
 
-    public void start() {
-        System.out.println("체스 게임을 시작합니다.");
-        System.out.println(board.getResultToPrint());
-    }
 }
 

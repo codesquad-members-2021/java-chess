@@ -6,21 +6,22 @@ import piece.attribute.*;
 import java.util.*;
 
 import static piece.PieceFactory.createPiece;
-import static util.StringUtil.NEWLINE;
+
 
 public class Board {
     private final Map<Position, Piece> squares = new LinkedHashMap<>();
-    private final int BOARD_SIZE = 8;
+    public final int BOARD_SIZE = 8;
 
-    Board() {
-        initialize();
+    public Map<Position, Piece> getSquares() {
+        return squares;
     }
 
     public void addPiece(Position position, Piece piece) {
         squares.put(position, piece);
     }
 
-    private void initialize() {
+    void initialize() {
+        squares.clear();
         initPiecesExceptPawns(Color.BLACK, 8);
         initPawns(Color.BLACK, 7);
         initBlankSquares(6);
@@ -62,19 +63,7 @@ public class Board {
         addPiece(new Position('h', rank), createPiece(color, Type.ROOK));
     }
 
-    public String getResultToPrint() {
-        StringBuilder result = new StringBuilder();
-        int count = BOARD_SIZE * BOARD_SIZE;
-        for (Piece piece : squares.values()) {
-            result.append(piece.getRepresentation()).append(" ");
-            count--;
-            if (count % BOARD_SIZE == 0) {
-                result.append("  ").append(count / BOARD_SIZE + 1).append(NEWLINE);
-            }
-        }
-        result.append(NEWLINE).append("a b c d e f g h ");
-        return result.toString();
-    }
+
 
     public int getNumberOfPieces(Color color, Type type) {
         return (int) squares.values()

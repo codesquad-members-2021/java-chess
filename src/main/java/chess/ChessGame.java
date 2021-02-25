@@ -1,5 +1,7 @@
 package chess;
 
+import piece.attribute.Color;
+
 public class ChessGame {
     private final Board board = new Board();
 
@@ -15,5 +17,8 @@ public class ChessGame {
         board.move(new Position(before), new Position(after));
     }
 
+    public double getPoint(Color color) {
+        return board.calculatePoint(color);
+    }
 }
 

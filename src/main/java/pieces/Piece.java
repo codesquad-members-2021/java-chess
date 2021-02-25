@@ -3,12 +3,14 @@ package pieces;
 public class Piece {
     public final static String WHITE = "white";
     public final static String BLACK = "black";
+
     public final static String PAWN = "pawn";
     public final static String KNIGHT = "knight";
     public final static String ROOK = "rook";
     public final static String BISHOP = "bishop";
     public final static String QUEEN = "queen";
     public final static String KING = "king";
+
     public final static char WHITE_PAWN_SYMBOL = 'p';
     public final static char WHITE_KNIGHT_SYMBOL = 'n';
     public final static char WHITE_ROOK_SYMBOL = 'r';
@@ -21,6 +23,7 @@ public class Piece {
     public final static char BLACK_BISHOP_SYMBOL = 'B';
     public final static char BLACK_QUEEN_SYMBOL = 'Q';
     public final static char BLACK_KING_SYMBOL = 'K';
+
     private final String name;
     private final String color;
     private final char symbol;

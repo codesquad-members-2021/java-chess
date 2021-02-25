@@ -15,4 +15,12 @@ public class Board {
     public Piece getPiece(Position position) {
         return squares.get(position);
     }
+
+    public long count(Piece piece) {
+        return squares.entrySet()
+                .stream()
+                .map(Map.Entry::getValue)
+                .filter(piece::equals)
+                .count();
+    }
 }

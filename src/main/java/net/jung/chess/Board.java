@@ -50,8 +50,6 @@ public class Board {
         }
     }
 
-
-
     public String boardLayoutToString() {
         StringBuilder boardLayout = new StringBuilder();
             for(Rank rank : rankList){
@@ -76,5 +74,8 @@ public class Board {
 
     }
 
-
+    public void addNewPiece(String destination, Piece piece) {
+        Position position = Position.at(destination);
+        getRank(position.getRankIndex()).replacePiece(position.getFileIndex(), piece);
+    }
 }

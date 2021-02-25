@@ -60,7 +60,7 @@ class BoardTest {
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
-        assertThat(initBoard).isEqualTo(board.print());
+        assertThat(initBoard).isEqualTo(board.LayoutToString());
     }
 
 }

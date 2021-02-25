@@ -10,6 +10,11 @@ public class King extends Piece {
         return 'K';
     }
 
+    @Override
+    public double getScore() {
+        return 0;
+    }
+
     public static King ofWhite() {
         return SingletonHelper.whiteKing;
     }

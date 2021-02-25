@@ -10,6 +10,11 @@ public class Queen extends Piece {
         return 'Q';
     }
 
+    @Override
+    public double getScore() {
+        return 9;
+    }
+
     public static Queen ofWhite() {
         return SingletonHelper.whiteQueen;
     }

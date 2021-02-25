@@ -10,6 +10,11 @@ public class NoPiece extends Piece {
         return '.';
     }
 
+    @Override
+    public double getScore() {
+        return 0;
+    }
+
     public static NoPiece getInstance() {
         return SingletonHelper.instance;
     }

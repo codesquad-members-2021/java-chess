@@ -10,6 +10,11 @@ public class Bishop extends Piece {
         return 'B';
     }
 
+    @Override
+    public double getScore() {
+        return 3;
+    }
+
     public static Bishop ofWhite() {
         return SingletonHelper.whiteBishop;
     }

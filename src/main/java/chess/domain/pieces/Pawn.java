@@ -10,6 +10,11 @@ public class Pawn extends Piece {
         return 'P';
     }
 
+    @Override
+    public double getScore() {
+        return 1;
+    }
+
     public static Pawn ofWhite() {
         return SingletonHelper.whitePawn;
     }

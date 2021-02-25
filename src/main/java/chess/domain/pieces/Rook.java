@@ -10,6 +10,11 @@ public class Rook extends Piece {
         return 'R';
     }
 
+    @Override
+    public double getScore() {
+        return 5;
+    }
+
     public static Rook ofWhite() {
         return SingletonHelper.whiteRook;
     }

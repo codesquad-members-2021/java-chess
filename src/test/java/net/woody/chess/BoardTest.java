@@ -23,6 +23,7 @@ class BoardTest {
         assertThat(board.size()).isEqualTo(32);
     }
 
+    // TODO : 변수 이름에 'shouldBe' 지양
     @Test
     @DisplayName("보드에 있는 체스말들을 정상적으로 찾을 수 있어야 한다.")
     void findPawnOnTheBoard() {
@@ -44,6 +45,7 @@ class BoardTest {
                 .hasMessageContaining("0 is out of range!");
     }
 
+    // TODO : 예외 상황 메세지 수정
     @Test
     @DisplayName("음수 인덱스로 체스말을 찾으려고 할 때, 에러가 발생해야 한다.")
     void findPieceWithNegativeIndex() {
@@ -52,7 +54,7 @@ class BoardTest {
                 .hasMessageContaining("-1 is out of range!");
     }
 
-
+    // TODO : expectedResult 대신 expect, actualResult 대신 actual도 좋다
     @Test
     @DisplayName("보드를 초기화 한 뒤 출력된 결과가 예상된 결과와 같아야 한다.")
     void printBoard() {

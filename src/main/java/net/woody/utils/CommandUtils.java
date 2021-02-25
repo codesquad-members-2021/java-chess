@@ -12,7 +12,7 @@ public class CommandUtils {
         System.out.println("( case-insensitive 😊)");
         System.out.print("> ");
     }
-
+   // TODO : isGameContinued 보다 isStart
     public static boolean isGameContinued(String command) {
         switch (command.toLowerCase()) {
             case "start":

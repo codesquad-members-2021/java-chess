@@ -41,6 +41,7 @@ public class Board {
         initWhitePieces();
     }
 
+    // TODO : Rank에 팩토리 메소드 구현으로 좀 더 간단하게
     private void initBlackPieces() {
         Rank blackPieces = getRank(Piece.BLACK_PIECES_RANK);
 
@@ -83,6 +84,7 @@ public class Board {
         }
     }
 
+    // TODO : 더 효율적인 방식 고려
     public int size() {
         int numOfPieces = 0;
         for (Rank rank : board) {
@@ -91,6 +93,8 @@ public class Board {
         return numOfPieces;
     }
 
+
+    // TODO : 네이밍 수정 혹은 toString 오버라이드
     public String showBoard() {
         StringBuilder sb = new StringBuilder();
         for (Rank rank : board) {

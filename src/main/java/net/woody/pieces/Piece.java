@@ -46,7 +46,6 @@ public class Piece {
         return new Piece(Color.WHITE, type);
     }
 
-
     public static Piece createBlackPawn() {
         return createBlack(Type.PAWN);
     }
@@ -94,8 +93,6 @@ public class Piece {
     public static Piece createWhiteKing() {
         return createWhite(Type.KING);
     }
-
-
 
     @Override
     public boolean equals(Object o) {

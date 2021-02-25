@@ -84,6 +84,11 @@ public class Board {
         Position startPosition = Position.at(from);
         Position endPosition = Position.at(to);
 
-//        if(findPiece(from).isPiece())
+        Piece foundPiece = findPiece(from);
+
+        if(foundPiece.isPiece()) {
+            getRank(startPosition.getRankIndex()).replacePiece(startPosition.getFileIndex(), Piece.createBlank());
+            getRank(endPosition.getRankIndex()).replacePiece(endPosition.getFileIndex(), foundPiece);
+        }
     }
 }

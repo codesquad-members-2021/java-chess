@@ -1,30 +1,40 @@
 package net.tree.pieces;
 
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class PawnTest {
 
+ class PawnTest {
+
+    @DisplayName("기본생성자로 생성한 pawn")
     @Test
-    @DisplayName("흰색, 검정색 pawn이 생성되어야 한다")
-    public void create() {
-        verifyPawn(Pawn.WHITE_COLOR);
-        verifyPawn(Pawn.BLACK_COLOR);
-    }
-
-    void verifyPawn(final String color) {
-        Pawn pawn = new Pawn(color);
-        assertEquals(color, pawn.getColor());
-
-    }
-
-    @Test
-    @DisplayName("기본생성자 만들기")
-    public void create_기본생성자() {
+    void createPawnByDefaultConstructor() {
         Pawn pawn = new Pawn();
-        assertEquals(Pawn.WHITE_COLOR, pawn.getColor());
+        Assertions.assertAll(
+                () -> assertThat(pawn.getColor()).isEqualTo(Pawn.WHITE_COLOR),
+                () -> assertThat(pawn.getRepresentation()).isEqualTo(Pawn.WHITE_REPRESENTATION)
+        );
     }
+
+    @DisplayName("color, representation 매개변수로 받아서 생성한 pawn")
+    @Test
+    void createPawn() {
+        verifyPawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION);
+        verifyPawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION);
+
+    }
+
+    void verifyPawn(final String color, final  char representation) {
+        Pawn pawn = new Pawn(color, representation);
+
+        Assertions.assertAll(
+            () -> assertThat(pawn.getColor()).isEqualTo(color),
+            () -> assertThat(pawn.getRepresentation()).isEqualTo(representation)
+        );
+
+    }
+
 }

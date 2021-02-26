@@ -1,8 +1,8 @@
 package piece.attribute;
 
-import chess.Position;
-
 import java.util.*;
+
+import static chess.Board.BOARD_SIZE;
 
 public enum Direction {
     NORTH(0, 1),
@@ -21,7 +21,7 @@ public enum Direction {
     EES(2, -1),
     WWN(-2, 1),
     WWS(-2, -1),
-    SAME(0,0);
+    INVALID(BOARD_SIZE, BOARD_SIZE);
 
     private final int xMove;
     private final int yMove;
@@ -62,6 +62,6 @@ public enum Direction {
     public static List<Direction> blackPawnDirection() {
         return Arrays.asList(SOUTH, SOUTHEAST, SOUTHWEST);
     }
+}
 
 
-    }

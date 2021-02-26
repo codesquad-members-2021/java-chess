@@ -52,7 +52,4 @@ class PieceTest {
         );
     }
 
-
-
-
 }

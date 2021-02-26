@@ -97,4 +97,17 @@ public class Board {
         }
         return count;
     }
+
+    public int pieceCount(Piece.Color color, Piece.Type type) {
+        int count = 0;
+        for (int rank = MIN_RANK; rank <= MAX_RANK; rank++) {
+            for (char file = MIN_FILE; file <= MAX_FILE; file++) {
+                Piece piece = findPiece(rank, file);
+                if (piece.getColor() == color && piece.getType() == type) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
 }

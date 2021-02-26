@@ -44,24 +44,26 @@ class BoardTest {
     void findPawnOnTheBoard() {
         assertAll(
                 () -> {
-                    Piece actualBlackRook = board.findPiece(0, 0);
+                    Piece actualBlackRook = board.findPiece("a8");
                     assertThat(actualBlackRook).isEqualTo(Piece.createBlackRook());
                 }, () -> {
-                    Piece actualWhitePawn = board.findPiece(6, 0);
-                    assertThat(actualWhitePawn).isEqualTo(Piece.createWhitePawn());
+                    Piece actualBlackRook = board.findPiece("h8");
+                    assertThat(actualBlackRook).isEqualTo(Piece.createBlackRook());
                 }, () -> {
-                    Piece actualBlank = board.findPiece(4, 0);
-                    assertThat(actualBlank).isEqualTo(Piece.getBlankInstance());
+                    Piece actualWhiteRook = board.findPiece("a1");
+                    assertThat(actualWhiteRook).isEqualTo(Piece.createWhiteRook());
+                }, () -> {
+                    Piece actualWhiteRook = board.findPiece("h1");
+                    assertThat(actualWhiteRook).isEqualTo(Piece.createWhiteRook());
                 });
     }
 
-    // TODO : 예외 상황 메세지 수정
     @Test
     @DisplayName("음수 인덱스로 체스말을 찾으려고 할 때, 에러가 발생해야 한다.")
     void findPieceWithNegativeIndex() {
-        assertThatThrownBy(() -> board.findPiece(-1, 0))
+        assertThatThrownBy(() -> board.findPiece("a-1"))
                 .isInstanceOf(ArrayIndexOutOfBoundsException.class)
-                .hasMessageContaining("-1 is out of range!");
+                .hasMessageContaining("out of range!");
     }
 
     // TODO : expectedResult 대신 expect, actualResult 대신 actual도 좋다

@@ -25,7 +25,9 @@ public class Board {
         getRank(rank).add(file, piece);
     }
 
-    public Piece findPiece(int rank, int file) {
+    public Piece findPiece(String position) {
+        int rank = 0;
+        int file = 0;
         return getRank(rank).getPiece(file);
     }
 

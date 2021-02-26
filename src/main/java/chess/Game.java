@@ -3,6 +3,7 @@ package chess;
 import java.util.Scanner;
 
 import static util.PrintUtils.showScore;
+import static util.PrintUtils.showScoreByPiece;
 
 public class Game {
     private static final String START = "start";
@@ -32,6 +33,7 @@ public class Game {
                 board.initialize();
                 System.out.println(board);
                 showScore(board);
+                showScoreByPiece(board);
             } else if (command.equals(Game.END)) {
                 break;
             } else {

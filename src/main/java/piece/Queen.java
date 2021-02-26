@@ -19,6 +19,5 @@ public class Queen extends Piece {
     boolean isInValidMoveRange(Position after) {
         return true;
     }
-
 }
 

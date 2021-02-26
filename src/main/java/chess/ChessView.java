@@ -5,9 +5,8 @@ import piece.Piece;
 import static chess.Board.BOARD_SIZE;
 import static util.StringUtil.NEWLINE;
 
-
 public class ChessView {
-    public String getResultToPrint(Board board) {
+    public String view(Board board) {
         StringBuilder result = new StringBuilder();
         int count = BOARD_SIZE * BOARD_SIZE;
         for (Piece piece : board.getSquares().values()) {

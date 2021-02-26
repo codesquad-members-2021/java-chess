@@ -15,7 +15,6 @@ public class King extends Piece {
     List<Direction> movableDirections() {
         return Direction.everyDirection();
     }
-
-
 }
+
 

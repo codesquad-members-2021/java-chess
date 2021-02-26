@@ -63,5 +63,3 @@ public enum Direction {
         return Arrays.asList(SOUTH, SOUTHEAST, SOUTHWEST);
     }
 }
-
-

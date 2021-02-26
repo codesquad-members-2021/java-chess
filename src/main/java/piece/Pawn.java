@@ -12,7 +12,7 @@ public class Pawn extends Piece {
 
     @Override
     List<Direction> movableDirections() {
-        return isBlack()? Direction.blackPawnDirection(): Direction.whitePawnDirection();
+        return isBlack() ? Direction.blackPawnDirection() : Direction.whitePawnDirection();
     }
 }
 

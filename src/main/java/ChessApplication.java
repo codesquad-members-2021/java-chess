@@ -24,14 +24,14 @@ public class ChessApplication {
                 command = sc.nextLine().toLowerCase(Locale.ROOT);
                 if (command.equals(START)) {
                     chessGame.initialize();
-                    System.out.println(chessView.getResultToPrint(chessGame.getBoard()));
+                    System.out.println(chessView.view(chessGame.getBoard()));
                     continue;
                 }
                 if (command.startsWith(MOVE)) {
                     String[] commands = command.split(" ");
                     chessGame.move(commands[1], commands[2]);
                     Thread.sleep(1000);
-                    System.out.println(chessView.getResultToPrint(chessGame.getBoard()));
+                    System.out.println(chessView.view(chessGame.getBoard()));
                     continue;
                 }
                 if (command.equals(END)) {

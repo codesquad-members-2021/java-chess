@@ -18,6 +18,10 @@ public class Position {
         return of(positionId);
     }
 
+    public char getColumnId() {
+        return columnId;
+    }
+
     static String getId(char columnId, int rowId) {
         return String.valueOf(columnId) + rowId;
     }

@@ -5,9 +5,9 @@ import chess.domain.pieces.Color;
 import chess.domain.pieces.Pawn;
 import chess.domain.pieces.Piece;
 
+import java.util.List;
 import java.util.Map;
-
-import static chess.domain.board.BoardConst.*;
+import java.util.stream.Collectors;
 
 public class Board {
     private final Map<Position, Piece> squares;
@@ -33,33 +33,33 @@ public class Board {
     }
 
     public double getScore(Color color) {
-        double score = 0;
-        for (char columnId = COLUMN_START; columnId <= COLUMN_END; columnId++) {
-            score += getColumnScore(color, columnId);
-        }
-        return score;
+        return squares.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().isSameColor(color))
+                .collect(Collectors.groupingBy(entry -> entry.getKey().getColumnId()))
+                .entrySet()
+                .stream().map(Map.Entry::getValue)
+                .map(list -> list.stream()
+                        .map(Map.Entry::getValue)
+                        .collect(Collectors.toList())
+                ).map(this::getColumnScore)
+                .reduce((double) 0, Double::sum);
     }
 
-    private double getColumnScore(Color color, char columnId) {
-        int countOfPawns = 0;
-        double scoreOfPawns = 0;
-        double scoreOfRoyals = 0;
-        
-        for (int rowId = ROW_START; rowId <= ROW_END; rowId++) {
-            Piece piece = squares.get(Position.of(columnId, rowId));
-            if (!piece.isSameColor(color)) {
-                continue;
-            }
-            if (piece instanceof Pawn) {
-                scoreOfPawns += piece.getScore();
-                countOfPawns++;
-                continue;
-            }
-            scoreOfRoyals += piece.getScore();
-        }
-        if (countOfPawns > 1) {
-            scoreOfPawns /= 2;
-        }
-        return scoreOfPawns + scoreOfRoyals;
+    private double getColumnScore(List<Piece> pieces) {
+        double scoreOfRoyals = pieces.stream()
+                .filter(piece -> !(piece instanceof Pawn))
+                .map(Piece::getScore)
+                .reduce((double) 0, Double::sum);
+
+        List<Piece> pawns = pieces.stream()
+                .filter(piece -> piece instanceof Pawn)
+                .collect(Collectors.toList());
+        double scoreOfPawns = pawns.stream()
+                .map(Piece::getScore)
+                .reduce((double) 0, Double::sum)
+                * (pawns.size() > 1 ? 0.5 : 1);
+
+        return scoreOfRoyals + scoreOfPawns;
     }
 }

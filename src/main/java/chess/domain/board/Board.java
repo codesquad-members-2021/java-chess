@@ -48,18 +48,27 @@ public class Board {
 
     private double getColumnScore(List<Piece> pieces) {
         double scoreOfRoyals = pieces.stream()
-                .filter(piece -> !(piece instanceof Pawn))
+                .filter(this::isRoyal)
                 .map(Piece::getScore)
                 .reduce((double) 0, Double::sum);
 
         List<Piece> pawns = pieces.stream()
-                .filter(piece -> piece instanceof Pawn)
+                .filter(this::isPawn)
                 .collect(Collectors.toList());
+
         double scoreOfPawns = pawns.stream()
                 .map(Piece::getScore)
                 .reduce((double) 0, Double::sum)
                 * (pawns.size() > 1 ? 0.5 : 1);
 
         return scoreOfRoyals + scoreOfPawns;
+    }
+
+    private boolean isPawn(Piece piece) {
+        return piece.equals(Pawn.ofBlack()) || piece.equals(Pawn.ofWhite());
+    }
+
+    private boolean isRoyal(Piece piece) {
+        return !isPawn(piece);
     }
 }

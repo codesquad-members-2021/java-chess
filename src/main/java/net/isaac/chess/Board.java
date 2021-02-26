@@ -127,4 +127,33 @@ public class Board {
         }
         return count;
     }
+
+    public double caculcatePoint(Piece.Color color) {
+        //file 에 존재하는 pawn 개수 세기 위한 Map
+        Map<Character, Integer> pawnNumAtFile = new HashMap<>();
+
+        double point = 0;
+        for (int rank = MIN_RANK; rank <= MAX_RANK; rank++) {
+            for (char file = MIN_FILE; file <= MAX_FILE; file++) {
+                Piece piece = findPiece(rank, file);
+                if (piece.getColor() == color) {
+                    point += piece.getType().defaultPoint;
+
+                    //Pawn일 경우 map을 사용하여 같은 file에 몇 개의 pawn이 있는지 세준다.
+                    if (piece.getType() == Piece.Type.PAWN) {
+                        pawnNumAtFile.put(file, pawnNumAtFile.getOrDefault(file, 0) + 1);
+                    }
+                }
+            }
+        }
+
+        //같은 file에 2개 이상인 pawn은 0.5점이므로 (0.5 * 개수)만큼 빼준다.
+        for (Integer pawnNumInSameFile : pawnNumAtFile.values()) {
+            if (pawnNumInSameFile > 1) {
+                point -= (0.5 * (double) pawnNumInSameFile);
+            }
+        }
+
+        return point;
+    }
 }

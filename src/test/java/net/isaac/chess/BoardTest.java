@@ -68,4 +68,25 @@ class BoardTest {
                 () -> assertThat(board.pieceCount(Piece.Color.WHITE, Piece.Type.KING)).isEqualTo(1)
         );
     }
+
+    @Test
+    @DisplayName("색깔 별 남아 있는 체스말에 따른 점수 계산 테스트")
+    void calcuatePoint() {
+        board.initializeEmpty();
+
+        board.add(Piece.createPiece(Piece.Color.BLACK, Piece.Type.PAWN), "b6");
+        board.add(Piece.createPiece(Piece.Color.BLACK, Piece.Type.QUEEN), "e6");
+        board.add(Piece.createPiece(Piece.Color.BLACK, Piece.Type.KING), "b8");
+        board.add(Piece.createPiece(Piece.Color.BLACK, Piece.Type.ROOK), "c8");
+
+        board.add(Piece.createPiece(Piece.Color.WHITE, Piece.Type.PAWN), "f2");
+        board.add(Piece.createPiece(Piece.Color.WHITE, Piece.Type.PAWN), "g2");
+        board.add(Piece.createPiece(Piece.Color.WHITE, Piece.Type.ROOK), "e1");
+        board.add(Piece.createPiece(Piece.Color.WHITE, Piece.Type.KING), "f1");
+
+        assertEquals(15.0, board.caculcatePoint(Piece.Color.BLACK), 0.01);
+        assertEquals(7.0, board.caculcatePoint(Piece.Color.WHITE), 0.01);
+
+        System.out.println(board.getRepresentation());
+    }
 }

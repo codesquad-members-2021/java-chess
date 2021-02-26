@@ -5,7 +5,6 @@ import net.tree.chess.Board;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
         try(Scanner sc = new Scanner(System.in)) {
             System.out.println("=====체스 게임에 접속하셨습니다.=====");

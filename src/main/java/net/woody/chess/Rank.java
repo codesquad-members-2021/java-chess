@@ -3,7 +3,6 @@ package net.woody.chess;
 import net.woody.pieces.Piece;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,23 +16,29 @@ public class Rank {
         this.pieces = pieces;
     }
 
-
-    // TODO : file 인자 validation 추가
     public void add(int file, Piece piece) {
+        validateFileIndex(file);
         pieces.set(file, piece);
     }
 
-    // TODO : file 인자 validation 부분을 다른 메소드로 분리
-    // TODO : 예외처리 클라이언트가 이해할 수 있는 최상단의 예외로 던져주자
     public Piece find(int file) {
-        if (file < 0 || size() <= file) {
-            throw new ArrayIndexOutOfBoundsException("File number " + file + " is out of range!");
-        }
+        validateFileIndex(file);
         return pieces.get(file);
     }
 
     public int size() {
-        return pieces.size();
+        int pieceSize = 0;
+        for (Piece piece : pieces) {
+            pieceSize += piece.equals(Piece.getBlankInstance()) ? 0 : 1;
+        }
+        return pieceSize;
+    }
+
+    // TODO : 예외처리 클라이언트가 이해할 수 있는 최상단의 예외로 던져주자
+    private void validateFileIndex(int file) {
+        if (file < 0 || BOARD_LENGTH <= file) {
+            throw new ArrayIndexOutOfBoundsException("File number " + file + " is out of range!");
+        }
     }
 
     private static Rank createRank(List<Piece> pieces) {
@@ -43,7 +48,7 @@ public class Rank {
     public static Rank createBlankRank() {
         ArrayList<Piece> pieces = new ArrayList<>(BOARD_LENGTH);
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            pieces.add(Piece.createBlank());
+            pieces.add(Piece.getBlankInstance());
         }
         return createRank(pieces);
     }
@@ -97,7 +102,6 @@ public class Rank {
                 Piece.createWhiteRook()
         ).collect(Collectors.toCollection(ArrayList::new));
     }
-
 
     @Override
     public String toString() {

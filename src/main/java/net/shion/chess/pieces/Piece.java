@@ -62,35 +62,6 @@ public class Piece implements Comparable<Piece> {
         return this.type.getDefaultPoint();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Piece piece = (Piece) o;
-        return type == piece.type
-                && color == piece.color
-                && Objects.equals(position, piece.position);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(type, color, position);
-    }
-
-    @Override
-    public String toString() {
-        return type.name();
-    }
-
-    @Override
-    public int compareTo(Piece o) {
-        if (this.type.getDefaultPoint() < o.type.getDefaultPoint()) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-
     public enum Color {
         WHITE, BLACK, NO_COLOR;
     }
@@ -123,4 +94,34 @@ public class Piece implements Comparable<Piece> {
             return representation;
         }
     }
+
+    @Override
+    public int compareTo(Piece o) {
+        if (this.type.getDefaultPoint() < o.type.getDefaultPoint()) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Piece piece = (Piece) o;
+        return type == piece.type
+                && color == piece.color
+                && Objects.equals(position, piece.position);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(type, color, position);
+    }
+
+    @Override
+    public String toString() {
+        return type.name();
+    }
+
 }

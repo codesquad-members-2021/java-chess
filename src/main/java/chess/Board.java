@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.ListIterator;
 
 import pieces.Piece;
-import pieces.Piece.Color;
-import pieces.Piece.Type;
+import pieces.Color;
+import pieces.Type;
 import pieces.Position;
 
 public class Board {

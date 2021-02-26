@@ -4,8 +4,8 @@ import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.*;
 
 import pieces.Piece;
-import pieces.Piece.Color;
-import pieces.Piece.Type;
+import pieces.Color;
+import pieces.Type;
 import pieces.Position;
 
 import static org.assertj.core.api.Assertions.*;

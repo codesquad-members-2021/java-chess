@@ -4,44 +4,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class Piece {
-
-    public enum Color {
-        WHITE, BLACK, NO_COLOR;
-    }
-
-    public enum Type {
-        PAWN('p', 1.0),
-        ROOK('r', 5.0),
-        KNIGHT('n', 2.5),
-        BISHOP('b', 3.0),
-        QUEEN('q', 9.0),
-        KING('k', 0.0),
-        NO_PIECE('.', 0.0);
-
-        private final char representation;
-        private final double defaultPoint;
-
-        private Type(char representation, double defaultPoint) {
-            this.representation = representation;
-            this.defaultPoint = defaultPoint;
-        }
-
-        public double getDefaultPoint() {
-            return defaultPoint;
-        }
-
-        public char getBlackRepresentation() {
-            return Character.toUpperCase(this.representation);
-        }
-
-        public char getWhiteRepresentation() {
-            return this.representation;
-        }
-    }
-
     private final Color color;
     private final Type type;
     private final Position position;
+
+    public Piece(Color color, Type type, Position position) {
+        this.color = color;
+        this.type = type;
+        this.position = position;
+    }
 
     public char getRepresentation() {
         return isWhite() ? this.type.getWhiteRepresentation()
@@ -80,12 +51,6 @@ public class Piece {
         }
 
         return point;
-    }
-
-    public Piece(Color color, Type type, Position position) {
-        this.color = color;
-        this.type = type;
-        this.position = position;
     }
 
     private static Piece createWhite(Type type, Position position) {

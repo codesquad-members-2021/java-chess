@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 import pieces.Piece;
-import pieces.Piece.Color;
-import pieces.Piece.Type;
+import pieces.Color;
+import pieces.Type;
 import pieces.Position;
 
 import static utils.StringUtils.appendNewLine;

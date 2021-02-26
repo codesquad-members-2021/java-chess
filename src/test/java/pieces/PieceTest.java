@@ -12,21 +12,21 @@ public class PieceTest {
     void create_piece() {
         Position position = new Position(1, 1);
         assertAll(
-                () -> verifyPiece(Piece.createWhitePawn(position), Piece.createBlackPawn(position), Piece.Type.PAWN),
-                () -> verifyPiece(Piece.createWhiteKnight(position), Piece.createBlackKnight(position), Piece.Type.KNIGHT),
-                () -> verifyPiece(Piece.createWhiteRook(position), Piece.createBlackRook(position), Piece.Type.ROOK),
-                () -> verifyPiece(Piece.createWhiteBishop(position), Piece.createBlackBishop(position), Piece.Type.BISHOP),
-                () -> verifyPiece(Piece.createWhiteQueen(position), Piece.createBlackQueen(position), Piece.Type.QUEEN),
-                () -> verifyPiece(Piece.createWhiteKing(position), Piece.createBlackKing(position), Piece.Type.KING)
+                () -> verifyPiece(Piece.createWhitePawn(position), Piece.createBlackPawn(position), Type.PAWN),
+                () -> verifyPiece(Piece.createWhiteKnight(position), Piece.createBlackKnight(position), Type.KNIGHT),
+                () -> verifyPiece(Piece.createWhiteRook(position), Piece.createBlackRook(position), Type.ROOK),
+                () -> verifyPiece(Piece.createWhiteBishop(position), Piece.createBlackBishop(position), Type.BISHOP),
+                () -> verifyPiece(Piece.createWhiteQueen(position), Piece.createBlackQueen(position), Type.QUEEN),
+                () -> verifyPiece(Piece.createWhiteKing(position), Piece.createBlackKing(position), Type.KING)
         );
 
         Piece blank = Piece.createBlank(position);
         assertThat(blank.isWhite()).isFalse();
         assertThat(blank.isBlack()).isFalse();
-        assertThat(blank.getType()).isEqualTo(Piece.Type.NO_PIECE);
+        assertThat(blank.getType()).isEqualTo(Type.NO_PIECE);
     }
 
-    private void verifyPiece(final Piece whitePiece, final Piece blackPiece, final Piece.Type type) {
+    private void verifyPiece(final Piece whitePiece, final Piece blackPiece, final Type type) {
         assertThat(whitePiece.isWhite()).isTrue();
         assertThat(whitePiece.getType()).isEqualTo(type);
 
@@ -61,18 +61,18 @@ public class PieceTest {
     @DisplayName("Verify getWhiteRepresentation and getBlackRepresentation")
     public void getRepresentationPerPiece() {
         assertAll(
-                () -> assertThat(Piece.Type.PAWN.getWhiteRepresentation()).isEqualTo('p'),
-                () -> assertThat(Piece.Type.PAWN.getBlackRepresentation()).isEqualTo('P'),
-                () -> assertThat(Piece.Type.KNIGHT.getWhiteRepresentation()).isEqualTo('n'),
-                () -> assertThat(Piece.Type.KNIGHT.getBlackRepresentation()).isEqualTo('N'),
-                () -> assertThat(Piece.Type.ROOK.getWhiteRepresentation()).isEqualTo('r'),
-                () -> assertThat(Piece.Type.ROOK.getBlackRepresentation()).isEqualTo('R'),
-                () -> assertThat(Piece.Type.BISHOP.getWhiteRepresentation()).isEqualTo('b'),
-                () -> assertThat(Piece.Type.BISHOP.getBlackRepresentation()).isEqualTo('B'),
-                () -> assertThat(Piece.Type.QUEEN.getWhiteRepresentation()).isEqualTo('q'),
-                () -> assertThat(Piece.Type.QUEEN.getBlackRepresentation()).isEqualTo('Q'),
-                () -> assertThat(Piece.Type.KING.getWhiteRepresentation()).isEqualTo('k'),
-                () -> assertThat(Piece.Type.KING.getBlackRepresentation()).isEqualTo('K')
+                () -> assertThat(Type.PAWN.getWhiteRepresentation()).isEqualTo('p'),
+                () -> assertThat(Type.PAWN.getBlackRepresentation()).isEqualTo('P'),
+                () -> assertThat(Type.KNIGHT.getWhiteRepresentation()).isEqualTo('n'),
+                () -> assertThat(Type.KNIGHT.getBlackRepresentation()).isEqualTo('N'),
+                () -> assertThat(Type.ROOK.getWhiteRepresentation()).isEqualTo('r'),
+                () -> assertThat(Type.ROOK.getBlackRepresentation()).isEqualTo('R'),
+                () -> assertThat(Type.BISHOP.getWhiteRepresentation()).isEqualTo('b'),
+                () -> assertThat(Type.BISHOP.getBlackRepresentation()).isEqualTo('B'),
+                () -> assertThat(Type.QUEEN.getWhiteRepresentation()).isEqualTo('q'),
+                () -> assertThat(Type.QUEEN.getBlackRepresentation()).isEqualTo('Q'),
+                () -> assertThat(Type.KING.getWhiteRepresentation()).isEqualTo('k'),
+                () -> assertThat(Type.KING.getBlackRepresentation()).isEqualTo('K')
         );
     }
 

@@ -5,10 +5,10 @@ import net.woody.chess.Type;
 import java.util.Objects;
 
 public class Piece {
-    public static final int BLACK_PIECES_RANK = 0;
-    public static final int BLACK_PAWN_RANK = 1;
-    public static final int WHITE_PAWN_RANK = 6;
-    public static final int WHITE_PIECES_RANK = 7;
+
+    public enum Color {
+        WHITE, BLACK, NOCOLOR;
+    }
 
     private Color color;
     private Type type;
@@ -38,11 +38,11 @@ public class Piece {
         return new Piece(Color.NOCOLOR, Type.NO_PIECE);
     }
 
-    private static Piece createBlack(Type type) {
+    public static Piece createBlack(Type type) {
         return new Piece(Color.BLACK, type);
     }
 
-    private static Piece createWhite(Type type) {
+    public static Piece createWhite(Type type) {
         return new Piece(Color.WHITE, type);
     }
 

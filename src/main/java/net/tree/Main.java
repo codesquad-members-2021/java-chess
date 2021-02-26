@@ -5,59 +5,31 @@ import net.tree.chess.Board;
 import java.util.Scanner;
 
 public class Main {
-<<<<<<< HEAD
 
     public static void main(String[] args) {
-        try (
-            Scanner sc = new Scanner(System.in);
-        ){
+        try(Scanner sc = new Scanner(System.in)) {
+            System.out.println("=====체스 게임에 접속하셨습니다.=====");
+            System.out.println("=====시작을 원하신다면, start를 입력해주세요.=====");
+            System.out.println("게임 시작 : start / 게임 종료 : exit");
+
             while (true) {
-                Board board = new Board();
                 String inputMessage = sc.next();
                 switch (inputMessage) {
                     case  "start" :
+                        Board board = new Board();
+                        board.initializeAllPieces();
                         System.out.println("====게임을 시작합니다.====\n");
-                        board.initialize();
                         System.out.println(board.showBoard());
                         break;
                     case "exit" :
                         System.out.println("====게임을 종료합니다.====\n");
                         System.exit(0);
-                        break;
                     default:
-                        System.out.println("메시지를 입력하세요.");
-                        break;
+                        System.out.println("안내드린 명령어 내에서 입력해주세요.");
+                        System.out.println("게임 시작 : start / 게임 종료 : exit");
                 }
             }
         }
     }
 
-=======
-    public static void main(String[] args) {
-        try(Scanner sc = new Scanner(System.in)) {
-            Board board = new Board();
-            while (true) {
-                String inputMessage = sc.next();
-                switch (inputMessage) {
-                    case  "start" :
-                        board.initialize();
-                        System.out.println("====게임을 시작합니다.====\n");
-                        System.out.println(board.getPawnsRepresentation());
-                        break;
-                    case "exit" :
-                        System.out.println("====게임을 종료합니다.====\n");
-                        System.exit(0);
-                        break;
-                    default:
-                        System.out.println("메시지를 입력하세요.");
-                        break;
-                }
-            }
-        }
-    }
-<<<<<<< HEAD
->>>>>>> a101753... feat : Do Mission3
-=======
-
->>>>>>> a20eb16... kyu가 리뷰해준 내용 반영하였습니다.
 }

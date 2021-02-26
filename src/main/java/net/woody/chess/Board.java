@@ -86,6 +86,10 @@ public class Board {
         return numOfPieces;
     }
 
+    public double calculatePoint(Color color) {
+        return 0.0;
+    }
+
     @Override
     public String toString() {
         StringBuilder boardState = new StringBuilder();
@@ -95,4 +99,5 @@ public class Board {
 
         return boardState.toString();
     }
+
 }

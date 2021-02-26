@@ -94,4 +94,29 @@ class BoardTest {
         assertThat(board.findPiece(position)).isEqualTo(piece);
         System.out.println(board.toString());
     }
+
+    @Test
+    @DisplayName("흰색과 검은색 체스말의 총 스코어를 각각 계산한다.")
+    void calculatePoint() {
+        this.board = Board.createEmtpyBoard();
+
+        addPiece("b6", Piece.createBlackPawn());
+        addPiece("e6", Piece.createBlackQueen());
+        addPiece("b8", Piece.createBlackKing());
+        addPiece("c8", Piece.createBlackRook());
+
+        addPiece("f2", Piece.createWhitePawn());
+        addPiece("g2", Piece.createWhitePawn());
+        addPiece("e1", Piece.createWhiteRook());
+        addPiece("f1", Piece.createWhiteKing());
+
+        assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(15.0);
+        assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
+
+        System.out.println(board.toString());
+    }
+
+    private void addPiece(String position, Piece piece) {
+        board.move(position, piece);
+    }
 }

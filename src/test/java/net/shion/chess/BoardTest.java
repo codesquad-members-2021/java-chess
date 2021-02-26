@@ -1,14 +1,16 @@
-package chess;
+package net.shion.chess;
 
-import chess.pieces.Piece;
+import net.shion.chess.board.Board;
+import net.shion.chess.pieces.Piece;
+import net.shion.chess.pieces.Position;
 import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
 
-import static chess.pieces.Piece.Color.BLACK;
-import static chess.pieces.Piece.Color.WHITE;
-import static chess.pieces.Piece.Type.*;
-import static chess.utils.StringUtils.appendNewLine;
+import static net.shion.chess.pieces.Piece.Color.BLACK;
+import static net.shion.chess.pieces.Piece.Color.WHITE;
+import static net.shion.chess.pieces.Piece.Type.*;
+import static net.shion.chess.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BoardTest {

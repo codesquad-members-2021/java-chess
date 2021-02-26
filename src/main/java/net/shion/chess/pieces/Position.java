@@ -1,4 +1,4 @@
-package chess;
+package net.shion.chess.pieces;
 
 import java.util.Arrays;
 import java.util.List;

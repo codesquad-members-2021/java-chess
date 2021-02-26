@@ -1,13 +1,13 @@
-package chess;
+package net.shion.chess.board;
 
-import chess.pieces.Piece;
+import net.shion.chess.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static chess.pieces.Piece.*;
+import static net.shion.chess.pieces.Piece.*;
 
 public class Rank {
     private List<Piece> pieces = new ArrayList<>();

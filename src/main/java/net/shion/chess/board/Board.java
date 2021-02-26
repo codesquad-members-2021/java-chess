@@ -1,15 +1,16 @@
-package chess;
+package net.shion.chess.board;
 
-import chess.pieces.Piece;
+import net.shion.chess.pieces.Piece;
+import net.shion.chess.pieces.Position;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static chess.pieces.Piece.*;
-import static chess.pieces.Piece.Type.*;
-import static chess.utils.StringUtils.appendNewLine;
+import static net.shion.chess.pieces.Piece.*;
+import static net.shion.chess.pieces.Piece.Type.*;
+import static net.shion.chess.utils.StringUtils.appendNewLine;
 
 public class Board {
     public static final int MAX_RANK = 8;

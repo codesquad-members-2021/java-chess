@@ -1,6 +1,7 @@
-package chess;
+package net.shion.chess;
 
-import chess.pieces.Piece;
+import net.shion.chess.board.Board;
+import net.shion.chess.pieces.Piece;
 
 import java.util.Scanner;
 

@@ -1,11 +1,9 @@
-package chess.pieces;
-
-import chess.Position;
+package net.shion.chess.pieces;
 
 import java.util.List;
 import java.util.Objects;
 
-import static chess.pieces.Piece.Type.PAWN;
+import static net.shion.chess.pieces.Piece.Type.PAWN;
 
 public class Piece implements Comparable<Piece> {
     private final Type type;

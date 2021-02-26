@@ -2,6 +2,7 @@ package pieces;
 
 import org.junit.jupiter.api.*;
 
+import static pieces.PieceCreator.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -12,15 +13,15 @@ public class PieceTest {
     void create_piece() {
         Position position = new Position(1, 1);
         assertAll(
-                () -> verifyPiece(Piece.createWhitePawn(position), Piece.createBlackPawn(position), Type.PAWN),
-                () -> verifyPiece(Piece.createWhiteKnight(position), Piece.createBlackKnight(position), Type.KNIGHT),
-                () -> verifyPiece(Piece.createWhiteRook(position), Piece.createBlackRook(position), Type.ROOK),
-                () -> verifyPiece(Piece.createWhiteBishop(position), Piece.createBlackBishop(position), Type.BISHOP),
-                () -> verifyPiece(Piece.createWhiteQueen(position), Piece.createBlackQueen(position), Type.QUEEN),
-                () -> verifyPiece(Piece.createWhiteKing(position), Piece.createBlackKing(position), Type.KING)
+                () -> verifyPiece(createWhitePawn(position), createBlackPawn(position), Type.PAWN),
+                () -> verifyPiece(createWhiteKnight(position), createBlackKnight(position), Type.KNIGHT),
+                () -> verifyPiece(createWhiteRook(position), createBlackRook(position), Type.ROOK),
+                () -> verifyPiece(createWhiteBishop(position), createBlackBishop(position), Type.BISHOP),
+                () -> verifyPiece(createWhiteQueen(position), createBlackQueen(position), Type.QUEEN),
+                () -> verifyPiece(createWhiteKing(position), createBlackKing(position), Type.KING)
         );
 
-        Piece blank = Piece.createBlank(position);
+        Piece blank = createBlank(position);
         assertThat(blank.isWhite()).isFalse();
         assertThat(blank.isBlack()).isFalse();
         assertThat(blank.getType()).isEqualTo(Type.NO_PIECE);
@@ -38,11 +39,11 @@ public class PieceTest {
     @DisplayName("Verify isWhite and isBlack")
     void verifyColor() {
         Position position = new Position(1, 1);
-        Piece whitePawn = Piece.createWhitePawn(position);
+        Piece whitePawn = createWhitePawn(position);
         assertThat(whitePawn.isWhite()).isTrue();
         assertThat(whitePawn.getRepresentation()).isEqualTo('p');
 
-        Piece blackPawn = Piece.createBlackPawn(position);
+        Piece blackPawn = createBlackPawn(position);
         assertThat(blackPawn.isBlack()).isTrue();
         assertThat(blackPawn.getRepresentation()).isEqualTo('P');
     }
@@ -51,8 +52,8 @@ public class PieceTest {
     @DisplayName("Verify isWhitePawn and isBlackPawn")
     void verifyPawn() {
         Position position = new Position(1, 1);
-        Piece whitePawn = Piece.createWhitePawn(position);
-        Piece blackPawn = Piece.createBlackPawn(position);
+        Piece whitePawn = createWhitePawn(position);
+        Piece blackPawn = createBlackPawn(position);
         assertThat(whitePawn.isWhitePawn()).isTrue();
         assertThat(blackPawn.isBlackPawn()).isTrue();
     }

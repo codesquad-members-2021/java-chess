@@ -8,6 +8,7 @@ import pieces.Color;
 import pieces.Type;
 import pieces.Position;
 
+import static pieces.PieceCreator.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static utils.StringUtils.appendNewLine;
@@ -43,10 +44,10 @@ public class BoardTest {
     public void findPiece() {
         board.initialize();
         assertAll(
-                () -> assertThat(board.findPiece("a8")).isEqualTo(Piece.createBlackRook(new Position(0, 7))),
-                () -> assertThat(board.findPiece("h8")).isEqualTo(Piece.createBlackRook(new Position(7, 7))),
-                () -> assertThat(board.findPiece("a1")).isEqualTo(Piece.createWhiteRook(new Position(0, 0))),
-                () -> assertThat(board.findPiece("h1")).isEqualTo(Piece.createWhiteRook(new Position(7, 0)))
+                () -> assertThat(board.findPiece("a8")).isEqualTo(createBlackRook(new Position(0, 7))),
+                () -> assertThat(board.findPiece("h8")).isEqualTo(createBlackRook(new Position(7, 7))),
+                () -> assertThat(board.findPiece("a1")).isEqualTo(createWhiteRook(new Position(0, 0))),
+                () -> assertThat(board.findPiece("h1")).isEqualTo(createWhiteRook(new Position(7, 0)))
         );
     }
 
@@ -56,7 +57,7 @@ public class BoardTest {
         board.initializeEmpty();
 
         String position = "b5";
-        Piece piece = Piece.createBlackRook(new Position(0, 7));
+        Piece piece = createBlackRook(new Position(0, 7));
         board.move(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
@@ -68,15 +69,15 @@ public class BoardTest {
     public void calculatePoint() throws Exception {
         board.initializeEmpty();
 
-        addPiece("b6", Piece.createBlackPawn(new Position(1,5)));
-        addPiece("e6", Piece.createBlackQueen(new Position(4,5)));
-        addPiece("b8", Piece.createBlackKing(new Position(1,7)));
-        addPiece("c8", Piece.createBlackRook(new Position(2,7)));
+        addPiece("b6", createBlackPawn(new Position(1,5)));
+        addPiece("e6", createBlackQueen(new Position(4,5)));
+        addPiece("b8", createBlackKing(new Position(1,7)));
+        addPiece("c8", createBlackRook(new Position(2,7)));
 
-        addPiece("f2", Piece.createWhitePawn(new Position(5,1)));
-        addPiece("g2", Piece.createWhitePawn(new Position(7,1)));
-        addPiece("e1", Piece.createWhiteRook(new Position(4,0)));
-        addPiece("f1", Piece.createWhiteKing(new Position(5,0)));
+        addPiece("f2", createWhitePawn(new Position(5,1)));
+        addPiece("g2", createWhitePawn(new Position(7,1)));
+        addPiece("e1", createWhiteRook(new Position(4,0)));
+        addPiece("f1", createWhiteKing(new Position(5,0)));
 
         assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.0, Percentage.withPercentage(0.1));
         assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(7.0, Percentage.withPercentage(0.01));

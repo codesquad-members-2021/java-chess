@@ -3,6 +3,8 @@ package piece;
 import chess.Position;
 import piece.attribute.*;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Blank extends Piece {
@@ -12,12 +14,12 @@ public class Blank extends Piece {
 
     @Override
     List<Direction> movableDirections() {
-        return null;
+        return Collections.singletonList(Direction.INVALID);
     }
 
     @Override
     boolean isInValidMoveRange(Position after) {
-        return true;
+        throw new PositionNotMovableException("Is not a piece");
     }
 }
 

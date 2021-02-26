@@ -31,14 +31,13 @@ public abstract class Piece implements Comparable<Piece> {
                 && isInValidMoveRange(after) && after.isValid()) {
             return true;
         }
-        printErrorMessage(after);
-        return false;
+        throw new PositionNotMovableException(getErrorMessage(after));
     }
 
-    private void printErrorMessage(Position after) {
-        System.err.println(getType().name() + " can't move from "
+    private String getErrorMessage(Position after) {
+        return getType().name() + " can't move from "
                 + position.getFile() + position.getRank() + " to "
-                + after.getFile() + after.getRank());
+                + after.getFile() + after.getRank();
     }
 
     boolean isInValidMoveRange(Position after) {

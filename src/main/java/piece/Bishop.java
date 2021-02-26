@@ -10,7 +10,6 @@ public class Bishop extends Piece {
         super(color, Type.BISHOP, position);
     }
 
-
     @Override
     List<Direction> movableDirections() {
         return Direction.diagonalDirection();

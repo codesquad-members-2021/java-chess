@@ -1,7 +1,5 @@
 package chess;
 
-import piece.attribute.Direction;
-
 import java.util.Objects;
 
 public class Position {

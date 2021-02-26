@@ -3,11 +3,7 @@ package piece;
 import chess.Position;
 import piece.attribute.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.BiPredicate;
-
 
 public class King extends Piece {
 
@@ -19,8 +15,6 @@ public class King extends Piece {
     List<Direction> movableDirections() {
         return Direction.everyDirection();
     }
-
-
 
 
 }

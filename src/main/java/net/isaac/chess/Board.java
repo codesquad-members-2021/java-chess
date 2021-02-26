@@ -65,7 +65,16 @@ public class Board {
         return ret;
     }
 
-    public void add(Piece piece, int rank, char file) {
+    public void add(Piece piece, String positionString) {
+        Position position = Position.getPosition(positionString);
+        if (position == null) {
+            return;
+        }
+
+        add(piece, position.rank, position.file);
+    }
+
+    private void add(Piece piece, int rank, char file) {
         if (!isValidRank(rank)) {
             System.err.println("Board.add: rank 값이 범위를 벗어났습니다.(rank=" + rank + ")");
             return;

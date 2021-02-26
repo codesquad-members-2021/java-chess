@@ -46,9 +46,9 @@ class BoardTest {
     @DisplayName("Board의 Pawn 등록 테스트")
     void pawnAddTest() throws Exception {
         Piece white = Piece.createPiece(Piece.Color.WHITE, Piece.Type.PAWN);
-        board.add(white, 1, 'a');
+        board.add(white, "a1");
         Piece black = Piece.createPiece(Piece.Color.BLACK, Piece.Type.PAWN);
-        board.add(black, 1, 'b');
+        board.add(black, "b1");
 
         assertAll(
                 () -> assertThat(board.findPiece("a1")).isEqualTo(white),

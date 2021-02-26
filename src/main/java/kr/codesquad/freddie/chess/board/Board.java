@@ -73,10 +73,10 @@ public class Board {
                 .get(positionConverter.getFileIndexForList());
     }
 
-    public Piece set(String position, Piece piece) {
+    public void set(String position, Piece piece) {
         Position positionConverter = Position.of(position);
 
-        return files.get(positionConverter.getRankIndexForList())
+        files.get(positionConverter.getRankIndexForList())
                 .set(positionConverter.getFileIndexForList(), piece);
     }
 

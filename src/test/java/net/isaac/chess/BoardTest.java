@@ -46,15 +46,15 @@ class BoardTest {
     @DisplayName("Board의 Pawn 등록 테스트")
     void pawnAddTest() throws Exception {
         Piece white = Piece.createPiece(Piece.Color.WHITE, Piece.Type.PAWN);
-        board.add(white, 0, 0);
+        board.add(white, 1, 'a');
         Piece black = Piece.createPiece(Piece.Color.BLACK, Piece.Type.PAWN);
-        board.add(black, 0, 1);
+        board.add(black, 1, 'b');
 
         assertAll(
-                () -> assertThat(board.findPiece(0, 0)).isEqualTo(white),
-                () -> assertThat(board.findPiece(0, 1)).isEqualTo(black),
-                () -> assertThat(board.findPiece(0, 2)).isEqualTo(null),
-                () -> assertThat(board.findPiece(10, 10)).isEqualTo(null)
+                () -> assertThat(board.findPiece(1, 'a')).isEqualTo(white),
+                () -> assertThat(board.findPiece(1, 'b')).isEqualTo(black),
+                () -> assertThat(board.findPiece(1, 'c')).isNotNull(),
+                () -> assertThat(board.findPiece(10, 'z')).isEqualTo(null)
         );
     }
 }

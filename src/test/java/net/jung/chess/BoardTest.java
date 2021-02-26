@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static net.jung.chess.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -13,10 +15,15 @@ class BoardTest {
     private Board board;
     private String BLANK_RANK = appendNewLine("********");
 
+    private Board emptyBoard;
+
     @BeforeEach
     void setUp() {
         board = new Board();
         board.initialize();
+
+        emptyBoard = new Board();
+        emptyBoard.initializeEmptyBoard();
     }
 
 
@@ -105,8 +112,6 @@ class BoardTest {
     @Test
     @DisplayName("initializeEmptyBoard는 보드에 NO_PIECE만 있다.")
     void checkInitializeEmptyBoard() {
-        Board emptyBoard = new Board();
-        emptyBoard.initializeEmptyBoard();
 
         assertAll(
                 () -> assertThat(emptyBoard.boardLayoutToString()).isEqualTo(
@@ -125,8 +130,6 @@ class BoardTest {
     @Test
     @DisplayName("addOnePiece는 특정 자리에 (기존에 있던 것이 아닌) 새로만들어진 piece를 추가한다.")
     void checkAddNewPiece() {
-        Board emptyBoard = new Board();
-        emptyBoard.initializeEmptyBoard();
 
         emptyBoard.addNewPiece(Position.at("d3"), Piece.createBlackRook());
         emptyBoard.addNewPiece(Position.at("d7"), Piece.createWhiteKing());
@@ -151,8 +154,6 @@ class BoardTest {
     @Test
     @DisplayName("sameFilePawnSize는 같은 파일에 있는 pawn개수를 반환한다.")
     void checkPawnSizeInFile() {
-        Board emptyBoard = new Board();
-        emptyBoard.initializeEmptyBoard();
 
         emptyBoard.addNewPiece(Position.at("a8"), Piece.createBlackPawn());
         emptyBoard.addNewPiece(Position.at("b8"), Piece.createBlackPawn());
@@ -172,10 +173,8 @@ class BoardTest {
 
 
     @Test
-    @DisplayName(" calculatePoints는 점수 계산한다.")
+    @DisplayName("calculatePoints는 점수 계산한다.")
     void checkCalculatePoints() {
-        Board emptyBoard = new Board();
-        emptyBoard.initializeEmptyBoard();
 
         emptyBoard.addNewPiece(Position.at("f2"), Piece.createWhitePawn());
         emptyBoard.addNewPiece(Position.at("g2"), Piece.createWhitePawn());
@@ -193,4 +192,62 @@ class BoardTest {
         );
     }
 
+    @Test
+    @DisplayName("sort는 오름차순으로 정렬한다.")
+    void checkSortColorPiecesAscending() {
+        emptyBoard.addNewPiece(Position.at("f2"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.at("g2"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.at("a2"), Piece.createWhiteQueen());
+        emptyBoard.addNewPiece(Position.at("e1"), Piece.createWhiteRook());
+        emptyBoard.addNewPiece(Position.at("f1"), Piece.createWhiteKing());
+
+
+        emptyBoard.addNewPiece(Position.at("b6"), Piece.createBlackPawn());
+        emptyBoard.addNewPiece(Position.at("e6"), Piece.createBlackQueen());
+        emptyBoard.addNewPiece(Position.at("b8"), Piece.createBlackKing());
+        emptyBoard.addNewPiece(Position.at("a8"), Piece.createBlackBishop());
+        emptyBoard.addNewPiece(Position.at("c8"), Piece.createBlackRook());
+
+        List<Piece> whitePieces = emptyBoard.sortColorPiecesAscending(Piece.Color.WHITE);
+        List<Piece> blackPieces = emptyBoard.sortColorPiecesAscending(Piece.Color.BLACK);
+
+        assertAll(
+                () -> assertThat(whitePieces.get(4)).isEqualTo(Piece.createWhiteQueen()),
+                () -> assertThat(whitePieces.get(3)).isEqualTo(Piece.createWhiteRook()),
+
+                () -> assertThat(blackPieces.get(4)).isEqualTo(Piece.createBlackQueen()),
+                () -> assertThat(blackPieces.get(3)).isEqualTo(Piece.createBlackRook()),
+                () -> assertThat(blackPieces.get(2)).isEqualTo(Piece.createBlackBishop())
+        );
+    }
+
+    @Test
+    @DisplayName("sort는 오름차순으로 정렬한다.")
+    void checkSortColorPiecesDescending() {
+        emptyBoard.addNewPiece(Position.at("f2"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.at("g2"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.at("a2"), Piece.createWhiteQueen());
+        emptyBoard.addNewPiece(Position.at("e1"), Piece.createWhiteRook());
+        emptyBoard.addNewPiece(Position.at("f1"), Piece.createWhiteKing());
+
+
+        emptyBoard.addNewPiece(Position.at("b6"), Piece.createBlackPawn());
+        emptyBoard.addNewPiece(Position.at("e6"), Piece.createBlackQueen());
+        emptyBoard.addNewPiece(Position.at("b8"), Piece.createBlackKing());
+        emptyBoard.addNewPiece(Position.at("a8"), Piece.createBlackBishop());
+        emptyBoard.addNewPiece(Position.at("c8"), Piece.createBlackRook());
+
+        List<Piece> whitePieces = emptyBoard.sortColorPiecesDescending(Piece.Color.WHITE);
+        List<Piece> blackPieces = emptyBoard.sortColorPiecesDescending(Piece.Color.BLACK);
+
+        assertAll(
+                () -> assertThat(whitePieces.get(0)).isEqualTo(Piece.createWhiteQueen()),
+                () -> assertThat(whitePieces.get(1)).isEqualTo(Piece.createWhiteRook()),
+
+                () -> assertThat(blackPieces.get(0)).isEqualTo(Piece.createBlackQueen()),
+                () -> assertThat(blackPieces.get(1)).isEqualTo(Piece.createBlackRook()),
+                () -> assertThat(blackPieces.get(2)).isEqualTo(Piece.createBlackBishop())
+        );
+
+    }
 }

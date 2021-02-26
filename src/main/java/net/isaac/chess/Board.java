@@ -26,9 +26,9 @@ public class Board {
         initializePawns(Piece.Color.BLACK, MIN_RANK + pawnsRow);
         initializePawns(Piece.Color.WHITE, MAX_RANK - pawnsRow);
 
-        int specialRow = 0;
-        initializeSpecialPieces(Piece.Color.BLACK, MIN_RANK + specialRow);
-        initializeSpecialPieces(Piece.Color.WHITE, MAX_RANK - specialRow);
+        int royalRow = 0;
+        initializeRoyalPieces(Piece.Color.BLACK, MIN_RANK + royalRow);
+        initializeRoyalPieces(Piece.Color.WHITE, MAX_RANK - royalRow);
     }
 
     private void setBlankBoard() {
@@ -37,7 +37,7 @@ public class Board {
         }
     }
 
-    private void initializeSpecialPieces(Piece.Color color, int rank) {
+    private void initializeRoyalPieces(Piece.Color color, int rank) {
         add(Piece.createPiece(color, Piece.Type.ROOK), rank, 'a');
         add(Piece.createPiece(color, Piece.Type.KNIGHT), rank, 'b');
         add(Piece.createPiece(color, Piece.Type.BISHOP), rank, 'c');

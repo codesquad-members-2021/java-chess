@@ -13,7 +13,7 @@ public class Board {
     private static final int MIN_RANK = 1;
     private static final int MAX_RANK = 8;
 
-    private Map<Integer, Rank> pieces = new HashMap<>();
+    private final Map<Integer, Rank> pieces = new HashMap<>();
 
     public Board() {
         initialize();

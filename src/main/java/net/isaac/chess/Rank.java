@@ -8,7 +8,7 @@ import java.util.Map;
 public class Rank {
     public static final char MIN_FILE = 'a';
     public static final char MAX_FILE = 'h';
-    private Map<Character, Piece> pieces = new HashMap<>();
+    private final Map<Character, Piece> pieces = new HashMap<>();
 
     public Rank() {
         for (char file = MIN_FILE; file <= MAX_FILE; file++) {

@@ -38,16 +38,6 @@ public class Board {
         board.add(Rank.initializeBlackPieces(7));
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        ListIterator<Rank> rankIter = board.listIterator(board.size());
-        while (rankIter.hasPrevious()) {
-            sb.append(rankIter.previous().toString());
-        }
-        return sb.toString();
-    }
-
     public Piece findPiece(String position) {
         Position p = new Position(position);
         Rank rank = board.get(p.getYPos());
@@ -75,5 +65,15 @@ public class Board {
             pieces.addAll(rank.findPiecesByColor(color));
         }
         return pieces;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        ListIterator<Rank> rankIter = board.listIterator(board.size());
+        while (rankIter.hasPrevious()) {
+            sb.append(rankIter.previous().toString());
+        }
+        return sb.toString();
     }
 }

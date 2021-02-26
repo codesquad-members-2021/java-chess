@@ -42,7 +42,6 @@ public class Piece {
     private final Color color;
     private final Type type;
     private final Position position;
-    private static int pieceCount = -1;
 
     public char getRepresentation() {
         return isWhite() ? this.type.getWhiteRepresentation()
@@ -87,11 +86,6 @@ public class Piece {
         this.color = color;
         this.type = type;
         this.position = position;
-    }
-
-    public Piece(Color color, Type type) {
-        this(color, type, new Position(pieceCount - 1, pieceCount - 1));
-        pieceCount--;
     }
 
     private static Piece createWhite(Type type, Position position) {

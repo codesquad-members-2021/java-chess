@@ -92,15 +92,6 @@ class Rank {
         return pieces.size();
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Piece piece : getPieces()) {
-            sb.append(piece.getRepresentation());
-        }
-        return appendNewLine(sb.toString());
-    }
-
     Piece findPiece(int xPos) {
         return pieces.get(xPos);
     }
@@ -111,5 +102,14 @@ class Rank {
             piece.addPiecesByColor(color, piecesByColor);
         }
         return Collections.unmodifiableList(piecesByColor);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Piece piece : getPieces()) {
+            sb.append(piece.getRepresentation());
+        }
+        return appendNewLine(sb.toString());
     }
 }

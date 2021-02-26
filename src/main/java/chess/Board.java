@@ -58,7 +58,7 @@ public class Board {
         return point;
     }
 
-    private List<Piece> findPiecesByColor(Color color) {
+    public List<Piece> findPiecesByColor(Color color) {
         ArrayList<Piece> pieces = new ArrayList<>();
         for (Rank rank : board) {
             pieces.addAll(rank.findPiecesByColor(color));

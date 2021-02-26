@@ -3,7 +3,7 @@ package pieces;
 import java.util.List;
 import java.util.Objects;
 
-public class Piece {
+public class Piece implements Comparable<Piece> {
     private final Color color;
     private final Type type;
     private final Position position;
@@ -95,5 +95,10 @@ public class Piece {
         return "Piece [color=" + color
                 + ", type=" + type
                 + ", position=" + position + ']';
+    }
+
+    @Override
+    public int compareTo(Piece p) {
+        return Double.compare(type.getDefaultPoint(), p.type.getDefaultPoint()) * -1;
     }
 }

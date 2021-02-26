@@ -4,7 +4,7 @@ package net.sanhee.pieces;
 import net.sanhee.pieces.property.UnitColor;
 import net.sanhee.pieces.property.UnitType;
 
-public class Piece {
+abstract public class Piece {
 
     private final UnitColor color;
     private final char representation;
@@ -35,9 +35,5 @@ public class Piece {
         return this.getColor() == UnitColor.WHITE;
     }
 
-    public boolean isYou(UnitColor unitColor, UnitType unitType) {
-        boolean classCheck = this.getClass().getSimpleName().equalsIgnoreCase(unitType.name());
-        return isColor(unitColor) && classCheck;
-    }
-
+    abstract public boolean isYou(UnitColor unitColor, UnitType unitType);
 }

@@ -6,10 +6,6 @@ import java.util.Objects;
 
 public class Piece {
 
-    public enum Color {
-        WHITE, BLACK, NOCOLOR;
-    }
-
     private static final Piece BLANK_PIECE = new Piece(Color.NOCOLOR, Type.NO_PIECE);
 
     private Color color;
@@ -107,5 +103,9 @@ public class Piece {
     @Override
     public int hashCode() {
         return Objects.hash(color, type);
+    }
+
+    public enum Color {
+        WHITE, BLACK, NOCOLOR;
     }
 }

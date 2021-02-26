@@ -3,6 +3,7 @@ package net.woody.chess;
 import static net.woody.utils.StringUtils.appendNewLine;
 
 import net.woody.pieces.Piece;
+import net.woody.pieces.Piece.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,20 +24,22 @@ public class Board {
         getRank(rank).add(file, piece);
     }
 
-    public Rank getRank(int rank) {
-        if (rank < 0 || board.size() <= rank) {
-            throw new ArrayIndexOutOfBoundsException("Rank number " + rank + " is out of range!");
-        }
-        return board.get(rank);
-    }
-
     public Piece findPiece(int rank, int file) {
-        return getRank(rank).find(file);
+        return getRank(rank).getPiece(file);
     }
 
-    public static Board createInitBoard() {
-        return new Board(initialize());
+    public int numOfSpecificPiece(Color color, Type type) {
+        Piece target = Piece.getBlankInstance();
+        target = (color == Color.BLACK) ? Piece.createBlack(type) : target;
+        target = (color == Color.WHITE) ? Piece.createWhite(type) : target;
+
+        int targetCounter = 0;
+        for (int rank = 0; rank < BOARD_LENGTH; rank++) {
+            targetCounter += getRank(rank).getNumOfPiece(target);
+        }
+        return targetCounter;
     }
+
 
     public static Board createBlankBoard() {
         List<Rank> board = new ArrayList<>(BOARD_LENGTH);
@@ -46,8 +49,8 @@ public class Board {
         return new Board(board);
     }
 
-    private static List<Rank> initialize() {
-        return Stream.of(
+    public static Board createInitBoard() {
+        List<Rank> initBoard = Stream.of(
                 Rank.createBlackPieceRank(),
                 Rank.createBlackPawnRank(),
                 Rank.createBlankRank(),
@@ -57,6 +60,14 @@ public class Board {
                 Rank.createWhitePawnRank(),
                 Rank.createWhitePieceRank()
         ).collect(Collectors.toCollection(ArrayList::new));
+        return new Board(initBoard);
+    }
+
+    private Rank getRank(int rank) {
+        if (rank < 0 || board.size() <= rank) {
+            throw new ArrayIndexOutOfBoundsException("Rank number " + rank + " is out of range!");
+        }
+        return board.get(rank);
     }
 
     // TODO : 더 효율적인 방식 고려

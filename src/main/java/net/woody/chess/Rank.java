@@ -21,9 +21,17 @@ public class Rank {
         pieces.set(file, piece);
     }
 
-    public Piece find(int file) {
+    public Piece getPiece(int file) {
         validateFileIndex(file);
         return pieces.get(file);
+    }
+
+    public int getNumOfPiece(Piece target) {
+        int targetCounter = 0;
+        for (Piece piece : pieces) {
+            targetCounter += target.equals(piece) ? 1 : 0;
+        }
+        return targetCounter;
     }
 
     public int size() {

@@ -6,81 +6,87 @@ import kr.codesquad.freddie.chess.board.Position;
 public enum Kind {
     PAWN("p", 1.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+        public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
 
+            return true;
         }
     },
     KNIGHT("n", 2.5) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+        public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
             checkColorOf(sourcePosition, targetPosition, board);
-            int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
-            int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
+            int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
+            int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
 
             if (fileDistance + rankDistance != 3 || Math.abs(fileDistance - rankDistance) != 1) {
-                String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
-                throw new IllegalArgumentException(message);
+                return false;
             }
+
+            return true;
         }
     },
     ROOK("r", 5.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+        public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
             checkColorOf(sourcePosition, targetPosition, board);
-            int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
-            int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
+            int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
+            int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
 
             if (gradientOf(fileDistance, rankDistance) != 0) {
-                String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
-                throw new IllegalArgumentException(message);
+                return false;
             }
+
+            return true;
         }
     },
     BISHOP("b", 3.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+        public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
             checkColorOf(sourcePosition, targetPosition, board);
-            int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
-            int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
+            int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
+            int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
 
             if (gradientOf(fileDistance, rankDistance) != 1) {
-                String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
-                throw new IllegalArgumentException(message);
+                return false;
             }
+
+            return true;
         }
     },
     QUEEN("q", 9.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+        public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
             checkColorOf(sourcePosition, targetPosition, board);
-            int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
-            int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
+            int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
+            int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
 
             double gradient = gradientOf(fileDistance, rankDistance);
 
             if (!(gradient == 0 || gradient == 1)) {
-                String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
-                throw new IllegalArgumentException(message);
+                return false;
             }
+
+            return true;
         }
     },
     KING("k", 0.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+        public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
             checkColorOf(sourcePosition, targetPosition, board);
-            int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
-            int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
+            int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
+            int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
 
             if (1 < fileDistance || 1 < rankDistance) {
-                String message = "이동 위치가 올바르지 않습니다. : source : " + sourcePosition + ", target : " + targetPosition;
-                throw new IllegalArgumentException(message);
+                return false;
             }
+
+            return true;
         }
     },
     EMPTY(".", 0.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
-            throw new IllegalStateException("빈 칸은 움직일 수 없습니다.");
+        public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
+            return false;
         }
     };
 
@@ -92,7 +98,7 @@ public enum Kind {
         this.point = point;
     }
 
-    abstract public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board);
+    abstract public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board);
 
     public String representation() {
         return representation;
@@ -103,7 +109,7 @@ public enum Kind {
     }
 
     protected int distanceOf(int a, int b) {
-        return Math.abs(a - b);
+        return a - b;
     }
 
     protected double gradientOf(int fileDistance, int rankDistance) {

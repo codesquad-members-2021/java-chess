@@ -90,7 +90,10 @@ public class Board {
     public void move(String source, String target) {
         Piece sourcePiece = findPiece(source);
 
-        sourcePiece.verifyMovePosition(Position.of(source), Position.of(target), this);
+        if(!sourcePiece.isCanMove(Position.of(source), Position.of(target), this)) {
+            String message = "이동 위치가 올바르지 않습니다. : source : " + source + ", target : " + target;
+            throw new IllegalArgumentException(message);
+        }
 
         set(target, sourcePiece);
         set(source, Piece.createBlank());

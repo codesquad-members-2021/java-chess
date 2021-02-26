@@ -18,8 +18,8 @@ public class Piece implements Comparable<Piece> {
         return new Piece(Color.NOCOLOR, Kind.EMPTY);
     }
 
-    public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
-        kind.verifyMovePosition(sourcePosition, targetPosition, board);
+    public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
+        return kind.isCanMove(sourcePosition, targetPosition, board);
     }
 
     public Color getColor() {

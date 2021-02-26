@@ -35,11 +35,9 @@ public class Board {
     }
 
     public int getPieceCount(Color color, PieceType pieceType) {
-        int count = 0;
-        for (Rank rank : ranks) {
-            count += rank.findPieceCount(pieceType, color);
-        }
-        return count;
+        return ranks.stream()
+                .mapToInt(rank -> rank.findPieceCount(pieceType, color))
+                .sum();
     }
 
     public Piece getPieceFromPoint(String pointStr) {

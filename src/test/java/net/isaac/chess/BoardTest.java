@@ -5,6 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import static net.isaac.utils.StringUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
@@ -88,5 +92,59 @@ class BoardTest {
         assertEquals(7.0, board.caculcatePoint(Piece.Color.WHITE), 0.01);
 
         System.out.println(board.getRepresentation());
+    }
+
+    @Test
+    @DisplayName("점수로 정렬된 List<Piece>를 반환하는지 테스트")
+    void getSortedPieces() {
+        List<Piece> blackSortedPiecesAscending = initialAscendingSortedPieces(Piece.Color.BLACK);
+        List<Piece> blackSortedPiecesDescending = initialDescendingSortedPieces(Piece.Color.BLACK);
+        List<Piece> whiteSortedPiecesAscending = initialAscendingSortedPieces(Piece.Color.WHITE);
+        List<Piece> whiteSortedPiecesDescending = initialDescendingSortedPieces(Piece.Color.WHITE);
+        
+        assertAll(
+                () -> assertThat(board.getSortedPieces(Piece.Color.BLACK, SortOrder.ASCENDING)).isEqualTo(blackSortedPiecesAscending),
+                () -> assertThat(board.getSortedPieces(Piece.Color.BLACK, SortOrder.DESCENDING)).isEqualTo(blackSortedPiecesDescending),
+                () -> assertThat(board.getSortedPieces(Piece.Color.WHITE, SortOrder.ASCENDING)).isEqualTo(whiteSortedPiecesAscending),
+                () -> assertThat(board.getSortedPieces(Piece.Color.WHITE, SortOrder.DESCENDING)).isEqualTo(whiteSortedPiecesDescending)
+        );
+    }
+
+    List<Piece> initialAscendingSortedPieces(Piece.Color color) {
+        List<Piece> sortedPieces = new ArrayList<>();
+
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.KING));
+        int pawnNum = 8;
+        for (int num = 0; num < pawnNum; num++) {
+            sortedPieces.add(Piece.createPiece(color, Piece.Type.PAWN));
+        }
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.KNIGHT));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.KNIGHT));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.BISHOP));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.BISHOP));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.ROOK));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.ROOK));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.QUEEN));
+
+        return sortedPieces;
+    }
+
+    List<Piece> initialDescendingSortedPieces(Piece.Color color) {
+        List<Piece> sortedPieces = new ArrayList<>();
+
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.QUEEN));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.ROOK));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.ROOK));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.BISHOP));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.BISHOP));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.KNIGHT));
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.KNIGHT));
+        int pawnNum = 8;
+        for (int num = 0; num < pawnNum; num++) {
+            sortedPieces.add(Piece.createPiece(color, Piece.Type.PAWN));
+        }
+        sortedPieces.add(Piece.createPiece(color, Piece.Type.KING));
+
+        return sortedPieces;
     }
 }

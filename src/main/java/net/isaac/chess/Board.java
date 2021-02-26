@@ -3,8 +3,8 @@ package net.isaac.chess;
 import net.isaac.pieces.Piece;
 import net.isaac.utils.StringUtils;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.swing.*;
+import java.util.*;
 
 import static net.isaac.chess.Rank.MIN_FILE;
 import static net.isaac.chess.Rank.MAX_FILE;
@@ -155,5 +155,27 @@ public class Board {
         }
 
         return point;
+    }
+
+    public List<Piece> getSortedPieces(Piece.Color color, SortOrder sortOrder) {
+        List<Piece> sortedPieces = new ArrayList<>();
+        for (int rank = MIN_RANK; rank <= MAX_RANK; rank++) {
+            for (char file = MIN_FILE; file <= MAX_FILE; file++) {
+                Piece piece = findPiece(rank, file);
+                if (piece.getColor() == color && piece.getType() != Piece.Type.BLANK) {
+                    sortedPieces.add(piece);
+                }
+            }
+        }
+
+        switch (sortOrder) {
+            case ASCENDING:
+                Collections.sort(sortedPieces);
+                break;
+            case DESCENDING:
+                Collections.sort(sortedPieces, Collections.reverseOrder());
+                break;
+        }
+        return sortedPieces;
     }
 }

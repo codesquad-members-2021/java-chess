@@ -68,7 +68,7 @@ public class Board {
         return board.toString();
     }
 
-    //getExceptPawnPiecesByList 이런 식으로 작명했었는데, Exception과 혼동이 온다고 수정
+    //getExceptPawnPiecesByList 이런 식으로 작명했었는데, Exception과 혼동이 온다고 수정했습니다.
     public String getFirstAndEighthRankPiecesByList(List<Piece> pieceList) {
         StringBuilder sb = new StringBuilder();
         for(int i = 0 ; i < pieceList.size() ; i++) {

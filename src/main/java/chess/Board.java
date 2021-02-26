@@ -8,8 +8,8 @@ import java.util.*;
 import static piece.PieceFactory.createPiece;
 
 public class Board {
+    public static final int BOARD_SIZE = 8;
     private final Map<Position, Piece> squares = new LinkedHashMap<>();
-    public final int BOARD_SIZE = 8;
 
     public void initialize() {
         squares.clear();
@@ -104,21 +104,16 @@ public class Board {
     }
 
     private double getSum(List<Piece> pieces, Color color, double point) {
-        for (Piece piece : pieces) {
-            if (!(piece.getColor() == color)) continue;
-            if (piece.getType() == Type.PAWN) {
-                point += getPawnPoint(pieces);
-                continue;
-            }
-            point += piece.getPoint();
-        }
-        return point;
+        return pieces.stream().filter(piece -> piece.getColor() == color)
+                .filter(piece -> !(piece.getType() == Type.PAWN))
+                .reduce(point, (result, piece) -> result + piece.getPoint(), Double::sum)
+                + getPawnPoint(pieces);
     }
 
     private double getPawnPoint(List<Piece> pieces) {
         double pawnPoint = Type.PAWN.getDefaultPoint();
         long pawnCount = pieces.stream().filter(piece -> piece.getType() == Type.PAWN).count();
-        return pawnCount > 1 ? pawnPoint / 2 : pawnPoint;
+        return pawnCount > 1 ? (pawnPoint / 2) * pawnCount : pawnPoint * pawnCount;
     }
 
     public List<Piece> getPiecesSortedByPoint(Color color) {

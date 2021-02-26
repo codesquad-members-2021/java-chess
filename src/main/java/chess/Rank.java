@@ -17,7 +17,7 @@ class Rank {
 
     private final List<Piece> pieces = new ArrayList<>(BOARD_SIZE);
 
-    void addPiece(Piece piece) {
+    void add(Piece piece) {
         pieces.add(piece);
     }
 
@@ -41,34 +41,34 @@ class Rank {
 
     static Rank initializeWhitePieces(int rankIndex) {
         Rank rank = new Rank();
-        rank.addPiece(createWhiteRook(new Position(0, rankIndex)));
-        rank.addPiece(createWhiteKnight(new Position(1, rankIndex)));
-        rank.addPiece(createWhiteBishop(new Position(2, rankIndex)));
-        rank.addPiece(createWhiteQueen(new Position(3, rankIndex)));
-        rank.addPiece(createWhiteKing(new Position(4, rankIndex)));
-        rank.addPiece(createWhiteBishop(new Position(5, rankIndex)));
-        rank.addPiece(createWhiteKnight(new Position(6, rankIndex)));
-        rank.addPiece(createWhiteRook(new Position(7, rankIndex)));
+        rank.add(createWhiteRook(new Position(0, rankIndex)));
+        rank.add(createWhiteKnight(new Position(1, rankIndex)));
+        rank.add(createWhiteBishop(new Position(2, rankIndex)));
+        rank.add(createWhiteQueen(new Position(3, rankIndex)));
+        rank.add(createWhiteKing(new Position(4, rankIndex)));
+        rank.add(createWhiteBishop(new Position(5, rankIndex)));
+        rank.add(createWhiteKnight(new Position(6, rankIndex)));
+        rank.add(createWhiteRook(new Position(7, rankIndex)));
         return rank;
     }
 
     static Rank initializeBlackPieces(int rankIndex) {
         Rank rank = new Rank();
-        rank.addPiece(createBlackRook(new Position(0, rankIndex)));
-        rank.addPiece(createBlackKnight(new Position(1, rankIndex)));
-        rank.addPiece(createBlackBishop(new Position(2, rankIndex)));
-        rank.addPiece(createBlackQueen(new Position(3, rankIndex)));
-        rank.addPiece(createBlackKing(new Position(4, rankIndex)));
-        rank.addPiece(createBlackBishop(new Position(5, rankIndex)));
-        rank.addPiece(createBlackKnight(new Position(6, rankIndex)));
-        rank.addPiece(createBlackRook(new Position(7, rankIndex)));
+        rank.add(createBlackRook(new Position(0, rankIndex)));
+        rank.add(createBlackKnight(new Position(1, rankIndex)));
+        rank.add(createBlackBishop(new Position(2, rankIndex)));
+        rank.add(createBlackQueen(new Position(3, rankIndex)));
+        rank.add(createBlackKing(new Position(4, rankIndex)));
+        rank.add(createBlackBishop(new Position(5, rankIndex)));
+        rank.add(createBlackKnight(new Position(6, rankIndex)));
+        rank.add(createBlackRook(new Position(7, rankIndex)));
         return rank;
     }
 
     static Rank initializeWhitePawns(int rankIndex) {
         Rank rank = new Rank();
         for(int i = 0; i < BOARD_SIZE; i++) {
-            rank.addPiece(createWhitePawn(new Position(i, rankIndex)));
+            rank.add(createWhitePawn(new Position(i, rankIndex)));
         }
         return rank;
     }
@@ -76,7 +76,7 @@ class Rank {
     static Rank initializeBlackPawns(int rankIndex) {
         Rank rank = new Rank();
         for(int i = 0; i < BOARD_SIZE; i++) {
-            rank.addPiece(createBlackPawn(new Position(i, rankIndex)));
+            rank.add(createBlackPawn(new Position(i, rankIndex)));
         }
         return rank;
     }
@@ -84,7 +84,7 @@ class Rank {
     static Rank initializeBlankLine(int rankIndex) {
         Rank rank = new Rank();
         for(int i = 0; i < BOARD_SIZE; i++) {
-            rank.addPiece(createBlank(new Position(i, rankIndex)));
+            rank.add(createBlank(new Position(i, rankIndex)));
         }
         return rank;
     }

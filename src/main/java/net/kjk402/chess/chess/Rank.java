@@ -64,7 +64,7 @@ public class Rank {
         return rank;
     }
 
-    public static Rank setBlackLine(int index) {
+    public static Rank setBlankLine(int index) {
         Rank rank = new Rank();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             rank.addPiece(Piece.createBlank(new Position(i, index)));

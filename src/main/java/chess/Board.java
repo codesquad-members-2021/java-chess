@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-import pieces.Piece;
-import pieces.Color;
-import pieces.Type;
-import pieces.Position;
+import piece.Piece;
+import piece.Color;
+import piece.Type;
+import piece.Position;
 
 public class Board {
     private final List<Rank> board = new ArrayList<>();

@@ -1,4 +1,4 @@
-package pieces;
+package piece;
 
 public class PieceCreator {
     private static Piece createWhite(Type type, Position position) {

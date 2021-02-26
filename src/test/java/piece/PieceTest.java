@@ -1,8 +1,8 @@
-package pieces;
+package piece;
 
 import org.junit.jupiter.api.*;
 
-import static pieces.PieceCreator.*;
+import static piece.PieceCreator.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 

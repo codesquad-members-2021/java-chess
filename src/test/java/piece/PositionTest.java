@@ -1,4 +1,4 @@
-package pieces;
+package piece;
 
 
 import org.junit.jupiter.api.DisplayName;

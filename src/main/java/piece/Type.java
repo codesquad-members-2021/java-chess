@@ -1,4 +1,4 @@
-package pieces;
+package piece;
 
 public enum Type {
     PAWN('p', 1.0),

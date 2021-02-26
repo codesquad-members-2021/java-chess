@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import pieces.Piece;
-import pieces.Color;
-import pieces.Type;
-import pieces.Position;
+import piece.Piece;
+import piece.Color;
+import piece.Type;
+import piece.Position;
 
-import static pieces.PieceCreator.*;
+import static piece.PieceCreator.*;
 import static util.StringUtils.appendNewLine;
 
 class Rank {

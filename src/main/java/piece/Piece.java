@@ -1,4 +1,4 @@
-package pieces;
+package piece;
 
 import java.util.List;
 import java.util.Objects;
@@ -99,6 +99,6 @@ public class Piece implements Comparable<Piece> {
 
     @Override
     public int compareTo(Piece p) {
-        return Double.compare(type.getDefaultPoint(), p.type.getDefaultPoint()) * -1;
+        return Double.compare(type.getDefaultPoint(), p.type.getDefaultPoint());
     }
 }

@@ -3,12 +3,12 @@ package chess;
 import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.*;
 
-import pieces.Piece;
-import pieces.Color;
-import pieces.Type;
-import pieces.Position;
+import piece.Piece;
+import piece.Color;
+import piece.Type;
+import piece.Position;
 
-import static pieces.PieceCreator.*;
+import static piece.PieceCreator.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static util.StringUtils.appendNewLine;

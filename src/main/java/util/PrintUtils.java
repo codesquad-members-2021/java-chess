@@ -1,13 +1,17 @@
 package util;
 
 import chess.Board;
-import pieces.Color;
-import pieces.Piece;
+import piece.Color;
+import piece.Piece;
 
 import java.util.Collections;
 import java.util.List;
 
 public class PrintUtils {
+
+    private PrintUtils() {
+    }
+
     public static void showScore(Board board) {
         double whiteScore = board.calculatePoint(Color.WHITE);
         double blackScore = board.calculatePoint(Color.BLACK);

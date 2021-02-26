@@ -93,11 +93,11 @@ public class Piece {
     }
 
     public boolean isBlack() {
-        return color.equals(Color.BLACK);
+        return color == Color.BLACK;
     }
 
     public boolean isWhite() {
-        return color.equals(Color.WHITE);
+        return color == Color.WHITE;
     }
 
     @Override

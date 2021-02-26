@@ -33,15 +33,15 @@
 1. PawnTest에 요구사항 코드 추가 
 2. Pawn 클래스
    1. Pawn 색에 따른 표시 문자 부여
-      * whitePawn -> 'p'
-      * blackPawn -> 'P'
+      * whitePiece -> 'p'
+      * blackPiece -> 'P'
    2. Pawn 생성자 public Pawn(String color, char representation) 로 변경 (기존: public Pawn(String color))
 3. BoardTest 요구사항 코드 적용
 4. Board Class 
    1. 흰색 Pawn과 검은색 Pawn을 생성해 저장하는 List를 추가
-      * List<Pawn> pawn = new ArrayList<>();
-   2. whitePawnsAdd(Pawn pawn): 흰색 폰 리스트에 add 해주는 메소드
-   3. whitePawnsAdd(Pawn pawn): 검은색 폰 리스트에 add 해주는 메소드
+      * List<Pawn> piece = new ArrayList<>();
+   2. whitePawnsAdd(Pawn piece): 흰색 폰 리스트에 add 해주는 메소드
+   3. whitePawnsAdd(Pawn piece): 검은색 폰 리스트에 add 해주는 메소드
    4. findWhitePawn(int index): 흰색 폰 리스트에서 인덱스 번호로 리스트 안에 들어있는 원소를 찾을 수 있는 메소드
    5. findBlackPawn(int index): 검은색 폰 리스트에서 인덱스 번호로 리스트 안에 들어있는 원소를 찾을 수 있는 메소드
    6. size(): Board에 추가되는 기물 size를 구하는 메소드
@@ -65,3 +65,30 @@
       pppppppp
       ........
       ```
+
+#### 미션4 : 모든 기물 배치하기
+
+1. "\n"의 반복 코드 제거
+   * Java 패키지 밑에 utils 패키지 생성
+   * utils.StringUtils 클래스를 생성
+   * 운영체제에 따라 달라질 수 있는 단점을 보완하기 위해 `System.getProperty("line.separator")`으로 구현 및 상수로 만듬
+   * `appendNewLine("str")` 로 인자로 전달한 메소드에 newline을 추가하는 기능을 구현
+   * 생성자를 `private`으로 선언해서 StringUtils 클래스를 직접 생성할 수 없도록 함
+
+2. Pawn 클래스 이름을 Piece로 rename 및 팩토리 메소드 생성
+   * Pawn 클래스를 좀더 일반적인 클래스 이름인 Piece로 바꾼다(Piece는 색상과 이름을 가진다.)
+   * Piece는 값 객체여야 해서, private 생성자를 가지도록 함 (인스턴스를 생성한 이후에는 인스턴스의 상태 값을 변경할 수 없어야 한다.)
+   * 기물의 종류를  pawn, knight, rook, bishop, queen, king으로 구분
+   * 각 기물에 대한 표시 문자 상수로 적용  
+   * 기물에 대한 내용은 객체를 생성해서 넘겨주는 팩토리 메소드로 구현: 팩토리를 통해서 객체를 가져오도록 함.
+   * piece의 색상을 구분할 수 있는 isWhite 및 isBlack 메소드 생성
+
+3. 전체 기물 상태를 볼 수 있는 체스판 구현(Board 클래스) 
+   * Board 클래스를 수정하기 위한 BoardTest 요구사항 코드 작성
+   * 각 기물에 대한 List 추가
+   * 각 기물List에 대한 add 메소드 추가
+   * 보드 초기화 부분 초기화 될 기물들 추가
+   * printBoard() 이름 -> showBoard()로 변경 
+   * showBoard()에 중복되어 작성되었던 줄바꿈 utils.StringUtils 클래스의 appendNewLine메소드를 활용하여 변경
+   
+   

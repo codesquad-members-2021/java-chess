@@ -1,17 +1,19 @@
 package kr.codesquad.freddie.chess.piece;
 
+import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.board.Position;
 
 public enum Kind {
     PAWN("p", 1.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
 
         }
     },
     KNIGHT("n", 2.5) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+            checkColorOf(sourcePosition, targetPosition, board);
             int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
             int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
@@ -23,7 +25,8 @@ public enum Kind {
     },
     ROOK("r", 5.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+            checkColorOf(sourcePosition, targetPosition, board);
             int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
             int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
@@ -35,7 +38,8 @@ public enum Kind {
     },
     BISHOP("b", 3.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+            checkColorOf(sourcePosition, targetPosition, board);
             int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
             int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
@@ -47,7 +51,8 @@ public enum Kind {
     },
     QUEEN("q", 9.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+            checkColorOf(sourcePosition, targetPosition, board);
             int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
             int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
@@ -61,7 +66,8 @@ public enum Kind {
     },
     KING("k", 0.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+            checkColorOf(sourcePosition, targetPosition, board);
             int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
             int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
@@ -73,7 +79,7 @@ public enum Kind {
     },
     EMPTY(".", 0.0) {
         @Override
-        public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
+        public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
             throw new IllegalStateException("빈 칸은 움직일 수 없습니다.");
         }
     };
@@ -86,7 +92,7 @@ public enum Kind {
         this.point = point;
     }
 
-    abstract public void verifyMovePosition(Position sourcePosition, Position targetPosition);
+    abstract public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board);
 
     public String representation() {
         return representation;
@@ -105,5 +111,14 @@ public enum Kind {
             return 0;
         }
         return Integer.valueOf(rankDistance).doubleValue() / Integer.valueOf(fileDistance).doubleValue();
+    }
+
+    protected void checkColorOf(Position sourcePosition, Position targetPosition, Board board) {
+        Piece sourcePiece = board.findPiece(sourcePosition.toString());
+        Piece targetPiece = board.findPiece(targetPosition.toString());
+        if (sourcePiece.getColor() == targetPiece.getColor()) {
+            String message = "이동 위치의 기물이 같은 색상입니다. source : " + sourcePiece + ", target : " + targetPiece;
+            throw new IllegalArgumentException(message);
+        }
     }
 }

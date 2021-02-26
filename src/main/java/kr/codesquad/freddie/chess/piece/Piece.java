@@ -1,5 +1,6 @@
 package kr.codesquad.freddie.chess.piece;
 
+import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.board.Position;
 
 import java.util.Objects;
@@ -17,8 +18,8 @@ public class Piece implements Comparable<Piece> {
         return new Piece(Color.NOCOLOR, Kind.EMPTY);
     }
 
-    public void verifyMovePosition(Position sourcePosition, Position targetPosition) {
-        kind.verifyMovePosition(sourcePosition, targetPosition);
+    public void verifyMovePosition(Position sourcePosition, Position targetPosition, Board board) {
+        kind.verifyMovePosition(sourcePosition, targetPosition, board);
     }
 
     public Color getColor() {

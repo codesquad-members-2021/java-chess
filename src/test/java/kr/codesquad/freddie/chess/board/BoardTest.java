@@ -163,6 +163,15 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
+    void movePawn() {
+        initBoardWithBlank();
+        checkMove("a2", "a3", whitePieceFactory.createPawn());
+        checkMove("a2", "a4", whitePieceFactory.createPawn());
+        checkMove("a7", "a6", blackPieceFactory.createPawn());
+        checkMove("a7", "a5", blackPieceFactory.createPawn());
+    }
+
+    @Test
     void moveKnight() {
         initBoardWithBlank();
         checkMove("d4", "c6", blackPieceFactory.createKnight());

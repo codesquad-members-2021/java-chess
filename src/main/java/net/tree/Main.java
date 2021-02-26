@@ -11,7 +11,6 @@ public class Main {
             System.out.println("=====체스 게임에 접속하셨습니다.=====");
             System.out.println("=====시작을 원하신다면, start를 입력해주세요.=====");
             System.out.println("게임 시작 : start / 게임 종료 : exit");
-
             while (true) {
                 String inputMessage = sc.next();
                 switch (inputMessage) {
@@ -27,6 +26,7 @@ public class Main {
                     default:
                         System.out.println("안내드린 명령어 내에서 입력해주세요.");
                         System.out.println("게임 시작 : start / 게임 종료 : exit");
+                        break;
                 }
             }
         }

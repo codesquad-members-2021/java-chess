@@ -8,14 +8,12 @@ import java.util.List;
 import static net.utils.StringUtils.appendNewLine;
 
 public class Board {
-
     private List<Piece> whitePieceList = new ArrayList<>();
     private List<Piece> blackPieceList = new ArrayList<>();
 
     private static final int BOARD_SIZE = 8;
     private static final String LINE = "........";
     public static final int TOTAL_PIECES_SIZE = 32;
-
 
     public void initializeAllPieces() {
         initializeWhitePieces();
@@ -92,8 +90,5 @@ public class Board {
         }
         return sb.toString();
     }
-
-
-
 
 }

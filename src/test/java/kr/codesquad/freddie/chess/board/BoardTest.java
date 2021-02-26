@@ -172,6 +172,40 @@ class BoardTest extends BoardTestBase {
     }
 
     @Test
+    void movePawnToOtherColor() {
+        initBoardWithBlank();
+        board.set("b3", blackPieceFactory.createPawn());
+        board.set("c3", blackPieceFactory.createPawn());
+        board.set("b6", whitePieceFactory.createPawn());
+        board.set("c6", whitePieceFactory.createPawn());
+        checkMove("a2", "b3", whitePieceFactory.createPawn());
+        checkMove("d2", "c3", whitePieceFactory.createPawn());
+        checkMove("a7", "b6", blackPieceFactory.createPawn());
+        checkMove("d7", "c6", blackPieceFactory.createPawn());
+    }
+
+    @Test
+    void movePawnToWrongTarget() {
+        initBoardWithBlank();
+        checkMoveToWrongTarget("a2", "a1", whitePieceFactory.createPawn());
+        checkMoveToWrongTarget("a7", "a8", blackPieceFactory.createPawn());
+        checkMoveToWrongTarget("a2", "a5", whitePieceFactory.createPawn());
+        checkMoveToWrongTarget("a7", "a4", blackPieceFactory.createPawn());
+        checkMoveToWrongTarget("a2", "b3", whitePieceFactory.createPawn());
+        checkMoveToWrongTarget("d2", "c3", whitePieceFactory.createPawn());
+        checkMoveToWrongTarget("a7", "b6", blackPieceFactory.createPawn());
+        checkMoveToWrongTarget("a7", "c6", blackPieceFactory.createPawn());
+        board.set("b4", blackPieceFactory.createPawn());
+        board.set("c4", blackPieceFactory.createPawn());
+        board.set("b5", whitePieceFactory.createPawn());
+        board.set("c5", whitePieceFactory.createPawn());
+        checkMoveToWrongTarget("a2", "b4", whitePieceFactory.createPawn());
+        checkMoveToWrongTarget("d2", "c4", whitePieceFactory.createPawn());
+        checkMoveToWrongTarget("a7", "b5", blackPieceFactory.createPawn());
+        checkMoveToWrongTarget("a7", "c5", blackPieceFactory.createPawn());
+    }
+
+    @Test
     void moveKnight() {
         initBoardWithBlank();
         checkMove("d4", "c6", blackPieceFactory.createKnight());

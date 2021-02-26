@@ -5,7 +5,6 @@ import static net.woody.utils.StringUtils.appendNewLine;
 import net.woody.pieces.Piece;
 import net.woody.pieces.Piece.Color;
 import net.woody.pieces.Type;
-import net.woody.utils.ValidationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +23,11 @@ public class Board {
         this.board = board;
     }
 
+    // TODO : position 문자열 → Position 클래스 구현
     public void move(String position, Piece piece) {
-
+        int file = position.charAt(0) - LOWERCASE_TO_INT;
+        int rank = position.charAt(1) - CHARINT_TO_INT - 1;
+        getRank(rank).add(file, piece);
     }
 
     public Piece findPiece(String position) {

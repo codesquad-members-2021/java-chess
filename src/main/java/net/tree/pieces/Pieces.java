@@ -1,7 +1,6 @@
 package net.tree.pieces;
 
 public enum Pieces {
-
     WHITE_PAWN("white", 'p'),
     BLACK_PAWN("black", 'P'),
     WHITE_KNIGHT("white", 'n'),

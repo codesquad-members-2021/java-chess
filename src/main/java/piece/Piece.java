@@ -3,8 +3,7 @@ package piece;
 import chess.Position;
 import piece.attribute.*;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class Piece implements Comparable<Piece> {
     private final Color color;
@@ -19,79 +18,46 @@ public abstract class Piece implements Comparable<Piece> {
 
     abstract List<Direction> movableDirections();
 
+    public Direction direction(Position after) {
+        Optional<Direction> optionalDirection = movableDirections().stream()
+                .filter(direction -> (after.x() - position.x()) == direction.xMove())
+                .filter(direction -> (after.y() - position.y() == direction.yMove()))
+                .findFirst();
+        return optionalDirection.orElse(Direction.INVALID);
+    }
+
     public boolean isMovable(Position after) {
         if (movableDirections().contains(direction(after))
                 && isInValidMoveRange(after) && after.isValid()) {
             return true;
         }
-        System.err.println(this.getType().name() + " can't move from "
-                + position.getFile() + position.getRank() + " to "
-                + after.getFile() + after.getRank());
+        printErrorMessage(after);
         return false;
     }
 
-    boolean isInValidMoveRange(Position after) {
-        return ((after.x() - this.getPosition().x()) == this.direction(after).xMove())
-                && ((after.y() - this.getPosition().y()) == this.direction(after).yMove());
+    private void printErrorMessage(Position after) {
+        System.err.println(getType().name() + " can't move from "
+                + position.getFile() + position.getRank() + " to "
+                + after.getFile() + after.getRank());
     }
 
-    public void setPosition(Position after) {
-        this.position = after;
+    boolean isInValidMoveRange(Position after) {
+        return ((after.x() - getPosition().x()) == direction(after).xMove())
+                && ((after.y() - getPosition().y()) == direction(after).yMove());
     }
 
     public Position getPosition() {
         return position;
     }
 
-    boolean east(Position after) {
-        return position.x() < after.x();
-    }
-
-    boolean west(Position after) {
-        return position.x() > after.x();
-    }
-
-    boolean north(Position after) {
-        return position.y() < after.y();
-    }
-
-    boolean south(Position after) {
-        return position.y() > after.y();
-    }
-
-    public Direction direction(Position after) {
-        if (position.x() == after.x() && south(after)) {
-            return Direction.SOUTH;
-        }
-        if (position.x() == after.x() && north(after)) {
-            return Direction.NORTH;
-        }
-        if (east(after) && position.y() == after.y()) {
-            return Direction.EAST;
-        }
-        if (west(after) && position.y() == after.y()) {
-            return Direction.WEST;
-        }
-        if (south(after) && west(after)) {
-            return Direction.SOUTHWEST;
-        }
-        if (south(after) && east(after)) {
-            return Direction.SOUTHEAST;
-        }
-        if (north(after) && east(after)) {
-            return Direction.NORTHEAST;
-        }
-        if (north(after) && west(after)) {
-            return Direction.NORTHWEST;
-        }
-        return Direction.SAME;
+    public void setPosition(Position after) {
+        this.position = after;
     }
 
     public boolean isSameColor(Piece piece) {
         if (isWhite() && piece.isWhite()) {
             return true;
         }
-
         return isBlack() && piece.isBlack();
     }
 

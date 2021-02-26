@@ -30,6 +30,7 @@ public class ChessApplication {
                 if (command.startsWith(MOVE)) {
                     String[] commands = command.split(" ");
                     chessGame.move(commands[1], commands[2]);
+                    Thread.sleep(1000);
                     System.out.println(chessView.getResultToPrint(chessGame.getBoard()));
                     continue;
                 }
@@ -39,6 +40,8 @@ public class ChessApplication {
                 }
                 System.out.println("명령어를 다시 입력해주세요.");
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

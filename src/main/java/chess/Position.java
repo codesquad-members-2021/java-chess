@@ -18,6 +18,14 @@ public class Position {
         this.rank = Character.getNumericValue(position.charAt(1));
     }
 
+    public char getFile() {
+        return file;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
     public int x() {
         return file - 'a' + 1;
     }

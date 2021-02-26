@@ -20,13 +20,19 @@ public abstract class Piece implements Comparable<Piece> {
     abstract List<Direction> movableDirections();
 
     public boolean isMovable(Position after) {
-        return movableDirections().contains(direction(after))
-                && isInValidMoveRange(after) && after.isValid();
+        if (movableDirections().contains(direction(after))
+                && isInValidMoveRange(after) && after.isValid()) {
+            return true;
+        }
+        System.err.println(this.getType().name() + " can't move from "
+                + position.getFile() + position.getRank() + " to "
+                + after.getFile() + after.getRank());
+        return false;
     }
 
     boolean isInValidMoveRange(Position after) {
-        return after.x() - this.getPosition().x() == this.direction(after).xMove()
-                && after.y() - this.getPosition().y() ==this.direction(after).yMove();
+        return ((after.x() - this.getPosition().x()) == this.direction(after).xMove())
+                && ((after.y() - this.getPosition().y()) == this.direction(after).yMove());
     }
 
     public void setPosition(Position after) {

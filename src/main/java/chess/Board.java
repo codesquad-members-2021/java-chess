@@ -82,12 +82,10 @@ public class Board {
 
     public void move(Position before, Position after) {
         Piece piece = findPiece(before);
-        if (!piece.isSameColor(findPiece(after)) && piece.isMovable(after)) {
+        if (piece.isMovable(after) && !piece.isSameColor(findPiece(after))) {
             set(after, piece);
             set(before, new Blank(Color.NO_COLOR, before));
-            return;
         }
-            System.err.println("이동할 수 없는 위치입니다. 명령어를 다시 입력해주세요.");
     }
 
     private void set(Position position, Piece piece) {

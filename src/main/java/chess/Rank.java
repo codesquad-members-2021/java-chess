@@ -10,7 +10,7 @@ import pieces.Type;
 import pieces.Position;
 
 import static pieces.PieceCreator.*;
-import static utils.StringUtils.appendNewLine;
+import static util.StringUtils.appendNewLine;
 
 class Rank {
     private static final int BOARD_SIZE = 8;

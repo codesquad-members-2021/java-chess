@@ -11,7 +11,7 @@ import pieces.Position;
 import static pieces.PieceCreator.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static utils.StringUtils.appendNewLine;
+import static util.StringUtils.appendNewLine;
 
 public class BoardTest {
     private Board board;

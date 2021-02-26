@@ -114,19 +114,19 @@ public class BoardTest {
     @Test
     void getWhitePiecesSortByScore() {
         board.initializeWithPieces();
-        List<Piece> getWhitePiecesSortByScore = board.getWhitePiecesSortByScore();
+        List<Piece> getWhitePieces = board.getWhitePiecesSortByScore();
 
         Assertions.assertAll(
-                () -> assertThat(getWhitePiecesSortByScore.get(0)).isEqualTo(Piece.createWhiteQueen()),
-                () -> assertThat(getWhitePiecesSortByScore.get(1)).isEqualTo(Piece.createWhiteRook()),
-                () -> assertThat(getWhitePiecesSortByScore.get(2)).isEqualTo(Piece.createWhiteRook()),
-                () -> assertThat(getWhitePiecesSortByScore.get(3)).isEqualTo(Piece.createWhiteKnight()),
-                () -> assertThat(getWhitePiecesSortByScore.get(4)).isEqualTo(Piece.createWhiteBishop()),
-                () -> assertThat(getWhitePiecesSortByScore.get(5)).isEqualTo(Piece.createWhiteBishop()),
-                () -> assertThat(getWhitePiecesSortByScore.get(6)).isEqualTo(Piece.createWhiteKnight()),
-                () -> assertThat(getWhitePiecesSortByScore.get(7)).isEqualTo(Piece.createWhitePawn()),
-                () -> assertThat(getWhitePiecesSortByScore.get(8)).isEqualTo(Piece.createWhitePawn()),
-                () -> assertThat(getWhitePiecesSortByScore.get(15)).isEqualTo(Piece.createWhiteKing())
+                () -> assertThat(getWhitePieces.get(0)).isEqualTo(Piece.createWhiteQueen()),
+                () -> assertThat(getWhitePieces.get(1)).isEqualTo(Piece.createWhiteRook()),
+                () -> assertThat(getWhitePieces.get(2)).isEqualTo(Piece.createWhiteRook()),
+                () -> assertThat(getWhitePieces.get(3)).isEqualTo(Piece.createWhiteKnight()),
+                () -> assertThat(getWhitePieces.get(4)).isEqualTo(Piece.createWhiteBishop()),
+                () -> assertThat(getWhitePieces.get(5)).isEqualTo(Piece.createWhiteBishop()),
+                () -> assertThat(getWhitePieces.get(6)).isEqualTo(Piece.createWhiteKnight()),
+                () -> assertThat(getWhitePieces.get(7)).isEqualTo(Piece.createWhitePawn()),
+                () -> assertThat(getWhitePieces.get(8)).isEqualTo(Piece.createWhitePawn()),
+                () -> assertThat(getWhitePieces.get(15)).isEqualTo(Piece.createWhiteKing())
         );
 
     }

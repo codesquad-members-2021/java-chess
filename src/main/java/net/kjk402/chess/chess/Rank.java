@@ -22,7 +22,7 @@ public class Rank {
         return pieceList.get(rankIndex);
     }
 
-    public static Rank setWhitePieces(int index) {
+    public static Rank createWhitePiecesRank(int index) {
         Rank rank = new Rank();
         rank.addPiece(Piece.createWhiteRook(new Position(0, index)));
         rank.addPiece(Piece.createWhiteKnight(new Position(1, index)));
@@ -35,7 +35,7 @@ public class Rank {
         return rank;
     }
 
-    public static Rank setBlackPieces(int index) {
+    public static Rank createBlackPiecesRank(int index) {
         Rank rank = new Rank();
         rank.addPiece(Piece.createBlackRook(new Position(0, index)));
         rank.addPiece(Piece.createBlackKnight(new Position(1, index)));
@@ -48,7 +48,7 @@ public class Rank {
         return rank;
     }
 
-    public static Rank setWhitePawns(int index) {
+    public static Rank createWhitePawnsRank(int index) {
         Rank rank = new Rank();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             rank.addPiece(Piece.createWhitePawn(new Position(i, index)));
@@ -56,7 +56,7 @@ public class Rank {
         return rank;
     }
 
-    public static Rank setBlackPawns(int index) {
+    public static Rank createBlackPawnsRank(int index) {
         Rank rank = new Rank();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             rank.addPiece(Piece.createBlackPawn(new Position(i, index)));
@@ -64,7 +64,7 @@ public class Rank {
         return rank;
     }
 
-    public static Rank setBlankLine(int index) {
+    public static Rank createBlackLine(int index) {
         Rank rank = new Rank();
         for (int i = 0; i < Board.BOARD_SIZE; i++) {
             rank.addPiece(Piece.createBlank(new Position(i, index)));

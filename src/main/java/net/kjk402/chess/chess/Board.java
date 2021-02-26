@@ -16,19 +16,19 @@ public class Board {
     private final List<Rank> rankList = new ArrayList<>();
 
     public void initialize() {
-        rankList.add(Rank.setWhitePieces(0));
-        rankList.add(Rank.setWhitePawns(1));
-        rankList.add(Rank.setBlankLine(2));
-        rankList.add(Rank.setBlankLine(3));
-        rankList.add(Rank.setBlankLine(4));
-        rankList.add(Rank.setBlankLine(5));
-        rankList.add(Rank.setBlackPawns(6));
-        rankList.add(Rank.setBlackPieces(7));
+        rankList.add(Rank.createWhitePiecesRank(0));
+        rankList.add(Rank.createWhitePawnsRank(1));
+        rankList.add(Rank.createBlackLine(2));
+        rankList.add(Rank.createBlackLine(3));
+        rankList.add(Rank.createBlackLine(4));
+        rankList.add(Rank.createBlackLine(5));
+        rankList.add(Rank.createBlackPawnsRank(6));
+        rankList.add(Rank.createBlackPiecesRank(7));
     }
 
     public void initializeEmpty() {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            rankList.add(Rank.setBlankLine(i));
+            rankList.add(Rank.createBlackLine(i));
         }
     }
 
@@ -45,7 +45,7 @@ public class Board {
         String rankIndex = "abcdefgh";
         for (int i = 0; i < BOARD_SIZE; i++) {
             int boardSizeMinusI = BOARD_SIZE - i;
-            boardOutput.append(appendNewLine(getRank(rankList.get(boardSizeMinusI - 1)) + " " + (boardSizeMinusI)));
+            boardOutput.append(appendNewLine(getRepresentationByRank(rankList.get(boardSizeMinusI - 1)) + " " + (boardSizeMinusI)));
         }
         boardOutput.append(appendNewLine(rankIndex));
         return boardOutput.toString();
@@ -90,7 +90,7 @@ public class Board {
         return sum;
     }
 
-    private String getRank(Rank rank) {
+    private String getRepresentationByRank(Rank rank) {
         StringBuilder sb = new StringBuilder();
         for (Piece piece : rank.getPieceList()) {
             sb.append(piece.getRepresentation());

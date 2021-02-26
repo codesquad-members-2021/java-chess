@@ -65,7 +65,7 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("주어진 위치의 기물을 조회시 올바르지 않은 point 입력시")
+    @DisplayName("point가 체스판을 벗어난 경우")
     void getPieceFromWrongPoint() {
         board.initializeWithPieces();
         assertThatThrownBy(

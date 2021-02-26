@@ -1,6 +1,5 @@
 package net.coco.pieces;
 
-import java.time.Period;
 import java.util.Objects;
 
 public class Piece {

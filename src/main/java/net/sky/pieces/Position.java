@@ -17,10 +17,6 @@ public class Position {
         this.file = file;
     }
 
-    public char getFile() {
-        return file;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

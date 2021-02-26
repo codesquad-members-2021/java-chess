@@ -1,7 +1,6 @@
 package net.sky.pieces;
 
 
-import java.util.List;
 import java.util.Objects;
 
 public class Piece {
@@ -36,25 +35,17 @@ public class Piece {
         return piece.getColor() == Color.BLACK;
     }
 
-    public double getDefaultPoint() {
-        return pieceType.getPoint();
+    public boolean isMatchingColor(Color color) {
+        return this.color == color;
     }
 
-    public double getPoint(List<Piece> fileList) {
-        double defaultPoint = pieceType.getPoint();
+    public boolean isMatchingType(PieceType pieceType) {
+        return this.pieceType == pieceType;
+    }
 
-        if (pieceType != PieceType.PAWN) {
-            return defaultPoint;
-        }
 
-        int count = 0;
-        for (Piece piece : fileList) {
-            if (piece.getPieceType() == PieceType.PAWN) {
-                count += 1;
-            }
-        }
-
-        return count > 1 ? defaultPoint / 2 : defaultPoint;
+    public double getPoint() {
+        return pieceType.getPoint();
     }
 
     private char classifyRepresentation() {

@@ -4,13 +4,14 @@ import static net.sky.utils.StringUtils.appendNewLine;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import net.sky.pieces.Color;
 import net.sky.pieces.Piece;
 import net.sky.pieces.PieceMaker;
+import net.sky.pieces.PieceType;
 import net.sky.pieces.Position;
 
 public class Board {
@@ -19,7 +20,7 @@ public class Board {
     private final int END_RANK = 1;
     private final char START_FILE = 'a';
     private final char END_FILE = 'h';
-    private Map<Position, Piece> piecePositions = new LinkedHashMap<>();
+    private Map<Position, Piece> piecePositions = new HashMap<>();
     private final PieceMaker whitePieceMaker = new PieceMaker(Color.WHITE);
     private final PieceMaker blackPieceMaker = new PieceMaker(Color.BLACK);
 
@@ -73,17 +74,16 @@ public class Board {
 
     public String showBoard() {
         StringBuilder result = new StringBuilder();
-        final int FILE_SIZE = 8;
         int initRank = START_RANK;
-        int resultSize = 0;
 
-        for (Piece piece : piecePositions.values()) {
-            resultSize++;
-            result.append(piece.getRepresentation());
-            if (resultSize % FILE_SIZE == 0) {
-                result.append(appendNewLine(" " + initRank--));
+        for (int rank = START_RANK; rank >= END_RANK; rank--) {
+            for (char file = START_FILE; file <= END_FILE; file++) {
+                Position position = new Position(rank, file);
+                result.append(piecePositions.get(position));
             }
+            result.append(appendNewLine(" " + initRank--));
         }
+
         result.append(appendNewLine(""));
         result.append(appendNewLine("abcdefgh"));
 
@@ -91,15 +91,7 @@ public class Board {
     }
 
     public int pieceCount(Piece piece) {
-        int pieceCount = 0;
-
-        for (Piece p : piecePositions.values()) {
-            if (p.equals(piece)) {
-                pieceCount += 1;
-            }
-        }
-
-        return pieceCount;
+        return (int) piecePositions.values().stream().filter((p) -> p.equals(piece)).count();
     }
 
     public Piece findPiece(Position position) {
@@ -115,41 +107,49 @@ public class Board {
 
         for (Position position : piecePositions.keySet()) {
             Piece piece = piecePositions.get(position);
-            char file = position.getFile();
-            List<Piece> fileList = getFile(file, color);
-            if (color == piece.getColor()) {
-                point += piece.getPoint(fileList);
+            if (piece.isMatchingColor(color)) {
+                point += piece.getPoint();
             }
+
+        }
+
+        for (char file = START_FILE; file <= END_FILE; file++) {
+            point -= countPawnByFile(file, color);
         }
 
         return point;
     }
 
-    private List<Piece> getFile(char file, Color color) {
-        List<Piece> fileList = new ArrayList<>();
+    private double countPawnByFile(char file, Color color) {
+        double count = 0;
 
         for (int rank = START_RANK; rank >= END_RANK; rank--) {
             Position position = new Position(rank, file);
             Piece piece = piecePositions.get(position);
-            if (color == piece.getColor()) {
-                fileList.add(piece);
+            if (piece.isMatchingColor(color) && piece.isMatchingType(PieceType.PAWN)) {
+                count += 1;
             }
         }
 
-        return fileList;
+        if (count > 1) {
+            return count / 2;
+        }
+
+        return 0;
     }
 
     public String sortByScore(Color color) {
         StringBuilder result = new StringBuilder();
         List<Piece> pieces = new ArrayList<>();
+
         for (Piece piece : piecePositions.values()) {
-            if (piece.getColor() == color) {
+            if (piece.isMatchingColor(color)) {
                 pieces.add(piece);
             }
         }
 
         Collections.sort(pieces,
-            (piece1, piece2) -> Double.compare(piece2.getDefaultPoint(), piece1.getDefaultPoint()));
+            (piece1, piece2) -> Double.compare(piece2.getPoint(), piece1.getPoint()));
 
         for (Piece piece : pieces) {
             result.append(piece);

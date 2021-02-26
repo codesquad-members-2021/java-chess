@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Board {
 
-    List<Pawn> pawnList = new ArrayList<>();
-    private final int BOARD_SIZE = 8;
+    private List<Pawn> pawnList = new ArrayList<>();
+    private static final int BOARD_SIZE = 8;
     private String line = "........\n";
 
     public void addPawnToPawnList(Pawn pawn) {

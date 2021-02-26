@@ -13,22 +13,22 @@ import java.util.List;
 
 public class Board {
     public static final int BOARD_SIZE = 8;
-    private final ArrayList<Rank> rankList = new ArrayList<>();
+    private final List<Rank> rankList = new ArrayList<>();
 
     public void initialize() {
         rankList.add(Rank.setWhitePieces(0));
         rankList.add(Rank.setWhitePawns(1));
-        rankList.add(Rank.setBlackLine(2));
-        rankList.add(Rank.setBlackLine(3));
-        rankList.add(Rank.setBlackLine(4));
-        rankList.add(Rank.setBlackLine(5));
+        rankList.add(Rank.setBlankLine(2));
+        rankList.add(Rank.setBlankLine(3));
+        rankList.add(Rank.setBlankLine(4));
+        rankList.add(Rank.setBlankLine(5));
         rankList.add(Rank.setBlackPawns(6));
         rankList.add(Rank.setBlackPieces(7));
     }
 
     public void initializeEmpty() {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            rankList.add(Rank.setBlackLine(i));
+            rankList.add(Rank.setBlankLine(i));
         }
     }
 
@@ -44,7 +44,8 @@ public class Board {
         StringBuilder boardOutput = new StringBuilder();
         String rankIndex = "abcdefgh";
         for (int i = 0; i < BOARD_SIZE; i++) {
-            boardOutput.append(appendNewLine(getRank(rankList.get(BOARD_SIZE - 1 - i)) + " " + (BOARD_SIZE - i)));
+            int boardSizeMinusI = BOARD_SIZE - i;
+            boardOutput.append(appendNewLine(getRank(rankList.get(boardSizeMinusI - 1)) + " " + (boardSizeMinusI)));
         }
         boardOutput.append(appendNewLine(rankIndex));
         return boardOutput.toString();
@@ -52,14 +53,12 @@ public class Board {
 
     public Piece findPiece(String position) {
         Position tempPosition = new Position(position);
-        return rankList.get((tempPosition.getFile())).getPiece(tempPosition.getRank());
+        return rankList.get(tempPosition.getFile()).getPiece(tempPosition.getRank());
     }
 
     public void move(String position, Piece piece) {
-        Position tempPosition = new Position(position);
-        rankList.get(tempPosition.getFile()).move(tempPosition.getRank(), piece);
-        Rank rank = new Rank();
-        rank.addPiece(piece);
+        Position targetPosition = new Position(position);
+        rankList.get(targetPosition.getFile()).move(targetPosition.getRank(), piece);
     }
 
     public double caculcatePoint(Color color) {
@@ -70,10 +69,10 @@ public class Board {
         return pointSum;
     }
 
-    public String piecesSort(List<Piece> list, Color color) {
-        Collections.sort(list);
+    public String piecesSort(List<Piece> pieceList, Color color) {
+        Collections.sort(pieceList);
         StringBuilder sortedPieces = new StringBuilder();
-        for (Piece piece : list) {
+        for (Piece piece : pieceList) {
             if (piece.getColor() == color) {
                 sortedPieces.append(piece.getRepresentation());
             }

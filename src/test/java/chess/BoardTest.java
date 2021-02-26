@@ -50,14 +50,14 @@ class BoardTest {
                 .isEqualTo(Piece.createWhiteRook(position));
     }
 
-    @DisplayName("기물이 설정한 위치에 올바르게 배치되는지 확인한다.")
+    @DisplayName("기물이 설정한 위치가 올바르게 변경되는지 확인한다.")
     @Test
     void setPiece() {
         board.initializeEmpty();
 
         Position position = new Position("b5");
-        Piece piece = Piece.createBlackRook(position);
-        board.setPiece(position, piece);
+        Piece piece = Piece.createBlackRook(new Position("a1"));
+        board.move(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
         System.out.println(board.showBoard());
@@ -88,15 +88,28 @@ class BoardTest {
     void getBoardWithSeveralPiece() {
         board.initializeEmpty();
 
-        board.setPiece(new Position("b6"), Piece.createBlackPawn());
-        board.setPiece(new Position("e6"), Piece.createBlackQueen());
-        board.setPiece(new Position("b8"), Piece.createBlackKing());
-        board.setPiece(new Position("c8"), Piece.createBlackRook());
+        Position position = new Position("b6");
+        addPiece(position, Piece.createBlackPawn(position));
+        position = new Position("e6");
+        addPiece(position, Piece.createBlackQueen(position));
+        position = new Position("b8");
+        addPiece(position, Piece.createBlackKing(position));
+        position = new Position("c8");
+        addPiece(position, Piece.createBlackRook(position));
 
-        board.setPiece(new Position("f2"), Piece.createWhitePawn());
-        board.setPiece(new Position("g2"), Piece.createWhitePawn());
-        board.setPiece(new Position("e1"), Piece.createWhiteRook());
-        board.setPiece(new Position("f1"), Piece.createWhiteKing());
-        board.setPiece(new Position("f3"), Piece.createWhitePawn());
+        position = new Position("f2");
+        addPiece(position, Piece.createWhitePawn(position));
+        position = new Position("g2");
+        addPiece(position, Piece.createWhitePawn(position));
+        position = new Position("e1");
+        addPiece(position, Piece.createWhiteRook(position));
+        position = new Position("f1");
+        addPiece(position, Piece.createWhiteKing(position));
+        position = new Position("f3");
+        addPiece(position, Piece.createWhitePawn(position));
+    }
+
+    void addPiece(Position position, Piece piece) {
+        board.move(position, piece);
     }
 }

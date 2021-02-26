@@ -55,7 +55,7 @@ public class Board {
         return board.get(position.getY()).getPieceList().get(position.getX());
     }
 
-    public void setPiece(Position position, Piece piece) {
+    public void move(Position position, Piece piece) {
         int x = position.getX();
         int y = position.getY();
         board.get(y).remove(x);

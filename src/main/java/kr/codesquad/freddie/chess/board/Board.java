@@ -94,12 +94,6 @@ public class Board {
                 .collect(Collectors.toList());
     }
 
-    public String getRepresentation() {
-        return files.stream()
-                .map(File::getRepresentation)
-                .collect(Collectors.joining(System.lineSeparator()));
-    }
-
     public int getNumberOf(Color color, Kind kind) {
         return files.stream()
                 .mapToInt(file -> file.getNumberOf(color, kind))
@@ -113,6 +107,10 @@ public class Board {
                 .collect(Collectors.groupingBy(Function.identity(),
                         Collectors.summingDouble(CalculablePiece::getPoint)
                 ));
+    }
+
+    public List<File> getFiles() {
+        return Collections.unmodifiableList(files);
     }
 
     @Override

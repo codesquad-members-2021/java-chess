@@ -66,7 +66,6 @@ class FileTest extends ChessTestBase {
         assertThat(file.set(7, whitePieceFactory.createQueen())).isEqualTo(PieceFactory.createBlank());
         assertThat(file.get(0)).isEqualTo(blackPieceFactory.createQueen());
         assertThat(file.get(7)).isEqualTo(whitePieceFactory.createQueen());
-        assertThat(file.getRepresentation()).isEqualTo("Q......q");
     }
 
     @Test
@@ -207,35 +206,5 @@ class FileTest extends ChessTestBase {
         for (int i = 0; i < File.SIZE; i++) {
             assertThat(file.get(i).getColor()).isEqualTo(expected);
         }
-    }
-
-    @Test
-    void getRepresentationFillWithBlackPawn() {
-        file.fillWithPawn(Color.BLACK);
-        assertThat(file.getRepresentation()).isEqualTo("PPPPPPPP");
-    }
-
-    @Test
-    void getRepresentationFillWithWhitePawn() {
-        file.fillWithPawn(Color.WHITE);
-        assertThat(file.getRepresentation()).isEqualTo("pppppppp");
-    }
-
-    @Test
-    void getRepresentationFillWithBlackRoyal() {
-        file.fillWithRoyal(Color.BLACK);
-        assertThat(file.getRepresentation()).isEqualTo("RNBQKBNR");
-    }
-
-    @Test
-    void getRepresentationFillWithWhiteRoyal() {
-        file.fillWithRoyal(Color.WHITE);
-        assertThat(file.getRepresentation()).isEqualTo("rnbqkbnr");
-    }
-
-    @Test
-    void getRepresentationFillWithBlank() {
-        file.fillWithBlank();
-        assertThat(file.getRepresentation()).isEqualTo("........");
     }
 }

@@ -1,5 +1,6 @@
 package kr.codesquad.freddie.chess;
 
+import kr.codesquad.freddie.chess.board.BoardView;
 import kr.codesquad.freddie.chess.command.Command;
 import kr.codesquad.freddie.chess.game.ChessGame;
 
@@ -11,13 +12,13 @@ public class Main {
     public static void main(String[] args) throws IOException {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             ChessGame chessGame = ChessGame.create();
-
+            BoardView boardView = new BoardView(chessGame.getBoard());
             for (String command = br.readLine();
                  !command.equals("end");
                  command = br.readLine()) {
                 try {
                     Command.create(command).execute(chessGame);
-                    System.out.println(chessGame.getBoard().getRepresentation());
+                    System.out.println(boardView.getRepresentation());
                 } catch (IllegalArgumentException e) {
                     System.out.println(e.getMessage());
                 }

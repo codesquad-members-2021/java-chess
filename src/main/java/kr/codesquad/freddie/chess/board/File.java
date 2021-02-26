@@ -84,16 +84,6 @@ public class File {
                 .collect(Collectors.toList());
     }
 
-    public String getRepresentation() {
-        if (pieces.isEmpty()) {
-            return "........";
-        }
-
-        return pieces.stream()
-                .map(Piece::getRepresentation)
-                .collect(Collectors.joining());
-    }
-
     @Override
     public String toString() {
         return "File{" +

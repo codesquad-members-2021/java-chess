@@ -184,43 +184,6 @@ class BoardTest extends ChessTestBase {
     }
 
     @Test
-    void getRepresentationInitBoard() {
-        initBoard();
-        String representation = board.getRepresentation();
-
-        String expected = new StringBuilder()
-                .append("RNBQKBNR").append(System.lineSeparator())
-                .append("PPPPPPPP").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("pppppppp").append(System.lineSeparator())
-                .append("rnbqkbnr")
-                .toString();
-        assertThat(representation)
-                .isEqualTo(expected);
-    }
-
-    @Test
-    void getRepresentationNotInitBoard() {
-        String representation = board.getRepresentation();
-
-        String expected = new StringBuilder()
-                .append("........").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append("........")
-                .toString();
-        assertThat(representation)
-                .isEqualTo(expected);
-    }
-
-    @Test
     @DisplayName("set으로 넣은 뒤 getRepresentation과 getNumberOf로 확인")
     void verifySetWithGetRepresentationAndGetNumberOf() {
         for (int i = 0; i < MAX_SIZE; i++) {
@@ -240,19 +203,8 @@ class BoardTest extends ChessTestBase {
         board.set("g2", whitePieceFactory.createPawn());
         board.set("e1", whitePieceFactory.createRook());
         board.set("f1", whitePieceFactory.createKing());
-
-        String expected = new StringBuilder()
-                .append(".KR.....").append(System.lineSeparator())
-                .append("P.PB....").append(System.lineSeparator())
-                .append(".P..Q...").append(System.lineSeparator())
-                .append("........").append(System.lineSeparator())
-                .append(".....nq.").append(System.lineSeparator())
-                .append(".....p..").append(System.lineSeparator())
-                .append("......p.").append(System.lineSeparator())
-                .append("....rk..")
-                .toString();
+        
         assertAll(
-                () -> assertThat(board.getRepresentation()).isEqualTo(expected),
                 () -> assertThat(board.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1),
                 () -> assertThat(board.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(3),
                 () -> assertThat(board.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(1),

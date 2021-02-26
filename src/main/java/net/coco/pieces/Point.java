@@ -1,8 +1,8 @@
 package net.coco.pieces;
 
 public class Point {
-    private int row;
-    private int column;
+    private final int row;
+    private final int column;
 
     public Point(String point) {
         this.row = point.charAt(0) - 'a';
@@ -11,10 +11,7 @@ public class Point {
     }
 
     private void pointValid(int row, int column) {
-        if (row >= 8 || row < 0) {
-            throw new IllegalArgumentException("올바른 point가 아닙니다.");
-        }
-        if (column >= 8 || column < 0) {
+        if (row >= 8 || row < 0 || column >= 8 || column < 0) {
             throw new IllegalArgumentException("올바른 point가 아닙니다.");
         }
     }

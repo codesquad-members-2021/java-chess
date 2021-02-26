@@ -2,41 +2,39 @@ package net.isaac.chess;
 
 import net.isaac.pieces.Piece;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Rank {
-    private static final int MAX_SIZE = 8;
-    private Piece[] pieces = new Piece[MAX_SIZE];
+    public static final char MIN_FILE = 'a';
+    public static final char MAX_FILE = 'h';
+    private Map<Character, Piece> pieces = new HashMap<>();
 
     public Rank() {
-        for (int index = 0; index < MAX_SIZE; index++) {
-            pieces[index] = Piece.createPiece(Piece.Color.NOCOLOR, Piece.Type.BLANK);
+        for (char file = MIN_FILE; file <= MAX_FILE; file++) {
+            setPiece(Piece.createPiece(Piece.Color.NOCOLOR, Piece.Type.BLANK), file);
         }
     }
 
     public Piece getPiece(char file) {
-        int index = getIndex(file);
-        if (!isValid(index)) {
+        if (!isValid(file)) {
             System.err.println(String.format("Rank.getPiece: %c는 유효한 자리가 아닙니다.", file));
             return null;
         }
 
-        return pieces[index];
+        return pieces.get(file);
     }
 
     public void setPiece(Piece piece, char file) {
-        int index = getIndex(file);
-        if (!isValid(index)) {
+        if (!isValid(file)) {
             System.err.println(String.format("Rank.setPiece: %c는 유효한 자리가 아닙니다.", file));
             return;
         }
 
-        pieces[index] = piece;
-    }
-
-    private int getIndex(char file) {
-        return file - 'a';
+        pieces.put(file, piece);
     }
 
     private boolean isValid(int index) {
-        return index >= 0 && index < MAX_SIZE;
+        return index >= MIN_FILE && index <= MAX_FILE;
     }
 }

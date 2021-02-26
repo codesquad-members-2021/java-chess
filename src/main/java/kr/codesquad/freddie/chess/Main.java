@@ -1,6 +1,5 @@
 package kr.codesquad.freddie.chess;
 
-import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.command.Command;
 import kr.codesquad.freddie.chess.game.ChessGame;
 

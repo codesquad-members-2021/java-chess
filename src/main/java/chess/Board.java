@@ -10,7 +10,6 @@ import pieces.Type;
 import pieces.Position;
 
 public class Board {
-
     private final List<Rank> board = new ArrayList<>();
 
     public int sizeofPieces(Color color, Type type) {

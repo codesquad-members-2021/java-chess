@@ -9,6 +9,10 @@ public class Piece {
         this.type = type;
     }
 
+    public Type getType() {
+        return type;
+    }
+
     //Board 출력을 위한 문자 반환
     public char getRepresentation() {
         if (color == Color.BLACK) {

@@ -1,6 +1,6 @@
 package kr.codesquad.freddie.chess.command;
 
-import kr.codesquad.freddie.chess.board.Board;
+import kr.codesquad.freddie.chess.game.ChessGame;
 
 public interface Command {
     static Command create(String command) {
@@ -15,5 +15,5 @@ public interface Command {
         throw new IllegalArgumentException("잘못된 명령어 입니다. command : " + command);
     }
 
-    void execute(Board board);
+    void execute(ChessGame chessGame);
 }

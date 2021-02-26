@@ -1,6 +1,6 @@
 package kr.codesquad.freddie.chess.command;
 
-import kr.codesquad.freddie.chess.board.Board;
+import kr.codesquad.freddie.chess.game.ChessGame;
 
 public class Move implements Command {
     private String[] command;
@@ -10,7 +10,7 @@ public class Move implements Command {
     }
 
     @Override
-    public void execute(Board board) {
-        board.move(command[1], command[2]);
+    public void execute(ChessGame chessGame) {
+        chessGame.move(command[1], command[2]);
     }
 }

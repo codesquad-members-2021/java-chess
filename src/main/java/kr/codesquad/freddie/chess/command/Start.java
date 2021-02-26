@@ -1,10 +1,10 @@
 package kr.codesquad.freddie.chess.command;
 
-import kr.codesquad.freddie.chess.board.Board;
+import kr.codesquad.freddie.chess.game.ChessGame;
 
 public class Start implements Command {
     @Override
-    public void execute(Board board) {
-        board.initialize();
+    public void execute(ChessGame chessGame) {
+        chessGame.initialize();
     }
 }

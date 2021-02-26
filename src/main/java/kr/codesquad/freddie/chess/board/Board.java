@@ -20,14 +20,7 @@ public class Board {
         }
     }
 
-    public Board initialize() {
-        initializePieceBy(Color.BLACK);
-        initializeEmptyPiece();
-        initializePieceBy(Color.WHITE);
-        return this;
-    }
-
-    private void initializePieceBy(Color color) {
+    public void initializePieceBy(Color color) {
         int royalIndex = new RankIndex(color.royalInitializationRank()).getRankIndexForList();
         int pawnIndex = new RankIndex(color.pawnInitializationRank()).getRankIndexForList();
 
@@ -35,7 +28,7 @@ public class Board {
         files.get(pawnIndex).fillWithPawn(color);
     }
 
-    private void initializeEmptyPiece() {
+    public void initializeEmptyPiece() {
         files.get(new RankIndex(3).getRankIndexForList()).fillWithBlank();
         files.get(new RankIndex(4).getRankIndexForList()).fillWithBlank();
         files.get(new RankIndex(5).getRankIndexForList()).fillWithBlank();
@@ -85,18 +78,6 @@ public class Board {
 
         return files.get(positionConverter.getRankIndexForList())
                 .set(positionConverter.getFileIndexForList(), piece);
-    }
-
-    public void move(String source, String target) {
-        Piece sourcePiece = findPiece(source);
-
-        if(!sourcePiece.isCanMove(Position.of(source), Position.of(target), this)) {
-            String message = "이동 위치가 올바르지 않습니다. : source : " + source + ", target : " + target;
-            throw new IllegalArgumentException(message);
-        }
-
-        set(target, sourcePiece);
-        set(source, Piece.createBlank());
     }
 
     public int pieceCount() {

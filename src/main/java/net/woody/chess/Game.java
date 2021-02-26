@@ -15,7 +15,7 @@ public class Game {
                 String command = sc.nextLine();
                 ongoing = CommandUtils.isGameContinued(command);
                 if (ongoing) {
-                    System.out.println(board.showBoard());
+                    System.out.println(board);
                 }
             } while (ongoing);
         }

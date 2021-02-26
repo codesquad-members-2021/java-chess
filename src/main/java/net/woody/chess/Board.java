@@ -5,6 +5,7 @@ import static net.woody.utils.StringUtils.appendNewLine;
 import net.woody.pieces.Piece;
 import net.woody.pieces.Piece.Color;
 import net.woody.pieces.Type;
+import net.woody.utils.ValidationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.stream.Stream;
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
+    private static final int LOWERCASE_TO_INT = 97;
+    private static final int CHARINT_TO_INT = 48;
 
     private final List<Rank> board;
 
@@ -26,8 +29,8 @@ public class Board {
     }
 
     public Piece findPiece(String position) {
-        int rank = 0;
-        int file = 0;
+        int file = position.charAt(0) - LOWERCASE_TO_INT;
+        int rank = position.charAt(1) - CHARINT_TO_INT - 1;
         return getRank(rank).getPiece(file);
     }
 
@@ -43,7 +46,6 @@ public class Board {
         return targetCounter;
     }
 
-
     public static Board createBlankBoard() {
         List<Rank> board = new ArrayList<>(BOARD_LENGTH);
         for (int i = 0; i < BOARD_LENGTH; i++) {
@@ -54,14 +56,14 @@ public class Board {
 
     public static Board createInitBoard() {
         List<Rank> initBoard = Stream.of(
-                Rank.createBlackPieceRank(),
-                Rank.createBlackPawnRank(),
-                Rank.createBlankRank(),
-                Rank.createBlankRank(),
-                Rank.createBlankRank(),
-                Rank.createBlankRank(),
+                Rank.createWhitePieceRank(),
                 Rank.createWhitePawnRank(),
-                Rank.createWhitePieceRank()
+                Rank.createBlankRank(),
+                Rank.createBlankRank(),
+                Rank.createBlankRank(),
+                Rank.createBlankRank(),
+                Rank.createBlackPawnRank(),
+                Rank.createBlackPieceRank()
         ).collect(Collectors.toCollection(ArrayList::new));
         return new Board(initBoard);
     }
@@ -82,12 +84,13 @@ public class Board {
         return numOfPieces;
     }
 
-    // TODO : 네이밍 수정 혹은 toString 오버라이드
-    public String showBoard() {
-        StringBuilder sb = new StringBuilder();
-        for (Rank rank : board) {
-            sb.append(appendNewLine(rank.toString()));
+    @Override
+    public String toString() {
+        StringBuilder boardState = new StringBuilder();
+        for (int i = BOARD_LENGTH - 1; i >= 0; i--) {
+            boardState.append(appendNewLine(getRank(i).toString()));
         }
-        return sb.toString();
+
+        return boardState.toString();
     }
 }

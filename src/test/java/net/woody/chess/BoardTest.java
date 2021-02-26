@@ -80,7 +80,6 @@ class BoardTest {
                         appendNewLine("pppppppp") +
                         appendNewLine("rnbqkbnr");
 
-        String actualResult = board.showBoard();
-        assertThat(expectedResult).isEqualTo(actualResult);
+        assertThat(board.toString()).isEqualTo(expectedResult);
     }
 }

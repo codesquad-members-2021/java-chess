@@ -1,6 +1,6 @@
 package net.isaac.pieces;
 
-public class Piece {
+public class Piece implements Comparable<Piece> {
     private final Color color;
     private final Type type;
 
@@ -35,6 +35,11 @@ public class Piece {
 
     public static Piece createPiece(Color color, Type type) {
         return new Piece(color, type);
+    }
+
+    @Override
+    public int compareTo(Piece other) {
+        return Double.valueOf(type.defaultPoint).compareTo(other.type.defaultPoint);
     }
 
     public enum Color {

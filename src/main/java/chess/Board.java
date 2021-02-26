@@ -73,57 +73,13 @@ public class Board {
     }
 
     public double calculatePoint(Color color) {
-        double pawn = countPiece(color, Type.PAWN);
-        double knight = countPiece(color, Type.KNIGHT);
-        double rook = countPiece(color, Type.ROOK);
-        double bishop = countPiece(color, Type.BISHOP);
-        double queen = countPiece(color, Type.QUEEN);
+        double result = board.stream()
+                .map(Rank::getPieceList)
+                .flatMap(List::stream)
+                .filter(x -> x.getColor() == color)
+                .mapToDouble(x -> x.getType().getDefaultPoint())
+                .sum();
 
-        double sameFilePawn = getSameFileNum(pawn, color);
-        pawn = pawn - sameFilePawn;
-
-        return getSum(pawn, sameFilePawn, knight, rook, bishop, queen);
-    }
-
-    private int countPiece(Color color, Type type) {
-        Optional<Long> result = board.stream()
-                .map(x -> x.count(color, type))
-                .reduce((a, b) -> a + b);
-        return result.get().intValue();
-    }
-
-    private double getSameFileNum(double pawnNum, Color color) {
-        Piece pawn =
-                color == Color.WHITE ? Piece.createWhitePawn() : Piece.createBlackPawn();
-        String[] positions = getPawnPosition(pawn);
-        Set<String> deletedSamePositions = new HashSet<>(Arrays.asList(positions));
-        return (pawnNum - deletedSamePositions.size()) * 2;
-    }
-
-    private String[] getPawnPosition(Piece pawn) {
-        String[] positionArr = new String[countPiece(pawn.getColor(), pawn.getType())];
-        int index = 0;
-        for (int i = 0; i < BOARD_RANK; i++) {
-            for (int j = 0; j < BOARD_FILE; j++) {
-                char x = (char) ('a' + i);
-                char y = (char) ('1' + j);
-                String position = x + "" + y;
-                if (pawn.equals(findPiece(position))) {
-                    positionArr[index] = x + "";
-                    index++;
-                }
-            }
-        }
-        return positionArr;
-    }
-
-    private double getSum(double pawn, double sameFilePawn, double knight, double rook, double bishop, double queen) {
-        return pawn * Type.PAWN.getDefaultPoint() +
-                sameFilePawn * Type.PAWN.getDefaultPoint() * 0.5 +
-                knight * Type.KNIGHT.getDefaultPoint() +
-                rook * Type.ROOK.getDefaultPoint() +
-                bishop * Type.BISHOP.getDefaultPoint() +
-                queen * Type.QUEEN.getDefaultPoint();
     }
 
     public List<Type> sortPiece(Color color) {

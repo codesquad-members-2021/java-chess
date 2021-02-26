@@ -47,6 +47,18 @@ public class BoardTest {
         Assertions.assertAll(
                 () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.PAWN)).isEqualTo(8),
                 () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.KING)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.KNIGHT)).isEqualTo(2),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.QUEEN)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.ROOK)).isEqualTo(2),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.BISHOP)).isEqualTo(2),
+
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.PAWN)).isEqualTo(8),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.KING)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.KNIGHT)).isEqualTo(2),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.QUEEN)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.ROOK)).isEqualTo(2),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.BISHOP)).isEqualTo(2),
+
                 () -> assertThat(board.getPieceCount(Color.NO_COLOR, PieceType.NO_PIECE)).isEqualTo(32)
         );
 

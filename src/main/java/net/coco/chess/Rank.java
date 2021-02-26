@@ -71,10 +71,10 @@ public class Rank {
         return this;
     }
 
-    public int findPieceCount(PieceType pieceType,Color color) {
+    public int findPieceCount(PieceType pieceType, Color color) {
         return (int) pieces.stream()
                 .filter(piece -> piece.getPieceType() == pieceType)
-                .filter(piece -> piece.getColor()==color)
+                .filter(piece -> piece.getColor() == color)
                 .count();
     }
 

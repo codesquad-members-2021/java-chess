@@ -1,16 +1,17 @@
 package net.jung.chess;
+
 import java.util.*;
 
 import static net.jung.chess.Piece.*;
 
 public class Rank {
     private ArrayList<Piece> pieceList = new ArrayList<>();
-    public static final int MAX_PIECES_IN_RANK =8;
+    public static final int MAX_PIECES_IN_RANK = 8;
 
     public int rankPieceSize() {
-        int size =0;
-        for(Piece piece : pieceList) {
-            if( piece.isPiece() ){
+        int size = 0;
+        for (Piece piece : pieceList) {
+            if (piece.isPiece()) {
                 size++;
             }
         }
@@ -18,22 +19,21 @@ public class Rank {
     }
 
 
-
     public void addWhitePiece(Piece piece) {
-        if(piece.isWhite()){
+        if (piece.isWhite()) {
             pieceList.add(piece);
         }
     }
 
     public void addBlackPiece(Piece piece) {
-        if(piece.isBlack()){
+        if (piece.isBlack()) {
             pieceList.add(piece);
         }
     }
 
     public static Rank initializeWhitePawnRank() {
         Rank whitePawnRank = new Rank();
-        for(int i = 0; i< MAX_PIECES_IN_RANK; i++) {
+        for (int i = 0; i < MAX_PIECES_IN_RANK; i++) {
             whitePawnRank.addWhitePiece(createWhitePawn());
         }
         return whitePawnRank;
@@ -41,7 +41,7 @@ public class Rank {
 
     public static Rank initializeBlackPawnRank() {
         Rank blackPawnRank = new Rank();
-        for(int i = 0; i< MAX_PIECES_IN_RANK; i++) {
+        for (int i = 0; i < MAX_PIECES_IN_RANK; i++) {
             blackPawnRank.addBlackPiece(createBlackPawn());
         }
         return blackPawnRank;
@@ -81,7 +81,7 @@ public class Rank {
     public static Rank initializeBlankRank() {
         Rank blankRank = new Rank();
 
-        for(int i = 0; i< MAX_PIECES_IN_RANK; i++){
+        for (int i = 0; i < MAX_PIECES_IN_RANK; i++) {
             blankRank.pieceList.add(createBlank());
         }
         return blankRank;
@@ -93,17 +93,14 @@ public class Rank {
 
     public String getRankRepresentation() {
         StringBuilder strBuilder = new StringBuilder();
-        for(int i =0; i< pieceList.size(); i++ ) {
+        for (int i = 0; i < pieceList.size(); i++) {
             strBuilder.append(getPiece(i).getRepresentation());
         }
         return strBuilder.toString();
     }
 
-    public void resetRank() {
-        pieceList.clear();
-    }
-
-    public void replacePiece (int fileIndex, Piece piece){
+    public void replacePiece(int fileIndex, Piece piece) {
         pieceList.set(fileIndex, piece);
     }
+
 }

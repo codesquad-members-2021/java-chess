@@ -58,9 +58,7 @@ public class Board {
     }
 
     public void reset() {
-        for (Rank rank : rankList) {
-            rank.resetRank();
-        }
+        rankList.clear();
     }
 
     public Rank getRank(int rankNum) {

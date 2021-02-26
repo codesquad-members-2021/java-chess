@@ -4,19 +4,19 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        String start = "start";
-        String end = "end";
+        final String START = "start";
+        final String END = "end";
         Board board = new Board();
 
-        try( Scanner sc = new Scanner(System.in)) {
+        try (Scanner sc = new Scanner(System.in)) {
             while (true) {
                 System.out.print(">>");
                 String input = sc.nextLine();
-                if (end.equalsIgnoreCase(input)) {
+                if (END.equalsIgnoreCase(input)) {
                     break;
                 }
 
-                if (start.equalsIgnoreCase(input)) {
+                if (START.equalsIgnoreCase(input)) {
                     System.out.println("체스게임을 시작합니다.\n");
                     board.reset();
                     board.initialize();

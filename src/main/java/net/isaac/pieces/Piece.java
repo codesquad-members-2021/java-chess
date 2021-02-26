@@ -44,12 +44,19 @@ public class Piece {
     }
 
     public enum Type {
-        PAWN('p'), KING('k'), QUEEN('q'), ROOK('r'),
-        BISHOP('b'), KNIGHT('n'), BLANK('.');
+        PAWN('p', 1.0),
+        KING('k', 0.0),
+        QUEEN('q', 9.0),
+        ROOK('r', 5.0),
+        BISHOP('b', 3.0),
+        KNIGHT('n', 2.5),
+        BLANK('.', 0.0);
         private final char representation;
+        public final double defaultPoint;
 
-        Type(char representation) {
+        Type(char representation, double defaultPoint) {
             this.representation = representation;
+            this.defaultPoint = defaultPoint;
         }
 
         public char getWhiteRepresentation() {

@@ -18,8 +18,9 @@ public enum PieceType {
     }
 
     public char getRepresentation(Piece.Color color) {
-        if (color == Piece.Color.WHITE)
+        if (color == Piece.Color.WHITE) {
             return getWhiteRepresentation();
+        }
         return getBlackRepresentation();
     }
 

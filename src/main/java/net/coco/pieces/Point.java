@@ -1,12 +1,12 @@
 package net.coco.pieces;
 
 public class Point {
-    private final int row;
     private final int column;
+    private final int row;
 
     public Point(String point) {
-        this.row = point.charAt(0) - 'a';
-        this.column = Character.getNumericValue(point.charAt(1)) - 1;
+        this.column = point.charAt(0) - 'a';
+        this.row = Character.getNumericValue(point.charAt(1)) - 1;
         pointValid(row, column);
     }
 
@@ -16,11 +16,11 @@ public class Point {
         }
     }
 
-    public int getRow() {
-        return row;
-    }
-
     public int getColumn() {
         return column;
+    }
+
+    public int getRow() {
+        return row;
     }
 }

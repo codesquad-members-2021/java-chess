@@ -42,7 +42,7 @@ public class Board {
 
     public Piece getPieceFromPoint(String pointStr) {
         Point point = new Point(pointStr);
-        return ranks.get(point.getColumn()).findPieceFromPoint(point.getRow());
+        return ranks.get(point.getRow()).findPieceFromPoint(point.getColumn());
     }
 
     public String getRankResult(int findRank) {
@@ -59,7 +59,7 @@ public class Board {
     public void move(String pointStr, Piece piece) {
         Point point = new Point(pointStr);
 
-        ranks.get(point.getColumn()).movePieceToPoint(piece, point.getRow());
+        ranks.get(point.getRow()).movePieceToPoint(piece, point.getColumn());
         //todo : piece가 있던 위치도 blank로 변경해야함
     }
 

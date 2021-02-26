@@ -128,7 +128,7 @@ public class Board {
         return count;
     }
 
-    public double caculcatePoint(Piece.Color color) {
+    public double calculatePoint(Piece.Color color) {
         //file 에 존재하는 pawn 개수 세기 위한 Map
         Map<Character, Integer> pawnNumAtFile = new HashMap<>();
 

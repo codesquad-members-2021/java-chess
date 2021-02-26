@@ -88,8 +88,8 @@ class BoardTest {
         board.add(Piece.createPiece(Piece.Color.WHITE, Piece.Type.ROOK), "e1");
         board.add(Piece.createPiece(Piece.Color.WHITE, Piece.Type.KING), "f1");
 
-        assertEquals(15.0, board.caculcatePoint(Piece.Color.BLACK), 0.01);
-        assertEquals(7.0, board.caculcatePoint(Piece.Color.WHITE), 0.01);
+        assertEquals(15.0, board.calculatePoint(Piece.Color.BLACK), 0.01);
+        assertEquals(7.0, board.calculatePoint(Piece.Color.WHITE), 0.01);
 
         System.out.println(board.getRepresentation());
     }
@@ -101,7 +101,7 @@ class BoardTest {
         List<Piece> blackSortedPiecesDescending = initialDescendingSortedPieces(Piece.Color.BLACK);
         List<Piece> whiteSortedPiecesAscending = initialAscendingSortedPieces(Piece.Color.WHITE);
         List<Piece> whiteSortedPiecesDescending = initialDescendingSortedPieces(Piece.Color.WHITE);
-        
+
         assertAll(
                 () -> assertThat(board.getSortedPieces(Piece.Color.BLACK, SortOrder.ASCENDING)).isEqualTo(blackSortedPiecesAscending),
                 () -> assertThat(board.getSortedPieces(Piece.Color.BLACK, SortOrder.DESCENDING)).isEqualTo(blackSortedPiecesDescending),

@@ -12,7 +12,7 @@ import piece.Position;
 public class Board {
     private final List<Rank> board = new ArrayList<>();
 
-    public int sizeofPieces(Color color, Type type) {
+    public int countPieces(Color color, Type type) {
         int count = 0;
         for (Rank rank : board) {
             count += rank.countPieces(color, type);
@@ -39,14 +39,14 @@ public class Board {
 
     public Piece findPiece(String position) {
         Position p = new Position(position);
-        Rank rank = board.get(p.getYPos());
-        return rank.findPiece(p.getXPos());
+        Rank rank = board.get(p.getYIndex());
+        return rank.findPiece(p.getXIndex());
     }
 
     public void move(String positionStr, Piece piece) {
         Position position = new Position(positionStr);
-        Rank rank = board.get(position.getYPos());
-        rank.move(position.getXPos(), piece);
+        Rank rank = board.get(position.getYIndex());
+        rank.move(position.getXIndex(), piece);
     }
 
     public double calculatePoint(Color color) {

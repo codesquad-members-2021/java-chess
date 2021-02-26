@@ -26,12 +26,18 @@ public class Position {
         return y;
     }
 
-    public int getXPos() {
+    public int getXIndex() {
         return x - 1;
     }
 
-    public int getYPos() {
+    public int getYIndex() {
         return y - 1;
+    }
+
+    public List<Position> getPrevNextRows() {
+        return Arrays.asList(
+                new Position(getXIndex(), getYIndex() - 1),
+                new Position(getXIndex(), getYIndex() + 1));
     }
 
     @Override
@@ -52,9 +58,4 @@ public class Position {
         return "Position [x=" + x + ", y=" + y + ']';
     }
 
-    public List<Position> nextColumn() {
-        return Arrays.asList(
-                new Position(getXPos(), getYPos() - 1),
-                new Position(getXPos(), getYPos() + 1));
-    }
 }

@@ -15,8 +15,8 @@ public class PositionTest {
         assertAll(
                 () -> assertThat(position.getX()).isEqualTo(1),
                 () -> assertThat(position.getY()).isEqualTo(1),
-                () -> assertThat(position.getXPos()).isEqualTo(0),
-                () -> assertThat(position.getYPos()).isEqualTo(0)
+                () -> assertThat(position.getXIndex()).isEqualTo(0),
+                () -> assertThat(position.getYIndex()).isEqualTo(0)
         );
     }
 }

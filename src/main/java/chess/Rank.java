@@ -89,10 +89,6 @@ class Rank {
         return rank;
     }
 
-    public int size() {
-        return pieces.size();
-    }
-
     Piece findPiece(int xPos) {
         return pieces.get(xPos);
     }

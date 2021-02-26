@@ -43,8 +43,8 @@ public class Piece implements Comparable<Piece> {
             return point;
         }
 
-        List<Position> nextColumn = this.position.nextColumn();
-        for (Position position : nextColumn) {
+        List<Position> prevNextRows = this.position.getPrevNextRows();
+        for (Position position : prevNextRows) {
             if (pieces.contains(new Piece(this.color, this.type, position))) {
                 return point - 0.5;
             }

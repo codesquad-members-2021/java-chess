@@ -37,10 +37,8 @@ public class Piece implements Comparable<Piece> {
         }
     }
 
-    private Position position;
-
+    private final Position position;
     private final Color color;
-
     private final Type type;
 
     private Piece(Color color, Type type, Position position) {
@@ -123,10 +121,6 @@ public class Piece implements Comparable<Piece> {
 
     public boolean isBlack() {
         return getColor() == Color.BLACK;
-    }
-
-    public boolean isPawn() {
-        return getRepresentation() == Type.PAWN.getBlackRepresentation() || getRepresentation() == Type.PAWN.getWhiteRepresentation();
     }
 
     private static Piece createWhite(Type type, Position position) {

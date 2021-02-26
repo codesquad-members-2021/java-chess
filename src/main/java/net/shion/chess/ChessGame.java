@@ -7,17 +7,23 @@ import java.util.Scanner;
 
 public class ChessGame {
 
-    private Board board = new Board();
-    private Scanner scanner = new Scanner(System.in);
+    private Board board;
+
+    public ChessGame() {
+        board = new Board();
+    }
 
     public static void main(String[] args) {
         ChessGame chessGame = new ChessGame();
 
         chessGame.welcomeUser();
-        String command = chessGame.getCommand();
-        chessGame.proceedBy(command);
-        chessGame.printEndScreen();
 
+        try (Scanner scanner = new Scanner(System.in)) {
+            String command = chessGame.getCommand(scanner);
+            chessGame.proceedBy(command, scanner);
+        }
+
+        chessGame.sayGoodBye();
     }
 
     private void welcomeUser() {
@@ -25,26 +31,26 @@ public class ChessGame {
         System.out.println("게임 시작은 start, 종료는 end를 입력하세요.");
     }
 
-    private String getCommand() {
+    private String getCommand(Scanner scanner) {
         System.out.print("> ");
         return scanner.nextLine();
     }
 
-    private void proceedBy(String command) {
+    private void proceedBy(String command, Scanner scanner) {
         if (command.equals("start")) {
             startGame();
+            proceedGame(scanner);
         }
     }
 
     private void startGame() {
         showInitialBoard();
-        proceedGame();
     }
 
-    private void proceedGame() {
+    private void proceedGame(Scanner scanner) {
         String command = "";
         while(!command.equals("end")) {
-            command = getCommand();
+            command = getCommand(scanner);
             Piece piece = board.findPiece(command);
             System.out.println("당신은 " + piece.getColor().name() + " " + piece.getType().name() + "을(를) 선택하였소.");
         }
@@ -56,7 +62,7 @@ public class ChessGame {
         System.out.println(chessBoard);
     }
 
-    private void printEndScreen() {
+    private void sayGoodBye() {
         System.out.println();
         System.out.println("-------------");
         System.out.println("다음에 만나요-⭐️");

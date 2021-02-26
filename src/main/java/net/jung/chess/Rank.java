@@ -5,8 +5,8 @@ import java.util.*;
 import static net.jung.chess.Piece.*;
 
 public class Rank {
-    private ArrayList<Piece> pieceList = new ArrayList<>();
     public static final int MAX_PIECES_IN_RANK = 8;
+    private ArrayList<Piece> pieceList = new ArrayList<>();
 
     public int rankPieceSize() {
         int size = 0;
@@ -91,7 +91,7 @@ public class Rank {
         return pieceList.get(index);
     }
 
-    public String getRankRepresentation() {
+    public String rankLayoutToString() {
         StringBuilder strBuilder = new StringBuilder();
         for (int i = 0; i < pieceList.size(); i++) {
             strBuilder.append(getPiece(i).getRepresentation());

@@ -11,7 +11,7 @@ class PieceTest {
 
     @Test
     @DisplayName("팩토리메서드로 생성되는 말의 색, 이름이 정확한지 검증한다.")
-    void checkCreateFactoryMethod(){
+    void checkCreateFactoryMethod() {
         verifyPiece(Piece.createWhitePawn(), Piece.Color.WHITE, Piece.Type.PAWN, 'p');
         verifyPiece(Piece.createBlackPawn(), Piece.Color.BLACK, Piece.Type.PAWN, 'P');
 
@@ -32,17 +32,17 @@ class PieceTest {
 
     }
 
-    private void verifyPiece(final Piece piece, final Piece.Color color, final Piece.Type type, final char representation){
+    private void verifyPiece(final Piece piece, final Piece.Color color, final Piece.Type type, final char representation) {
         assertAll(
                 () -> assertThat(piece.getColor()).isEqualTo(color),
                 () -> assertThat(piece.getType()).isEqualTo(type),
-                () ->  assertThat(piece.getRepresentation()).isEqualTo(representation)
+                () -> assertThat(piece.getRepresentation()).isEqualTo(representation)
         );
     }
 
     @Test
     @DisplayName("isWhite isBlack은 색깔이 일치하면 true 아니면 false 리턴한다.")
-    void checkIsColor(){
+    void checkIsColor() {
         assertAll(
                 () -> assertThat(Piece.createWhiteKing().isBlack()).isFalse(),
                 () -> assertThat(Piece.createBlackBishop().isBlack()).isTrue(),
@@ -68,7 +68,7 @@ class PieceTest {
 
     @Test
     @DisplayName("createBlack로 만들어진 Piece는 Color.NO_COLOR, Type.NO_PIECE이다. ")
-    void checkCreateBlank(){
+    void checkCreateBlank() {
         Piece blank = Piece.createBlank();
         assertAll(
                 () -> assertThat(blank.getType()).isEqualTo(Piece.Type.NO_PIECE),
@@ -82,7 +82,7 @@ class PieceTest {
 
     @Test
     @DisplayName("오버라이드된 equals메서드는 Color와 Type이 일치하면 true를 반환한다.")
-    void checkOverriddenEquals () {
+    void checkOverriddenEquals() {
         assertAll(
                 () -> assertThat(Piece.createWhitePawn()).isEqualTo(Piece.createWhitePawn()),
                 () -> assertThat(Piece.createWhiteKing()).isEqualTo(Piece.createWhiteKing())

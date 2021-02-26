@@ -43,17 +43,17 @@ class RankTest {
     @DisplayName("getRepresentation으로 리턴되는 스트링을 검증한다.")
     void checkGetRepresentation() {
         assertAll(
-                () -> assertThat(whitePawnRank.getRankRepresentation()).isEqualTo("pppppppp"),
-                () -> assertThat(blackPawnRank.getRankRepresentation()).isEqualTo("PPPPPPPP"),
-                () -> assertThat(whitePieceRank.getRankRepresentation()).isEqualTo("rnbqkbnr"),
-                () -> assertThat(blackPieceRank.getRankRepresentation()).isEqualTo("RNBQKBNR"),
-                () -> assertThat(blankRank.getRankRepresentation()).isEqualTo("********")
+                () -> assertThat(whitePawnRank.rankLayoutToString()).isEqualTo("pppppppp"),
+                () -> assertThat(blackPawnRank.rankLayoutToString()).isEqualTo("PPPPPPPP"),
+                () -> assertThat(whitePieceRank.rankLayoutToString()).isEqualTo("rnbqkbnr"),
+                () -> assertThat(blackPieceRank.rankLayoutToString()).isEqualTo("RNBQKBNR"),
+                () -> assertThat(blankRank.rankLayoutToString()).isEqualTo("********")
         );
     }
 
     @Test
     @DisplayName("replace메서드는 index와 Piece를 매개변수로 받아 위치의 piece를 바꾼다.")
-    void checkReplace(){
+    void checkReplace() {
         whitePieceRank.replacePiece(0, Piece.createBlackBishop());
         whitePieceRank.replacePiece(1, Piece.createBlackPawn());
         blankRank.replacePiece(3, Piece.createWhiteKing());

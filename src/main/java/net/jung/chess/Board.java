@@ -7,8 +7,8 @@ import java.util.List;
 import static net.jung.chess.utils.StringUtils.appendNewLine;
 
 public class Board {
-    private List<Rank> rankList = new ArrayList<Rank>();
     public static final int RANKS_ON_BOARD = 8;
+    private List<Rank> rankList = new ArrayList<Rank>();
 
     public int boardPieceSize() {
         int boardPieceSize = 0;
@@ -28,7 +28,6 @@ public class Board {
         }
         return size;
     }
-
 
     public void initialize() {
         rankList.add(Rank.initializeBlackPieceRank());
@@ -52,7 +51,7 @@ public class Board {
     public String boardLayoutToString() {
         StringBuilder boardLayout = new StringBuilder();
         for (Rank rank : rankList) {
-            boardLayout.append(appendNewLine(rank.getRankRepresentation()));
+            boardLayout.append(appendNewLine(rank.rankLayoutToString()));
         }
         return boardLayout.toString();
     }
@@ -67,13 +66,11 @@ public class Board {
 
     public Piece findPiece(Position position) {
         return getRank(position.getRankIndex()).getPiece(position.getFileIndex());
-
     }
 
-    public void addNewPiece(Position destination, Piece piece) {
-        getRank(destination.getRankIndex()).replacePiece(destination.getFileIndex(), piece);
+    public void addNewPiece(Position position, Piece newPiece) {
+        getRank(position.getRankIndex()).replacePiece(position.getFileIndex(), newPiece);
     }
-
 
     public void movePiece(Position startPosition, Position endPosition) {
         Piece foundPiece = findPiece(startPosition);
@@ -122,7 +119,9 @@ public class Board {
         }
 
         for (int pawnSize : pawnsInFile) {
-            excessPawnsInFile += pawnSize > 1 ? pawnSize : 0;
+            if(pawnSize>1) {
+                excessPawnsInFile += pawnSize ;
+            }
         }
 
         return excessPawnsInFile;

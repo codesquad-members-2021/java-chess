@@ -16,6 +16,7 @@ class BoardTest {
     private String BLANK_RANK = appendNewLine("********");
 
     private Board emptyBoard;
+    private Board halfEmptyBoard;
 
     @BeforeEach
     void setUp() {
@@ -24,6 +25,20 @@ class BoardTest {
 
         emptyBoard = new Board();
         emptyBoard.initializeEmptyBoard();
+
+        halfEmptyBoard = new Board();
+        halfEmptyBoard.initializeEmptyBoard();
+        halfEmptyBoard.addNewPiece(Position.at("f2"), Piece.createWhitePawn());
+        halfEmptyBoard.addNewPiece(Position.at("g2"), Piece.createWhitePawn());
+        halfEmptyBoard.addNewPiece(Position.at("a2"), Piece.createWhiteQueen());
+        halfEmptyBoard.addNewPiece(Position.at("e1"), Piece.createWhiteRook());
+        halfEmptyBoard.addNewPiece(Position.at("f1"), Piece.createWhiteKing());
+
+        halfEmptyBoard.addNewPiece(Position.at("b6"), Piece.createBlackPawn());
+        halfEmptyBoard.addNewPiece(Position.at("e6"), Piece.createBlackQueen());
+        halfEmptyBoard.addNewPiece(Position.at("b8"), Piece.createBlackKing());
+        halfEmptyBoard.addNewPiece(Position.at("a8"), Piece.createBlackBishop());
+        halfEmptyBoard.addNewPiece(Position.at("c8"), Piece.createBlackRook());
     }
 
 
@@ -31,7 +46,6 @@ class BoardTest {
     @DisplayName("initialize()는 32개 모든 말을 체스판 위에 올린다.")
     void initializeAddsEveryPiece() {
         int maxNumOfPieces = 32;
-
 
         assertAll(
                 () -> assertThat(board.boardPieceSize()).isEqualTo(maxNumOfPieces),
@@ -74,11 +88,11 @@ class BoardTest {
     @DisplayName("8번 rank를 호출하면 rankList의 0번째 rank가 리턴되고, 6번 rank호출하면 2번쨰 rank가 호출된다.")
     void checkGetRank() {
         assertAll(
-                () -> assertThat(board.getRank(8).getRankRepresentation()).isEqualTo("RNBQKBNR"),
-                () -> assertThat(board.getRank(7).getRankRepresentation()).isEqualTo("PPPPPPPP"),
-                () -> assertThat(board.getRank(6).getRankRepresentation()).isEqualTo("********"),
-                () -> assertThat(board.getRank(2).getRankRepresentation()).isEqualTo("pppppppp"),
-                () -> assertThat(board.getRank(1).getRankRepresentation()).isEqualTo("rnbqkbnr")
+                () -> assertThat(board.getRank(8).rankLayoutToString()).isEqualTo("RNBQKBNR"),
+                () -> assertThat(board.getRank(7).rankLayoutToString()).isEqualTo("PPPPPPPP"),
+                () -> assertThat(board.getRank(6).rankLayoutToString()).isEqualTo("********"),
+                () -> assertThat(board.getRank(2).rankLayoutToString()).isEqualTo("pppppppp"),
+                () -> assertThat(board.getRank(1).rankLayoutToString()).isEqualTo("rnbqkbnr")
         );
     }
 
@@ -193,23 +207,10 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("sort는 오름차순으로 정렬한다.")
+    @DisplayName("sortColorPiecesAscending은 오름차순으로 정렬한다.")
     void checkSortColorPiecesAscending() {
-        emptyBoard.addNewPiece(Position.at("f2"), Piece.createWhitePawn());
-        emptyBoard.addNewPiece(Position.at("g2"), Piece.createWhitePawn());
-        emptyBoard.addNewPiece(Position.at("a2"), Piece.createWhiteQueen());
-        emptyBoard.addNewPiece(Position.at("e1"), Piece.createWhiteRook());
-        emptyBoard.addNewPiece(Position.at("f1"), Piece.createWhiteKing());
-
-
-        emptyBoard.addNewPiece(Position.at("b6"), Piece.createBlackPawn());
-        emptyBoard.addNewPiece(Position.at("e6"), Piece.createBlackQueen());
-        emptyBoard.addNewPiece(Position.at("b8"), Piece.createBlackKing());
-        emptyBoard.addNewPiece(Position.at("a8"), Piece.createBlackBishop());
-        emptyBoard.addNewPiece(Position.at("c8"), Piece.createBlackRook());
-
-        List<Piece> whitePieces = emptyBoard.sortColorPiecesAscending(Piece.Color.WHITE);
-        List<Piece> blackPieces = emptyBoard.sortColorPiecesAscending(Piece.Color.BLACK);
+        List<Piece> whitePieces = halfEmptyBoard.sortColorPiecesAscending(Piece.Color.WHITE);
+        List<Piece> blackPieces = halfEmptyBoard.sortColorPiecesAscending(Piece.Color.BLACK);
 
         assertAll(
                 () -> assertThat(whitePieces.get(4)).isEqualTo(Piece.createWhiteQueen()),
@@ -222,23 +223,10 @@ class BoardTest {
     }
 
     @Test
-    @DisplayName("sort는 오름차순으로 정렬한다.")
+    @DisplayName("sortColorPiecesDescending은 내림차순으로 정렬한다.")
     void checkSortColorPiecesDescending() {
-        emptyBoard.addNewPiece(Position.at("f2"), Piece.createWhitePawn());
-        emptyBoard.addNewPiece(Position.at("g2"), Piece.createWhitePawn());
-        emptyBoard.addNewPiece(Position.at("a2"), Piece.createWhiteQueen());
-        emptyBoard.addNewPiece(Position.at("e1"), Piece.createWhiteRook());
-        emptyBoard.addNewPiece(Position.at("f1"), Piece.createWhiteKing());
-
-
-        emptyBoard.addNewPiece(Position.at("b6"), Piece.createBlackPawn());
-        emptyBoard.addNewPiece(Position.at("e6"), Piece.createBlackQueen());
-        emptyBoard.addNewPiece(Position.at("b8"), Piece.createBlackKing());
-        emptyBoard.addNewPiece(Position.at("a8"), Piece.createBlackBishop());
-        emptyBoard.addNewPiece(Position.at("c8"), Piece.createBlackRook());
-
-        List<Piece> whitePieces = emptyBoard.sortColorPiecesDescending(Piece.Color.WHITE);
-        List<Piece> blackPieces = emptyBoard.sortColorPiecesDescending(Piece.Color.BLACK);
+        List<Piece> whitePieces = halfEmptyBoard.sortColorPiecesDescending(Piece.Color.WHITE);
+        List<Piece> blackPieces = halfEmptyBoard.sortColorPiecesDescending(Piece.Color.BLACK);
 
         assertAll(
                 () -> assertThat(whitePieces.get(0)).isEqualTo(Piece.createWhiteQueen()),

@@ -1,6 +1,7 @@
 package net.woody.chess;
 
 import net.woody.pieces.Piece;
+import net.woody.pieces.Piece.Color;
 import org.junit.jupiter.api.*;
 
 import static net.woody.utils.StringUtils.appendNewLine;
@@ -20,6 +21,21 @@ class BoardTest {
     @DisplayName("보드를 초기화한 후, 체스말이 총 32개여야 한다.")
     void checkTheNumberOfPieces() {
         assertThat(board.size()).isEqualTo(32);
+    }
+
+    @Test
+    @DisplayName("보드를 초기화한 후, 특정 체스말의 갯수를 셀 수 있어야 한다")
+    void checkTheNumberOfSpecificPiece() {
+        assertAll(() -> {
+            int actualWhitePawnNum = board.numOfSpecificPiece(Color.WHITE, Type.PAWN);
+            assertThat(actualWhitePawnNum).isEqualTo(8);
+        }, () -> {
+            int actualBlackQueenNum = board.numOfSpecificPiece(Color.BLACK, Type.QUEEN);
+            assertThat(actualBlackQueenNum).isEqualTo(1);
+        }, () -> {
+            int actualBlankNum = board.numOfSpecificPiece(Color.NOCOLOR, Type.NO_PIECE);
+            assertThat(actualBlankNum).isEqualTo(32);
+        });
     }
 
     @Test

@@ -69,15 +69,15 @@ public class BoardTest {
     public void calculatePoint() throws Exception {
         board.initializeEmpty();
 
-        addPiece("b6", createBlackPawn(new Position(1,5)));
-        addPiece("e6", createBlackQueen(new Position(4,5)));
-        addPiece("b8", createBlackKing(new Position(1,7)));
-        addPiece("c8", createBlackRook(new Position(2,7)));
+        addPiece("b6", createBlackPawn(new Position(1, 5)));
+        addPiece("e6", createBlackQueen(new Position(4, 5)));
+        addPiece("b8", createBlackKing(new Position(1, 7)));
+        addPiece("c8", createBlackRook(new Position(2, 7)));
 
-        addPiece("f2", createWhitePawn(new Position(5,1)));
-        addPiece("g2", createWhitePawn(new Position(7,1)));
-        addPiece("e1", createWhiteRook(new Position(4,0)));
-        addPiece("f1", createWhiteKing(new Position(5,0)));
+        addPiece("f2", createWhitePawn(new Position(5, 1)));
+        addPiece("g2", createWhitePawn(new Position(7, 1)));
+        addPiece("e1", createWhiteRook(new Position(4, 0)));
+        addPiece("f1", createWhiteKing(new Position(5, 0)));
 
         assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.0, Percentage.withPercentage(0.1));
         assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(7.0, Percentage.withPercentage(0.01));

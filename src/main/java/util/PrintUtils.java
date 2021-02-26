@@ -20,7 +20,7 @@ public class PrintUtils {
         System.out.println("✓ Black score : " + blackScore);
     }
 
-    public static void showScoreByPiece(Board board){
+    public static void showScoreByPiece(Board board) {
         List<Piece> whitePieces = board.findPiecesByColor(Color.WHITE);
         List<Piece> blackPieces = board.findPiecesByColor(Color.BLACK);
         whitePieces.sort(Collections.reverseOrder());

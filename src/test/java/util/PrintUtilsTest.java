@@ -1,6 +1,7 @@
 package util;
 
 import org.junit.jupiter.api.*;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -44,7 +45,6 @@ class PrintUtilsTest {
                 .trim()).isEqualTo("[Total score]\n" +
                 "✓ White score : 7.0\n" +
                 "✓ Black score : 15.0");
-
     }
 
     @Test

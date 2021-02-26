@@ -1,5 +1,7 @@
 package pieces;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class Position {
@@ -47,9 +49,12 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position [" +
-                "x=" + x +
-                ", y=" + y +
-                ']';
+        return "Position [x=" + x + ", y=" + y + ']';
+    }
+
+    public List<Position> nextColumn() {
+        return Arrays.asList(
+                new Position(getXPos(), getYPos() - 1),
+                new Position(getXPos(), getYPos() + 1));
     }
 }

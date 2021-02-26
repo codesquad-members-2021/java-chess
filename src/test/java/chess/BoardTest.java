@@ -1,5 +1,6 @@
 package chess;
 
+import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.*;
 
 import pieces.Piece;
@@ -38,7 +39,7 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("Verify Piece by findPiece is exact position")
+    @DisplayName("Verify Piece by findPiece() returns exact position")
     public void findPiece() {
         board.initialize();
         assertAll(
@@ -50,6 +51,7 @@ public class BoardTest {
     }
 
     @Test
+    @DisplayName("Piece by move() should be equal to the piece by createColorPiece()")
     public void move() {
         board.initializeEmpty();
 
@@ -59,6 +61,31 @@ public class BoardTest {
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
         System.out.println(board);
+    }
+
+    @Test
+    @DisplayName("Score by calculatePoint() should be equal to the score by ")
+    public void calculatePoint() throws Exception {
+        board.initializeEmpty();
+
+        addPiece("b6", Piece.createBlackPawn(new Position(1,5)));
+        addPiece("e6", Piece.createBlackQueen(new Position(4,5)));
+        addPiece("b8", Piece.createBlackKing(new Position(1,7)));
+        addPiece("c8", Piece.createBlackRook(new Position(2,7)));
+
+        addPiece("f2", Piece.createWhitePawn(new Position(5,1)));
+        addPiece("g2", Piece.createWhitePawn(new Position(7,1)));
+        addPiece("e1", Piece.createWhiteRook(new Position(4,0)));
+        addPiece("f1", Piece.createWhiteKing(new Position(5,0)));
+
+        assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.0, Percentage.withPercentage(0.1));
+        assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(7.0, Percentage.withPercentage(0.01));
+
+        System.out.println(board);
+    }
+
+    private void addPiece(String position, Piece piece) {
+        board.move(position, piece);
     }
 
 }

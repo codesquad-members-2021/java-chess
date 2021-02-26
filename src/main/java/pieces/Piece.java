@@ -1,5 +1,6 @@
 package pieces;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Piece {
@@ -9,18 +10,24 @@ public class Piece {
     }
 
     public enum Type {
-        PAWN('p'),
-        ROOK('r'),
-        KNIGHT('n'),
-        BISHOP('b'),
-        QUEEN('q'),
-        KING('k'),
-        NO_PIECE('.');
+        PAWN('p', 1.0),
+        ROOK('r', 5.0),
+        KNIGHT('n', 2.5),
+        BISHOP('b', 3.0),
+        QUEEN('q', 9.0),
+        KING('k', 0.0),
+        NO_PIECE('.', 0.0);
 
         private final char representation;
+        private final double defaultPoint;
 
-        Type(char representation) {
+        private Type(char representation, double defaultPoint) {
             this.representation = representation;
+            this.defaultPoint = defaultPoint;
+        }
+
+        public double getDefaultPoint() {
+            return defaultPoint;
         }
 
         public char getBlackRepresentation() {
@@ -35,6 +42,7 @@ public class Piece {
     private final Color color;
     private final Type type;
     private final Position position;
+    private static int pieceCount = -1;
 
     public char getRepresentation() {
         return isWhite() ? this.type.getWhiteRepresentation()
@@ -42,8 +50,37 @@ public class Piece {
     }
 
     public boolean verifyPiece(Color color, Type type) {
-        return this.color == color &&
-                this.type == type;
+        return matchColor(color) && matchType(type);
+    }
+
+    private boolean matchColor(Color color) {
+        return this.color == color;
+    }
+
+    private boolean matchType(Type type) {
+        return this.type == type;
+    }
+
+    public void addPiecesByColor(Color color, List<Piece> piecesByColor) {
+        if (matchColor(color)) {
+            piecesByColor.add(this);
+        }
+    }
+
+    public double getPoint(List<Piece> pieces) {
+        double point = this.type.getDefaultPoint();
+        if (!matchType(Type.PAWN)) {
+            return point;
+        }
+
+        List<Position> nextColumn = this.position.nextColumn();
+        for (Position position : nextColumn) {
+            if (pieces.contains(new Piece(this.color, this.type, position))) {
+                return point - 0.5;
+            }
+        }
+
+        return point;
     }
 
     public Piece(Color color, Type type, Position position) {
@@ -52,12 +89,21 @@ public class Piece {
         this.position = position;
     }
 
+    public Piece(Color color, Type type) {
+        this(color, type, new Position(pieceCount - 1, pieceCount - 1));
+        pieceCount--;
+    }
+
     private static Piece createWhite(Type type, Position position) {
         return new Piece(Color.WHITE, type, position);
     }
 
     private static Piece createBlack(Type type, Position position) {
         return new Piece(Color.BLACK, type, position);
+    }
+
+    public static Piece createBlank(Position position) {
+        return new Piece(Color.NO_COLOR, Type.NO_PIECE, position);
     }
 
     public static Piece createWhitePawn(Position position) {
@@ -108,10 +154,6 @@ public class Piece {
         return createBlack(Type.KING, position);
     }
 
-    public static Piece createBlank(Position position) {
-        return new Piece(Color.NO_COLOR, Type.NO_PIECE, position);
-    }
-
     public Color getColor() {
         return color;
     }
@@ -151,10 +193,8 @@ public class Piece {
 
     @Override
     public String toString() {
-        return "Piece [" +
-                "color=" + color +
-                ", type=" + type +
-                ", position=" + position +
-                ']';
+        return "Piece [color=" + color
+                + ", type=" + type
+                + ", position=" + position + ']';
     }
 }

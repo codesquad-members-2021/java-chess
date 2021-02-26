@@ -1,6 +1,7 @@
 package chess;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import pieces.Piece;
@@ -102,5 +103,13 @@ class Rank {
 
     Piece findPiece(int xPos) {
         return pieces.get(xPos);
+    }
+
+    public List<Piece> findPiecesByColor(Color color) {
+        List<Piece> piecesByColor = new ArrayList<>();
+        for (Piece piece : pieces) {
+            piece.addPiecesByColor(color, piecesByColor);
+        }
+        return Collections.unmodifiableList(piecesByColor);
     }
 }

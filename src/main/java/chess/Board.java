@@ -59,4 +59,21 @@ public class Board {
         Rank rank = board.get(position.getYPos());
         rank.move(position.getXPos(), piece);
     }
+
+    public double calculatePoint(Color color) {
+        List<Piece> pieces = findPiecesByColor(color);
+        double point = 0.0;
+        for (Piece piece : pieces) {
+            point += piece.getPoint(pieces);
+        }
+        return point;
+    }
+
+    private List<Piece> findPiecesByColor(Color color) {
+        ArrayList<Piece> pieces = new ArrayList<>();
+        for (Rank rank : board) {
+            pieces.addAll(rank.findPiecesByColor(color));
+        }
+        return pieces;
+    }
 }

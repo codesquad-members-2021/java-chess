@@ -20,7 +20,7 @@ public class Board {
     }
 
     public void initialize() {
-        setBlankBoard();
+        initializeEmpty();
 
         int pawnsRow = 1;
         initializePawns(Piece.Color.BLACK, MIN_RANK + pawnsRow);
@@ -31,7 +31,7 @@ public class Board {
         initializeRoyalPieces(Piece.Color.WHITE, MAX_RANK - royalRow);
     }
 
-    private void setBlankBoard() {
+    public void initializeEmpty() {
         for (int rank = MIN_RANK; rank <= MAX_RANK; rank++) {
             pieces.put(rank, new Rank());
         }

@@ -1,30 +1,17 @@
 package chess;
 
-import piece.Blank;
-import piece.Piece;
+import piece.*;
 import piece.attribute.*;
 
 import java.util.*;
 
 import static piece.PieceFactory.createPiece;
 
-
 public class Board {
     private final Map<Position, Piece> squares = new LinkedHashMap<>();
     public final int BOARD_SIZE = 8;
 
-    public Map<Position, Piece> getSquares() {
-        return squares;
-    }
-
-    Board() {
-
-    }
-    public void addPiece(Piece piece) {
-        squares.put(piece.getPosition(), piece);
-    }
-
-    void initialize() {
+    public void initialize() {
         squares.clear();
         initPiecesExceptPawns(Color.BLACK, 8);
         initPawns(Color.BLACK, 7);
@@ -36,7 +23,7 @@ public class Board {
         initPiecesExceptPawns(Color.WHITE, 1);
     }
 
-    void initializeEmpty() {
+    public void initializeEmpty() {
         for (Position position : squares.keySet()) {
             set(position, createPiece(Color.NO_COLOR, Type.BLANK, position));
         }
@@ -67,24 +54,30 @@ public class Board {
         addPiece(createPiece(color, Type.ROOK, new Position('h', rank)));
     }
 
+    public Map<Position, Piece> getSquares() {
+        return squares;
+    }
 
-
-    public int getNumberOfPieces(Color color, Type type) {
-        return (int) squares.values()
-                .stream()
-                .filter(piece -> piece.getColor() == color && piece.getType() == type)
-                .count();
+    public void addPiece(Piece piece) {
+        squares.put(piece.getPosition(), piece);
     }
 
     public Piece findPiece(Position position) {
         return squares.get(position);
     }
 
+    public int getNumberOf(Color color, Type type) {
+        return (int) squares.values()
+                .stream()
+                .filter(piece -> piece.getColor() == color && piece.getType() == type)
+                .count();
+    }
+
     public void move(Position before, Position after) {
         Piece piece = findPiece(before);
         if (piece.isMovable(after) && !piece.isSameColor(findPiece(after))) {
             set(after, piece);
-            set(before, new Blank(Color.NO_COLOR, before));
+            set(before, createPiece(Color.NO_COLOR, Type.BLANK, before));
         }
     }
 
@@ -102,6 +95,14 @@ public class Board {
         return point;
     }
 
+    private List<Piece> getPiecesInFile(char file) {
+        List<Piece> pieces = new ArrayList<>();
+        for (int rank = 1; rank <= BOARD_SIZE; rank++) {
+            pieces.add(findPiece(new Position(file, rank)));
+        }
+        return pieces;
+    }
+
     private double getSum(List<Piece> pieces, Color color, double point) {
         for (Piece piece : pieces) {
             if (!(piece.getColor() == color)) continue;
@@ -114,22 +115,9 @@ public class Board {
         return point;
     }
 
-    private List<Piece> getPiecesInFile(char file) {
-        List<Piece> pieces = new ArrayList<>();
-        for (int rank = 1; rank <= BOARD_SIZE; rank++) {
-            pieces.add(findPiece(new Position(file, rank)));
-        }
-        return pieces;
-    }
-
     private double getPawnPoint(List<Piece> pieces) {
         double pawnPoint = Type.PAWN.getDefaultPoint();
-        int pawnCount = 0;
-        for (Piece piece : pieces) {
-            if (piece.getType() == Type.PAWN) {
-                pawnCount++;
-            }
-        }
+        long pawnCount = pieces.stream().filter(piece -> piece.getType() == Type.PAWN).count();
         return pawnCount > 1 ? pawnPoint / 2 : pawnPoint;
     }
 

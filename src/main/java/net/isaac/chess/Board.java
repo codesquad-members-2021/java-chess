@@ -74,7 +74,15 @@ public class Board {
         pieces.get(rank).setPiece(piece, file);
     }
 
-    public Piece findPiece(int rank, char file) {
+    public Piece findPiece(String positionString) {
+        Position position = Position.getPosition(positionString);
+        if (position == null) {
+            return null;
+        }
+        return findPiece(position.rank, position.file);
+    }
+
+    private Piece findPiece(int rank, char file) {
         if (!isValidRank(rank) || pieces.get(rank) == null) {
             return null;
         }

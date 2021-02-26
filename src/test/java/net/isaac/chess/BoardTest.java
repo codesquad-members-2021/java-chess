@@ -51,10 +51,10 @@ class BoardTest {
         board.add(black, 1, 'b');
 
         assertAll(
-                () -> assertThat(board.findPiece(1, 'a')).isEqualTo(white),
-                () -> assertThat(board.findPiece(1, 'b')).isEqualTo(black),
-                () -> assertThat(board.findPiece(1, 'c')).isNotNull(),
-                () -> assertThat(board.findPiece(10, 'z')).isEqualTo(null)
+                () -> assertThat(board.findPiece("a1")).isEqualTo(white),
+                () -> assertThat(board.findPiece("b1")).isEqualTo(black),
+                () -> assertThat(board.findPiece("c1")).isNotNull(),
+                () -> assertThat(board.findPiece("z10")).isEqualTo(null)
         );
     }
 

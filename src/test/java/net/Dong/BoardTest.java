@@ -2,6 +2,8 @@ package net.Dong;
 
 import net.Dong.chess.Board;
 import net.Dong.chess.Pawn;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -10,29 +12,52 @@ import net.Dong.chess.Pawn.*;
 
 
 class BoardTest {
+    private Board board;
 
+    @BeforeEach
+    public void setup() {
+        board = new Board();
+    }
 
     @Test
-    void BoardPawnCreate() {
-        Board board = new Board();
-
+    void createPawnTest() {
         Pawn white = new Pawn(Color.WHITE);
-        board.addWhite(white);
-        assertThat(board.size()).isEqualTo(1);
-        assertThat(board.findWhitePawn(0)).isEqualTo(white);
-
         Pawn black = new Pawn(Color.BLACK);
-        board.addWhite(black);
-        assertThat(board.size()).isEqualTo(1);
-        assertThat(board.findBlackPawn(0)).isEqualTo(black);
+        addWhitePawnToBoard(board,white,0);
+        addBlackPawnToBoard(board,black,0);
+        addWhitePawnToBoard(board,white,1);
+        addBlackPawnToBoard(board,black,1);
+        addWhitePawnToBoard(board,white,2);
+        addBlackPawnToBoard(board,black,2);
+    }
+    void addWhitePawnToBoard(Board board, Pawn pawn, int indexOfPawn) {
+        board.addWhitePawn(pawn);
+        assertThat(board.findWhitePawn(indexOfPawn)).isEqualTo(pawn);
+    }
+    void addBlackPawnToBoard(Board board, Pawn pawn, int indexOfPawn) {
+        board.addBlackPawn(pawn);
+        assertThat(board.findBlackPawn(indexOfPawn)).isEqualTo(pawn);
     }
 
 
+
+
     @Test
-    void boardInitialize() {
-        Board board = new Board();
+    void boardInitializeTest() {
+        String expectedString =
+                "........" + System.lineSeparator() +
+                        "PPPPPPPP" + System.lineSeparator() +
+                        "........" + System.lineSeparator() +
+                        "........" + System.lineSeparator() +
+                        "........" + System.lineSeparator() +
+                        "........" + System.lineSeparator() +
+                        "pppppppp" + System.lineSeparator() +
+                        "........"+ System.lineSeparator() ;
+
         board.initialize();
         assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
         assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
+        assertThat(board.LayoutToString()).isEqualTo(expectedString);
     }
+
 }

@@ -5,7 +5,6 @@ import piece.attribute.*;
 
 import java.util.*;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class PieceFactory {
     private static final Map<Type, BiFunction<Color, Position, Piece>> PIECE_FACTORY_MAP = new HashMap<>();

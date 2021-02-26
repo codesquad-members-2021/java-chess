@@ -34,7 +34,7 @@ class BoardTest {
                     assertThat(actualWhitePawn).isEqualTo(Piece.createWhitePawn());
                 }, () -> {
                     Piece actualBlank = board.findPiece(4, 0);
-                    assertThat(actualBlank).isEqualTo(Piece.createBlank());
+                    assertThat(actualBlank).isEqualTo(Piece.getBlankInstance());
                 });
     }
 

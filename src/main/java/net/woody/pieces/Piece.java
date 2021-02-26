@@ -10,6 +10,8 @@ public class Piece {
         WHITE, BLACK, NOCOLOR;
     }
 
+    private static final Piece BLANK_PIECE = new Piece(Color.NOCOLOR, Type.NO_PIECE);
+
     private Color color;
     private Type type;
 
@@ -34,8 +36,8 @@ public class Piece {
         return color == Color.BLACK;
     }
 
-    public static Piece createBlank() {
-        return new Piece(Color.NOCOLOR, Type.NO_PIECE);
+    public static Piece getBlankInstance() {
+        return BLANK_PIECE;
     }
 
     public static Piece createBlack(Type type) {

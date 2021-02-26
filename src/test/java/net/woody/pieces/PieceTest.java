@@ -24,7 +24,7 @@ class PieceTest {
     @Test
     @DisplayName("빈 공간을 나타내는 Piece는 색상을 가지고 있지 않고 어떤 타입에도 속해서는 안된다")
     void createBlank() {
-        Piece blank = Piece.createBlank();
+        Piece blank = Piece.getBlankInstance();
         assertThat(blank.isWhite()).isFalse();
         assertThat(blank.isBlack()).isFalse();
         assertThat(blank.getType()).isEqualTo(Type.NO_PIECE);

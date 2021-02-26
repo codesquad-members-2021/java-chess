@@ -14,19 +14,19 @@ public class Board {
     private List<Rank> board = new ArrayList<>(BOARD_RANK);
 
     public void initializeEmpty() {
-        for (int i = 0; i < BOARD_RANK; i++) {
-            board.add(Rank.initBlankRank());
+        for (int rankNum = 1; rankNum <= BOARD_RANK; rankNum++) {
+            board.add(Rank.initBlankRank(rankNum));
         }
     }
 
     public void initializeBoard() {
         // 랭크 번호 순서대로 board 리스트에 담기
         board.add(Rank.initWhitePieceRank());
-        board.add(Rank.initWhitePawnRank());
-        for (int i = 0; i < 4; i++) {
-            board.add(Rank.initBlankRank());
+        board.add(Rank.initWhitePawnRank(2));
+        for (int rankNum = 0; rankNum < 4; rankNum++) {
+            board.add(Rank.initBlankRank(3 + rankNum));
         }
-        board.add(Rank.initBlackPawnRank());
+        board.add(Rank.initBlackPawnRank(7));
         board.add(Rank.initBlackPieceRank());
     }
 
@@ -51,43 +51,33 @@ public class Board {
         return result.toString();
     }
 
-    public Piece findPiece(String position) {
-        int x = getX(position);
-        int y = getY(position);
-        return board.get(y).getPieceList().get(x);
+    public Piece findPiece(Position position) {
+        return board.get(position.getY()).getPieceList().get(position.getX());
     }
 
-    public void setPiece(String position, Piece piece) {
-        int x = getX(position);
-        int y = getY(position);
+    public void setPiece(Position position, Piece piece) {
+        int x = position.getX();
+        int y = position.getY();
         board.get(y).remove(x);
         board.get(y).setPiece(x, piece);
     }
 
-    private int getX(String position) {
-        return position.charAt(0) - 'a';
-    }
-
-    private int getY(String position) {
-        return position.charAt(1) - '0' - 1;
-    }
-
     public double calculatePoint(Color color) {
-        double result = board.stream()
+        return board.stream()
                 .map(Rank::getPieceList)
                 .flatMap(List::stream)
                 .filter(x -> x.getColor() == color)
                 .mapToDouble(x -> x.getType().getDefaultPoint())
                 .sum();
-
     }
+
 
     public List<Type> sortPiece(Color color) {
         return board.stream()
-                .map(x -> x.getPieceList())
+                .map(Rank::getPieceList)
                 .flatMap(List::stream)
-                .filter(s -> s.getColor() == color)
-                .map(x -> x.getType())
+                .filter(x -> x.getColor() == color)
+                .map(Piece::getType)
                 .sorted(Comparator.comparing(Type::getDefaultPoint).reversed())
                 .collect(Collectors.toList());
     }

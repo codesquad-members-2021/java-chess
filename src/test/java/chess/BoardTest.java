@@ -36,14 +36,18 @@ class BoardTest {
     @Test
     void findPiece() {
         board.initializeBoard();
-        assertThat(board.findPiece("a8"))
-                .isEqualTo(Piece.createBlackRook());
-        assertThat(board.findPiece("h8"))
-                .isEqualTo(Piece.createBlackRook());
-        assertThat(board.findPiece("a1"))
-                .isEqualTo(Piece.createWhiteRook());
-        assertThat(board.findPiece("h1"))
-                .isEqualTo(Piece.createWhiteRook());
+        Position position = new Position("a8");
+        assertThat(board.findPiece(position))
+                .isEqualTo(Piece.createBlackRook(position));
+        position = new Position("h8");
+        assertThat(board.findPiece(position))
+                .isEqualTo(Piece.createBlackRook(position));
+        position = new Position("a1");
+        assertThat(board.findPiece(position))
+                .isEqualTo(Piece.createWhiteRook(position));
+        position = new Position("h1");
+        assertThat(board.findPiece(new Position("h1")))
+                .isEqualTo(Piece.createWhiteRook(position));
     }
 
     @DisplayName("기물이 설정한 위치에 올바르게 배치되는지 확인한다.")
@@ -51,8 +55,8 @@ class BoardTest {
     void setPiece() {
         board.initializeEmpty();
 
-        String position = "b5";
-        Piece piece = Piece.createBlackRook();
+        Position position = new Position("b5");
+        Piece piece = Piece.createBlackRook(position);
         board.setPiece(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
@@ -81,18 +85,18 @@ class BoardTest {
         assertThat(blackPiece.toString()).isEqualTo("[QUEEN, ROOK, PAWN, KING]");
     }
 
-    void getBoardWithSeveralPiece(){
+    void getBoardWithSeveralPiece() {
         board.initializeEmpty();
 
-        board.setPiece("b6", Piece.createBlackPawn());
-        board.setPiece("e6", Piece.createBlackQueen());
-        board.setPiece("b8", Piece.createBlackKing());
-        board.setPiece("c8", Piece.createBlackRook());
+        board.setPiece(new Position("b6"), Piece.createBlackPawn());
+        board.setPiece(new Position("e6"), Piece.createBlackQueen());
+        board.setPiece(new Position("b8"), Piece.createBlackKing());
+        board.setPiece(new Position("c8"), Piece.createBlackRook());
 
-        board.setPiece("f2", Piece.createWhitePawn());
-        board.setPiece("g2", Piece.createWhitePawn());
-        board.setPiece("e1", Piece.createWhiteRook());
-        board.setPiece("f1", Piece.createWhiteKing());
-        board.setPiece("f3", Piece.createWhitePawn());
+        board.setPiece(new Position("f2"), Piece.createWhitePawn());
+        board.setPiece(new Position("g2"), Piece.createWhitePawn());
+        board.setPiece(new Position("e1"), Piece.createWhiteRook());
+        board.setPiece(new Position("f1"), Piece.createWhiteKing());
+        board.setPiece(new Position("f3"), Piece.createWhitePawn());
     }
 }

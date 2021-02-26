@@ -1,20 +1,19 @@
 package chess;
 
 public class Position {
-    private char file;
-    private char rank;
+    private int x;
+    private int y;
 
     public Position(String position){
-        file = position.charAt(0);
-        file = position.charAt(1);
+        x = position.charAt(0) - 'a';
+        y = position.charAt(1) - '0' - 1;
     }
 
-    public char getRank() {
-        return rank;
+    public int getX() {
+        return x;
     }
 
-
-    public char getFile() {
-        return file;
+    public int getY() {
+        return y;
     }
 }

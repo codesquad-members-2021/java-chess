@@ -11,58 +11,68 @@ import static chess.Board.*;
 public class Rank {
     private List<Piece> pieceList = new ArrayList<>(8);
 
-    private Rank() {}
+    private Rank() {
+    }
 
     public static Rank initWhitePieceRank() {
         Rank rank = new Rank();
-        rank.add(Piece.createWhiteRook());
-        rank.add(Piece.createWhiteKnight());
-        rank.add(Piece.createWhiteBishop());
-        rank.add(Piece.createWhiteQueen());
-        rank.add(Piece.createWhiteKing());
-        rank.add(Piece.createWhiteBishop());
-        rank.add(Piece.createWhiteKnight());
-        rank.add(Piece.createWhiteRook());
+        rank.add(Piece.createWhiteRook(new Position("a1")));
+        rank.add(Piece.createWhiteKnight(new Position("b1")));
+        rank.add(Piece.createWhiteBishop(new Position("c1")));
+        rank.add(Piece.createWhiteQueen(new Position("d1")));
+        rank.add(Piece.createWhiteKing(new Position("e1")));
+        rank.add(Piece.createWhiteBishop(new Position("f1")));
+        rank.add(Piece.createWhiteKnight(new Position("g1")));
+        rank.add(Piece.createWhiteRook(new Position("h1")));
 
         return rank;
     }
 
-    public static Rank initWhitePawnRank() {
-        Rank rank = new Rank();
-        for (int i = 0; i < BOARD_RANK; i++) {
-            rank.add(Piece.createWhitePawn());
+    public static Rank initWhitePawnRank(int rankNum) {
+        Rank boardRank = new Rank();
+        for (int i = 0; i < BOARD_FILE; i++) {
+            char file = (char) ('a' + i);
+            char rank = (char) (rankNum + '0');
+            String position = file + "" + rank;
+            boardRank.add(Piece.createWhitePawn(new Position(position)));
         }
-        return rank;
+        return boardRank;
     }
 
-    public static Rank initBlackPawnRank() {
-        Rank rank = new Rank();
-        for (int i = 0; i < BOARD_RANK; i++) {
-            rank.add(Piece.createBlackPawn());
+    public static Rank initBlackPawnRank(int rankNum) {
+        Rank boardRank = new Rank();
+        for (int i = 0; i < BOARD_FILE; i++) {
+            char file = (char) ('a' + i);
+            char rank = (char) (rankNum + '0');
+            String position = file + "" + rank;
+            boardRank.add(Piece.createBlackPawn(new Position(position)));
         }
-        return rank;
+        return boardRank;
     }
 
     public static Rank initBlackPieceRank() {
         Rank rank = new Rank();
-        rank.add(Piece.createBlackRook());
-        rank.add(Piece.createBlackKnight());
-        rank.add(Piece.createBlackBishop());
-        rank.add(Piece.createBlackQueen());
-        rank.add(Piece.createBlackKing());
-        rank.add(Piece.createBlackBishop());
-        rank.add(Piece.createBlackKnight());
-        rank.add(Piece.createBlackRook());
+        rank.add(Piece.createBlackRook(new Position("a8")));
+        rank.add(Piece.createBlackKnight(new Position("b8")));
+        rank.add(Piece.createBlackBishop(new Position("c8")));
+        rank.add(Piece.createBlackQueen(new Position("d8")));
+        rank.add(Piece.createBlackKing(new Position("e8")));
+        rank.add(Piece.createBlackBishop(new Position("f8")));
+        rank.add(Piece.createBlackKnight(new Position("g8")));
+        rank.add(Piece.createBlackRook(new Position("h8")));
 
         return rank;
     }
 
-    public static Rank initBlankRank() {
-        Rank rank = new Rank();
+    public static Rank initBlankRank(int rankNum) {
+        Rank boardRank = new Rank();
         for (int i = 0; i < BOARD_FILE; i++) {
-            rank.add(Piece.createBlank());
+            char file = (char) ('a' + i);
+            char rank = (char) (rankNum + '0');
+            String position = file + "" + rank;
+            boardRank.add(Piece.createBlank(new Position(position)));
         }
-        return rank;
+        return boardRank;
     }
 
     public List<Piece> getPieceList() {

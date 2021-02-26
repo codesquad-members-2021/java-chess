@@ -84,12 +84,8 @@ public class Board {
     }
 
     private List<Piece> getPieces(Color color, int column) {
-        ArrayList<Piece> getPieces = new ArrayList<>();
-        for (int row = 0; row < ranks.size(); row++) {
-            Rank getRank = ranks.get(row);
-            getPieces.add(getRank.findPieceByColumn(color, column));
-        }
-        return getPieces;
+        return ranks.stream().map(rank -> rank.findPieceByColumn(color, column))
+                .collect(Collectors.toList());
     }
 
     public List<Piece> getWhitePiecesSortByScore() {

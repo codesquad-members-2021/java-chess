@@ -1,6 +1,7 @@
 package piece;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -35,9 +36,9 @@ public class Position {
     }
 
     public List<Position> getPrevNextRows() {
-        return Arrays.asList(
+        return Collections.unmodifiableList(Arrays.asList(
                 new Position(getXIndex(), getYIndex() - 1),
-                new Position(getXIndex(), getYIndex() + 1));
+                new Position(getXIndex(), getYIndex() + 1)));
     }
 
     @Override

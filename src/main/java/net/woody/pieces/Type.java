@@ -1,4 +1,4 @@
-package net.woody.chess;
+package net.woody.pieces;
 
 public enum Type {
 

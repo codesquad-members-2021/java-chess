@@ -4,6 +4,7 @@ import static net.woody.utils.StringUtils.appendNewLine;
 
 import net.woody.pieces.Piece;
 import net.woody.pieces.Piece.Color;
+import net.woody.pieces.Type;
 
 import java.util.ArrayList;
 import java.util.List;

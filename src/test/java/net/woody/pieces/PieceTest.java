@@ -1,6 +1,5 @@
 package net.woody.pieces;
 
-import net.woody.chess.Type;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertAll;

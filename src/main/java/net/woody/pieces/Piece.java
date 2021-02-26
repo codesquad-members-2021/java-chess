@@ -1,7 +1,5 @@
 package net.woody.pieces;
 
-import net.woody.chess.Type;
-
 import java.util.Objects;
 
 public class Piece {

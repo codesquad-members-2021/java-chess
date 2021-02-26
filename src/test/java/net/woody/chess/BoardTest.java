@@ -2,6 +2,7 @@ package net.woody.chess;
 
 import net.woody.pieces.Piece;
 import net.woody.pieces.Piece.Color;
+import net.woody.pieces.Type;
 import org.junit.jupiter.api.*;
 
 import static net.woody.utils.StringUtils.appendNewLine;

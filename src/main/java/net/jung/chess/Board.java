@@ -1,6 +1,7 @@
 package net.jung.chess;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static net.jung.chess.utils.StringUtils.appendNewLine;
@@ -89,7 +90,7 @@ public class Board {
         double points = 0;
 
         List<Piece> colorPieceList = getPieceListByColor(color);
-        for(int i =0; i<colorPieceList.size(); i++) {
+        for (int i = 0; i < colorPieceList.size(); i++) {
             points += colorPieceList.get(i).getDefaultPoint();
         }
 
@@ -117,16 +118,28 @@ public class Board {
 
         for (Rank rank : rankList) {
             for (int i = 0; i < Rank.MAX_PIECES_IN_RANK; i++) {
-               Piece piece = rank.getPiece(i);
-               pawnsInFile[i] += piece.isColorType(color, Piece.Type.PAWN) ? 1 : 0;
+                Piece piece = rank.getPiece(i);
+                pawnsInFile[i] += piece.isColorType(color, Piece.Type.PAWN) ? 1 : 0;
             }
         }
 
         for (int pawnSize : pawnsInFile) {
-            excessPawnsInFile += pawnSize > 1 ? pawnSize : 0 ;
+            excessPawnsInFile += pawnSize > 1 ? pawnSize : 0;
         }
 
         return excessPawnsInFile;
+    }
+
+    public List<Piece> sortColorPiecesAscending(Piece.Color color) {
+        List<Piece> colorPieceList = getPieceListByColor(color);
+        Collections.sort(colorPieceList);
+        return colorPieceList;
+    }
+
+    public List<Piece> sortColorPiecesDescending(Piece.Color color) {
+        List<Piece> colorPieceList = getPieceListByColor(color);
+        Collections.sort(colorPieceList, Collections.reverseOrder());
+        return colorPieceList;
     }
 
 }

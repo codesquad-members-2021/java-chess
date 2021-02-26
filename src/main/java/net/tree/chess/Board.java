@@ -10,6 +10,7 @@ import static net.utils.StringUtils.appendNewLine;
 public class Board {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     private List<Piece> whitePieceList = new ArrayList<>();
     private List<Piece> blackPieceList = new ArrayList<>();
     private final int BOARD_SIZE = 8;
@@ -20,6 +21,8 @@ public class Board {
         initializeBlackPieces();
     }
 =======
+=======
+>>>>>>> 7d85566... Dion의 세 번째 리뷰 내용 반영(2번째 PR 마지막 리뷰)
     List<Pawn> pawnList = new ArrayList<>();
 <<<<<<< HEAD
     final int BOARD_SIZE = 8;
@@ -117,6 +120,10 @@ public class Board {
     public void add(Pawn pawn) {
 =======
     private final int BOARD_SIZE = 8;
+=======
+    private List<Pawn> pawnList = new ArrayList<>();
+    private static final int BOARD_SIZE = 8;
+>>>>>>> Dion의 세 번째 리뷰 내용 반영(2번째 PR 마지막 리뷰)
     private String line = "........\n";
 
 <<<<<<< HEAD

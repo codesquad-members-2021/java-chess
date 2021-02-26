@@ -18,17 +18,17 @@ public class Board {
     public void initialize() {
         rankList.add(Rank.createWhitePiecesRank(0));
         rankList.add(Rank.createWhitePawnsRank(1));
-        rankList.add(Rank.createBlackLine(2));
-        rankList.add(Rank.createBlackLine(3));
-        rankList.add(Rank.createBlackLine(4));
-        rankList.add(Rank.createBlackLine(5));
+        rankList.add(Rank.creatBlankLine(2));
+        rankList.add(Rank.creatBlankLine(3));
+        rankList.add(Rank.creatBlankLine(4));
+        rankList.add(Rank.creatBlankLine(5));
         rankList.add(Rank.createBlackPawnsRank(6));
         rankList.add(Rank.createBlackPiecesRank(7));
     }
 
     public void initializeEmpty() {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            rankList.add(Rank.createBlackLine(i));
+            rankList.add(Rank.creatBlankLine(i));
         }
     }
 

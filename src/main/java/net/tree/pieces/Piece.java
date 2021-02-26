@@ -82,4 +82,5 @@ public class Piece {
     public boolean isWhite() {
         return color.equals(WHITE_COLOR);
     }
+
 }

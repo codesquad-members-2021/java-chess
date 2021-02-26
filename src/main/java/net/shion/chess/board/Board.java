@@ -38,33 +38,7 @@ public class Board {
         for (int i = 0; i < MAX_RANK; i++) {
             ranks.add(new Rank());
         }
-    }
-
-    public int pieceCount() {
-        return ranks.get(RANK_1).size()
-                + ranks.get(RANK_2).size()
-                + ranks.get(RANK_7).size()
-                + ranks.get(RANK_8).size();
-    }
-
-    public int pieceCountOf(Color color, Type type) {
-        int pieceCount = 0;
-        for (int rank = 0; rank < MAX_RANK; rank++) {
-            pieceCount += ranks.get(rank).pieceCountOf(color, type);
-
-        }
-        return pieceCount;
-    }
-
-    public Piece findPiece(String position) {
-        Position pos = new Position(position);
-        Piece target = ranks.get(pos.rank()).getPieceOf(pos.file());
-        return target;
-    }
-
-    public void move(Piece piece) {
-        Position position = piece.getPosition();
-        ranks.get(position.rank()).set(position.file(), piece);
+        initialize();
     }
 
     public void initialize() {
@@ -88,6 +62,7 @@ public class Board {
         }
         return blankRank;
     }
+
 
     private void addBlackPieces() {
         ranks.get(RANK_8).addAll(Arrays.asList(
@@ -134,6 +109,33 @@ public class Board {
                 , Piece.createWhite(KNIGHT, new Position(FILE_G, RANK_1))
                 , Piece.createWhite(ROOK, new Position(FILE_H, RANK_1)))
         );
+    }
+
+    public int pieceCount() {
+        return ranks.get(RANK_1).size()
+                + ranks.get(RANK_2).size()
+                + ranks.get(RANK_7).size()
+                + ranks.get(RANK_8).size();
+    }
+
+    public int pieceCountOf(Color color, Type type) {
+        int pieceCount = 0;
+        for (int rank = 0; rank < MAX_RANK; rank++) {
+            pieceCount += ranks.get(rank).pieceCountOf(color, type);
+
+        }
+        return pieceCount;
+    }
+
+    public Piece findPiece(String position) {
+        Position pos = new Position(position);
+        Piece target = ranks.get(pos.rank()).getPieceOf(pos.file());
+        return target;
+    }
+
+    public void move(Piece piece) {
+        Position position = piece.getPosition();
+        ranks.get(position.rank()).set(position.file(), piece);
     }
 
     /* 체스판의 결과를 StringBuilder에 저장한 후 String으로 반환한다. */

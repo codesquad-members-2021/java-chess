@@ -14,7 +14,7 @@ class BoardTest {
     private Board board;
 
     @BeforeEach
-    void setup() {
+    void initializedBoard() {
         this.board = Board.createInitBoard();
     }
 
@@ -68,8 +68,8 @@ class BoardTest {
 
     // TODO : expectedResult 대신 expect, actualResult 대신 actual도 좋다
     @Test
-    @DisplayName("보드를 초기화 한 뒤 출력된 결과가 예상된 결과와 같아야 한다.")
-    void printBoard() {
+    @DisplayName("보드를 초기화 한 뒤 출력된 체스판 상태가 예상된 결과와 같아야 한다.")
+    void printBoardState() {
         String expectedResult =
                 appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
@@ -81,5 +81,17 @@ class BoardTest {
                         appendNewLine("rnbqkbnr");
 
         assertThat(board.toString()).isEqualTo(expectedResult);
+    }
+
+    @Test
+    @DisplayName("생성한 체스말을 빈 체스판 임의의 위치로 이동시킬 수 있어야 한다.")
+    void locatePieceOnTheEmptyBoard() {
+        this.board = Board.createEmtpyBoard();
+        String position = "b5";
+        Piece piece = Piece.createBlackRook();
+        board.move(position, piece);
+
+        assertThat(board.findPiece(position)).isEqualTo(piece);
+        System.out.println(board.toString());
     }
 }

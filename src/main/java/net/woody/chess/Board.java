@@ -24,8 +24,8 @@ public class Board {
         this.board = board;
     }
 
-    public void add(Piece piece, int rank, int file) {
-        getRank(rank).add(file, piece);
+    public void move(String position, Piece piece) {
+
     }
 
     public Piece findPiece(String position) {
@@ -46,7 +46,7 @@ public class Board {
         return targetCounter;
     }
 
-    public static Board createBlankBoard() {
+    public static Board createEmtpyBoard() {
         List<Rank> board = new ArrayList<>(BOARD_LENGTH);
         for (int i = 0; i < BOARD_LENGTH; i++) {
             board.add(i, Rank.createBlankRank());

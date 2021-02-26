@@ -1,5 +1,6 @@
 package kr.codesquad.freddie.chess.board;
 
+import kr.codesquad.freddie.chess.ChessTestBase;
 import kr.codesquad.freddie.chess.piece.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -11,9 +12,8 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-class BoardTest extends BoardTestBase {
+class BoardTest extends ChessTestBase {
     private Board board;
-    private static final int MAX_SIZE = Board.RANK_SIZE * File.SIZE;
 
     @BeforeEach
     void setBoard() {

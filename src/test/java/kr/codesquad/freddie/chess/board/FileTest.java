@@ -1,5 +1,6 @@
 package kr.codesquad.freddie.chess.board;
 
+import kr.codesquad.freddie.chess.ChessTestBase;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-class FileTest extends BoardTestBase {
+class FileTest extends ChessTestBase {
     private File file;
 
     @BeforeEach

@@ -57,4 +57,15 @@ class BoardTest {
                 () -> assertThat(board.findPiece(10, 'z')).isEqualTo(null)
         );
     }
+
+    @Test
+    @DisplayName("Board의 특정 체스말 개수 반환 테스트")
+    void specificPieceCount() {
+        assertAll(
+                () -> assertThat(board.pieceCount(Piece.Color.BLACK, Piece.Type.PAWN)).isEqualTo(8),
+                () -> assertThat(board.pieceCount(Piece.Color.WHITE, Piece.Type.PAWN)).isEqualTo(8),
+                () -> assertThat(board.pieceCount(Piece.Color.BLACK, Piece.Type.KNIGHT)).isEqualTo(2),
+                () -> assertThat(board.pieceCount(Piece.Color.WHITE, Piece.Type.KING)).isEqualTo(1)
+        );
+    }
 }

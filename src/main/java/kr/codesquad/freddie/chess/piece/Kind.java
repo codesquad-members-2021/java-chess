@@ -48,11 +48,7 @@ public enum Kind {
             int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
             int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
 
-            if (fileDistance + rankDistance != 3 || Math.abs(fileDistance - rankDistance) != 1) {
-                return false;
-            }
-
-            return true;
+            return fileDistance + rankDistance == 3 && Math.abs(fileDistance - rankDistance) == 1;
         }
     },
     ROOK("r", 5.0) {
@@ -62,11 +58,7 @@ public enum Kind {
             int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
             int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
 
-            if (gradientOf(fileDistance, rankDistance) != 0) {
-                return false;
-            }
-
-            return true;
+            return gradientOf(fileDistance, rankDistance) == 0;
         }
     },
     BISHOP("b", 3.0) {
@@ -76,11 +68,7 @@ public enum Kind {
             int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
             int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
 
-            if (gradientOf(fileDistance, rankDistance) != 1) {
-                return false;
-            }
-
-            return true;
+            return gradientOf(fileDistance, rankDistance) == 1;
         }
     },
     QUEEN("q", 9.0) {
@@ -92,11 +80,7 @@ public enum Kind {
 
             double gradient = gradientOf(fileDistance, rankDistance);
 
-            if (!(gradient == 0 || gradient == 1)) {
-                return false;
-            }
-
-            return true;
+            return gradient == 0 || gradient == 1;
         }
     },
     KING("k", 0.0) {
@@ -106,11 +90,7 @@ public enum Kind {
             int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
             int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
 
-            if (1 < fileDistance || 1 < rankDistance) {
-                return false;
-            }
-
-            return true;
+            return 1 >= fileDistance && 1 >= rankDistance;
         }
     },
     EMPTY(".", 0.0) {

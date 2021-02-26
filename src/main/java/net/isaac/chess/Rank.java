@@ -12,28 +12,28 @@ public class Rank {
         }
     }
 
-    public Piece getPiece(char alphabet) {
-        int index = getIndex(alphabet);
+    public Piece getPiece(char file) {
+        int index = getIndex(file);
         if (!isValid(index)) {
-            System.err.println(String.format("Rank.getPiece: %c는 유효한 자리가 아닙니다.", alphabet));
+            System.err.println(String.format("Rank.getPiece: %c는 유효한 자리가 아닙니다.", file));
             return null;
         }
 
         return pieces[index];
     }
 
-    public void setPiece(Piece piece, char alphabet) {
-        int index = getIndex(alphabet);
+    public void setPiece(Piece piece, char file) {
+        int index = getIndex(file);
         if (!isValid(index)) {
-            System.err.println(String.format("Rank.setPiece: %c는 유효한 자리가 아닙니다.", alphabet));
+            System.err.println(String.format("Rank.setPiece: %c는 유효한 자리가 아닙니다.", file));
             return;
         }
 
         pieces[index] = piece;
     }
 
-    private int getIndex(char alphabet) {
-        return alphabet - 'a';
+    private int getIndex(char file) {
+        return file - 'a';
     }
 
     private boolean isValid(int index) {

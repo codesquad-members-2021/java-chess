@@ -42,6 +42,24 @@ public class Piece implements Comparable<Piece> {
         return Double.valueOf(type.defaultPoint).compareTo(other.type.defaultPoint);
     }
 
+    @Override
+    public int hashCode() {
+        int c = 31;
+        int hashcode = color.hashCode();
+        hashcode = c * hashcode + type.hashCode();
+        return hashcode;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Piece)) {
+            return false;
+        }
+        Piece otherPiece = (Piece) other;
+        return this.color == otherPiece.color
+                && this.type == otherPiece.type;
+    }
+
     public enum Color {
         BLACK,
         WHITE,

@@ -3,6 +3,9 @@ package chess;
 import java.util.Scanner;
 
 public class ChessStarter {
+    private static final String start = "start";
+    private static final String end = "end";
+
     public static void main(String[] args) {
         ChessStarter chessStarter = new ChessStarter();
         chessStarter.intro();
@@ -16,8 +19,6 @@ public class ChessStarter {
     }
 
     void ready() {
-        final String start = "start";
-        final String end = "end";
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
                 System.out.print("> ");

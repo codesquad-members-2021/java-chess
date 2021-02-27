@@ -43,9 +43,10 @@ public class Board {
     public String showBoard() {
         StringBuilder boardOutput = new StringBuilder();
         final String rankIndex = "abcdefgh";
+        Rank rank = new Rank();
         for (int i = 0; i < BOARD_SIZE; i++) {
             int boardSizeMinusI = BOARD_SIZE - i;
-            boardOutput.append(appendNewLine(Rank.getRepresentationByRank(rankList.get(boardSizeMinusI - 1)) + " " + boardSizeMinusI));
+            boardOutput.append(appendNewLine(rank.getRepresentationByRank(rankList.get(boardSizeMinusI - 1)) + " " + boardSizeMinusI));
         }
         boardOutput.append(appendNewLine(rankIndex));
         return boardOutput.toString();
@@ -64,7 +65,7 @@ public class Board {
     public double calculatePoint(Color color) {
         double pointSum = 0.0;
         for (Rank rank : rankList) {
-            pointSum += Rank.getPoint(rank, color);
+            pointSum += rank.getPoint(rank, color);
         }
         return pointSum;
     }

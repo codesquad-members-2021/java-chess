@@ -47,7 +47,7 @@ public class Rank {
         IntStream.range(0, RANK_SIZE).
                 forEach(col -> pieceList.set(col, Piece.createBlank()));
     }
-    
+
     public boolean hasPawnIn(int column, Color color) {
         Piece piece = pieceList.get(column);
         return (piece.getType() == Type.PAWN) &&

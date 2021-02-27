@@ -47,19 +47,7 @@ public class Rank {
         IntStream.range(0, RANK_SIZE).
                 forEach(col -> pieceList.set(col, Piece.createBlank()));
     }
-
-    public double calculateRankPoint(Color color) {
-        return pieceList.stream()
-                .mapToDouble(piece -> piece.getType().getDefaultPoint())
-                .sum();
-    }
-
-    public int countPawn(Color color) {
-        return (int)pieceList.stream()
-                .filter(piece -> piece.getType() == Type.PAWN)
-                .count();
-    }
-
+    
     public boolean hasPawnIn(int column, Color color) {
         Piece piece = pieceList.get(column);
         return (piece.getType() == Type.PAWN) &&

@@ -1,46 +1,60 @@
 package chess.pieces;
 
+import chess.Position;
+import chess.pieces.Piece.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class PieceTest {
 
+    @DisplayName("기물의 representation이 올바르게 지정되었는지 확인한다.")
     @Test
-    public void create_piece() {
-        char rep = PieceName.PAWN.getTempRepresentation();
-        verifyPiece(Piece.createWhitePawn(), Color.WHITE, rep);
-        verifyPiece(Piece.createBlackPawn(), Color.BLACK, Character.toUpperCase(rep));
-
-        rep = PieceName.KNIGHT.getTempRepresentation();
-        verifyPiece(Piece.createWhiteKnight(), Color.WHITE, rep);
-        verifyPiece(Piece.createBlackKnight(), Color.BLACK, Character.toUpperCase(rep));
-
-        rep = PieceName.BISHOP.getTempRepresentation();
-        verifyPiece(Piece.createWhiteBishop(), Color.WHITE, rep);
-        verifyPiece(Piece.createBlackBishop(), Color.BLACK, Character.toUpperCase(rep));
-
-        rep = PieceName.ROOK.getTempRepresentation();
-        verifyPiece(Piece.createWhiteRook(), Color.WHITE, rep);
-        verifyPiece(Piece.createBlackRook(), Color.BLACK, Character.toUpperCase(rep));
-
-        rep = PieceName.QUEEN.getTempRepresentation();
-        verifyPiece(Piece.createWhiteQueen(), Color.WHITE, rep);
-        verifyPiece(Piece.createBlackQueen(), Color.BLACK, Character.toUpperCase(rep));
-
-        rep = PieceName.KING.getTempRepresentation();
-        verifyPiece(Piece.createWhiteKing(), Color.WHITE, rep);
-        verifyPiece(Piece.createBlackKing(), Color.BLACK, Character.toUpperCase(rep));
+    void getRepresentationPerPiece() {
+        assertThat(Type.PAWN.getWhiteRepresentation()).isEqualTo('p');
+        assertThat(Type.PAWN.getBlackRepresentation()).isEqualTo('P');
     }
 
+    @DisplayName("기물의 타입과 color가 올바르게 지정되었는지 확인한다.")
     @Test
-    public void check_color() {
-        assertEquals(true, Piece.createBlackPawn().isBlack());
-        assertEquals(false, Piece.createBlackPawn().isWhite());
+    void createPiece() {
+        verifyPiece(Piece.createWhitePawn(new Position("a1")),
+                Piece.createBlackPawn(new Position("a2")), Type.PAWN);
+        verifyPiece(Piece.createWhiteKnight(new Position("b1")),
+                Piece.createBlackKnight(new Position("b2")), Type.KNIGHT);
+        verifyPiece(Piece.createWhiteRook(new Position("c1")),
+                Piece.createBlackRook(new Position("c2")), Type.ROOK);
+        verifyPiece(Piece.createWhiteBishop(new Position("d1")),
+                Piece.createBlackBishop(new Position("d2")), Type.BISHOP);
+        verifyPiece(Piece.createWhiteQueen(new Position("e1")),
+                Piece.createBlackQueen(new Position("e2")), Type.QUEEN);
+        verifyPiece(Piece.createWhiteKing(new Position("f1")),
+                Piece.createBlackKing(new Position("f2")), Type.KING);
     }
 
-    void verifyPiece(final Piece piece, final Color color, final char representation) {
-        assertEquals(color, piece.getColor());
-        assertEquals(representation, piece.getRepresentation());
+    @DisplayName("빈 기물의 속성이 올바르게 지정되었는지 확인한다.")
+    @Test
+    void createBlank() {
+        Piece blank = Piece.createBlank(new Position("a1"));
+        assertThat(blank.isBlack()).isFalse();
+        assertThat(blank.isWhite()).isFalse();
+        assertThat(blank.getType()).isEqualTo(Type.NO_PIECE);
+    }
+
+    @DisplayName("기물의 position이 올바르게 지정되었는지 확인한다.")
+    @Test
+    void getPosition() {
+        Position position = new Position("a1");
+        Piece piece = Piece.createBlackBishop(position);
+        assertThat(piece.getPosition()).isEqualTo(position);
+    }
+
+    void verifyPiece(Piece whitePiece, Piece blackPiece, Type type) {
+        assertThat(whitePiece.isWhite()).isTrue();
+        assertThat(whitePiece.getType()).isEqualTo(type);
+
+        assertThat(blackPiece.isBlack()).isTrue();
+        assertThat(blackPiece.getType()).isEqualTo(type);
     }
 }

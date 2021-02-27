@@ -1,127 +1,114 @@
 package chess;
 
 import chess.pieces.Piece;
-import chess.pieces.Color;
-import chess.pieces.PieceName;
+import chess.pieces.Piece.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static chess.utils.StringUtils.appendNewLine;
+import static java.util.stream.Collectors.*;
 
 public class Board {
-    private static final int BOARD_RANK = 8;
-    private List<Piece> whitePawns = new ArrayList<>(8);
-    private List<Piece> blackPawns = new ArrayList<>(8);
-    private List<Piece> whitePieces = new ArrayList<>(8);
-    private List<Piece> blackPieces = new ArrayList<>(8);
+    public static final int BOARD_RANK = 8;
+    public static final int BOARD_FILE = 8;
+    private List<Rank> board = new ArrayList<>(BOARD_RANK);
 
-    public void add(Piece piece) {
-        getPieceList(piece).add(piece);
-    }
-
-    private List<Piece> getPieceList(Piece piece) {
-        if (piece.getColor() == Color.WHITE && piece.getName() == PieceName.PAWN) {
-            return whitePawns;
-        }
-        if (piece.getColor() == Color.BLACK && piece.getName() == PieceName.PAWN) {
-            return blackPawns;
-        }
-        if (piece.getColor() == Color.WHITE && piece.getName() != PieceName.PAWN) {
-            return whitePieces;
-        }
-        if (piece.getColor() == Color.BLACK && piece.getName() != PieceName.PAWN) {
-            return blackPieces;
-        }
-        return null;
-    }
-
-    public void initialize() {
-        initBlackPiece();
-        initBlackPawn();
-        initWhitePawn();
-        initWhitePiece();
-    }
-
-    private void initBlackPiece() {
-        add(Piece.createBlackRook());
-        add(Piece.createBlackKnight());
-        add(Piece.createBlackBishop());
-        add(Piece.createBlackQueen());
-        add(Piece.createBlackKing());
-        add(Piece.createBlackBishop());
-        add(Piece.createBlackKnight());
-        add(Piece.createBlackRook());
-    }
-
-    private void initWhitePiece() {
-        add(Piece.createWhiteRook());
-        add(Piece.createWhiteKnight());
-        add(Piece.createWhiteBishop());
-        add(Piece.createWhiteQueen());
-        add(Piece.createWhiteKing());
-        add(Piece.createWhiteBishop());
-        add(Piece.createWhiteKnight());
-        add(Piece.createWhiteRook());
-    }
-
-    private void initWhitePawn() {
-        for (int i = 0; i < BOARD_RANK; i++) {
-            add(Piece.createWhitePawn());
+    public void initializeEmpty() {
+        for (int rankNum = 1; rankNum <= BOARD_RANK; rankNum++) {
+            board.add(Rank.initBlankRank(rankNum));
         }
     }
 
-    private void initBlackPawn() {
-        for (int i = 0; i < BOARD_RANK; i++) {
-            add(Piece.createBlackPawn());
+    public void initializeBoard() {
+        // 랭크 번호 순서대로 board 리스트에 담기
+        board.add(Rank.initWhitePieceRank());
+        board.add(Rank.initWhitePawnRank(2));
+        for (int rankNum = 0; rankNum < 4; rankNum++) {
+            board.add(Rank.initBlankRank(3 + rankNum));
         }
-    }
-
-    public int pieceCount() {
-        return whitePawns.size() + whitePieces.size() +
-                blackPawns.size() + blackPieces.size();
+        board.add(Rank.initBlackPawnRank(7));
+        board.add(Rank.initBlackPieceRank());
     }
 
     public String showBoard() {
         StringBuilder result = new StringBuilder();
-        String empty = appendNewLine(getEmptyResult());
-        result.append(appendNewLine(getBlackPieceResult()))
-                .append(appendNewLine(getBlackPawnResult()))
-                .append(empty + empty + empty + empty)
-                .append(appendNewLine(getWhitePawnResult()))
-                .append(appendNewLine(getWhitePieceResult()));
-        return result.toString();
-    }
-
-    private String getEmptyResult() {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < BOARD_RANK; i++) {
-            result.append(".");
+        for (int i = BOARD_RANK - 1; i >= 0; i--) {
+            result.append(appendNewLine(getRankResult(i)));
         }
         return result.toString();
     }
 
-    private String getWhitePawnResult() {
-        return getPieceResult(whitePawns);
+    private String getRankResult(int index) {
+        return getPieceResult(board.get(index));
     }
 
-    private String getBlackPawnResult() {
-        return getPieceResult(blackPawns);
-    }
-
-    private String getWhitePieceResult() {
-        return getPieceResult(whitePieces);
-    }
-
-    private String getBlackPieceResult() {
-        return getPieceResult(blackPieces);
-    }
-
-    private String getPieceResult(List<Piece> pieces) {
+    private String getPieceResult(Rank rank) {
         StringBuilder result = new StringBuilder();
-        for (Piece piece : pieces) {
+        List<Piece> pieceList = rank.getPieceList();
+        for (Piece piece : pieceList) {
             result.append(piece.getRepresentation());
         }
         return result.toString();
+    }
+
+    public Piece findPiece(Position position) {
+        return board.get(position.getY()).getPieceList().get(position.getX());
+    }
+
+    public void move(Position position, Piece piece) {
+        int x = position.getX();
+        int y = position.getY();
+        board.get(y).remove(x);
+        board.get(y).setPiece(x, piece);
+    }
+
+    public double calculatePoint(Color color) {
+        double result = board.stream()
+                .map(Rank::getPieceList)
+                .flatMap(List::stream)
+                .filter(x -> x.getColor() == color)
+                .mapToDouble(x -> x.getType().getDefaultPoint())
+                .sum();
+        return result - getSameFilePawnPoint(color);
+    }
+
+    private double getSameFilePawnPoint(Color color) {
+        Map<Integer, Long> pawnFileMap = getPawnFileMap(color);
+        return getSameFilePawnNum(pawnFileMap) * 0.5;
+    }
+
+    private Map<Integer, Long> getPawnFileMap(Color color) {
+        return board.stream()
+                .map(Rank::getPieceList)
+                .flatMap(List::stream)
+                .filter(x -> x.getColor() == color)
+                .filter(x -> x.getType() == Type.PAWN)
+                .map(Piece::getPosition)
+                .map(Position::getX)
+                .collect(groupingBy(x -> x, counting()));
+    }
+
+    private int getSameFilePawnNum(Map map) {
+        Collection valueSet = map.values();
+        Iterator iterator = valueSet.iterator();
+        int sum = 0;
+        while (iterator.hasNext()) {
+            int iteratorNext = Integer.parseInt(String.valueOf(iterator.next()));
+            if (iteratorNext > 1) {
+                sum += iteratorNext;
+            }
+        }
+        return sum;
+    }
+
+    public List<Type> sortPiece(Color color) {
+        return board.stream()
+                .map(Rank::getPieceList)
+                .flatMap(List::stream)
+                .filter(x -> x.getColor() == color)
+                .map(Piece::getType)
+                .sorted(Comparator.comparing(Type::getDefaultPoint).reversed())
+                .collect(Collectors.toList());
     }
 }

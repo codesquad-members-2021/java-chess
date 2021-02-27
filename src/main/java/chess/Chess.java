@@ -35,7 +35,7 @@ public class Chess {
 
     private static void startChess() {
         Board board = new Board();
-        board.initialize();
+        board.initializeBoard();
         System.out.println(board.showBoard());
     }
 }

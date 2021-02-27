@@ -1,6 +1,5 @@
 import net.sanhee.chess.Board;
 import net.sanhee.pieces.Piece;
-import net.sanhee.pieces.PieceFactory;
 import net.sanhee.pieces.property.UnitColor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -53,7 +52,7 @@ class BoardTest {
     }
 
     Piece spawnPawn(Board board, UnitColor unitColor) {
-        Piece pawn = PieceFactory.createPawn(unitColor);
+        Piece pawn = Piece.createPawn(unitColor);
         board.add(pawn);
         totalPawnCnt++;
 

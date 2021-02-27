@@ -7,7 +7,7 @@ public enum UnitType {
     BISHOP('B'),
     QUEEN('Q'),
     KING('K'),
-    NONE('.');
+    NO_PIECE('.');
 
     private final char unitRepresentation;
 
@@ -15,18 +15,18 @@ public enum UnitType {
         this.unitRepresentation = mark;
     }
 
-    public static char getMark(UnitColor color, String unitClassName) {
+    public static char getMark(UnitColor color, UnitType type) {
         final char mark;
 
         switch (color) {
             case BLACK:
-                mark = Character.toUpperCase(UnitType.valueOf(unitClassName.toUpperCase()).unitRepresentation);
+                mark = Character.toUpperCase(type.unitRepresentation);
                 break;
             case WHITE:
-                mark = Character.toLowerCase(UnitType.valueOf(unitClassName.toUpperCase()).unitRepresentation);
+                mark = Character.toLowerCase(type.unitRepresentation);
                 break;
-            case NONE:
-                mark = UnitType.valueOf(unitClassName.toUpperCase()).unitRepresentation;
+            case NOCOLOR:
+                mark = type.unitRepresentation;
                 break;
             default:
                 mark = ' ';

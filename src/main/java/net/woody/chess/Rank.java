@@ -1,6 +1,7 @@
 package net.woody.chess;
 
 import net.woody.pieces.Piece;
+import net.woody.pieces.Piece.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +33,30 @@ public class Rank {
             targetCounter += target.equals(piece) ? 1 : 0;
         }
         return targetCounter;
+    }
+
+    public double calculateRankPoint(Color color) {
+        return (color == Color.WHITE) ? calculateWhite() : calculateBlack();
+    }
+
+    private double calculateWhite() {
+        double score = 0.0;
+        for (Piece piece : pieces) {
+            if (piece.isWhite()) {
+                score += piece.getType().getDefaultPoint();
+            }
+        }
+        return score;
+    }
+
+    private double calculateBlack() {
+        double score = 0.0;
+        for (Piece piece : pieces) {
+            if (piece.isBlack()) {
+                score += piece.getType().getDefaultPoint();
+            }
+        }
+        return score;
     }
 
     public int size() {

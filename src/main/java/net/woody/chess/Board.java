@@ -87,7 +87,11 @@ public class Board {
     }
 
     public double calculatePoint(Color color) {
-        return 0.0;
+        double score = 0.0;
+        for (Rank rank : board) {
+            score += rank.calculateRankPoint(color);
+        }
+        return score;
     }
 
     @Override

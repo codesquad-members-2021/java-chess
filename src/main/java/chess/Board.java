@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static chess.utils.StringUtils.appendNewLine;
+import static java.util.stream.Collectors.*;
 
 public class Board {
     public static final int BOARD_RANK = 8;
@@ -63,14 +64,43 @@ public class Board {
     }
 
     public double calculatePoint(Color color) {
-        return board.stream()
+        double result = board.stream()
                 .map(Rank::getPieceList)
                 .flatMap(List::stream)
                 .filter(x -> x.getColor() == color)
                 .mapToDouble(x -> x.getType().getDefaultPoint())
                 .sum();
+        return result - getSameFilePawnPoint(color);
     }
 
+    private double getSameFilePawnPoint(Color color) {
+        Map<Integer, Long> pawnFileMap = getPawnFileMap(color);
+        return getSameFilePawnNum(pawnFileMap) * 0.5;
+    }
+
+    private Map<Integer, Long> getPawnFileMap(Color color) {
+        return board.stream()
+                .map(Rank::getPieceList)
+                .flatMap(List::stream)
+                .filter(x -> x.getColor() == color)
+                .filter(x -> x.getType() == Type.PAWN)
+                .map(Piece::getPosition)
+                .map(Position::getX)
+                .collect(groupingBy(x -> x, counting()));
+    }
+
+    private int getSameFilePawnNum(Map map) {
+        Collection valueSet = map.values();
+        Iterator iterator = valueSet.iterator();
+        int sum = 0;
+        while (iterator.hasNext()) {
+            int iteratorNext = Integer.parseInt(String.valueOf(iterator.next()));
+            if (iteratorNext > 1) {
+                sum += iteratorNext;
+            }
+        }
+        return sum;
+    }
 
     public List<Type> sortPiece(Color color) {
         return board.stream()

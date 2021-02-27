@@ -56,9 +56,9 @@ class BoardTest {
         board.initializeEmpty();
 
         Position position = new Position("b5");
-        Piece piece = Piece.createBlackRook(new Position("a1"));
-        board.move(position, piece);
+        Piece piece = Piece.createBlackRook(position);
 
+        board.move(position, piece);
         assertThat(board.findPiece(position)).isEqualTo(piece);
         System.out.println(board.showBoard());
     }

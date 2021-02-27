@@ -42,29 +42,29 @@ public class Board {
 
     public String showBoard() {
         StringBuilder boardOutput = new StringBuilder();
-        String rankIndex = "abcdefgh";
+        final String rankIndex = "abcdefgh";
         for (int i = 0; i < BOARD_SIZE; i++) {
             int boardSizeMinusI = BOARD_SIZE - i;
-            boardOutput.append(appendNewLine(Rank.getRepresentationByRank(rankList.get(boardSizeMinusI - 1)) + " " + (boardSizeMinusI)));
+            boardOutput.append(appendNewLine(Rank.getRepresentationByRank(rankList.get(boardSizeMinusI - 1)) + " " + boardSizeMinusI));
         }
         boardOutput.append(appendNewLine(rankIndex));
         return boardOutput.toString();
     }
 
     public Piece findPiece(String position) {
-        Position tempPosition = new Position(position);
-        return rankList.get(tempPosition.getFile()).getPiece(tempPosition.getRank());
+        Position targetPosition = new Position(position);
+        return rankList.get(targetPosition.getFile()).getPiece(targetPosition.getRank());
     }
 
-    public void move(String position, Piece piece) {
+    public void movePiece(String position, Piece piece) {
         Position targetPosition = new Position(position);
         rankList.get(targetPosition.getFile()).move(targetPosition.getRank(), piece);
     }
 
-    public double caculcatePoint(Color color) {
+    public double calculatePoint(Color color) {
         double pointSum = 0.0;
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            pointSum += Rank.getPoint(rankList.get(i), color);
+        for (Rank rank : rankList) {
+            pointSum += Rank.getPoint(rank, color);
         }
         return pointSum;
     }

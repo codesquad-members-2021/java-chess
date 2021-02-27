@@ -71,11 +71,11 @@ class BoardTest {
         board.initializeEmpty();
 
         Piece blackRook = Piece.createBlackRook(new Position("b5"));
-        board.move("b5", blackRook);
+        board.movePiece("b5", blackRook);
         Piece blackKing = Piece.createBlackKing(new Position("b6"));
-        board.move("b6", blackKing);
+        board.movePiece("b6", blackKing);
         Piece whiteKing = Piece.createWhiteKing(new Position("e3"));
-        board.move("e3", whiteKing);
+        board.movePiece("e3", whiteKing);
 
         assertAll(
                 () -> assertThat(blackRook).isEqualTo(board.findPiece("b5")),
@@ -89,19 +89,19 @@ class BoardTest {
     void calculatePoint() {
         board.initializeEmpty();
 
-        board.move("b6", Piece.createBlackPawn(position));
-        board.move("e6", Piece.createBlackQueen(position));
-        board.move("b8", Piece.createBlackKing(position));
-        board.move("c8", Piece.createBlackRook(position));
+        board.movePiece("b6", Piece.createBlackPawn(position));
+        board.movePiece("e6", Piece.createBlackQueen(position));
+        board.movePiece("b8", Piece.createBlackKing(position));
+        board.movePiece("c8", Piece.createBlackRook(position));
 
-        board.move("f2", Piece.createWhitePawn(position));
-        board.move("g2", Piece.createWhitePawn(position));
-        board.move("e1", Piece.createWhiteRook(position));
-        board.move("f1", Piece.createWhiteKing(position));
+        board.movePiece("f2", Piece.createWhitePawn(position));
+        board.movePiece("g2", Piece.createWhitePawn(position));
+        board.movePiece("e1", Piece.createWhiteRook(position));
+        board.movePiece("f1", Piece.createWhiteKing(position));
 
         assertAll(
-                () -> assertThat(15.0).isEqualTo(board.caculcatePoint(Piece.Color.BLACK)),
-                () -> assertThat(7.0).isEqualTo(board.caculcatePoint(Piece.Color.WHITE))
+                () -> assertThat(15.0).isEqualTo(board.calculatePoint(Piece.Color.BLACK)),
+                () -> assertThat(7.0).isEqualTo(board.calculatePoint(Piece.Color.WHITE))
         );
     }
 

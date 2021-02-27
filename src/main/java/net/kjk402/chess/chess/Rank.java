@@ -86,4 +86,22 @@ public class Rank {
         pieceList.set(position, piece);
     }
 
+    public static double getPoint(Rank rank, Color color) {
+        double sum = 0.0;
+        for (Piece piece : rank.getPieceList()) {
+            if (piece.getColor() == color) {
+                sum += piece.getType().getDefaultPoint();
+            }
+        }
+        return sum;
+    }
+
+    public static String getRepresentationByRank(Rank rank) {
+        StringBuilder sb = new StringBuilder();
+        for (Piece piece : rank.getPieceList()) {
+            sb.append(piece.getRepresentation());
+        }
+        return sb.toString();
+    }
+
 }

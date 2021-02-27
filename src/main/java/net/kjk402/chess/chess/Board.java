@@ -45,7 +45,7 @@ public class Board {
         String rankIndex = "abcdefgh";
         for (int i = 0; i < BOARD_SIZE; i++) {
             int boardSizeMinusI = BOARD_SIZE - i;
-            boardOutput.append(appendNewLine(getRepresentationByRank(rankList.get(boardSizeMinusI - 1)) + " " + (boardSizeMinusI)));
+            boardOutput.append(appendNewLine(Rank.getRepresentationByRank(rankList.get(boardSizeMinusI - 1)) + " " + (boardSizeMinusI)));
         }
         boardOutput.append(appendNewLine(rankIndex));
         return boardOutput.toString();
@@ -64,7 +64,7 @@ public class Board {
     public double caculcatePoint(Color color) {
         double pointSum = 0.0;
         for (int i = 0; i < BOARD_SIZE; i++) {
-            pointSum += getPoint(rankList.get(i), color);
+            pointSum += Rank.getPoint(rankList.get(i), color);
         }
         return pointSum;
     }
@@ -78,24 +78,6 @@ public class Board {
             }
         }
         return sortedPieces.toString();
-    }
-
-    private double getPoint(Rank rank, Color color) {
-        double sum = 0.0;
-        for (Piece piece : rank.getPieceList()) {
-            if (piece.getColor() == color) {
-                sum += piece.getType().getDefaultPoint();
-            }
-        }
-        return sum;
-    }
-
-    private String getRepresentationByRank(Rank rank) {
-        StringBuilder sb = new StringBuilder();
-        for (Piece piece : rank.getPieceList()) {
-            sb.append(piece.getRepresentation());
-        }
-        return sb.toString();
     }
 
 }

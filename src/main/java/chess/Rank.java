@@ -90,5 +90,5 @@ public class Rank {
     public void remove(int index) {
         pieceList.remove(index);
     }
-    
+
 }

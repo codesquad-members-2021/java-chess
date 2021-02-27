@@ -10,6 +10,11 @@ public class Knight extends Piece {
         return 'N';
     }
 
+    @Override
+    public double getScore() {
+        return 2.5;
+    }
+
     public static Knight ofWhite() {
         return SingletonHelper.whiteKnight;
     }

@@ -11,6 +11,7 @@ public class ChessGame {
         board.initialize();
 
         gameStart(board, sc);
+        sc.close();
     }
 
     private static void gameStart(Board board, Scanner sc) {

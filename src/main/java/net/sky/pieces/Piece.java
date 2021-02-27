@@ -1,5 +1,8 @@
 package net.sky.pieces;
 
+
+import java.util.Objects;
+
 public class Piece {
 
     private final Color color;
@@ -32,9 +35,45 @@ public class Piece {
         return piece.getColor() == Color.BLACK;
     }
 
-    private char classifyRepresentation() {
-        char initRepresentation = pieceType.getRepresentation();
-        return color == Color.BLACK ? Character.toUpperCase(initRepresentation) : initRepresentation;
+    public boolean isMatchingColor(Color color) {
+        return this.color == color;
     }
 
+    public boolean isMatchingType(PieceType pieceType) {
+        return this.pieceType == pieceType;
+    }
+
+
+    public double getPoint() {
+        return pieceType.getPoint();
+    }
+
+    private char classifyRepresentation() {
+        char initRepresentation = pieceType.getRepresentation();
+        return color == Color.BLACK ? Character.toUpperCase(initRepresentation)
+            : initRepresentation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Piece piece = (Piece) o;
+        return representation == piece.representation && color == piece.color
+            && pieceType == piece.pieceType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, pieceType, representation);
+    }
+
+    @Override
+    public String toString() {
+        return getRepresentation() + "";
+    }
 }

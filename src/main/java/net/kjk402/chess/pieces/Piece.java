@@ -37,7 +37,7 @@ public class Piece implements Comparable<Piece> {
         }
     }
 
-    private final Position position;
+    private Position position;
     private final Color color;
     private final Type type;
 

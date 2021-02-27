@@ -151,7 +151,7 @@ public class Board {
         return rankList.stream()
                 .filter(rank -> rank.getInColumn(column).getColor() == color)
                 .mapToDouble(rank -> rank.getInColumn(column)
-                        .getType().getDefaultPoint())
+                        .getDefaultPoint())
                 .sum();
     }
 
@@ -167,7 +167,7 @@ public class Board {
         List<Piece> list = getListOf(color);
 
         list.sort(Comparator.comparingDouble(piece
-                -> piece.getType().getDefaultPoint()));
+                -> piece.getDefaultPoint()));
 
         return list;
     }
@@ -176,7 +176,7 @@ public class Board {
         List<Piece> list = getListOf(color);
 
         list.sort(Comparator.comparingDouble(piece
-                -> - piece.getType().getDefaultPoint()));
+                -> - piece.getDefaultPoint()));
 
         return list;
     }

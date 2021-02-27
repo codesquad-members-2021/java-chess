@@ -83,6 +83,10 @@ public class Piece {
         return type.getRepresentaion(this.color);
     }
 
+    public double getDefaultPoint() {
+        return type.getDefaultPoint();
+    }
+
     public boolean isWhite() {
         return this.color == Color.WHITE;
     }

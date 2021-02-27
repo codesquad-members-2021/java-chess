@@ -93,24 +93,20 @@ class BoardTest {
     void calculatePoint() {
         board.initializeEmpty();
 
-        addPiece("b6", Piece.createBlackPawn(new Position("b6")));
-        addPiece("e6", Piece.createBlackQueen(new Position("e6")));
-        addPiece("b8", Piece.createBlackKing(new Position("b8")));
-        addPiece("c8", Piece.createBlackRook(new Position("c8")));
+        board.move("b6", Piece.createBlackPawn(position));
+        board.move("e6", Piece.createBlackQueen(position));
+        board.move("b8", Piece.createBlackKing(position));
+        board.move("c8", Piece.createBlackRook(position));
 
-        addPiece("f2", Piece.createWhitePawn(new Position("f2")));
-        addPiece("g2", Piece.createWhitePawn(new Position("g2")));
-        addPiece("e1", Piece.createWhiteRook(new Position("e1")));
-        addPiece("f1", Piece.createWhiteKing(new Position("f1")));
+        board.move("f2", Piece.createWhitePawn(position));
+        board.move("g2", Piece.createWhitePawn(position));
+        board.move("e1", Piece.createWhiteRook(position));
+        board.move("f1", Piece.createWhiteKing(position));
 
         assertAll(
                 () -> assertThat(15.0).isEqualTo(board.caculcatePoint(Piece.Color.BLACK)),
                 () -> assertThat(7.0).isEqualTo(board.caculcatePoint(Piece.Color.WHITE))
         );
-    }
-
-    private void addPiece(String position, Piece piece) {
-        board.move(position, piece);
     }
 
     @Test

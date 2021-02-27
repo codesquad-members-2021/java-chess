@@ -73,7 +73,7 @@ class BoardTest {
     }
 
     void verifyPieceCount(final Color color, final Type type, final int count) {
-        assertEquals(board.getPieceCount(color, type), count);
+        assertEquals(board.getEachPieceCount(color, type), count);
     }
 
     @Test
@@ -120,7 +120,7 @@ class BoardTest {
         );
 
         assertEquals(15.0, board.calculatePoint(Color.BLACK), 0.01);
-        assertEquals(7.5, board.calculatePoint(Color.WHITE), 0.01);
+        assertEquals(7.0, board.calculatePoint(Color.WHITE), 0.01);
 
         System.out.println(board.showBoard());
     }

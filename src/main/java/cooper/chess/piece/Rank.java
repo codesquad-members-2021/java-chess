@@ -1,122 +1,76 @@
 package cooper.chess.piece;
 
-import cooper.chess.Board;
-
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-public class PieceGroup {
-    private static int WHITE_PIECE_SIZE;
-    private static int BLACK_PIECE_SIZE;
-
+public class Rank {
+    public static final int RANK_SIZE = 8;
     private final List<Piece> pieceList;
-    private PointCalculator pointCalculator;
 
-    public PieceGroup() {
-        this.pieceList = new ArrayList<>();
-        initialize();
-        this.pointCalculator = new PointCalculator(pieceList);
+    public Rank(List<Piece> pieceList) {
+        this.pieceList = pieceList;
+        Collections.unmodifiableList(pieceList);
     }
 
-    private void initialize() {
-        initWhitePiece();
-        setWhiteSize();
-
-        initBlank();
-
-        initBlackPiece();
-        setBlackSize();
-    }
-
-    private void initWhitePiece() {
-        pieceList.add(Piece.createWhiteRook());
-        pieceList.add(Piece.createWhiteKnight());
-        pieceList.add(Piece.createWhiteBishop());
-        pieceList.add(Piece.createWhiteQueen());
-        pieceList.add(Piece.createWhiteKing());
-        pieceList.add(Piece.createWhiteBishop());
-        pieceList.add(Piece.createWhiteKnight());
-        pieceList.add(Piece.createWhiteRook());
-
-        for (int pawnCount = 0; pawnCount < 8; pawnCount++) {
-            pieceList.add(Piece.createWhitePawn());
+    public String getRankStatus() {
+        StringBuilder sb = new StringBuilder();
+        for (Piece piece : pieceList) {
+            sb.append(piece.getRepresentation());
         }
+        return sb.toString();
     }
 
-    private void initBlank() {
-        final int blank_max = 32;
-
-        for (int blankCnt = 0; blankCnt < blank_max; blankCnt++) {
-            pieceList.add(Piece.createBlank());
-        }
-    }
-
-    private void initBlackPiece() {
-        for (int pawnCount = 0; pawnCount < 8; pawnCount++) {
-            pieceList.add(Piece.createBlackPawn());
-        }
-
-        pieceList.add(Piece.createBlackRook());
-        pieceList.add(Piece.createBlackKnight());
-        pieceList.add(Piece.createBlackBishop());
-        pieceList.add(Piece.createBlackQueen());
-        pieceList.add(Piece.createBlackKing());
-        pieceList.add(Piece.createBlackBishop());
-        pieceList.add(Piece.createBlackKnight());
-        pieceList.add(Piece.createBlackRook());
-    }
-
-    private void setWhiteSize() {
-        WHITE_PIECE_SIZE = 16;
-    }
-
-    private void setBlackSize() {
-        BLACK_PIECE_SIZE = 16;
-    }
-
-    public List<Piece> getPieceList() {
-        return pieceList;
-    }
-
-    public int size() {
-        return WHITE_PIECE_SIZE + BLACK_PIECE_SIZE;
-    }
-
-    public int getPieceCount(Color color, Type type) {
-        return (int)pieceList.stream()
-                .filter(piece -> piece.getColor() == color)
-                .filter(piece -> piece.getType() == type)
+    public int getPieceCount() {
+        return (int) pieceList.stream()
+                .filter(piece -> piece.getColor() != Color.NO_COLOR)
                 .count();
     }
 
-    public Piece findPiece(Position position) {
-        return pieceList.get(getListIndex(position));
+    public void addPiece(Piece piece, int column) {
+        pieceList.set(column, piece);
+    }
+
+    public int getEachPieceCount(Color color, Type type) {
+        return (int) pieceList.stream()
+                .filter(piece -> piece.getColor() == color
+                        && piece.getType() == type)
+                .count();
+    }
+
+    public Piece findPiece(int xPos) {
+        return pieceList.get(xPos);
     }
 
     public void initializeEmpty() {
-        for (int index = 0; index < pieceList.size(); index++) {
-            pieceList.set(index, Piece.createBlank());
-        }
+        IntStream.range(0, RANK_SIZE).
+                forEach(col -> pieceList.set(col, Piece.createBlank()));
     }
 
-    public void addPiece(Position position, Piece piece) {
-        pieceList.set(getListIndex(position), piece);
+    public double calculateRankPoint(Color color) {
+        return pieceList.stream()
+                .mapToDouble(piece -> piece.getType().getDefaultPoint())
+                .sum();
     }
 
-    private int getListIndex(Position position) {
-        return (Board.BOARD_SIZE * position.getyPos()) + position.getxPos();
+    public int countPawn(Color color) {
+        return (int)pieceList.stream()
+                .filter(piece -> piece.getType() == Type.PAWN)
+                .count();
     }
 
-    public void move(Position before, Position after) {
-        pieceList.set(getListIndex(after), findPiece(before));
-        pieceList.set(getListIndex(before), Piece.createBlank());
+    public boolean hasPawnIn(int column, Color color) {
+        Piece piece = pieceList.get(column);
+        return (piece.getType() == Type.PAWN) &&
+                (piece.getColor() == color);
     }
 
-    public double calculatePoint(Color color) {
-        return pointCalculator.calculate(color);
+    public Piece getInColumn(int column) {
+        return pieceList.get(column);
     }
 
-    public List<Piece> getListBy(Color color) {
+    public List<Piece> getList(Color color) {
         return pieceList.stream()
                 .filter(piece -> piece.getColor() == color)
                 .collect(Collectors.toList());

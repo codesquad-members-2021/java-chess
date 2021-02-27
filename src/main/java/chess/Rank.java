@@ -90,11 +90,5 @@ public class Rank {
     public void remove(int index) {
         pieceList.remove(index);
     }
-
-    public long count(Color color, Type type) {
-        return pieceList.stream()
-                .filter(x -> x.getColor() == color)
-                .filter(x -> x.getType() == type)
-                .count();
-    }
+    
 }

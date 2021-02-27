@@ -86,8 +86,6 @@ class BoardTest {
                 () -> assertThat(blackKing).isEqualTo(board.findPiece(b6)),
                 () -> assertThat(whiteKing).isEqualTo(board.findPiece(e3))
         );
-
-        System.out.println(board.showBoard());
     }
 
     @Test
@@ -109,7 +107,6 @@ class BoardTest {
                 () -> assertThat(15.0).isEqualTo(board.caculcatePoint(Piece.Color.BLACK)),
                 () -> assertThat(7.0).isEqualTo(board.caculcatePoint(Piece.Color.WHITE))
         );
-        System.out.println(board.showBoard());
     }
 
     private void addPiece(String position, Piece piece) {

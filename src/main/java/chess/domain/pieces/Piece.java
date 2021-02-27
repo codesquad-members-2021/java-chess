@@ -11,6 +11,8 @@ public abstract class Piece implements Comparable<Piece> {
 
     abstract char getIcon();
 
+    public abstract boolean isPawn();
+
     public abstract double getScore();
 
     public boolean isSameColor(Color color) {

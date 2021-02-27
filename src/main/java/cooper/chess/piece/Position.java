@@ -3,8 +3,8 @@ package cooper.chess.piece;
 import cooper.chess.Board;
 
 public class Position {
-    private int yPos;
-    private int xPos;
+    private final int yPos;
+    private final int xPos;
 
     public Position(String position) {
         this.yPos = setYPos(position);

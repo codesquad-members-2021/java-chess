@@ -43,10 +43,10 @@ public class Board {
     public String showBoard() {
         StringBuilder boardOutput = new StringBuilder();
         final String rankIndex = "abcdefgh";
-        Rank rank = new Rank();
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            int boardSizeMinusI = BOARD_SIZE - i;
-            boardOutput.append(appendNewLine(rank.getRepresentationByRank(rankList.get(boardSizeMinusI - 1)) + " " + boardSizeMinusI));
+        int fileIndex = BOARD_SIZE;
+        for (Rank rank : rankList) {
+            boardOutput.append(appendNewLine(rank.getRepresentationByRank(rankList.get(fileIndex -1)) + " " + fileIndex));
+            fileIndex -= 1;
         }
         boardOutput.append(appendNewLine(rankIndex));
         return boardOutput.toString();

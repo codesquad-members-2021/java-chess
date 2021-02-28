@@ -106,4 +106,8 @@ public class Rank {
         return pieceList;
     }
 
+    private Rank() {
+
+    }
+
 }

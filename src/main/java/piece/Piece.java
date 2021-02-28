@@ -17,7 +17,7 @@ public abstract class Piece implements Comparable<Piece> {
     }
 
     abstract List<Direction> movableDirections();
-
+    abstract boolean isInValidMoveRange(Position after);
     public abstract boolean isMovable(Position after);
 
     Direction direction(Position after) {
@@ -32,11 +32,6 @@ public abstract class Piece implements Comparable<Piece> {
         return getType().name() + " can't move from "
                 + position.getFile() + position.getRank() + " to "
                 + after.getFile() + after.getRank();
-    }
-
-    boolean isInValidMoveRange(Position after) {
-        return ((after.x() - position.x()) == direction(after).xMove())
-                && ((after.y() - position.y()) == direction(after).yMove());
     }
 
     public Position getPosition() {

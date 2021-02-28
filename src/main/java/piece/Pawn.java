@@ -16,6 +16,12 @@ public class Pawn extends Piece {
     }
 
     @Override
+    boolean isInValidMoveRange(Position after) {
+        return ((after.x() - getPosition().x()) == direction(after).xMove())
+                && ((after.y() - getPosition().y()) == direction(after).yMove());
+    }
+
+    @Override
     public boolean isMovable(Position after) {
         if (movableDirections().contains(direction(after))
                 && isInValidMoveRange(after) && after.isValid()) {

@@ -94,8 +94,11 @@ public class Rank {
     public List<Piece> findPiecesByColor(Color color) {
         List<Piece> piecesByColor = new ArrayList<>();
         for (Piece piece : pieces) {
-            piece.addPiecesByColor(color, piecesByColor);
+            if (piece.matchColor(color)) {
+                piecesByColor.add(piece);
+            }
         }
+
         return Collections.unmodifiableList(piecesByColor);
     }
 

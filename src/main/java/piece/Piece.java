@@ -23,18 +23,12 @@ public class Piece implements Comparable<Piece> {
         return matchColor(color) && matchType(type);
     }
 
-    private boolean matchColor(Color color) {
+    public boolean matchColor(Color color) {
         return this.color == color;
     }
 
     private boolean matchType(Type type) {
         return this.type == type;
-    }
-
-    public void addPiecesByColor(Color color, List<Piece> piecesByColor) {
-        if (matchColor(color)) {
-            piecesByColor.add(this);
-        }
     }
 
     public double getPoint(List<Piece> pieces) {

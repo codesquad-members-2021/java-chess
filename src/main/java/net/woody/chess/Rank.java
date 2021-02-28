@@ -7,8 +7,6 @@ import java.util.List;
 import static net.woody.factories.PieceFactory.*;
 
 public class Rank {
-    private static final int BOARD_LENGTH = 8;
-
     private final List<Piece> pieces;
 
     private Rank(List<Piece> pieces) {
@@ -16,12 +14,10 @@ public class Rank {
     }
 
     public void add(int file, Piece piece) {
-        validateFile(file);
         pieces.set(file, piece);
     }
 
     public Piece getPiece(int file) {
-        validateFile(file);
         return pieces.get(file);
     }
 
@@ -39,13 +35,6 @@ public class Rank {
             pieceSize += piece.equals(getBlankInstance()) ? 0 : 1;
         }
         return pieceSize;
-    }
-
-    // TODO : 예외처리 클라이언트가 이해할 수 있는 최상단의 예외로 던져주자
-    private void validateFile(int file) {
-        if (file < 0 || BOARD_LENGTH <= file) {
-            throw new ArrayIndexOutOfBoundsException("File number " + file + " is out of range!");
-        }
     }
 
     public static Rank createRank(List<Piece> pieces) {

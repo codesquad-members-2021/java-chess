@@ -17,8 +17,6 @@ import static net.woody.factories.RankFactory.*;
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
-    private static final int ASCII_LOWERCASE = 97;
-    private static final int ASCII_CHARINT = 48;
 
     private final List<Rank> board;
 
@@ -26,22 +24,22 @@ public class Board {
         this.board = board;
     }
 
-    // TODO : position 문자열 → Position 클래스 구현
     public void move(String position, Piece piece) {
-        int file = position.charAt(0) - ASCII_LOWERCASE;
-        int rank = position.charAt(1) - ASCII_CHARINT - 1;
+        Position pos = new Position(position);
+        int rank = pos.getRank();
+        int file = pos.getFile();
         getRank(rank).add(file, piece);
     }
 
     public Piece findPiece(String position) {
-        int file = position.charAt(0) - ASCII_LOWERCASE;
-        int rank = position.charAt(1) - ASCII_CHARINT - 1;
-        return findPiece(file, rank);
+        Position pos = new Position(position);
+        return findPiece(pos.getFile(), pos.getRank());
     }
 
-    public Piece findPiece(int file, int rank) {
+    private Piece findPiece(int file, int rank) {
         return getRank(rank).getPiece(file);
     }
+
 
     public int numOfSpecificPiece(Color color, Type type) {
         Piece target = getBlankInstance();
@@ -78,7 +76,6 @@ public class Board {
     }
 
     private Rank getRank(int rank) {
-        validateRank(rank);
         return board.get(rank);
     }
 
@@ -115,12 +112,6 @@ public class Board {
         }
         score -= (pawnCounter > 1) ? pawnCounter * 0.5 : 0;
         return score;
-    }
-
-    private void validateRank(int rank) {
-        if (rank < 0 || board.size() <= rank) {
-            throw new ArrayIndexOutOfBoundsException("Rank number " + rank + " is out of range!");
-        }
     }
 
     @Override

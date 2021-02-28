@@ -90,7 +90,7 @@ public class Board {
         double point = 0;
         for (int i = 0; i < BOARD_SIZE; i++) {
             List<Piece> pieces = getPiecesInFile((char) (i + 'a'));
-            point = getSum(pieces, color, point);
+            point += getSum(pieces, color);
         }
         return point;
     }
@@ -103,16 +103,18 @@ public class Board {
         return pieces;
     }
 
-    private double getSum(List<Piece> pieces, Color color, double point) {
+    private double getSum(List<Piece> pieces, Color color) {
         return pieces.stream().filter(piece -> piece.getColor() == color)
                 .filter(piece -> !(piece.getType() == Type.PAWN))
-                .reduce(point, (result, piece) -> result + piece.getPoint(), Double::sum)
-                + getPawnPoint(pieces);
+                .reduce(0.0, (result, piece) -> result + piece.getPoint(), Double::sum)
+                + getPawnPoint(pieces, color);
     }
 
-    private double getPawnPoint(List<Piece> pieces) {
+    private double getPawnPoint(List<Piece> pieces, Color color) {
         double pawnPoint = Type.PAWN.getDefaultPoint();
-        long pawnCount = pieces.stream().filter(piece -> piece.getType() == Type.PAWN).count();
+        long pawnCount = pieces.stream()
+                .filter(piece -> piece.getColor() == color && piece.getType() == Type.PAWN)
+                .count();
         return pawnCount > 1 ? (pawnPoint / 2) * pawnCount : pawnPoint * pawnCount;
     }
 

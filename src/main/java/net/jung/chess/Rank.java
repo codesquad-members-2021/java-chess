@@ -91,7 +91,7 @@ public class Rank {
         return pieceList.get(index);
     }
 
-    public String rankLayoutToStrin() {
+    public String rankLayoutToString() {
         StringBuilder strBuilder = new StringBuilder();
         for (int i = 0; i < pieceList.size(); i++) {
             strBuilder.append(getPiece(i).getRepresentation());

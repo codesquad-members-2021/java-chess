@@ -32,13 +32,7 @@ public class Position {
         return FILE_INDEX;
     }
 
-    public int getRankIndex() {
-        return RANK_INDEX;
-    }
-
-    public boolean isCertainFile(int index) {
-        return getFileIndex() == index ;
-    }
+    public int getRankIndex() { return RANK_INDEX; }
 
     @Override
     public boolean equals(Object obj) {

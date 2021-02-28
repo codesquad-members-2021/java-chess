@@ -39,18 +39,6 @@ public class Piece implements Comparable<Piece> {
         this.color = color;
     }
 
-    public Color getColor() { return color; }
-
-    public Type getType() { return type; }
-
-    public char getRepresentation() {
-        return color == Color.WHITE ? type.getWhiteRepresentation() : type.getBlackRepresentation();
-    }
-
-    public double getDefaultPoint() {
-        return type.defaultPoint;
-    }
-
     private static Piece createWhite(Type type) { return new Piece(Color.WHITE, type); }
     private static Piece createBlack(Type type) { return new Piece(Color.BLACK, type); }
 
@@ -81,6 +69,18 @@ public class Piece implements Comparable<Piece> {
 
     public boolean isColorType(Color color, Type type) {
         return ((this.color == color) && (this.type == type));
+    }
+
+    public Color getColor() { return color; }
+
+    public Type getType() { return type; }
+
+    public char getRepresentation() {
+        return color == Color.WHITE ? type.getWhiteRepresentation() : type.getBlackRepresentation();
+    }
+
+    public double getDefaultPoint() {
+        return type.defaultPoint;
     }
 
     @Override

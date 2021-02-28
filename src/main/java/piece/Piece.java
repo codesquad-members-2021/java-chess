@@ -27,7 +27,7 @@ public class Piece implements Comparable<Piece> {
         return this.color == color;
     }
 
-    private boolean matchType(Type type) {
+    public boolean matchType(Type type) {
         return this.type == type;
     }
 

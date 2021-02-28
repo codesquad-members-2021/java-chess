@@ -11,12 +11,9 @@ public class Board {
     private List<Rank> rankList = new ArrayList<Rank>();
 
     public int boardPieceSize() {
-        int boardPieceSize = 0;
-
-        for (Rank rank : rankList) {
-            boardPieceSize += rank.rankPieceSize();
-        }
-        return boardPieceSize;
+        return rankList.stream()
+                .mapToInt(Rank::rankPieceSize)
+                .sum();
     }
 
     public int certainPieceSize(Piece.Color color, Piece.Type type) {   // 메서드 분리해서 반복문 여러개 제거

@@ -31,28 +31,20 @@ public class Piece implements Comparable<Piece> {
         return this.type == type;
     }
 
-    public double getPoint(List<Piece> pieces) {
-        double point = this.type.getDefaultPoint();
-        if (!matchType(Type.PAWN)) {
-            return point;
-        }
-
-        List<Position> prevNextRows = this.position.getPrevNextRows();
-        for (Position position : prevNextRows) {
-            if (pieces.contains(new Piece(this.color, this.type, position))) {
-                return point - 0.5;
-            }
-        }
-
-        return point;
-    }
-
     public Color getColor() {
         return color;
     }
 
     public Type getType() {
         return type;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public double getPoint() {
+        return getType().getDefaultPoint();
     }
 
     public boolean isRightColor(Color expectedColor) {

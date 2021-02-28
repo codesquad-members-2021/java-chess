@@ -56,9 +56,27 @@ public class Board {
         List<Piece> pieces = findPiecesByColor(color);
         double point = 0.0;
         for (Piece piece : pieces) {
-            point += piece.getPoint(pieces);
+            point += getPoint(piece, pieces);
         }
         return point;
+    }
+
+    public double getPoint(Piece piece, List<Piece> pieces) {
+        double point = piece.getPoint();
+        if (piece.matchType(Type.PAWN) && checkAdjacentPawn(piece, pieces)) {
+            return point - 0.5;
+        }
+        return point;
+    }
+
+    private boolean checkAdjacentPawn(Piece piece, List<Piece> pieces) {
+        List<Position> prevNextRows = piece.getPosition().getPrevNextRows();
+        for (Position position : prevNextRows) {
+            if (pieces.contains(new Piece(piece.getColor(), piece.getType(), position))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Piece> findPiecesByColor(Color color) {

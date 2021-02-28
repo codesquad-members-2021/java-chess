@@ -65,15 +65,14 @@ class BoardTest {
     @DisplayName("음수 인덱스로 체스말을 찾으려고 할 때, 에러가 발생해야 한다.")
     void findPieceWithNegativeIndex() {
         assertThatThrownBy(() -> board.findPiece("a-1"))
-                .isInstanceOf(ArrayIndexOutOfBoundsException.class)
+                .isInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessageContaining("out of range!");
     }
 
-    // TODO : expectedResult 대신 expect, actualResult 대신 actual도 좋다
     @Test
     @DisplayName("보드를 초기화 한 뒤 출력된 체스판 상태가 예상된 결과와 같아야 한다.")
     void printBoardState() {
-        String expectedResult =
+        String expected =
                 appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         appendNewLine("........") +
@@ -83,7 +82,7 @@ class BoardTest {
                         appendNewLine("pppppppp") +
                         appendNewLine("rnbqkbnr");
 
-        assertThat(board.toString()).isEqualTo(expectedResult);
+        assertThat(board.toString()).isEqualTo(expected);
     }
 
     @Test
@@ -95,7 +94,6 @@ class BoardTest {
         board.move(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
-        System.out.println(board.toString());
     }
 
     @Test
@@ -113,14 +111,10 @@ class BoardTest {
         addPiece("e1", createWhiteRook());
         addPiece("f1", createWhiteKing());
 
-        System.out.println(board.toString());
-
         assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(15.0);
         assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
 
-
         addPiece("g3", createWhitePawn());
-        System.out.println(board.toString());
 
         assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
 

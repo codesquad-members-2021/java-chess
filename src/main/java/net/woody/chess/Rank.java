@@ -45,7 +45,6 @@ public class Rank {
     public String toString() {
         StringBuilder rank = new StringBuilder();
 
-        // TODO : for-loop을 풀어적거나
         for (Piece piece : pieces) {
             rank.append(piece.getRepresentation());
         }

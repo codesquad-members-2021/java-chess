@@ -56,7 +56,6 @@ public class Board {
         return board.get(rank);
     }
 
-    // TODO : 더 효율적인 방식 고려
     public int size() {
         int numOfPieces = 0;
         for (Rank rank : board) {

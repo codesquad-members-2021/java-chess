@@ -4,6 +4,9 @@ import java.util.Objects;
 
 public class Position {
 
+    private static final String FILE = "File ";
+    private static final String RANK = "Rank ";
+
     private static final int BOARD_LENGTH = 8;
     private static final int ASCII_LOWERCASE = 97;
     private static final int ASCII_CHARINT = 48;
@@ -17,8 +20,8 @@ public class Position {
     }
 
     public Position(int file, int rank) {
-        this.file = validatePosition(file);
-        this.rank = validatePosition(rank);
+        this.file = validatePosition(file, FILE);
+        this.rank = validatePosition(rank, RANK);
     }
 
     public int getFile() {
@@ -29,9 +32,9 @@ public class Position {
         return rank;
     }
 
-    private int validatePosition(int pos) {
+    private int validatePosition(int pos, String target) {
         if (pos < 0 || BOARD_LENGTH <= pos) {
-            throw new ArrayIndexOutOfBoundsException("Index " + pos + "is out of range!");
+            throw new IndexOutOfBoundsException(target + pos + "is out of range!");
         }
         return pos;
     }

@@ -67,7 +67,7 @@ class PieceTest {
     }
 
     @Test
-    @DisplayName("createBlack로 만들어진 Piece는 Color.NO_COLOR, Type.NO_PIECE이다. ")
+    @DisplayName("createBlank로 만들어진 Piece는 Color.NO_COLOR, Type.NO_PIECE이다. ")
     void checkCreateBlank() {
         Piece blank = Piece.createBlank();
         assertAll(

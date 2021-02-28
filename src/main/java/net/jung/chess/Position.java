@@ -1,17 +1,18 @@
 package net.jung.chess;
 
 public class Position {
-    private int fileIndex;
-    private int rankIndex;
+    private static final int NUM_OF_DIGITS = 2;
+    private final int FILE_INDEX;
+    private final int RANK_INDEX;
 
     private Position(String location) {
-        fileIndex = location.toCharArray()[0] - 'a';
-        rankIndex = location.toCharArray()[1] - '0';
+        FILE_INDEX = location.toCharArray()[0] - 'a';
+        RANK_INDEX = location.toCharArray()[1] - '0';
     }
 
     public static Position at(String location) throws IllegalArgumentException {
         char[] positionChar = location.toCharArray();
-        if (!(location.length() == 2
+        if (!(location.length() == NUM_OF_DIGITS
                 && isValidFile(positionChar[0])
                 && isValidRank(positionChar[1]))) {
             throw new IllegalArgumentException("a1~h8 범위의 위치를 입력해주세요.");
@@ -28,11 +29,11 @@ public class Position {
     }
 
     public int getFileIndex() {
-        return fileIndex;
+        return FILE_INDEX;
     }
 
     public int getRankIndex() {
-        return rankIndex;
+        return RANK_INDEX;
     }
 
     public boolean isCertainFile(int index) {
@@ -43,8 +44,8 @@ public class Position {
     public boolean equals(Object obj) {
         if (obj != null & obj instanceof Position) {
             Position positionObj = (Position) obj;
-            boolean compareFileIndex = fileIndex == positionObj.fileIndex;
-            boolean compareRankIndex = rankIndex == positionObj.rankIndex;
+            boolean compareFileIndex = FILE_INDEX == positionObj.FILE_INDEX;
+            boolean compareRankIndex = RANK_INDEX == positionObj.RANK_INDEX;
             return compareFileIndex && compareRankIndex;
         }
         return false;
@@ -52,7 +53,7 @@ public class Position {
 
     @Override
     public int hashCode() {
-        return fileIndex + rankIndex;
+        return FILE_INDEX + RANK_INDEX;
     }
 }
 

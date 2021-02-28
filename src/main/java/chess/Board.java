@@ -11,6 +11,10 @@ public class Board {
     public static final int BOARD_SIZE = 8;
     private final Map<Position, Piece> squares = new LinkedHashMap<>();
 
+    public Board() {
+        initialize();
+    }
+
     public void initialize() {
         squares.clear();
         initPiecesExceptPawns(Color.BLACK, 8);

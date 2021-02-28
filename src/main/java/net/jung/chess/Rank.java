@@ -6,11 +6,11 @@ import static net.jung.chess.Piece.*;
 
 public class Rank {
     public static final int MAX_PIECES_IN_RANK = 8;
-    private ArrayList<Piece> pieceList = new ArrayList<>();
+    private List<Piece> pieces = new ArrayList<>();
 
     public int rankPieceSize() {
         int size = 0;
-        for (Piece piece : pieceList) {
+        for (Piece piece : pieces) {
             if (piece.isPiece()) {
                 size++;
             }
@@ -21,13 +21,13 @@ public class Rank {
 
     public void addWhitePiece(Piece piece) {
         if (piece.isWhite()) {
-            pieceList.add(piece);
+            pieces.add(piece);
         }
     }
 
     public void addBlackPiece(Piece piece) {
         if (piece.isBlack()) {
-            pieceList.add(piece);
+            pieces.add(piece);
         }
     }
 
@@ -82,25 +82,25 @@ public class Rank {
         Rank blankRank = new Rank();
 
         for (int i = 0; i < MAX_PIECES_IN_RANK; i++) {
-            blankRank.pieceList.add(createBlank());
+            blankRank.pieces.add(createBlank());
         }
         return blankRank;
     }
 
     public Piece getPiece(int index) {
-        return pieceList.get(index);
+        return pieces.get(index);
     }
 
     public String rankLayoutToString() {
         StringBuilder strBuilder = new StringBuilder();
-        for (int i = 0; i < pieceList.size(); i++) {
+        for (int i = 0; i < pieces.size(); i++) {
             strBuilder.append(getPiece(i).getRepresentation());
         }
         return strBuilder.toString();
     }
 
     public void replacePiece(int fileIndex, Piece piece) {
-        pieceList.set(fileIndex, piece);
+        pieces.set(fileIndex, piece);
     }
 
 }

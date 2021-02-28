@@ -14,8 +14,8 @@ import java.util.stream.Stream;
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
-    private static final int LOWERCASE_TO_INT = 97;
-    private static final int CHARINT_TO_INT = 48;
+    private static final int ASCII_LOWERCASE = 97;
+    private static final int ASCII_CHARINT = 48;
 
     private final List<Rank> board;
 
@@ -25,14 +25,18 @@ public class Board {
 
     // TODO : position 문자열 → Position 클래스 구현
     public void move(String position, Piece piece) {
-        int file = position.charAt(0) - LOWERCASE_TO_INT;
-        int rank = position.charAt(1) - CHARINT_TO_INT - 1;
+        int file = position.charAt(0) - ASCII_LOWERCASE;
+        int rank = position.charAt(1) - ASCII_CHARINT - 1;
         getRank(rank).add(file, piece);
     }
 
     public Piece findPiece(String position) {
-        int file = position.charAt(0) - LOWERCASE_TO_INT;
-        int rank = position.charAt(1) - CHARINT_TO_INT - 1;
+        int file = position.charAt(0) - ASCII_LOWERCASE;
+        int rank = position.charAt(1) - ASCII_CHARINT - 1;
+        return findPiece(file, rank);
+    }
+
+    public Piece findPiece(int file, int rank) {
         return getRank(rank).getPiece(file);
     }
 
@@ -86,11 +90,29 @@ public class Board {
         return numOfPieces;
     }
 
+
     public double calculatePoint(Color color) {
-        double score = 0.0;
-        for (Rank rank : board) {
-            score += rank.calculateRankPoint(color);
+        double score = 0;
+        for (int file = 0; file < BOARD_LENGTH; file++) {
+            score += calculateOneFileLine(color, file);
         }
+
+        return score;
+    }
+
+    private double calculateOneFileLine(Color color, int file) {
+        int score = 0;
+        int pawnCounter = 0;
+        for (int rank = 0; rank < BOARD_LENGTH; rank++) {
+            Piece piece = findPiece(file, rank);
+            if (piece.getColor() == color) {
+                score += piece.getType().getDefaultPoint();
+                if (piece.isPawn()) {
+                    pawnCounter++;
+                }
+            }
+        }
+        score -= (pawnCounter > 1) ? pawnCounter * 0.5 : 0;
         return score;
     }
 

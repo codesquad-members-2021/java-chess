@@ -14,6 +14,10 @@ public class Piece {
         this.type = type;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
     public Type getType() {
         return type;
     }
@@ -28,6 +32,10 @@ public class Piece {
 
     public boolean isBlack() {
         return color == Color.BLACK;
+    }
+
+    public boolean isPawn() {
+        return type == Type.PAWN;
     }
 
     public static Piece getBlankInstance() {

@@ -1,15 +1,26 @@
 package util;
 
 import chess.Board;
+import chess.Rank;
 import piece.Color;
 import piece.Piece;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.ListIterator;
 
 public class PrintUtils {
 
     private PrintUtils() {
+    }
+
+    public static String showBoard(List<Rank> ranks) {
+        StringBuilder sb = new StringBuilder();
+        ListIterator<Rank> rankIter = ranks.listIterator(ranks.size());
+        while (rankIter.hasPrevious()) {
+            sb.append(rankIter.previous().toString());
+        }
+        return sb.toString();
     }
 
     public static void showScore(Board board) {

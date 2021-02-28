@@ -12,7 +12,7 @@ import piece.Position;
 import static piece.PieceCreator.*;
 import static util.StringUtils.appendNewLine;
 
-class Rank {
+public class Rank {
     private static final int BOARD_SIZE = 8;
 
     private final List<Piece> pieces = new ArrayList<>(BOARD_SIZE);

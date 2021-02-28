@@ -12,6 +12,10 @@ import piece.Position;
 public class Board {
     private final List<Rank> board = new ArrayList<>();
 
+    public List<Rank> getBoard() {
+        return board;
+    }
+
     public int countPieces(Color color, Type type) {
         int count = 0;
         for (Rank rank : board) {
@@ -66,13 +70,4 @@ public class Board {
         return pieces;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        ListIterator<Rank> rankIter = board.listIterator(board.size());
-        while (rankIter.hasPrevious()) {
-            sb.append(rankIter.previous().toString());
-        }
-        return sb.toString();
-    }
 }

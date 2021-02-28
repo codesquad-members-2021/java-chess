@@ -8,6 +8,7 @@ import piece.Color;
 import piece.Type;
 import piece.Position;
 
+import static util.PrintUtils.showBoard;
 import static piece.PieceCreator.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -29,7 +30,7 @@ public class BoardTest {
         assertThat(board.countPieces(Color.BLACK, Type.PAWN)).isEqualTo(8);
 
         final String BLANK_LINE = appendNewLine("........");
-        assertThat(board.toString())
+        assertThat(showBoard(board.getBoard()))
                 .isEqualTo(appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         BLANK_LINE + BLANK_LINE + BLANK_LINE + BLANK_LINE +

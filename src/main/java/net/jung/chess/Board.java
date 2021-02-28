@@ -135,7 +135,7 @@ public class Board {
 
     public List<Piece> sortColorPiecesDescending(Piece.Color color) {
         List<Piece> colorPieceList = getPieceListByColor(color);
-        Collections.sort(colorPieceList, Collections.reverseOrder());
+        colorPieceList.sort(Collections.reverseOrder());
         return colorPieceList;
     }
 

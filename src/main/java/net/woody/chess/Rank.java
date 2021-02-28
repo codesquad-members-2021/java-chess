@@ -2,10 +2,7 @@ package net.woody.chess;
 
 import net.woody.pieces.Piece;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static net.woody.factories.PieceFactory.*;
 
@@ -55,16 +52,14 @@ public class Rank {
         return new Rank(pieces);
     }
 
-
     @Override
     public String toString() {
-        // TODO : sb 네이밍 바꾸기
-        StringBuilder sb = new StringBuilder();
-        if (pieces.size() == 0) {
-            return "........";
-        }
+        StringBuilder rank = new StringBuilder();
+
         // TODO : for-loop을 풀어적거나
-        pieces.forEach(piece -> sb.append(piece.getRepresentation()));
-        return sb.toString();
+        for (Piece piece : pieces) {
+            rank.append(piece.getRepresentation());
+        }
+        return rank.toString();
     }
 }

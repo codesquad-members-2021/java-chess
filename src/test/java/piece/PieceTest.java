@@ -22,16 +22,16 @@ class PieceTest {
         );
 
         Piece blank = createBlank(position);
-        assertThat(blank.isWhite()).isFalse();
-        assertThat(blank.isBlack()).isFalse();
+        assertThat(blank.isRightColor(Color.WHITE)).isFalse();
+        assertThat(blank.isRightColor(Color.BLACK)).isFalse();
         assertThat(blank.getType()).isEqualTo(Type.NO_PIECE);
     }
 
     private void verifyPiece(final Piece whitePiece, final Piece blackPiece, final Type type) {
-        assertThat(whitePiece.isWhite()).isTrue();
+        assertThat(whitePiece.isRightColor(Color.WHITE)).isTrue();
         assertThat(whitePiece.getType()).isEqualTo(type);
 
-        assertThat(blackPiece.isBlack()).isTrue();
+        assertThat(blackPiece.isRightColor(Color.BLACK)).isTrue();
         assertThat(blackPiece.getType()).isEqualTo(type);
     }
 
@@ -40,11 +40,11 @@ class PieceTest {
     void verifyColor() {
         Position position = new Position(1, 1);
         Piece whitePawn = createWhitePawn(position);
-        assertThat(whitePawn.isWhite()).isTrue();
+        assertThat(whitePawn.isRightColor(Color.WHITE)).isTrue();
         assertThat(whitePawn.getRepresentation()).isEqualTo('p');
 
         Piece blackPawn = createBlackPawn(position);
-        assertThat(blackPawn.isBlack()).isTrue();
+        assertThat(blackPawn.isRightColor(Color.BLACK)).isTrue();
         assertThat(blackPawn.getRepresentation()).isEqualTo('P');
     }
 

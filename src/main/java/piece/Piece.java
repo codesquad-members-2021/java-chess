@@ -15,7 +15,7 @@ public class Piece implements Comparable<Piece> {
     }
 
     public char getRepresentation() {
-        return isWhite() ? this.type.getWhiteRepresentation()
+        return isRightColor(Color.WHITE) ? this.type.getWhiteRepresentation()
                 : this.type.getBlackRepresentation();
     }
 
@@ -55,20 +55,16 @@ public class Piece implements Comparable<Piece> {
         return type;
     }
 
-    public boolean isWhite() {
-        return color.equals(Color.WHITE);
-    }
-
-    public boolean isBlack() {
-        return color.equals(Color.BLACK);
+    public boolean isRightColor(Color expectedColor) {
+        return color.equals(expectedColor);
     }
 
     public boolean isWhitePawn() {
-        return isWhite() && type == Type.PAWN;
+        return isRightColor(Color.WHITE) && type == Type.PAWN;
     }
 
     public boolean isBlackPawn() {
-        return isBlack() && type == Type.PAWN;
+        return isRightColor(Color.BLACK) && type == Type.PAWN;
     }
 
     @Override

@@ -28,17 +28,17 @@ class BoardTest {
 
         halfEmptyBoard = new Board();
         halfEmptyBoard.initializeEmptyBoard();
-        halfEmptyBoard.addNewPiece(Position.at("f2"), Piece.createWhitePawn());
-        halfEmptyBoard.addNewPiece(Position.at("g2"), Piece.createWhitePawn());
-        halfEmptyBoard.addNewPiece(Position.at("a2"), Piece.createWhiteQueen());
-        halfEmptyBoard.addNewPiece(Position.at("e1"), Piece.createWhiteRook());
-        halfEmptyBoard.addNewPiece(Position.at("f1"), Piece.createWhiteKing());
+        halfEmptyBoard.addNewPiece(Position.createPosition("f2"), Piece.createWhitePawn());
+        halfEmptyBoard.addNewPiece(Position.createPosition("g2"), Piece.createWhitePawn());
+        halfEmptyBoard.addNewPiece(Position.createPosition("a2"), Piece.createWhiteQueen());
+        halfEmptyBoard.addNewPiece(Position.createPosition("e1"), Piece.createWhiteRook());
+        halfEmptyBoard.addNewPiece(Position.createPosition("f1"), Piece.createWhiteKing());
 
-        halfEmptyBoard.addNewPiece(Position.at("b6"), Piece.createBlackPawn());
-        halfEmptyBoard.addNewPiece(Position.at("e6"), Piece.createBlackQueen());
-        halfEmptyBoard.addNewPiece(Position.at("b8"), Piece.createBlackKing());
-        halfEmptyBoard.addNewPiece(Position.at("a8"), Piece.createBlackBishop());
-        halfEmptyBoard.addNewPiece(Position.at("c8"), Piece.createBlackRook());
+        halfEmptyBoard.addNewPiece(Position.createPosition("b6"), Piece.createBlackPawn());
+        halfEmptyBoard.addNewPiece(Position.createPosition("e6"), Piece.createBlackQueen());
+        halfEmptyBoard.addNewPiece(Position.createPosition("b8"), Piece.createBlackKing());
+        halfEmptyBoard.addNewPiece(Position.createPosition("a8"), Piece.createBlackBishop());
+        halfEmptyBoard.addNewPiece(Position.createPosition("c8"), Piece.createBlackRook());
     }
 
 
@@ -100,26 +100,26 @@ class BoardTest {
     @DisplayName("findPiece메서드는 주어진 위치의 piece를 리턴한다.")
     void checkFindPiece() {
         assertAll(
-                () -> assertThat(board.findPiece(Position.at("a8"))).isEqualTo(Piece.createBlackRook()),
-                () -> assertThat(board.findPiece(Position.at("b8"))).isEqualTo(Piece.createBlackKnight()),
-                () -> assertThat(board.findPiece(Position.at("c8"))).isEqualTo(Piece.createBlackBishop()),
-                () -> assertThat(board.findPiece(Position.at("d8"))).isEqualTo(Piece.createBlackQueen()),
-                () -> assertThat(board.findPiece(Position.at("e8"))).isEqualTo(Piece.createBlackKing()),
-                () -> assertThat(board.findPiece(Position.at("f8"))).isEqualTo(Piece.createBlackBishop()),
-                () -> assertThat(board.findPiece(Position.at("g8"))).isEqualTo(Piece.createBlackKnight()),
-                () -> assertThat(board.findPiece(Position.at("h8"))).isEqualTo(Piece.createBlackRook()),
-                () -> assertThat(board.findPiece(Position.at("e7"))).isEqualTo(Piece.createBlackPawn()),
+                () -> assertThat(board.findPiece(Position.createPosition("a8"))).isEqualTo(Piece.createBlackRook()),
+                () -> assertThat(board.findPiece(Position.createPosition("b8"))).isEqualTo(Piece.createBlackKnight()),
+                () -> assertThat(board.findPiece(Position.createPosition("c8"))).isEqualTo(Piece.createBlackBishop()),
+                () -> assertThat(board.findPiece(Position.createPosition("d8"))).isEqualTo(Piece.createBlackQueen()),
+                () -> assertThat(board.findPiece(Position.createPosition("e8"))).isEqualTo(Piece.createBlackKing()),
+                () -> assertThat(board.findPiece(Position.createPosition("f8"))).isEqualTo(Piece.createBlackBishop()),
+                () -> assertThat(board.findPiece(Position.createPosition("g8"))).isEqualTo(Piece.createBlackKnight()),
+                () -> assertThat(board.findPiece(Position.createPosition("h8"))).isEqualTo(Piece.createBlackRook()),
+                () -> assertThat(board.findPiece(Position.createPosition("e7"))).isEqualTo(Piece.createBlackPawn()),
 
-                () -> assertThat(board.findPiece(Position.at("f2"))).isEqualTo(Piece.createWhitePawn()),
+                () -> assertThat(board.findPiece(Position.createPosition("f2"))).isEqualTo(Piece.createWhitePawn()),
 
-                () -> assertThat(board.findPiece(Position.at("a1"))).isEqualTo(Piece.createWhiteRook()),
-                () -> assertThat(board.findPiece(Position.at("b1"))).isEqualTo(Piece.createWhiteKnight()),
-                () -> assertThat(board.findPiece(Position.at("c1"))).isEqualTo(Piece.createWhiteBishop()),
-                () -> assertThat(board.findPiece(Position.at("d1"))).isEqualTo(Piece.createWhiteQueen()),
-                () -> assertThat(board.findPiece(Position.at("e1"))).isEqualTo(Piece.createWhiteKing()),
-                () -> assertThat(board.findPiece(Position.at("f1"))).isEqualTo(Piece.createWhiteBishop()),
-                () -> assertThat(board.findPiece(Position.at("g1"))).isEqualTo(Piece.createWhiteKnight()),
-                () -> assertThat(board.findPiece(Position.at("h1"))).isEqualTo(Piece.createWhiteRook())
+                () -> assertThat(board.findPiece(Position.createPosition("a1"))).isEqualTo(Piece.createWhiteRook()),
+                () -> assertThat(board.findPiece(Position.createPosition("b1"))).isEqualTo(Piece.createWhiteKnight()),
+                () -> assertThat(board.findPiece(Position.createPosition("c1"))).isEqualTo(Piece.createWhiteBishop()),
+                () -> assertThat(board.findPiece(Position.createPosition("d1"))).isEqualTo(Piece.createWhiteQueen()),
+                () -> assertThat(board.findPiece(Position.createPosition("e1"))).isEqualTo(Piece.createWhiteKing()),
+                () -> assertThat(board.findPiece(Position.createPosition("f1"))).isEqualTo(Piece.createWhiteBishop()),
+                () -> assertThat(board.findPiece(Position.createPosition("g1"))).isEqualTo(Piece.createWhiteKnight()),
+                () -> assertThat(board.findPiece(Position.createPosition("h1"))).isEqualTo(Piece.createWhiteRook())
         );
     }
 
@@ -145,23 +145,23 @@ class BoardTest {
     @DisplayName("addOnePiece는 특정 자리에 (기존에 있던 것이 아닌) 새로만들어진 piece를 추가한다.")
     void checkAddNewPiece() {
 
-        emptyBoard.addNewPiece(Position.at("d3"), Piece.createBlackRook());
-        emptyBoard.addNewPiece(Position.at("d7"), Piece.createWhiteKing());
+        emptyBoard.addNewPiece(Position.createPosition("d3"), Piece.createBlackRook());
+        emptyBoard.addNewPiece(Position.createPosition("d7"), Piece.createWhiteKing());
 
         assertAll(
-                () -> assertThat(emptyBoard.findPiece(Position.at("d3"))).isEqualTo(Piece.createBlackRook()),
-                () -> assertThat(emptyBoard.findPiece(Position.at("d7"))).isEqualTo(Piece.createWhiteKing())
+                () -> assertThat(emptyBoard.findPiece(Position.createPosition("d3"))).isEqualTo(Piece.createBlackRook()),
+                () -> assertThat(emptyBoard.findPiece(Position.createPosition("d7"))).isEqualTo(Piece.createWhiteKing())
         );
     }
 
     @Test
     @DisplayName("movePiece는 특정지점에서 piece가 발견되면 다른 지점으로 옮긴다.")
     void checkMovePiece() {
-        board.movePiece(Position.at("a8"), Position.at("c4"));
+        board.movePiece(Position.createPosition("a8"), Position.createPosition("c4"));
 
         assertAll(
-                () -> assertThat(board.findPiece(Position.at("a8"))).isEqualTo(Piece.createBlank()),
-                () -> assertThat(board.findPiece(Position.at("c4"))).isEqualTo(Piece.createBlackRook())
+                () -> assertThat(board.findPiece(Position.createPosition("a8"))).isEqualTo(Piece.createBlank()),
+                () -> assertThat(board.findPiece(Position.createPosition("c4"))).isEqualTo(Piece.createBlackRook())
         );
     }
 
@@ -169,15 +169,15 @@ class BoardTest {
     @DisplayName("sameFilePawnSize는 같은 파일에 있는 pawn개수를 반환한다.")
     void checkPawnSizeInFile() {
 
-        emptyBoard.addNewPiece(Position.at("a8"), Piece.createBlackPawn());
-        emptyBoard.addNewPiece(Position.at("b8"), Piece.createBlackPawn());
-        emptyBoard.addNewPiece(Position.at("c8"), Piece.createBlackPawn());
-        emptyBoard.addNewPiece(Position.at("d8"), Piece.createBlackPawn());
+        emptyBoard.addNewPiece(Position.createPosition("a8"), Piece.createBlackPawn());
+        emptyBoard.addNewPiece(Position.createPosition("b8"), Piece.createBlackPawn());
+        emptyBoard.addNewPiece(Position.createPosition("c8"), Piece.createBlackPawn());
+        emptyBoard.addNewPiece(Position.createPosition("d8"), Piece.createBlackPawn());
 
-        emptyBoard.addNewPiece(Position.at("a7"), Piece.createWhitePawn());
-        emptyBoard.addNewPiece(Position.at("a6"), Piece.createWhitePawn());
-        emptyBoard.addNewPiece(Position.at("a5"), Piece.createWhitePawn());
-        emptyBoard.addNewPiece(Position.at("a4"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.createPosition("a7"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.createPosition("a6"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.createPosition("a5"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.createPosition("a4"), Piece.createWhitePawn());
 
         assertAll(
                 () -> assertThat(emptyBoard.pawnSizeInFile(Piece.Color.BLACK)).isEqualTo(0),
@@ -190,15 +190,15 @@ class BoardTest {
     @DisplayName("calculatePoints는 점수 계산한다.")
     void checkCalculatePoints() {
 
-        emptyBoard.addNewPiece(Position.at("f2"), Piece.createWhitePawn());
-        emptyBoard.addNewPiece(Position.at("g2"), Piece.createWhitePawn());
-        emptyBoard.addNewPiece(Position.at("e1"), Piece.createWhiteRook());
-        emptyBoard.addNewPiece(Position.at("f1"), Piece.createWhiteKing());
+        emptyBoard.addNewPiece(Position.createPosition("f2"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.createPosition("g2"), Piece.createWhitePawn());
+        emptyBoard.addNewPiece(Position.createPosition("e1"), Piece.createWhiteRook());
+        emptyBoard.addNewPiece(Position.createPosition("f1"), Piece.createWhiteKing());
 
-        emptyBoard.addNewPiece(Position.at("b6"), Piece.createBlackPawn());
-        emptyBoard.addNewPiece(Position.at("e6"), Piece.createBlackQueen());
-        emptyBoard.addNewPiece(Position.at("b8"), Piece.createBlackKing());
-        emptyBoard.addNewPiece(Position.at("c8"), Piece.createBlackRook());
+        emptyBoard.addNewPiece(Position.createPosition("b6"), Piece.createBlackPawn());
+        emptyBoard.addNewPiece(Position.createPosition("e6"), Piece.createBlackQueen());
+        emptyBoard.addNewPiece(Position.createPosition("b8"), Piece.createBlackKing());
+        emptyBoard.addNewPiece(Position.createPosition("c8"), Piece.createBlackRook());
 
         assertAll(
                 () -> assertThat(emptyBoard.calculatePoints(Piece.Color.WHITE)).isEqualTo(7),

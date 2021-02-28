@@ -10,7 +10,7 @@ public class Position {
         RANK_INDEX = location.toCharArray()[1] - '0';
     }
 
-    public static Position at(String location) throws IllegalArgumentException {
+    public static Position createPosition(String location) throws IllegalArgumentException {
         char[] positionChar = location.toCharArray();
         if (!(location.length() == NUM_OF_DIGITS
                 && isValidFile(positionChar[0])

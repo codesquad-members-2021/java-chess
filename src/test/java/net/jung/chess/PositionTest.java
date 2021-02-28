@@ -9,6 +9,6 @@ class PositionTest {
     @Test
     @DisplayName("동일한 위치의 positon은 서로 같다")
     void checkEquals() {
-        assertThat(Position.at("a7")).isEqualTo(Position.at("a7"));
+        assertThat(Position.createPosition("a7")).isEqualTo(Position.createPosition("a7"));
     }
 }

@@ -2,6 +2,8 @@ package chess;
 
 import java.util.Objects;
 
+import static chess.Board.BOARD_SIZE;
+
 public class Position {
     private final char file;
     private final int rank;
@@ -32,8 +34,18 @@ public class Position {
         return rank;
     }
 
+    public boolean isLinear(Position after) {
+        return Math.abs(after.x() - x()) > 0 && after.y() == y() || after.x() == x() && Math.abs(after.y() - y()) > 0;
+    }
+
+    public boolean isDiagonal(Position after) {
+        int xMove = Math.abs(after.x() - x());
+        int yMove = Math.abs(after.y() - y());
+        return yMove > 0 && xMove == yMove;
+    }
+
     public boolean isValid() {
-        return x() >= 1 && x() <= 8 && y() >= 1 && y() <= 8;
+        return x() >= 1 && x() <= BOARD_SIZE && y() >= 1 && y() <= BOARD_SIZE;
     }
 
     @Override

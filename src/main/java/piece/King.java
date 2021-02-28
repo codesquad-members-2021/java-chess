@@ -15,6 +15,15 @@ public class King extends Piece {
     List<Direction> movableDirections() {
         return Direction.everyDirection();
     }
+
+    @Override
+    public boolean isMovable(Position after) {
+        if (movableDirections().contains(direction(after))
+                && isInValidMoveRange(after) && after.isValid()) {
+            return true;
+        }
+        throw new PositionNotMovableException(getErrorMessage(after));
+    }
 }
 
 

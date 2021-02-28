@@ -18,31 +18,25 @@ public abstract class Piece implements Comparable<Piece> {
 
     abstract List<Direction> movableDirections();
 
-    public Direction direction(Position after) {
+    public abstract boolean isMovable(Position after);
+
+    Direction direction(Position after) {
         Optional<Direction> optionalDirection = movableDirections().stream()
                 .filter(direction -> (after.x() - position.x()) == direction.xMove())
-                .filter(direction -> (after.y() - position.y() == direction.yMove()))
+                .filter(direction -> (after.y() - position.y()) == direction.yMove())
                 .findFirst();
         return optionalDirection.orElse(Direction.INVALID);
     }
 
-    public boolean isMovable(Position after) {
-        if (movableDirections().contains(direction(after))
-                && isInValidMoveRange(after) && after.isValid()) {
-            return true;
-        }
-        throw new PositionNotMovableException(getErrorMessage(after));
-    }
-
-    private String getErrorMessage(Position after) {
+    String getErrorMessage(Position after) {
         return getType().name() + " can't move from "
                 + position.getFile() + position.getRank() + " to "
                 + after.getFile() + after.getRank();
     }
 
     boolean isInValidMoveRange(Position after) {
-        return ((after.x() - getPosition().x()) == direction(after).xMove())
-                && ((after.y() - getPosition().y()) == direction(after).yMove());
+        return ((after.x() - position.x()) == direction(after).xMove())
+                && ((after.y() - position.y()) == direction(after).yMove());
     }
 
     public Position getPosition() {
@@ -54,10 +48,10 @@ public abstract class Piece implements Comparable<Piece> {
     }
 
     public boolean isSameColor(Piece piece) {
-        if (isWhite() && piece.isWhite()) {
-            return true;
+        if (!((isWhite() && piece.isWhite()) || (isBlack() && piece.isBlack()))) {
+            return false;
         }
-        return isBlack() && piece.isBlack();
+        throw new PositionNotMovableException("Cannot move to the same team's square.");
     }
 
     public Color getColor() {

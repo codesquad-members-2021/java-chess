@@ -16,6 +16,15 @@ public class Bishop extends Piece {
     }
 
     @Override
+    public boolean isMovable(Position after) {
+        if ((this.getPosition().isDiagonal(after))
+                && isInValidMoveRange(after) && after.isValid()) {
+            return true;
+        }
+        throw new PositionNotMovableException(getErrorMessage(after));
+    }
+
+    @Override
     boolean isInValidMoveRange(Position after) {
         return true;
     }

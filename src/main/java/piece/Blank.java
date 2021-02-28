@@ -3,9 +3,7 @@ package piece;
 import chess.Position;
 import piece.attribute.*;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Blank extends Piece {
     public Blank(Color color, Position position) {
@@ -15,6 +13,11 @@ public class Blank extends Piece {
     @Override
     List<Direction> movableDirections() {
         return Collections.singletonList(Direction.INVALID);
+    }
+
+    @Override
+    public boolean isMovable(Position after) {
+        return false;
     }
 
     @Override

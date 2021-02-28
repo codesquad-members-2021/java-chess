@@ -16,6 +16,15 @@ public class Rook extends Piece {
     }
 
     @Override
+    public boolean isMovable(Position after) {
+        if ((this.getPosition().isLinear(after))
+                && isInValidMoveRange(after) && after.isValid()) {
+            return true;
+        }
+        throw new PositionNotMovableException(getErrorMessage(after));
+    }
+
+    @Override
     boolean isInValidMoveRange(Position after) {
         return true;
     }

@@ -23,5 +23,10 @@ public class PieceFactory {
         BiFunction<Color, Position, Piece> pieceFactory = PIECE_FACTORY_MAP.get(type);
         return pieceFactory.apply(color, position);
     }
+
+    public static Piece createPiece(Color color, Type type, String position) {
+        BiFunction<Color, Position, Piece> pieceFactory = PIECE_FACTORY_MAP.get(type);
+        return pieceFactory.apply(color, new Position(position));
+    }
 }
 

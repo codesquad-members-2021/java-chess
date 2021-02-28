@@ -14,5 +14,14 @@ public class Pawn extends Piece {
     List<Direction> movableDirections() {
         return isBlack() ? Direction.blackPawnDirection() : Direction.whitePawnDirection();
     }
+
+    @Override
+    public boolean isMovable(Position after) {
+        if (movableDirections().contains(direction(after))
+                && isInValidMoveRange(after) && after.isValid()) {
+            return true;
+        }
+        throw new PositionNotMovableException(getErrorMessage(after));
+    }
 }
 

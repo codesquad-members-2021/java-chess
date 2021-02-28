@@ -85,9 +85,9 @@ public class Board {
         double points = 0;
 
         List<Piece> colorPieceList = getPieceListByColor(color);
-        for (int i = 0; i < colorPieceList.size(); i++) {
-            points += colorPieceList.get(i).getDefaultPoint();
-        }
+        points = colorPieceList.stream()
+                .mapToDouble(Piece::getDefaultPoint)
+                .sum();
 
         points -= pawnSizeInFile(color) * 0.5;
         return points;

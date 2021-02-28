@@ -54,11 +54,9 @@ public class Board {
 
     public double calculatePoint(Color color) {
         List<Piece> pieces = findPiecesByColor(color);
-        double point = 0.0;
-        for (Piece piece : pieces) {
-            point += getPoint(piece, pieces);
-        }
-        return point;
+        return pieces.stream()
+                .mapToDouble(piece -> getPoint(piece, pieces))
+                .sum();
     }
 
     public double getPoint(Piece piece, List<Piece> pieces) {

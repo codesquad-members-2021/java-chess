@@ -6,13 +6,9 @@ import net.woody.pieces.Piece;
 import net.woody.pieces.Piece.Color;
 import net.woody.pieces.Type;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static net.woody.factories.PieceFactory.*;
-import static net.woody.factories.RankFactory.*;
 
 public class Board {
 
@@ -39,7 +35,6 @@ public class Board {
     private Piece findPiece(int file, int rank) {
         return getRank(rank).getPiece(file);
     }
-
 
     public int numOfSpecificPiece(Color color, Type type) {
         Piece target = getBlankInstance();
@@ -70,13 +65,11 @@ public class Board {
         return numOfPieces;
     }
 
-
     public double calculatePoint(Color color) {
         double score = 0;
         for (int file = 0; file < BOARD_LENGTH; file++) {
             score += calculateOneFileLine(color, file);
         }
-
         return score;
     }
 

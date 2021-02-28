@@ -2,10 +2,9 @@ package net.woody.pieces;
 
 import java.util.Objects;
 
-public class Piece {
+public class Piece implements Comparable<Piece> {
 
     private static final Piece BLANK_PIECE = new Piece(Piece.Color.NOCOLOR, Type.NO_PIECE);
-
 
     private Color color;
     private Type type;
@@ -51,7 +50,6 @@ public class Piece {
         return BLANK_PIECE;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -63,6 +61,33 @@ public class Piece {
     @Override
     public int hashCode() {
         return Objects.hash(color, type);
+    }
+
+    @Override
+    public int compareTo(Piece piece) {
+        if (this.isBlack() && piece.isWhite()) {
+            return 1;
+        } else if (this.isWhite() && piece.isBlack()) {
+            return -1;
+        }
+
+        double thisPoint = this.getType().getDefaultPoint();
+        double otherPoint = piece.getType().getDefaultPoint();
+
+        if (thisPoint > otherPoint) {
+            return 1;
+        } else if (thisPoint < otherPoint) {
+            return -1;
+        }
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Piece{" +
+                "color=" + color +
+                ", type=" + type +
+                '}';
     }
 
     public enum Color {

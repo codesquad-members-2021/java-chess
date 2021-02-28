@@ -110,10 +110,18 @@ class BoardTest {
         addPiece("e1", Piece.createWhiteRook());
         addPiece("f1", Piece.createWhiteKing());
 
+        System.out.println(board.toString());
+
         assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(15.0);
         assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
 
+
+        addPiece("g3", Piece.createWhitePawn());
         System.out.println(board.toString());
+
+        assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
+
+
     }
 
     private void addPiece(String position, Piece piece) {

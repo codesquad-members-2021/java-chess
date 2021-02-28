@@ -2,6 +2,7 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import piece.Piece;
 import piece.Color;
@@ -78,11 +79,9 @@ public class Board {
     }
 
     public List<Piece> findPiecesByColor(Color color) {
-        ArrayList<Piece> pieces = new ArrayList<>();
-        for (Rank rank : board) {
-            pieces.addAll(rank.findPiecesByColor(color));
-        }
-        return pieces;
+        return this.board.stream()
+                .flatMap(rank -> rank.findPiecesByColor(color).stream())
+                .collect(Collectors.toList());
     }
 
 }

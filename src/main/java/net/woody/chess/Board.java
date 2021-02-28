@@ -78,9 +78,7 @@ public class Board {
     }
 
     private Rank getRank(int rank) {
-        if (rank < 0 || board.size() <= rank) {
-            throw new ArrayIndexOutOfBoundsException("Rank number " + rank + " is out of range!");
-        }
+        validateRank(rank);
         return board.get(rank);
     }
 
@@ -117,6 +115,12 @@ public class Board {
         }
         score -= (pawnCounter > 1) ? pawnCounter * 0.5 : 0;
         return score;
+    }
+
+    private void validateRank(int rank) {
+        if (rank < 0 || board.size() <= rank) {
+            throw new ArrayIndexOutOfBoundsException("Rank number " + rank + " is out of range!");
+        }
     }
 
     @Override

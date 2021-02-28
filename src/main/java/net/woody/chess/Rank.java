@@ -16,12 +16,12 @@ public class Rank {
     }
 
     public void add(int file, Piece piece) {
-        validateFileIndex(file);
+        validateFile(file);
         pieces.set(file, piece);
     }
 
     public Piece getPiece(int file) {
-        validateFileIndex(file);
+        validateFile(file);
         return pieces.get(file);
     }
 
@@ -42,7 +42,7 @@ public class Rank {
     }
 
     // TODO : 예외처리 클라이언트가 이해할 수 있는 최상단의 예외로 던져주자
-    private void validateFileIndex(int file) {
+    private void validateFile(int file) {
         if (file < 0 || BOARD_LENGTH <= file) {
             throw new ArrayIndexOutOfBoundsException("File number " + file + " is out of range!");
         }

@@ -40,11 +40,11 @@ public class Piece {
     }
 
     public static Piece createBlack(Type type) {
-        return new Piece(Piece.Color.BLACK, type);
+        return new Piece(Color.BLACK, type);
     }
 
     public static Piece createWhite(Type type) {
-        return new Piece(Piece.Color.WHITE, type);
+        return new Piece(Color.WHITE, type);
     }
 
     public static Piece getBlankPiece() {

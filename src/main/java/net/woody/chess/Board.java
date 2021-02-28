@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static net.woody.factories.PieceFactory.*;
+import static net.woody.factories.RankFactory.*;
+
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
@@ -41,7 +44,7 @@ public class Board {
     }
 
     public int numOfSpecificPiece(Color color, Type type) {
-        Piece target = Piece.getBlankInstance();
+        Piece target = getBlankInstance();
         target = (color == Color.BLACK) ? Piece.createBlack(type) : target;
         target = (color == Color.WHITE) ? Piece.createWhite(type) : target;
 
@@ -55,21 +58,21 @@ public class Board {
     public static Board createEmtpyBoard() {
         List<Rank> board = new ArrayList<>(BOARD_LENGTH);
         for (int i = 0; i < BOARD_LENGTH; i++) {
-            board.add(i, Rank.createBlankRank());
+            board.add(i, createBlankRank());
         }
         return new Board(board);
     }
 
     public static Board createInitBoard() {
         List<Rank> initBoard = Stream.of(
-                Rank.createWhitePieceRank(),
-                Rank.createWhitePawnRank(),
-                Rank.createBlankRank(),
-                Rank.createBlankRank(),
-                Rank.createBlankRank(),
-                Rank.createBlankRank(),
-                Rank.createBlackPawnRank(),
-                Rank.createBlackPieceRank()
+                createWhitePieceRank(),
+                createWhitePawnRank(),
+                createBlankRank(),
+                createBlankRank(),
+                createBlankRank(),
+                createBlankRank(),
+                createBlackPawnRank(),
+                createBlackPieceRank()
         ).collect(Collectors.toCollection(ArrayList::new));
         return new Board(initBoard);
     }

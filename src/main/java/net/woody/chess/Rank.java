@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static net.woody.factories.PieceFactory.*;
+
 public class Rank {
     private static final int BOARD_LENGTH = 8;
 
@@ -37,7 +39,7 @@ public class Rank {
     public int size() {
         int pieceSize = 0;
         for (Piece piece : pieces) {
-            pieceSize += piece.equals(Piece.getBlankInstance()) ? 0 : 1;
+            pieceSize += piece.equals(getBlankInstance()) ? 0 : 1;
         }
         return pieceSize;
     }
@@ -49,67 +51,10 @@ public class Rank {
         }
     }
 
-    private static Rank createRank(List<Piece> pieces) {
+    public static Rank createRank(List<Piece> pieces) {
         return new Rank(pieces);
     }
 
-    public static Rank createBlankRank() {
-        ArrayList<Piece> pieces = new ArrayList<>(BOARD_LENGTH);
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            pieces.add(Piece.getBlankInstance());
-        }
-        return createRank(pieces);
-    }
-
-    public static Rank createWhitePawnRank() {
-        ArrayList<Piece> pieces = new ArrayList<>(BOARD_LENGTH);
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            pieces.add(Piece.createWhitePawn());
-        }
-        return createRank(pieces);
-    }
-
-    public static Rank createBlackPawnRank() {
-        ArrayList<Piece> pieces = new ArrayList<>(BOARD_LENGTH);
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            pieces.add(Piece.createBlackPawn());
-        }
-        return createRank(pieces);
-    }
-
-    public static Rank createBlackPieceRank() {
-        return createRank(blackPieces());
-    }
-
-    public static Rank createWhitePieceRank() {
-        return createRank(whitePieces());
-    }
-
-    private static List<Piece> blackPieces() {
-        return Stream.of(
-                Piece.createBlackRook(),
-                Piece.createBlackKnight(),
-                Piece.createBlackBishop(),
-                Piece.createBlackQueen(),
-                Piece.createBlackKing(),
-                Piece.createBlackBishop(),
-                Piece.createBlackKnight(),
-                Piece.createBlackRook()
-        ).collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    private static List<Piece> whitePieces() {
-        return Stream.of(
-                Piece.createWhiteRook(),
-                Piece.createWhiteKnight(),
-                Piece.createWhiteBishop(),
-                Piece.createWhiteQueen(),
-                Piece.createWhiteKing(),
-                Piece.createWhiteBishop(),
-                Piece.createWhiteKnight(),
-                Piece.createWhiteRook()
-        ).collect(Collectors.toCollection(ArrayList::new));
-    }
 
     @Override
     public String toString() {

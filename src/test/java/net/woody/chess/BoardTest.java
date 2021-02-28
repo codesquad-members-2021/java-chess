@@ -5,7 +5,8 @@ import net.woody.pieces.Piece.Color;
 import net.woody.pieces.Type;
 import org.junit.jupiter.api.*;
 
-import static net.woody.utils.StringUtils.appendNewLine;
+import static net.woody.factories.PieceFactory.*;
+import static net.woody.utils.StringUtils.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -45,16 +46,16 @@ class BoardTest {
         assertAll(
                 () -> {
                     Piece actualBlackRook = board.findPiece("a8");
-                    assertThat(actualBlackRook).isEqualTo(Piece.createBlackRook());
+                    assertThat(actualBlackRook).isEqualTo(createBlackRook());
                 }, () -> {
                     Piece actualBlackRook = board.findPiece("h8");
-                    assertThat(actualBlackRook).isEqualTo(Piece.createBlackRook());
+                    assertThat(actualBlackRook).isEqualTo(createBlackRook());
                 }, () -> {
                     Piece actualWhiteRook = board.findPiece("a1");
-                    assertThat(actualWhiteRook).isEqualTo(Piece.createWhiteRook());
+                    assertThat(actualWhiteRook).isEqualTo(createWhiteRook());
                 }, () -> {
                     Piece actualWhiteRook = board.findPiece("h1");
-                    assertThat(actualWhiteRook).isEqualTo(Piece.createWhiteRook());
+                    assertThat(actualWhiteRook).isEqualTo(createWhiteRook());
                 });
     }
 
@@ -88,7 +89,7 @@ class BoardTest {
     void locatePieceOnTheEmptyBoard() {
         this.board = Board.createEmtpyBoard();
         String position = "b5";
-        Piece piece = Piece.createBlackRook();
+        Piece piece = createBlackRook();
         board.move(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
@@ -100,15 +101,15 @@ class BoardTest {
     void calculatePoint() {
         this.board = Board.createEmtpyBoard();
 
-        addPiece("b6", Piece.createBlackPawn());
-        addPiece("e6", Piece.createBlackQueen());
-        addPiece("b8", Piece.createBlackKing());
-        addPiece("c8", Piece.createBlackRook());
+        addPiece("b6", createBlackPawn());
+        addPiece("e6", createBlackQueen());
+        addPiece("b8", createBlackKing());
+        addPiece("c8", createBlackRook());
 
-        addPiece("f2", Piece.createWhitePawn());
-        addPiece("g2", Piece.createWhitePawn());
-        addPiece("e1", Piece.createWhiteRook());
-        addPiece("f1", Piece.createWhiteKing());
+        addPiece("f2", createWhitePawn());
+        addPiece("g2", createWhitePawn());
+        addPiece("e1", createWhiteRook());
+        addPiece("f1", createWhiteKing());
 
         System.out.println(board.toString());
 
@@ -116,11 +117,10 @@ class BoardTest {
         assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
 
 
-        addPiece("g3", Piece.createWhitePawn());
+        addPiece("g3", createWhitePawn());
         System.out.println(board.toString());
 
         assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
-
 
     }
 

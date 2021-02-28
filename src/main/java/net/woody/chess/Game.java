@@ -6,18 +6,17 @@ import java.util.Scanner;
 
 public class Game {
     public static void main(String[] args) {
-        // TODO : ongoing 네이밍 변경
         try (Scanner sc = new Scanner(System.in)) {
-            boolean ongoing = true;
+            boolean isContinued = true;
             Board board = Board.createInitBoard();
             do {
                 CommandUtils.printMenu();
                 String command = sc.nextLine();
-                ongoing = CommandUtils.isGameContinued(command);
-                if (ongoing) {
+                isContinued = CommandUtils.isGameContinued(command);
+                if (isContinued) {
                     System.out.println(board);
                 }
-            } while (ongoing);
+            } while (isContinued);
         }
     }
 }

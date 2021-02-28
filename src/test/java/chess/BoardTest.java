@@ -8,7 +8,7 @@ import piece.Color;
 import piece.Type;
 import piece.Position;
 
-import static util.PrintUtils.showBoard;
+import static util.StringUtils.*;
 import static piece.PieceCreator.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -30,7 +30,7 @@ class BoardTest {
         assertThat(board.countPieces(Color.BLACK, Type.PAWN)).isEqualTo(8);
 
         final String BLANK_LINE = appendNewLine("........");
-        assertThat(showBoard(board.getBoard()))
+        assertThat(boardToString(board.getBoard()))
                 .isEqualTo(appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         BLANK_LINE + BLANK_LINE + BLANK_LINE + BLANK_LINE +
@@ -62,12 +62,12 @@ class BoardTest {
         board.move(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
-        System.out.println(showBoard(board.getBoard()));
+        System.out.println(boardToString(board.getBoard()));
     }
 
     @Test
     @DisplayName("Score by calculatePoint() should be equal to the score by ")
-    void calculatePoint() throws Exception {
+    void calculatePoint() {
         board.initializeEmpty();
 
         addPiece("b6", createBlackPawn(new Position(1, 5)));
@@ -83,7 +83,7 @@ class BoardTest {
         assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.0, Percentage.withPercentage(0.1));
         assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(7.0, Percentage.withPercentage(0.01));
 
-        System.out.println(showBoard(board.getBoard()));
+        System.out.println(boardToString(board.getBoard()));
     }
 
     private void addPiece(String position, Piece piece) {

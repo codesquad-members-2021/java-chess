@@ -10,7 +10,6 @@ import piece.Type;
 import piece.Position;
 
 import static piece.PieceCreator.*;
-import static util.StringUtils.appendNewLine;
 
 public class Rank {
     private static final int BOARD_SIZE = 8;
@@ -20,7 +19,7 @@ public class Rank {
         pieces.add(piece);
     }
 
-    private List<Piece> getPieces() {
+    public List<Piece> getPieces() {
         return pieces;
     }
 
@@ -66,7 +65,7 @@ public class Rank {
 
     public static Rank initializeWhitePawns(int rankIndex) {
         Rank rank = new Rank();
-        for(int i = 0; i < BOARD_SIZE; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             rank.add(createWhitePawn(new Position(i, rankIndex)));
         }
         return rank;
@@ -74,7 +73,7 @@ public class Rank {
 
     public static Rank initializeBlackPawns(int rankIndex) {
         Rank rank = new Rank();
-        for(int i = 0; i < BOARD_SIZE; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             rank.add(createBlackPawn(new Position(i, rankIndex)));
         }
         return rank;
@@ -82,7 +81,7 @@ public class Rank {
 
     public static Rank initializeBlankLine(int rankIndex) {
         Rank rank = new Rank();
-        for(int i = 0; i < BOARD_SIZE; i++) {
+        for (int i = 0; i < BOARD_SIZE; i++) {
             rank.add(createBlank(new Position(i, rankIndex)));
         }
         return rank;
@@ -100,12 +99,4 @@ public class Rank {
         return Collections.unmodifiableList(piecesByColor);
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        for (Piece piece : getPieces()) {
-            sb.append(piece.getRepresentation());
-        }
-        return appendNewLine(sb.toString());
-    }
 }

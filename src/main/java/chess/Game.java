@@ -22,7 +22,7 @@ public class Game {
         scanner.close();
     }
 
-    static void process(Scanner scanner) {
+    private static void process(Scanner scanner) {
         while (true) {
             System.out.print("> ");
             String command = scanner.nextLine();

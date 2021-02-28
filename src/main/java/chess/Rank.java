@@ -14,14 +14,13 @@ import static util.StringUtils.appendNewLine;
 
 public class Rank {
     private static final int BOARD_SIZE = 8;
-
     private final List<Piece> pieces = new ArrayList<>(BOARD_SIZE);
 
-    void add(Piece piece) {
+    private void add(Piece piece) {
         pieces.add(piece);
     }
 
-    List<Piece> getPieces() {
+    private List<Piece> getPieces() {
         return pieces;
     }
 
@@ -29,7 +28,7 @@ public class Rank {
         pieces.set(xPos, piece);
     }
 
-    int countPieces(Color color, Type type) {
+    public int countPieces(Color color, Type type) {
         int countPiece = 0;
         for (Piece piece : pieces) {
             if (piece.verifyPiece(color, type)) {
@@ -39,7 +38,7 @@ public class Rank {
         return countPiece;
     }
 
-    static Rank initializeWhitePieces(int rankIndex) {
+    public static Rank initializeWhitePieces(int rankIndex) {
         Rank rank = new Rank();
         rank.add(createWhiteRook(new Position(0, rankIndex)));
         rank.add(createWhiteKnight(new Position(1, rankIndex)));
@@ -52,7 +51,7 @@ public class Rank {
         return rank;
     }
 
-    static Rank initializeBlackPieces(int rankIndex) {
+    public static Rank initializeBlackPieces(int rankIndex) {
         Rank rank = new Rank();
         rank.add(createBlackRook(new Position(0, rankIndex)));
         rank.add(createBlackKnight(new Position(1, rankIndex)));
@@ -65,7 +64,7 @@ public class Rank {
         return rank;
     }
 
-    static Rank initializeWhitePawns(int rankIndex) {
+    public static Rank initializeWhitePawns(int rankIndex) {
         Rank rank = new Rank();
         for(int i = 0; i < BOARD_SIZE; i++) {
             rank.add(createWhitePawn(new Position(i, rankIndex)));
@@ -73,7 +72,7 @@ public class Rank {
         return rank;
     }
 
-    static Rank initializeBlackPawns(int rankIndex) {
+    public static Rank initializeBlackPawns(int rankIndex) {
         Rank rank = new Rank();
         for(int i = 0; i < BOARD_SIZE; i++) {
             rank.add(createBlackPawn(new Position(i, rankIndex)));
@@ -81,7 +80,7 @@ public class Rank {
         return rank;
     }
 
-    static Rank initializeBlankLine(int rankIndex) {
+    public static Rank initializeBlankLine(int rankIndex) {
         Rank rank = new Rank();
         for(int i = 0; i < BOARD_SIZE; i++) {
             rank.add(createBlank(new Position(i, rankIndex)));
@@ -89,7 +88,7 @@ public class Rank {
         return rank;
     }
 
-    Piece findPiece(int xPos) {
+    public Piece findPiece(int xPos) {
         return pieces.get(xPos);
     }
 

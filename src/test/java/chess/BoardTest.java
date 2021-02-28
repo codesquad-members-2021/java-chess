@@ -14,17 +14,17 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static util.StringUtils.appendNewLine;
 
-public class BoardTest {
+class BoardTest {
     private Board board;
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         board = new Board();
     }
 
     @Test
     @DisplayName("Verify Board initialize and toString")
-    public void create() {
+    void create() {
         board.initialize();
         assertThat(board.countPieces(Color.WHITE, Type.PAWN)).isEqualTo(8);
         assertThat(board.countPieces(Color.BLACK, Type.PAWN)).isEqualTo(8);
@@ -42,7 +42,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("Verify Piece by findPiece() returns exact position")
-    public void findPiece() {
+    void findPiece() {
         board.initialize();
         assertAll(
                 () -> assertThat(board.findPiece("a8")).isEqualTo(createBlackRook(new Position(0, 7))),
@@ -54,7 +54,7 @@ public class BoardTest {
 
     @Test
     @DisplayName("Piece by move() should be equal to the piece by createColorPiece()")
-    public void move() {
+    void move() {
         board.initializeEmpty();
 
         String position = "b5";
@@ -62,12 +62,12 @@ public class BoardTest {
         board.move(position, piece);
 
         assertThat(board.findPiece(position)).isEqualTo(piece);
-        System.out.println(board);
+        System.out.println(showBoard(board.getBoard()));
     }
 
     @Test
     @DisplayName("Score by calculatePoint() should be equal to the score by ")
-    public void calculatePoint() throws Exception {
+    void calculatePoint() throws Exception {
         board.initializeEmpty();
 
         addPiece("b6", createBlackPawn(new Position(1, 5)));
@@ -83,7 +83,7 @@ public class BoardTest {
         assertThat(board.calculatePoint(Color.BLACK)).isCloseTo(15.0, Percentage.withPercentage(0.1));
         assertThat(board.calculatePoint(Color.WHITE)).isCloseTo(7.0, Percentage.withPercentage(0.01));
 
-        System.out.println(board);
+        System.out.println(showBoard(board.getBoard()));
     }
 
     private void addPiece(String position, Piece piece) {

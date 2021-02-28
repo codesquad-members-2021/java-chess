@@ -6,7 +6,7 @@ import static piece.PieceCreator.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-public class PieceTest {
+class PieceTest {
 
     @Test
     @DisplayName("Verify create correct pieces")
@@ -60,7 +60,7 @@ public class PieceTest {
 
     @Test
     @DisplayName("Verify getWhiteRepresentation and getBlackRepresentation")
-    public void getRepresentationPerPiece() {
+    void getRepresentationPerPiece() {
         assertAll(
                 () -> assertThat(Type.PAWN.getWhiteRepresentation()).isEqualTo('p'),
                 () -> assertThat(Type.PAWN.getBlackRepresentation()).isEqualTo('P'),

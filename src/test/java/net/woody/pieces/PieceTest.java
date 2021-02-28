@@ -2,6 +2,12 @@ package net.woody.pieces;
 
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import static net.woody.factories.PieceFactory.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -37,6 +43,44 @@ class PieceTest {
                 () -> assertThat(createBlackPawn().isBlack()).isTrue(),
                 () -> assertThat(createWhitePawn().isWhite()).isTrue()
         );
+    }
+
+    @Test
+    @DisplayName("Collection 안에 있는 체스말들을 색상(흰색이 먼저), 점수(낮은 점수 먼저)에 따라 정렬해야한다.")
+    void sortPiecesByScore() {
+        List<Piece> pieces = getAllPieces();
+        Collections.sort(pieces);
+        assertThat(pieces).containsExactlyInAnyOrderElementsOf(getSortedPieces());
+    }
+
+    private List<Piece> getAllPieces() {
+        return Stream.of(
+                createBlackKnight(),
+                createBlackRook(),
+                createBlackKing(),
+                createBlackBishop(),
+                createBlackQueen(),
+                createWhiteRook(),
+                createWhiteKing(),
+                createWhiteKnight(),
+                createWhiteBishop(),
+                createWhiteQueen()
+        ).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    private List<Piece> getSortedPieces() {
+        return Stream.of(
+                createWhiteKing(),
+                createWhiteKnight(),
+                createBlackBishop(),
+                createWhiteRook(),
+                createWhiteQueen(),
+                createBlackKing(),
+                createBlackKnight(),
+                createWhiteBishop(),
+                createBlackRook(),
+                createBlackQueen()
+        ).collect(Collectors.toCollection(ArrayList::new));
     }
 
     private void verifyPieces(final Piece whitePiece, final Piece blackPiece, final Type type) {

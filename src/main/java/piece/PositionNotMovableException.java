@@ -17,3 +17,4 @@ public class PositionNotMovableException extends RuntimeException {
         return ERR_CODE;
     }
 }
+

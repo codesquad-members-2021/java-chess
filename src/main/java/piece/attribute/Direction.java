@@ -64,6 +64,5 @@ public enum Direction {
     public static List<Direction> blackPawnDirection() {
         return Arrays.asList(SOUTH, SOUTHEAST, SOUTHWEST);
     }
-
-
 }
+

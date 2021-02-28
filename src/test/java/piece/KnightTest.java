@@ -38,3 +38,4 @@ class KnightTest {
         board.move(new Position("d4"), new Position(position));
     }
 }
+

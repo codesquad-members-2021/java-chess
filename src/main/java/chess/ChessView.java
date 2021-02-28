@@ -20,3 +20,4 @@ public class ChessView {
         return result.toString();
     }
 }
+

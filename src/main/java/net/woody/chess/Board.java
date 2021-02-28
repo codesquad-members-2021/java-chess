@@ -53,26 +53,8 @@ public class Board {
         return targetCounter;
     }
 
-    public static Board createEmtpyBoard() {
-        List<Rank> board = new ArrayList<>(BOARD_LENGTH);
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            board.add(i, createBlankRank());
-        }
+    public static Board createBoard(List<Rank> board) {
         return new Board(board);
-    }
-
-    public static Board createInitBoard() {
-        List<Rank> initBoard = Stream.of(
-                createWhitePieceRank(),
-                createWhitePawnRank(),
-                createBlankRank(),
-                createBlankRank(),
-                createBlankRank(),
-                createBlankRank(),
-                createBlackPawnRank(),
-                createBlackPieceRank()
-        ).collect(Collectors.toCollection(ArrayList::new));
-        return new Board(initBoard);
     }
 
     private Rank getRank(int rank) {

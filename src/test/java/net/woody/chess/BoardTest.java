@@ -5,6 +5,8 @@ import net.woody.pieces.Piece.Color;
 import net.woody.pieces.Type;
 import org.junit.jupiter.api.*;
 
+
+import static net.woody.factories.BoardFactory.*;
 import static net.woody.factories.PieceFactory.*;
 import static net.woody.utils.StringUtils.*;
 import static org.assertj.core.api.Assertions.*;
@@ -16,7 +18,7 @@ class BoardTest {
 
     @BeforeEach
     void initializedBoard() {
-        this.board = Board.createInitBoard();
+        this.board = createInitBoard();
     }
 
     @Test
@@ -87,7 +89,7 @@ class BoardTest {
     @Test
     @DisplayName("생성한 체스말을 빈 체스판 임의의 위치로 이동시킬 수 있어야 한다.")
     void locatePieceOnTheEmptyBoard() {
-        this.board = Board.createEmtpyBoard();
+        this.board = createEmtpyBoard();
         String position = "b5";
         Piece piece = createBlackRook();
         board.move(position, piece);
@@ -99,7 +101,7 @@ class BoardTest {
     @Test
     @DisplayName("흰색과 검은색 체스말의 총 스코어를 각각 계산한다.")
     void calculatePoint() {
-        this.board = Board.createEmtpyBoard();
+        this.board = createEmtpyBoard();
 
         addPiece("b6", createBlackPawn());
         addPiece("e6", createBlackQueen());

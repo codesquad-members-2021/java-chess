@@ -3,12 +3,13 @@ package net.woody.chess;
 import net.woody.utils.CommandUtils;
 
 import java.util.Scanner;
+import static net.woody.factories.BoardFactory.*;
 
 public class Game {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
             boolean isContinued = true;
-            Board board = Board.createInitBoard();
+            Board board = createInitBoard();
             do {
                 CommandUtils.printMenu();
                 String command = sc.nextLine();

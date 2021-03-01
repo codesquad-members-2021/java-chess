@@ -5,6 +5,7 @@ import kr.codesquad.freddie.chess.board.Position;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Piece;
 import kr.codesquad.freddie.chess.piece.PieceFactory;
+import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 public class ChessGame {
     private Board board;
@@ -25,8 +26,13 @@ public class ChessGame {
 
     public void move(String source, String target) {
         Piece sourcePiece = board.findPiece(source);
+        Piece targetPiece = board.findPiece(target);
+        if (sourcePiece.getColor() == targetPiece.getColor()) {
+            String message = "이동 위치의 기물이 같은 색상입니다. source : " + sourcePiece + ", target : " + targetPiece;
+            throw new IllegalArgumentException(message);
+        }
 
-        if (!sourcePiece.isCanMove(Position.of(source), Position.of(target), board)) {
+        if (!sourcePiece.isCanMove(new PositionCalculator(Position.of(source), Position.of(target)), board)) {
             String message = "이동 위치가 올바르지 않습니다. : source : " + source + ", target : " + target;
             throw new IllegalArgumentException(message);
         }

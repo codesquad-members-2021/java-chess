@@ -1,7 +1,7 @@
 package kr.codesquad.freddie.chess.piece;
 
 import kr.codesquad.freddie.chess.board.Board;
-import kr.codesquad.freddie.chess.board.Position;
+import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 public class EmptyPiece extends Piece {
     private EmptyPiece(Color color, Kind kind) {
@@ -13,7 +13,7 @@ public class EmptyPiece extends Piece {
     }
 
     @Override
-    public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
+    public boolean isCanMove(PositionCalculator positionCalculator, Board board) {
         return false;
     }
 }

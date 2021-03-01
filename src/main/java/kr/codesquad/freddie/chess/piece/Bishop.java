@@ -1,7 +1,7 @@
 package kr.codesquad.freddie.chess.piece;
 
 import kr.codesquad.freddie.chess.board.Board;
-import kr.codesquad.freddie.chess.board.Position;
+import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 public class Bishop extends Piece {
     private Bishop(Color color, Kind kind) {
@@ -13,11 +13,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
-        checkColorOf(sourcePosition, targetPosition, board);
-        int fileDistance = Math.abs(distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex()));
-        int rankDistance = Math.abs(distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex()));
-
-        return gradientOf(fileDistance, rankDistance) == 1;
+    public boolean isCanMove(PositionCalculator positionCalculator, Board board) {
+        return Math.abs(positionCalculator.getGradient()) == 1;
     }
 }

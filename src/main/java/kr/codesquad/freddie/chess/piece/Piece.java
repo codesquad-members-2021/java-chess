@@ -2,6 +2,7 @@ package kr.codesquad.freddie.chess.piece;
 
 import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.board.Position;
+import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public abstract class Piece implements Comparable<Piece> {
         this.kind = kind;
     }
 
-    public abstract boolean isCanMove(Position sourcePosition, Position targetPosition, Board board);
+    public abstract boolean isCanMove(PositionCalculator positionCalculator, Board board);
 
     public Color getColor() {
         return color;

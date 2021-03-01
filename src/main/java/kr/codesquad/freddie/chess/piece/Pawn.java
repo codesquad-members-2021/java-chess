@@ -1,7 +1,7 @@
 package kr.codesquad.freddie.chess.piece;
 
 import kr.codesquad.freddie.chess.board.Board;
-import kr.codesquad.freddie.chess.board.Position;
+import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 public class Pawn extends Piece {
     private Pawn(Color color, Kind kind) {
@@ -13,13 +13,12 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
-        checkColorOf(sourcePosition, targetPosition, board);
-        Piece sourcePiece = board.findPiece(sourcePosition.toString());
-        Piece targetPiece = board.findPiece(targetPosition.toString());
+    public boolean isCanMove(PositionCalculator positionCalculator, Board board) {
+        Piece sourcePiece = positionCalculator.getSourcePieceFrom(board);
+        Piece targetPiece = positionCalculator.getTargetPieceFrom(board);
 
-        int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
-        int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
+        int fileDistance = positionCalculator.getFileDistance();
+        int rankDistance = positionCalculator.getRankDistance();
 
         if (!isAvailableMoveRange(fileDistance, rankDistance)) {
             return false;

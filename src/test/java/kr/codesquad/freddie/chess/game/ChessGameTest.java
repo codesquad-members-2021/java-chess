@@ -272,7 +272,7 @@ class ChessGameTest extends ChessTestBase {
         initBoardWithBlank(board);
         assertThatThrownBy(() -> chessGame.move("a1", "a2"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("이동 위치가 올바르지 않습니다. : source : a1, target : a2");
+                .hasMessage("이동 위치의 기물이 같은 색상입니다. source : Piece{color=NOCOLOR, kind=EMPTY}, target : Piece{color=NOCOLOR, kind=EMPTY}");
     }
 
     private void checkMove(String source, String target, Piece piece) {

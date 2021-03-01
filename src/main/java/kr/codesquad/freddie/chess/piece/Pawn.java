@@ -21,30 +21,38 @@ public class Pawn extends Piece {
         int fileDistance = distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
         int rankDistance = distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
 
-        //TODO: 메소드 추출 필요
-
-        // 방향 확인
-        if (sourcePiece.isWhite() && 0 < rankDistance || sourcePiece.isBlack() && rankDistance < 0) {
+        if (!isAvailableMoveRange(fileDistance, rankDistance)) {
             return false;
         }
 
-        // 2칸 이상 이동
-        if (2 < Math.abs(rankDistance) || 1 < Math.abs(fileDistance)) {
-            return false;
+        if (isDiagonalDirection(fileDistance, rankDistance)) {
+            if (gradientOf(Math.abs(fileDistance), Math.abs(rankDistance)) != 1) {
+                return false;
+            }
+
+            return isCanMoveDiagonally(sourcePiece, targetPiece);
         }
 
-        // 대각선 이동인데 잡아먹을 수 없는 경우
-        if (gradientOf(Math.abs(fileDistance), Math.abs(rankDistance)) == 1 &&
-                (sourcePiece.getColor() == targetPiece.getColor() || targetPiece.getColor() == Color.NOCOLOR)) {
-            return false;
+        return isAvailableDirection(sourcePiece, rankDistance);
+    }
+
+    private boolean isAvailableDirection(Piece sourcePiece, int rankDistance) {
+        if (sourcePiece.isWhite()) {
+            return rankDistance < 0;
         }
 
-        // 대각선인데 1직선이 아닐 경우
-        if (gradientOf(Math.abs(fileDistance), Math.abs(rankDistance)) != 1 &&
-                gradientOf(Math.abs(fileDistance), Math.abs(rankDistance)) != 0) {
-            return false;
-        }
+        return 0 < rankDistance;
+    }
 
-        return true;
+    private boolean isAvailableMoveRange(int fileDistance, int rankDistance) {
+        return Math.abs(rankDistance) <= 2 && Math.abs(fileDistance) <= 1;
+    }
+
+    private boolean isDiagonalDirection(int fileDistance, int rankDistance) {
+        return 0 < gradientOf(Math.abs(fileDistance), Math.abs(rankDistance));
+    }
+
+    private boolean isCanMoveDiagonally(Piece sourcePiece, Piece targetPiece) {
+        return targetPiece.getColor() != Color.NOCOLOR && sourcePiece.getColor() != targetPiece.getColor();
     }
 }

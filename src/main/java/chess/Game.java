@@ -2,9 +2,13 @@ package chess;
 
 import java.util.Scanner;
 
+import static util.PrintUtils.showScore;
+import static util.PrintUtils.showScoreByPiece;
+
 public class Game {
     private static final String START = "start";
     private static final String END = "end";
+    private static final String SCORE = "score";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -18,7 +22,7 @@ public class Game {
         scanner.close();
     }
 
-    static void process(Scanner scanner) {
+    private static void process(Scanner scanner) {
         while (true) {
             System.out.print("> ");
             String command = scanner.nextLine();
@@ -28,6 +32,8 @@ public class Game {
                 Board board = new Board();
                 board.initialize();
                 System.out.println(board);
+                showScore(board);
+                showScoreByPiece(board);
             } else if (command.equals(Game.END)) {
                 break;
             } else {

@@ -1,60 +1,94 @@
 package net.tree.chess;
 
-import net.tree.pieces.Pawn;
+import net.tree.pieces.Piece;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.utils.StringUtils.appendNewLine;
+
 public class Board {
+    private List<Piece> whitePieces = new ArrayList<>();
+    private List<Piece> blackPieces = new ArrayList<>();
 
-    private List<Pawn> pawnList = new ArrayList<>();
     private static final int BOARD_SIZE = 8;
-    private String line = "........\n";
+    private static final String LINE = "........";
+    public static final int TOTAL_PIECES_SIZE = 32;
 
-    public void addPawnToPawnList(Pawn pawn) {
-        pawnList.add(pawn);
+    public void initializeAllPieces() {
+        initializeWhitePieces();
+        initializeBlackPieces();
     }
 
-    public int checkPawnSize() {
-        return pawnList.size();
-    }
+    public void initializeWhitePieces() {
+        whitePieces.add(Piece.createWhiteRook());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteQueen());
+        whitePieces.add(Piece.createWhiteKing());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteRook());
 
-    public Pawn findPawn(int listIndex) {
-
-        Pawn pawn = pawnList.get(listIndex);
-        return pawn;
-    }
-
-    public void initialize() {
         for(int i = 0 ; i < BOARD_SIZE ; i++) {
-            addPawnToPawnList(new Pawn(Pawn.WHITE_COLOR, Pawn.WHITE_REPRESENTATION));
-            addPawnToPawnList(new Pawn(Pawn.BLACK_COLOR, Pawn.BLACK_REPRESENTATION));
+            whitePieces.add(Piece.createWhitePawn());
         }
     }
 
-    public String getPawnsResult(char representation) {
-        StringBuilder sb = new StringBuilder();
+    public void initializeBlackPieces() {
+        blackPieces.add(Piece.createBlackRook());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackQueen());
+        blackPieces.add(Piece.createBlackKing());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackRook());
 
-        for(int i = 0 ; i < pawnList.size() ; i++) {
-            if(pawnList.get(i).getRepresentation() == representation) {
-                sb.append(representation);
+        for(int i = 0 ; i < BOARD_SIZE ; i++) {
+            blackPieces.add(Piece.createBlackPawn());
+        }
+    }
+
+    public int countAllPieces() {
+        return whitePieces.size() + blackPieces.size();
+    }
+
+    public String createInitializedBoard() {
+        StringBuilder board = new StringBuilder();
+        board.append(appendNewLine(getFirstAndEighthRankPiecesByColor(blackPieces)));
+        board.append(appendNewLine(getPawnPiecesByColor(blackPieces)));
+        board.append(appendNewLine(LINE));
+        board.append(appendNewLine(LINE));
+        board.append(appendNewLine(LINE));
+        board.append(appendNewLine(LINE));
+        board.append(appendNewLine(getPawnPiecesByColor(whitePieces)));
+        board.append(appendNewLine(getFirstAndEighthRankPiecesByColor(whitePieces)));
+
+        return board.toString();
+    }
+
+    //getExceptPawnPiecesByList 이런 식으로 작명했었는데, Exception과 혼동이 온다고 수정했습니다.
+    public String getFirstAndEighthRankPiecesByColor(List<Piece> pieces) {
+        StringBuilder sb = new StringBuilder();
+        for(Piece piece : pieces) {
+            Character tempChar = Character.toLowerCase(piece.getRepresentation());
+            if( tempChar != 'p') {
+                sb.append(piece.getRepresentation());
             }
         }
         return sb.toString();
     }
 
-    public String getPawnsRepresentation() {
-        StringBuilder pawnsRepresentation = new StringBuilder();
-        pawnsRepresentation.append(line);
-        pawnsRepresentation.append(getPawnsResult(Pawn.BLACK_REPRESENTATION) + "\n");
-        pawnsRepresentation.append(line);
-        pawnsRepresentation.append(line);
-        pawnsRepresentation.append(line);
-        pawnsRepresentation.append(line);
-        pawnsRepresentation.append(getPawnsResult(Pawn.WHITE_REPRESENTATION) + "\n");
-        pawnsRepresentation.append(line);
-
-        return pawnsRepresentation.toString();
+    public String getPawnPiecesByColor(List<Piece> pieces) {
+        StringBuilder sb = new StringBuilder();
+        for(Piece piece : pieces) {
+            Character tempChar = Character.toLowerCase(piece.getRepresentation());
+            if( tempChar == 'p') {
+                sb.append(piece.getRepresentation());
+            }
+        }
+        return sb.toString();
     }
 
 

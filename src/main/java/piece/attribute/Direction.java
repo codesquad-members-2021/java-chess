@@ -1,7 +1,5 @@
 package piece.attribute;
 
-import chess.Position;
-
 import java.util.*;
 
 import static chess.Board.BOARD_SIZE;

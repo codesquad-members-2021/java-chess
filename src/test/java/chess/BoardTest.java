@@ -100,13 +100,5 @@ class BoardTest {
         List<Piece> whitePieces = board.getPiecesSortedByPoint(Color.WHITE);
         assertThat(whitePieces.toString()).isEqualTo("[q, r, r, n, b, b, n, p, p, p, p, p, p, p, p, k]");
     }
-
-    @Test
-    @DisplayName("역순으로도 정렬해보라는 요구사항 테스트")
-    void verifyReversedOrder() {
-        List<Piece> blackPieces = board.getPiecesSortedByPoint(Color.BLACK);
-        blackPieces.sort(Collections.reverseOrder());
-        assertThat(blackPieces.toString()).isEqualTo("[K, P, P, P, P, P, P, P, P, N, B, B, N, R, R, Q]");
-    }
 }
 

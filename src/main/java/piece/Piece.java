@@ -17,7 +17,9 @@ public abstract class Piece implements Comparable<Piece> {
     }
 
     abstract List<Direction> movableDirections();
+
     abstract boolean isInValidMoveRange(Position after);
+
     public abstract boolean isMovable(Position after);
 
     Direction direction(Position after) {
@@ -71,6 +73,14 @@ public abstract class Piece implements Comparable<Piece> {
 
     public double getPoint() {
         return type.getDefaultPoint();
+    }
+
+    public boolean isPawn() {
+        return type == Type.PAWN;
+    }
+
+    public boolean isSameColorAs(Color color) {
+        return this.color == color;
     }
 
     @Override

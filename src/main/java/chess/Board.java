@@ -108,8 +108,8 @@ public class Board {
     }
 
     private double getSum(List<Piece> pieces, Color color) {
-        return pieces.stream().filter(piece -> piece.getColor() == color)
-                .filter(piece -> !(piece.getType() == Type.PAWN))
+        return pieces.stream().filter(piece -> piece.isSameColorAs(color))
+                .filter(piece -> !piece.isPawn())
                 .reduce(0.0, (result, piece) -> result + piece.getPoint(), Double::sum)
                 + getPawnPoint(pieces, color);
     }

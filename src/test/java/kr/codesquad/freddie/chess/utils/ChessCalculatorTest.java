@@ -17,7 +17,7 @@ class ChessCalculatorTest {
         Board board = new Board();
 
         for (int i = 0; i < Board.RANK_SIZE * File.SIZE; i++) {
-            board.add(Piece.createBlank());
+            board.add(PieceFactory.createBlank());
         }
 
         board.set("a1", blackPieceFactory.createPawn());

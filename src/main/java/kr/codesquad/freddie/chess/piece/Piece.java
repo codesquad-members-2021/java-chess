@@ -14,10 +14,6 @@ public class Piece implements Comparable<Piece> {
         this.kind = kind;
     }
 
-    public static Piece createBlank() {
-        return new Piece(Color.NOCOLOR, Kind.EMPTY);
-    }
-
     public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
         return kind.isCanMove(sourcePosition, targetPosition, board);
     }

@@ -31,7 +31,7 @@ class PieceTest {
 
     @Test
     void createBlank() {
-        assertThat(Piece.createBlank()).isEqualTo(new Piece(Color.NOCOLOR, Kind.EMPTY));
+        assertThat(PieceFactory.createBlank()).isEqualTo(new Piece(Color.NOCOLOR, Kind.EMPTY));
     }
 
     @Test

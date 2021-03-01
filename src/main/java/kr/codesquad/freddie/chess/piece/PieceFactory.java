@@ -8,7 +8,7 @@ public class PieceFactory {
     }
 
     public static Piece createBlank() {
-        return Piece.createBlank();
+        return new Piece(Color.NOCOLOR, Kind.EMPTY);
     }
 
     public Piece createPawn() {

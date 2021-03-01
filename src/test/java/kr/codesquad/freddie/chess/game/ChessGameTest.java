@@ -282,7 +282,7 @@ class ChessGameTest extends ChessTestBase {
         board.set(source, piece);
         chessGame.move(source, target);
 
-        assertThat(board.findPiece(source)).isEqualTo(Piece.createBlank());
+        assertThat(board.findPiece(source)).isEqualTo(PieceFactory.createBlank());
         assertThat(board.findPiece(target)).isEqualTo(piece);
     }
 
@@ -300,7 +300,7 @@ class ChessGameTest extends ChessTestBase {
 
         chessGame.move("b3", "b4");
 
-        assertThat(board.findPiece("b3")).isEqualTo(Piece.createBlank());
+        assertThat(board.findPiece("b3")).isEqualTo(PieceFactory.createBlank());
         assertThat(board.findPiece("b4")).isEqualTo(blackPieceFactory.createKing());
     }
 
@@ -320,7 +320,7 @@ class ChessGameTest extends ChessTestBase {
 
     private void initBoardWithBlank() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(Piece.createBlank());
+            board.add(PieceFactory.createBlank());
         }
     }
 }

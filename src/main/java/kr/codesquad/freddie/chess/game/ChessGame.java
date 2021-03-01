@@ -4,6 +4,7 @@ import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.board.Position;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Piece;
+import kr.codesquad.freddie.chess.piece.PieceFactory;
 
 public class ChessGame {
     private Board board;
@@ -31,7 +32,7 @@ public class ChessGame {
         }
 
         board.set(target, sourcePiece);
-        board.set(source, Piece.createBlank());
+        board.set(source, PieceFactory.createBlank());
     }
 
     public Board getBoard() {

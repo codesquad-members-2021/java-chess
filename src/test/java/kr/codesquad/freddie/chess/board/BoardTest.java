@@ -73,7 +73,7 @@ class BoardTest extends ChessTestBase {
             sb.delete(0, sb.length());
             for (char j = 'a'; j <= 'h'; j++) {
                 assertThat(board.findPiece(sb.append(j).append(i).toString()))
-                        .isEqualTo(Piece.createBlank());
+                        .isEqualTo(PieceFactory.createBlank());
             }
         }
     }
@@ -187,7 +187,7 @@ class BoardTest extends ChessTestBase {
     @DisplayName("set으로 넣은 뒤 getRepresentation과 getNumberOf로 확인")
     void verifySetWithGetRepresentationAndGetNumberOf() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(Piece.createBlank());
+            board.add(PieceFactory.createBlank());
         }
 
         board.set("b8", blackPieceFactory.createKing());

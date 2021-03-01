@@ -3,6 +3,7 @@ package kr.codesquad.freddie.chess.board;
 import kr.codesquad.freddie.chess.ChessTestBase;
 import kr.codesquad.freddie.chess.piece.Color;
 import kr.codesquad.freddie.chess.piece.Piece;
+import kr.codesquad.freddie.chess.piece.PieceFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ class BoardViewTest extends ChessTestBase {
     @DisplayName("set으로 넣은 뒤 getRepresentation과 getNumberOf로 확인")
     void getRepresentation() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(Piece.createBlank());
+            board.add(PieceFactory.createBlank());
         }
 
         board.set("b8", blackPieceFactory.createKing());
@@ -100,7 +101,7 @@ class BoardViewTest extends ChessTestBase {
 
     private void initBoardWithBlank() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(Piece.createBlank());
+            board.add(PieceFactory.createBlank());
         }
     }
 }

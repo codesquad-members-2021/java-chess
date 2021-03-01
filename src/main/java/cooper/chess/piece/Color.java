@@ -2,5 +2,6 @@ package cooper.chess.piece;
 
 public enum Color {
     WHITE,
-    BLACK;
+    BLACK,
+    NO_COLOR;
 }

@@ -35,7 +35,9 @@ public class Position {
     }
 
     public boolean isLinear(Position after) {
-        return Math.abs(after.x() - x()) > 0 && after.y() == y() || after.x() == x() && Math.abs(after.y() - y()) > 0;
+        boolean isHorizontal = Math.abs(after.x() - x()) > 0 && after.y() == y();
+        boolean isVertical = after.x() == x() && Math.abs(after.y() - y()) > 0;
+        return isHorizontal || isVertical;
     }
 
     public boolean isDiagonal(Position after) {

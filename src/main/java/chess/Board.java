@@ -119,7 +119,11 @@ public class Board {
         long pawnCount = pieces.stream()
                 .filter(piece -> piece.getColor() == color && piece.getType() == Type.PAWN)
                 .count();
-        return pawnCount > 1 ? (pawnPoint / 2) * pawnCount : pawnPoint * pawnCount;
+        if (pawnCount > 1) {
+            return (pawnPoint / 2) * pawnCount;;
+        }
+
+        return pawnPoint * pawnCount;
     }
 
     public List<Piece> getPiecesSortedByPoint(Color color) {
@@ -133,4 +137,3 @@ public class Board {
         return Collections.unmodifiableList(pieces);
     }
 }
-

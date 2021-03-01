@@ -56,20 +56,20 @@ public class Board {
 
     public String createInitializedBoard() {
         StringBuilder board = new StringBuilder();
-        board.append(appendNewLine(getFirstAndEighthRankPiecesByList(blackPieces)));
-        board.append(appendNewLine(getPawnPiecesByList(blackPieces)));
+        board.append(appendNewLine(getFirstAndEighthRankPiecesByColor(blackPieces)));
+        board.append(appendNewLine(getPawnPiecesByColor(blackPieces)));
         board.append(appendNewLine(LINE));
         board.append(appendNewLine(LINE));
         board.append(appendNewLine(LINE));
         board.append(appendNewLine(LINE));
-        board.append(appendNewLine(getPawnPiecesByList(whitePieces)));
-        board.append(appendNewLine(getFirstAndEighthRankPiecesByList(whitePieces)));
+        board.append(appendNewLine(getPawnPiecesByColor(whitePieces)));
+        board.append(appendNewLine(getFirstAndEighthRankPiecesByColor(whitePieces)));
 
         return board.toString();
     }
 
     //getExceptPawnPiecesByList 이런 식으로 작명했었는데, Exception과 혼동이 온다고 수정했습니다.
-    public String getFirstAndEighthRankPiecesByList(List<Piece> pieces) {
+    public String getFirstAndEighthRankPiecesByColor(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
         for(Piece piece : pieces) {
             Character tempChar = Character.toLowerCase(piece.getRepresentation());
@@ -80,7 +80,7 @@ public class Board {
         return sb.toString();
     }
 
-    public String getPawnPiecesByList(List<Piece> pieces) {
+    public String getPawnPiecesByColor(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
         for(Piece piece : pieces) {
             Character tempChar = Character.toLowerCase(piece.getRepresentation());

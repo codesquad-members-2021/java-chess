@@ -2,15 +2,19 @@ package net.coco.chess;
 
 
 import net.coco.pieces.Piece;
+import net.coco.pieces.Piece.Color;
+import net.coco.pieces.PieceType;
 import net.coco.printer.PrintChess;
-import net.coco.utils.StringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static net.coco.utils.StringUtils.appendNewLine;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BoardTest {
 
@@ -19,41 +23,12 @@ public class BoardTest {
     @BeforeEach
     void makeBoard() {
         board = new Board();
-
-    }
-
-    @Test
-    @DisplayName("판에 폰이 잘 들어가는지 체크")
-    void boardAddPawnCheck() {
-
-        Assertions.assertAll(
-                () -> verifyPawnToPawns(Piece.WHITE, 0),
-                () -> verifyPawnsSize(1),
-
-                () -> verifyPawnToPawns(Piece.BLACK, 0),
-                () -> verifyPawnsSize(2)
-        );
-
-    }
-
-    @Test
-    void initialize() {
-        board.initialize();
-        Assertions.assertAll(
-                () -> assertThat(board.getPiecesSize()).isEqualTo(32),
-                () -> assertThat(board.getBlackPawnsResult(Piece.BLACK)).isEqualTo("PPPPPPPP"),
-                () -> assertThat(board.getOtherBlackPiecesResult(Piece.BLACK)).isEqualTo("RNBQKBNR"),
-                () -> assertThat(board.getOtherWhitePiecesResult(Piece.WHITE)).isEqualTo("rnbqkbnr"),
-                () -> assertThat(board.getWhitePawnsResult(Piece.WHITE)).isEqualTo("pppppppp")
-        );
-        PrintChess.printBoard(board);
-
     }
 
     @Test
     void printChessBoard() {
-        board.initialize();
-        String blank = appendNewLine("********");
+        board.initializeWithPieces();
+        String blank = appendNewLine("........");
         assertThat(
                 PrintChess.printBoard(board)
         ).isEqualTo(
@@ -66,22 +41,96 @@ public class BoardTest {
     }
 
     @Test
-    @DisplayName("board에 piece를 넣을 때는 piece에 따른 알맞은 메소드를 사용해야한다.")
-    void addOtherPieces() {
-        Piece blackBishop = Piece.createBlackBishop();
-        Piece blackPawn = Piece.createBlackPawn();
-
+    @DisplayName("기물과 색에 해당하는 기물의 개수를 반환")
+    void getPiecesCount() {
+        board.initializeWithPieces();
         Assertions.assertAll(
-                () -> board.addOtherBlackPiece(blackBishop),
-                () -> assertThat(board.getPiecesSize()).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.PAWN)).isEqualTo(8),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.KING)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.KNIGHT)).isEqualTo(2),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.QUEEN)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.ROOK)).isEqualTo(2),
+                () -> assertThat(board.getPieceCount(Color.WHITE, PieceType.BISHOP)).isEqualTo(2),
 
-                () -> board.addOtherBlackPiece(blackPawn),
-                () -> assertThat(board.getPiecesSize()).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.PAWN)).isEqualTo(8),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.KING)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.KNIGHT)).isEqualTo(2),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.QUEEN)).isEqualTo(1),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.ROOK)).isEqualTo(2),
+                () -> assertThat(board.getPieceCount(Color.BLACK, PieceType.BISHOP)).isEqualTo(2),
 
-                () -> board.addOtherWhitePiece(blackBishop),
-                () -> assertThat(board.getPiecesSize()).isEqualTo(1)
+                () -> assertThat(board.getPieceCount(Color.NO_COLOR, PieceType.NO_PIECE)).isEqualTo(32)
+        );
+
+    }
+
+    @Test
+    @DisplayName("point가 체스판을 벗어난 경우")
+    void getPieceFromWrongPoint() {
+        board.initializeWithPieces();
+        assertThatThrownBy(
+                () -> board.getPieceFromPoint("f9")
+        ).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("올바른 point가 아닙니다.");
+
+    }
+
+    @Test
+    @DisplayName("주어진 위치의 기물을 조회")
+    void getPieceFromPoint() {
+        board.initializeWithPieces();
+        Piece findPiece = board.getPieceFromPoint("a8");
+        Piece makeBlackRook = Piece.createBlackRook();
+        Assertions.assertAll(
+                () -> assertThat(findPiece.getPieceType()).isEqualTo(makeBlackRook.getPieceType()),
+                () -> assertThat(findPiece.getColor()).isEqualTo(makeBlackRook.getColor())
         );
     }
+
+    @Test
+    void move() {
+        board.initializeEmpty();
+        Piece blackPawn = Piece.createBlackPawn();
+        board.move("a8", blackPawn);
+
+        assertThat(board.getPieceFromPoint("a8")).isEqualTo(blackPawn);
+    }
+
+    @Test
+    void calculateScore() {
+        board.initializeEmpty();
+        board.move("a8", Piece.createBlackPawn());
+        board.move("a7", Piece.createBlackPawn());
+        board.move("a6", Piece.createBlackPawn());
+        board.move("g8", Piece.createBlackKing());
+        board.move("g7", Piece.createBlackPawn());
+        board.move("g6", Piece.createBlackPawn());
+        board.move("g5", Piece.createWhitePawn());
+
+        assertThat(board.calculateScore(Color.BLACK)).isEqualTo(2.5);
+
+    }
+
+    @Test
+    void getWhitePiecesSortByScore() {
+        board.initializeWithPieces();
+        List<Piece> getWhitePieces = board.getWhitePiecesSortByScore();
+
+        Assertions.assertAll(
+                () -> assertThat(getWhitePieces.get(0)).isEqualTo(Piece.createWhiteQueen()),
+                () -> assertThat(getWhitePieces.get(1)).isEqualTo(Piece.createWhiteRook()),
+                () -> assertThat(getWhitePieces.get(2)).isEqualTo(Piece.createWhiteRook()),
+                () -> assertThat(getWhitePieces.get(3)).isEqualTo(Piece.createWhiteKnight()),
+                () -> assertThat(getWhitePieces.get(4)).isEqualTo(Piece.createWhiteBishop()),
+                () -> assertThat(getWhitePieces.get(5)).isEqualTo(Piece.createWhiteBishop()),
+                () -> assertThat(getWhitePieces.get(6)).isEqualTo(Piece.createWhiteKnight()),
+                () -> assertThat(getWhitePieces.get(7)).isEqualTo(Piece.createWhitePawn()),
+                () -> assertThat(getWhitePieces.get(8)).isEqualTo(Piece.createWhitePawn()),
+                () -> assertThat(getWhitePieces.get(15)).isEqualTo(Piece.createWhiteKing())
+        );
+
+    }
+
 
     @Test
     void checkBlackColor() {
@@ -91,30 +140,6 @@ public class BoardTest {
     @Test
     void checkWhiteColor() {
         assertThat(Piece.createWhiteBishop().isWhite()).isTrue();
-    }
-
-
-    void verifyPawnToPawns(String color, int findPawnIndex) {
-
-        if (color.equals(Piece.WHITE))
-            verifyWhitePawnsIndex(Piece.createWhitePawn(), findPawnIndex);
-        else
-            verifyBlackPawnsIndex(Piece.createBlackPawn(), findPawnIndex);
-
-    }
-
-    void verifyWhitePawnsIndex(Piece piece, int findPawnIndex) {
-        board.addWhitePawn(piece);
-        assertThat(piece).isEqualTo(board.findWhitePawn(findPawnIndex));
-    }
-
-    void verifyBlackPawnsIndex(Piece piece, int findPawnIndex) {
-        board.addBlackPawn(piece);
-        assertThat(piece).isEqualTo(board.findBlackPawn(findPawnIndex));
-    }
-
-    void verifyPawnsSize(int actualSize) {
-        assertThat(actualSize).isEqualTo(board.getPiecesSize());
     }
 
 

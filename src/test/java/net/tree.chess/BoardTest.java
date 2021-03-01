@@ -23,7 +23,7 @@ class BoardTest {
         String blankRank = appendNewLine("........");
 
         assertThat(board.countAllPieces()).isEqualTo(Board.TOTAL_PIECES_SIZE);
-        assertThat(board.showBoard())
+        assertThat(board.createInitializedBoard())
                 .isEqualTo(
                         appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
@@ -31,7 +31,7 @@ class BoardTest {
                         appendNewLine("pppppppp") +
                         appendNewLine("rnbqkbnr"));
 
-        System.out.println(board.showBoard());
+        System.out.println(board.createInitializedBoard());
     }
 
     private String appendNewLine(String text) {

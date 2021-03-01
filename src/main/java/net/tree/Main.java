@@ -17,7 +17,7 @@ public class Main {
                         Board board = new Board();
                         board.initializeAllPieces();
                         System.out.println("====게임을 시작합니다.====\n");
-                        System.out.println(board.showBoard());
+                        System.out.println(board.createInitializedBoard());
                         break;
                     case "exit" :
                         System.out.println("====게임을 종료합니다.====\n");

@@ -8,8 +8,8 @@ import java.util.List;
 import static net.utils.StringUtils.appendNewLine;
 
 public class Board {
-    private List<Piece> whitePieceList = new ArrayList<>();
-    private List<Piece> blackPieceList = new ArrayList<>();
+    private List<Piece> whitePieces = new ArrayList<>();
+    private List<Piece> blackPieces = new ArrayList<>();
 
     private static final int BOARD_SIZE = 8;
     private static final String LINE = "........";
@@ -21,74 +21,75 @@ public class Board {
     }
 
     public void initializeWhitePieces() {
-        whitePieceList.add(Piece.createWhiteRook());
-        whitePieceList.add(Piece.createWhiteKnight());
-        whitePieceList.add(Piece.createWhiteBishop());
-        whitePieceList.add(Piece.createWhiteQueen());
-        whitePieceList.add(Piece.createWhiteKing());
-        whitePieceList.add(Piece.createWhiteBishop());
-        whitePieceList.add(Piece.createWhiteKnight());
-        whitePieceList.add(Piece.createWhiteRook());
+        whitePieces.add(Piece.createWhiteRook());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteQueen());
+        whitePieces.add(Piece.createWhiteKing());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteRook());
 
         for(int i = 0 ; i < BOARD_SIZE ; i++) {
-            whitePieceList.add(Piece.createWhitePawn());
+            whitePieces.add(Piece.createWhitePawn());
         }
     }
 
     public void initializeBlackPieces() {
-        blackPieceList.add(Piece.createBlackRook());
-        blackPieceList.add(Piece.createBlackKnight());
-        blackPieceList.add(Piece.createBlackBishop());
-        blackPieceList.add(Piece.createBlackQueen());
-        blackPieceList.add(Piece.createBlackKing());
-        blackPieceList.add(Piece.createBlackBishop());
-        blackPieceList.add(Piece.createBlackKnight());
-        blackPieceList.add(Piece.createBlackRook());
+        blackPieces.add(Piece.createBlackRook());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackQueen());
+        blackPieces.add(Piece.createBlackKing());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackRook());
 
         for(int i = 0 ; i < BOARD_SIZE ; i++) {
-            blackPieceList.add(Piece.createBlackPawn());
+            blackPieces.add(Piece.createBlackPawn());
         }
     }
 
     public int countAllPieces() {
-        return whitePieceList.size() + blackPieceList.size();
+        return whitePieces.size() + blackPieces.size();
     }
 
-    public String showBoard() {
+    public String createInitializedBoard() {
         StringBuilder board = new StringBuilder();
-        board.append(appendNewLine(getFirstAndEighthRankPiecesByList(blackPieceList)));
-        board.append(appendNewLine(getPawnPiecesByList(blackPieceList)));
+        board.append(appendNewLine(getFirstAndEighthRankPiecesByList(blackPieces)));
+        board.append(appendNewLine(getPawnPiecesByList(blackPieces)));
         board.append(appendNewLine(LINE));
         board.append(appendNewLine(LINE));
         board.append(appendNewLine(LINE));
         board.append(appendNewLine(LINE));
-        board.append(appendNewLine(getPawnPiecesByList(whitePieceList)));
-        board.append(appendNewLine(getFirstAndEighthRankPiecesByList(whitePieceList)));
+        board.append(appendNewLine(getPawnPiecesByList(whitePieces)));
+        board.append(appendNewLine(getFirstAndEighthRankPiecesByList(whitePieces)));
 
         return board.toString();
     }
 
     //getExceptPawnPiecesByList 이런 식으로 작명했었는데, Exception과 혼동이 온다고 수정했습니다.
-    public String getFirstAndEighthRankPiecesByList(List<Piece> pieceList) {
+    public String getFirstAndEighthRankPiecesByList(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0 ; i < pieceList.size() ; i++) {
-            Character tempChar = Character.toLowerCase(pieceList.get(i).getRepresentation());
+        for(Piece piece : pieces) {
+            Character tempChar = Character.toLowerCase(piece.getRepresentation());
             if( tempChar != 'p') {
-                sb.append(pieceList.get(i).getRepresentation());
+                sb.append(piece.getRepresentation());
             }
         }
         return sb.toString();
     }
 
-    public String getPawnPiecesByList(List<Piece> pieceList) {
+    public String getPawnPiecesByList(List<Piece> pieces) {
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < pieceList.size() ; i++) {
-            Character tempChar = Character.toLowerCase(pieceList.get(i).getRepresentation());
+        for(Piece piece : pieces) {
+            Character tempChar = Character.toLowerCase(piece.getRepresentation());
             if( tempChar == 'p') {
-                sb.append(pieceList.get(i).getRepresentation());
+                sb.append(piece.getRepresentation());
             }
         }
         return sb.toString();
     }
+
 
 }

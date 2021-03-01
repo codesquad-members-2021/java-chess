@@ -1,30 +1,25 @@
 package net.isaac.pieces;
 
-public class Piece {
-    public static final char PAWN_REPRESENTATION = 'p';
-    public static final char KING_REPRESENTATION = 'k';
-    public static final char QUEEN_REPRESENTATION = 'q';
-    public static final char ROOK_REPRESENTATION = 'r';
-    public static final char BISHOP_REPRESENTATION = 'b';
-    public static final char KNIGHT_REPRESENTATION = 'n';
-
+public class Piece implements Comparable<Piece> {
     private final Color color;
-    private final char representation;
+    private final Type type;
 
-    private Piece(Color color, char representation) {
+    private Piece(Color color, Type type) {
         this.color = color;
-        this.representation = representation;
+        this.type = type;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     //Board 출력을 위한 문자 반환
     public char getRepresentation() {
         if (color == Color.BLACK) {
-            return Character.toUpperCase(representation);
+            return type.getBlackRepresentation();
         }
-        return representation;
+        return type.getWhiteRepresentation();
     }
-
-    ;
 
     public Color getColor() {
         return color;
@@ -38,32 +33,61 @@ public class Piece {
         return this.color == Color.BLACK;
     }
 
-    public static Piece createPawn(Color color) {
-        return new Piece(color, Piece.PAWN_REPRESENTATION);
+    public static Piece createPiece(Color color, Type type) {
+        return new Piece(color, type);
     }
 
-    public static Piece createKing(Color color) {
-        return new Piece(color, Piece.KING_REPRESENTATION);
+    @Override
+    public int compareTo(Piece other) {
+        return Double.valueOf(type.defaultPoint).compareTo(other.type.defaultPoint);
     }
 
-    public static Piece createQueen(Color color) {
-        return new Piece(color, Piece.QUEEN_REPRESENTATION);
+    @Override
+    public int hashCode() {
+        int c = 31;
+        int hashcode = color.hashCode();
+        hashcode = c * hashcode + type.hashCode();
+        return hashcode;
     }
 
-    public static Piece createRook(Color color) {
-        return new Piece(color, Piece.ROOK_REPRESENTATION);
-    }
-
-    public static Piece createBishop(Color color) {
-        return new Piece(color, Piece.BISHOP_REPRESENTATION);
-    }
-
-    public static Piece createKnight(Color color) {
-        return new Piece(color, Piece.KNIGHT_REPRESENTATION);
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof Piece)) {
+            return false;
+        }
+        Piece otherPiece = (Piece) other;
+        return this.color == otherPiece.color
+                && this.type == otherPiece.type;
     }
 
     public enum Color {
         BLACK,
-        WHITE
+        WHITE,
+        NOCOLOR,
+    }
+
+    public enum Type {
+        PAWN('p', 1.0),
+        KING('k', 0.0),
+        QUEEN('q', 9.0),
+        ROOK('r', 5.0),
+        BISHOP('b', 3.0),
+        KNIGHT('n', 2.5),
+        BLANK('.', 0.0);
+        private final char representation;
+        public final double defaultPoint;
+
+        Type(char representation, double defaultPoint) {
+            this.representation = representation;
+            this.defaultPoint = defaultPoint;
+        }
+
+        public char getWhiteRepresentation() {
+            return representation;
+        }
+
+        public char getBlackRepresentation() {
+            return Character.toUpperCase(representation);
+        }
     }
 }

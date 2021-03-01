@@ -1,27 +1,31 @@
 package pieces;
 
 public enum Type {
-    PAWN  ('p'),
-    KNIGHT('n'),
-    ROOK  ('r'),
-    BISHOP('b'),
-    QUEEN ('q'),
-    KING  ('k');
+    NO_PIECE('.', 0.0),
+    KING    ('k', 0.0),
+    PAWN    ('p', 1.0),
+    KNIGHT  ('n', 2.5),
+    BISHOP  ('b', 3.0),
+    ROOK    ('r', 5.0),
+    QUEEN   ('q', 9.0);
 
     private final char representation;
+    private final double point;
 
-    Type(char representation) {
+    Type(char representation, double point) {
         this.representation = representation;
+        this.point = point;
     }
 
-    public char getRepresentation(Color color) {
-        char representation = '.';
-        if (color == Color.BLACK) {
-            representation = Character.toUpperCase(this.representation);
-        }
-        if (color == Color.WHITE) {
-            representation = Character.toLowerCase(this.representation);
-        }
+    public char getWhiteRepresentation() {
         return representation;
+    }
+
+    public char getBlackRepresentation() {
+        return Character.toUpperCase(representation);
+    }
+
+    public double getPoint() {
+        return point;
     }
 }

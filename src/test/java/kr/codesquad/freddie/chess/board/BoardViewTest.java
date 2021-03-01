@@ -57,7 +57,7 @@ class BoardViewTest extends ChessTestBase {
 
     @Test
     void getRepresentationWithInitBoard() {
-        initBoard();
+        initBoard(board);
         String representation = boardView.getRepresentation();
 
         String expected = new StringBuilder()
@@ -76,7 +76,7 @@ class BoardViewTest extends ChessTestBase {
 
     @Test
     void getRepresentationNotInitBoard() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         String representation = boardView.getRepresentation();
 
         String expected = new StringBuilder()
@@ -91,17 +91,5 @@ class BoardViewTest extends ChessTestBase {
                 .toString();
         assertThat(representation)
                 .isEqualTo(expected);
-    }
-
-    private void initBoard() {
-        board.initializePieceBy(Color.BLACK);
-        board.initializeEmptyPiece();
-        board.initializePieceBy(Color.WHITE);
-    }
-
-    private void initBoardWithBlank() {
-        for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(PieceFactory.createBlank());
-        }
     }
 }

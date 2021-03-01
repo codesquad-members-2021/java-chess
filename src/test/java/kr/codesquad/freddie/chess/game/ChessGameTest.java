@@ -58,7 +58,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void movePawn() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMove("a2", "a3", whitePieceFactory.createPawn());
         checkMove("a2", "a4", whitePieceFactory.createPawn());
         checkMove("a7", "a6", blackPieceFactory.createPawn());
@@ -67,7 +67,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void movePawnToOtherColor() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         board.set("b3", blackPieceFactory.createPawn());
         board.set("c3", blackPieceFactory.createPawn());
         board.set("b6", whitePieceFactory.createPawn());
@@ -80,7 +80,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void movePawnToWrongTarget() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMoveToWrongTarget("a2", "a1", whitePieceFactory.createPawn());
         checkMoveToWrongTarget("a7", "a8", blackPieceFactory.createPawn());
         checkMoveToWrongTarget("a2", "a5", whitePieceFactory.createPawn());
@@ -101,7 +101,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveKnight() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMove("d4", "c6", blackPieceFactory.createKnight());
         checkMove("d4", "b5", blackPieceFactory.createKnight());
         checkMove("d4", "b3", blackPieceFactory.createKnight());
@@ -114,7 +114,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveKnightToWrongTarget() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMoveToWrongTarget("d4", "a4", blackPieceFactory.createKnight());
         checkMoveToWrongTarget("d4", "b4", blackPieceFactory.createKnight());
         checkMoveToWrongTarget("d4", "c4", blackPieceFactory.createKnight());
@@ -144,7 +144,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveRook() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMove("d4", "d5", blackPieceFactory.createRook());
         checkMove("d4", "d6", blackPieceFactory.createRook());
         checkMove("d4", "d3", blackPieceFactory.createRook());
@@ -157,7 +157,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveRookToWrongTarget() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMoveToWrongTarget("d4", "e5", blackPieceFactory.createRook());
         checkMoveToWrongTarget("d4", "f6", blackPieceFactory.createRook());
         checkMoveToWrongTarget("d4", "e3", blackPieceFactory.createRook());
@@ -178,7 +178,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveBishop() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMove("d4", "e5", blackPieceFactory.createBishop());
         checkMove("d4", "f6", blackPieceFactory.createBishop());
         checkMove("d4", "e3", blackPieceFactory.createBishop());
@@ -191,7 +191,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveBishopToWrongTarget() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMoveToWrongTarget("d4", "d5", blackPieceFactory.createBishop());
         checkMoveToWrongTarget("d4", "d6", blackPieceFactory.createBishop());
         checkMoveToWrongTarget("d4", "d3", blackPieceFactory.createBishop());
@@ -212,7 +212,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveQueen() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMove("d4", "d5", blackPieceFactory.createQueen());
         checkMove("d4", "d6", blackPieceFactory.createQueen());
         checkMove("d4", "d3", blackPieceFactory.createQueen());
@@ -234,7 +234,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveQueenToWrongTarget() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMoveToWrongTarget("d4", "c6", blackPieceFactory.createQueen());
         checkMoveToWrongTarget("d4", "b5", blackPieceFactory.createQueen());
         checkMoveToWrongTarget("d4", "b3", blackPieceFactory.createQueen());
@@ -247,7 +247,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveKing() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMove("b3", "b4", blackPieceFactory.createKing());
         checkMove("b3", "b2", blackPieceFactory.createKing());
         checkMove("b3", "c3", blackPieceFactory.createKing());
@@ -260,7 +260,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveKingToWrongTarget() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         checkMoveToWrongTarget("b3", "b5", blackPieceFactory.createKing());
         checkMoveToWrongTarget("b3", "b1", blackPieceFactory.createKing());
         checkMoveToWrongTarget("b3", "d3", blackPieceFactory.createKing());
@@ -269,7 +269,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveEmptyPiece() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         assertThatThrownBy(() -> chessGame.move("a1", "a2"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이동 위치가 올바르지 않습니다. : source : a1, target : a2");
@@ -291,7 +291,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveToDifferentColor() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         board.set("b3", blackPieceFactory.createKing());
         board.set("b4", whitePieceFactory.createPawn());
 
@@ -303,7 +303,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveToSameColor() {
-        initBoardWithBlank();
+        initBoardWithBlank(board);
         board.set("b3", blackPieceFactory.createKing());
         board.set("b4", blackPieceFactory.createPawn());
 
@@ -313,11 +313,5 @@ class ChessGameTest extends ChessTestBase {
         assertThatThrownBy(() -> chessGame.move("b3", "b3"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이동 위치의 기물이 같은 색상입니다. source : Piece{color=BLACK, kind=KING}, target : Piece{color=BLACK, kind=KING}");
-    }
-
-    private void initBoardWithBlank() {
-        for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(PieceFactory.createBlank());
-        }
     }
 }

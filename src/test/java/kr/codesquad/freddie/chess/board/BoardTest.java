@@ -1,7 +1,7 @@
 package kr.codesquad.freddie.chess.board;
 
-import kr.codesquad.freddie.chess.ChessTestBase;
 import kr.codesquad.freddie.chess.piece.*;
+import kr.codesquad.freddie.chess.ChessTestBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -144,7 +144,7 @@ class BoardTest extends ChessTestBase {
 
     @Test
     void getPiecesBy() {
-        initBoard();
+        initBoard(board);
         assertThat(board.getPiecesBy(Color.BLACK)).isEqualTo(Arrays.asList(
                 blackPieceFactory.createQueen(),
                 blackPieceFactory.createRook(),
@@ -203,7 +203,7 @@ class BoardTest extends ChessTestBase {
         board.set("g2", whitePieceFactory.createPawn());
         board.set("e1", whitePieceFactory.createRook());
         board.set("f1", whitePieceFactory.createKing());
-        
+
         assertAll(
                 () -> assertThat(board.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1),
                 () -> assertThat(board.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(3),
@@ -219,7 +219,7 @@ class BoardTest extends ChessTestBase {
 
     @Test
     void groupingByCalculablePiece() {
-        initBoard();
+        initBoard(board);
 
         Map<CalculablePiece, Double> calculablePieceDoubleMap = board.groupingByCalculablePiece(Color.BLACK);
 
@@ -240,11 +240,5 @@ class BoardTest extends ChessTestBase {
         assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createBishop(), 'f'))).isEqualTo(Kind.BISHOP.point());
         assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createKnight(), 'g'))).isEqualTo(Kind.KNIGHT.point());
         assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createRook(), 'h'))).isEqualTo(Kind.ROOK.point());
-    }
-
-    private void initBoard() {
-        board.initializePieceBy(Color.BLACK);
-        board.initializeEmptyPiece();
-        board.initializePieceBy(Color.WHITE);
     }
 }

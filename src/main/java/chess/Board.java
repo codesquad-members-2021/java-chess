@@ -1,26 +1,22 @@
 package chess;
 
-import piece.Piece;
+import piece.*;
 import piece.attribute.*;
 
 import java.util.*;
 
 import static piece.PieceFactory.createPiece;
-import static util.StringUtil.NEWLINE;
 
 public class Board {
+    public static final int BOARD_SIZE = 8;
     private final Map<Position, Piece> squares = new LinkedHashMap<>();
-    private final int BOARD_SIZE = 8;
 
-    Board() {
+    public Board() {
         initialize();
     }
 
-    public void addPiece(Position position, Piece piece) {
-        squares.put(position, piece);
-    }
-
-    private void initialize() {
+    public void initialize() {
+        squares.clear();
         initPiecesExceptPawns(Color.BLACK, 8);
         initPawns(Color.BLACK, 7);
         initBlankSquares(6);
@@ -31,15 +27,15 @@ public class Board {
         initPiecesExceptPawns(Color.WHITE, 1);
     }
 
-    void initializeEmpty() {
+    public void initializeEmpty() {
         for (Position position : squares.keySet()) {
-            set(position, createPiece(Color.NO_COLOR, Type.BLANK));
+            set(position, createPiece(Color.NO_COLOR, Type.BLANK, position));
         }
     }
 
     private void initRank(Color color, int rank, Type type) {
         for (int i = 0; i < BOARD_SIZE; i++) {
-            addPiece(new Position((char) (i + 'a'), rank), createPiece(color, type));
+            addPiece(createPiece(color, type, new Position((char) (i + 'a'), rank)));
         }
     }
 
@@ -52,67 +48,53 @@ public class Board {
     }
 
     private void initPiecesExceptPawns(Color color, int rank) {
-        addPiece(new Position('a', rank), createPiece(color, Type.ROOK));
-        addPiece(new Position('b', rank), createPiece(color, Type.KNIGHT));
-        addPiece(new Position('c', rank), createPiece(color, Type.BISHOP));
-        addPiece(new Position('d', rank), createPiece(color, Type.QUEEN));
-        addPiece(new Position('e', rank), createPiece(color, Type.KING));
-        addPiece(new Position('f', rank), createPiece(color, Type.BISHOP));
-        addPiece(new Position('g', rank), createPiece(color, Type.KNIGHT));
-        addPiece(new Position('h', rank), createPiece(color, Type.ROOK));
+        addPiece(createPiece(color, Type.ROOK, new Position('a', rank)));
+        addPiece(createPiece(color, Type.KNIGHT, new Position('b', rank)));
+        addPiece(createPiece(color, Type.BISHOP, new Position('c', rank)));
+        addPiece(createPiece(color, Type.QUEEN, new Position('d', rank)));
+        addPiece(createPiece(color, Type.KING, new Position('e', rank)));
+        addPiece(createPiece(color, Type.BISHOP, new Position('f', rank)));
+        addPiece(createPiece(color, Type.KNIGHT, new Position('g', rank)));
+        addPiece(createPiece(color, Type.ROOK, new Position('h', rank)));
     }
 
-    public String getResultToPrint() {
-        StringBuilder result = new StringBuilder();
-        int count = BOARD_SIZE * BOARD_SIZE;
-        for (Piece piece : squares.values()) {
-            result.append(piece.getRepresentation()).append(" ");
-            count--;
-            if (count % BOARD_SIZE == 0) {
-                result.append("  ").append(count / BOARD_SIZE + 1).append(NEWLINE);
-            }
-        }
-        result.append(NEWLINE).append("a b c d e f g h ");
-        return result.toString();
+    public Map<Position, Piece> getSquares() {
+        return squares;
     }
 
-    public int getNumberOfPieces(Color color, Type type) {
-        return (int) squares.values()
-                .stream()
-                .filter(piece -> piece.getColor() == color && piece.getType() == type)
-                .count();
+    public void addPiece(Piece piece) {
+        squares.put(piece.getPosition(), piece);
     }
 
     public Piece findPiece(Position position) {
         return squares.get(position);
     }
 
+    public int getNumberOf(Color color, Type type) {
+        return (int) squares.values()
+                .stream()
+                .filter(piece -> piece.getColor() == color && piece.getType() == type)
+                .count();
+    }
+
     public void move(Position before, Position after) {
-        set(after, findPiece(before));
-        set(before, createPiece(Color.NO_COLOR, Type.BLANK));
+        Piece piece = findPiece(before);
+        if (piece.isMovable(after) && !piece.isSameColor(findPiece(after))) {
+            set(after, piece);
+            set(before, createPiece(Color.NO_COLOR, Type.BLANK, before));
+        }
     }
 
     private void set(Position position, Piece piece) {
         squares.replace(position, piece);
+        piece.setPosition(position);
     }
 
     public double calculatePoint(Color color) {
         double point = 0;
         for (int i = 0; i < BOARD_SIZE; i++) {
             List<Piece> pieces = getPiecesInFile((char) (i + 'a'));
-            point = getSum(pieces, color, point);
-        }
-        return point;
-    }
-
-    private double getSum(List<Piece> pieces, Color color, double point) {
-        for (Piece piece : pieces) {
-            if (!(piece.getColor() == color)) continue;
-            if (piece.getType() == Type.PAWN) {
-                point += getPawnPoint(pieces);
-                continue;
-            }
-            point += piece.getPoint();
+            point += getSum(pieces, color);
         }
         return point;
     }
@@ -122,18 +104,25 @@ public class Board {
         for (int rank = 1; rank <= BOARD_SIZE; rank++) {
             pieces.add(findPiece(new Position(file, rank)));
         }
-        return pieces;
+        return Collections.unmodifiableList(pieces);
     }
 
-    private double getPawnPoint(List<Piece> pieces) {
+    private double getSum(List<Piece> pieces, Color color) {
+        return pieces.stream().filter(piece -> piece.isSameColorAs(color))
+                .filter(piece -> !piece.isPawn())
+                .reduce(0.0, (result, piece) -> result + piece.getPoint(), Double::sum)
+                + getPawnPoint(pieces, color);
+    }
+
+    private double getPawnPoint(List<Piece> pieces, Color color) {
         double pawnPoint = Type.PAWN.getDefaultPoint();
-        int pawnCount = 0;
-        for (Piece piece : pieces) {
-            if (piece.getType() == Type.PAWN) {
-                pawnCount++;
-            }
+        long pawnCount = pieces.stream()
+                .filter(piece -> piece.getColor() == color && piece.getType() == Type.PAWN)
+                .count();
+        if (pawnCount > 1) {
+            return (pawnPoint / 2) * pawnCount;
         }
-        return pawnCount > 1 ? pawnPoint / 2 : pawnPoint;
+        return pawnPoint * pawnCount;
     }
 
     public List<Piece> getPiecesSortedByPoint(Color color) {
@@ -144,7 +133,6 @@ public class Board {
             }
         }
         Collections.sort(pieces);
-        return pieces;
+        return Collections.unmodifiableList(pieces);
     }
 }
-

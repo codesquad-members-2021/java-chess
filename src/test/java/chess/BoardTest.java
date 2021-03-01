@@ -2,13 +2,14 @@ package chess;
 
 import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
-import pieces.Pawn;
+import pieces.Piece;
+
+import static utils.StringUtils.appendNewLine;
 
 class BoardTest {
-    Board board;
+    private Board board;
 
     @BeforeEach
     void setBoard() {
@@ -17,49 +18,42 @@ class BoardTest {
 
     @Test
     @DisplayName("체스판에 흰색 폰을 추가 후 갯수와 목록을 확인한다.")
-    void putWhitePawn() {
-        Pawn white = new Pawn();
-        board.addWhitePawn(white);
+    void addWhitePawn() {
+        Piece whitePawn = Piece.createWhitePawn();
+        board.addWhitePawn(whitePawn);
         assertThat(board.getWhitePawnsSize()).isEqualTo(1);
-        assertThat(board.findWhitePawn(0)).isEqualTo(white);
+        assertThat(board.findWhitePawn(0)).isEqualTo(whitePawn);
     }
 
     @Test
     @DisplayName("체스판에 검은색 폰을 추가 후 갯수와 목록을 확인한다.")
-    void putBlackPawn() {
-        Pawn black = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
-        board.addBlackPawn(black);
+    void addBlackPawn() {
+        Piece blackPawn = Piece.createBlackPawn();
+        board.addBlackPawn(blackPawn);
         assertThat(board.getBlackPawnsSize()).isEqualTo(1);
-        assertThat(board.findBlackPawn(0)).isEqualTo(black);
+        assertThat(board.findBlackPawn(0)).isEqualTo(blackPawn);
     }
 
     @Test
-    @DisplayName("폰 이외의 객체를 추가하면 컴파일 에러가 발생한다")
-    void putOther() {
-        int num7 = new Integer(7);
-        //board.add(num7);
-    }
-
-    @Test
-    @DisplayName("체스판에 흰색, 검은색 폰을 추가 후 결과를 확인한다.")
-    void initialize() {
+    @DisplayName("체스판 전체 상태 테스트")
+    void print() {
         board.initialize();
-        assertThat(board.getWhitePawnsResult()).isEqualTo("pppppppp");
-        assertThat(board.getBlackPawnsResult()).isEqualTo("PPPPPPPP");
-    }
-
-    @Test
-    @DisplayName("체스판 출력")
-    void print () {
-        board.initialize();
-        board.print();
+        assertThat(32).isEqualTo(board.pieceCount());
+        String blankRank = appendNewLine("........");
+        assertThat(board.makeBoard()).isEqualTo(
+            appendNewLine("RNBQKBNR") +
+            appendNewLine("PPPPPPPP") +
+            blankRank + blankRank + blankRank + blankRank +
+            appendNewLine("pppppppp") +
+            appendNewLine("rnbqkbnr")
+        );
     }
 
     @Test
     @DisplayName("addWhitePawn()에 검은색 Pawn 추가")
-    void addBlackToWhiteAdder() {
-        Pawn blackPawn = new Pawn(Pawn.BLACK, Pawn.BLACK_REPRESENTATION);
-        boolean result = board.addWhitePawn(blackPawn);
-        assertThat(result).isEqualTo(false);
+    void addBlackToAddWhitePawn() {
+        Piece blackPawn = Piece.createBlackPawn();
+        board.addWhitePawn(blackPawn);
+        assertThat(board.getWhitePawnsSize()).isEqualTo(0);
     }
 }

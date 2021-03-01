@@ -3,6 +3,9 @@ package chess;
 import java.util.Scanner;
 
 public class ChessStarter {
+    private static final String start = "start";
+    private static final String end = "end";
+
     public static void main(String[] args) {
         ChessStarter chessStarter = new ChessStarter();
         chessStarter.intro();
@@ -16,19 +19,17 @@ public class ChessStarter {
     }
 
     void ready() {
-        final String START = "start";
-        final String END = "end";
         try (Scanner sc = new Scanner(System.in)) {
             while (true) {
                 System.out.print("> ");
                 String input = sc.nextLine();
-                if (input.equals(START)) {
+                if (input.equals(start)) {
                     System.out.println("게임을 시작합니다.");
                     start();
                     break;
                 }
-                if (input.equals(END)) {
-                    System.exit(0);
+                if (input.equals(end)) {
+                    System.out.println("게임을 종료합니다.");
                     break;
                 }
                 System.out.println("지정되지 않은 명령어입니다. 다시 입력해 주세요.");
@@ -39,7 +40,8 @@ public class ChessStarter {
     void start() {
         Board board = new Board();
         board.initialize();
-        board.print();
+        System.out.println(board.makeBoard());
+        ready();
     }
 
 }

@@ -104,7 +104,7 @@ public class Board {
         for (int rank = 1; rank <= BOARD_SIZE; rank++) {
             pieces.add(findPiece(new Position(file, rank)));
         }
-        return pieces;
+        return Collections.unmodifiableList(pieces);
     }
 
     private double getSum(List<Piece> pieces, Color color) {
@@ -130,7 +130,7 @@ public class Board {
             }
         }
         Collections.sort(pieces);
-        return pieces;
+        return Collections.unmodifiableList(pieces);
     }
 }
 

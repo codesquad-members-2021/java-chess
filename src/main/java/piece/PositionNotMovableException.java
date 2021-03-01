@@ -2,11 +2,11 @@ package piece;
 
 public class PositionNotMovableException extends RuntimeException {
 
-    private final int ERR_CODE;
+    private final int errorCode;
 
     PositionNotMovableException(String message, int errorCode) {
         super(message);
-        ERR_CODE = errorCode;
+        this.errorCode = errorCode;
     }
 
     PositionNotMovableException(String message) {
@@ -14,7 +14,7 @@ public class PositionNotMovableException extends RuntimeException {
     }
 
     public int getErrCode() {
-        return ERR_CODE;
+        return errorCode;
     }
 }
 

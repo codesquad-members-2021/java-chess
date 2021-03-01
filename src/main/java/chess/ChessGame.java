@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 
 public class ChessGame {
-    private final String START = "start";
-    private final String END = "end";
-    private final String MOVE = "move";
-    private final String PROMPT = "> ";
+    private final String start = "start";
+    private final String end = "end";
+    private final String move = "move";
+    private final String prompt = "> ";
     private final Board board = new Board();
 
     public void initialize() {
@@ -35,14 +35,14 @@ public class ChessGame {
         try (Scanner sc = new Scanner(System.in)) {
             String command = "";
             while (true) {
-                System.out.print(PROMPT);
+                System.out.print(prompt);
                 command = sc.nextLine().toLowerCase(Locale.ROOT);
-                if (command.equals(START)) {
+                if (command.equals(start)) {
                     initialize();
                     System.out.println(chessView.view(board));
                     continue;
                 }
-                if (command.startsWith(MOVE)) {
+                if (command.startsWith(move)) {
                     String[] commands = command.split(" ");
                     try {
                         move(commands[1], commands[2]);
@@ -52,7 +52,7 @@ public class ChessGame {
                     System.out.println(chessView.view(board));
                     continue;
                 }
-                if (command.equals(END)) {
+                if (command.equals(end)) {
                     System.out.println("WHITE TEAM : " + getPoint(Color.WHITE));
                     System.out.println("BLACK TEAM : " + getPoint(Color.BLACK));
                     System.out.println("Game Over");

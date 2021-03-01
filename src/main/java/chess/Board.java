@@ -120,9 +120,8 @@ public class Board {
                 .filter(piece -> piece.getColor() == color && piece.getType() == Type.PAWN)
                 .count();
         if (pawnCount > 1) {
-            return (pawnPoint / 2) * pawnCount;;
+            return (pawnPoint / 2) * pawnCount;
         }
-
         return pawnPoint * pawnCount;
     }
 

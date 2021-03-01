@@ -1,132 +1,139 @@
 package net.jung.chess;
 
-import net.jung.chess.pieces.Color;
-import net.jung.chess.pieces.Piece;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static net.jung.chess.utils.StringUtils.appendNewLine;
 
 public class Board {
-    private List<Piece> blackPieceList = new ArrayList();
-    private List<Piece> whitePieceList = new ArrayList();
-    public static final String BLANK_RANK = appendNewLine("********");
+    public static final int RANKS_ON_BOARD = 8;
+    private List<Rank> ranks = new ArrayList<Rank>();
 
-    public void addWhitePiece(Piece piece) {
-        if (piece.isWhite()) {
-            whitePieceList.add(piece);
+    public int boardPieceSize() {
+        return ranks.stream()
+                .mapToInt(Rank::rankPieceSize)
+                .sum();
+    }
+
+    public int certainPieceSize(Piece.Color color, Piece.Type type) {   // 메서드 분리해서 반복문 여러개 제거
+        int size = 0;
+        for (Rank rank : ranks) {
+            for (int i = 0; i < Rank.MAX_PIECES_IN_RANK; i++) {
+                size += rank.getPiece(i).isColorType(color, type) ? 1 : 0;
+            }
         }
-    }
-
-    public void addBlackPiece(Piece piece) {
-        if (piece.isBlack()) {
-            blackPieceList.add(piece);
-        }
-    }
-
-
-    public int size() {
-        return whitePieceListSize() + blackPieceListSize();
-    }
-
-    public int whitePieceListSize() {
-        return whitePieceList.size();
-    }
-
-    public int blackPieceListSize() {
-        return blackPieceList.size();
-    }
-
-    public Piece findWhitePiece(int index) {
-        return whitePieceList.get(index);
-    }
-
-    public Piece findBlackPiece(int index) {
-        return blackPieceList.get(index);
+        return size;
     }
 
     public void initialize() {
-        initializeBlackPieces();
-        initializePawns(Color.BLACK);
+        ranks.add(Rank.initializeBlackPieceRank());
+        ranks.add(Rank.initializeBlackPawnRank());
 
-        initializePawns(Color.WHITE);
-        initializeWhitePieces();
+        ranks.add(Rank.initializeBlankRank());
+        ranks.add(Rank.initializeBlankRank());
+        ranks.add(Rank.initializeBlankRank());
+        ranks.add(Rank.initializeBlankRank());
+
+        ranks.add(Rank.initializeWhitePawnRank());
+        ranks.add(Rank.initializeWhitePieceRank());
     }
 
-    public void initializePawns(Color color) {
-        int maxPawnsSize = 8;
-        if(color == Color.WHITE) {
-            for (int i = 0; i < maxPawnsSize; i++) {
-            addWhitePiece(Piece.createWhitePawn());
-            }
-        return;
+    public void initializeEmptyBoard() {
+        for (int i = 0; i < RANKS_ON_BOARD; i++) {
+            ranks.add(Rank.initializeBlankRank());
         }
-
-        for(int j = 0; j < maxPawnsSize; j++) {
-            addBlackPiece(Piece.createBlackPawn());
-        }
-    }
-
-    public void initializeBlackPieces(){
-        addBlackPiece(Piece.createBlackRook());
-        addBlackPiece(Piece.createBlackKnight());
-        addBlackPiece(Piece.createBlackBishop());
-        addBlackPiece(Piece.createBlackQueen());
-        addBlackPiece(Piece.createBlackKing());
-        addBlackPiece(Piece.createBlackBishop());
-        addBlackPiece(Piece.createBlackKnight());
-        addBlackPiece(Piece.createBlackRook());
-    }
-
-    public void initializeWhitePieces(){
-        addWhitePiece(Piece.createWhiteRook());
-        addWhitePiece(Piece.createWhiteKnight());
-        addWhitePiece(Piece.createWhiteBishop());
-        addWhitePiece(Piece.createWhiteQueen());
-        addWhitePiece(Piece.createWhiteKing());
-        addWhitePiece(Piece.createWhiteBishop());
-        addWhitePiece(Piece.createWhiteKnight());
-        addWhitePiece(Piece.createWhiteRook());
-    }
-
-
-    public String getWhitePiecesRepresentation() {
-        return getPiecesRepresentation(whitePieceList);
-    }
-
-    public String getBlackPiecesRepresentation() {
-        return getPiecesRepresentation(blackPieceList);
-    }
-
-    public String getPiecesRepresentation(List<Piece> pieceList) {
-        StringBuilder piecesRepresentation = new StringBuilder();
-        for (int i = 0; i < pieceList.size(); i++) {
-            piecesRepresentation.append(pieceList.get(i).getRepresentation());
-            if(i==7) {
-                piecesRepresentation.append(System.getProperty("line.separator"));
-            }
-        }
-        return piecesRepresentation.toString();
     }
 
     public String boardLayoutToString() {
-
         StringBuilder boardLayout = new StringBuilder();
-        boardLayout
-                .append(appendNewLine(getBlackPiecesRepresentation()))
-                .append(BLANK_RANK)
-                .append(BLANK_RANK)
-                .append(BLANK_RANK)
-                .append(BLANK_RANK)
-                .append(appendNewLine(getWhitePiecesRepresentation()));
+        for (Rank rank : ranks) {
+            boardLayout.append(appendNewLine(rank.rankLayoutToString()));
+        }
         return boardLayout.toString();
     }
 
     public void reset() {
-        whitePieceList.clear();
-        blackPieceList.clear();
+        ranks.clear();
     }
 
+    public Rank getRank(int rankNum) {
+        return ranks.get(RANKS_ON_BOARD - rankNum);
+    }
+
+    public Piece findPiece(Position position) {
+        return getRank(position.getRankIndex()).getPiece(position.getFileIndex());
+    }
+
+    public void addNewPiece(Position position, Piece newPiece) {
+        getRank(position.getRankIndex()).replacePiece(position.getFileIndex(), newPiece);
+    }
+
+    public void movePiece(Position startPosition, Position endPosition) {
+        Piece foundPiece = findPiece(startPosition);
+
+        if (foundPiece.isPiece()) {
+            getRank(startPosition.getRankIndex()).replacePiece(startPosition.getFileIndex(), Piece.createBlank());
+            getRank(endPosition.getRankIndex()).replacePiece(endPosition.getFileIndex(), foundPiece);
+        }
+    }
+
+    public double calculatePoints(Piece.Color color) {
+        double points = 0;
+
+        List<Piece> colorPieceList = getPieceListByColor(color);
+        points = colorPieceList.stream()
+                .mapToDouble(Piece::getDefaultPoint)
+                .sum();
+
+        points -= pawnSizeInFile(color) * 0.5;
+        return points;
+    }
+
+    public List<Piece> getPieceListByColor(Piece.Color color) {
+        List<Piece> colorPieceList = new ArrayList<>();
+
+        for (Rank rank : ranks) {
+            for (int i = 0; i < Rank.MAX_PIECES_IN_RANK; i++) {
+                Piece piece = rank.getPiece(i);
+                if (piece.getColor() == color) {
+                    colorPieceList.add(piece);
+                }
+            }
+        }
+        return colorPieceList;
+    }
+
+    public int pawnSizeInFile(Piece.Color color) {
+        int[] pawnsInFile = new int[8];
+        int excessPawnsInFile = 0;
+
+        for (Rank rank : ranks) {
+            for (int i = 0; i < Rank.MAX_PIECES_IN_RANK; i++) {
+                Piece piece = rank.getPiece(i);
+                pawnsInFile[i] += piece.isColorType(color, Piece.Type.PAWN) ? 1 : 0;
+            }
+        }
+
+        for (int pawnSize : pawnsInFile) {
+            if(pawnSize>1) {
+                excessPawnsInFile += pawnSize ;
+            }
+        }
+
+        return excessPawnsInFile;
+    }
+
+    public List<Piece> sortColorPiecesAscending(Piece.Color color) {
+        List<Piece> colorPieceList = getPieceListByColor(color);
+        Collections.sort(colorPieceList);
+        return colorPieceList;
+    }
+
+    public List<Piece> sortColorPiecesDescending(Piece.Color color) {
+        List<Piece> colorPieceList = getPieceListByColor(color);
+        colorPieceList.sort(Collections.reverseOrder());
+        return colorPieceList;
+    }
 
 }

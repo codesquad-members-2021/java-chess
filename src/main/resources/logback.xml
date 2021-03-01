@@ -10,7 +10,7 @@
     </appender>
 
     <!-- 자바 패키지별 log level을 설정한다. -->
-    <logger type="net.honux.chess" level="debug" />
+    <logger name="net.honux.chess" level="debug" />
 
     <root level="info">
         <appender-ref ref="STDOUT" />

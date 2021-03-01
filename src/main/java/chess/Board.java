@@ -1,92 +1,88 @@
 package chess;
 
-import pieces.Pawn;
+import pieces.Piece;
+import utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
 
-    private List<Pawn> whitePawnList  = new ArrayList<>();
-    private List<Pawn> blackPawnList  = new ArrayList<>();
+    private List<Piece> whitePawns = new ArrayList<>();
+    private List<Piece> blackPawns = new ArrayList<>();
+    private List<Piece> whitePieces = new ArrayList<>();
+    private List<Piece> blackPieces = new ArrayList<>();
 
-    public static final int PAWN_NUMBER = 8;
+    private static final int PAWN_NUMBER = 8;
 
-    void whitePawnAdd(Pawn whitePawn) {
-        whitePawnList.add(whitePawn);
+    public void addWhitePawn(Piece whitePawn) {
+        whitePawns.add(whitePawn);
     }
 
-    void blackPawnAdd(Pawn blackPawn) {
-        blackPawnList.add(blackPawn);
+    public void addBlackPawn(Piece blackPawn) {
+        blackPawns.add(blackPawn);
     }
 
-    int whitePawnSize() {
-        return whitePawnList.size();
-    }
-
-    int blackPawnSize() {
-        return blackPawnList.size();
-    }
-
-    Pawn findWhitePawn(int index) {
-        return whitePawnList.get(index);
-    }
-
-    Pawn findBlackPawn(int index) {
-        return blackPawnList.get(index);
-    }
-
-    void initialize() {
-        for(int i = 0; i < PAWN_NUMBER ; i++){
-            Pawn whitePawn = new Pawn(Pawn.WHITE);
-            whitePawnAdd(whitePawn);
-
-            Pawn blackPawn = new Pawn(Pawn.BLACK);
-            blackPawnAdd(blackPawn);
+    public void initialize() {
+        for (int i = 0; i < PAWN_NUMBER; i++) {
+            addWhitePawn(Piece.createWhitePawn());
+            addBlackPawn(Piece.createBlackPawn());
         }
+        addWhitePieces();
+        addBlackPieces();
     }
 
-    String getWhitePawnsRepresentation() {
+    public String bringBoard() {
+        String dots = "........";
         StringBuilder sb = new StringBuilder();
 
-        for(int i= 0; i < whitePawnSize(); i++){
-            sb.append(Pawn.WHITE_REPRESENTATION);
-        }
-        return sb.toString();
-    }
-
-    String getBlackPawnsRepresentation() {
-        StringBuilder sb = new StringBuilder();
-
-        for(int i= 0; i < blackPawnSize(); i++){
-            sb.append(Pawn.BLACK_REPRESENTATION);
-        }
-        return sb.toString();
-    }
-
-    String getDotOnBoard(){
-        return "........";
-    }
-
-    String getBoard(){
-        StringBuilder sb = new StringBuilder();
-
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(getWhitePawnsRepresentation()+"\n");
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(getDotOnBoard()+"\n");
-        sb.append(getBlackPawnsRepresentation()+"\n");
-        sb.append(getDotOnBoard());
+        sb.append(StringUtils.appendNewLine(bringUnitRepresentation(blackPieces)));
+        sb.append(StringUtils.appendNewLine(bringUnitRepresentation(blackPawns)));
+        sb.append(StringUtils.appendNewLine(dots));
+        sb.append(StringUtils.appendNewLine(dots));
+        sb.append(StringUtils.appendNewLine(dots));
+        sb.append(StringUtils.appendNewLine(dots));
+        sb.append(StringUtils.appendNewLine(bringUnitRepresentation(whitePawns)));
+        sb.append(StringUtils.appendNewLine(bringUnitRepresentation(whitePieces)));
 
         return sb.toString();
     }
 
-    public void printBoard(){
+    public int sizeOfPieces() {
+        return whitePawns.size() +
+                whitePieces.size() +
+                blackPawns.size() +
+                blackPieces.size();
+    }
 
-        String board = getBoard();
-        System.out.println(board);
+    private void addWhitePieces() {
+        whitePieces.add(Piece.createWhiteRook());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteQueen());
+        whitePieces.add(Piece.createWhiteKing());
+        whitePieces.add(Piece.createWhiteBishop());
+        whitePieces.add(Piece.createWhiteKnight());
+        whitePieces.add(Piece.createWhiteRook());
+    }
+
+    private void addBlackPieces() {
+        blackPieces.add(Piece.createBlackRook());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackQueen());
+        blackPieces.add(Piece.createBlackKing());
+        blackPieces.add(Piece.createBlackBishop());
+        blackPieces.add(Piece.createBlackKnight());
+        blackPieces.add(Piece.createBlackRook());
+    }
+
+    private String bringUnitRepresentation(List<Piece> unitList ){
+        StringBuilder sb = new StringBuilder();
+
+        for(Piece unit: unitList){
+            sb.append(unit.getRepresentation());
+        }
+        return sb.toString();
     }
 }
-

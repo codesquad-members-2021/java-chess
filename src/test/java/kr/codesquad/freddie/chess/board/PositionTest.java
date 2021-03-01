@@ -1,4 +1,4 @@
-package kr.codesquad.freddie.chess.utils;
+package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.board.Position;
 import org.junit.jupiter.api.Test;

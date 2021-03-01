@@ -2,10 +2,7 @@ package kr.codesquad.freddie.chess.game;
 
 import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.ChessTestBase;
-import kr.codesquad.freddie.chess.piece.Color;
-import kr.codesquad.freddie.chess.piece.Kind;
-import kr.codesquad.freddie.chess.piece.Piece;
-import kr.codesquad.freddie.chess.piece.PieceFactory;
+import kr.codesquad.freddie.chess.piece.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -47,7 +44,7 @@ class ChessGameTest extends ChessTestBase {
 
     private void checkInitializePawn(Color color, Board board) {
         int rank = color == Color.BLACK ? 7 : 2;
-        Piece pawn = new Piece(color, Kind.PAWN);
+        Piece pawn = Pawn.create(color);
 
         assertThat(board.findPiece("a" + rank)).isEqualTo(pawn);
         assertThat(board.findPiece("b" + rank)).isEqualTo(pawn);

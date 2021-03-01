@@ -8,30 +8,30 @@ public class PieceFactory {
     }
 
     public static Piece createBlank() {
-        return new Piece(Color.NOCOLOR, Kind.EMPTY);
+        return EmptyPiece.create();
     }
 
     public Piece createPawn() {
-        return new Piece(color, Kind.PAWN);
+        return Pawn.create(color);
     }
 
     public Piece createKnight() {
-        return new Piece(color, Kind.KNIGHT);
+        return Knight.create(color);
     }
 
     public Piece createRook() {
-        return new Piece(color, Kind.ROOK);
+        return Rook.create(color);
     }
 
     public Piece createBishop() {
-        return new Piece(color, Kind.BISHOP);
+        return Bishop.create(color);
     }
 
     public Piece createQueen() {
-        return new Piece(color, Kind.QUEEN);
+        return Queen.create(color);
     }
 
     public Piece createKing() {
-        return new Piece(color, Kind.KING);
+        return King.create(color);
     }
 }

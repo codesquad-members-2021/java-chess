@@ -26,7 +26,7 @@ class FileTest extends ChessTestBase {
             File file = new File();
 
             for (int j = 0; j < i; j++) {
-                file.add(new Piece(Color.WHITE, Kind.PAWN));
+                file.add(whitePieceFactory.createPawn());
             }
             assertThat(file.size())
                     .isEqualTo(i);
@@ -37,18 +37,18 @@ class FileTest extends ChessTestBase {
     @DisplayName("8개 초과하여 추가하는 경우")
     void addMoreThan8() {
         for (int i = 0; i < File.SIZE; i++) {
-            file.add(new Piece(Color.WHITE, Kind.PAWN));
+            file.add(whitePieceFactory.createPawn());
         }
 
-        assertThatThrownBy(() -> file.add(new Piece(Color.WHITE, Kind.PAWN)))
+        assertThatThrownBy(() -> file.add(whitePieceFactory.createPawn()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("파일 당 8개만 추가 가능합니다.");
     }
 
     @Test
     void get() {
-        Piece pieceA = new Piece(Color.WHITE, Kind.PAWN);
-        Piece pieceB = new Piece(Color.BLACK, Kind.PAWN);
+        Piece pieceA = whitePieceFactory.createPawn();
+        Piece pieceB = blackPieceFactory.createPawn();
         file.add(pieceA);
         file.add(pieceB);
 
@@ -176,11 +176,11 @@ class FileTest extends ChessTestBase {
     @Test
     void isAddable() {
         for (int i = 0; i < File.SIZE - 1; i++) {
-            file.add(new Piece(Color.WHITE, Kind.PAWN));
+            file.add(whitePieceFactory.createPawn());
             assertThat(file.isAddable()).isTrue();
         }
 
-        file.add(new Piece(Color.WHITE, Kind.PAWN));
+        file.add(whitePieceFactory.createPawn());
         assertThat(file.isAddable()).isFalse();
     }
 

@@ -5,7 +5,7 @@ import kr.codesquad.freddie.chess.board.Position;
 
 import java.util.Objects;
 
-public class Piece implements Comparable<Piece> {
+public abstract class Piece implements Comparable<Piece> {
     private Color color;
     private Kind kind;
 
@@ -14,9 +14,7 @@ public class Piece implements Comparable<Piece> {
         this.kind = kind;
     }
 
-    public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
-        return kind.isCanMove(sourcePosition, targetPosition, board);
-    }
+    public abstract boolean isCanMove(Position sourcePosition, Position targetPosition, Board board);
 
     public Color getColor() {
         return color;
@@ -40,6 +38,26 @@ public class Piece implements Comparable<Piece> {
 
     public boolean isWhite() {
         return color == Color.WHITE;
+    }
+
+    protected int distanceOf(int a, int b) {
+        return a - b;
+    }
+
+    protected double gradientOf(int fileDistance, int rankDistance) {
+        if (fileDistance == 0) {
+            return 0;
+        }
+        return Integer.valueOf(rankDistance).doubleValue() / Integer.valueOf(fileDistance).doubleValue();
+    }
+
+    protected void checkColorOf(Position sourcePosition, Position targetPosition, Board board) {
+        Piece sourcePiece = board.findPiece(sourcePosition.toString());
+        Piece targetPiece = board.findPiece(targetPosition.toString());
+        if (sourcePiece.getColor() == targetPiece.getColor()) {
+            String message = "이동 위치의 기물이 같은 색상입니다. source : " + sourcePiece + ", target : " + targetPiece;
+            throw new IllegalArgumentException(message);
+        }
     }
 
     @Override

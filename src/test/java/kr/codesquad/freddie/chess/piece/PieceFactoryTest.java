@@ -61,6 +61,6 @@ class PieceFactoryTest {
 
     @Test
     void emptyPiece() {
-        assertThat(PieceFactory.createBlank()).isEqualTo(new Piece(Color.NOCOLOR, Kind.EMPTY));
+        assertThat(PieceFactory.createBlank()).isEqualTo(EmptyPiece.create());
     }
 }

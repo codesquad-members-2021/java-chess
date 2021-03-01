@@ -1,5 +1,8 @@
 package kr.codesquad.freddie.chess.piece;
 
+import kr.codesquad.freddie.chess.board.Board;
+import kr.codesquad.freddie.chess.board.Position;
+
 import java.util.Objects;
 
 public class CalculablePiece extends Piece {
@@ -12,6 +15,11 @@ public class CalculablePiece extends Piece {
 
     public static CalculablePiece create(Piece piece, char fileIndex) {
         return new CalculablePiece(piece.getColor(), piece.getKind(), fileIndex);
+    }
+
+    @Override
+    public boolean isCanMove(Position sourcePosition, Position targetPosition, Board board) {
+        return false;
     }
 
     @Override

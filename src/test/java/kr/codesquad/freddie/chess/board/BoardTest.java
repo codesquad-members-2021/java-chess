@@ -52,7 +52,7 @@ class BoardTest extends ChessTestBase {
 
     private void checkInitializePawn(Color color) {
         int rank = color == Color.BLACK ? 7 : 2;
-        Piece pawn = new Piece(color, Kind.PAWN);
+        Piece pawn = Pawn.create(color);
 
         assertThat(board.findPiece("a" + rank)).isEqualTo(pawn);
         assertThat(board.findPiece("b" + rank)).isEqualTo(pawn);
@@ -85,7 +85,7 @@ class BoardTest extends ChessTestBase {
             Board board = new Board();
 
             for (int j = 0; j < i; j++) {
-                board.add(new Piece(Color.WHITE, Kind.PAWN));
+                board.add(whitePieceFactory.createPawn());
             }
             assertThat(board.pieceCount())
                     .isEqualTo(i);
@@ -99,7 +99,7 @@ class BoardTest extends ChessTestBase {
     void addFillRank() {
         int size = File.SIZE + 1;
         for (int i = 1; i <= size; i++) {
-            board.add(new Piece(Color.WHITE, Kind.PAWN));
+            board.add(whitePieceFactory.createPawn());
             assertThat(board.pieceCount())
                     .isEqualTo(i);
         }
@@ -108,10 +108,10 @@ class BoardTest extends ChessTestBase {
     @Test
     void addOutOfRange() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(new Piece(Color.WHITE, Kind.PAWN));
+            board.add(whitePieceFactory.createPawn());
         }
 
-        assertThatThrownBy(() -> board.add(new Piece(Color.WHITE, Kind.PAWN)))
+        assertThatThrownBy(() -> board.add(whitePieceFactory.createPawn()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("더 이상 추가할 수 없습니다. 현재 크기 : 64");
     }
@@ -119,7 +119,7 @@ class BoardTest extends ChessTestBase {
     @Test
     @DisplayName("하나만 추가하여 탐색")
     void findPieceOne() {
-        Piece white = new Piece(Color.WHITE, Kind.PAWN);
+        Piece white = whitePieceFactory.createPawn();
         board.add(white);
         assertAll(
                 () -> assertThat(board.pieceCount()).isEqualTo(1),
@@ -130,9 +130,9 @@ class BoardTest extends ChessTestBase {
     @Test
     @DisplayName("하나 이상 추가하여 탐색")
     void findPieceMoreThanOne() {
-        Piece white = new Piece(Color.WHITE, Kind.PAWN);
+        Piece white = whitePieceFactory.createPawn();
         board.add(white);
-        Piece black = new Piece(Color.BLACK, Kind.PAWN);
+        Piece black = blackPieceFactory.createPawn();
         board.add(black);
 
         assertAll(

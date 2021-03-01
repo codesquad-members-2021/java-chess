@@ -47,7 +47,7 @@ public class File {
     }
 
     public void fillWithPawn(Color color) {
-        fillWith(new Piece(color, Kind.PAWN));
+        fillWith(Pawn.create(color));
     }
 
     public void fillWithBlank() {

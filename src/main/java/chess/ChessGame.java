@@ -14,10 +14,6 @@ public class ChessGame {
     private final String PROMPT = "> ";
     private final Board board = new Board();
 
-    public Board getBoard() {
-        return board;
-    }
-
     public void initialize() {
         board.initialize();
     }
@@ -43,7 +39,7 @@ public class ChessGame {
                 command = sc.nextLine().toLowerCase(Locale.ROOT);
                 if (command.equals(START)) {
                     initialize();
-                    System.out.println(chessView.view(getBoard()));
+                    System.out.println(chessView.view(board));
                     continue;
                 }
                 if (command.startsWith(MOVE)) {
@@ -53,7 +49,7 @@ public class ChessGame {
                     } catch (PositionNotMovableException e) {
                         System.out.println(e.getMessage());
                     }
-                    System.out.println(chessView.view(getBoard()));
+                    System.out.println(chessView.view(board));
                     continue;
                 }
                 if (command.equals(END)) {

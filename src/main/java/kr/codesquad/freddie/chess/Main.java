@@ -13,16 +13,29 @@ public class Main {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             ChessGame chessGame = ChessGame.create();
             BoardView boardView = new BoardView(chessGame.getBoard());
-            for (String command = br.readLine();
-                 !command.equals("end");
-                 command = br.readLine()) {
+
+            for (String command = getInput(br); !command.equals("end"); command = getInput(br)) {
                 try {
                     Command.create(command).execute(chessGame);
                     System.out.println(boardView.getRepresentation());
                 } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
+                    System.out.println("잘못된 입력입니다. command : " + command);
                 }
             }
         }
+    }
+
+    public static String getInput(BufferedReader br) throws IOException {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("명령어를 입력해주세요").append(System.lineSeparator())
+                .append("start : 게임 시작").append(System.lineSeparator())
+                .append("move source target : source에서 target으로 이동 e.g. move a1 a2").append(System.lineSeparator())
+                .append("end : 게임 종료").append(System.lineSeparator())
+                .append("> ");
+
+        System.out.print(sb.toString());
+
+        return br.readLine();
     }
 }

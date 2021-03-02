@@ -20,6 +20,8 @@ public class Main {
                     System.out.println(boardView.getRepresentation());
                 } catch (IllegalArgumentException e) {
                     System.out.println("잘못된 입력입니다. command : " + command);
+                } catch (IllegalStateException e) {
+                    System.out.println(e.getMessage());
                 }
             }
         }

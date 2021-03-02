@@ -9,6 +9,7 @@ import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 public class ChessGame {
     private Board board;
+    private boolean isInitialized;
 
     private ChessGame(Board board) {
         this.board = board;
@@ -19,12 +20,21 @@ public class ChessGame {
     }
 
     public void initialize() {
+        if (isInitialized) {
+            throw new IllegalStateException("게임이 이미 시작되었습니다.");
+        }
+
         board.initializePieceBy(Color.BLACK);
         board.initializeEmptyPiece();
         board.initializePieceBy(Color.WHITE);
+        isInitialized = true;
     }
 
     public void move(String source, String target) {
+        if (!isInitialized) {
+            throw new IllegalStateException("게임이 시작되지 않았습니다.");
+        }
+
         Piece sourcePiece = board.findPiece(source);
         Piece targetPiece = board.findPiece(target);
         if (sourcePiece.getColor() == targetPiece.getColor()) {

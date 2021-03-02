@@ -41,7 +41,7 @@ public class PositionCalculator {
     }
 
     public boolean isDiagonal() {
-        return 0 < getGradient();
+        return 0 < Math.abs(getGradient());
     }
 
     private int distanceOf(int a, int b) {

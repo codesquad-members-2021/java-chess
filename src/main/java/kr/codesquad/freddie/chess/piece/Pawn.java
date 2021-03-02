@@ -24,8 +24,8 @@ public class Pawn extends Piece {
             return false;
         }
 
-        if (isDiagonalDirection(fileDistance, rankDistance)) {
-            if (gradientOf(Math.abs(fileDistance), Math.abs(rankDistance)) != 1) {
+        if (positionCalculator.isDiagonal()) {
+            if (Math.abs(positionCalculator.getGradient()) != 1) {
                 return false;
             }
 
@@ -45,10 +45,6 @@ public class Pawn extends Piece {
 
     private boolean isAvailableMoveRange(int fileDistance, int rankDistance) {
         return Math.abs(rankDistance) <= 2 && Math.abs(fileDistance) <= 1;
-    }
-
-    private boolean isDiagonalDirection(int fileDistance, int rankDistance) {
-        return 0 < gradientOf(Math.abs(fileDistance), Math.abs(rankDistance));
     }
 
     private boolean isCanMoveDiagonally(Piece sourcePiece, Piece targetPiece) {

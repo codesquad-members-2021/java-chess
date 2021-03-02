@@ -1,6 +1,5 @@
 package kr.codesquad.freddie.chess.piece;
 
-import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 public class Queen extends Piece {
@@ -13,7 +12,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean isCanMove(PositionCalculator positionCalculator, Board board) {
+    public boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece) {
         double gradient = Math.abs(positionCalculator.getGradient());
 
         return gradient == 0 || gradient == 1;

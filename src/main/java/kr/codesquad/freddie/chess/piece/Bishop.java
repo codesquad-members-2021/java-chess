@@ -1,6 +1,5 @@
 package kr.codesquad.freddie.chess.piece;
 
-import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 public class Bishop extends Piece {
@@ -13,7 +12,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public boolean isCanMove(PositionCalculator positionCalculator, Board board) {
+    public boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece) {
         return Math.abs(positionCalculator.getGradient()) == 1;
     }
 }

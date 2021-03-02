@@ -1,6 +1,5 @@
 package kr.codesquad.freddie.chess.piece;
 
-import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 public class King extends Piece {
@@ -13,7 +12,7 @@ public class King extends Piece {
     }
 
     @Override
-    public boolean isCanMove(PositionCalculator positionCalculator, Board board) {
+    public boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece) {
         int fileDistance = Math.abs(positionCalculator.getFileDistance());
         int rankDistance = Math.abs(positionCalculator.getRankDistance());
 

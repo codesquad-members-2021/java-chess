@@ -1,6 +1,5 @@
 package kr.codesquad.freddie.chess.piece;
 
-import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.utils.PositionCalculator;
 
 public class Pawn extends Piece {
@@ -13,10 +12,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isCanMove(PositionCalculator positionCalculator, Board board) {
-        Piece sourcePiece = positionCalculator.getSourcePieceFrom(board);
-        Piece targetPiece = positionCalculator.getTargetPieceFrom(board);
-
+    public boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece) {
         int fileDistance = positionCalculator.getFileDistance();
         int rankDistance = positionCalculator.getRankDistance();
 
@@ -29,14 +25,14 @@ public class Pawn extends Piece {
                 return false;
             }
 
-            return isCanMoveDiagonally(sourcePiece, targetPiece);
+            return isCanMoveDiagonally(targetPiece);
         }
 
-        return isAvailableDirection(sourcePiece, rankDistance);
+        return isAvailableDirection(rankDistance);
     }
 
-    private boolean isAvailableDirection(Piece sourcePiece, int rankDistance) {
-        if (sourcePiece.isWhite()) {
+    private boolean isAvailableDirection(int rankDistance) {
+        if (this.isWhite()) {
             return rankDistance < 0;
         }
 
@@ -47,7 +43,7 @@ public class Pawn extends Piece {
         return Math.abs(rankDistance) <= 2 && Math.abs(fileDistance) <= 1;
     }
 
-    private boolean isCanMoveDiagonally(Piece sourcePiece, Piece targetPiece) {
-        return targetPiece.getColor() != Color.NOCOLOR && sourcePiece.getColor() != targetPiece.getColor();
+    private boolean isCanMoveDiagonally(Piece targetPiece) {
+        return targetPiece.getColor() != Color.NOCOLOR && this.getColor() != targetPiece.getColor();
     }
 }

@@ -1,5 +1,7 @@
 package kr.codesquad.freddie.chess.piece;
 
+import kr.codesquad.freddie.chess.board.Position;
+import kr.codesquad.freddie.chess.utils.PositionCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,5 +50,37 @@ class KingTest {
     void isWhite() {
         assertThat(whiteKing.isWhite()).isTrue();
         assertThat(blackKing.isWhite()).isFalse();
+    }
+
+    @Test
+    void isCanMove() {
+        checkIsCanMove("b3", "b4");
+        checkIsCanMove("b3", "b2");
+        checkIsCanMove("b3", "c3");
+        checkIsCanMove("b3", "a3");
+        checkIsCanMove("b3", "c4");
+        checkIsCanMove("b3", "a4");
+        checkIsCanMove("b3", "c2");
+        checkIsCanMove("b3", "a2");
+    }
+
+    private void checkIsCanMove(String source, String target) {
+        PositionCalculator positionCalculator = new PositionCalculator(Position.of(source), Position.of(target));
+        assertThat(blackKing.isCanMove(positionCalculator, PieceFactory.createBlank())).isTrue();
+        assertThat(whiteKing.isCanMove(positionCalculator, PieceFactory.createBlank())).isTrue();
+    }
+
+    @Test
+    void isCanMoveFail() {
+        checkIsCanMoveFail("b3", "b5");
+        checkIsCanMoveFail("b3", "b1");
+        checkIsCanMoveFail("b3", "d3");
+        checkIsCanMoveFail("c3", "a3");
+    }
+
+    private void checkIsCanMoveFail(String source, String target) {
+        PositionCalculator positionCalculator = new PositionCalculator(Position.of(source), Position.of(target));
+        assertThat(blackKing.isCanMove(positionCalculator, PieceFactory.createBlank())).isFalse();
+        assertThat(whiteKing.isCanMove(positionCalculator, PieceFactory.createBlank())).isFalse();
     }
 }

@@ -30,7 +30,8 @@ public class Main {
     public static String getInput(BufferedReader br) throws IOException {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("명령어를 입력해주세요").append(System.lineSeparator())
+        sb.append(System.lineSeparator())
+                .append("명령어를 입력해주세요").append(System.lineSeparator())
                 .append("start : 게임 시작").append(System.lineSeparator())
                 .append("move source target : source에서 target으로 이동 e.g. move a1 a2").append(System.lineSeparator())
                 .append("end : 게임 종료").append(System.lineSeparator())

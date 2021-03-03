@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 public class ChessGame {
     public static void main(String[] args) {
-
+        final String START = "start";
+        final String END = "end";
         System.out.print("체스게임(start/end) > ");
         Scanner scanner = new Scanner(System.in);
 
@@ -12,12 +13,12 @@ public class ChessGame {
         while (!endGame) {
             String cmd = scanner.nextLine();
             switch (cmd) {
-                case "start":
+                case START:
                     Board board = new Board();
                     board.initialize();
-                    System.out.println(board.print());
+                    System.out.println(board.showBoard(0, 1).toString());
                     break;
-                case "end":
+                case END:
                     System.out.println("> 게임이 종료되었습니다.");
                     endGame = true;
                     break;

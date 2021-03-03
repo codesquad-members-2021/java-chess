@@ -1,26 +1,26 @@
 package net.sanhee.chess;
 
-import net.sanhee.pieces.Pawn;
-import net.sanhee.pieces.UnitColor;
+import net.sanhee.pieces.*;
+import net.sanhee.pieces.property.UnitColor;
+import net.sanhee.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
 
-    private final List<Pawn> pawns = new ArrayList<Pawn>();
-    private final String defaultUnitRep = "........";
+    private final List<Piece> pieces = new ArrayList<>();
 
-    public void add(Pawn pawn) {
-        pawns.add(pawn);
+    public void add(Piece piece) {
+        pieces.add(piece);
     }
 
     public int size() {
-        return pawns.size();
+        return pieces.size();
     }
 
-    public Pawn findPawn(int idx) {
-        return pawns.get(idx);
+    public Piece findPiece(int idx) {
+        return pieces.get(idx);
     }
 
     public String getWhitePawnsResult() {
@@ -33,47 +33,74 @@ public class Board {
 
     public String appendPawnRep(UnitColor color) {
         StringBuilder pawnLine = new StringBuilder();
-        for (Pawn pawn : pawns) {
-            if (pawn.isColor(color)) {
-                pawnLine.append(pawn.getRepresentation());
+        for (Piece piece : pieces) {
+            if (piece.isPawn(color)) {
+                pawnLine.append(piece.getRepresentation());
             }
         }
         return pawnLine.toString();
     }
 
     public void initialize() {
-        arrayPawnInit(UnitColor.WHITE);
-        arrayPawnInit(UnitColor.BLACK);
+        initializeRoyalLine(UnitColor.BLACK);
+        initializePawnLine(UnitColor.BLACK);
+        initializeNoPieceLine();
+        initializeNoPieceLine();
+        initializeNoPieceLine();
+        initializeNoPieceLine();
+        initializePawnLine(UnitColor.WHITE);
+        initializeRoyalLine(UnitColor.WHITE);
     }
 
-    private void arrayPawnInit(UnitColor color) {
-        for (int i = 0; i < Pawn.MAX_SPAWN_NUMBER; i++) {
-            pawns.add(new Pawn(color));
+    private void initializeRoyalLine(UnitColor unitColor) {
+        // Rook-Knight-Bishop-Queen-King-Bishop-Knight-Rook
+        add(Piece.createRook(unitColor));
+        add(Piece.createKnight(unitColor));
+        add(Piece.createBishop(unitColor));
+        add(Piece.createQueen(unitColor));
+        add(Piece.createKing(unitColor));
+        add(Piece.createBishop(unitColor));
+        add(Piece.createKnight(unitColor));
+        add(Piece.createRook(unitColor));
+    }
+
+    private void initializePawnLine(UnitColor unitColor) {
+        final int MAX_SPAWN = 8;
+        for (int i = 0; i < MAX_SPAWN; i++) {
+            pieces.add(Piece.createPawn(unitColor));
         }
     }
 
-    public String print() {
+    private void initializeNoPieceLine() {
+        final int MAX_SPAWN = 8;
+        for (int i = 0; i < MAX_SPAWN; i++) {
+            pieces.add(Piece.createNoPiece());
+        }
+    }
 
-        StringBuilder displayBoard = new StringBuilder();
-        List<String[]> boardList = new ArrayList<>();
-
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(getBlackPawnsResult().split(""));
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(defaultUnitRep.split(""));
-        boardList.add(getWhitePawnsResult().split(""));
-        boardList.add(defaultUnitRep.split(""));
-
-
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                displayBoard.append(boardList.get(row)[col]);
+    public int pieceCount() {
+        int count = 0;
+        for (Piece piece : pieces) {
+            if (!piece.isColor(UnitColor.NOCOLOR)) {
+                count++;
             }
-            displayBoard.append("\n");
+        }
+        return count;
+    }
+
+    public StringBuilder showBoard(int index, int count) {
+        final StringBuilder boardString = new StringBuilder();
+        final int LINE_OF_PIECE = 8;
+
+        if (index == 63) {
+            return boardString.append(findPiece(index).getRepresentation()).append(StringUtils.NEWLINE);
         }
 
-        return displayBoard.toString();
+        if (count == LINE_OF_PIECE) {
+            count = 0;
+            return boardString.append(findPiece(index).getRepresentation()).append(StringUtils.NEWLINE).append(showBoard(index + 1, count + 1));
+        }
+        return boardString.append(findPiece(index).getRepresentation()).append(showBoard(index + 1, count + 1));
     }
+
 }

@@ -1,8 +1,6 @@
 package kr.codesquad.freddie.chess.utils;
 
-import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.board.Position;
-import kr.codesquad.freddie.chess.piece.Piece;
 
 public class PositionCalculator {
     private Position sourcePosition;

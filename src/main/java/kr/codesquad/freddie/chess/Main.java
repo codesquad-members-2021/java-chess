@@ -15,15 +15,19 @@ public class Main {
             BoardView boardView = new BoardView(chessGame.getBoard());
 
             for (String command = getInput(br); !command.equals("end"); command = getInput(br)) {
-                try {
-                    Command.create(command).execute(chessGame);
-                    System.out.println(boardView.getRepresentation());
-                } catch (IllegalArgumentException e) {
-                    System.out.println("잘못된 입력입니다. command : " + command);
-                } catch (IllegalStateException e) {
-                    System.out.println(e.getMessage());
-                }
+                executeCommand(chessGame, boardView, command);
             }
+        }
+    }
+
+    private static void executeCommand(ChessGame chessGame, BoardView boardView, String command) {
+        try {
+            Command.create(command).execute(chessGame);
+            System.out.println(boardView.getRepresentation());
+        } catch (IllegalArgumentException e) {
+            System.out.println("잘못된 입력입니다. command : " + command);
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
         }
     }
 

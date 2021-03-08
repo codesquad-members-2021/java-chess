@@ -9,10 +9,14 @@ public class Move implements Command {
     private String[] command;
 
     public Move(String[] command) {
+        checkCommandLength(command);
+        this.command = command;
+    }
+
+    private void checkCommandLength(String[] command) {
         if (command.length != COMMAND_LENGTH) {
             throw new IllegalArgumentException("잘못된 입력입니다." + Arrays.toString(command));
         }
-        this.command = command;
     }
 
     @Override

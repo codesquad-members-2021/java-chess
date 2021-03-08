@@ -58,7 +58,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveToDifferentColor() {
-        initBoardWithBlank(board);
+        chessGame.initialize();
         board.set("b3", blackPieceFactory.createKing());
         board.set("b4", whitePieceFactory.createPawn());
 
@@ -70,7 +70,7 @@ class ChessGameTest extends ChessTestBase {
 
     @Test
     void moveToSameColor() {
-        initBoardWithBlank(board);
+        chessGame.initialize();
         board.set("b3", blackPieceFactory.createKing());
         board.set("b4", blackPieceFactory.createPawn());
 

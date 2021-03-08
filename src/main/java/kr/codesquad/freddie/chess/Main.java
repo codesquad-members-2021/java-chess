@@ -26,9 +26,9 @@ public class Main {
         try {
             Command.create(command).execute(chessGame);
         } catch (IllegalArgumentException e) {
-            System.out.println("잘못된 입력입니다. command : " + command);
+            ChessGamePrinter.printWrongInputMessage(command);
         } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
+            ChessGamePrinter.printWrongStateMessage(e.getMessage());
         }
     }
 }

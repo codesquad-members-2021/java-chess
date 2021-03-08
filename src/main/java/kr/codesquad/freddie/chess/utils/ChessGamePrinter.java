@@ -14,6 +14,14 @@ public class ChessGamePrinter {
         return new ChessGamePrinter(new BoardView(chessGame.getBoard()));
     }
 
+    public static void printWrongInputMessage(String input) {
+        System.out.println("잘못 된 입력입니다. 입력 : " + input);
+    }
+
+    public static void printWrongStateMessage(String message) {
+        System.out.println("상태가 올바르지 않습니다. " + message);
+    }
+
     public void printBeforeExecuteMessage() {
         String message = System.lineSeparator() +
                 "명령어를 입력해주세요" + System.lineSeparator() +

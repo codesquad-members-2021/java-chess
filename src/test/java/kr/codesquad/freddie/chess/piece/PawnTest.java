@@ -80,6 +80,10 @@ class PawnTest {
 
     @Test
     void canMoveFail() {
+        checkCanMoveFail("a3", "a5", whitePawn);
+        checkCanMoveFail("h1", "h3", whitePawn);
+        checkCanMoveFail("a6", "a4", blackPawn);
+        checkCanMoveFail("h8", "h6", blackPawn);
         checkCanMoveFail("a2", "a1", whitePawn);
         checkCanMoveFail("a7", "a8", blackPawn);
         checkCanMoveFail("a2", "a5", whitePawn);

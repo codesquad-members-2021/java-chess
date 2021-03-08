@@ -13,10 +13,7 @@ public class Pawn extends Piece {
 
     @Override
     public boolean canMove(PositionCalculator positionCalculator, Piece targetPiece) {
-        int fileDistance = positionCalculator.getFileDistance();
-        int rankDistance = positionCalculator.getRankDistance();
-
-        if (!isAvailableMoveRange(fileDistance, rankDistance)) {
+        if (!isAvailableMoveRange(positionCalculator)) {
             return false;
         }
 
@@ -28,7 +25,7 @@ public class Pawn extends Piece {
             return canMoveDiagonally(targetPiece);
         }
 
-        return isAvailableDirection(rankDistance);
+        return isAvailableDirection(positionCalculator.getRankDistance());
     }
 
     private boolean isAvailableDirection(int rankDistance) {
@@ -39,8 +36,14 @@ public class Pawn extends Piece {
         return 0 < rankDistance;
     }
 
-    private boolean isAvailableMoveRange(int fileDistance, int rankDistance) {
-        return Math.abs(rankDistance) <= 2 && Math.abs(fileDistance) <= 1;
+    private boolean isAvailableMoveRange(PositionCalculator positionCalculator) {
+        int rankIndex = positionCalculator.getSourcePosition().getRankIndex();
+
+        if (rankIndex == Color.BLACK.pawnInitializationRank() || rankIndex == Color.WHITE.pawnInitializationRank()) {
+            return Math.abs(positionCalculator.getRankDistance()) <= 2 && Math.abs(positionCalculator.getFileDistance()) <= 1;
+        }
+
+        return Math.abs(positionCalculator.getRankDistance()) <= 1 && Math.abs(positionCalculator.getFileDistance()) <= 1;
     }
 
     private boolean canMoveDiagonally(Piece targetPiece) {

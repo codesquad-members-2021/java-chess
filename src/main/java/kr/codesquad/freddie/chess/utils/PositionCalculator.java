@@ -11,6 +11,10 @@ public class PositionCalculator {
         this.targetPosition = targetPosition;
     }
 
+    public Position getSourcePosition() {
+        return sourcePosition;
+    }
+
     public int getFileDistance() {
         return distanceOf(sourcePosition.getFileIndex(), targetPosition.getFileIndex());
     }

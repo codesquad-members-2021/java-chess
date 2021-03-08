@@ -63,21 +63,21 @@ public class Board {
      * ╚══╧══╧══╧══╧══╧══╧══╧══╝╯
      * </code>
      *
-     * @param position a~h 사이의 알파벳과 1~8 사이의 숫자 조합
+     * @param input a~h 사이의 알파벳과 1~8 사이의 숫자 조합
      * @return 해당 칸에 존재하는 기물
      * @see <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      */
-    public Piece findPiece(String position) {
-        Position positionConverter = Position.of(position);
-        return files.get(positionConverter.getRankIndexForList())
-                .get(positionConverter.getFileIndexForList());
+    public Piece findPiece(String input) {
+        Position position = Position.of(input);
+        return files.get(position.getRankIndexForList())
+                .get(position.getFileIndexForList());
     }
 
-    public void set(String position, Piece piece) {
-        Position positionConverter = Position.of(position);
+    public void set(String input, Piece piece) {
+        Position position = Position.of(input);
 
-        files.get(positionConverter.getRankIndexForList())
-                .set(positionConverter.getFileIndexForList(), piece);
+        files.get(position.getRankIndexForList())
+                .set(position.getFileIndexForList(), piece);
     }
 
     public int pieceCount() {

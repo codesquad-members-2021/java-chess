@@ -1,7 +1,7 @@
 package kr.codesquad.freddie.chess.board;
 
-import kr.codesquad.freddie.chess.piece.*;
 import kr.codesquad.freddie.chess.ChessTestBase;
+import kr.codesquad.freddie.chess.piece.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,71 +10,16 @@ import java.util.Arrays;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
-class BoardTest extends ChessTestBase {
-    private Board board;
+class FilesTest extends ChessTestBase {
+    private Files files;
 
     @BeforeEach
-    void setBoard() {
-        board = new Board();
-    }
-
-    @Test
-    void initializePieceByBlack() {
-        board.initializePieceBy(Color.BLACK);
-
-        checkInitializeRoyal(Color.BLACK);
-        checkInitializePawn(Color.BLACK);
-    }
-
-    @Test
-    void initializePieceByWhite() {
-        board.initializePieceBy(Color.WHITE);
-
-        checkInitializeRoyal(Color.WHITE);
-        checkInitializePawn(Color.WHITE);
-    }
-
-    private void checkInitializeRoyal(Color color) {
-        int rank = color == Color.BLACK ? 8 : 1;
-        PieceFactory pieceFactory = new PieceFactory(color);
-
-        assertThat(board.findPiece("a" + rank)).isEqualTo(pieceFactory.createRook());
-        assertThat(board.findPiece("b" + rank)).isEqualTo(pieceFactory.createKnight());
-        assertThat(board.findPiece("c" + rank)).isEqualTo(pieceFactory.createBishop());
-        assertThat(board.findPiece("d" + rank)).isEqualTo(pieceFactory.createQueen());
-        assertThat(board.findPiece("e" + rank)).isEqualTo(pieceFactory.createKing());
-        assertThat(board.findPiece("f" + rank)).isEqualTo(pieceFactory.createBishop());
-        assertThat(board.findPiece("g" + rank)).isEqualTo(pieceFactory.createKnight());
-        assertThat(board.findPiece("h" + rank)).isEqualTo(pieceFactory.createRook());
-    }
-
-    private void checkInitializePawn(Color color) {
-        int rank = color == Color.BLACK ? 7 : 2;
-        Piece pawn = Pawn.create(color);
-
-        assertThat(board.findPiece("a" + rank)).isEqualTo(pawn);
-        assertThat(board.findPiece("b" + rank)).isEqualTo(pawn);
-        assertThat(board.findPiece("c" + rank)).isEqualTo(pawn);
-        assertThat(board.findPiece("d" + rank)).isEqualTo(pawn);
-        assertThat(board.findPiece("e" + rank)).isEqualTo(pawn);
-        assertThat(board.findPiece("f" + rank)).isEqualTo(pawn);
-        assertThat(board.findPiece("g" + rank)).isEqualTo(pawn);
-        assertThat(board.findPiece("h" + rank)).isEqualTo(pawn);
-    }
-
-    @Test
-    void initializeEmptyPiece() {
-        board.initializeEmptyPiece();
-
-        StringBuilder sb = new StringBuilder();
-        for (int i = 3; i <= 6; i++) {
-            sb.delete(0, sb.length());
-            for (char j = 'a'; j <= 'h'; j++) {
-                assertThat(board.findPiece(sb.append(j).append(i).toString()))
-                        .isEqualTo(PieceFactory.createBlank());
-            }
+    void setUp() {
+        files = new Files();
+        for (int i = 0; i < Board.RANK_SIZE; i++) {
+            files.add(new File());
         }
     }
 
@@ -99,8 +44,8 @@ class BoardTest extends ChessTestBase {
     void addFillRank() {
         int size = File.SIZE + 1;
         for (int i = 1; i <= size; i++) {
-            board.add(whitePieceFactory.createPawn());
-            assertThat(board.pieceCount())
+            files.add(whitePieceFactory.createPawn());
+            assertThat(files.pieceCount())
                     .isEqualTo(i);
         }
     }
@@ -108,10 +53,10 @@ class BoardTest extends ChessTestBase {
     @Test
     void addOutOfRange() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(whitePieceFactory.createPawn());
+            files.add(whitePieceFactory.createPawn());
         }
 
-        assertThatThrownBy(() -> board.add(whitePieceFactory.createPawn()))
+        assertThatThrownBy(() -> files.add(whitePieceFactory.createPawn()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("더 이상 추가할 수 없습니다. 현재 크기 : 64");
     }
@@ -120,10 +65,10 @@ class BoardTest extends ChessTestBase {
     @DisplayName("하나만 추가하여 탐색")
     void findPieceOne() {
         Piece white = whitePieceFactory.createPawn();
-        board.add(white);
+        files.add(white);
         assertAll(
-                () -> assertThat(board.pieceCount()).isEqualTo(1),
-                () -> assertThat(board.findPiece("a8")).isEqualTo(white)
+                () -> assertThat(files.pieceCount()).isEqualTo(1),
+                () -> assertThat(files.findPiece(Position.of("a8"))).isEqualTo(white)
         );
     }
 
@@ -131,21 +76,29 @@ class BoardTest extends ChessTestBase {
     @DisplayName("하나 이상 추가하여 탐색")
     void findPieceMoreThanOne() {
         Piece white = whitePieceFactory.createPawn();
-        board.add(white);
+        files.add(white);
         Piece black = blackPieceFactory.createPawn();
-        board.add(black);
+        files.add(black);
 
         assertAll(
-                () -> assertThat(board.pieceCount()).isEqualTo(2),
-                () -> assertThat(board.findPiece("a8")).isEqualTo(white),
-                () -> assertThat(board.findPiece("b8")).isEqualTo(black)
+                () -> assertThat(files.pieceCount()).isEqualTo(2),
+                () -> assertThat(files.findPiece(Position.of("a8"))).isEqualTo(white),
+                () -> assertThat(files.findPiece(Position.of("b8"))).isEqualTo(black)
         );
     }
 
     @Test
     void getPiecesBy() {
-        initBoard(board);
-        assertThat(board.getPiecesBy(Color.BLACK)).isEqualTo(Arrays.asList(
+        files.fillWithRoyalAt(Color.BLACK);
+        files.fillWithPawnAt(Color.BLACK);
+        files.fillWithBlankAt(new RankIndex(3).getRankIndexForList());
+        files.fillWithBlankAt(new RankIndex(4).getRankIndexForList());
+        files.fillWithBlankAt(new RankIndex(5).getRankIndexForList());
+        files.fillWithBlankAt(new RankIndex(6).getRankIndexForList());
+        files.fillWithRoyalAt(Color.WHITE);
+        files.fillWithPawnAt(Color.WHITE);
+
+        assertThat(files.getPiecesBy(Color.BLACK)).isEqualTo(Arrays.asList(
                 blackPieceFactory.createQueen(),
                 blackPieceFactory.createRook(),
                 blackPieceFactory.createRook(),
@@ -163,7 +116,7 @@ class BoardTest extends ChessTestBase {
                 blackPieceFactory.createPawn(),
                 blackPieceFactory.createKing()
         ));
-        assertThat(board.getPiecesBy(Color.WHITE)).isEqualTo(Arrays.asList(
+        assertThat(files.getPiecesBy(Color.WHITE)).isEqualTo(Arrays.asList(
                 whitePieceFactory.createQueen(),
                 whitePieceFactory.createRook(),
                 whitePieceFactory.createRook(),
@@ -186,41 +139,48 @@ class BoardTest extends ChessTestBase {
     @Test
     void getNumberOf() {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(PieceFactory.createBlank());
+            files.add(PieceFactory.createBlank());
         }
 
-        board.set("b8", blackPieceFactory.createKing());
-        board.set("c8", blackPieceFactory.createRook());
-        board.set("a7", blackPieceFactory.createPawn());
-        board.set("c7", blackPieceFactory.createPawn());
-        board.set("d7", blackPieceFactory.createBishop());
-        board.set("b6", blackPieceFactory.createPawn());
-        board.set("e6", blackPieceFactory.createQueen());
-        board.set("f4", whitePieceFactory.createKnight());
-        board.set("g4", whitePieceFactory.createQueen());
-        board.set("f3", whitePieceFactory.createPawn());
-        board.set("g2", whitePieceFactory.createPawn());
-        board.set("e1", whitePieceFactory.createRook());
-        board.set("f1", whitePieceFactory.createKing());
+        files.set(Position.of("b8"), blackPieceFactory.createKing());
+        files.set(Position.of("c8"), blackPieceFactory.createRook());
+        files.set(Position.of("a7"), blackPieceFactory.createPawn());
+        files.set(Position.of("c7"), blackPieceFactory.createPawn());
+        files.set(Position.of("d7"), blackPieceFactory.createBishop());
+        files.set(Position.of("b6"), blackPieceFactory.createPawn());
+        files.set(Position.of("e6"), blackPieceFactory.createQueen());
+        files.set(Position.of("f4"), whitePieceFactory.createKnight());
+        files.set(Position.of("g4"), whitePieceFactory.createQueen());
+        files.set(Position.of("f3"), whitePieceFactory.createPawn());
+        files.set(Position.of("g2"), whitePieceFactory.createPawn());
+        files.set(Position.of("e1"), whitePieceFactory.createRook());
+        files.set(Position.of("f1"), whitePieceFactory.createKing());
 
         assertAll(
-                () -> assertThat(board.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1),
-                () -> assertThat(board.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(3),
-                () -> assertThat(board.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(1),
-                () -> assertThat(board.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(1),
-                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(1),
-                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(1),
-                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(2),
-                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(1),
-                () -> assertThat(board.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(1)
+                () -> assertThat(files.getNumberOf(Color.BLACK, Kind.KING)).isEqualTo(1),
+                () -> assertThat(files.getNumberOf(Color.BLACK, Kind.PAWN)).isEqualTo(3),
+                () -> assertThat(files.getNumberOf(Color.BLACK, Kind.ROOK)).isEqualTo(1),
+                () -> assertThat(files.getNumberOf(Color.BLACK, Kind.QUEEN)).isEqualTo(1),
+                () -> assertThat(files.getNumberOf(Color.WHITE, Kind.KNIGHT)).isEqualTo(1),
+                () -> assertThat(files.getNumberOf(Color.WHITE, Kind.QUEEN)).isEqualTo(1),
+                () -> assertThat(files.getNumberOf(Color.WHITE, Kind.PAWN)).isEqualTo(2),
+                () -> assertThat(files.getNumberOf(Color.WHITE, Kind.ROOK)).isEqualTo(1),
+                () -> assertThat(files.getNumberOf(Color.WHITE, Kind.KING)).isEqualTo(1)
         );
     }
 
     @Test
     void groupingByCalculablePiece() {
-        initBoard(board);
+        files.fillWithRoyalAt(Color.BLACK);
+        files.fillWithPawnAt(Color.BLACK);
+        files.fillWithBlankAt(new RankIndex(3).getRankIndexForList());
+        files.fillWithBlankAt(new RankIndex(4).getRankIndexForList());
+        files.fillWithBlankAt(new RankIndex(5).getRankIndexForList());
+        files.fillWithBlankAt(new RankIndex(6).getRankIndexForList());
+        files.fillWithRoyalAt(Color.WHITE);
+        files.fillWithPawnAt(Color.WHITE);
 
-        Map<CalculablePiece, Double> calculablePieceDoubleMap = board.groupingByCalculablePiece(Color.BLACK);
+        Map<CalculablePiece, Double> calculablePieceDoubleMap = files.groupingByCalculablePiece(Color.BLACK);
 
         assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'a'))).isEqualTo(Kind.PAWN.point());
         assertThat(calculablePieceDoubleMap.get(CalculablePiece.create(blackPieceFactory.createPawn(), 'b'))).isEqualTo(Kind.PAWN.point());

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 public class Board {
     // 체스에서 row를 rank라고 한다.
     public static final int RANK_SIZE = 8;
-    private List<File> files = new ArrayList<>();
+    private Files files = new Files();
 
     public Board() {
         for (int i = 0; i < RANK_SIZE; i++) {
@@ -21,26 +21,19 @@ public class Board {
     }
 
     public void initializePieceBy(Color color) {
-        int royalIndex = new RankIndex(color.royalInitializationRank()).getRankIndexForList();
-        int pawnIndex = new RankIndex(color.pawnInitializationRank()).getRankIndexForList();
-
-        files.get(royalIndex).fillWithRoyal(color);
-        files.get(pawnIndex).fillWithPawn(color);
+        files.fillWithRoyalAt(color);
+        files.fillWithPawnAt(color);
     }
 
     public void initializeEmptyPiece() {
-        files.get(new RankIndex(3).getRankIndexForList()).fillWithBlank();
-        files.get(new RankIndex(4).getRankIndexForList()).fillWithBlank();
-        files.get(new RankIndex(5).getRankIndexForList()).fillWithBlank();
-        files.get(new RankIndex(6).getRankIndexForList()).fillWithBlank();
+        files.fillWithBlankAt(new RankIndex(3).getRankIndexForList());
+        files.fillWithBlankAt(new RankIndex(4).getRankIndexForList());
+        files.fillWithBlankAt(new RankIndex(5).getRankIndexForList());
+        files.fillWithBlankAt(new RankIndex(6).getRankIndexForList());
     }
 
     public void add(Piece piece) {
-        files.stream()
-                .filter(File::isAddable)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("더 이상 추가할 수 없습니다. 현재 크기 : " + pieceCount()))
-                .add(piece);
+        files.add(piece);
     }
 
     /**
@@ -68,49 +61,31 @@ public class Board {
      * @see <a href="https://www.dummies.com/games/chess/naming-ranks-and-files-in-chess/" >Naming Ranks and Files in Chess</a> 를 참고하였음.
      */
     public Piece findPiece(String input) {
-        Position position = Position.of(input);
-        return files.get(position.getRankIndexForList())
-                .get(position.getFileIndexForList());
+        return files.findPiece(Position.of(input));
     }
 
     public void set(String input, Piece piece) {
-        Position position = Position.of(input);
-
-        files.get(position.getRankIndexForList())
-                .set(position.getFileIndexForList(), piece);
+        files.set(Position.of(input), piece);
     }
 
     public int pieceCount() {
-        return files.stream()
-                .mapToInt(File::size)
-                .sum();
+        return files.pieceCount();
     }
 
     public List<Piece> getPiecesBy(Color color) {
-        return files.stream()
-                .flatMap(file -> file.getPieces().stream())
-                .filter(file -> file.getColor() == color)
-                .sorted()
-                .collect(Collectors.toList());
+        return files.getPiecesBy(color);
     }
 
     public int getNumberOf(Color color, Kind kind) {
-        return files.stream()
-                .mapToInt(file -> file.getNumberOf(color, kind))
-                .sum();
+        return files.getNumberOf(color, kind);
     }
 
     public Map<CalculablePiece, Double> groupingByCalculablePiece(Color color) {
-        return files.stream()
-                .flatMap(file -> file.getCalculablePieces().stream())
-                .filter(calculablePiece -> calculablePiece.getColor() == color)
-                .collect(Collectors.groupingBy(Function.identity(),
-                        Collectors.summingDouble(CalculablePiece::getPoint)
-                ));
+        return files.groupingByCalculablePiece(color);
     }
 
     public List<File> getFiles() {
-        return Collections.unmodifiableList(files);
+        return files.getFiles();
     }
 
     @Override

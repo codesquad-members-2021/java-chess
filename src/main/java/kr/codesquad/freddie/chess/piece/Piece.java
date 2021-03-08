@@ -13,7 +13,7 @@ public abstract class Piece implements Comparable<Piece> {
         this.kind = kind;
     }
 
-    public abstract boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece);
+    public abstract boolean canMove(PositionCalculator positionCalculator, Piece targetPiece);
 
     public Color getColor() {
         return color;

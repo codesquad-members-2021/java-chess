@@ -12,7 +12,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece) {
+    public boolean canMove(PositionCalculator positionCalculator, Piece targetPiece) {
         return positionCalculator.getGradient() == 0;
     }
 }

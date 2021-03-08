@@ -12,7 +12,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece) {
+    public boolean canMove(PositionCalculator positionCalculator, Piece targetPiece) {
         double gradient = Math.abs(positionCalculator.getGradient());
 
         return gradient == 0 || gradient == 1;

@@ -42,7 +42,7 @@ public class ChessGame {
             throw new IllegalArgumentException(message);
         }
 
-        if (!sourcePiece.isCanMove(new PositionCalculator(Position.of(source), Position.of(target)), targetPiece)) {
+        if (!sourcePiece.canMove(new PositionCalculator(Position.of(source), Position.of(target)), targetPiece)) {
             String message = "이동 위치가 올바르지 않습니다. : source : " + source + ", target : " + target;
             throw new IllegalArgumentException(message);
         }

@@ -53,55 +53,55 @@ class KnightTest {
     }
 
     @Test
-    void isCanMove() {
-        checkIsCanMove("d4", "c6");
-        checkIsCanMove("d4", "b5");
-        checkIsCanMove("d4", "b3");
-        checkIsCanMove("d4", "c2");
-        checkIsCanMove("d4", "e2");
-        checkIsCanMove("d4", "f3");
-        checkIsCanMove("d4", "f5");
-        checkIsCanMove("d4", "e6");
+    void canMove() {
+        checkCanMove("d4", "c6");
+        checkCanMove("d4", "b5");
+        checkCanMove("d4", "b3");
+        checkCanMove("d4", "c2");
+        checkCanMove("d4", "e2");
+        checkCanMove("d4", "f3");
+        checkCanMove("d4", "f5");
+        checkCanMove("d4", "e6");
     }
 
-    private void checkIsCanMove(String source, String target) {
+    private void checkCanMove(String source, String target) {
         PositionCalculator positionCalculator = new PositionCalculator(Position.of(source), Position.of(target));
-        assertThat(blackKnight.isCanMove(positionCalculator, PieceFactory.createBlank())).isTrue();
-        assertThat(whiteKnight.isCanMove(positionCalculator, PieceFactory.createBlank())).isTrue();
+        assertThat(blackKnight.canMove(positionCalculator, PieceFactory.createBlank())).isTrue();
+        assertThat(whiteKnight.canMove(positionCalculator, PieceFactory.createBlank())).isTrue();
     }
 
     @Test
-    void isCanMoveFail() {
-        checkIsCanMoveFail("d4", "a4");
-        checkIsCanMoveFail("d4", "b4");
-        checkIsCanMoveFail("d4", "c4");
-        checkIsCanMoveFail("d4", "e4");
-        checkIsCanMoveFail("d4", "f4");
-        checkIsCanMoveFail("d4", "g4");
-        checkIsCanMoveFail("d4", "h4");
-        checkIsCanMoveFail("d4", "d1");
-        checkIsCanMoveFail("d4", "d2");
-        checkIsCanMoveFail("d4", "d3");
-        checkIsCanMoveFail("d4", "d5");
-        checkIsCanMoveFail("d4", "d6");
-        checkIsCanMoveFail("d4", "d7");
-        checkIsCanMoveFail("d4", "c7");
-        checkIsCanMoveFail("d4", "a5");
-        checkIsCanMoveFail("d4", "a3");
-        checkIsCanMoveFail("d4", "c1");
-        checkIsCanMoveFail("d4", "e1");
-        checkIsCanMoveFail("d4", "g3");
-        checkIsCanMoveFail("d4", "g5");
-        checkIsCanMoveFail("d4", "e7");
-        checkIsCanMoveFail("d4", "b6");
-        checkIsCanMoveFail("d4", "b2");
-        checkIsCanMoveFail("d4", "f2");
-        checkIsCanMoveFail("d4", "f6");
+    void canMoveFail() {
+        checkCanMoveFail("d4", "a4");
+        checkCanMoveFail("d4", "b4");
+        checkCanMoveFail("d4", "c4");
+        checkCanMoveFail("d4", "e4");
+        checkCanMoveFail("d4", "f4");
+        checkCanMoveFail("d4", "g4");
+        checkCanMoveFail("d4", "h4");
+        checkCanMoveFail("d4", "d1");
+        checkCanMoveFail("d4", "d2");
+        checkCanMoveFail("d4", "d3");
+        checkCanMoveFail("d4", "d5");
+        checkCanMoveFail("d4", "d6");
+        checkCanMoveFail("d4", "d7");
+        checkCanMoveFail("d4", "c7");
+        checkCanMoveFail("d4", "a5");
+        checkCanMoveFail("d4", "a3");
+        checkCanMoveFail("d4", "c1");
+        checkCanMoveFail("d4", "e1");
+        checkCanMoveFail("d4", "g3");
+        checkCanMoveFail("d4", "g5");
+        checkCanMoveFail("d4", "e7");
+        checkCanMoveFail("d4", "b6");
+        checkCanMoveFail("d4", "b2");
+        checkCanMoveFail("d4", "f2");
+        checkCanMoveFail("d4", "f6");
     }
 
-    private void checkIsCanMoveFail(String source, String target) {
+    private void checkCanMoveFail(String source, String target) {
         PositionCalculator positionCalculator = new PositionCalculator(Position.of(source), Position.of(target));
-        assertThat(blackKnight.isCanMove(positionCalculator, PieceFactory.createBlank())).isFalse();
-        assertThat(whiteKnight.isCanMove(positionCalculator, PieceFactory.createBlank())).isFalse();
+        assertThat(blackKnight.canMove(positionCalculator, PieceFactory.createBlank())).isFalse();
+        assertThat(whiteKnight.canMove(positionCalculator, PieceFactory.createBlank())).isFalse();
     }
 }

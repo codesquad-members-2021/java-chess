@@ -12,7 +12,7 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece) {
+    public boolean canMove(PositionCalculator positionCalculator, Piece targetPiece) {
         int fileDistance = positionCalculator.getFileDistance();
         int rankDistance = positionCalculator.getRankDistance();
 
@@ -25,7 +25,7 @@ public class Pawn extends Piece {
                 return false;
             }
 
-            return isCanMoveDiagonally(targetPiece);
+            return canMoveDiagonally(targetPiece);
         }
 
         return isAvailableDirection(rankDistance);
@@ -43,7 +43,7 @@ public class Pawn extends Piece {
         return Math.abs(rankDistance) <= 2 && Math.abs(fileDistance) <= 1;
     }
 
-    private boolean isCanMoveDiagonally(Piece targetPiece) {
+    private boolean canMoveDiagonally(Piece targetPiece) {
         return targetPiece.getColor() != Color.NOCOLOR && this.getColor() != targetPiece.getColor();
     }
 }

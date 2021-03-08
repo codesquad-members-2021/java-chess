@@ -53,34 +53,34 @@ class KingTest {
     }
 
     @Test
-    void isCanMove() {
-        checkIsCanMove("b3", "b4");
-        checkIsCanMove("b3", "b2");
-        checkIsCanMove("b3", "c3");
-        checkIsCanMove("b3", "a3");
-        checkIsCanMove("b3", "c4");
-        checkIsCanMove("b3", "a4");
-        checkIsCanMove("b3", "c2");
-        checkIsCanMove("b3", "a2");
+    void canMove() {
+        checkCanMove("b3", "b4");
+        checkCanMove("b3", "b2");
+        checkCanMove("b3", "c3");
+        checkCanMove("b3", "a3");
+        checkCanMove("b3", "c4");
+        checkCanMove("b3", "a4");
+        checkCanMove("b3", "c2");
+        checkCanMove("b3", "a2");
     }
 
-    private void checkIsCanMove(String source, String target) {
+    private void checkCanMove(String source, String target) {
         PositionCalculator positionCalculator = new PositionCalculator(Position.of(source), Position.of(target));
-        assertThat(blackKing.isCanMove(positionCalculator, PieceFactory.createBlank())).isTrue();
-        assertThat(whiteKing.isCanMove(positionCalculator, PieceFactory.createBlank())).isTrue();
+        assertThat(blackKing.canMove(positionCalculator, PieceFactory.createBlank())).isTrue();
+        assertThat(whiteKing.canMove(positionCalculator, PieceFactory.createBlank())).isTrue();
     }
 
     @Test
-    void isCanMoveFail() {
-        checkIsCanMoveFail("b3", "b5");
-        checkIsCanMoveFail("b3", "b1");
-        checkIsCanMoveFail("b3", "d3");
-        checkIsCanMoveFail("c3", "a3");
+    void canMoveFail() {
+        checkCanMoveFail("b3", "b5");
+        checkCanMoveFail("b3", "b1");
+        checkCanMoveFail("b3", "d3");
+        checkCanMoveFail("c3", "a3");
     }
 
-    private void checkIsCanMoveFail(String source, String target) {
+    private void checkCanMoveFail(String source, String target) {
         PositionCalculator positionCalculator = new PositionCalculator(Position.of(source), Position.of(target));
-        assertThat(blackKing.isCanMove(positionCalculator, PieceFactory.createBlank())).isFalse();
-        assertThat(whiteKing.isCanMove(positionCalculator, PieceFactory.createBlank())).isFalse();
+        assertThat(blackKing.canMove(positionCalculator, PieceFactory.createBlank())).isFalse();
+        assertThat(whiteKing.canMove(positionCalculator, PieceFactory.createBlank())).isFalse();
     }
 }

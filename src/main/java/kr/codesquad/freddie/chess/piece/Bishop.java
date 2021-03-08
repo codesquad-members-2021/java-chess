@@ -12,7 +12,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece) {
+    public boolean canMove(PositionCalculator positionCalculator, Piece targetPiece) {
         return Math.abs(positionCalculator.getGradient()) == 1;
     }
 }

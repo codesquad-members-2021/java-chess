@@ -12,7 +12,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    public boolean isCanMove(PositionCalculator positionCalculator, Piece targetPiece) {
+    public boolean canMove(PositionCalculator positionCalculator, Piece targetPiece) {
         int fileDistance = Math.abs(positionCalculator.getFileDistance());
         int rankDistance = Math.abs(positionCalculator.getRankDistance());
 

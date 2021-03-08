@@ -2,7 +2,6 @@ package kr.codesquad.freddie.chess.board;
 
 import kr.codesquad.freddie.chess.piece.CalculablePiece;
 import kr.codesquad.freddie.chess.piece.Color;
-import kr.codesquad.freddie.chess.piece.Kind;
 import kr.codesquad.freddie.chess.piece.Piece;
 
 import java.util.ArrayList;
@@ -38,14 +37,6 @@ public class Files {
                 .set(position.getFileIndexForList(), piece);
     }
 
-    public List<Piece> getPiecesBy(Color color) {
-        return files.stream()
-                .flatMap(file -> file.getPieces().stream())
-                .filter(file -> file.getColor() == color)
-                .sorted()
-                .collect(Collectors.toList());
-    }
-
     public void fillWithRoyalAt(Color color) {
         RankIndex rankIndex = new RankIndex(color.royalInitializationRank());
         files.get(rankIndex.getRankIndexForList()).fillWithRoyal(color);
@@ -63,12 +54,6 @@ public class Files {
     public int pieceCount() {
         return files.stream()
                 .mapToInt(File::size)
-                .sum();
-    }
-
-    public int getNumberOf(Color color, Kind kind) {
-        return files.stream()
-                .mapToInt(file -> file.getNumberOf(color, kind))
                 .sum();
     }
 

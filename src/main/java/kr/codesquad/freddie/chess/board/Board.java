@@ -72,14 +72,6 @@ public class Board {
         return files.pieceCount();
     }
 
-    public List<Piece> getPiecesBy(Color color) {
-        return files.getPiecesBy(color);
-    }
-
-    public int getNumberOf(Color color, Kind kind) {
-        return files.getNumberOf(color, kind);
-    }
-
     public Map<CalculablePiece, Double> groupingByCalculablePiece(Color color) {
         return files.groupingByCalculablePiece(color);
     }

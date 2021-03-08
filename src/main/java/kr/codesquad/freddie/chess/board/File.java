@@ -35,13 +35,6 @@ public class File {
         return pieces.size();
     }
 
-    public int getNumberOf(Color color, Kind kind) {
-        long numberOfPieces = pieces.stream()
-                .filter(piece -> piece.getColor() == color && piece.getKind() == kind)
-                .count();
-        return Long.valueOf(numberOfPieces).intValue();
-    }
-
     public boolean isAddable() {
         return size() < SIZE;
     }

@@ -30,13 +30,4 @@ public class Position {
     public int getRankIndexForList() {
         return rankIndex.getRankIndexForList();
     }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder()
-                .append(getFileIndex())
-                .append(getRankIndex());
-
-        return sb.toString();
-    }
 }

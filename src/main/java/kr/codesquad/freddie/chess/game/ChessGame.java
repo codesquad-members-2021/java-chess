@@ -54,11 +54,4 @@ public class ChessGame {
     public Board getBoard() {
         return board;
     }
-
-    @Override
-    public String toString() {
-        return "ChessGame{" +
-                "board=" + board +
-                '}';
-    }
 }

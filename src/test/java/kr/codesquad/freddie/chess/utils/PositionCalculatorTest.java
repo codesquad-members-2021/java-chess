@@ -48,20 +48,6 @@ class PositionCalculatorTest extends ChessTestBase {
     }
 
     @Test
-    void getSourcePieceFrom() {
-        positionCalculator = new PositionCalculator(Position.of("a1"), Position.of("b1"));
-
-        assertThat(positionCalculator.getSourcePieceFrom(board)).isEqualTo(whitePieceFactory.createRook());
-    }
-
-    @Test
-    void getTargetPieceFrom() {
-        positionCalculator = new PositionCalculator(Position.of("a1"), Position.of("b1"));
-
-        assertThat(positionCalculator.getTargetPieceFrom(board)).isEqualTo(whitePieceFactory.createKnight());
-    }
-
-    @Test
     void getGradientHorizontal() {
         positionCalculator = new PositionCalculator(Position.of("a1"), Position.of("b1"));
 

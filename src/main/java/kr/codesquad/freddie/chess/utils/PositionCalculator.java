@@ -21,14 +21,6 @@ public class PositionCalculator {
         return distanceOf(sourcePosition.getRankIndex(), targetPosition.getRankIndex());
     }
 
-    public Piece getSourcePieceFrom(Board board) {
-        return board.findPiece(sourcePosition.toString());
-    }
-
-    public Piece getTargetPieceFrom(Board board) {
-        return board.findPiece(targetPosition.toString());
-    }
-
     public double getGradient() {
         if (getFileDistance() == 0) {
             return 0;

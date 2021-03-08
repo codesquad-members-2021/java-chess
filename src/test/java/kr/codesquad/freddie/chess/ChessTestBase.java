@@ -3,6 +3,7 @@ package kr.codesquad.freddie.chess;
 import kr.codesquad.freddie.chess.board.File;
 import kr.codesquad.freddie.chess.board.Board;
 import kr.codesquad.freddie.chess.piece.Color;
+import kr.codesquad.freddie.chess.piece.Piece;
 import kr.codesquad.freddie.chess.piece.PieceFactory;
 
 public class ChessTestBase {
@@ -18,7 +19,7 @@ public class ChessTestBase {
 
     protected void initBoardWithBlank(Board board) {
         for (int i = 0; i < MAX_SIZE; i++) {
-            board.add(PieceFactory.createBlank());
+            board.add(Piece.EMPTY_PIECE);
         }
     }
 }

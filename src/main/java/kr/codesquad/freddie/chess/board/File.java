@@ -44,7 +44,7 @@ public class File {
     }
 
     public void fillWithBlank() {
-        fillWith(PieceFactory.createBlank());
+        fillWith(Piece.EMPTY_PIECE);
     }
 
     private void fillWith(Piece piece) {

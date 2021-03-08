@@ -5,6 +5,8 @@ import kr.codesquad.freddie.chess.utils.PositionCalculator;
 import java.util.Objects;
 
 public abstract class Piece implements Comparable<Piece> {
+    public static final Piece EMPTY_PIECE = PieceFactory.createBlank();
+
     private Color color;
     private Kind kind;
 

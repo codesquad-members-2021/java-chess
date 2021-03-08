@@ -44,7 +44,7 @@ public class ChessGame {
         checkPieceCanMove(source, target, sourcePiece, targetPiece);
 
         board.set(target, sourcePiece);
-        board.set(source, PieceFactory.createBlank());
+        board.set(source, Piece.EMPTY_PIECE);
     }
 
     private void checkGameNotInitialized() {

@@ -1,9 +1,14 @@
 package net.woody.chess;
 
 import net.woody.pieces.Piece;
+import net.woody.pieces.Piece.Color;
+import net.woody.pieces.Type;
 import org.junit.jupiter.api.*;
 
-import static net.woody.utils.StringUtils.appendNewLine;
+
+import static net.woody.factories.BoardFactory.*;
+import static net.woody.factories.PieceFactory.*;
+import static net.woody.utils.StringUtils.*;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
@@ -12,9 +17,8 @@ class BoardTest {
     private Board board;
 
     @BeforeEach
-    void setup() {
-        this.board = new Board();
-        board.initialize();
+    void initializedBoard() {
+        this.board = createInitBoard();
     }
 
     @Test
@@ -24,39 +28,51 @@ class BoardTest {
     }
 
     @Test
+    @DisplayName("보드를 초기화한 후, 특정 체스말의 갯수를 셀 수 있어야 한다")
+    void checkTheNumberOfSpecificPiece() {
+        assertAll(() -> {
+            int actualWhitePawnNum = board.numOfSpecificPiece(Color.WHITE, Type.PAWN);
+            assertThat(actualWhitePawnNum).isEqualTo(8);
+        }, () -> {
+            int actualBlackQueenNum = board.numOfSpecificPiece(Color.BLACK, Type.QUEEN);
+            assertThat(actualBlackQueenNum).isEqualTo(1);
+        }, () -> {
+            int actualBlankNum = board.numOfSpecificPiece(Color.NOCOLOR, Type.NO_PIECE);
+            assertThat(actualBlankNum).isEqualTo(32);
+        });
+    }
+
+    @Test
     @DisplayName("보드에 있는 체스말들을 정상적으로 찾을 수 있어야 한다.")
     void findPawnOnTheBoard() {
         assertAll(
                 () -> {
-                    Piece shouldBeBlackRook = board.findPiece(0, 0);
-                    assertThat(shouldBeBlackRook).isEqualTo(Piece.createBlackRook());
+                    Piece actualBlackRook = board.findPiece("a8");
+                    assertThat(actualBlackRook).isEqualTo(createBlackRook());
                 }, () -> {
-                    Piece shouldBeWhitePawn = board.findPiece(6, 0);
-                    assertThat(shouldBeWhitePawn).isEqualTo(Piece.createWhitePawn());
+                    Piece actualBlackRook = board.findPiece("h8");
+                    assertThat(actualBlackRook).isEqualTo(createBlackRook());
+                }, () -> {
+                    Piece actualWhiteRook = board.findPiece("a1");
+                    assertThat(actualWhiteRook).isEqualTo(createWhiteRook());
+                }, () -> {
+                    Piece actualWhiteRook = board.findPiece("h1");
+                    assertThat(actualWhiteRook).isEqualTo(createWhiteRook());
                 });
-    }
-
-    @Test
-    @DisplayName("체스말이 존재하지 않는 위치에서, 체스말을 찾으려고 시도하면 에러가 발생해야 한다.")
-    void findPieceNotOnTheBoard() {
-        assertThatThrownBy(() -> board.findPiece(4, 0))
-                .isInstanceOf(ArrayIndexOutOfBoundsException.class)
-                .hasMessageContaining("0 is out of range!");
     }
 
     @Test
     @DisplayName("음수 인덱스로 체스말을 찾으려고 할 때, 에러가 발생해야 한다.")
     void findPieceWithNegativeIndex() {
-        assertThatThrownBy(() -> board.findPiece(-1, 0))
-                .isInstanceOf(ArrayIndexOutOfBoundsException.class)
-                .hasMessageContaining("-1 is out of range!");
+        assertThatThrownBy(() -> board.findPiece("a-1"))
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("out of range!");
     }
 
-
     @Test
-    @DisplayName("보드를 초기화 한 뒤 출력된 결과가 예상된 결과와 같아야 한다.")
-    void printBoard() {
-        String expectedResult =
+    @DisplayName("보드를 초기화 한 뒤 출력된 체스판 상태가 예상된 결과와 같아야 한다.")
+    void printBoardState() {
+        String expected =
                 appendNewLine("RNBQKBNR") +
                         appendNewLine("PPPPPPPP") +
                         appendNewLine("........") +
@@ -66,7 +82,45 @@ class BoardTest {
                         appendNewLine("pppppppp") +
                         appendNewLine("rnbqkbnr");
 
-        String actualResult = board.showBoard();
-        assertThat(expectedResult).isEqualTo(actualResult);
+        assertThat(board.toString()).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("생성한 체스말을 빈 체스판 임의의 위치로 이동시킬 수 있어야 한다.")
+    void locatePieceOnTheEmptyBoard() {
+        this.board = createEmtpyBoard();
+        String position = "b5";
+        Piece piece = createBlackRook();
+        board.move(position, piece);
+
+        assertThat(board.findPiece(position)).isEqualTo(piece);
+    }
+
+    @Test
+    @DisplayName("흰색과 검은색 체스말의 총 스코어를 각각 계산한다.")
+    void calculatePoint() {
+        this.board = createEmtpyBoard();
+
+        addPiece("b6", createBlackPawn());
+        addPiece("e6", createBlackQueen());
+        addPiece("b8", createBlackKing());
+        addPiece("c8", createBlackRook());
+
+        addPiece("f2", createWhitePawn());
+        addPiece("g2", createWhitePawn());
+        addPiece("e1", createWhiteRook());
+        addPiece("f1", createWhiteKing());
+
+        assertThat(board.calculatePoint(Color.BLACK)).isEqualTo(15.0);
+        assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
+
+        addPiece("g3", createWhitePawn());
+
+        assertThat(board.calculatePoint(Color.WHITE)).isEqualTo(7.0);
+
+    }
+
+    private void addPiece(String position, Piece piece) {
+        board.move(position, piece);
     }
 }

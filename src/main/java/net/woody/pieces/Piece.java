@@ -1,29 +1,29 @@
 package net.woody.pieces;
 
-import net.woody.chess.Representation;
-
 import java.util.Objects;
 
-public class Piece {
-    public static final int BLACK_PIECES_RANK = 0;
-    public static final int BLACK_PAWN_RANK = 1;
-    public static final int WHITE_PAWN_RANK = 6;
-    public static final int WHITE_PIECES_RANK = 7;
+public class Piece implements Comparable<Piece> {
+
+    private static final Piece BLANK_PIECE = new Piece(Piece.Color.NOCOLOR, Type.NO_PIECE);
 
     private Color color;
-    private char representation;
+    private Type type;
 
-    private Piece(Color color, char representation) {
+    private Piece(Color color, Type type) {
         this.color = color;
-        this.representation = color.getRepresentation(representation);
+        this.type = type;
     }
 
     public Color getColor() {
         return color;
     }
 
+    public Type getType() {
+        return type;
+    }
+
     public char getRepresentation() {
-        return representation;
+        return (isBlack()) ? type.getBlackRepresentation() : type.getWhiteRepresentation();
     }
 
     public boolean isWhite() {
@@ -34,52 +34,20 @@ public class Piece {
         return color == Color.BLACK;
     }
 
-    public static Piece createBlackPawn() {
-        return new Piece(Color.BLACK, Representation.PAWN.value());
+    public boolean isPawn() {
+        return type == Type.PAWN;
     }
 
-    public static Piece createWhitePawn() {
-        return new Piece(Color.WHITE, Representation.PAWN.value());
+    public static Piece createBlack(Type type) {
+        return new Piece(Color.BLACK, type);
     }
 
-    public static Piece createBlackKnight() {
-        return new Piece(Color.BLACK, Representation.KNIGHT.value());
+    public static Piece createWhite(Type type) {
+        return new Piece(Color.WHITE, type);
     }
 
-    public static Piece createWhiteKnight() {
-        return new Piece(Color.WHITE, Representation.KNIGHT.value());
-    }
-
-    public static Piece createBlackRook() {
-        return new Piece(Color.BLACK, Representation.ROOK.value());
-    }
-
-    public static Piece createWhiteRook() {
-        return new Piece(Color.WHITE, Representation.ROOK.value());
-    }
-
-    public static Piece createBlackBishop() {
-        return new Piece(Color.BLACK, Representation.BISHOP.value());
-    }
-
-    public static Piece createWhiteBishop() {
-        return new Piece(Color.WHITE, Representation.BISHOP.value());
-    }
-
-    public static Piece createBlackQueen() {
-        return new Piece(Color.BLACK, Representation.QUEEN.value());
-    }
-
-    public static Piece createWhiteQueen() {
-        return new Piece(Color.WHITE, Representation.QUEEN.value());
-    }
-
-    public static Piece createBlackKing() {
-        return new Piece(Color.BLACK, Representation.KING.value());
-    }
-
-    public static Piece createWhiteKing() {
-        return new Piece(Color.WHITE, Representation.KING.value());
+    public static Piece getBlankPiece() {
+        return BLANK_PIECE;
     }
 
     @Override
@@ -87,11 +55,42 @@ public class Piece {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Piece piece = (Piece) o;
-        return representation == piece.representation && color == piece.color;
+        return type == piece.type && color == piece.color;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(color, representation);
+        return Objects.hash(color, type);
+    }
+
+    @Override
+    public int compareTo(Piece piece) {
+        if (this.isBlack() && piece.isWhite()) {
+            return 1;
+        } else if (this.isWhite() && piece.isBlack()) {
+            return -1;
+        }
+
+        double thisPoint = this.getType().getDefaultPoint();
+        double otherPoint = piece.getType().getDefaultPoint();
+
+        if (thisPoint > otherPoint) {
+            return 1;
+        } else if (thisPoint < otherPoint) {
+            return -1;
+        }
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Piece{" +
+                "color=" + color +
+                ", type=" + type +
+                '}';
+    }
+
+    public enum Color {
+        WHITE, BLACK, NOCOLOR;
     }
 }

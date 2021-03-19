@@ -3,84 +3,57 @@ package net.woody.chess;
 import static net.woody.utils.StringUtils.appendNewLine;
 
 import net.woody.pieces.Piece;
+import net.woody.pieces.Piece.Color;
+import net.woody.pieces.Type;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static net.woody.factories.PieceFactory.*;
 
 public class Board {
 
     private static final int BOARD_LENGTH = 8;
 
-    private final List<Rank> board = new ArrayList<>(BOARD_LENGTH);
+    private final List<Rank> board;
 
-    public Board() {
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            board.add(new Rank());
-        }
+    private Board(List<Rank> board) {
+        this.board = board;
     }
 
-    public void add(Piece piece, int rank) {
-        getRank(rank).add(piece);
+    public void move(String position, Piece piece) {
+        Position pos = new Position(position);
+        int rank = pos.getRank();
+        int file = pos.getFile();
+        getRank(rank).add(file, piece);
     }
 
-    public Rank getRank(int rank) {
-        if (rank < 0 || board.size() <= rank) {
-            throw new ArrayIndexOutOfBoundsException("Rank number " + rank + " is out of range!");
+    public Piece findPiece(String position) {
+        Position pos = new Position(position);
+        return findPiece(pos.getFile(), pos.getRank());
+    }
+
+    private Piece findPiece(int file, int rank) {
+        return getRank(rank).getPiece(file);
+    }
+
+    public int numOfSpecificPiece(Color color, Type type) {
+        Piece target = getBlankInstance();
+        target = (color == Color.BLACK) ? Piece.createBlack(type) : target;
+        target = (color == Color.WHITE) ? Piece.createWhite(type) : target;
+
+        int targetCounter = 0;
+        for (int rank = 0; rank < BOARD_LENGTH; rank++) {
+            targetCounter += getRank(rank).getNumOfPiece(target);
         }
+        return targetCounter;
+    }
+
+    public static Board createBoard(List<Rank> board) {
+        return new Board(board);
+    }
+
+    private Rank getRank(int rank) {
         return board.get(rank);
-    }
-
-    public Piece findPiece(int rank, int file) {
-        return getRank(rank).find(file);
-    }
-
-    public void initialize() {
-        initBlackPieces();
-        initBlackPawns();
-        initWhitePawns();
-        initWhitePieces();
-    }
-
-    private void initBlackPieces() {
-        Rank blackPieces = getRank(Piece.BLACK_PIECES_RANK);
-
-        blackPieces.add(Piece.createBlackRook());
-        blackPieces.add(Piece.createBlackKnight());
-        blackPieces.add(Piece.createBlackBishop());
-        blackPieces.add(Piece.createBlackQueen());
-        blackPieces.add(Piece.createBlackKing());
-        blackPieces.add(Piece.createBlackBishop());
-        blackPieces.add(Piece.createBlackKnight());
-        blackPieces.add(Piece.createBlackRook());
-    }
-
-    private void initBlackPawns() {
-        Rank blackPawns = getRank(Piece.BLACK_PAWN_RANK);
-
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            blackPawns.add(Piece.createBlackPawn());
-        }
-    }
-
-    private void initWhitePieces() {
-        Rank whitePieces = getRank(Piece.WHITE_PIECES_RANK);
-
-        whitePieces.add(Piece.createWhiteRook());
-        whitePieces.add(Piece.createWhiteKnight());
-        whitePieces.add(Piece.createWhiteBishop());
-        whitePieces.add(Piece.createWhiteQueen());
-        whitePieces.add(Piece.createWhiteKing());
-        whitePieces.add(Piece.createWhiteBishop());
-        whitePieces.add(Piece.createWhiteKnight());
-        whitePieces.add(Piece.createWhiteRook());
-    }
-
-    private void initWhitePawns() {
-        Rank whitePawns = getRank(Piece.WHITE_PAWN_RANK);
-
-        for (int i = 0; i < BOARD_LENGTH; i++) {
-            whitePawns.add(Piece.createWhitePawn());
-        }
     }
 
     public int size() {
@@ -91,11 +64,38 @@ public class Board {
         return numOfPieces;
     }
 
-    public String showBoard() {
-        StringBuilder sb = new StringBuilder();
-        for (Rank rank : board) {
-            sb.append(appendNewLine(rank.toString()));
+    public double calculatePoint(Color color) {
+        double score = 0;
+        for (int file = 0; file < BOARD_LENGTH; file++) {
+            score += calculateOneFileLine(color, file);
         }
-        return sb.toString();
+        return score;
     }
+
+    private double calculateOneFileLine(Color color, int file) {
+        int score = 0;
+        int pawnCounter = 0;
+        for (int rank = 0; rank < BOARD_LENGTH; rank++) {
+            Piece piece = findPiece(file, rank);
+            if (piece.getColor() == color) {
+                score += piece.getType().getDefaultPoint();
+                if (piece.isPawn()) {
+                    pawnCounter++;
+                }
+            }
+        }
+        score -= (pawnCounter > 1) ? pawnCounter * 0.5 : 0;
+        return score;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder boardState = new StringBuilder();
+        for (int i = BOARD_LENGTH - 1; i >= 0; i--) {
+            boardState.append(appendNewLine(getRank(i).toString()));
+        }
+
+        return boardState.toString();
+    }
+
 }

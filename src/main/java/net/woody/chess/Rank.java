@@ -2,36 +2,52 @@ package net.woody.chess;
 
 import net.woody.pieces.Piece;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static net.woody.factories.PieceFactory.*;
+
 public class Rank {
-    private static final int BOARD_LENGTH = 8;
+    private final List<Piece> pieces;
 
-    private final List<Piece> pieces = new ArrayList<>(BOARD_LENGTH);
-
-    public void add(Piece piece) {
-        pieces.add(piece);
+    private Rank(List<Piece> pieces) {
+        this.pieces = pieces;
     }
 
-    public Piece find(int file) {
-        if (file < 0 || size() <= file) {
-            throw new ArrayIndexOutOfBoundsException("File number " + file + " is out of range!");
-        }
+    public void add(int file, Piece piece) {
+        pieces.set(file, piece);
+    }
+
+    public Piece getPiece(int file) {
         return pieces.get(file);
     }
 
+    public int getNumOfPiece(Piece target) {
+        int targetCounter = 0;
+        for (Piece piece : pieces) {
+            targetCounter += target.equals(piece) ? 1 : 0;
+        }
+        return targetCounter;
+    }
+
     public int size() {
-        return pieces.size();
+        int pieceSize = 0;
+        for (Piece piece : pieces) {
+            pieceSize += piece.equals(getBlankInstance()) ? 0 : 1;
+        }
+        return pieceSize;
+    }
+
+    public static Rank createRank(List<Piece> pieces) {
+        return new Rank(pieces);
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        if (pieces.size() == 0) {
-            return "........";
+        StringBuilder rank = new StringBuilder();
+
+        for (Piece piece : pieces) {
+            rank.append(piece.getRepresentation());
         }
-        pieces.forEach(piece -> sb.append(piece.getRepresentation()));
-        return sb.toString();
+        return rank.toString();
     }
 }
